@@ -1,0 +1,20 @@
+language: php
+
+sudo: false
+
+matrix:
+    fast_finish: true
+    include:
+      - php: 7.0
+        env: dependencies=lowest
+      - php: 7.0
+
+cache:
+    directories:
+      - $HOME/.composer/cache/files
+
+install:
+  - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --no-interaction; else composer update --no-interaction; fi;
+
+script:
+  - vendor/bin/phpunit

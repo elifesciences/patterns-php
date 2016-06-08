@@ -1,6 +1,8 @@
 eLife Patterns
 ==============
 
+[![Build Status](https://travis-ci.com/elifesciences/patterns-php.svg?token=dquhvWSBarvsr1Drszqt&branch=master)](https://travis-ci.com/elifesciences/patterns-php)
+
 This library provides a PHP implementation for the Mustache templates/assets produced by the [eLife Sciences Pattern Library](https://github.com/elifesciences/pattern-library).
 
 Dependencies
