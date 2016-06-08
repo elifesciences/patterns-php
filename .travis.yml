@@ -13,6 +13,9 @@ cache:
     directories:
       - $HOME/.composer/cache/files
 
+before_install:
+  - curl https://puli.io/installer | php
+
 install:
   - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --no-interaction; else composer update --no-interaction; fi;
 
