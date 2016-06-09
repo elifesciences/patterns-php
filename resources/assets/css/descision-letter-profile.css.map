@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,mCAAoC,CCsFlC,WAAW,CC5DE,gCAAkC,CCnB/C,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,MAAmC,CFgF9C,WAAW,CAAE,IAAI,CE3Ef,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,QAAkC,CHV7D,qCAAsC,CACpC,KAAK,CEFS,OAAO,CFGrB,eAAe,CAAE,IAAI,CAGvB,wFAC6C,CAC3C,KAAK,CEPc,OAAO",
+"sources": ["../../../../../../assets/sass/patterns/organisms/descision-letter-profile.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
+"names": [],
+"file": "descision-letter-profile.css"
+}

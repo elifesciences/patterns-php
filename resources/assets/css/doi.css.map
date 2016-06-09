@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,IAAK,CCqBH,WAAW,CCMI,gDAAmD,CCpBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CFe9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,CAAC,CACd,cAAc,CAAE,SAAS,CA0OzB,KAAK,CC3PgB,IAAI,CFJ3B,UAAW,CACT,KAAK,CEGgB,IAAI,CFFzB,eAAe,CAAE,IAAI,CACrB,cAAc,CAAE,IAAI,CAEpB,gBAAQ,CACN,KAAK,CEPO,OAAO",
+"sources": ["../../../../../../assets/sass/patterns/atoms/doi.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
+"names": [],
+"file": "doi.css"
+}

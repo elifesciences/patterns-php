@@ -43,7 +43,7 @@ ProcessBuilder::create()
 ;
 
 ProcessBuilder::create()
-    ->setArguments(['gulp'])
+    ->setArguments(['gulp', '--environment', 'production'])
     ->setWorkingDirectory($sourceDir)
     ->getProcess()
     ->enableOutput()

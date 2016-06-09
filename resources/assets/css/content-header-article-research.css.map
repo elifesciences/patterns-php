@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAME,sCAAM,CCgCJ,UAAoB,CAAE,IAAgB,CACtC,UAAoB,CAAE,QAAkC,CD3B5D,0CAA2C,CACzC,UAAU,CAAE,iBAA8B,CAE1C,sDAAY,CACV,mBAAmB,CAAE,CAAC,CACtB,WAAW,CAAE,CAAC,CAGhB,wEAA8B,CAC5B,OAAO,CAAE,EAAE",
+"sources": ["../../../../../../assets/sass/patterns/organisms/content-header-article-research.scss","../../../../../../assets/sass/_mixins.scss"],
+"names": [],
+"file": "content-header-article-research.css"
+}

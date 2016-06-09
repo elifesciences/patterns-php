@@ -15,6 +15,7 @@ cache:
 
 before_install:
   - curl https://puli.io/installer | php
+  - gem install compass
 
 install:
   - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --no-interaction; else composer update --no-interaction; fi;

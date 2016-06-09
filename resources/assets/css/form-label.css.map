@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,WAAY,CACV,OAAO,CAAE,KAAK,CC6Qd,KAAK,CCvQM,OAAO,CDwQlB,WAAW,CCpPI,gDAAmD,CCpBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CFyQ9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,GAAG,CE9Od,aAAoB,CAAE,GAAgB,CACtC,aAAoB,CAAE,OAAkC",
+"sources": ["../../../../../../assets/sass/patterns/atoms/form-label.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
+"names": [],
+"file": "form-label.css"
+}
