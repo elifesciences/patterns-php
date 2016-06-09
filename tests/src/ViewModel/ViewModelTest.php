@@ -92,10 +92,16 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(iterator_to_array($this->expectedStylesheets()),
             iterator_to_array($viewModel->getStyleSheets()));
+        foreach ($this->expectedStylesheets() as $stylesheet) {
+            $this->puli->get($stylesheet);
+        }
         $this->assertSame(iterator_to_array($this->expectedInlineStylesheets($viewModel)),
             iterator_to_array($viewModel->getInlineStyleSheets()));
         $this->assertSame(iterator_to_array($this->expectedJavaScripts()),
             iterator_to_array($viewModel->getJavaScripts()));
+        foreach ($this->expectedJavaScripts() as $javaScript) {
+            $this->puli->get($javaScript);
+        }
         $this->assertSame(iterator_to_array($this->expectedInlineJavaScripts($viewModel)),
             iterator_to_array($viewModel->getInlineJavaScripts()));
     }
