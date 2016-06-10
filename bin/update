@@ -4,10 +4,12 @@
 use GitWrapper\Event\GitOutputStreamListener;
 use GitWrapper\GitWorkingCopy;
 use GitWrapper\GitWrapper;
+use Rs\Json\Pointer;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Yaml\Yaml;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -68,7 +70,39 @@ $filesystem->remove($outputDir . '/definitions/');
 $filesystem->remove($outputDir . '/templates/');
 
 foreach ($finder as $file) {
-    $filesystem->copy($file->getRealPath(), $outputDir . '/definitions/' . $file->getFilename(), true);
+    $yaml = Yaml::parse($file->getContents());
+    $yaml = resolveJsonReferences($yaml, $file);
+
+    $filesystem->dumpFile($outputDir . '/definitions/' . $file->getFilename(), Yaml::dump($yaml, 100));
+
     $template = new SplFileInfo(substr($file->getRealPath(), 0, -4) . 'mustache');
     $filesystem->copy($template->getRealPath(), $outputDir . '/templates/' . $template->getFilename(), true);
+}
+
+/**
+ * Naive JSON reference resolver than can handle YAML.
+ *
+ * @internal
+ */
+function resolveJsonReferences(array $json, SplFileInfo $file) : array
+{
+    foreach ($json as $key => $value) {
+        if (is_array($value)) {
+            $json[$key] = resolveJsonReferences($value, $file);
+        } elseif ('$ref' === $key) {
+            $parts = explode('#', $value, 2);
+
+            $referenced = new SplFileInfo(dirname($file->getRealPath()) . '/' . $parts[0]);
+
+            if (null === $json = json_decode(file_get_contents($referenced->getRealPath()), true)) {
+                $json = Yaml::parse(file_get_contents($referenced->getRealPath()));
+            }
+
+            $pointer = new Pointer(json_encode($json));
+
+            return resolveJsonReferences($pointer->get($parts[1]), $referenced);
+        }
+    }
+
+    return $json;
 }

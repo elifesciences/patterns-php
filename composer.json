@@ -21,6 +21,7 @@
     "require-dev": {
         "cpliakas/git-wrapper": "^1.0",
         "justinrainbow/json-schema": "^1.6",
+        "php-jsonpointer/php-jsonpointer": "^1.0",
         "phpunit/phpunit": "^5.2",
         "phpspec/prophecy": "^1.5",
         "symfony/filesystem": "^3.0",

@@ -35,6 +35,11 @@
             "install-path": "vendor/paragonie/random_compat",
             "installer": "composer"
         },
+        "php-jsonpointer/php-jsonpointer": {
+            "install-path": "vendor/php-jsonpointer/php-jsonpointer",
+            "installer": "composer",
+            "env": "dev"
+        },
         "phpdocumentor/reflection-common": {
             "install-path": "vendor/phpdocumentor/reflection-common",
             "installer": "composer",
