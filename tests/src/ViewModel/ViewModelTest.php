@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use ArrayObject;
+use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
 use PHPUnit_Framework_TestCase;
@@ -59,7 +60,13 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $data = $viewModel->toArray();
 
         foreach ($data as $key => $value) {
-            $this->assertSame($value, $viewModel[$key]);
+            $actual = $viewModel[$key];
+
+            if ($actual instanceof CastsToArray) {
+                $actual = $actual->toArray();
+            }
+
+            $this->assertSame($value, $actual);
         }
     }
 
