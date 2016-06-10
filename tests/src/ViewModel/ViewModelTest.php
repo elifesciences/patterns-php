@@ -4,6 +4,8 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use ArrayObject;
 use eLife\Patterns\CastsToArray;
+use function eLife\Patterns\flatten;
+use function eLife\Patterns\sanitise_traversable;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
 use PHPUnit_Framework_TestCase;
@@ -97,20 +99,33 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $viewModel = $this->createViewModel();
 
-        $this->assertSame(iterator_to_array($this->expectedStylesheets()),
-            iterator_to_array($viewModel->getStyleSheets()));
+        $expectedStylesheets = iterator_to_array(sanitise_traversable($this->expectedStylesheets()));
+        $actualStyleSheets = iterator_to_array(sanitise_traversable($viewModel->getStyleSheets()));
+
+        $this->assertSame($expectedStylesheets, $actualStyleSheets);
+
         foreach ($this->expectedStylesheets() as $stylesheet) {
             $this->puli->get($stylesheet);
         }
-        $this->assertSame(iterator_to_array($this->expectedInlineStylesheets($viewModel)),
-            iterator_to_array($viewModel->getInlineStyleSheets()));
-        $this->assertSame(iterator_to_array($this->expectedJavaScripts()),
-            iterator_to_array($viewModel->getJavaScripts()));
+
+        $expectedInlineStylesheets = iterator_to_array(flatten($this->expectedInlineStylesheets($viewModel)));
+        $actualInlineStyleSheets = iterator_to_array(flatten($viewModel->getInlineStyleSheets()));
+
+        $this->assertSame($expectedInlineStylesheets, $actualInlineStyleSheets);
+
+        $expectedJavaScripts = iterator_to_array(sanitise_traversable($this->expectedJavaScripts()));
+        $actualJavaScripts = iterator_to_array(sanitise_traversable($viewModel->getJavaScripts()));
+
+        $this->assertSame($expectedJavaScripts, $actualJavaScripts);
+
         foreach ($this->expectedJavaScripts() as $javaScript) {
             $this->puli->get($javaScript);
         }
-        $this->assertSame(iterator_to_array($this->expectedInlineJavaScripts($viewModel)),
-            iterator_to_array($viewModel->getInlineJavaScripts()));
+
+        $expectedInlineJavaScripts = iterator_to_array(flatten($this->expectedInlineJavaScripts($viewModel)));
+        $actualInlineJavaScripts = iterator_to_array(flatten($viewModel->getInlineJavaScripts()));
+
+        $this->assertSame($expectedInlineJavaScripts, $actualInlineJavaScripts);
     }
 
     abstract public function viewModelProvider() : array;
@@ -126,7 +141,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $definition = $this->loadDefinition();
 
-        foreach ($definition->assets->css as $stylesheet) {
+        foreach (array_unique(iterator_to_array(flatten($definition->assets->css))) as $stylesheet) {
             yield '/elife/patterns/assets/css/' . $stylesheet;
         }
     }
@@ -140,7 +155,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $definition = $this->loadDefinition();
 
-        foreach ($definition->assets->js as $javaScript) {
+        foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
             yield '/elife/patterns/assets/js/' . $javaScript;
         }
     }

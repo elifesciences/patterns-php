@@ -3,8 +3,10 @@
 namespace eLife\Patterns\PatternRenderer;
 
 use ArrayObject;
+use function eLife\Patterns\flatten;
 use eLife\Patterns\HasAssets;
 use eLife\Patterns\PatternRenderer;
+use function eLife\Patterns\sanitise_traversable;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -27,25 +29,25 @@ final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
 
     public function render(ViewModel $viewModel) : string
     {
-        foreach ($viewModel->getStyleSheets() as $styleSheet) {
+        foreach (sanitise_traversable($viewModel->getStyleSheets()) as $styleSheet) {
             if (false !== $this->contains($this->styleSheets, $styleSheet)) {
                 continue;
             }
             $this->styleSheets[] = $styleSheet;
         };
 
-        foreach ($viewModel->getInlineStyleSheets() as $styleSheet) {
+        foreach (flatten($viewModel->getInlineStyleSheets()) as $styleSheet) {
             $this->inlineStyleSheets[] = $styleSheet;
         };
 
-        foreach ($viewModel->getJavaScripts() as $javaScript) {
+        foreach (sanitise_traversable($viewModel->getJavaScripts()) as $javaScript) {
             if (false !== $this->contains($this->javaScripts, $javaScript)) {
                 continue;
             }
             $this->javaScripts[] = $javaScript;
         };
 
-        foreach ($viewModel->getInlineJavaScripts() as $javaScript) {
+        foreach (flatten($viewModel->getInlineJavaScripts()) as $javaScript) {
             $this->inlineJavaScripts[] = $javaScript;
         };
 
