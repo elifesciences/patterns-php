@@ -13,7 +13,9 @@ trait ArrayFromProperties
                 $value = $value->toArray();
             }
 
-            $vars[$key] = $value;
+            if (null !== $value) {
+                $vars[$key] = $value;
+            }
         }
 
         return $vars;
