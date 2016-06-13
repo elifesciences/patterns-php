@@ -12,6 +12,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use LengthException;
 use Traversable;
 
 class TeaserNonArticleContent implements ViewModel
@@ -28,6 +29,9 @@ class TeaserNonArticleContent implements ViewModel
     public function __construct(string $content, Date $date,
                                 string $headerText, string $link)
     {
+        if (strlen($headerText) === 0) {
+            throw new LengthException('$headerText argument must not be an empty string');
+        }
         $this->content = $content;
         $this->date = $date;
         $this->headerText = $headerText;

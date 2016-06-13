@@ -5,9 +5,20 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Date;
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\TeaserNonArticleContent;
+use LengthException;
 
 final class TeaserNonArticleContentTest extends ViewModelTest
 {
+
+    /**
+     * @test
+     * @expectedException LengthException
+     * @expectedExceptionMessage $headerText argument must not be an empty string
+     */
+    public function it_must_have_headerText()
+    {
+        new TeaserNonArticleContent('content', new Date(new DateTimeImmutable()), '', 'link');
+    }
 
     /**
      * @test
@@ -15,8 +26,12 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     public function it_has_data()
     {
         $link = 'linklinklink';
-        $viewModel = new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), '', $link);
+        $content = 'i am the content';
+        $headerText = 'Header Text';
+        $viewModel = new TeaserNonArticleContent($content, new Date(new DateTimeImmutable()), $headerText, $link);
         $this->assertSame($link, $viewModel['link']);
+        $this->assertSame($content, $viewModel['content']);
+        $this->assertSame($headerText, $viewModel['headerText']);
     }
 
     public function viewModelProvider() : array
