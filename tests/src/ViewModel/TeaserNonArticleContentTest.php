@@ -22,6 +22,16 @@ final class TeaserNonArticleContentTest extends ViewModelTest
 
     /**
      * @test
+     * @expectedException LengthException
+     * @expectedExceptionMessage $link argument must not be an empty string
+     */
+    public function it_must_have_a_link()
+    {
+        new TeaserNonArticleContent('content', new Date(new DateTimeImmutable()), 'Header text', '');
+    }
+
+    /**
+     * @test
      */
     public function it_has_data()
     {

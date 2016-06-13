@@ -32,6 +32,9 @@ class TeaserNonArticleContent implements ViewModel
         if (strlen($headerText) === 0) {
             throw new LengthException('$headerText argument must not be an empty string');
         }
+        if (strlen($link) === 0) {
+            throw new LengthException('$link argument must not be an empty string');
+        }
         $this->content = $content;
         $this->date = $date;
         $this->headerText = $headerText;
