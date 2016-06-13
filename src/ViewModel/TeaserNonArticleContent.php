@@ -29,10 +29,15 @@ class TeaserNonArticleContent implements ViewModel
     public function __construct(string $content, Date $date,
                                 string $headerText, string $link, $subHeader = null, $footerText = null)
     {
-        if ($content === 'dump') {
-            var_dump(func_get_args());
-        }
+        $this->validate($content, $date, $headerText, $link, $subHeader, $footerText);
 
+        $this->content = $content;
+        $this->date = $date;
+        $this->headerText = $headerText;
+        $this->link = $link;
+    }
+
+    public function validate(string $content, Date $date, string $headerText, string $link, $subHeader, $footerText) {
         if (strlen($headerText) === 0) {
             throw new LengthException('$headerText argument must not be an empty string');
         }
@@ -52,10 +57,6 @@ class TeaserNonArticleContent implements ViewModel
                 throw new LengthException('if supplied, the optional $footerText argument must not be an empty string');
             }
         }
-        $this->content = $content;
-        $this->date = $date;
-        $this->headerText = $headerText;
-        $this->link = $link;
     }
 
     public function getStyleSheets() : Traversable
