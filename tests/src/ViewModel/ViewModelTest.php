@@ -81,7 +81,12 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $validator = new Validator();
 
-        $validator->check(json_decode(json_encode($viewModel->toArray())), $this->loadDefinition()->schema);
+        $json = json_encode($viewModel->toArray());
+        if ('[]' === $json) {
+            $json = '{}';
+        }
+
+        $validator->check(json_decode($json), $this->loadDefinition()->schema);
 
         $message = '';
         foreach ($validator->getErrors() as $error) {
