@@ -43,6 +43,16 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
+    public function a_supplied_subheader_must_not_be_empty()
+    {
+        $this->expectException(LengthException::class);
+        $this->expectExceptionMessage('if supplied, the optional $subHeader argument must not be an empty string');
+        new TeaserNonArticleContent('content', new Date(new DateTimeImmutable()), 'Header text', 'link', '');
+    }
+
+    /**
+     * @test
+     */
     public function it_has_data()
     {
         $link = 'linklinklink';
@@ -57,7 +67,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-          'complete' => [new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), 'HEADER TEXT!', 'linklinklink')],
+          'minimal' => [new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), 'HEADER TEXT!', 'linklinklink')],
+          'with subheading' => [new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), 'HEADER TEXT!', 'linklinklink', 'subheading')],
 //      'missing header' => [new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), '', 'linklinklink')],
         ];
     }
