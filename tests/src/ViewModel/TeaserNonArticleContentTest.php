@@ -53,6 +53,16 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
+    public function a_supplied_footertext_must_not_be_empty()
+    {
+        $this->expectException(LengthException::class);
+        $this->expectExceptionMessage('if supplied, the optional $footerText argument must not be an empty string');
+        new TeaserNonArticleContent('content', new Date(new DateTimeImmutable()), 'Header text', 'link', 'subheading', '');
+    }
+
+    /**
+     * @test
+     */
     public function it_has_data()
     {
         $link = 'linklinklink';
@@ -67,9 +77,14 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-          'minimal' => [new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), 'HEADER TEXT!', 'linklinklink')],
-          'with subheading' => [new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), 'HEADER TEXT!', 'linklinklink', 'subheading')],
-//      'missing header' => [new TeaserNonArticleContent('hello, i am the content', new Date(new DateTimeImmutable()), '', 'linklinklink')],
+          'minimal' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+                                                    'HEADER TEXT!', 'linklinklink')],
+          'with: subheading' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+                                                    'HEADER TEXT!', 'linklinklink', 'subheading', null)],
+          'with: footer text' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+            'HEADER TEXT!', 'linklinklink', null, 'footer text')],
+          'with: footer text, subheading' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+            'HEADER TEXT!', 'linklinklink', 'subheading', 'footer text')],
         ];
     }
 

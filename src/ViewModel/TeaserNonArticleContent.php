@@ -27,7 +27,7 @@ class TeaserNonArticleContent implements ViewModel
     private $link;
 
     public function __construct(string $content, Date $date,
-                                string $headerText, string $link, $subHeader = null)
+                                string $headerText, string $link, $subHeader = null, $footerText = null)
     {
         if ($content === 'dump') {
             var_dump(func_get_args());
@@ -45,6 +45,11 @@ class TeaserNonArticleContent implements ViewModel
         if (gettype($subHeader) === 'string') {
             if (strlen($subHeader) === 0) {
                 throw new LengthException('if supplied, the optional $subHeader argument must not be an empty string');
+            }
+        }
+        if (gettype($footerText) === 'string') {
+            if (strlen($footerText) === 0) {
+                throw new LengthException('if supplied, the optional $footerText argument must not be an empty string');
             }
         }
         $this->content = $content;
