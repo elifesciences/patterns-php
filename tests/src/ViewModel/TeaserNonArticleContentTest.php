@@ -13,7 +13,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_have_headerText()
+    public function it_must_have_headertext()
     {
         $this->expectException(LengthException::class);
         $this->expectExceptionMessage('$headerText argument must not be an empty string');
@@ -75,7 +75,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $link = 'linklinklink';
+        $link = 'link';
         $content = 'i am the content';
         $headerText = 'Header Text';
         $viewModel = new TeaserNonArticleContent($content, new Date(new DateTimeImmutable()), $headerText, $link);
@@ -87,29 +87,31 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
+
           'minimal' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-                                                    'HEADER TEXT!', 'linklinklink')],
+            'Header Text', 'link')],
 
           'with: subheading' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-                                                    'HEADER TEXT!', 'linklinklink', 'subheading', null)],
+            'Header Text', 'link', 'subheading', null)],
 
           'with: footer text' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'HEADER TEXT!', 'linklinklink', null, 'footer text')],
+            'Header Text', 'link', null, 'footer text')],
 
           'with: download source' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'HEADER TEXT!', 'linklinklink', null, null, 'download source')],
+            'Header Text', 'link', null, null, 'download source')],
 
-          'with: subheading, footer text' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'HEADER TEXT!', 'linklinklink', 'subheading', 'footer text')],
+          'with: subheading, footer text' => [new TeaserNonArticleContent('i am the content',
+            new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', 'footer text')],
 
-          'with: subheading, footer text, download source' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'HEADER TEXT!', 'linklinklink', 'subheading', 'footer text', 'download source')],
+          'with: subheading, footer text, download source' => [new TeaserNonArticleContent('i am the content',
+            new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', 'footer text',
+            'download source')],
 
-          'with: subheading, download source' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'HEADER TEXT!', 'linklinklink', 'subheading', null, 'download source')],
+          'with: subheading, download source' => [new TeaserNonArticleContent('i am the content',
+            new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', null, 'download source')],
 
-          'with: footer text, download source' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'HEADER TEXT!', 'linklinklink', null, 'footer text', 'download source')],
+          'with: footer text, download source' => [new TeaserNonArticleContent('i am the content',
+            new Date(new DateTimeImmutable()), 'Header Text', 'link', null, 'footer text', 'download source')],
 
         ];
     }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 10/06/2016
- * Time: 15:02
- */
 
 namespace eLife\Patterns\ViewModel;
 
@@ -41,15 +35,18 @@ class TeaserNonArticleContent implements ViewModel
     public function validate(string $content, Date $date, string $headerText,
                              string $link, $subHeader, $footerText, $downloadSrc)
     {
+        // Required fields.
+        if (strlen($content) === 0) {
+            throw new LengthException('$content argument must not be an empty string');
+        }
         if (strlen($headerText) === 0) {
             throw new LengthException('$headerText argument must not be an empty string');
         }
         if (strlen($link) === 0) {
             throw new LengthException('$link argument must not be an empty string');
         }
-        if (strlen($content) === 0) {
-            throw new LengthException('$content argument must not be an empty string');
-        }
+
+        // Optional fields. If present, they must be supplied as a non-empty string.
         if (gettype($subHeader) === 'string') {
             if (strlen($subHeader) === 0) {
                 throw new LengthException('if supplied, the optional $subHeader argument must not be an empty string');
