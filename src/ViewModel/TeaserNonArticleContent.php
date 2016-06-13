@@ -27,9 +27,10 @@ class TeaserNonArticleContent implements ViewModel
     private $link;
 
     public function __construct(string $content, Date $date,
-                                string $headerText, string $link, $subHeader = null, $footerText = null)
+                                string $headerText, string $link,
+                                $subHeader = null, $footerText = null, $downloadSrc = null)
     {
-        $this->validate($content, $date, $headerText, $link, $subHeader, $footerText);
+        $this->validate($content, $date, $headerText, $link, $subHeader, $footerText, $downloadSrc);
 
         $this->content = $content;
         $this->date = $date;
@@ -37,7 +38,9 @@ class TeaserNonArticleContent implements ViewModel
         $this->link = $link;
     }
 
-    public function validate(string $content, Date $date, string $headerText, string $link, $subHeader, $footerText) {
+    public function validate(string $content, Date $date, string $headerText,
+                             string $link, $subHeader, $footerText, $downloadSrc)
+    {
         if (strlen($headerText) === 0) {
             throw new LengthException('$headerText argument must not be an empty string');
         }
@@ -55,6 +58,11 @@ class TeaserNonArticleContent implements ViewModel
         if (gettype($footerText) === 'string') {
             if (strlen($footerText) === 0) {
                 throw new LengthException('if supplied, the optional $footerText argument must not be an empty string');
+            }
+        }
+        if (gettype($downloadSrc) === 'string') {
+            if (strlen($downloadSrc) === 0) {
+                throw new LengthException('if supplied, the optional $downloadSrc argument must not be an empty string');
             }
         }
     }
