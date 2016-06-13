@@ -72,8 +72,10 @@ $filesystem->remove($outputDir . '/templates/');
 foreach ($finder as $file) {
     $yaml = Yaml::parse($file->getContents());
     $yaml = resolveJsonReferences($yaml, $file);
+    $yaml = Yaml::dump($yaml, 100);
+    $yaml = str_replace(' {  }', ' []', $yaml);
 
-    $filesystem->dumpFile($outputDir . '/definitions/' . $file->getFilename(), Yaml::dump($yaml, 100));
+    $filesystem->dumpFile($outputDir . '/definitions/' . $file->getFilename(), $yaml);
 
     $template = new SplFileInfo(substr($file->getRealPath(), 0, -4) . 'mustache');
     $filesystem->copy($template->getRealPath(), $outputDir . '/templates/' . $template->getFilename(), true);
