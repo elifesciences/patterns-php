@@ -12,31 +12,31 @@ final class TeaserNonArticleContentTest extends ViewModelTest
 
     /**
      * @test
-     * @expectedException LengthException
-     * @expectedExceptionMessage $headerText argument must not be an empty string
      */
     public function it_must_have_headerText()
     {
+        $this->expectException(LengthException::class);
+        $this->expectExceptionMessage('$headerText argument must not be an empty string');
         new TeaserNonArticleContent('content', new Date(new DateTimeImmutable()), '', 'link');
     }
 
     /**
      * @test
-     * @expectedException LengthException
-     * @expectedExceptionMessage $link argument must not be an empty string
      */
     public function it_must_have_a_link()
     {
+        $this->expectException(LengthException::class);
+        $this->expectExceptionMessage('$link argument must not be an empty string');
         new TeaserNonArticleContent('content', new Date(new DateTimeImmutable()), 'Header text', '');
     }
 
     /**
      * @test
-     * @expectedException LengthException
-     * @expectedExceptionMessage $content argument must not be an empty string
      */
     public function it_must_have_content()
     {
+        $this->expectException(LengthException::class);
+        $this->expectExceptionMessage('$content argument must not be an empty string');
         new TeaserNonArticleContent('', new Date(new DateTimeImmutable()), 'Header text', 'link');
     }
 
