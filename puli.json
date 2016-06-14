@@ -8,6 +8,10 @@
         "bootstrap-file": "vendor/autoload.php"
     },
     "packages": {
+        "beberlei/assert": {
+            "install-path": "vendor/beberlei/assert",
+            "installer": "composer"
+        },
         "cpliakas/git-wrapper": {
             "install-path": "vendor/cpliakas/git-wrapper",
             "installer": "composer",
