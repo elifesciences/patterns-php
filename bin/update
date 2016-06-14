@@ -94,7 +94,11 @@ function resolveJsonReferences(array $json, SplFileInfo $file) : array
         } elseif ('$ref' === $key) {
             $parts = explode('#', $value, 2);
 
-            $referenced = new SplFileInfo(dirname($file->getRealPath()) . '/' . $parts[0]);
+            if (empty($parts[0])) {
+                $referenced = $file;
+            } else {
+                $referenced = new SplFileInfo(dirname($file->getRealPath()) . '/' . $parts[0]);
+            }
 
             if (null === $json = json_decode(file_get_contents($referenced->getRealPath()), true)) {
                 $json = Yaml::parse(file_get_contents($referenced->getRealPath()));
