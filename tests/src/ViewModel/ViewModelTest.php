@@ -175,6 +175,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $templateName = $this->puli->get($this->createViewModel()->getTemplateName())->getName();
         $yamlFile = '/elife/patterns/definitions/' . substr($templateName, 0, -8) . 'yaml';
 
-        return Yaml::parse($this->puli->get($yamlFile)->getBody(), true, false, true);
+        return Yaml::parse($this->puli->get($yamlFile)->getBody(), Yaml::PARSE_OBJECT_FOR_MAP);
     }
 }
