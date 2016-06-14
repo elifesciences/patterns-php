@@ -18,6 +18,7 @@
     },
     "require": {
         "php": "^7.0",
+        "beberlei/assert": "^2.0",
         "mustache/mustache": "^2.5",
         "puli/composer-plugin": "^1.0-beta9"
     },
