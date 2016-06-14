@@ -2,11 +2,11 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use LengthException;
 use Traversable;
 
 class TeaserNonArticleContent implements ViewModel
@@ -20,48 +20,24 @@ class TeaserNonArticleContent implements ViewModel
     private $headerText;
     private $link;
 
-    public function __construct(string $content, Date $date,
-                                string $headerText, string $link,
-                                $subHeader = null, $footerText = null, $downloadSrc = null)
+    public function __construct(string $content, Date $date, string $headerText, string $link, string $subHeader = null,
+                                string $footerText = null, string $downloadSrc = null)
     {
-        $this->validate($content, $date, $headerText, $link, $subHeader, $footerText, $downloadSrc);
+        Assertion::notBlank($content);
+        Assertion::notBlank($headerText);
+        Assertion::notBlank($link);
+
+        Assertion::nullOrNotBlank($subHeader);
+        Assertion::nullOrNotBlank($footerText);
+        Assertion::nullOrNotBlank($downloadSrc);
 
         $this->content = $content;
         $this->date = $date;
         $this->headerText = $headerText;
         $this->link = $link;
-    }
-
-    public function validate(string $content, Date $date, string $headerText,
-                             string $link, $subHeader, $footerText, $downloadSrc)
-    {
-        // Required fields.
-        if (strlen($content) === 0) {
-            throw new LengthException('$content argument must not be an empty string');
-        }
-        if (strlen($headerText) === 0) {
-            throw new LengthException('$headerText argument must not be an empty string');
-        }
-        if (strlen($link) === 0) {
-            throw new LengthException('$link argument must not be an empty string');
-        }
-
-        // Optional fields. If present, they must be supplied as a non-empty string.
-        if (gettype($subHeader) === 'string') {
-            if (strlen($subHeader) === 0) {
-                throw new LengthException('if supplied, the optional $subHeader argument must not be an empty string');
-            }
-        }
-        if (gettype($footerText) === 'string') {
-            if (strlen($footerText) === 0) {
-                throw new LengthException('if supplied, the optional $footerText argument must not be an empty string');
-            }
-        }
-        if (gettype($downloadSrc) === 'string') {
-            if (strlen($downloadSrc) === 0) {
-                throw new LengthException('if supplied, the optional $downloadSrc argument must not be an empty string');
-            }
-        }
+        $this->subHeader = $subHeader;
+        $this->footerText = $footerText;
+        $this->downloadSrc = $downloadSrc;
     }
 
     public function getStyleSheets() : Traversable

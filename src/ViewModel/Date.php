@@ -7,7 +7,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class Date implements CastsToArray
+final class Date implements CastsToArray
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

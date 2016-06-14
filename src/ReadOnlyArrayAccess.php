@@ -14,7 +14,7 @@ trait ReadOnlyArrayAccess
     final public function offsetGet($offset)
     {
         if (false === $this->offsetExists($offset)) {
-            return;
+            return null;
         }
 
         return $this->{$offset};
