@@ -17,7 +17,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     protected $footerText;
     protected $downloadSrc;
 
-    protected function setUp() {
+    protected function setUp()
+    {
         $this->content = 'i am the content';
         $this->date = new Date(new DateTimeImmutable());
         $this->headerText = 'Header Text';
@@ -47,7 +48,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_not_have_empty_content() {
+    public function it_must_not_have_empty_content()
+    {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent('', $this->date, $this->headerText, $this->link, $this->subHeader,
           $this->footerText, $this->downloadSrc);
@@ -56,7 +58,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_not_have_empty_headertext() {
+    public function it_must_not_have_empty_headertext()
+    {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, '', $this->link, $this->subHeader,
           $this->footerText, $this->downloadSrc);
@@ -65,7 +68,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_not_have_an_empty_link() {
+    public function it_must_not_have_an_empty_link()
+    {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, '', $this->subHeader,
           $this->footerText, $this->downloadSrc);
@@ -74,7 +78,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_not_have_an_empty_optional_subheader() {
+    public function it_must_not_have_an_empty_optional_subheader()
+    {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, $this->link, '',
           $this->footerText, $this->downloadSrc);
@@ -83,7 +88,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_not_have_an_empty_optional_footerText() {
+    public function it_must_not_have_an_empty_optional_footerText()
+    {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, $this->link, $this->subHeader,
           '', $this->downloadSrc);
@@ -92,7 +98,8 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_not_have_an_empty_optional_downloadsrc() {
+    public function it_must_not_have_an_empty_optional_downloadsrc()
+    {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, $this->link, $this->subHeader,
           $this->footerText, '');
