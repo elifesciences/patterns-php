@@ -3,7 +3,8 @@ assets:
         - search-box.css
         -
             - compact-form.css
-    js: []
+    js:
+        - []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
     type: object
