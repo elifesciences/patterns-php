@@ -9,6 +9,10 @@ trait ArrayFromProperties
         $vars = [];
 
         foreach (get_object_vars($this) as $key => $value) {
+            if ('_' === substr($key, 0, 1)) {
+                continue;
+            }
+
             $value = $this->handleValue($value);
 
             if (null !== $value) {

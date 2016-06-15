@@ -8,6 +8,10 @@ trait ReadOnlyArrayAccess
 {
     final public function offsetExists($offset) : bool
     {
+        if ('_' === substr($offset, 0, 1)) {
+            return false;
+        }
+
         return isset($this->{$offset});
     }
 
