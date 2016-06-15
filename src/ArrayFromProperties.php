@@ -9,9 +9,7 @@ trait ArrayFromProperties
         $vars = [];
 
         foreach (get_object_vars($this) as $key => $value) {
-            if ($value instanceof CastsToArray) {
-                $value = $value->toArray();
-            }
+            $value = $this->handleValue($value);
 
             if (null !== $value) {
                 $vars[$key] = $value;
@@ -19,5 +17,20 @@ trait ArrayFromProperties
         }
 
         return $vars;
+    }
+
+    private function handleValue($value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $subKey => $subValue) {
+                $value[$subKey] = $this->handleValue($subValue);
+            }
+        }
+
+        if ($value instanceof CastsToArray) {
+            return $value->toArray();
+        }
+
+        return $value;
     }
 }

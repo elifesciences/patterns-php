@@ -62,11 +62,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $data = $viewModel->toArray();
 
         foreach ($data as $key => $value) {
-            $actual = $viewModel[$key];
-
-            if ($actual instanceof CastsToArray) {
-                $actual = $actual->toArray();
-            }
+            $actual = $this->handleValue($viewModel[$key]);
 
             $this->assertSame($value, $actual);
         }
@@ -176,5 +172,20 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $yamlFile = '/elife/patterns/definitions/' . substr($templateName, 0, -8) . 'yaml';
 
         return Yaml::parse($this->puli->get($yamlFile)->getBody(), Yaml::PARSE_OBJECT_FOR_MAP);
+    }
+
+    private function handleValue($value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $subKey => $subValue) {
+                $value[$subKey] = $this->handleValue($subValue);
+            }
+        }
+
+        if ($value instanceof CastsToArray) {
+            return $value->toArray();
+        }
+
+        return $value;
     }
 }
