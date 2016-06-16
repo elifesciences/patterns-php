@@ -18,11 +18,19 @@ final class TeaserNonArticleContent implements ViewModel
     private $content;
     private $date;
     private $headerText;
+    private $image;
     private $link;
 
-    public function __construct(string $content, Date $date, string $headerText, string $link, string $subHeader = null,
-                                string $footerText = null, string $downloadSrc = null)
-    {
+    public function __construct(
+        string $content,
+        Date $date,
+        string $headerText,
+        string $link,
+        string $subHeader = null,
+        Image $image = null,
+        string $footerText = null,
+        string $downloadSrc = null
+    ) {
         Assertion::notBlank($content);
         Assertion::notBlank($headerText);
         Assertion::notBlank($link);
@@ -36,6 +44,7 @@ final class TeaserNonArticleContent implements ViewModel
         $this->headerText = $headerText;
         $this->link = $link;
         $this->subHeader = $subHeader;
+        $this->image = $image;
         $this->footerText = $footerText;
         $this->downloadSrc = $downloadSrc;
     }
