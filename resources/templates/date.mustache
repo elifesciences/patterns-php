@@ -1,0 +1,10 @@
+{{#date.isExpanded}}
+  <time class="date date--expanded" datetime="{{date.forMachine}}">
+    <span class="date__prominent">{{date.forHuman.dayOfMonth}}</span>
+    <span class="date__normal">{{date.forHuman.month}} {{date.forHuman.year}}</span>
+  </time>
+{{/date.isExpanded}}
+
+{{^date.isExpanded}}
+  <time class="date{{#variant}}{{/variant}}" datetime="{{date.forMachine}}">{{date.forHuman}}</time>
+{{/date.isExpanded}}
