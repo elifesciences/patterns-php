@@ -12,15 +12,30 @@ final class DateTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $viewModelSimple = new Date(new DateTimeImmutable('2015-10-05'), false);
+        $dateIn = '2015-10-05';
+        $dataSimple = [
+            'forHuman' => 'Oct 5, 2015',
+            'forMachine' => '2015-10-05',
+        ];
+        $viewModelSimple = new Date(new DateTimeImmutable($dateIn), false);
         $this->assertSame('Oct 5, 2015', $viewModelSimple['forHuman']);
         $this->assertSame('2015-10-05', $viewModelSimple['forMachine']);
+        $this->assertSame($dataSimple, $viewModelSimple->toArray());
 
-        $viewModelExpanded = new Date(new DateTimeImmutable('2015-10-05'), true);
+        $dataExpanded = [
+            'forHuman' => [
+                'dayOfMonth' => '5',
+                'month' => 'Oct',
+                'year' => '2015'
+            ],
+            'forMachine' => '2015-10-05',
+        ];
+        $viewModelExpanded = new Date(new DateTimeImmutable($dateIn), true);
         $this->assertSame('5', $viewModelExpanded['forHuman']['dayOfMonth']);
         $this->assertSame('Oct', $viewModelExpanded['forHuman']['month']);
         $this->assertSame('2015', $viewModelExpanded['forHuman']['year']);
         $this->assertSame('2015-10-05', $viewModelExpanded['forMachine']);
+        $this->assertSame($dataExpanded, $viewModelExpanded->toArray());
     }
 
     public function viewModelProvider() : array
