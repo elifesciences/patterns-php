@@ -25,9 +25,10 @@ final class ImageTest extends PHPUnit_Framework_TestCase
     public function it_has_data()
     {
         $data = [
+            'altText' => 'altText',
+            'classes' => '',
             'defaultPath' => '/foo.png',
             'srcset' => '/bar.png 10w, /baz.png 20w',
-            'altText' => 'altText',
         ];
 
         $image = new Image('/foo.png', [10 => '/bar.png', 20 => '/baz.png'], 'altText');
@@ -36,6 +37,21 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data['srcset'], $image['srcset']);
         $this->assertSame($data['altText'], $image['altText']);
         $this->assertSame($data, $image->toArray());
+
+        $dataWithClasses = [
+          'altText' => 'altText',
+          'classes' => 'class-1 class-2',
+          'defaultPath' => '/foo.png',
+          'srcset' => '/bar.png 10w, /baz.png 20w',
+        ];
+
+        $imageWithClasses = new Image('/foo.png', [10 => '/bar.png', 20 => '/baz.png'], 'altText', ['class-1', 'class-2']);
+
+        $this->assertSame($dataWithClasses['defaultPath'], $imageWithClasses['defaultPath']);
+        $this->assertSame($dataWithClasses['srcset'], $imageWithClasses['srcset']);
+        $this->assertSame($dataWithClasses['altText'], $imageWithClasses['altText']);
+        $this->assertSame($dataWithClasses['classes'], $imageWithClasses['classes']);
+        $this->assertSame($dataWithClasses, $imageWithClasses->toArray());
     }
 
     /**
