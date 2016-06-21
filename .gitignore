@@ -1,4 +1,5 @@
 /.puli/
+/build/
 /composer.lock
 /pattern-library/
 /phpunit.xml
