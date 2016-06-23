@@ -21,7 +21,7 @@ final class FooterTest extends ViewModelTest
                 [
                     'title' => 'title',
                     'titleId' => 'titleId',
-                    'links' => [['name' => 'name1', 'url' => 'url1']],
+                    'items' => [['name' => 'name1', 'url' => 'url1']],
                 ],
             ],
             'footerMenuLinks1' => [['name' => 'name2', 'url' => 'url2']],
@@ -33,8 +33,8 @@ final class FooterTest extends ViewModelTest
             new MainMenu($mainMenuLinks = [
                 new MainMenuLink($data['mainMenuLinks'][0]['title'], $data['mainMenuLinks'][0]['titleId'],
                     $links = [
-                        new Link($data['mainMenuLinks'][0]['links'][0]['name'],
-                            $data['mainMenuLinks'][0]['links'][0]['url']),
+                        new Link($data['mainMenuLinks'][0]['items'][0]['name'],
+                            $data['mainMenuLinks'][0]['items'][0]['url']),
                     ]),
             ]),
             $footerMenuLinks1 = [new Link($data['footerMenuLinks1'][0]['name'], $data['footerMenuLinks1'][0]['url'])],

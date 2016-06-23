@@ -25,14 +25,14 @@ final class MainMenuLinkTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_data()
     {
-        $data = ['title' => 'title', 'titleId' => 'titleId', 'links' => [['name' => 'name', 'url' => 'url']]];
+        $data = ['title' => 'title', 'titleId' => 'titleId', 'items' => [['name' => 'name', 'url' => 'url']]];
 
         $mainMenuLink = new MainMenuLink($data['title'], $data['titleId'],
-            $links = [new Link($data['links'][0]['name'], $data['links'][0]['url'])]);
+            $items = [new Link($data['items'][0]['name'], $data['items'][0]['url'])]);
 
         $this->assertSame($data['title'], $mainMenuLink['title']);
         $this->assertSame($data['titleId'], $mainMenuLink['titleId']);
-        $this->assertEquals($links, $mainMenuLink['links']);
+        $this->assertEquals($items, $mainMenuLink['items']);
         $this->assertSame($data, $mainMenuLink->toArray());
     }
 
