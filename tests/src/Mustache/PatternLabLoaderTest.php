@@ -14,7 +14,7 @@ final class PatternLabLoaderTest extends PHPUnit_Framework_TestCase
      */
     public function it_is_a_mustache_loader()
     {
-        $loader = new PatternLabLoader(__DIR__ . '/../../resources');
+        $loader = new PatternLabLoader(__DIR__.'/../../resources');
 
         $this->assertInstanceOf(Mustache_Loader::class, $loader);
     }
@@ -24,9 +24,9 @@ final class PatternLabLoaderTest extends PHPUnit_Framework_TestCase
      */
     public function it_loads_a_resource()
     {
-        $loader = new PatternLabLoader(__DIR__ . '/../../resources');
+        $loader = new PatternLabLoader(__DIR__.'/../../resources');
 
-        $this->assertStringEqualsFile(__DIR__ . '/../../resources/foo.mustache', $loader->load('/atom-foo.mustache'));
+        $this->assertStringEqualsFile(__DIR__.'/../../resources/foo.mustache', $loader->load('/atom-foo.mustache'));
     }
 
     /**
@@ -35,7 +35,7 @@ final class PatternLabLoaderTest extends PHPUnit_Framework_TestCase
      */
     public function it_fails_to_load_a_non_existent_resource()
     {
-        $loader = new PatternLabLoader(__DIR__ . '/../../resources');
+        $loader = new PatternLabLoader(__DIR__.'/../../resources');
 
         $this->expectException(Mustache_Exception_UnknownTemplateException::class);
 

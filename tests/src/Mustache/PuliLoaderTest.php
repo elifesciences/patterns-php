@@ -27,10 +27,10 @@ final class PuliLoaderTest extends PHPUnit_Framework_TestCase
      */
     public function it_loads_a_resource()
     {
-        $repo = new FilesystemRepository(__DIR__ . '/../../resources');
+        $repo = new FilesystemRepository(__DIR__.'/../../resources');
         $loader = new PuliLoader($repo);
 
-        $this->assertStringEqualsFile(__DIR__ . '/../../resources/foo.mustache', $loader->load('/foo.mustache'));
+        $this->assertStringEqualsFile(__DIR__.'/../../resources/foo.mustache', $loader->load('/foo.mustache'));
     }
 
     /**
@@ -39,7 +39,7 @@ final class PuliLoaderTest extends PHPUnit_Framework_TestCase
      */
     public function it_fails_to_load_a_non_existent_resource()
     {
-        $repo = new FilesystemRepository(__DIR__ . '/../../resources');
+        $repo = new FilesystemRepository(__DIR__.'/../../resources');
         $loader = new PuliLoader($repo);
 
         $this->expectException(Mustache_Exception_UnknownTemplateException::class);
@@ -53,7 +53,7 @@ final class PuliLoaderTest extends PHPUnit_Framework_TestCase
      */
     public function it_fails_to_load_a_non_body_resource()
     {
-        $repo = new FilesystemRepository(__DIR__ . '/../../resources');
+        $repo = new FilesystemRepository(__DIR__.'/../../resources');
         $loader = new PuliLoader($repo);
 
         $this->expectException(Mustache_Exception_UnknownTemplateException::class);

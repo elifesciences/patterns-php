@@ -66,7 +66,7 @@ final class CompactFormTest extends ViewModelTest
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder'),
                     'cta'
-                )
+                ),
             ],
         ];
     }

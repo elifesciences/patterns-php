@@ -27,8 +27,8 @@ final class MainMenuTest extends ViewModelTest
             new MainMenuLink($data['mainMenuLinks'][0]['title'], $data['mainMenuLinks'][0]['titleId'],
                 $links = [
                     new Link($data['mainMenuLinks'][0]['links'][0]['name'],
-                        $data['mainMenuLinks'][0]['links'][0]['url'])
-                ])
+                        $data['mainMenuLinks'][0]['links'][0]['url']),
+                ]),
         ]);
 
         $this->assertEquals($mainMenuLinks, $mainMenu['mainMenuLinks']);

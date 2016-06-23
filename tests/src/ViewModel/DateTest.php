@@ -26,7 +26,7 @@ final class DateTest extends ViewModelTest
             'forHuman' => [
                 'dayOfMonth' => '5',
                 'month' => 'Oct',
-                'year' => '2015'
+                'year' => '2015',
             ],
             'forMachine' => '2015-10-05',
         ];

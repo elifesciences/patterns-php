@@ -143,7 +143,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $definition = $this->loadDefinition();
 
         foreach (array_unique(iterator_to_array(flatten($definition->assets->css))) as $stylesheet) {
-            yield '/elife/patterns/assets/css/' . $stylesheet;
+            yield '/elife/patterns/assets/css/'.$stylesheet;
         }
     }
 
@@ -157,7 +157,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $definition = $this->loadDefinition();
 
         foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
-            yield '/elife/patterns/assets/js/' . $javaScript;
+            yield '/elife/patterns/assets/js/'.$javaScript;
         }
     }
 
@@ -169,7 +169,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     final private function loadDefinition() : stdClass
     {
         $templateName = $this->puli->get($this->createViewModel()->getTemplateName())->getName();
-        $yamlFile = '/elife/patterns/definitions/' . substr($templateName, 0, -8) . 'yaml';
+        $yamlFile = '/elife/patterns/definitions/'.substr($templateName, 0, -8).'yaml';
 
         return Yaml::parse($this->puli->get($yamlFile)->getBody(), Yaml::PARSE_OBJECT_FOR_MAP);
     }

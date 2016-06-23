@@ -45,7 +45,7 @@ final class IntegrationTest extends PHPUnit_Framework_TestCase
 
     private function createPatternRenderer() : PatternRenderer
     {
-        $repo = new FilesystemRepository(__DIR__ . '/../resources');
+        $repo = new FilesystemRepository(__DIR__.'/../resources');
         $puliLoader = new PuliLoader($repo);
 
         $patternLabLoader = new PatternLabLoader($repo->get('/')->getFilesystemPath());

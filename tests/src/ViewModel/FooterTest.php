@@ -34,8 +34,8 @@ final class FooterTest extends ViewModelTest
                 new MainMenuLink($data['mainMenuLinks'][0]['title'], $data['mainMenuLinks'][0]['titleId'],
                     $links = [
                         new Link($data['mainMenuLinks'][0]['links'][0]['name'],
-                            $data['mainMenuLinks'][0]['links'][0]['url'])
-                    ])
+                            $data['mainMenuLinks'][0]['links'][0]['url']),
+                    ]),
             ]),
             $footerMenuLinks1 = [new Link($data['footerMenuLinks1'][0]['name'], $data['footerMenuLinks1'][0]['url'])],
             $footerMenuLinks2 = [new Link($data['footerMenuLinks2'][0]['name'], $data['footerMenuLinks2'][0]['url'])]
@@ -54,7 +54,7 @@ final class FooterTest extends ViewModelTest
         return [
             [
                 new Footer('/', new MainMenu([new MainMenuLink('title', 'titleId', [new Link('name1', 'url1')])]),
-                    [new Link('name2', 'url2')], [new Link('name3', 'url3')])
+                    [new Link('name2', 'url2')], [new Link('name3', 'url3')]),
             ],
         ];
     }

@@ -24,7 +24,7 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
                 'bar',
             ],
             [
-                new ArrayObject(['qux'])
+                new ArrayObject(['qux']),
             ],
             'bar',
         ]);
@@ -51,7 +51,7 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
                 'bar',
             ],
             [
-                new ArrayObject(['qux'])
+                new ArrayObject(['qux']),
             ],
             'bar',
         ];
@@ -78,7 +78,7 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
                 'bar',
             ],
             [
-                new ArrayObject(['qux'])
+                new ArrayObject(['qux']),
             ],
             'bar',
         ];

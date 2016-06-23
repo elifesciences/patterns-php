@@ -11,10 +11,10 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Yaml\Yaml;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
-$sourceDir = __DIR__ . '/../pattern-library';
-$outputDir = __DIR__ . '/../resources';
+$sourceDir = __DIR__.'/../pattern-library';
+$outputDir = __DIR__.'/../resources';
 $filesystem = new Filesystem();
 $wrapper = new GitWrapper();
 $wrapper->addOutputListener(new GitOutputStreamListener());
@@ -37,9 +37,9 @@ ProcessBuilder::create()
     ->enableOutput()
     ->mustRun(function ($type, $buffer) {
         if (Process::ERR === $type) {
-            echo 'ERR > ' . $buffer;
+            echo 'ERR > '.$buffer;
         } else {
-            echo 'OUT > ' . $buffer;
+            echo 'OUT > '.$buffer;
         }
     })
 ;
@@ -51,23 +51,23 @@ ProcessBuilder::create()
     ->enableOutput()
     ->mustRun(function ($type, $buffer) {
         if (Process::ERR === $type) {
-            echo 'ERR > ' . $buffer;
+            echo 'ERR > '.$buffer;
         } else {
-            echo 'OUT > ' . $buffer;
+            echo 'OUT > '.$buffer;
         }
     })
 ;
 
-$filesystem->mirror($sourceDir . '/source/assets', $outputDir . '/assets', null,
+$filesystem->mirror($sourceDir.'/source/assets', $outputDir.'/assets', null,
     ['override' => true, 'delete' => true]);
-$filesystem->remove($outputDir . '/assets/img/fixtures/');
+$filesystem->remove($outputDir.'/assets/img/fixtures/');
 
-$patternDir = $sourceDir . '/source/_patterns';
+$patternDir = $sourceDir.'/source/_patterns';
 
 $finder = (new Finder())->files()->in($patternDir)->name('*.yaml');
 
-$filesystem->remove($outputDir . '/definitions/');
-$filesystem->remove($outputDir . '/templates/');
+$filesystem->remove($outputDir.'/definitions/');
+$filesystem->remove($outputDir.'/templates/');
 
 foreach ($finder as $file) {
     $yaml = Yaml::parse($file->getContents());
@@ -75,10 +75,10 @@ foreach ($finder as $file) {
     $yaml = Yaml::dump($yaml, 100);
     $yaml = str_replace(' {  }', ' []', $yaml);
 
-    $filesystem->dumpFile($outputDir . '/definitions/' . $file->getFilename(), $yaml);
+    $filesystem->dumpFile($outputDir.'/definitions/'.$file->getFilename(), $yaml);
 
-    $template = new SplFileInfo(substr($file->getRealPath(), 0, -4) . 'mustache');
-    $filesystem->copy($template->getRealPath(), $outputDir . '/templates/' . $template->getFilename(), true);
+    $template = new SplFileInfo(substr($file->getRealPath(), 0, -4).'mustache');
+    $filesystem->copy($template->getRealPath(), $outputDir.'/templates/'.$template->getFilename(), true);
 }
 
 /**
@@ -97,7 +97,7 @@ function resolveJsonReferences(array $json, SplFileInfo $file) : array
             if (empty($parts[0])) {
                 $referenced = $file;
             } else {
-                $referenced = new SplFileInfo(dirname($file->getRealPath()) . '/' . $parts[0]);
+                $referenced = new SplFileInfo(dirname($file->getRealPath()).'/'.$parts[0]);
             }
 
             if (null === $json = json_decode(file_get_contents($referenced->getRealPath()), true)) {

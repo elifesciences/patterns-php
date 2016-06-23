@@ -31,7 +31,7 @@ final class SearchBoxTest extends ViewModelTest
                 'name' => 'name',
                 'value' => 'value',
                 'text' => 'text',
-            ]
+            ],
         ];
 
         $searchBox = new SearchBox(
@@ -61,7 +61,7 @@ final class SearchBoxTest extends ViewModelTest
                         new Input('label', 'text', 'input', 'value', 'placeholder'),
                         'cta'
                     )
-                )
+                ),
             ],
             'with subject filter' => [
                 new SearchBox(
@@ -71,8 +71,8 @@ final class SearchBoxTest extends ViewModelTest
                         'cta'
                     ),
                     new SubjectFilter('name', 'value', 'text')
-                )
-            ]
+                ),
+            ],
         ];
     }
 
