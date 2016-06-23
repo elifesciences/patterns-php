@@ -20,27 +20,22 @@ final class Footer implements ViewModel
     private $year;
     private $assetsPath;
     private $mainMenuLinks;
-    private $footerMenuLinks1;
-    private $footerMenuLinks2;
+    private $footerMenuLinks;
 
     public function __construct(
         string $assetsPath,
         MainMenu $mainMenu,
-        array $footerMenuLinks1,
-        array $footerMenuLinks2
+        array $footerMenuLinks
     ) {
         Assertion::notBlank($assetsPath);
-        Assertion::notEmpty($footerMenuLinks1);
-        Assertion::allIsInstanceOf($footerMenuLinks1, Link::class);
-        Assertion::notEmpty($footerMenuLinks2);
-        Assertion::allIsInstanceOf($footerMenuLinks2, Link::class);
+        Assertion::notEmpty($footerMenuLinks);
+        Assertion::allIsInstanceOf($footerMenuLinks, Link::class);
 
         $this->year = (int) date('Y');
         $this->assetsPath = $assetsPath;
         $this->_mainMenu = $mainMenu;
         $this->mainMenuLinks = $mainMenu['mainMenuLinks'];
-        $this->footerMenuLinks1 = $footerMenuLinks1;
-        $this->footerMenuLinks2 = $footerMenuLinks2;
+        $this->footerMenuLinks = $footerMenuLinks;
     }
 
     public function getTemplateName() : string

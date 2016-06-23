@@ -24,8 +24,7 @@ final class FooterTest extends ViewModelTest
                     'links' => [['name' => 'name1', 'url' => 'url1']],
                 ],
             ],
-            'footerMenuLinks1' => [['name' => 'name2', 'url' => 'url2']],
-            'footerMenuLinks2' => [['name' => 'name3', 'url' => 'url3']],
+            'footerMenuLinks' => [['name' => 'name2', 'url' => 'url2']],
         ];
 
         $footer = new Footer(
@@ -37,15 +36,13 @@ final class FooterTest extends ViewModelTest
                             $data['mainMenuLinks'][0]['links'][0]['url']),
                     ]),
             ]),
-            $footerMenuLinks1 = [new Link($data['footerMenuLinks1'][0]['name'], $data['footerMenuLinks1'][0]['url'])],
-            $footerMenuLinks2 = [new Link($data['footerMenuLinks2'][0]['name'], $data['footerMenuLinks2'][0]['url'])]
+            $footerMenuLinks = [new Link($data['footerMenuLinks'][0]['name'], $data['footerMenuLinks'][0]['url'])]
         );
 
         $this->assertSame($data['year'], $footer['year']);
         $this->assertSame($data['assetsPath'], $footer['assetsPath']);
         $this->assertEquals($mainMenuLinks, $footer['mainMenuLinks']);
-        $this->assertEquals($footerMenuLinks1, $footer['footerMenuLinks1']);
-        $this->assertEquals($footerMenuLinks2, $footer['footerMenuLinks2']);
+        $this->assertEquals($footerMenuLinks, $footer['footerMenuLinks']);
         $this->assertSame($data, $footer->toArray());
     }
 
