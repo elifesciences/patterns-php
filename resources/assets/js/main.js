@@ -741,9 +741,6 @@ module.exports = function () {
     this.window = _window;
     this.doc = doc;
     this.$elm = $elm;
-    this.$elm.classList.add('main-menu--js');
-
-    this.moveWithinDom();
   }
 
   /**
@@ -754,6 +751,7 @@ module.exports = function () {
   _createClass(MainMenu, [{
     key: 'moveWithinDom',
     value: function moveWithinDom() {
+      this.$elm.classList.add('main-menu--js');
       var $globalWrapper = this.doc.querySelector('.global-wrapper');
       if (!!$globalWrapper) {
         $globalWrapper.insertBefore(this.$elm, $globalWrapper.firstElementChild);
@@ -1189,12 +1187,16 @@ module.exports = function () {
     this.$pageOverlay = null;
 
     // N.B. $mainMenu is not part of this component's HTML hierarchy.
-    var MainMenu = require('./MainMenu');
-    this.mainMenu = new MainMenu(doc.querySelector('#mainMenu'));
+    var mainMenu = doc.querySelector('#mainMenu');
+    if (!!mainMenu) {
+      var MainMenu = require('./MainMenu');
+      this.mainMenu = new MainMenu(mainMenu);
 
-    this.$mainMenuToggle = this.$elm.querySelector('a[href="#mainMenu"]');
-    if (!!this.$mainMenuToggle) {
-      this.$mainMenuToggle.addEventListener('click', this.toggleMainMenu.bind(this));
+      this.$mainMenuToggle = this.$elm.querySelector('a[href="#mainMenu"]');
+      if (!!this.$mainMenuToggle) {
+        this.mainMenu.moveWithinDom();
+        this.$mainMenuToggle.addEventListener('click', this.toggleMainMenu.bind(this));
+      }
     }
   }
 
