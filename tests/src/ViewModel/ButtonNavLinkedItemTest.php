@@ -13,7 +13,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
     public function setUp()
     {
         parent::setUp();
-        $this->button = Button::link('the button text', '/the/button/path', ['button-class-1', 'button-class-2']);
+        $this->button = Button::link('the button text', '/the/button/path');
     }
 
     /**
@@ -43,7 +43,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $button = Button::link('the button text', '/the/button/path', ['button-class-1', 'button-class-2']);
+        $button = Button::link('the button text', '/the/button/path');
 
         return [
           'basic' => [NavLinkedItem::asButton($button)],
