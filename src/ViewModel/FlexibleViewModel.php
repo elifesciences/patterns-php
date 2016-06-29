@@ -32,6 +32,26 @@ final class FlexibleViewModel implements ViewModel
         $this->inlineJavaScripts = $inlineJavaScripts ?? new ArrayObject();
     }
 
+    public static function fromViewModel(ViewModel $viewModel) : FlexibleViewModel
+    {
+        return new self(
+            $viewModel->getTemplateName(),
+            $viewModel->toArray(),
+            $viewModel->getStyleSheets(),
+            $viewModel->getInlineStyleSheets(),
+            $viewModel->getJavaScripts(),
+            $viewModel->getInlineJavaScripts()
+        );
+    }
+
+    public function withProperty(string $key, $value) : FlexibleViewModel
+    {
+        $viewModel = self::fromViewModel($this);
+        $viewModel->properties[$key] = $value;
+
+        return $viewModel;
+    }
+
     public function toArray() : array
     {
         return $this->properties;
