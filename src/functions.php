@@ -52,3 +52,18 @@ function is_traversable($item) : bool
 {
     return is_array($item) || $item instanceof Traversable;
 }
+
+function mixed_visibility_text(string $prefix = '', string $text, string $suffix = '') : string
+{
+    $wrappedPrefix = '';
+    $wrappedSuffix = '';
+
+    if (false === empty($prefix)) {
+        $wrappedPrefix = '<span class="visuallyhidden">' . $prefix . ' </span>';
+    }
+    if (false === empty($suffix)) {
+        $wrappedSuffix = '<span class="visuallyhidden"> ' . $suffix . '</span>';
+    }
+
+    return $wrappedPrefix . $text . $wrappedSuffix;
+}
