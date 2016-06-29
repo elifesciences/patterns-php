@@ -28,7 +28,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
           new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
 
-        $this->button = Button::form('button text', 'button', ['button-class-1', 'button-class-2']);
+        $this->button = Button::form('button text', 'button');
 
         $this->linkItem1 = NavLinkedItem::asLink('item 1', '/item-1/', ['class-1'], ['text-class-1'], false, $this->img);
         $this->linkItem2 = NavLinkedItem::asLink('item 2', '/item-2/', ['class-2'], ['text-class-2'], false);
@@ -84,7 +84,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
             new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
 
-        $button = Button::form('button text', 'button', ['button-class-1', 'button-class-2']);
+        $button = Button::form('button text', 'button');
 
         $navLinkItems = [
           NavLinkedItem::asLink('item 1', '/item-1/', ['class-1'], ['text-class-1'], false, $img),
