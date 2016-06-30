@@ -23,7 +23,7 @@ final class MainMenuLink implements CastsToArray
         Assertion::allIsInstanceOf($items, Link::class);
 
         $this->title = $title;
-        $this->titleId = 'mainMenu'.$title;
+        $this->titleId = 'mainMenu'.hash('crc32', $title);
         $this->items = $items;
     }
 }

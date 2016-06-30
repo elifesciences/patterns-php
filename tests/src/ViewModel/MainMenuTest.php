@@ -17,7 +17,7 @@ final class MainMenuTest extends ViewModelTest
             'mainMenuLinks' => [
                 [
                     'title' => 'title',
-                    'titleId' => 'mainMenutitle',
+                    'titleId' => 'mainMenu'.hash('crc32', 'title'),
                     'items' => [['name' => 'name', 'url' => 'url']],
                 ],
             ],

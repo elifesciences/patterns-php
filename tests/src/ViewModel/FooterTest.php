@@ -20,7 +20,7 @@ final class FooterTest extends ViewModelTest
             'mainMenuLinks' => [
                 [
                     'title' => 'title',
-                    'titleId' => 'mainMenutitle',
+                    'titleId' => 'mainMenu'.hash('crc32', 'title'),
                     'items' => [['name' => 'name1', 'url' => 'url1']],
                 ],
             ],
