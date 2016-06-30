@@ -17,14 +17,14 @@ final class MainMenuTest extends ViewModelTest
             'mainMenuLinks' => [
                 [
                     'title' => 'title',
-                    'titleId' => 'titleId',
+                    'titleId' => 'mainMenu'.hash('crc32', 'title'),
                     'items' => [['name' => 'name', 'url' => 'url']],
                 ],
             ],
         ];
 
         $mainMenu = new MainMenu($mainMenuLinks = [
-            new MainMenuLink($data['mainMenuLinks'][0]['title'], $data['mainMenuLinks'][0]['titleId'],
+            new MainMenuLink($data['mainMenuLinks'][0]['title'],
                 [
                     new Link($data['mainMenuLinks'][0]['items'][0]['name'],
                         $data['mainMenuLinks'][0]['items'][0]['url']),
@@ -38,7 +38,7 @@ final class MainMenuTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new MainMenu([new MainMenuLink('title', 'titleId', [new Link('name', 'url')])])],
+            [new MainMenu([new MainMenuLink('title', [new Link('name', 'url')])])],
         ];
     }
 
