@@ -48,16 +48,6 @@ class LeadParasTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_cannot_have_only_one_paragraph()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new LeadParas([ new LeadPara('only one') ]);
-    }
-
-    /**
-     * @test
-     */
     public function it_cannot_have_no_paragraphs()
     {
         $this->expectException(InvalidArgumentException::class);

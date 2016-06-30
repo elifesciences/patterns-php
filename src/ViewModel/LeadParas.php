@@ -20,7 +20,6 @@ class LeadParas implements ViewModel
     public function __construct($leadParas)
     {
         Assertion::notEmpty($leadParas);
-        Assertion::greaterThan(count($leadParas), 1);
         Assertion::allIsInstanceOf($leadParas, LeadPara::class);
 
         $this->paras = $leadParas;
