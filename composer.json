@@ -21,7 +21,8 @@
         "beberlei/assert": "^2.0",
         "mustache/mustache": "^2.5",
         "puli/composer-plugin": "^1.0-beta9",
-        "puli/repository": "^1.0-beta9"
+        "puli/repository": "^1.0-beta9",
+        "puli/cli": "^1.0@beta"
     },
     "require-dev": {
         "cpliakas/git-wrapper": "^1.0",
@@ -33,6 +34,10 @@
         "symfony/finder": "^3.0",
         "symfony/process": "^3.0",
         "symfony/yaml": "^3.1"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "update-patterns": "./bin/update"
     },
     "minimum-stability": "beta",
     "prefer-stable": true
