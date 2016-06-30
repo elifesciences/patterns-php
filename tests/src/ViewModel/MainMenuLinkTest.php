@@ -15,7 +15,7 @@ final class MainMenuLinkTest extends PHPUnit_Framework_TestCase
      */
     public function it_casts_to_an_array()
     {
-        $mainMenuLink = new MainMenuLink('title', 'titleId', [new Link('name', 'url')]);
+        $mainMenuLink = new MainMenuLink('title', [new Link('name', 'url')]);
 
         $this->assertInstanceOf(CastsToArray::class, $mainMenuLink);
     }
@@ -25,9 +25,9 @@ final class MainMenuLinkTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_data()
     {
-        $data = ['title' => 'title', 'titleId' => 'titleId', 'items' => [['name' => 'name', 'url' => 'url']]];
+        $data = ['title' => 'title', 'titleId' => 'mainMenutitle', 'items' => [['name' => 'name', 'url' => 'url']]];
 
-        $mainMenuLink = new MainMenuLink($data['title'], $data['titleId'],
+        $mainMenuLink = new MainMenuLink($data['title'],
             $items = [new Link($data['items'][0]['name'], $data['items'][0]['url'])]);
 
         $this->assertSame($data['title'], $mainMenuLink['title']);
@@ -43,16 +43,6 @@ final class MainMenuLinkTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new MainMenuLink('', 'titleId', [new Link('name', 'url')]);
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_blank_title_id()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new MainMenuLink('title', '', [new Link('name', 'url')]);
+        new MainMenuLink('', [new Link('name', 'url')]);
     }
 }
