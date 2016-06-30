@@ -27,6 +27,7 @@ class LeadParas implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
+        yield '/elife/patterns/assets/css/lead-para.css';
         yield '/elife/patterns/assets/css/lead-paras.css';
     }
 
