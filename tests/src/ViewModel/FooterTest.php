@@ -20,7 +20,7 @@ final class FooterTest extends ViewModelTest
             'mainMenuLinks' => [
                 [
                     'title' => 'title',
-                    'titleId' => 'titleId',
+                    'titleId' => 'mainMenu'.hash('crc32', 'title'),
                     'items' => [['name' => 'name1', 'url' => 'url1']],
                 ],
             ],
@@ -30,7 +30,7 @@ final class FooterTest extends ViewModelTest
         $footer = new Footer(
             $data['assetsPath'],
             new MainMenu($mainMenuLinks = [
-                new MainMenuLink($data['mainMenuLinks'][0]['title'], $data['mainMenuLinks'][0]['titleId'],
+                new MainMenuLink($data['mainMenuLinks'][0]['title'],
                     $links = [
                         new Link($data['mainMenuLinks'][0]['items'][0]['name'],
                             $data['mainMenuLinks'][0]['items'][0]['url']),
@@ -50,7 +50,7 @@ final class FooterTest extends ViewModelTest
     {
         return [
             [
-                new Footer('/', new MainMenu([new MainMenuLink('title', 'titleId', [new Link('name1', 'url1')])]),
+                new Footer('/', new MainMenu([new MainMenuLink('title', [new Link('name1', 'url1')])]),
                     [new Link('name2', 'url2')], [new Link('name3', 'url3')]),
             ],
         ];

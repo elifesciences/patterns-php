@@ -16,15 +16,14 @@ final class MainMenuLink implements CastsToArray
     private $titleId;
     private $items;
 
-    public function __construct(string $title, string $titleId, array $items)
+    public function __construct(string $title, array $items)
     {
         Assertion::notBlank($title);
-        Assertion::notBlank($titleId);
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, Link::class);
 
         $this->title = $title;
-        $this->titleId = $titleId;
+        $this->titleId = 'mainMenu'.hash('crc32', $title);
         $this->items = $items;
     }
 }
