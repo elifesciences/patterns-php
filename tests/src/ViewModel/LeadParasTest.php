@@ -37,16 +37,6 @@ class LeadParasTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_cannot_have_a_blank_paragraph()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new LeadParas([new LeadPara(''), new LeadPara('not empty')]);
-    }
-
-    /**
-     * @test
-     */
     public function it_cannot_have_no_paragraphs()
     {
         $this->expectException(InvalidArgumentException::class);
