@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Stephen
- * Date: 01/07/16
- * Time: 09:08.
- */
-
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;

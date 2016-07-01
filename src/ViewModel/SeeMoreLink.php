@@ -24,7 +24,7 @@ class SeeMoreLink implements ViewModel
         $this->url = $link['url'];
     }
 
-    public function getInlineStyleSheets() : Traversable
+    public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/see-more-link.css';
     }
