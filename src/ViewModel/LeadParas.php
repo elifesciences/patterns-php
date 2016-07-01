@@ -9,12 +9,13 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class LeadParas implements ViewModel
+final class LeadParas implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    /** @var LeadPara[] */
     protected $paras;
 
     public function __construct($leadParas)
@@ -27,7 +28,7 @@ class LeadParas implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/lead-para.css';
+        yield $this->paras[0]->getStyleSheets();
         yield '/elife/patterns/assets/css/lead-paras.css';
     }
 
