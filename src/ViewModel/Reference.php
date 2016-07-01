@@ -20,6 +20,8 @@ final class Reference implements ViewModel
     protected $secondaryLinkText;
     protected $title;
     protected $titleLink;
+    protected $hasAuthors;
+    protected $hasAbstracts;
 
     public function __construct(
         string $title,
@@ -34,7 +36,9 @@ final class Reference implements ViewModel
         $this->secondaryLinkText = $secondaryLinkText;
         $this->origin = $origin;
         $this->authors = $authors;
+        $this->hasAuthors = !!$authors;
         $this->abstracts = $abstracts;
+        $this->hasAbstracts = !!$abstracts;
     }
 
     public function getInlineStyleSheets() : Traversable

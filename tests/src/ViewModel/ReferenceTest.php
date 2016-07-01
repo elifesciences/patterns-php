@@ -26,6 +26,8 @@ final class ReferenceTest extends ViewModelTest
             'secondaryLinkText' => 'the secondary',
             'title' => 'title of reference',
             'titleLink' => '/',
+            'hasAuthors' => true,
+            'hasAbstracts' => true,
         ];
 
         $reference = new Reference($data['title'], $data['titleLink'], $data['secondaryLinkText'], $data['origin'], [
@@ -37,6 +39,35 @@ final class ReferenceTest extends ViewModelTest
         ]);
 
         $this->assertSame($data, $reference->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_be_provided_an_empty_author_list()
+    {
+        $reference = new Reference('some title', '/', 'secondary', 'origin', [],
+            [
+                new Link('Download', '/download'),
+                new Link('View', '/view'),
+            ]);
+
+        $this->assertSame([], $reference['authors'], 'Authors appears empty');
+        $this->assertSame(false, $reference['hasAuthors'], 'hasAuthor property updated correctly');
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_be_provided_an_empty_abstract_list()
+    {
+        $reference = new Reference('some title', '/', 'secondary', 'origin', [
+            new Author('Person Foo'),
+            new Author('Person Bar', '/bar'),
+        ], []);
+
+        $this->assertSame([], $reference['abstracts'], 'Abstracts appears empty');
+        $this->assertSame(false, $reference['hasAbstracts'], 'hasAbstract property updated correctly');
     }
 
     public function viewModelProvider() : array
