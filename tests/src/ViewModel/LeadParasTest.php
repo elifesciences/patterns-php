@@ -8,7 +8,6 @@ use InvalidArgumentException;
 
 class LeadParasTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -17,21 +16,21 @@ class LeadParasTest extends ViewModelTest
         $data = [
             'paras' => [
                 [
-                    'text' => 'testing first paragraph text'
+                    'text' => 'testing first paragraph text',
                 ],
                 [
-                    'text' => 'testing second paragraph text'
-                ]
-            ]
+                    'text' => 'testing second paragraph text',
+                ],
+            ],
         ];
 
         $paras = new LeadParas([
             new LeadPara($data['paras'][0]['text']),
-            new LeadPara($data['paras'][1]['text'])
+            new LeadPara($data['paras'][1]['text']),
         ]);
 
-        $this->assertSame($data['paras'][0]['text'], $paras['paras'][0]['text'], "First lead paragraph contains paragraph text");
-        $this->assertSame($data['paras'][1]['text'], $paras['paras'][1]['text'], "Second lead paragraph contains paragraph text");
+        $this->assertSame($data['paras'][0]['text'], $paras['paras'][0]['text'], 'First lead paragraph contains paragraph text');
+        $this->assertSame($data['paras'][1]['text'], $paras['paras'][1]['text'], 'Second lead paragraph contains paragraph text');
         $this->assertSame($paras->toArray(), $data);
     }
 
@@ -42,7 +41,7 @@ class LeadParasTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new LeadParas([ new LeadPara(''), new LeadPara('not empty') ]);
+        new LeadParas([new LeadPara(''), new LeadPara('not empty')]);
     }
 
     /**
@@ -52,7 +51,7 @@ class LeadParasTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new LeadParas([ ]);
+        new LeadParas([]);
     }
 
     /**
@@ -65,15 +64,14 @@ class LeadParasTest extends ViewModelTest
         new LeadParas('not a valid construction');
     }
 
-
     public function viewModelProvider() : array
     {
         return [
             [
                 new LeadParas([
                     new LeadPara('Text testing first'),
-                    new LeadPara('Text testing second')
-                ])
+                    new LeadPara('Text testing second'),
+                ]),
             ],
             [
                 new LeadParas([
@@ -81,9 +79,9 @@ class LeadParasTest extends ViewModelTest
                     new LeadPara('Text testing second'),
                     new LeadPara('Text testing third'),
                     new LeadPara('Text testing fourth'),
-                    new LeadPara('Text testing fifth')
-                ])
-            ]
+                    new LeadPara('Text testing fifth'),
+                ]),
+            ],
         ];
     }
 
