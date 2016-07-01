@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
@@ -31,6 +32,13 @@ final class Reference implements ViewModel
         array $authors = [],
         array $abstracts = []
     ) {
+        Assertion::notBlank($title);
+        Assertion::notBlank($titleLink);
+        Assertion::notBlank($secondaryLinkText);
+        Assertion::notBlank($origin);
+        Assertion::allIsInstanceOf($authors, Author::class);
+        Assertion::allIsInstanceOf($abstracts, Link::class);
+
         $this->titleLink = $titleLink;
         $this->title = $title;
         $this->secondaryLinkText = $secondaryLinkText;
