@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\LeadPara;
 use eLife\Patterns\ViewModel\LeadParas;
 use InvalidArgumentException;
+use TypeError;
 
 class LeadParasTest extends ViewModelTest
 {
@@ -49,7 +50,7 @@ class LeadParasTest extends ViewModelTest
      */
     public function it_cannot_have_input_other_than_array()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(TypeError::class);
 
         new LeadParas('not a valid construction');
     }
