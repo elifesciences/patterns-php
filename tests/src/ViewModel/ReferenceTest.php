@@ -28,7 +28,15 @@ final class ReferenceTest extends ViewModelTest
             'titleLink' => '/',
         ];
 
-        $this->assertSame($data, $this->viewModelProvider()[0][0]->toArray());
+        $reference = new Reference($data['title'], $data['titleLink'], $data['secondaryLinkText'], $data['origin'], [
+            new Author($data['authors'][0]['authorName']),
+            new Author($data['authors'][1]['authorName'], $data['authors'][1]['authorLink']),
+        ], [
+            new Link($data['abstracts'][0]['name'], $data['abstracts'][0]['url']),
+            new Link($data['abstracts'][1]['name'], $data['abstracts'][1]['url']),
+        ]);
+
+        $this->assertSame($data, $reference->toArray());
     }
 
     public function viewModelProvider() : array
