@@ -5,20 +5,20 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\ListHeading;
 use InvalidArgumentException;
 
-final class ListHeadingTest extends ViewModelTest {
-
+final class ListHeadingTest extends ViewModelTest
+{
     /**
      * @test
      */
     public function it_has_data()
     {
         $data = [
-            'heading' => 'some heading text'
+            'heading' => 'some heading text',
         ];
 
         $heading = new ListHeading($data['heading']);
 
-        $this->assertSame($heading['heading'], $data['heading'], "List heading contains heading property");
+        $this->assertSame($heading['heading'], $data['heading'], 'List heading contains heading property');
         $this->assertSame($heading->toArray(), $data);
     }
 
@@ -36,8 +36,8 @@ final class ListHeadingTest extends ViewModelTest {
     {
         return [
             [
-                new ListHeading("heading text")
-            ]
+                new ListHeading('heading text'),
+            ],
         ];
     }
 
