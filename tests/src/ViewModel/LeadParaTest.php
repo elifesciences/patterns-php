@@ -7,21 +7,19 @@ use InvalidArgumentException;
 
 class LeadParaTest extends ViewModelTest
 {
-
     /**
      * @test
      */
     public function it_has_data()
     {
         $data = [
-            'text' => 'testing paragraph text'
+            'text' => 'testing paragraph text',
         ];
 
         $lead = new LeadPara($data['text']);
 
-        $this->assertSame($data['text'], $lead['text'], "Lead paragraph contains paragraph text");
+        $this->assertSame($data['text'], $lead['text'], 'Lead paragraph contains paragraph text');
         $this->assertSame($lead->toArray(), $data);
-
     }
 
     /**
@@ -38,8 +36,8 @@ class LeadParaTest extends ViewModelTest
     {
         return [
             [
-                new LeadPara('Text testing')
-            ]
+                new LeadPara('Text testing'),
+            ],
         ];
     }
 
