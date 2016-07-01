@@ -8,7 +8,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class SeeMoreLink implements ViewModel
+final class SeeMoreLink implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

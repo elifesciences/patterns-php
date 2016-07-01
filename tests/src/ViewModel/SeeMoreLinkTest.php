@@ -5,7 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 
-class SeeMoreLinkTest extends ViewModelTest
+final class SeeMoreLinkTest extends ViewModelTest
 {
     /**
      * @test
