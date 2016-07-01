@@ -30,7 +30,7 @@ final class ReferenceTest extends ViewModelTest
             'hasAbstracts' => true,
         ];
 
-        $reference = new Reference($data['title'], $data['titleLink'], $data['secondaryLinkText'], $data['origin'], [
+        $reference = new Reference($data['title'], $data['titleLink'], $data['origin'], $data['secondaryLinkText'], [
             new Author($data['authors'][0]['authorName']),
             new Author($data['authors'][1]['authorName'], $data['authors'][1]['authorLink']),
         ], [
@@ -44,9 +44,19 @@ final class ReferenceTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_can_be_provided_without_secondary_link_text()
+    {
+        $reference = new Reference('some title', '/', 'origin');
+
+        $this->assertSame('', $reference['secondaryLinkText']);
+    }
+
+    /**
+     * @test
+     */
     public function it_can_be_provided_an_empty_author_list()
     {
-        $reference = new Reference('some title', '/', 'secondary', 'origin', [],
+        $reference = new Reference('some title', '/', 'origin', 'secondary', [],
             [
                 new Link('Download', '/download'),
                 new Link('View', '/view'),
@@ -61,7 +71,7 @@ final class ReferenceTest extends ViewModelTest
      */
     public function it_can_be_provided_an_empty_abstract_list()
     {
-        $reference = new Reference('some title', '/', 'secondary', 'origin', [
+        $reference = new Reference('some title', '/', 'origin', 'secondary',[
             new Author('Person Foo'),
             new Author('Person Bar', '/bar'),
         ], []);
@@ -73,7 +83,7 @@ final class ReferenceTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Reference('title of reference', '/', 'the secondary', 'the origin', [
+            [new Reference('title of reference', '/', 'the origin', 'the secondary', [
                 new Author('Person Foo'),
                 new Author('Person Bar', '/bar'),
             ], [

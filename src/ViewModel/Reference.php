@@ -27,14 +27,13 @@ final class Reference implements ViewModel
     public function __construct(
         string $title,
         string $titleLink,
-        string $secondaryLinkText,
         string $origin,
+        string $secondaryLinkText = '',
         array $authors = [],
         array $abstracts = []
     ) {
         Assertion::notBlank($title);
         Assertion::notBlank($titleLink);
-        Assertion::notBlank($secondaryLinkText);
         Assertion::notBlank($origin);
         Assertion::allIsInstanceOf($authors, Author::class);
         Assertion::allIsInstanceOf($abstracts, Link::class);
@@ -49,7 +48,7 @@ final class Reference implements ViewModel
         $this->hasAbstracts = !!$abstracts;
     }
 
-    public function getInlineStyleSheets() : Traversable
+    public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/reference.css';
     }
