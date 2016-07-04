@@ -26,9 +26,20 @@ final class LeadParas implements ViewModel
         $this->paras = $leadParas;
     }
 
+    public function mapStyleSheets(ViewModel $vm) : Traversable
+    {
+        return $vm->getStyleSheets();
+    }
+
+    public function getStyleSheetFromArray(array $viewModels) : Traversable
+    {
+        Assertion::allIsInstanceOf($viewModels, ViewModel::class);
+        yield array_map([ $this, 'mapStyleSheets' ], $viewModels);
+    }
+
     public function getStyleSheets() : Traversable
     {
-        yield $this->paras[0]->getStyleSheets();
+        yield $this->getStyleSheetFromArray($this->paras);
         yield '/elife/patterns/assets/css/lead-paras.css';
     }
 
