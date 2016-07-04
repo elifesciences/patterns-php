@@ -9,18 +9,15 @@ use eLife\Patterns\ViewModel\Input;
 
 class EmailCtaTest extends ViewModelTest
 {
-
     /**
      * @test
      */
     public function it_has_data()
     {
-
         $data = [
             'headerText' => 'header text',
             'subHeader' => 'sub header text',
-            'compactForm' =>
-                [
+            'compactForm' => [
                     'formAction' => '/foo',
                     'formId' => 'foo',
                     'formMethod' => 'GET',
@@ -30,7 +27,7 @@ class EmailCtaTest extends ViewModelTest
                     'inputValue' => 'value',
                     'inputPlaceholder' => 'placeholder',
                     'ctaText' => 'cta',
-                ]
+                ],
         ];
         $form = new EmailCta($data['headerText'], $data['subHeader'], new CompactForm(
             new Form(
@@ -70,7 +67,7 @@ class EmailCtaTest extends ViewModelTest
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder'),
                     'cta'
-                ))
+                )),
             ],
         ];
     }
