@@ -40,7 +40,6 @@ final class AudioSource implements CastsToArray
     ];
 
     protected $mimeType;
-    protected $type;
     protected $src;
 
     public function __construct(
