@@ -3,7 +3,10 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
+use eLife\Patterns\ViewModel\Image;
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
+use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SiteHeader;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
 use InvalidArgumentException;
@@ -11,6 +14,7 @@ use TypeError;
 
 final class SiteHeaderTest extends ViewModelTest
 {
+    private $img;
     private $homePagePath;
     private $primaryLinks;
     private $secondaryLinks;
@@ -18,18 +22,25 @@ final class SiteHeaderTest extends ViewModelTest
     public function setUp()
     {
         parent::setUp();
+        $this->img = new Picture(
+          [
+            ['srcset' => '/path/to/svg'],
+          ],
+          new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+        );
         $this->homePagePath = '/home/page/path';
         $this->primaryLinks = SiteHeaderNavBar::primary(
           [
-            NavLinkedItem::asLink('text-first', '/path/first', [], [], false),
-            NavLinkedItem::asLink('text-second', '/path/second', [], [], true),
+            NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $this->img),
+            NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
+            NavLinkedItem::asLink(new Link('text-second', '/path/second'), true),
           ]
         );
 
         $this->secondaryLinks = SiteHeaderNavBar::secondary(
           [
-            NavLinkedItem::asLink('text-first', '/path/first', [], [], false),
-            NavLinkedItem::asButton(Button::link('button text', '/button/path'), []),
+            NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
+            NavLinkedItem::asButton(Button::link('button text', '/button/path')),
           ]
         );
     }
@@ -74,17 +85,26 @@ final class SiteHeaderTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
+        $img = new Picture(
+            [
+                ['srcset' => '/path/to/svg'],
+            ],
+            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+        );
+
         $primaryLinks = SiteHeaderNavBar::primary(
           [
-            NavLinkedItem::asLink('text-first', '/path/first', [], [], false),
-            NavLinkedItem::asLink('text-second', '/path/second', [], [], true),
+            NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $img),
+            NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
+            NavLinkedItem::asLink(new Link('text-second', '/path/second'), true),
           ]
         );
 
         $secondaryLinks = SiteHeaderNavBar::secondary(
           [
-            NavLinkedItem::asLink('text-first', '/path/first', [], [], false),
-            NavLinkedItem::asButton(Button::link('button text', '/button/path'), []),
+            NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $img),
+            NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
+            NavLinkedItem::asButton(Button::link('button text', '/button/path')),
           ]
         );
 

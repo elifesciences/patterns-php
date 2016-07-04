@@ -17,31 +17,43 @@ final class SiteHeaderNavBar implements ViewModel
 
     private $classesInner;
     private $classesOuter;
-    private $linkedItems;
+    private $linkedItems = [];
 
-    private function __construct(array $linkedItems)
+    private function __construct(array $linkedItems, string $type)
     {
         Assertion::allIsInstanceOf($linkedItems, NavLinkedItem::class);
         Assertion::notEmpty($linkedItems);
-        $this->linkedItems = $linkedItems;
+
+        $linkedItems = array_values($linkedItems);
+
+        for ($i = 0; $i < count($linkedItems); ++$i) {
+            $classes = ['nav-'.$type.'__item'];
+
+            if (0 === $i) {
+                $classes[] = $classes[0].'--first';
+            }
+            if ((count($linkedItems) - 1) === $i) {
+                $classes[] = $classes[0].'--last';
+            }
+
+            $newLinkedItem = FlexibleViewModel::fromViewModel($linkedItems[$i])
+                ->withProperty('classes', implode(' ', $classes));
+
+            $this->linkedItems[] = $newLinkedItem;
+        }
+
+        $this->classesOuter = 'nav-'.$type;
+        $this->classesInner = 'nav-'.$type.'__list clearfix';
     }
 
     public static function primary(array $linkedItems) : SiteHeaderNavBar
     {
-        $primaryNavBar = new static($linkedItems);
-        $primaryNavBar->classesOuter = 'nav-primary';
-        $primaryNavBar->classesInner = 'nav-primary__list clearfix';
-
-        return $primaryNavBar;
+        return new static($linkedItems, 'primary');
     }
 
     public static function secondary(array $linkedItems) : SiteHeaderNavBar
     {
-        $secondaryNavBar = new static($linkedItems);
-        $secondaryNavBar->classesOuter = 'nav-secondary';
-        $secondaryNavBar->classesInner = 'nav-secondary__list clearfix';
-
-        return $secondaryNavBar;
+        return new static($linkedItems, 'secondary');
     }
 
     public function getStyleSheets() : Traversable
