@@ -26,41 +26,35 @@ class AudioPlayerTest extends ViewModelTest
             'title' => 'title of player',
             'sources' => [
                 [
-                    'mime_type' => 'audio/mp3',
-                    'type' => 'mp3',
+                    'mimeType' => AudioSource::TYPE_MP3,
                     'src' => '/audio.mp3',
                 ],
                 [
-                    'mime_type' => 'audio/ogg',
-                    'type' => 'ogg',
+                    'mimeType' => AudioSource::TYPE_OGG,
                     'src' => '/ogg.mp3',
                 ],
                 [
-                    'mime_type' => 'audio/webm',
-                    'type' => 'webm',
+                    'mimeType' => AudioSource::TYPE_WEBM,
                     'src' => '/webm.mp3',
                 ],
             ],
         ];
 
         $audioPlayer = new AudioPlayer($data['title'], [
-            new AudioSource($data['sources'][0]['src'], $data['sources'][0]['type']),
-            new AudioSource($data['sources'][1]['src'], $data['sources'][1]['type'])
+            new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']),
+            new AudioSource($data['sources'][1]['src'], $data['sources'][1]['mimeType'])
         ]);
-        $audioPlayer->addSource(new AudioSource($data['sources'][2]['src'], $data['sources'][2]['type']));
+        $audioPlayer->addSource(new AudioSource($data['sources'][2]['src'], $data['sources'][2]['mimeType']));
 
         $this->assertSame($data['title'], $audioPlayer['title']);
         $this->assertSame($data['sources'][0], $audioPlayer['sources'][0]->toArray());
-        $this->assertSame($data['sources'][0]['mime_type'], $audioPlayer['sources'][0]['mime_type']);
-        $this->assertSame($data['sources'][0]['type'], $audioPlayer['sources'][0]['type']);
+        $this->assertSame($data['sources'][0]['mimeType'], $audioPlayer['sources'][0]['mimeType']);
         $this->assertSame($data['sources'][0]['src'], $audioPlayer['sources'][0]['src']);
         $this->assertSame($data['sources'][1], $audioPlayer['sources'][1]->toArray());
-        $this->assertSame($data['sources'][1]['mime_type'], $audioPlayer['sources'][1]['mime_type']);
-        $this->assertSame($data['sources'][1]['type'], $audioPlayer['sources'][1]['type']);
+        $this->assertSame($data['sources'][1]['mimeType'], $audioPlayer['sources'][1]['mimeType']);
         $this->assertSame($data['sources'][1]['src'], $audioPlayer['sources'][1]['src']);
         $this->assertSame($data['sources'][2], $audioPlayer['sources'][2]->toArray());
-        $this->assertSame($data['sources'][2]['mime_type'], $audioPlayer['sources'][2]['mime_type']);
-        $this->assertSame($data['sources'][2]['type'], $audioPlayer['sources'][2]['type']);
+        $this->assertSame($data['sources'][2]['mimeType'], $audioPlayer['sources'][2]['mimeType']);
         $this->assertSame($data['sources'][2]['src'], $audioPlayer['sources'][2]['src']);
         $this->assertSame($data, $audioPlayer->toArray());
     }
@@ -70,9 +64,9 @@ class AudioPlayerTest extends ViewModelTest
         return [
             [
                 new AudioPlayer('title of player', [
-                    new AudioSource('/audio.mp3', 'mp3'),
-                    new AudioSource('/ogg.mp3', 'ogg'),
-                    new AudioSource('/webm.mp3', 'webm'),
+                    new AudioSource('/audio.mp3', AudioSource::TYPE_MP3),
+                    new AudioSource('/ogg.mp3',  AudioSource::TYPE_OGG),
+                    new AudioSource('/webm.mp3', AudioSource::TYPE_WEBM),
                 ])
             ]
         ];
