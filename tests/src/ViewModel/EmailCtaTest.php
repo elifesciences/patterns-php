@@ -7,7 +7,7 @@ use eLife\Patterns\ViewModel\EmailCta;
 use eLife\Patterns\ViewModel\Form;
 use eLife\Patterns\ViewModel\Input;
 
-class EmailCtaTest extends ViewModelTest
+final class EmailCtaTest extends ViewModelTest
 {
     /**
      * @test

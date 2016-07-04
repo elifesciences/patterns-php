@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class EmailCta implements ViewModel
+final class EmailCta implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
