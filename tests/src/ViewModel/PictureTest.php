@@ -3,10 +3,10 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Image;
-use eLife\Patterns\ViewModel\PictureSvgWithFallback;
+use eLife\Patterns\ViewModel\Picture;
 use InvalidArgumentException;
 
-final class PictureSvgWithFallbackTest extends ViewModelTest
+final class PictureTest extends ViewModelTest
 {
     private $imageFixture;
 
@@ -33,16 +33,16 @@ final class PictureSvgWithFallbackTest extends ViewModelTest
           ],
           'sources' => [
             [
-              'svg' => '/path/to/svg',
+              'srcset' => '/path/to/svg',
             ],
             [
-              'svg' => '/path/to/another/svg',
+              'srcset' => '/path/to/another/svg',
               'media' => 'media statement',
             ],
           ],
         ];
 
-        $picture = new PictureSvgWithFallback($data['sources'], $this->imageFixture);
+        $picture = new Picture($data['sources'], $this->imageFixture);
         $this->assertSame($data['fallback']['defaultPath'], $picture['fallback']['defaultPath']);
         $this->assertSame($data['fallback']['altText'], $picture['fallback']['altText']);
         $this->assertSame($data['fallback']['classes'], $picture['fallback']['classes']);
@@ -56,7 +56,7 @@ final class PictureSvgWithFallbackTest extends ViewModelTest
     public function it_must_have_at_least_one_source()
     {
         $this->expectException(InvalidArgumentException::class);
-        new PictureSvgWithFallback([], $this->imageFixture);
+        new Picture([], $this->imageFixture);
     }
 
     /**
@@ -68,19 +68,19 @@ final class PictureSvgWithFallbackTest extends ViewModelTest
 
         $invalidSources = [
           [
-            'svg' => '/path/to/svg',
+            'srcset' => '/path/to/svg',
             'media' => null,
           ],
           [
-            'svg' => '/path/to/svg',
+            'srcset' => '/path/to/svg',
           ],
           [
-            'svg' => '/path/to/svg',
+            'srcset' => '/path/to/svg',
             'media' => 'media statement',
           ],
         ];
 
-        new PictureSvgWithFallback($invalidSources, $this->imageFixture);
+        new Picture($invalidSources, $this->imageFixture);
     }
 
     public function viewModelProvider() : array
@@ -95,29 +95,41 @@ final class PictureSvgWithFallbackTest extends ViewModelTest
 
         $sourcesBasic = [
           [
-            'svg' => '/path/to/svg',
+            'srcset' => '/path/to/svg',
           ],
         ];
         $sourcesWithMedia = [
           [
-            'svg' => '/path/to/svg',
+            'srcset' => '/path/to/svg',
           ],
           [
-            'svg' => '/path/to/svg',
+            'srcset' => '/path/to/svg',
             'media' => 'media statement',
           ],
         ];
+        $sourcesWithMediaAndType = [
+            [
+              'srcset' => '/path/to/svg',
+              'type' => 'image/svg+xml',
+            ],
+            [
+              'srcset' => '/path/to/webp',
+              'media' => 'media statement',
+              'type' => 'image/webp',
+            ],
+        ];
 
         return [
-          'basic' => [new PictureSvgWithFallback($sourcesBasic, $image)],
-          'has css classes' => [new PictureSvgWithFallback($sourcesBasic, $imageWithCssClasses)],
-          'has media statement' => [new PictureSvgWithFallback($sourcesWithMedia, $image)],
-          'has css and media statement' => [new PictureSvgWithFallback($sourcesWithMedia, $imageWithCssClasses)],
+          'basic' => [new Picture($sourcesBasic, $image)],
+          'has css classes' => [new Picture($sourcesBasic, $imageWithCssClasses)],
+          'has media statement' => [new Picture($sourcesWithMedia, $image)],
+          'has media statement and type' => [new Picture($sourcesWithMediaAndType, $image)],
+          'has css and media statement' => [new Picture($sourcesWithMedia, $imageWithCssClasses)],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/picture-svg-with-fallback.mustache';
+        return '/elife/patterns/templates/picture.mustache';
     }
 }

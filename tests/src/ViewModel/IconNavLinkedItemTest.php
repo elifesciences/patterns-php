@@ -5,7 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
-use eLife\Patterns\ViewModel\PictureSvgWithFallback;
+use eLife\Patterns\ViewModel\Picture;
 
 final class IconNavLinkedItemTest extends ViewModelTest
 {
@@ -14,9 +14,9 @@ final class IconNavLinkedItemTest extends ViewModelTest
     public function setUp()
     {
         parent::setUp();
-        $this->img = new PictureSvgWithFallback(
+        $this->img = new Picture(
             [
-                ['svg' => '/path/to/svg'],
+                ['srcset' => '/path/to/svg'],
             ],
             new Image('/default/image/path', [500 => '/image/path/in/srcset'], 'alt', ['image-class'])
         );
@@ -80,9 +80,9 @@ final class IconNavLinkedItemTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $img = new PictureSvgWithFallback(
+        $img = new Picture(
             [
-                ['svg' => '/path/to/svg'],
+                ['srcset' => '/path/to/svg'],
             ],
             new Image('/default/image/path', [500 => '/default/image/path'], 'alt', ['image-class'])
         );
