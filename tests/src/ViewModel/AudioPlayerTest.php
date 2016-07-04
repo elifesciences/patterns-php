@@ -8,13 +8,13 @@ use InvalidArgumentException;
 
 class AudioPlayerTest extends ViewModelTest
 {
-
     /**
      * @test
      */
-    public function it_should_not_accept_unknown_type() {
+    public function it_should_not_accept_unknown_type()
+    {
         $this->expectException(InvalidArgumentException::class);
-        new AudioPlayer('this will fail', [ new AudioSource('/nope.jpg','jpg') ]);
+        new AudioPlayer('this will fail', [new AudioSource('/nope.jpg', 'jpg')]);
     }
 
     /**
@@ -42,7 +42,7 @@ class AudioPlayerTest extends ViewModelTest
 
         $audioPlayer = new AudioPlayer($data['title'], [
             new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']),
-            new AudioSource($data['sources'][1]['src'], $data['sources'][1]['mimeType'])
+            new AudioSource($data['sources'][1]['src'], $data['sources'][1]['mimeType']),
         ]);
         $audioPlayer->addSource(new AudioSource($data['sources'][2]['src'], $data['sources'][2]['mimeType']));
 
@@ -67,8 +67,8 @@ class AudioPlayerTest extends ViewModelTest
                     new AudioSource('/audio.mp3', AudioSource::TYPE_MP3),
                     new AudioSource('/ogg.mp3',  AudioSource::TYPE_OGG),
                     new AudioSource('/webm.mp3', AudioSource::TYPE_WEBM),
-                ])
-            ]
+                ]),
+            ],
         ];
     }
 

@@ -21,22 +21,22 @@ final class AudioSource implements CastsToArray
 
     const TYPE_MP3 = [
       'forHuman' => 'mp3',
-      'forMachine' => 'audio/mp3'
+      'forMachine' => 'audio/mp3',
     ];
 
     const TYPE_MPEG = [
       'forHuman' => 'mpeg',
-      'forMachine' => 'audio/mpeg'
+      'forMachine' => 'audio/mpeg',
     ];
 
     const TYPE_WEBM = [
       'forHuman' => 'webm',
-      'forMachine' => 'audio/webm'
+      'forMachine' => 'audio/webm',
     ];
 
     const TYPE_OGG = [
       'forHuman' => 'ogg',
-      'forMachine' => 'audio/ogg'
+      'forMachine' => 'audio/ogg',
     ];
 
     protected $mimeType;
@@ -51,5 +51,4 @@ final class AudioSource implements CastsToArray
         $this->src = $src;
         $this->mimeType = $type;
     }
-
 }

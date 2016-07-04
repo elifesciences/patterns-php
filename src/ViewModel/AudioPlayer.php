@@ -28,7 +28,8 @@ final class AudioPlayer implements ViewModel
         $this->sources = $sources;
     }
 
-    public function addSource(AudioSource $source) {
+    public function addSource(AudioSource $source)
+    {
         $this->sources[] = $source;
     }
 
