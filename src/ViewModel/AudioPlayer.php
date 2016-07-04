@@ -33,11 +33,6 @@ final class AudioPlayer implements ViewModel
         $this->sources[] = $source;
     }
 
-    public function getJavaScripts() : Traversable
-    {
-        return '/elife/patterns/assets/js/AudioPlayer.js';
-    }
-
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/audio-player.mustache';
