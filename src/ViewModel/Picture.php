@@ -8,7 +8,7 @@ use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
-final class PictureSvgWithFallback implements ViewModel
+final class Picture implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
@@ -35,6 +35,6 @@ final class PictureSvgWithFallback implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/picture-svg-with-fallback.mustache';
+        return '/elife/patterns/templates/picture.mustache';
     }
 }

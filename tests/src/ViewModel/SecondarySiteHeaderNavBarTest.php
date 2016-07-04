@@ -6,7 +6,7 @@ use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
-use eLife\Patterns\ViewModel\PictureSvgWithFallback;
+use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
 
 final class SecondarySiteHeaderNavBarTest extends ViewModelTest
@@ -22,9 +22,9 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
     public function setUp()
     {
         parent::setUp();
-        $this->img = new PictureSvgWithFallback(
+        $this->img = new Picture(
           [
-            ['svg' => '/path/to/svg'],
+            ['srcset' => '/path/to/svg'],
           ],
           new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
@@ -79,9 +79,9 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $img = new PictureSvgWithFallback(
+        $img = new Picture(
             [
-                ['svg' => '/path/to/svg'],
+                ['srcset' => '/path/to/svg'],
             ],
             new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
