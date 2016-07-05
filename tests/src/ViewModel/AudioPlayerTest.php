@@ -31,20 +31,15 @@ class AudioPlayerTest extends ViewModelTest
                 ],
                 [
                     'mimeType' => AudioSource::TYPE_OGG,
-                    'src' => '/ogg.mp3',
-                ],
-                [
-                    'mimeType' => AudioSource::TYPE_WEBM,
-                    'src' => '/webm.mp3',
-                ],
+                    'src' => '/audio.ogg',
+                ]
             ],
         ];
 
         $audioPlayer = new AudioPlayer($data['title'], [
             new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']),
-            new AudioSource($data['sources'][1]['src'], $data['sources'][1]['mimeType']),
         ]);
-        $audioPlayer->addSource(new AudioSource($data['sources'][2]['src'], $data['sources'][2]['mimeType']));
+        $audioPlayer->addSource(new AudioSource($data['sources'][1]['src'], $data['sources'][1]['mimeType']));
 
         $this->assertSame($data['title'], $audioPlayer['title']);
         $this->assertSame($data['sources'][0], $audioPlayer['sources'][0]->toArray());
@@ -53,9 +48,6 @@ class AudioPlayerTest extends ViewModelTest
         $this->assertSame($data['sources'][1], $audioPlayer['sources'][1]->toArray());
         $this->assertSame($data['sources'][1]['mimeType'], $audioPlayer['sources'][1]['mimeType']);
         $this->assertSame($data['sources'][1]['src'], $audioPlayer['sources'][1]['src']);
-        $this->assertSame($data['sources'][2], $audioPlayer['sources'][2]->toArray());
-        $this->assertSame($data['sources'][2]['mimeType'], $audioPlayer['sources'][2]['mimeType']);
-        $this->assertSame($data['sources'][2]['src'], $audioPlayer['sources'][2]['src']);
         $this->assertSame($data, $audioPlayer->toArray());
     }
 
@@ -65,8 +57,7 @@ class AudioPlayerTest extends ViewModelTest
             [
                 new AudioPlayer('title of player', [
                     new AudioSource('/audio.mp3', AudioSource::TYPE_MP3),
-                    new AudioSource('/ogg.mp3',  AudioSource::TYPE_OGG),
-                    new AudioSource('/webm.mp3', AudioSource::TYPE_WEBM),
+                    new AudioSource('/audio.ogg',  AudioSource::TYPE_OGG),
                 ]),
             ],
         ];
