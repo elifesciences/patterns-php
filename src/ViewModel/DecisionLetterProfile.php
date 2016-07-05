@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
@@ -11,7 +10,6 @@ use eLife\Patterns\ViewModel;
 
 class DecisionLetterProfile implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
