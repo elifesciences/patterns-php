@@ -35,8 +35,10 @@ final class Image implements CastsToArray
         $this->classes = implode(' ', $classes);
     }
 
-    public function addClass($className) {
-        $this->classes = trim($this->classes . ' ' . $className);
+    public function addClass($className)
+    {
+        $this->classes = trim($this->classes.' '.$className);
+
         return $this;
     }
 }

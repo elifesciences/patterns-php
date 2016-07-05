@@ -35,13 +35,17 @@ final class Picture implements ViewModel
         $this->pictureClasses = $pictureClasses;
     }
 
-    public function addPictureClass(string $class) : Picture {
-        $this->pictureClasses = trim($this->pictureClasses . ' ' . $class);
+    public function addPictureClass(string $class) : Picture
+    {
+        $this->pictureClasses = trim($this->pictureClasses.' '.$class);
+
         return $this;
     }
 
-    public function addFallbackClass(string $classes) : Picture {
+    public function addFallbackClass(string $classes) : Picture
+    {
         $this->fallback->addClass($classes);
+
         return $this;
     }
 

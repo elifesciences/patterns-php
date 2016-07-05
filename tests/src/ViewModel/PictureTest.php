@@ -62,7 +62,8 @@ final class PictureTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_can_have_additional_picture_classes_added() {
+    public function it_can_have_additional_picture_classes_added()
+    {
         $picture = new Picture([
             [
                 'srcset' => '/path/to/svg',
@@ -81,7 +82,8 @@ final class PictureTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_can_have_additional_fallback_image_classes_added() {
+    public function it_can_have_additional_fallback_image_classes_added()
+    {
         $picture = new Picture([
             [
                 'srcset' => '/path/to/svg',

@@ -6,29 +6,24 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 
-class ProfileSnippetTest extends ViewModelTest
+final class ProfileSnippetTest extends ViewModelTest
 {
-
     /**
      * @test
      */
     public function it_has_data()
     {
         $data = [
-            'picture' =>
-                [
+            'picture' => [
                     'pictureClasses' => 'profile-snippet__picture',
-                    'fallback' =>
-                        [
+                    'fallback' => [
                             'altText' => 'the alt text',
                             'classes' => 'profile-snippet__image',
                             'defaultPath' => '/default/path',
                             'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                         ],
-                    'sources' =>
-                        [
-                            0 =>
-                                [
+                    'sources' => [
+                            0 => [
                                     'srcset' => '/path/to/svg',
                                 ],
                         ],
@@ -53,9 +48,9 @@ class ProfileSnippetTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [ new ProfileSnippet('Name McName', 'Title McTitle', new Picture([
+            [new ProfileSnippet('Name McName', 'Title McTitle', new Picture([
                 ['srcset' => '/path/to/svg'],
-            ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))) ]
+            ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')))],
         ];
     }
 

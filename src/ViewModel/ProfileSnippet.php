@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class ProfileSnippet implements ViewModel
+final class ProfileSnippet implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
@@ -26,13 +26,14 @@ class ProfileSnippet implements ViewModel
     {
         Assertion::notBlank($name);
         Assertion::notBlank($title);
-        
+
         $this->name = $name;
         $this->title = $title;
         $this->setPicture($picture);
     }
 
-    protected function setPicture(Picture $picture) {
+    protected function setPicture(Picture $picture)
+    {
         $this->picture = $picture
             ->addPictureClass(static::PICTURE_CLASSES)
             ->addFallbackClass(static::FALLBACK_CLASSES)
