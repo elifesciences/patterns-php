@@ -63,4 +63,5 @@ schema:
                     - ctaText
             required:
                 - headerText
+                - subHeader
                 - compactForm
