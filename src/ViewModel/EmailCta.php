@@ -25,6 +25,7 @@ final class EmailCta implements ViewModel
         CompactForm $compactForm
     ) {
         Assertion::notBlank($headerText);
+        Assertion::notBlank($subHeader);
 
         $this->headerText = $headerText;
         $this->subHeader = $subHeader;
