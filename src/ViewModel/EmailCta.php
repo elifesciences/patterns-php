@@ -15,9 +15,9 @@ final class EmailCta implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    protected $headerText;
-    protected $subHeader;
-    protected $compactForm;
+    private $headerText;
+    private $subHeader;
+    private $compactForm;
 
     public function __construct(
         string $headerText,
