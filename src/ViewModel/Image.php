@@ -34,4 +34,11 @@ final class Image implements CastsToArray
         $this->altText = $altText;
         $this->classes = implode(' ', $classes);
     }
+
+    public function addClass($className)
+    {
+        $this->classes = trim($this->classes.' '.$className);
+
+        return $this;
+    }
 }

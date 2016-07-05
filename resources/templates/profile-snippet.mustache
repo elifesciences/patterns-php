@@ -1,0 +1,15 @@
+<div class="profile-snippet">
+  <div class="profile-snippet__container clearfix">
+    {{# picture}}
+        {{> atoms-picture }}
+    {{/picture}}
+      
+    <div class="profile-snippet__name">{{name}}</div>
+    <div class="profile-snippet__title">{{title}}</div>
+    {{#contactDetails}}
+    <div class="profile-snippet__contact_details">
+      {{{contactDetails}}}
+    </div>
+    {{/contactDetails}}
+  </div>
+</div>
