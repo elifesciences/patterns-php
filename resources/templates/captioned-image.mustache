@@ -1,0 +1,18 @@
+
+<figure class="captioned-image">
+  {{> atom-picture }}
+
+  <figcaption class="captioned-image__caption">
+    {{#customContent}}
+        {{{ customContent }}}
+    {{/customContent}}
+    {{^customContent}}
+      {{#heading}}
+        <p class="captioned-image__caption_heading">{{{ heading }}}</p>
+      {{/heading}}
+      {{#captions}}
+        <p class="captioned-image__caption_text">{{ caption }}</p>
+      {{/captions}}
+    {{/customContent}}
+  </figcaption>
+</figure>
