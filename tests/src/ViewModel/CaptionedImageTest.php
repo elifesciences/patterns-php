@@ -17,7 +17,9 @@ final class CaptionedImageTest extends ViewModelTest
         $widthSecond = 250;
         $data = [
             'heading' => 'heading',
-            'caption' => 'caption',
+            'captions' => [
+                ['caption' => 'the first caption'],
+            ],
             'picture' => [
                     'fallback' => [
                             'altText' => 'the alt text',
@@ -32,11 +34,14 @@ final class CaptionedImageTest extends ViewModelTest
                         ],
                 ],
         ];
-        $captionedImage = new CaptionedImage($data['heading'], $data['caption'], new Picture([
+        $captionedImage = CaptionedImage::withParagraph(new Picture([
             [
                 'srcset' => $data['picture']['sources'][0]['srcset'],
             ],
-        ], new Image($data['picture']['fallback']['defaultPath'], [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'], $data['picture']['fallback']['altText'])));
+        ], new Image($data['picture']['fallback']['defaultPath'], [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'], $data['picture']['fallback']['altText'])),
+            $data['heading'],
+            $data['captions'][0]['caption']
+        );
 
         $this->assertSame($data, $captionedImage->toArray());
     }
@@ -44,12 +49,23 @@ final class CaptionedImageTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [
-                new CaptionedImage('heading', 'caption', new Picture([
-                    [
-                        'srcset' => '/path/to/svg',
-                    ],
-                ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))),
+            'Captioned image with custom content' => [
+                CaptionedImage::withCustomContent(new Picture([
+                    ['srcset' => '/path/to/svg'],
+                ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')), '<b>Custom content</b>'),
+            ],
+            'Captioned image with multiple paragraphs' => [
+                CaptionedImage::withParagraphs(new Picture([
+                    ['srcset' => '/path/to/svg'],
+                ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')),
+                    'heading',
+                    ['my first caption', 'my second caption']
+                ),
+            ],
+            'Captioned image with single paragraph' => [
+                CaptionedImage::withParagraph(new Picture([
+                    ['srcset' => '/path/to/svg'],
+                ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')), 'heading', 'caption'),
             ],
         ];
     }

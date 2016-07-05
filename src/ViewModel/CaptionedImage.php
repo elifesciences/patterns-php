@@ -16,17 +16,44 @@ final class CaptionedImage implements ViewModel
     use SimplifyAssets;
 
     protected $heading;
-    protected $caption;
+    protected $captions;
     protected $picture;
+    protected $customContent;
 
-    public function __construct(string $heading, string $caption, Picture $picture)
+    protected function __construct(Picture $picture, string $heading = null, array $captions = null, string $customContent = null)
+    {
+        $this->heading = $heading;
+        $this->captions = $captions;
+        $this->picture = $picture;
+        $this->customContent = $customContent;
+    }
+
+    public static function withParagraph(Picture $picture, string $heading, string $caption) : CaptionedImage
     {
         Assertion::notBlank($heading);
         Assertion::notBlank($caption);
 
-        $this->heading = $heading;
-        $this->caption = $caption;
-        $this->picture = $picture;
+        return new static($picture, $heading, [['caption' => $caption]]);
+    }
+
+    public static function withParagraphs(Picture $picture, string $heading, array $captions) : CaptionedImage
+    {
+        Assertion::notBlank($heading);
+        Assertion::notBlank($captions);
+        Assertion::allString($captions);
+
+        $captions = array_map(function ($caption) {
+            return ['caption' => $caption];
+        }, $captions);
+
+        return new static($picture, $heading, $captions);
+    }
+
+    public static function withCustomContent(Picture $picture, string $content) : CaptionedImage
+    {
+        Assertion::notBlank($content);
+
+        return new static($picture, null, null, $content);
     }
 
     public function getStyleSheets() : Traversable
