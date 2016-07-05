@@ -7,6 +7,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use Traversable;
 
 class DecisionLetterProfile implements ViewModel
 {
@@ -23,6 +24,11 @@ class DecisionLetterProfile implements ViewModel
 
         $this->profileSnippet = $profileSnippet;
         $this->mainText = $mainText;
+    }
+
+    public function getStyleSheets() : Traversable
+    {
+        yield '/elife/patterns/assets/css/descision-letter-profile.css';
     }
 
     public function getTemplateName() : string
