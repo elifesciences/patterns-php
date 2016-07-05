@@ -62,6 +62,48 @@ final class PictureTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_can_have_additional_picture_classes_added() {
+        $picture = new Picture([
+            [
+                'srcset' => '/path/to/svg',
+            ],
+            [
+                'srcset' => '/path/to/another/svg',
+                'media' => 'media statement',
+            ],
+        ], $this->imageFixture, 'firstPictureClass');
+
+        $picture->addPictureClass('secondPictureClass');
+        $picture->addPictureClass('thirdPictureClass ');
+        $this->assertSame('firstPictureClass secondPictureClass thirdPictureClass', $picture['pictureClasses']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_have_additional_fallback_image_classes_added() {
+        $picture = new Picture([
+            [
+                'srcset' => '/path/to/svg',
+            ],
+            [
+                'srcset' => '/path/to/another/svg',
+                'media' => 'media statement',
+            ],
+        ], new Image(
+            '/default/path',
+            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+            'the alt text',
+            ['firstFallbackPictureClass']));
+
+        $picture->addFallbackClass('secondFallbackPictureClass');
+        $picture->addFallbackClass('thirdFallbackPictureClass ');
+        $this->assertSame('firstFallbackPictureClass secondFallbackPictureClass thirdFallbackPictureClass', $picture['fallback']['classes']);
+    }
+
+    /**
+     * @test
+     */
     public function it_can_only_have_one_source_without_media_statement()
     {
         $this->expectException(InvalidArgumentException::class);
