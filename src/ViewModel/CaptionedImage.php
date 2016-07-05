@@ -15,12 +15,12 @@ final class CaptionedImage implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    protected $heading;
-    protected $captions;
-    protected $picture;
-    protected $customContent;
+    private $heading;
+    private $captions;
+    private $picture;
+    private $customContent;
 
-    protected function __construct(Picture $picture, string $heading = null, array $captions = null, string $customContent = null)
+    private function __construct(Picture $picture, string $heading = null, array $captions = null, string $customContent = null)
     {
         $this->heading = $heading;
         $this->captions = $captions;
