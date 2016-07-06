@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Button;
 use InvalidArgumentException;
 use Traversable;
@@ -18,7 +17,7 @@ final class LoadMoreButtonTest extends ViewModelTest
             'classes' => 'button--small button--outline button--full',
             'path' => 'path',
             'text' => 'text',
-            'templateName' => '/elife/patterns/templates/load-more.mustache',
+            'templateName' => 'load-more',
         ];
 
         $button = Button::loadMoreLink('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
@@ -27,6 +26,25 @@ final class LoadMoreButtonTest extends ViewModelTest
         $this->assertSame($data['path'], $button['path']);
         $this->assertSame($data['classes'], $button['classes']);
         $this->assertSame($data, $button->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_has_correct_assets()
+    {
+        $button = Button::loadMoreLink('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
+
+        $sheets = [];
+        foreach ($button->getStyleSheets() as $styleSheet) {
+            $sheets[] = $styleSheet;
+        }
+        $this->assertSame([
+            '/elife/patterns/assets/css/buttons.css',
+            '/elife/patterns/assets/css/load-more.css',
+        ], $sheets);
+
+        $this->assertSame('/elife/patterns/templates/load-more.mustache', $button->getTemplateName());
     }
 
     /**
@@ -91,7 +109,8 @@ final class LoadMoreButtonTest extends ViewModelTest
         ];
     }
 
-    protected function expectedStylesheets() : Traversable {
+    protected function expectedStylesheets() : Traversable
+    {
         yield '/elife/patterns/assets/css/buttons.css';
     }
 

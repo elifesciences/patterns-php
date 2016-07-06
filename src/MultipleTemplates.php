@@ -6,18 +6,19 @@ trait MultipleTemplates
 {
     private $templateName;
 
-    abstract function getDefaultTemplateName() : string;
+    abstract public function getDefaultTemplateName() : string;
 
     public function setTemplateName(string $templateName)
     {
         $this->templateName = $templateName;
+
         return $this;
     }
 
     public function getTemplateName() : string
     {
         if ($this->templateName) {
-            return $this->templateName;
+            return '/elife/patterns/templates/'.$this->templateName.'.mustache';
         } else {
             return $this->getDefaultTemplateName();
         }

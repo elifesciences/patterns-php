@@ -88,7 +88,7 @@ final class Button implements ViewModel
         bool $isFullWidth = false
     ) : Button {
         $button = self::link($text, $path, $size, $style, $isActive, $isFullWidth);
-        $button->setTemplateName('/elife/patterns/templates/load-more.mustache');
+        $button->setTemplateName('load-more');
 
         return $button;
     }
@@ -117,5 +117,8 @@ final class Button implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/buttons.css';
+        if ($this->templateName) {
+            yield '/elife/patterns/assets/css/'.$this->templateName.'.css';
+        }
     }
 }
