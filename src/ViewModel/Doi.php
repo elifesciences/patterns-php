@@ -11,7 +11,6 @@ use Traversable;
 
 final class Doi implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
@@ -24,7 +23,9 @@ final class Doi implements ViewModel
         Assertion::notBlank($uri);
 
         $this->uri = $uri;
-        $this->classNames = implode(' ', $classNames);
+        if ($classNames) {
+            $this->classNames = implode(' ', $classNames);
+        }
     }
 
     public function getTemplateName() : string
@@ -36,5 +37,4 @@ final class Doi implements ViewModel
     {
         yield '/elife/patterns/assets/css/doi.css';
     }
-
 }
