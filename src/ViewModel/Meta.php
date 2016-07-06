@@ -35,7 +35,6 @@ final class Meta implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/css/meta.css';
         yield $this->date->getStyleSheets();
     }
 
