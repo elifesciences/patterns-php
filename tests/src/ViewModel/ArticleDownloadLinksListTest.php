@@ -1,8 +1,7 @@
 <?php
 
 namespace tests\eLife\Patterns\ViewModel;
-
-use eLife\Patterns\ViewModel\ArticleDownloadsLinksList;
+use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
 
 class ArticleDownloadLinksListTest extends ViewModelTest
 {
@@ -28,7 +27,7 @@ class ArticleDownloadLinksListTest extends ViewModelTest
             'linkCitsCiteULike' => '#12',
         ];
 
-        $downloadList = new ArticleDownloadsLinksList(
+        $downloadList = new ArticleDownloadLinksList(
             $data['dlLinkArticle'],
             $data['dlLinkFigure'],
             $data['dlLinkCitsBibtex'],
@@ -61,7 +60,7 @@ class ArticleDownloadLinksListTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleDownloadsLinksList('#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11', '#12')]
+            [new ArticleDownloadLinksList('#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11', '#12')]
         ];
     }
 
