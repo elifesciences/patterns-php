@@ -1,0 +1,12 @@
+<div class="meta">
+
+  {{#typeLink}}
+    <a class="meta__type" href="{{typeLink}}">{{type}}</a>
+  {{/typeLink}}
+
+  {{^typeLink}}
+    <span class="meta__type">{{type}}</span>
+  {{/typeLink}}
+
+  {{>atoms-date}}
+</div>
