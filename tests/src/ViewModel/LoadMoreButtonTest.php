@@ -2,8 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Button;
 use InvalidArgumentException;
+use Traversable;
 
 final class LoadMoreButtonTest extends ViewModelTest
 {
@@ -80,7 +82,7 @@ final class LoadMoreButtonTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'button' => [Button::loadMoreLink('text', 'path')],
+            'button' => [Button::link('text', 'path')],
             'small' => [Button::loadMoreLink('text', 'path', Button::SIZE_SMALL)],
             'extra small' => [Button::loadMoreLink('text', 'path', Button::SIZE_SMALL)],
             'outline' => [Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
@@ -89,8 +91,12 @@ final class LoadMoreButtonTest extends ViewModelTest
         ];
     }
 
+    protected function expectedStylesheets() : Traversable {
+        yield '/elife/patterns/assets/css/buttons.css';
+    }
+
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/load-more.mustache';
+        return '/elife/patterns/templates/button.mustache';
     }
 }
