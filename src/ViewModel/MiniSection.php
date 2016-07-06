@@ -37,7 +37,7 @@ final class MiniSection implements ViewModel
         if ($this->listHeading) {
             yield $this->listHeading->getStyleSheets();
         } else {
-            yield (new ListHeading('a'))->getStyleSheets();
+            yield (new ListHeading('dummy'))->getStyleSheets();
         }
     }
 }
