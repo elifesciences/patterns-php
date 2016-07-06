@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
@@ -12,7 +11,6 @@ use Traversable;
 
 class ArticleDownloadLinksList implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
@@ -43,8 +41,7 @@ class ArticleDownloadLinksList implements ViewModel
         string $linkCitsReadCube,
         string $linkCitsPapers,
         string $linkCitsCiteULike
-    )
-    {
+    ) {
         Assertion::notBlank($dlLinkArticle);
         Assertion::notBlank($dlLinkFigure);
         Assertion::notBlank($dlLinkCitsBibtex);

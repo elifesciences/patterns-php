@@ -1,12 +1,11 @@
 <?php
 
 namespace tests\eLife\Patterns\ViewModel;
+
 use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
 
 class ArticleDownloadLinksListTest extends ViewModelTest
 {
-
-
     /**
      * @test
      */
@@ -60,7 +59,7 @@ class ArticleDownloadLinksListTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleDownloadLinksList('#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11', '#12')]
+            [new ArticleDownloadLinksList('#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10', '#11', '#12')],
         ];
     }
 
