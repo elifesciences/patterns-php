@@ -7,6 +7,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use eLife\Patterns\MultipleTemplates;
 use Traversable;
 
 final class Button implements ViewModel
@@ -25,11 +26,13 @@ final class Button implements ViewModel
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
+    use MultipleTemplates;
 
     private $classes;
     private $path;
     private $text;
     private $type;
+    private $templateName;
 
     private function __construct(string $text, string $size, string $style, bool $isActive, bool $isFullWidth = true)
     {
@@ -40,13 +43,13 @@ final class Button implements ViewModel
         $classes = [];
 
         if (self::SIZE_MEDIUM !== $size) {
-            $classes[] = 'button--'.$size;
+            $classes[] = 'button--' . $size;
         }
 
         if (self::STYLE_OUTLINE === $style && false === $isActive) {
             $classes[] = 'button--outline-inactive';
         } else {
-            $classes[] = 'button--'.$style;
+            $classes[] = 'button--' . $style;
 
             if (false === $isActive) {
                 $classes[] = 'button--inactive';
@@ -68,11 +71,27 @@ final class Button implements ViewModel
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
         bool $isFullWidth = false
-    ) : Button {
+    ) : Button
+    {
         Assertion::choice($type, [self::TYPE_BUTTON, self::TYPE_SUBMIT, self::TYPE_RESET]);
 
         $button = new static($text, $size, $style, $isActive, $isFullWidth);
         $button->type = $type;
+
+        return $button;
+    }
+
+    public static function loadMoreLink(
+        string $text,
+        string $path,
+        string $size = self::SIZE_MEDIUM,
+        string $style = self::STYLE_DEFAULT,
+        bool $isActive = true,
+        bool $isFullWidth = false
+    ) : Button
+    {
+        $button = self::link($text, $path, $size, $style, $isActive, $isFullWidth);
+        $button->setTemplateName('/elife/patterns/templates/load-more.mustache');
 
         return $button;
     }
@@ -84,7 +103,8 @@ final class Button implements ViewModel
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
         bool $isFullWidth = false
-    ) : Button {
+    ) : Button
+    {
         Assertion::notBlank($path);
 
         $button = new static($text, $size, $style, $isActive, $isFullWidth);
@@ -93,7 +113,7 @@ final class Button implements ViewModel
         return $button;
     }
 
-    public function getTemplateName() : string
+    function getDefaultTemplateName() : string
     {
         return '/elife/patterns/templates/button.mustache';
     }
