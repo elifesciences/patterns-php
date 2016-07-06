@@ -24,22 +24,21 @@ final class ViewerInline implements ViewModel
     private $captionedImage;
 
     public function __construct(
-        string $id,
         string $prominentText,
         string $normalText,
         string $seeAllLink,
         string $downloadLink,
         string $newWindowLink,
         CaptionedImage $captionedImage
-    ) {
-        Assertion::notBlank($id);
+    )
+    {
         Assertion::notBlank($prominentText);
         Assertion::notBlank($normalText);
         Assertion::notBlank($seeAllLink);
         Assertion::notBlank($downloadLink);
         Assertion::notBlank($newWindowLink);
 
-        $this->id = $id;
+        $this->id = 'viewerInline' . hash('crc32', $prominentText . $normalText . $downloadLink);
         $this->prominentText = $prominentText;
         $this->normalText = $normalText;
         $this->seeAllLink = $seeAllLink;

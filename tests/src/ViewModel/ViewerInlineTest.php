@@ -15,7 +15,7 @@ class ViewerInlineTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'id' => 'id123',
+            'id' => 'viewerInline5d870acd',
             'prominentText' => 'REF:',
             'normalText' => '1234',
             'seeAllLink' => '#',
@@ -44,7 +44,7 @@ class ViewerInlineTest extends ViewModelTest
             ],
         ];
 
-        $viewer = new ViewerInline('id123', 'REF:', '1234', '#', '#', '#', self::imageStub());
+        $viewer = new ViewerInline('REF:', '1234', '#', '#', '#', self::imageStub());
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['prominentText'], $viewer['prominentText']);
@@ -67,7 +67,7 @@ class ViewerInlineTest extends ViewModelTest
     {
         return [
             [new ViewerInline(
-                'id123', 'REF:', '1234', '#', '#', '#', self::imageStub()
+                'REF:', '1234', '#', '#', '#', self::imageStub()
             )],
         ];
     }
