@@ -16,7 +16,7 @@ final class LoadMoreButtonTest extends ViewModelTest
             'classes' => 'button--small button--outline button--full',
             'path' => 'path',
             'text' => 'text',
-            'templateName' => '/elife/patterns/templates/load-more.mustache'
+            'templateName' => '/elife/patterns/templates/load-more.mustache',
         ];
 
         $button = Button::loadMoreLink('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);

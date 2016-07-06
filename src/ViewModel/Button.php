@@ -32,7 +32,6 @@ final class Button implements ViewModel
     private $path;
     private $text;
     private $type;
-    private $templateName;
 
     private function __construct(string $text, string $size, string $style, bool $isActive, bool $isFullWidth = true)
     {
