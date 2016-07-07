@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
@@ -15,12 +16,27 @@ class ArticleSection implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    private $id;
+    private $title;
+    private $downloadLinks;
+    private $body;
+
     public function __construct(
       string $id,
       string $title,
-      array $paras
+      array $content,
+      ArticleDownloadLinksList $downloadLinks
     ) {
+        Assertion::notBlank($id);
+        Assertion::notBlank($title);
+        Assertion::notEmpty($content);
 
+        $this->id = $id;
+        $this->title = $title;
+        $this->downloadLinks = $downloadLinks;
+        $this->body = array_map(function($item) {
+            return [ 'content' => $item ];
+        }, $content);
     }
 
     public function getTemplateName() : string
@@ -31,5 +47,6 @@ class ArticleSection implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/article-section.css';
+        yield $this->downloadLinks->getStyleSheets();
     }
 }
