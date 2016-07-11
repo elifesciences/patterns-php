@@ -1221,6 +1221,7 @@ module.exports = function () {
         this.window.addEventListener('click', this.checkForMenuClose.bind(this));
       }
 
+      e.preventDefault();
       e.stopPropagation();
     }
   }, {
