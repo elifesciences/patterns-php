@@ -27,7 +27,6 @@ final class PictureTest extends ViewModelTest
         $data = [
           'fallback' => [
             'altText' => 'the alt text',
-            'classes' => 'class-1 class-2',
             'defaultPath' => '/default/path',
             'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
           ],
@@ -45,7 +44,6 @@ final class PictureTest extends ViewModelTest
         $picture = new Picture($data['sources'], $this->imageFixture);
         $this->assertSame($data['fallback']['defaultPath'], $picture['fallback']['defaultPath']);
         $this->assertSame($data['fallback']['altText'], $picture['fallback']['altText']);
-        $this->assertSame($data['fallback']['classes'], $picture['fallback']['classes']);
         $this->assertSame($data['sources'], $picture['sources']);
         $this->assertSame($data, $picture->toArray());
     }
@@ -57,50 +55,6 @@ final class PictureTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new Picture([], $this->imageFixture);
-    }
-
-    /**
-     * @test
-     */
-    public function it_can_have_additional_picture_classes_added()
-    {
-        $picture = new Picture([
-            [
-                'srcset' => '/path/to/svg',
-            ],
-            [
-                'srcset' => '/path/to/another/svg',
-                'media' => 'media statement',
-            ],
-        ], $this->imageFixture, 'firstPictureClass');
-
-        $picture->addPictureClass('secondPictureClass');
-        $picture->addPictureClass('thirdPictureClass ');
-        $this->assertSame('firstPictureClass secondPictureClass thirdPictureClass', $picture['pictureClasses']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_can_have_additional_fallback_image_classes_added()
-    {
-        $picture = new Picture([
-            [
-                'srcset' => '/path/to/svg',
-            ],
-            [
-                'srcset' => '/path/to/another/svg',
-                'media' => 'media statement',
-            ],
-        ], new Image(
-            '/default/path',
-            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
-            'the alt text',
-            ['firstFallbackPictureClass']));
-
-        $picture->addFallbackClass('secondFallbackPictureClass');
-        $picture->addFallbackClass('thirdFallbackPictureClass ');
-        $this->assertSame('firstFallbackPictureClass secondFallbackPictureClass thirdFallbackPictureClass', $picture['fallback']['classes']);
     }
 
     /**

@@ -31,7 +31,6 @@ class ViewerInlineTest extends ViewModelTest
                 'picture' => [
                     'fallback' => [
                         'altText' => 'the alt text',
-                        'classes' => '',
                         'defaultPath' => '/default/path',
                         'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                     ],

@@ -15,18 +15,18 @@ final class ProfileSnippetTest extends ViewModelTest
     {
         $data = [
             'picture' => [
-                    'pictureClasses' => 'profile-snippet__picture',
                     'fallback' => [
                             'altText' => 'the alt text',
-                            'classes' => 'profile-snippet__image',
                             'defaultPath' => '/default/path',
                             'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                            'classes' => 'profile-snippet__image',
                         ],
                     'sources' => [
                             0 => [
                                     'srcset' => '/path/to/svg',
                                 ],
                         ],
+                    'pictureClasses' => 'profile-snippet__picture',
                 ],
             'title' => 'Title McTitle',
             'name' => 'Name McName',
