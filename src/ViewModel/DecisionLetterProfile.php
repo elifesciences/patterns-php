@@ -28,7 +28,7 @@ class DecisionLetterProfile implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/descision-letter-profile.css';
+        yield '/elife/patterns/assets/css/decision-letter-profile.css';
     }
 
     public function getTemplateName() : string
