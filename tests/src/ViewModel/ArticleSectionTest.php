@@ -2,13 +2,11 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-
 use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
 use eLife\Patterns\ViewModel\ArticleSection;
 
 class ArticleSectionTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -17,8 +15,7 @@ class ArticleSectionTest extends ViewModelTest
         $data = [
             'id' => 'id',
             'title' => 'some title',
-            'downloadLinks' =>
-                [
+            'downloadLinks' => [
                     'dlLinkArticle' => '#01',
                     'dlLinkFigure' => '#02',
                     'dlLinkCitsBibtex' => '#03',
@@ -32,8 +29,7 @@ class ArticleSectionTest extends ViewModelTest
                     'linkCitsPapers' => '#11',
                     'linkCitsCiteULike' => '#12',
                 ],
-            'body' =>
-                [
+            'body' => [
 
                     [
                         'content' => '<p>para 1</p>',
@@ -55,7 +51,7 @@ class ArticleSectionTest extends ViewModelTest
         $this->assertSame($data, $actionSection->toArray());
     }
 
-    static function getDownloadLinksList()
+    public static function getDownloadLinksList()
     {
         return new ArticleDownloadLinksList('#01', '#02', '#03', '#04', '#05', '#06', '#07', '#08', '#09', '#10', '#11', '#12');
     }
@@ -63,7 +59,7 @@ class ArticleSectionTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [ new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>'], self::getDownloadLinksList()) ]
+            [new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>'], self::getDownloadLinksList())],
         ];
     }
 
