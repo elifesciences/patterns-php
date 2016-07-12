@@ -18,7 +18,7 @@ final class Select implements ViewModel
     private $options;
     private $label;
 
-    public function __construct($id, array $options, FormLabel $label)
+    public function __construct(string $id, array $options, FormLabel $label)
     {
         Assertion::notEmpty($options);
         Assertion::allIsInstanceOf($options, SelectOption::class);

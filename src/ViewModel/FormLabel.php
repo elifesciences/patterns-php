@@ -15,7 +15,7 @@ final class FormLabel implements CastsToArray
     private $for;
     private $isVisuallyHidden;
 
-    public function __construct($labelText, $for, $isVisuallyHidden = false)
+    public function __construct(string $labelText, string $for, bool $isVisuallyHidden = false)
     {
         $this->labelText = $labelText;
         $this->for = $for;
