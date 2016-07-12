@@ -6,7 +6,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-final class SelectLabel implements CastsToArray
+final class FormLabel implements CastsToArray
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

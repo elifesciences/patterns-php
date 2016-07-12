@@ -3,7 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Select;
-use eLife\Patterns\ViewModel\SelectLabel;
+use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\SelectOption;
 
 final class SelectTest extends ViewModelTest
@@ -35,7 +35,7 @@ final class SelectTest extends ViewModelTest
         $select = new Select($data['id'], [
             new SelectOption($data['options'][0]['value'], $data['options'][0]['displayValue']),
             new SelectOption($data['options'][1]['value'], $data['options'][1]['displayValue']),
-        ], new SelectLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']));
+        ], new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']));
 
         $this->assertSame($data, $select->toArray());
     }
@@ -43,14 +43,12 @@ final class SelectTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'Select with label' => [new Select('id', [
-                new SelectOption('choice-1', 'Choice 1'),
-                new SelectOption('choice-2', 'Choice 2'),
-            ], new SelectLabel('Label for form', true))],
-            'Select without label' => [new Select('id', [
-                new SelectOption('choice-1', 'Choice 1'),
-                new SelectOption('choice-2', 'Choice 2'),
-            ])],
+            'Select with label' => [
+                new Select('id', [
+                    new SelectOption('choice-1', 'Choice 1'),
+                    new SelectOption('choice-2', 'Choice 2'),
+                ], new FormLabel('Form label'))
+            ]
         ];
     }
 
