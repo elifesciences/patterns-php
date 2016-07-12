@@ -9,9 +9,8 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class ArticleSection implements ViewModel
+final class ArticleSection implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
@@ -34,8 +33,8 @@ class ArticleSection implements ViewModel
         $this->id = $id;
         $this->title = $title;
         $this->downloadLinks = $downloadLinks;
-        $this->body = array_map(function($item) {
-            return [ 'content' => $item ];
+        $this->body = array_map(function ($item) {
+            return ['content' => $item];
         }, $content);
     }
 
@@ -47,6 +46,5 @@ class ArticleSection implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/article-section.css';
-//        yield $this->downloadLinks->getStyleSheets();
     }
 }
