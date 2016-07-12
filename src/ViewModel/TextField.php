@@ -9,23 +9,20 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class TextField implements ViewModel
+final class TextField implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
-    
+
     private $inputType;
     private $label;
     private $name;
-    private $classNames;
 
     protected function __construct(
         string $inputType,
         /* Label */ $label,
-        string $name = null,
-        array $classNames = []
+        string $name = null
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['text', 'email']);
@@ -33,15 +30,16 @@ class TextField implements ViewModel
         $this->inputType = $inputType;
         $this->label = $label;
         $this->name = $name;
-        $this->classNames = implode(' ', $classNames);
     }
 
-    static public function textInput($label, $name = null, $classNames = []) {
-        return new static('text', $label, $name, $classNames);
+    public static function textInput($label, $name = null)
+    {
+        return new static('text', $label, $name);
     }
 
-    static public function emailInput($label, $name = null, $classNames = []) {
-        return new static('email', $label, $name, $classNames);
+    public static function emailInput($label, $name = null)
+    {
+        return new static('email', $label, $name);
     }
 
     public function getTemplateName() : string
