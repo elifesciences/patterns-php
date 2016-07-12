@@ -12,11 +12,13 @@ final class FormLabel implements CastsToArray
     use ReadOnlyArrayAccess;
 
     private $labelText;
+    private $for;
     private $isVisuallyHidden;
 
-    public function __construct($labelText, $isVisuallyHidden = false)
+    public function __construct($labelText, $for, $isVisuallyHidden = false)
     {
         $this->labelText = $labelText;
+        $this->for = $for;
         $this->isVisuallyHidden = $isVisuallyHidden;
     }
 }
