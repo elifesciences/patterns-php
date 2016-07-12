@@ -32,11 +32,16 @@ final class ProfileSnippet implements ViewModel
         $this->setPicture($picture);
     }
 
-    protected function setPicture(Picture $picture)
+    private function setPicture(Picture $picture)
     {
+        $picture = FlexibleViewModel::fromViewModel($picture);
+
+        $fallback = $picture['fallback'];
+        $fallback['classes'] = static::FALLBACK_CLASSES;
+
         $this->picture = $picture
-            ->addPictureClass(static::PICTURE_CLASSES)
-            ->addFallbackClass(static::FALLBACK_CLASSES)
+            ->withProperty('pictureClasses', self::PICTURE_CLASSES)
+            ->withProperty('fallback', $fallback)
         ;
     }
 

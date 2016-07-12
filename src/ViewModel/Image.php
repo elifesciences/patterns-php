@@ -13,17 +13,15 @@ final class Image implements CastsToArray
     use ReadOnlyArrayAccess;
 
     private $altText;
-    private $classes;
     private $defaultPath;
     private $srcset;
 
-    public function __construct(string $defaultPath, array $srcset, string $altText = '', array $classes = [])
+    public function __construct(string $defaultPath, array $srcset, string $altText = '')
     {
         Assertion::notBlank($defaultPath);
         Assertion::notEmpty($srcset);
         Assertion::allInteger(array_keys($srcset));
         Assertion::allNotBlank($srcset);
-        Assertion::allString($classes);
 
         $this->defaultPath = $defaultPath;
         $this->srcset = [];
@@ -32,13 +30,5 @@ final class Image implements CastsToArray
         }
         $this->srcset = implode(', ', $this->srcset);
         $this->altText = $altText;
-        $this->classes = implode(' ', $classes);
-    }
-
-    public function addClass($className)
-    {
-        $this->classes = trim($this->classes.' '.$className);
-
-        return $this;
     }
 }
