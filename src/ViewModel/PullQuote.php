@@ -17,16 +17,19 @@ final class PullQuote implements ViewModel
 
     private $quote;
     private $cite;
+    private $asPara;
 
     public function __construct(
         string $quote,
-        string $cite
+        string $cite,
+        bool $asPara = true
     ) {
         Assertion::notBlank($quote);
         Assertion::notBlank($cite);
 
         $this->quote = $quote;
         $this->cite = $cite;
+        $this->asPara = $asPara;
     }
 
     public function getStyleSheets() : Traversable
