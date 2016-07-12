@@ -47,6 +47,6 @@ class ArticleSection implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/article-section.css';
-        yield $this->downloadLinks->getStyleSheets();
+//        yield $this->downloadLinks->getStyleSheets();
     }
 }
