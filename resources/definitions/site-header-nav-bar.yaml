@@ -63,7 +63,7 @@ schema:
                                                                 - image/svg+xml
                                                                 - image/webp
                                                                 - image/png
-                                                                - image/jpg
+                                                                - image/jpeg
                                                     required:
                                                         - srcset
                                             fallback:
