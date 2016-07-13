@@ -7,7 +7,6 @@ use eLife\Patterns\ViewModel\FilterGroup;
 
 class FilterGroupTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -15,22 +14,21 @@ class FilterGroupTest extends ViewModelTest
     {
         $data = [
             'title' => 'title',
-            'filters' =>
-                [
+            'filters' => [
                     [
                         'isChecked' => true,
                         'label' => 'filter 1',
-                        'results' => '10',
+                        'results' => 10,
                     ],
                     [
                         'isChecked' => true,
                         'label' => 'filter 2',
-                        'results' => '20',
+                        'results' => 20,
                     ],
                     [
                         'isChecked' => false,
                         'label' => 'filter 3',
-                        'results' => '30',
+                        'results' => 3000,
                     ],
                 ],
         ];
@@ -41,10 +39,15 @@ class FilterGroupTest extends ViewModelTest
         ]);
 
         $this->assertSame($data['title'], $filterGroup['title']);
-        foreach ($filterGroup['filters'] as $k => $filter) {
-            $this->assertSame($data['filters'][$k], $filterGroup['filters'][$k]->toArray());
-        }
-        $this->assertSame($data, $filterGroup->toArray());
+        $this->assertSame($data['filters'][0]['label'], $filterGroup['filters'][0]['label']);
+        $this->assertSame($data['filters'][1]['label'], $filterGroup['filters'][1]['label']);
+        $this->assertSame($data['filters'][2]['label'], $filterGroup['filters'][2]['label']);
+        $this->assertTrue($data['filters'][0]['isChecked']);
+        $this->assertTrue($data['filters'][1]['isChecked']);
+        $this->assertFalse($data['filters'][2]['isChecked']);
+        $this->assertSame('10', $filterGroup['filters'][0]['results']);
+        $this->assertSame('20', $filterGroup['filters'][1]['results']);
+        $this->assertSame('3,000', $filterGroup['filters'][2]['results']);
     }
 
     public function viewModelProvider() : array
@@ -55,8 +58,8 @@ class FilterGroupTest extends ViewModelTest
                     new Filter(true, 'filter 1', '10'),
                     new Filter(true, 'filter 2', '20'),
                     new Filter(true, 'filter 3', '30'),
-                ])
-            ]
+                ]),
+            ],
         ];
     }
 

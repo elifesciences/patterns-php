@@ -2,12 +2,12 @@
 
 namespace eLife\Patterns\ViewModel;
 
-
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class Filter implements CastsToArray
+final class Filter implements CastsToArray
 {
     use ReadOnlyArrayAccess;
     use ArrayFromProperties;
@@ -16,11 +16,12 @@ class Filter implements CastsToArray
     private $label;
     private $results;
 
-    public function __construct(bool $isChecked, string $label, string $results)
+    public function __construct(bool $isChecked, string $label, int $results)
     {
+        Assertion::notBlank($label);
+
         $this->isChecked = $isChecked;
         $this->label = $label;
-        $this->results = $results;
+        $this->results = number_format($results);
     }
-
 }

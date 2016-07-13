@@ -9,9 +9,8 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class FilterGroup implements ViewModel
+final class FilterGroup implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
