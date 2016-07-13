@@ -14,11 +14,10 @@ final class Picture implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    private $pictureClasses;
     private $fallback;
     private $sources;
 
-    public function __construct(array $sources, Image $fallback, string $pictureClasses = null)
+    public function __construct(array $sources, Image $fallback)
     {
         Assertion::notEmpty($sources);
         $nullMediaCount = 0;
@@ -32,21 +31,6 @@ final class Picture implements ViewModel
 
         $this->sources = $sources;
         $this->fallback = $fallback;
-        $this->pictureClasses = $pictureClasses;
-    }
-
-    public function addPictureClass(string $class) : Picture
-    {
-        $this->pictureClasses = trim($this->pictureClasses.' '.$class);
-
-        return $this;
-    }
-
-    public function addFallbackClass(string $classes) : Picture
-    {
-        $this->fallback->addClass($classes);
-
-        return $this;
     }
 
     public function getTemplateName() : string

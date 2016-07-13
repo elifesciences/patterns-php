@@ -23,7 +23,6 @@ final class CaptionedImageTest extends ViewModelTest
             'picture' => [
                     'fallback' => [
                             'altText' => 'the alt text',
-                            'classes' => '',
                             'defaultPath' => '/default/path',
                             'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
                         ],
