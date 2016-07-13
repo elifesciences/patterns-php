@@ -50,6 +50,8 @@ schema:
                                                 enum:
                                                     - image/svg+xml
                                                     - image/webp
+                                                    - image/png
+                                                    - image/jpg
                                         required:
                                             - srcset
                                 fallback:
