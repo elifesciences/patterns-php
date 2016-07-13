@@ -71,6 +71,8 @@ schema:
                                                                     enum:
                                                                         - image/svg+xml
                                                                         - image/webp
+                                                                        - image/png
+                                                                        - image/jpeg
                                                             required:
                                                                 - srcset
                                                     fallback:
@@ -194,6 +196,8 @@ schema:
                                                                     enum:
                                                                         - image/svg+xml
                                                                         - image/webp
+                                                                        - image/png
+                                                                        - image/jpeg
                                                             required:
                                                                 - srcset
                                                     fallback:
