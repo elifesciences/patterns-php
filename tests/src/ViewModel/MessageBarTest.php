@@ -2,19 +2,17 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-
 use eLife\Patterns\ViewModel\MessageBar;
 
-class MessageBarTest extends ViewModelTest
+final class MessageBarTest extends ViewModelTest
 {
-
     /**
      * @test
      */
     public function it_has_data()
     {
         $data = [
-            'message' => 'testing message bar'
+            'message' => 'testing message bar',
         ];
         $messageBar = new MessageBar($data['message']);
 
@@ -25,7 +23,7 @@ class MessageBarTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-           [ new MessageBar('testing message bar') ]
+           [new MessageBar('testing message bar')],
         ];
     }
 
