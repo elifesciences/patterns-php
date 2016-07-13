@@ -50,6 +50,6 @@ final class TextField implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/text-field.css';
+        yield '/elife/patterns/assets/css/text-fields.css';
     }
 }
