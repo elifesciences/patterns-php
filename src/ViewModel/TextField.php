@@ -21,23 +21,24 @@ final class TextField implements ViewModel
 
     protected function __construct(
         string $inputType,
-        /* Label */ $label,
-        string $name = null
+        FormLabel $label,
+        string $name
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['text', 'email']);
+        Assertion::same($name, $label['for']);
 
         $this->inputType = $inputType;
         $this->label = $label;
         $this->name = $name;
     }
 
-    public static function textInput($label, $name = null)
+    public static function textInput(FormLabel $label, string $name)
     {
         return new static('text', $label, $name);
     }
 
-    public static function emailInput($label, $name = null)
+    public static function emailInput(FormLabel $label, string $name)
     {
         return new static('email', $label, $name);
     }
