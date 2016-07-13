@@ -400,7 +400,7 @@ module.exports = function () {
     this.window = _window;
     this.doc = doc;
     this.$elm = $elm;
-    this.$elm.classList.add('content-header--js');
+    this.$elm.classList.add('content-header-article--js');
 
     // Should track SASS variable $bkpt-content-header.
     this.breakpointInPx = 560;
@@ -700,7 +700,7 @@ module.exports = function () {
     this.window = _window;
     this.doc = doc;
     this.$elm = $elm;
-    this.$elm.classList.add('content-header--js');
+    this.$elm.classList.add('content-header-archive--js');
     this.$form = $elm.querySelector('form');
     this.$form.querySelector('select').addEventListener('change', this.triggerSubmit.bind(this));
   }
