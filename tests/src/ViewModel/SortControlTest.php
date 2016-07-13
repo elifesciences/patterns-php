@@ -1,0 +1,61 @@
+<?php
+
+namespace tests\eLife\Patterns\ViewModel;
+
+use eLife\Patterns\ViewModel\SortControl;
+use eLife\Patterns\ViewModel\SortControlOption;
+
+final class SortControlTest extends ViewModelTest
+{
+    /**
+     * @test
+     */
+    public function it_has_data()
+    {
+        $data = [
+            'options' => [
+
+                    [
+                        'option' => 'option 1',
+                        'url' => '#',
+                        'sorting' => 'ascending',
+                    ],
+
+                    [
+                        'option' => 'option 2',
+                        'url' => '#',
+                        'sorting' => 'descending',
+                    ],
+                ],
+        ];
+        $sortControl = new SortControl([
+            new SortControlOption($data['options'][0]['option'], $data['options'][0]['url'], $data['options'][0]['sorting']),
+            new SortControlOption($data['options'][1]['option'], $data['options'][1]['url'], $data['options'][1]['sorting']),
+        ]);
+
+        $this->assertSame($data, $sortControl->toArray());
+    }
+
+    public function viewModelProvider() : array
+    {
+        return [
+            [
+                new SortControl([
+                    new SortControlOption('option 1', '#', SortControlOption::ASC),
+                    new SortControlOption('option 2', '#', SortControlOption::DESC),
+                ]),
+            ],
+            [
+                new SortControl([
+                    new SortControlOption('alt option 1', '#', 'descending'),
+                    new SortControlOption('alt option 2', '#', 'ascending'),
+                ]),
+            ],
+        ];
+    }
+
+    protected function expectedTemplate() : string
+    {
+        return '/elife/patterns/templates/sort-control.mustache';
+    }
+}
