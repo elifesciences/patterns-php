@@ -1,0 +1,87 @@
+assets:
+    css:
+        - select-nav.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        select:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                id:
+                    type: string
+                    minLength: 1
+                label:
+                    type: object
+                    properties:
+                        labelText:
+                            type: string
+                            minLength: 1
+                        for:
+                            type: string
+                            minLength: 1
+                        isVisuallyHidden:
+                            type: boolean
+                    required:
+                        - for
+                        - labelText
+                options:
+                    array: string
+                    minItems: 1
+                    items:
+                        type: object
+                        properties:
+                            value:
+                                type: string
+                                minLength: 1
+                            displayValue:
+                                type: string
+                                minLength: 1
+                        required:
+                            - value
+                            - displayValue
+            required:
+                - id
+                - label
+                - options
+        route:
+            type: string
+            minLength: 1
+        button:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            allOf:
+                -
+                    properties:
+                        text:
+                            type: string
+                            minLength: 1
+                        classes:
+                            type: string
+                    required:
+                        - text
+                -
+                    oneOf:
+                        -
+                            properties:
+                                type:
+                                    type: string
+                                    enum:
+                                        - button
+                                        - reset
+                                        - submit
+                            required:
+                                - type
+                        -
+                            properties:
+                                path:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - path
+    required:
+        - select
+        - route
+        - button
