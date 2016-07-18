@@ -2,9 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Author;
 use eLife\Patterns\ViewModel\AuthorList;
-use eLife\Patterns\ViewModel\ContentHeaderArticle;
+use eLife\Patterns\ViewModel\ContentHeaderMagazineArticle;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Institution;
@@ -16,7 +17,7 @@ use eLife\Patterns\ViewModel\SiteLinks;
 use eLife\Patterns\ViewModel\SiteLinksList;
 use DateTimeImmutable;
 
-class ContentHeaderArticleTest extends ViewModelTest
+class ContentHeaderMagazineArticleTest extends ViewModelTest
 {
 
     /**
@@ -26,10 +27,8 @@ class ContentHeaderArticleTest extends ViewModelTest
     {
         $data = self::magazineFixture();
 
-        $magazine = ContentHeaderArticle::magazine(
+        $magazine = ContentHeaderMagazineArticle::magazine(
             $data['title'],
-            $data['titleClass'],
-            new Link($data['subject']['name'], $data['subject']['href']), // <-- @todo change to url.
             $data['strapline'],
             $data['articleType'],
             new AuthorList(array_map(function ($item) {
@@ -51,15 +50,35 @@ class ContentHeaderArticleTest extends ViewModelTest
                 ]
             ], new Image(
                     '../../assets/img/icons/download-full-1x.png',
-                    [500 => '/path/to/image/500/wide'], 'Download icon')
+                [500 => '/path/to/image/500/wide'], 'Download icon')
             ),
+            new Link($data['subject']['name'], $data['subject']['url']), // <-- @todo change to url.
             new Meta(
                 'Insight', new Date(new DateTimeImmutable('2015-12-15')), '#'
             )
         );
-        var_dump($data);
-        var_dump($magazine->toArray());
-        $this->assertSame($data, $magazine);
+//        var_dump($data);
+//        var_dump($magazine->toArray());
+//        $this->assertSame($data, $magazine);
+
+        foreach ($data as $k => $d) {
+            $to_assert = $magazine[$k] instanceof CastsToArray ? $magazine[$k]->toArray() : $magazine[$k];
+            $this->assertSame($to_assert, $d, "asserting key: " . $k);
+//            if ($magazine[$k] == $d) {
+//                unset($data[$k]);
+//            }
+//            if ($magazine[$k] instanceof CastsToArray) {
+//                if ($magazine[$k]->toArray() == $d) {
+//                    unset($data[$k]);
+//                }
+//            }
+        }
+        $this->assertSameWithoutOrder($data, $magazine->toArray());
+//        if ($magazine['download']->toArray()['fallback'] == $data['download']['fallback']) {
+//            var_dump('yay!');exit;
+//        }
+//        var_dump($magazine['download']->toArray()['fallback']);
+//        var_dump($data['download']['fallback']);
 //        $d = array_diff_assoc(
 //            $data,
 //            $magazine->toArray()
@@ -69,6 +88,16 @@ class ContentHeaderArticleTest extends ViewModelTest
 //        var_dump($d);
     }
 
+    public function assertSameWithoutOrder($actual, $expected) {
+        foreach ($actual as $k => $d) {
+            if ($expected[$k] instanceof CastsToArray || is_array($expected[$k])) {
+                $this->assertSameWithoutOrder($d, $expected[$k]);
+                continue;
+            }
+            $this->assertSame($expected[$k], $d, "asserting key: " . $k);
+        }
+    }
+
     public static function magazineFixture()
     {
         return json_decode('
@@ -76,11 +105,11 @@ class ContentHeaderArticleTest extends ViewModelTest
           "rootClasses": "content-header-article content-header-article-magazine",
           "behaviour": "ContentHeaderArticle",
           "title": "Planarian \'kidneys\' go with the flow",
-          "titleClass": "content-header__title--small",
+          "titleClass": "content-header__title--medium",
           "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
           "subject": {
             "name": "Developmental Biology and Stem Cells",
-            "href": "#"
+            "url": "#"
           },
           "articleType": "Insight",
           "authors": {
@@ -90,6 +119,12 @@ class ContentHeaderArticleTest extends ViewModelTest
             ]
           },
           "download": {
+            "fallback": {
+              "altText": "Download icon",
+              "defaultPath": "../../assets/img/icons/download-full-1x.png",
+              "srcset": "/path/to/image/500/wide 500w",
+              "classes": "content-header__download_icon"
+            },
             "sources": [
               {
                 "srcset": "../../assets/img/icons/download-full.svg",
@@ -104,21 +139,16 @@ class ContentHeaderArticleTest extends ViewModelTest
                 "srcset": "../../assets/img/icons/download.svg",
                 "type": "image/svg+xml"
               }
-            ],
-            "fallback": {
-              "defaultPath": "../../assets/img/icons/download-full-1x.png",
-              "classes": "content-header__download_icon",
-              "altText": "Download icon"
-            }
+            ]
           },
 
           "meta": {
-            "typeLink": "#",
             "type": "Insight",
             "date": {
               "forHuman": "Dec 15, 2015",
               "forMachine": "2015-12-15"
-            }
+            },
+            "typeLink": "#"
           }
         }', true);
     }
@@ -133,12 +163,11 @@ class ContentHeaderArticleTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
+        $data = self::magazineFixture();
         return [
             'Magazine' => [
-                ContentHeaderArticle::magazine(
+                ContentHeaderMagazineArticle::magazine(
                     $data['title'],
-                    $data['titleClass'],
-                    new Link($data['subject']['name'], $data['subject']['href']), // <-- @todo change to url.
                     $data['strapline'],
                     $data['articleType'],
                     new AuthorList(array_map(function ($item) {
@@ -162,15 +191,16 @@ class ContentHeaderArticleTest extends ViewModelTest
                             '../../assets/img/icons/download-full-1x.png',
                             [500 => '/path/to/image/500/wide'], 'Download icon')
                     ),
+                    new Link($data['subject']['name'], $data['subject']['url']), // <-- @todo change to url.
                     new Meta(
                         'Insight', new Date(new DateTimeImmutable('2015-12-15')), '#'
                     )
                 )
             ],
 //            'Research' => [
-//                ContentHeaderArticle::research(
+//                ContentHeaderMagazineArticle::research(
 //                    'title',
-//                    ContentHeaderArticle::TITLE_SMALL,
+//                    ContentHeaderMagazineArticle::TITLE_SMALL,
 //                    new Link('subject', '#'),
 //                    'article type',
 //                    new AuthorList([
@@ -190,6 +220,6 @@ class ContentHeaderArticleTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        // TODO: Implement expectedTemplate() method.
+        return '/elife/patterns/templates/content-header-article.mustache';
     }
 }

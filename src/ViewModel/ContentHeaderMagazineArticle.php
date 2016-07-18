@@ -8,13 +8,15 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class ContentHeaderArticle implements ViewModel
+class ContentHeaderMagazineArticle implements ViewModel
 {
 
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    const TITLE_LARGE = 'content-header__title--large';
+    const TITLE_MEDIUM = 'content-header__title--medium';
     const TITLE_SMALL = 'content-header__title--small';
     const TITLE_EXTRA_SMALL = 'content-header__title--extra-small';
 
@@ -24,7 +26,9 @@ class ContentHeaderArticle implements ViewModel
     const STYLE_BACKGROUND_IMAGE = 'content-header--background-image';
 
     const BEHAVIOUR_BASE = 'ContentHeaderArticle';
-    const BEHAVIOUR_BACKGROUND_IMAGE = 'ContentHeaderArticle';
+    const BEHAVIOUR_BACKGROUND_IMAGE = 'ContentHeaderBackgroundImage';
+
+    const FALLBACK_CLASSES = 'content-header__download_icon'; // @todo check if there are more icons for download.
 
     private $rootClasses;
     private $behaviour;
@@ -35,65 +39,59 @@ class ContentHeaderArticle implements ViewModel
     private $articleType;
     private $authors;
     private $institutions;
-    private $backgroundImage;
     private $download;
     private $meta;
 
     protected function __construct(
-        string $rootClasses,
+        array $rootClasses,
         string $behaviour,
         string $title,
-        string $titleClass,
-        string $strapline,
-        Link $subject,
         string $articleType,
         AuthorList $authors,
+        string $strapline = null,
+        Link $subject = null,
         InstitutionList $institutions = null,
-        array $backgroundImage = [],
         Picture $download = null,
         Meta $meta = null
     )
     {
-        $this->rootClasses = $rootClasses;
+        $this->rootClasses = implode(' ', $rootClasses);
         $this->behaviour = $behaviour;
         $this->title = $title;
-        $this->titleClass = $titleClass;
+        $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
         $this->subject = $subject;
         $this->articleType = $articleType;
         $this->authors = $authors;
         $this->institutions = $institutions;
-        $this->backgroundImage = $backgroundImage;
-        $this->download = $download;
+        $this->download = $this->setDownload($download);
         $this->meta = $meta;
     }
 
     public static function research(
         string $title,
-        string $titleClass,
-        Link $subject,
         string $articleType,
         AuthorList $authors,
+        Link $subject = null,
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
     ) {
+        // Defaults for research article.
         $rootClasses = [ self::STYLE_BASE ];
-        $behaviour = [ self::BEHAVIOUR_BASE ];
+        $behaviour = self::BEHAVIOUR_BASE;
+        // This can never be set.
         $strapline = null;
-        $backgroundImage = null;
-
+        // Constructor.
         return new static(
-            implode(' ', $rootClasses),
-            implode(' ', $behaviour),
+            $rootClasses,
+            $behaviour,
             $title,
-            $titleClass,
-            $strapline,
-            $subject,
             $articleType,
             $authors,
+            $strapline,
+            $subject,
             $institutions,
-            $backgroundImage,
             $download,
             $meta
         );
@@ -101,41 +99,65 @@ class ContentHeaderArticle implements ViewModel
 
     public static function magazine(
         string $title,
-        string $titleClass,
-        Link $subject,
         string $strapline,
         string $articleType,
         AuthorList $authors,
         Picture $download,
-        Meta $meta,
+        Link $subject = null,
+        Meta $meta = null,
         InstitutionList $institutions = null,
-        array $backgroundImage = [],
         bool $background = false
     ) {
         $rootClasses = [ self::STYLE_BASE, self::STYLE_MAGAZINE ];
-        $behaviour = [ self::BEHAVIOUR_BASE ];
-        if ($backgroundImage) {
-            array_push($rootClasses, self::STYLE_BACKGROUND_IMAGE);
-            array_push($behaviour, self::BEHAVIOUR_BACKGROUND_IMAGE);
-        }
+        $behaviour = self::BEHAVIOUR_BASE;
+        // Can be re-enabled when background image is added.
+        // if ($backgroundImage) {
+        //     array_push($rootClasses, self::STYLE_BACKGROUND_IMAGE);
+        //     array_push($behaviour, self::BEHAVIOUR_BACKGROUND_IMAGE);
+        // }
         if ($background) {
             array_push($rootClasses, self::STYLE_MAGAZINE_BACKGROUND);
         }
 
+        // Constructor.
         return new static(
-            implode(' ', $rootClasses),
-            implode(' ', $behaviour),
+            $rootClasses,
+            $behaviour,
             $title,
-            $titleClass,
-            $strapline,
-            $subject,
             $articleType,
             $authors,
+            $strapline,
+            $subject,
             $institutions,
-            $backgroundImage,
             $download,
             $meta
         );
+    }
+
+    private function setDownload(Picture $picture)
+    {
+        $picture = FlexibleViewModel::fromViewModel($picture);
+
+        $fallback = $picture['fallback'];
+        $fallback['classes'] = static::FALLBACK_CLASSES;
+
+        return $picture
+            ->withProperty('fallback', $fallback)
+        ;
+    }
+
+    protected function deriveTitleClass($title) : string {
+        $titleLength = strlen($title);
+        if ($titleLength >= 80) {
+            return self::TITLE_EXTRA_SMALL;
+        }
+        if ($titleLength >= 60) {
+            return self::TITLE_SMALL;
+        }
+        if ($titleLength >= 30) {
+            return self::TITLE_MEDIUM;
+        }
+        return self::TITLE_LARGE;
     }
 
     public function getTemplateName() : string
