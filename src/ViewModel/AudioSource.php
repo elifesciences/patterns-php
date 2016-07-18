@@ -13,10 +13,10 @@ final class AudioSource implements CastsToArray
     use ReadOnlyArrayAccess;
 
     const MIME_TYPES = [
-        AudioSource::TYPE_MP3,
-        AudioSource::TYPE_MPEG,
-        AudioSource::TYPE_WEBM,
-        AudioSource::TYPE_OGG,
+        self::TYPE_MP3,
+        self::TYPE_MPEG,
+        self::TYPE_WEBM,
+        self::TYPE_OGG,
     ];
 
     const TYPE_MP3 = [

@@ -11,7 +11,6 @@ use Traversable;
 
 final class Meta implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;

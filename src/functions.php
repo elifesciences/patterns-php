@@ -59,11 +59,11 @@ function mixed_visibility_text(string $prefix = '', string $text, string $suffix
     $wrappedSuffix = '';
 
     if (false === empty($prefix)) {
-        $wrappedPrefix = '<span class="visuallyhidden">' . $prefix . ' </span>';
+        $wrappedPrefix = '<span class="visuallyhidden">'.$prefix.' </span>';
     }
     if (false === empty($suffix)) {
-        $wrappedSuffix = '<span class="visuallyhidden"> ' . $suffix . '</span>';
+        $wrappedSuffix = '<span class="visuallyhidden"> '.$suffix.'</span>';
     }
 
-    return $wrappedPrefix . $text . $wrappedSuffix;
+    return $wrappedPrefix.$text.$wrappedSuffix;
 }
