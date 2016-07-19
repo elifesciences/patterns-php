@@ -45,3 +45,10 @@ schema:
     dependencies:
         url:
             - text
+    anyOf:
+        -
+            required:
+                - date
+        -
+            required:
+                - text
