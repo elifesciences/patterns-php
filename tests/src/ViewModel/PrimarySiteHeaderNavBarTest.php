@@ -21,10 +21,10 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
     {
         parent::setUp();
         $this->img = new Picture(
-          [
-            ['srcset' => '/path/to/svg'],
-          ],
-          new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [
+                ['srcset' => '/path/to/svg'],
+            ],
+            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
         $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $this->img, false);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), true);
@@ -85,8 +85,8 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
         );
 
         $navLinkItems = [
-          NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $img, false),
-          NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
+            NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $img, false),
+            NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
         ];
 
         return [

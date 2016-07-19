@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -56,5 +55,4 @@ final class SiteHeader implements ViewModel
     {
         return '/elife/patterns/templates/site-header.mustache';
     }
-
 }

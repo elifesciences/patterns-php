@@ -15,10 +15,10 @@ final class TextFieldTest extends ViewModelTest
         $data = [
             'inputType' => 'email',
             'label' => [
-                    'labelText' => 'label',
-                    'for' => 'id',
-                    'isVisuallyHidden' => false,
-                ],
+                'labelText' => 'label',
+                'for' => 'id',
+                'isVisuallyHidden' => false,
+            ],
             'name' => 'id',
         ];
         $textField = TextField::emailInput(

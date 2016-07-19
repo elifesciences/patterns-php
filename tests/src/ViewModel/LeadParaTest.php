@@ -5,7 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\LeadPara;
 use InvalidArgumentException;
 
-class LeadParaTest extends ViewModelTest
+final class LeadParaTest extends ViewModelTest
 {
     /**
      * @test

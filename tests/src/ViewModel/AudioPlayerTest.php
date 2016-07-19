@@ -6,7 +6,7 @@ use eLife\Patterns\ViewModel\AudioPlayer;
 use eLife\Patterns\ViewModel\AudioSource;
 use InvalidArgumentException;
 
-class AudioPlayerTest extends ViewModelTest
+final class AudioPlayerTest extends ViewModelTest
 {
     /**
      * @test
@@ -32,7 +32,7 @@ class AudioPlayerTest extends ViewModelTest
                 [
                     'mimeType' => AudioSource::TYPE_OGG,
                     'src' => '/audio.ogg',
-                ]
+                ],
             ],
         ];
 
@@ -57,7 +57,7 @@ class AudioPlayerTest extends ViewModelTest
             [
                 new AudioPlayer('title of player', [
                     new AudioSource('/audio.mp3', AudioSource::TYPE_MP3),
-                    new AudioSource('/audio.ogg',  AudioSource::TYPE_OGG),
+                    new AudioSource('/audio.ogg', AudioSource::TYPE_OGG),
                 ]),
             ],
         ];

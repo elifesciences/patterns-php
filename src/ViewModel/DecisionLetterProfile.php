@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class DecisionLetterProfile implements ViewModel
+final class DecisionLetterProfile implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

@@ -11,7 +11,6 @@ use Traversable;
 
 final class Meta implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
@@ -20,11 +19,8 @@ final class Meta implements ViewModel
     private $date;
     private $typeLink;
 
-    public function __construct(
-        string $type,
-        Date $date,
-        string $typeLink = null
-    ) {
+    public function __construct(string $type, Date $date, string $typeLink = null)
+    {
         Assertion::notBlank($type);
         Assertion::false(is_array($date['forHuman']));
 

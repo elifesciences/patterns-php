@@ -22,9 +22,9 @@ final class Date implements ViewModel
     {
         if ($isExpanded) {
             $this->forHuman = [
-              'dayOfMonth' => ltrim($date->format('d'), '0'),
-              'month' => $date->format('M'),
-              'year' => $date->format('Y'),
+                'dayOfMonth' => ltrim($date->format('d'), '0'),
+                'month' => $date->format('M'),
+                'year' => $date->format('Y'),
             ];
         } else {
             $this->forHuman = $date->format('M j, Y');

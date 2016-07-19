@@ -15,8 +15,8 @@ final class MiniSectionTest extends ViewModelTest
         $data = [
             'body' => 'body',
             'listHeading' => [
-                    'heading' => 'my heading',
-                ],
+                'heading' => 'my heading',
+            ],
         ];
         $miniSection = new MiniSection('body', new ListHeading('my heading'));
 

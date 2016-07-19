@@ -20,8 +20,12 @@ final class CaptionedImage implements ViewModel
     private $picture;
     private $customContent;
 
-    private function __construct(Picture $picture, string $heading = null, array $captions = null, string $customContent = null)
-    {
+    private function __construct(
+        Picture $picture,
+        string $heading = null,
+        array $captions = null,
+        string $customContent = null
+    ) {
         $this->heading = $heading;
         $this->captions = $captions;
         $this->picture = $picture;

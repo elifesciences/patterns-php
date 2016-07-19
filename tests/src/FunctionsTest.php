@@ -124,20 +124,21 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, mixed_visibility_text($item[0], $item[1], $item[2]));
     }
 
-    public function MixedVisibilityTextProvider() {
+    public function MixedVisibilityTextProvider()
+    {
         return [
             [
-              ['hidden prefix', 'visible text', ''],
-              '<span class="visuallyhidden">hidden prefix </span>visible text',
+                ['hidden prefix', 'visible text', ''],
+                '<span class="visuallyhidden">hidden prefix </span>visible text',
             ],
             [
-              ['', 'visible text', 'hidden suffix'],
-              'visible text<span class="visuallyhidden"> hidden suffix</span>',
+                ['', 'visible text', 'hidden suffix'],
+                'visible text<span class="visuallyhidden"> hidden suffix</span>',
             ],
             [
-              ['hidden prefix', 'visible text', 'hidden suffix'],
-              '<span class="visuallyhidden">hidden prefix </span>visible text<span class="visuallyhidden"> hidden suffix</span>',
-            ]
+                ['hidden prefix', 'visible text', 'hidden suffix'],
+                '<span class="visuallyhidden">hidden prefix </span>visible text<span class="visuallyhidden"> hidden suffix</span>',
+            ],
         ];
     }
 }

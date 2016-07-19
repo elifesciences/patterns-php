@@ -4,7 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
 
-class ArticleDownloadLinksListTest extends ViewModelTest
+final class ArticleDownloadLinksListTest extends ViewModelTest
 {
     /**
      * @test
@@ -59,7 +59,11 @@ class ArticleDownloadLinksListTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleDownloadLinksList('#01', '#02', '#03', '#04', '#05', '#06', '#07', '#08', '#09', '#10', '#11', '#12')],
+            [
+                new ArticleDownloadLinksList(
+                    '#01', '#02', '#03', '#04', '#05', '#06', '#07', '#08', '#09', '#10', '#11', '#12'
+                ),
+            ],
         ];
     }
 
