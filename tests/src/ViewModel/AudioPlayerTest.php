@@ -14,7 +14,12 @@ final class AudioPlayerTest extends ViewModelTest
     public function it_should_not_accept_unknown_type()
     {
         $this->expectException(InvalidArgumentException::class);
-        new AudioPlayer('this will fail', [new AudioSource('/nope.jpg', 'jpg')]);
+        new AudioPlayer(
+            'this will fail',
+            [
+                new AudioSource('/nope.jpg', ['forHuman' => 'jpg', 'forMachine' => 'image/jpeg']),
+            ]
+        );
     }
 
     /**
