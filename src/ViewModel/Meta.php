@@ -22,7 +22,7 @@ final class Meta implements ViewModel
     public function __construct(string $type, Date $date, string $typeLink = null)
     {
         Assertion::notBlank($type);
-        Assertion::false(is_array($date['forHuman']));
+        Assertion::false($date['isExpanded']);
 
         $this->type = $type;
         $this->date = $date;
