@@ -25,7 +25,11 @@ final class MainMenuLinkTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_data()
     {
-        $data = ['title' => 'title', 'titleId' => 'mainMenu'.hash('crc32', 'title'), 'items' => [['name' => 'name', 'url' => 'url']]];
+        $data = [
+            'title' => 'title',
+            'titleId' => 'mainMenu'.hash('crc32', 'title'),
+            'items' => [['name' => 'name', 'url' => 'url']],
+        ];
 
         $mainMenuLink = new MainMenuLink($data['title'],
             $items = [new Link($data['items'][0]['name'], $data['items'][0]['url'])]);

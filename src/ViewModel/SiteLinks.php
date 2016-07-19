@@ -7,10 +7,10 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class SiteLinks implements CastsToArray
+final class SiteLinks implements CastsToArray
 {
-    use ReadOnlyArrayAccess;
     use ArrayFromProperties;
+    use ReadOnlyArrayAccess;
 
     private $listItems;
     private $listClasses;

@@ -23,7 +23,7 @@ final class MessageBarTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-           [new MessageBar('testing message bar')],
+            [new MessageBar('testing message bar')],
         ];
     }
 

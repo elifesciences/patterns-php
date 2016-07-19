@@ -13,39 +13,37 @@ final class AudioSource implements CastsToArray
     use ReadOnlyArrayAccess;
 
     const MIME_TYPES = [
-        AudioSource::TYPE_MP3,
-        AudioSource::TYPE_MPEG,
-        AudioSource::TYPE_WEBM,
-        AudioSource::TYPE_OGG,
+        self::TYPE_MP3,
+        self::TYPE_MPEG,
+        self::TYPE_WEBM,
+        self::TYPE_OGG,
     ];
 
     const TYPE_MP3 = [
-      'forHuman' => 'mp3',
-      'forMachine' => 'audio/mp3',
+        'forHuman' => 'mp3',
+        'forMachine' => 'audio/mp3',
     ];
 
     const TYPE_MPEG = [
-      'forHuman' => 'mpeg',
-      'forMachine' => 'audio/mpeg',
+        'forHuman' => 'mpeg',
+        'forMachine' => 'audio/mpeg',
     ];
 
     const TYPE_WEBM = [
-      'forHuman' => 'webm',
-      'forMachine' => 'audio/webm',
+        'forHuman' => 'webm',
+        'forMachine' => 'audio/webm',
     ];
 
     const TYPE_OGG = [
-      'forHuman' => 'ogg',
-      'forMachine' => 'audio/ogg',
+        'forHuman' => 'ogg',
+        'forMachine' => 'audio/ogg',
     ];
 
     protected $mimeType;
     protected $src;
 
-    public function __construct(
-      $src,
-      $type
-    ) {
+    public function __construct(string $src, array $type)
+    {
         Assertion::inArray($type, static::MIME_TYPES);
 
         $this->src = $src;

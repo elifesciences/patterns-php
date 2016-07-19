@@ -13,10 +13,10 @@ final class PictureTest extends ViewModelTest
     public function setUp()
     {
         $this->imageFixture = new Image(
-          '/default/path',
-          [500 => '/path/to/image/500/wide', 250 => '/default/path'],
-          'the alt text',
-          ['class-1', 'class-2']);
+            '/default/path',
+            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+            'the alt text',
+            ['class-1', 'class-2']);
     }
 
     /**
@@ -25,20 +25,20 @@ final class PictureTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-          'fallback' => [
-            'altText' => 'the alt text',
-            'defaultPath' => '/default/path',
-            'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
-          ],
-          'sources' => [
-            [
-              'srcset' => '/path/to/svg',
+            'fallback' => [
+                'altText' => 'the alt text',
+                'defaultPath' => '/default/path',
+                'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
             ],
-            [
-              'srcset' => '/path/to/another/svg',
-              'media' => 'media statement',
+            'sources' => [
+                [
+                    'srcset' => '/path/to/svg',
+                ],
+                [
+                    'srcset' => '/path/to/another/svg',
+                    'media' => 'media statement',
+                ],
             ],
-          ],
         ];
 
         $picture = new Picture($data['sources'], $this->imageFixture);
@@ -65,17 +65,17 @@ final class PictureTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         $invalidSources = [
-          [
-            'srcset' => '/path/to/svg',
-            'media' => null,
-          ],
-          [
-            'srcset' => '/path/to/svg',
-          ],
-          [
-            'srcset' => '/path/to/svg',
-            'media' => 'media statement',
-          ],
+            [
+                'srcset' => '/path/to/svg',
+                'media' => null,
+            ],
+            [
+                'srcset' => '/path/to/svg',
+            ],
+            [
+                'srcset' => '/path/to/svg',
+                'media' => 'media statement',
+            ],
         ];
 
         new Picture($invalidSources, $this->imageFixture);
@@ -85,44 +85,44 @@ final class PictureTest extends ViewModelTest
     {
         $image = new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text');
         $imageWithCssClasses = new Image(
-          '/default/path',
-          [500 => '/path/to/image/500/wide', 250 => '/default/path'],
-          'the alt text',
-          ['class-1', 'class-2']
+            '/default/path',
+            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+            'the alt text',
+            ['class-1', 'class-2']
         );
 
         $sourcesBasic = [
-          [
-            'srcset' => '/path/to/svg',
-          ],
+            [
+                'srcset' => '/path/to/svg',
+            ],
         ];
         $sourcesWithMedia = [
-          [
-            'srcset' => '/path/to/svg',
-          ],
-          [
-            'srcset' => '/path/to/svg',
-            'media' => 'media statement',
-          ],
+            [
+                'srcset' => '/path/to/svg',
+            ],
+            [
+                'srcset' => '/path/to/svg',
+                'media' => 'media statement',
+            ],
         ];
         $sourcesWithMediaAndType = [
             [
-              'srcset' => '/path/to/svg',
-              'type' => 'image/svg+xml',
+                'srcset' => '/path/to/svg',
+                'type' => 'image/svg+xml',
             ],
             [
-              'srcset' => '/path/to/webp',
-              'media' => 'media statement',
-              'type' => 'image/webp',
+                'srcset' => '/path/to/webp',
+                'media' => 'media statement',
+                'type' => 'image/webp',
             ],
         ];
 
         return [
-          'basic' => [new Picture($sourcesBasic, $image)],
-          'has css classes' => [new Picture($sourcesBasic, $imageWithCssClasses)],
-          'has media statement' => [new Picture($sourcesWithMedia, $image)],
-          'has media statement and type' => [new Picture($sourcesWithMediaAndType, $image)],
-          'has css and media statement' => [new Picture($sourcesWithMedia, $imageWithCssClasses)],
+            'basic' => [new Picture($sourcesBasic, $image)],
+            'has css classes' => [new Picture($sourcesBasic, $imageWithCssClasses)],
+            'has media statement' => [new Picture($sourcesWithMedia, $image)],
+            'has media statement and type' => [new Picture($sourcesWithMediaAndType, $image)],
+            'has css and media statement' => [new Picture($sourcesWithMedia, $imageWithCssClasses)],
         ];
     }
 

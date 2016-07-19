@@ -6,9 +6,8 @@ use eLife\Patterns\ViewModel\Date;
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Meta;
 
-class MetaTest extends ViewModelTest
+final class MetaTest extends ViewModelTest
 {
-
     /**
      * @test
      */

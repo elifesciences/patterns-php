@@ -21,23 +21,27 @@ final class CaptionedImageTest extends ViewModelTest
                 ['caption' => 'the first caption'],
             ],
             'picture' => [
-                    'fallback' => [
-                            'altText' => 'the alt text',
-                            'defaultPath' => '/default/path',
-                            'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
-                        ],
-                    'sources' => [
-                            [
-                                'srcset' => '/path/to/svg',
-                            ],
-                        ],
+                'fallback' => [
+                    'altText' => 'the alt text',
+                    'defaultPath' => '/default/path',
+                    'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
                 ],
-        ];
-        $captionedImage = CaptionedImage::withParagraph(new Picture([
-            [
-                'srcset' => $data['picture']['sources'][0]['srcset'],
+                'sources' => [
+                    [
+                        'srcset' => '/path/to/svg',
+                    ],
+                ],
             ],
-        ], new Image($data['picture']['fallback']['defaultPath'], [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'], $data['picture']['fallback']['altText'])),
+        ];
+        $captionedImage = CaptionedImage::withParagraph(
+            new Picture(
+                [['srcset' => $data['picture']['sources'][0]['srcset']]],
+                new Image(
+                    $data['picture']['fallback']['defaultPath'],
+                    [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
+                    $data['picture']['fallback']['altText']
+                )
+            ),
             $data['heading'],
             $data['captions'][0]['caption']
         );
@@ -49,22 +53,35 @@ final class CaptionedImageTest extends ViewModelTest
     {
         return [
             'Captioned image with custom content' => [
-                CaptionedImage::withCustomContent(new Picture([
-                    ['srcset' => '/path/to/svg'],
-                ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')), '<b>Custom content</b>'),
+                CaptionedImage::withCustomContent(
+                    new Picture(
+                        [['srcset' => '/path/to/svg']],
+                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            'the alt text')
+                    ),
+                    '<b>Custom content</b>'),
             ],
             'Captioned image with multiple paragraphs' => [
-                CaptionedImage::withParagraphs(new Picture([
-                    ['srcset' => '/path/to/svg'],
-                ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')),
+                CaptionedImage::withParagraphs(
+                    new Picture(
+                        [['srcset' => '/path/to/svg']],
+                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            'the alt text')
+                    ),
                     'heading',
                     ['my first caption', 'my second caption']
                 ),
             ],
             'Captioned image with single paragraph' => [
-                CaptionedImage::withParagraph(new Picture([
-                    ['srcset' => '/path/to/svg'],
-                ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')), 'heading', 'caption'),
+                CaptionedImage::withParagraph(
+                    new Picture(
+                        [['srcset' => '/path/to/svg']],
+                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            'the alt text')
+                    ),
+                    'heading',
+                    'caption'
+                ),
             ],
         ];
     }
