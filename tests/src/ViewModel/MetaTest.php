@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Date;
 use DateTimeImmutable;
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 
 final class MetaTest extends ViewModelTest
@@ -14,7 +15,8 @@ final class MetaTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'type' => 'Research article',
+            'url' => '#',
+            'text' => 'Research article',
             'date' => [
                 'isExpanded' => false,
                 'forHuman' => [
@@ -24,14 +26,13 @@ final class MetaTest extends ViewModelTest
                 ],
                 'forMachine' => '2015-05-15',
             ],
-            'typeLink' => '#',
         ];
-        $meta = new Meta($data['type'], new Date(new DateTimeImmutable('2015-05-15')), $data['typeLink']);
+        $meta = Meta::withLink(new Link($data['text'], $data['url']), new Date(new DateTimeImmutable('2015-05-15')));
 
         $this->assertSame($data, $meta->toArray());
-        $this->assertSame($data['type'], $meta['type']);
+        $this->assertSame($data['url'], $meta['url']);
+        $this->assertSame($data['text'], $meta['text']);
         $this->assertSame($data['date'], $meta['date']->toArray());
-        $this->assertSame($data['typeLink'], $meta['typeLink']);
     }
 
     public static function getDateStub()
@@ -42,8 +43,11 @@ final class MetaTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Meta('Research article with link', self::getDateStub(), '#')],
-            [new Meta('Research article without link', self::getDateStub())],
+            'link' => [Meta::withLink(new Link('foo', '#'), self::getDateStub())],
+            'link and date' => [Meta::withLink(new Link('foo', '#'), self::getDateStub())],
+            'text' => [Meta::withText('foo', self::getDateStub())],
+            'text and date' => [Meta::withText('foo', self::getDateStub())],
+            'date' => [Meta::withDate(self::getDateStub())],
         ];
     }
 
