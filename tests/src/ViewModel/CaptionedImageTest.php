@@ -47,6 +47,29 @@ final class CaptionedImageTest extends ViewModelTest
         );
 
         $this->assertSame($data, $captionedImage->toArray());
+
+        $widthFirst = 500;
+        $widthSecond = 250;
+        $data = [
+            'heading' => 'heading',
+            'captions' => [
+                ['caption' => 'the first caption'],
+            ],
+            'altText' => 'the alt text',
+            'defaultPath' => '/default/path',
+            'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
+        ];
+        $captionedImage = CaptionedImage::withParagraph(
+            new Image(
+                $data['defaultPath'],
+                [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
+                $data['altText']
+            ),
+            $data['heading'],
+            $data['captions'][0]['caption']
+        );
+
+        $this->assertSame($data, $captionedImage->toArray());
     }
 
     public function viewModelProvider() : array
