@@ -39,7 +39,7 @@ final class CaptionedImage implements ViewModel
         } elseif ($image instanceof Picture) {
             $this->picture = $image;
         } else {
-            throw new InvalidArgumentException('Unknown image type ' . get_class($image));
+            throw new InvalidArgumentException('Unknown image type '.get_class($image));
         }
         $this->customContent = $customContent;
     }

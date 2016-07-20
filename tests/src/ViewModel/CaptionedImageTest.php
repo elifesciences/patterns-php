@@ -24,7 +24,7 @@ final class CaptionedImageTest extends ViewModelTest
                 'fallback' => [
                     'altText' => 'the alt text',
                     'defaultPath' => '/default/path',
-                    'srcset' => '/path/to/image/' . $widthFirst . '/wide ' . $widthFirst . 'w, /default/path ' . $widthSecond . 'w',
+                    'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
                 ],
                 'sources' => [
                     [
@@ -38,7 +38,7 @@ final class CaptionedImageTest extends ViewModelTest
                 [['srcset' => $data['picture']['sources'][0]['srcset']]],
                 new Image(
                     $data['picture']['fallback']['defaultPath'],
-                    [$widthFirst => '/path/to/image/' . $widthFirst . '/wide', $widthSecond => '/default/path'],
+                    [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
                     $data['picture']['fallback']['altText']
                 )
             ),
@@ -57,12 +57,12 @@ final class CaptionedImageTest extends ViewModelTest
             ],
             'altText' => 'the alt text',
             'defaultPath' => '/default/path',
-            'srcset' => '/path/to/image/' . $widthFirst . '/wide ' . $widthFirst . 'w, /default/path ' . $widthSecond . 'w',
+            'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
         ];
         $captionedImage = CaptionedImage::withParagraph(
             new Image(
                 $data['defaultPath'],
-                [$widthFirst => '/path/to/image/' . $widthFirst . '/wide', $widthSecond => '/default/path'],
+                [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
                 $data['altText']
             ),
             $data['heading'],

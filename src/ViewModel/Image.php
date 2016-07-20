@@ -26,7 +26,7 @@ final class Image implements CastsToArray, IsImage
         $this->defaultPath = $defaultPath;
         $this->srcset = [];
         foreach ($srcset as $width => $src) {
-            $this->srcset[] = $src . ' ' . $width . 'w';
+            $this->srcset[] = $src.' '.$width.'w';
         }
         $this->srcset = implode(', ', $this->srcset);
         $this->altText = $altText;
