@@ -21,7 +21,7 @@ final class Meta implements ViewModel
 
     private function __construct(string $url = null, string $text = null, Date $date = null)
     {
-        if ($date instanceof $date) {
+        if ($date instanceof Date) {
             Assertion::false($date['isExpanded']);
         }
 
