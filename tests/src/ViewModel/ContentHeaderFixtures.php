@@ -2,10 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-
 final class ContentHeaderFixtures
 {
-
     public static function magazineFixture()
     {
         // @note
@@ -67,6 +65,7 @@ final class ContentHeaderFixtures
           }
         }
 JSON;
+
         return json_decode($magazine, true);
     }
 
@@ -128,10 +127,12 @@ JSON;
           }
         }
 JSON;
+
         return json_decode($fixture, true);
     }
 
-    public static function magazineBackgroundImageFixture() {
+    public static function magazineBackgroundImageFixture()
+    {
         $fixture = <<<JSON
         {
           "rootClasses": "content-header-article content-header-article-magazine content-header-article-magazine--background content-header--background-image",
@@ -197,10 +198,12 @@ JSON;
         }
 
 JSON;
+
         return json_decode($fixture, true);
     }
 
-    public static function researchFixture() {
+    public static function researchFixture()
+    {
 
         // @note
         // Change subject.href -> subject.url
@@ -350,10 +353,12 @@ JSON;
         }
 
 JSON;
-    return json_decode($fixture, true);
+
+        return json_decode($fixture, true);
     }
 
-    public static function researchReadMoreFixture() {
+    public static function researchReadMoreFixture()
+    {
         // @note
         // Changed href -> url
         // Removed `images` field (see below.)
@@ -395,6 +400,7 @@ JSON;
               }
             }
 JSON;
+
         return json_decode($fixture, true);
     }
 }

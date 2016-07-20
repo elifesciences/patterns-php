@@ -10,7 +10,6 @@ use Traversable;
 
 final class ContentHeaderArticle implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
@@ -55,8 +54,7 @@ final class ContentHeaderArticle implements ViewModel
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
-    )
-    {
+    ) {
         $this->rootClasses = implode(' ', $rootClasses);
         $this->behaviour = $behaviour;
         $this->title = $title;
@@ -84,6 +82,7 @@ final class ContentHeaderArticle implements ViewModel
         if ($titleLength >= 30) {
             return self::TITLE_MEDIUM;
         }
+
         return self::TITLE_LARGE;
     }
 
@@ -105,11 +104,11 @@ final class ContentHeaderArticle implements ViewModel
         Link $subject = null,
         Picture $download = null,
         Meta $meta = null
-    )
-    {
+    ) {
         if ($authors['hasEtAl'] === false) {
             $authors = AuthorList::readMoreFromList($authors);
         }
+
         return self::research(
             $title,
             $articleType,
@@ -129,8 +128,7 @@ final class ContentHeaderArticle implements ViewModel
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
-    )
-    {
+    ) {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
         $behaviour = self::BEHAVIOUR_BASE;
@@ -164,8 +162,7 @@ final class ContentHeaderArticle implements ViewModel
         Link $subject = null,
         Meta $meta = null,
         InstitutionList $institutions = null
-    )
-    {
+    ) {
         return self::magazine(
             $title,
             $strapline,
@@ -189,8 +186,7 @@ final class ContentHeaderArticle implements ViewModel
         Meta $meta = null,
         InstitutionList $institutions = null,
         bool $background = false
-    )
-    {
+    ) {
         $rootClasses = [self::STYLE_BASE, self::STYLE_MAGAZINE];
         $behaviour = self::BEHAVIOUR_BASE;
         // Can be re-enabled when background image is added.

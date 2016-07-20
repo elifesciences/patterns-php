@@ -16,7 +16,6 @@ use DateTimeImmutable;
 
 class ContentHeaderArticleTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -166,18 +165,18 @@ class ContentHeaderArticleTest extends ViewModelTest
                     ])),
                     new Picture([
                         [
-                            "srcset" => "../../assets/img/icons/download-full.svg",
-                            "media" => "(min-width: 35em)",
-                            "type" => "image/svg+xml"
+                            'srcset' => '../../assets/img/icons/download-full.svg',
+                            'media' => '(min-width: 35em)',
+                            'type' => 'image/svg+xml',
                         ],
                         [
-                            "srcset" => "../../assets/img/icons/download-full-1x.png",
-                            "media" => "(min-width: 35em)"
+                            'srcset' => '../../assets/img/icons/download-full-1x.png',
+                            'media' => '(min-width: 35em)',
                         ],
                         [
-                            "srcset" => "../../assets/img/icons/download.svg",
-                            "type" => "image/svg+xml"
-                        ]
+                            'srcset' => '../../assets/img/icons/download.svg',
+                            'type' => 'image/svg+xml',
+                        ],
                     ], new Image(
                             '../../assets/img/icons/download-full-1x.png',
                             [500 => '/path/to/image/500/wide'], 'Download icon')
@@ -186,8 +185,8 @@ class ContentHeaderArticleTest extends ViewModelTest
                     new Meta(
                         'Insight', new Date(new DateTimeImmutable('2015-12-15')), '#'
                     )
-                )
-            ]
+                ),
+            ],
         ];
     }
 

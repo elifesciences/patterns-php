@@ -26,13 +26,15 @@ final class AuthorList implements CastsToArray
         }
     }
 
-    public static function readMoreFromList(AuthorList $authorList) {
+    public static function readMoreFromList(AuthorList $authorList)
+    {
         Assertion::isInstanceOf($authorList->list[0], Author::class);
 
         return self::asReadMore($authorList->list[0]['name']);
     }
 
-    public static function asList($list) {
+    public static function asList($list)
+    {
         Assertion::allIsInstanceOf($list, Author::class);
 
         return new static(
@@ -40,7 +42,8 @@ final class AuthorList implements CastsToArray
         );
     }
 
-    public static function asReadMore(string $firstAuthor) {
+    public static function asReadMore(string $firstAuthor)
+    {
         Assertion::minLength($firstAuthor, 1);
 
         return new static(
