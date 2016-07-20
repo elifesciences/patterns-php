@@ -57,35 +57,7 @@ class ContentHeaderMagazineArticleTest extends ViewModelTest
                 'Insight', new Date(new DateTimeImmutable('2015-12-15')), '#'
             )
         );
-//        var_dump($data);
-//        var_dump($magazine->toArray());
-//        $this->assertSame($data, $magazine);
-
-        foreach ($data as $k => $d) {
-            $to_assert = $magazine[$k] instanceof CastsToArray ? $magazine[$k]->toArray() : $magazine[$k];
-            $this->assertSame($to_assert, $d, "asserting key: " . $k);
-//            if ($magazine[$k] == $d) {
-//                unset($data[$k]);
-//            }
-//            if ($magazine[$k] instanceof CastsToArray) {
-//                if ($magazine[$k]->toArray() == $d) {
-//                    unset($data[$k]);
-//                }
-//            }
-        }
         $this->assertSameWithoutOrder($data, $magazine->toArray());
-//        if ($magazine['download']->toArray()['fallback'] == $data['download']['fallback']) {
-//            var_dump('yay!');exit;
-//        }
-//        var_dump($magazine['download']->toArray()['fallback']);
-//        var_dump($data['download']['fallback']);
-//        $d = array_diff_assoc(
-//            $data,
-//            $magazine->toArray()
-//        );
-//        var_dump($d);
-//        $d = array_intersect((array) $data, (array) $magazine->toArray());
-//        var_dump($d);
     }
 
     public function assertSameWithoutOrder($actual, $expected) {
@@ -100,57 +72,65 @@ class ContentHeaderMagazineArticleTest extends ViewModelTest
 
     public static function magazineFixture()
     {
+        // @note
+        // Changed titleClass from small to medium
+        // Changed subject.href -> subject.url
         return json_decode('
         {
-          "rootClasses": "content-header-article content-header-article-magazine",
-          "behaviour": "ContentHeaderArticle",
-          "title": "Planarian \'kidneys\' go with the flow",
-          "titleClass": "content-header__title--medium",
-          "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
-          "subject": {
-            "name": "Developmental Biology and Stem Cells",
-            "url": "#"
-          },
-          "articleType": "Insight",
-          "authors": {
-            "list": [
-              {"name": "Melanie Issigonis"},
-              {"name": "Phillip A Newmark"}
-            ]
-          },
-          "download": {
-            "fallback": {
-              "altText": "Download icon",
-              "defaultPath": "../../assets/img/icons/download-full-1x.png",
-              "srcset": "/path/to/image/500/wide 500w",
-              "classes": "content-header__download_icon"
-            },
-            "sources": [
-              {
-                "srcset": "../../assets/img/icons/download-full.svg",
-                "media": "(min-width: 35em)",
-                "type": "image/svg+xml"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-full-1x.png",
-                "media": "(min-width: 35em)"
-              },
-              {
-                "srcset": "../../assets/img/icons/download.svg",
-                "type": "image/svg+xml"
-              }
-            ]
-          },
+  "rootClasses": "content-header-article content-header-article-magazine",
+  "behaviour": "ContentHeaderArticle",
+  "title": "Planarian \'kidneys\' go with the flow",
+  "titleClass": "content-header__title--medium",
+  "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
+  "subject": {
+    "name": "Developmental Biology and Stem Cells",
+    "url": "#"
+  },
+  "articleType": "Insight",
+  "authors": {
+    "list": [
+      {"name": "Melanie Issigonis"},
+      {"name": "Phillip A Newmark"}
+    ]
+  },
+  "download": {
+    "fallback": {
+      "defaultPath": "../../assets/img/icons/download-full-1x.png",
+      "classes": "content-header__download_icon",
+      "srcset": "/path/to/image/500/wide 500w",
+      "altText": "Download icon"
+    },
+    "sources": [
+      {
+        "srcset": "../../assets/img/icons/download-full.svg",
+        "media": "(min-width: 35em)",
+        "type": "image/svg+xml"
+      },
+      {
+        "srcset": "../../assets/img/icons/download-full-1x.png",
+        "media": "(min-width: 35em)"
+      },
+      {
+        "srcset": "../../assets/img/icons/download.svg",
+        "type": "image/svg+xml"
+      }
+    ]
+  },
 
-          "meta": {
-            "type": "Insight",
-            "date": {
-              "forHuman": "Dec 15, 2015",
-              "forMachine": "2015-12-15"
-            },
-            "typeLink": "#"
-          }
-        }', true);
+  "meta": {
+    "typeLink": "#",
+    "type": "Insight",
+    "date": {
+      "forHuman": {
+        "dayOfMonth": 15,
+        "month": "Dec",
+        "year": 2015
+      },
+      "forMachine": "2015-12-15"
+    }
+  }
+}
+', true);
     }
 
     /**
@@ -196,25 +176,7 @@ class ContentHeaderMagazineArticleTest extends ViewModelTest
                         'Insight', new Date(new DateTimeImmutable('2015-12-15')), '#'
                     )
                 )
-            ],
-//            'Research' => [
-//                ContentHeaderMagazineArticle::research(
-//                    'title',
-//                    ContentHeaderMagazineArticle::TITLE_SMALL,
-//                    new Link('subject', '#'),
-//                    'article type',
-//                    new AuthorList([
-//                        new Author('Mr someone'),
-//                        new Author('Ms someone else'),
-//                    ]),
-//                    new InstitutionList([
-//                        new Institution('Some institution'),
-//                        new Institution('Another institution'),
-//                    ]),
-//                    new Picture([], new Image('#', [])),
-//                    new Meta('type', new Date(new DateTimeImmutable()))
-//                )
-//            ]
+            ]
         ];
     }
 
