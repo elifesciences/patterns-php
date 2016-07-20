@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
+use InvalidArgumentException;
 
 final class MetaTest extends ViewModelTest
 {
@@ -33,6 +34,16 @@ final class MetaTest extends ViewModelTest
         $this->assertSame($data['url'], $meta['url']);
         $this->assertSame($data['text'], $meta['text']);
         $this->assertSame($data['date'], $meta['date']->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_an_expanded_date()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        Meta::withDate(new Date(new DateTimeImmutable(), true));
     }
 
     public static function getDateStub()
