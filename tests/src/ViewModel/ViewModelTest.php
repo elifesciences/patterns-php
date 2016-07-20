@@ -176,7 +176,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
     protected function srcsetToArray($srcset)
     {
-        $sets = explode(',', $srcset);
+        $sets = explode(', ', $srcset);
         $array = [];
         foreach ($sets as $set) {
             $parts = explode(' ', $set);

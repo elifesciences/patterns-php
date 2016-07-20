@@ -50,7 +50,7 @@ final class ContentHeaderArticle implements ViewModel
         string $articleType,
         AuthorList $authors,
         string $strapline = null,
-        Link $subject = null,
+        SubjectList $subject = null,
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
@@ -101,7 +101,7 @@ final class ContentHeaderArticle implements ViewModel
         string $title,
         string $articleType,
         AuthorList $authors,
-        Link $subject = null,
+        SubjectList $subject = null,
         Picture $download = null,
         Meta $meta = null
     ) {
@@ -124,7 +124,7 @@ final class ContentHeaderArticle implements ViewModel
         string $title,
         string $articleType,
         AuthorList $authors,
-        Link $subject = null,
+        SubjectList $subject = null,
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
@@ -159,7 +159,7 @@ final class ContentHeaderArticle implements ViewModel
         string $articleType,
         AuthorList $authors,
         Picture $download = null,
-        Link $subject = null,
+        SubjectList $subject = null,
         Meta $meta = null,
         InstitutionList $institutions = null
     ) {
@@ -182,7 +182,7 @@ final class ContentHeaderArticle implements ViewModel
         string $articleType,
         AuthorList $authors,
         Picture $download = null,
-        Link $subject = null,
+        SubjectList $subject = null,
         Meta $meta = null,
         InstitutionList $institutions = null,
         bool $background = false

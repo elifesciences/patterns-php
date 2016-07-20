@@ -14,11 +14,19 @@ final class ContentHeaderFixtures
           "rootClasses": "content-header-article content-header-article-magazine",
           "behaviour": "ContentHeaderArticle",
           "title": "Planarian 'kidneys' go with the flow",
-          "titleClass": "content-header__title--medium",
+          "titleClass": "content-header__title--small",
           "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
-          "subject": {
-            "name": "Developmental Biology and Stem Cells",
-            "url": "#"
+          "subjects": {
+            "list": [
+              {
+                "name": "Cell Biology",
+                "url": "#"
+              },
+              {
+                "name": "Epidemiology and global health",
+                "url": "#"
+              }
+            ]
           },
           "articleType": "Insight",
           "authors": {
@@ -28,12 +36,6 @@ final class ContentHeaderFixtures
             ]
           },
           "download": {
-            "fallback": {
-              "defaultPath": "../../assets/img/icons/download-full-1x.png",
-              "classes": "content-header__download_icon",
-              "srcset": "/path/to/image/500/wide 500w",
-              "altText": "Download icon"
-            },
             "sources": [
               {
                 "srcset": "../../assets/img/icons/download-full.svg",
@@ -48,12 +50,18 @@ final class ContentHeaderFixtures
                 "srcset": "../../assets/img/icons/download.svg",
                 "type": "image/svg+xml"
               }
-            ]
+            ],
+            "fallback": {
+              "defaultPath": "../../assets/img/icons/download-full-1x.png",
+              "srcset": "../../assets/img/icons/download-full-2x.png 88w, ../../assets/img/icons/download-full-1x.png 44w",
+              "classes": "content-header__download_icon",
+              "altText": "Download icon"
+            }
           },
 
           "meta": {
-            "typeLink": "#",
-            "type": "Insight",
+            "url": "#",
+            "text": "Insight",
             "date": {
               "forHuman": {
                 "dayOfMonth": 15,
@@ -64,6 +72,7 @@ final class ContentHeaderFixtures
             }
           }
         }
+
 JSON;
 
         return json_decode($magazine, true);
@@ -76,11 +85,19 @@ JSON;
           "rootClasses": "content-header-article content-header-article-magazine content-header-article-magazine--background",
           "behaviour": "ContentHeaderArticle",
           "title": "Planarian 'kidneys' go with the flow",
-          "titleClass": "content-header__title--medium",
+          "titleClass": "content-header__title--small",
           "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
-          "subject": {
-            "name": "Developmental Biology and Stem Cells",
-            "url": "#"
+          "subjects": {
+            "list": [
+              {
+                "name": "Cell Biology",
+                "url": "#"
+              },
+              {
+                "name": "Epidemiology and global health",
+                "url": "#"
+              }
+            ]
           },
           "articleType": "Insight",
           "authors": {
@@ -107,15 +124,15 @@ JSON;
             ],
             "fallback": {
               "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
+              "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
               "classes": "content-header__download_icon",
-              "srcset": "/path/to/image/500/wide 500w",
               "altText": "Download icon"
             }
           },
 
           "meta": {
-            "typeLink": "#",
-            "type": "Insight",
+            "url": "#",
+            "text": "Insight",
             "date": {
               "forHuman": {
                 "dayOfMonth": 15,
@@ -126,6 +143,7 @@ JSON;
             }
           }
         }
+
 JSON;
 
         return json_decode($fixture, true);
@@ -140,9 +158,17 @@ JSON;
           "title": "Planarian 'kidneys' go with the flow",
           "titleClass": "content-header__title--small",
           "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
-          "subject": {
-            "name": "Developmental Biology and Stem Cells",
-            "href": "#"
+          "subjects": {
+            "list": [
+              {
+                "name": "Cell Biology",
+                "url": "#"
+              },
+              {
+                "name": "Epidemiology and global health",
+                "url": "#"
+              }
+            ]
           },
           "articleType": "Insight",
           "authors": {
@@ -173,6 +199,7 @@ JSON;
             ],
             "fallback": {
               "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
+              "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
               "classes": "content-header__download_icon",
               "altText": "Download icon"
             }
@@ -184,8 +211,8 @@ JSON;
             }
           },
           "meta": {
-            "typeLink": "#",
-            "type": "Insight",
+            "url": "#",
+            "text": "Insight",
             "date": {
               "forHuman": {
                 "dayOfMonth": 15,
@@ -196,6 +223,7 @@ JSON;
             }
           }
         }
+
 
 JSON;
 
@@ -213,9 +241,17 @@ JSON;
           "rootClasses": "content-header-article content-header-article-research",
           "behaviour": "ContentHeaderArticle",
           "title": "<i>Homo naledi</i>, a new species of the genus <i>Homo</i> from the Dinaledi Chamber, South Africa",
-          "subject": {
-            "name": "Epidemiology and global health",
-            "url": "#"
+          "subjects": {
+            "list": [
+              {
+                "name": "Cell Biology",
+                "url": "#"
+              },
+              {
+                "name": "Epidemiology and global health",
+                "url": "#"
+              }
+            ]
           },
           "articleType": "Research article",
           "authors": {
@@ -332,15 +368,15 @@ JSON;
             ],
             "fallback": {
               "defaultPath": "../../assets/img/icons/download-full-1x.png",
-              "srcset": "/path/to/image/500/wide 500w",
+              "srcset": "../../assets/img/icons/download-full-2x.png 88w, ../../assets/img/icons/download-full-1x.png 44w",
               "classes": "content-header__download_icon",
               "altText": "Download icon"
             }
           },
 
           "meta": {
-            "typeLink": "#",
-            "type": "Research article",
+            "url": "#",
+            "text": "Research article",
             "date": {
               "forHuman": {
                 "dayOfMonth": 10,
@@ -351,6 +387,7 @@ JSON;
             }
           }
         }
+
 
 JSON;
 
@@ -377,18 +414,27 @@ JSON;
               "rootClasses": "content-header-article content-header-article-research content-header-article-research--readmore",
               "title": "<i>Homo naledi</i>, a new species of the genus <i>Homo</i> from the Dinaledi Chamber, South Africa",
               "titleClass": "content-header__title--extra-small",
-              "subject": {
-                "name": "Epidemiology and global health",
-                "url": "#"
+              "subjects": {
+                "list": [
+                  {
+                    "name": "Cell Biology",
+                    "url": "#"
+                  },
+                  {
+                    "name": "Epidemiology and global health",
+                    "url": "#"
+                  }
+                ]
               },
               "articleType": "Research article",
               "authors": {
                 "firstAuthorOnly": "Lee R Berger",
                 "hasEtAl": true
               },
+
               "meta": {
-                "typeLink": "#",
-                "type": "Research article",
+                "url": "#",
+                "text": "Research article",
                 "date": {
                   "forHuman": {
                     "dayOfMonth": 10,
@@ -399,6 +445,7 @@ JSON;
                 }
               }
             }
+
 JSON;
 
         return json_decode($fixture, true);

@@ -13,6 +13,7 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Picture;
 use DateTimeImmutable;
+use eLife\Patterns\ViewModel\SubjectList;
 
 class ContentHeaderArticleTest extends ViewModelTest
 {
@@ -37,12 +38,10 @@ class ContentHeaderArticleTest extends ViewModelTest
                     $data['download']['fallback']['altText']
                 )
             ),
-            new Link($data['subject']['name'], $data['subject']['url']),
-            new Meta(
-                $data['meta']['type'],
-                new Date(new DateTimeImmutable($data['meta']['date']['forMachine'])),
-                $data['meta']['typeLink']
-            )
+            new SubjectList(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['subjects']['list'])),
+            $this->metaFromData($data['meta'])
         );
         $this->assertSameWithoutOrder($data, $magazine->toArray());
     }
@@ -68,12 +67,10 @@ class ContentHeaderArticleTest extends ViewModelTest
                     $data['download']['fallback']['altText']
                 )
             ),
-            new Link($data['subject']['name'], $data['subject']['url']),
-            new Meta(
-                $data['meta']['type'],
-                new Date(new DateTimeImmutable($data['meta']['date']['forMachine'])),
-                $data['meta']['typeLink']
-            ),
+            new SubjectList(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['subjects']['list'])),
+            $this->metaFromData($data['meta']),
             null,
             true
         );
@@ -92,7 +89,9 @@ class ContentHeaderArticleTest extends ViewModelTest
             AuthorList::asList(array_map(function ($item) {
                 return new Author($item['name']);
             }, $data['authors']['list'])),
-            new Link($data['subject']['name'], $data['subject']['url']),
+            new SubjectList(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['subjects']['list'])),
             new InstitutionList(array_map(function ($item) {
                 return new Institution($item['name']);
             }, $data['institutions']['list'])),
@@ -104,11 +103,7 @@ class ContentHeaderArticleTest extends ViewModelTest
                     $data['download']['fallback']['altText']
                 )
             ),
-            new Meta(
-                $data['meta']['type'],
-                new Date(new DateTimeImmutable($data['meta']['date']['forMachine'])),
-                $data['meta']['typeLink']
-            )
+            $this->metaFromData($data['meta'])
         );
         $this->assertSameWithoutOrder($data, $research->toArray());
     }
@@ -122,13 +117,11 @@ class ContentHeaderArticleTest extends ViewModelTest
             $data['title'],
             $data['articleType'],
             AuthorList::asReadMore($data['authors']['firstAuthorOnly']),
-            new Link($data['subject']['name'], $data['subject']['url']),
+            new SubjectList(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['subjects']['list'])),
             null,
-            new Meta(
-                $data['meta']['type'],
-                new Date(new DateTimeImmutable($data['meta']['date']['forMachine'])),
-                $data['meta']['typeLink']
-            )
+            $this->metaFromData($data['meta'])
         );
         $this->assertSameWithoutOrder($data, $research->toArray());
     }
@@ -139,6 +132,14 @@ class ContentHeaderArticleTest extends ViewModelTest
     public function it_can_create_magazine_with_background_image()
     {
         $this->markTestSkipped('This is waiting for background image refactoring');
+    }
+
+    public function metaFromData($data) {
+        return new Meta(
+            $data['type'],
+            new Date(new DateTimeImmutable($data['date']['forMachine'])),
+            $data['typeLink']
+        );
     }
 
     /**
@@ -181,7 +182,7 @@ class ContentHeaderArticleTest extends ViewModelTest
                             '../../assets/img/icons/download-full-1x.png',
                             [500 => '/path/to/image/500/wide'], 'Download icon')
                     ),
-                    new Link('link', '#'),
+                    new SubjectList([ new Link('subject', '#') ]),
                     new Meta(
                         'Insight', new Date(new DateTimeImmutable('2015-12-15')), '#'
                     )
