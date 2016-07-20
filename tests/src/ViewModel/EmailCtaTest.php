@@ -18,16 +18,16 @@ final class EmailCtaTest extends ViewModelTest
             'headerText' => 'header text',
             'subHeader' => 'sub header text',
             'compactForm' => [
-                    'formAction' => '/foo',
-                    'formId' => 'foo',
-                    'formMethod' => 'GET',
-                    'label' => 'label',
-                    'inputType' => 'text',
-                    'inputName' => 'input',
-                    'inputValue' => 'value',
-                    'inputPlaceholder' => 'placeholder',
-                    'ctaText' => 'cta',
-                ],
+                'formAction' => '/foo',
+                'formId' => 'foo',
+                'formMethod' => 'GET',
+                'label' => 'label',
+                'inputType' => 'text',
+                'inputName' => 'input',
+                'inputValue' => 'value',
+                'inputPlaceholder' => 'placeholder',
+                'ctaText' => 'cta',
+            ],
         ];
         $form = new EmailCta($data['headerText'], $data['subHeader'], new CompactForm(
             new Form(

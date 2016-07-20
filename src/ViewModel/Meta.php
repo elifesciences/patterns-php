@@ -11,26 +11,40 @@ use Traversable;
 
 final class Meta implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    private $type;
+    private $url;
+    private $text;
     private $date;
-    private $typeLink;
 
-    public function __construct(
-        string $type,
-        Date $date,
-        string $typeLink = null
-    ) {
-        Assertion::notBlank($type);
-        Assertion::false(is_array($date['forHuman']));
+    private function __construct(string $url = null, string $text = null, Date $date = null)
+    {
+        if ($date instanceof $date) {
+            Assertion::false($date['isExpanded']);
+        }
 
-        $this->type = $type;
+        $this->url = $url;
+        $this->text = $text;
         $this->date = $date;
-        $this->typeLink = $typeLink;
+    }
+
+    public static function withLink(Link $link, Date $date = null) : Meta
+    {
+        return new self($link['url'], $link['name'], $date);
+    }
+
+    public static function withText(string $text, Date $date = null) : Meta
+    {
+        Assertion::minLength($text, 1);
+
+        return new self(null, $text, $date);
+    }
+
+    public static function withDate(Date $date) : Meta
+    {
+        return new self(null, null, $date);
     }
 
     public function getStyleSheets() : Traversable

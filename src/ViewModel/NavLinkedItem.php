@@ -25,10 +25,10 @@ final class NavLinkedItem implements ViewModel
     }
 
     public static function asIcon(
-      Link $link,
-      Picture $img,
-      bool $showText = true,
-      bool $search = false
+        Link $link,
+        Picture $img,
+        bool $showText = true,
+        bool $search = false
     ): NavLinkedItem {
         $itemAsIcon = static::asLink($link, $search);
         $itemAsIcon->img = $img;

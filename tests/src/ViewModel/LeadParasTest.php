@@ -7,7 +7,7 @@ use eLife\Patterns\ViewModel\LeadParas;
 use InvalidArgumentException;
 use TypeError;
 
-class LeadParasTest extends ViewModelTest
+final class LeadParasTest extends ViewModelTest
 {
     /**
      * @test
@@ -30,8 +30,16 @@ class LeadParasTest extends ViewModelTest
             new LeadPara($data['paras'][1]['text']),
         ]);
 
-        $this->assertSame($data['paras'][0]['text'], $paras['paras'][0]['text'], 'First lead paragraph contains paragraph text');
-        $this->assertSame($data['paras'][1]['text'], $paras['paras'][1]['text'], 'Second lead paragraph contains paragraph text');
+        $this->assertSame(
+            $data['paras'][0]['text'],
+            $paras['paras'][0]['text'],
+            'First lead paragraph contains paragraph text'
+        );
+        $this->assertSame(
+            $data['paras'][1]['text'],
+            $paras['paras'][1]['text'],
+            'Second lead paragraph contains paragraph text'
+        );
         $this->assertSame($paras->toArray(), $data);
     }
 

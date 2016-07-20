@@ -16,22 +16,20 @@ final class SelectTest extends ViewModelTest
         $data = [
             'id' => 'id',
             'options' => [
-
-                    [
-                        'value' => 'choice-1',
-                        'displayValue' => 'Choice 1',
-                    ],
-
-                    [
-                        'value' => 'choice-2',
-                        'displayValue' => 'Choice 2',
-                    ],
+                [
+                    'value' => 'choice-1',
+                    'displayValue' => 'Choice 1',
                 ],
+                [
+                    'value' => 'choice-2',
+                    'displayValue' => 'Choice 2',
+                ],
+            ],
             'label' => [
-                    'labelText' => 'Label for form',
-                    'for' => 'id',
-                    'isVisuallyHidden' => true,
-                ],
+                'labelText' => 'Label for form',
+                'for' => 'id',
+                'isVisuallyHidden' => true,
+            ],
         ];
         $select = new Select($data['id'], [
             new SelectOption($data['options'][0]['value'], $data['options'][0]['displayValue']),

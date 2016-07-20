@@ -7,7 +7,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\ViewerInline;
 
-class ViewerInlineTest extends ViewModelTest
+final class ViewerInlineTest extends ViewModelTest
 {
     /**
      * @test
@@ -57,17 +57,24 @@ class ViewerInlineTest extends ViewModelTest
 
     public static function imageStub() : CaptionedImage
     {
-        return CaptionedImage::withParagraph(new Picture([
-            ['srcset' => '/path/to/svg'],
-        ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')), 'heading', 'caption');
+        return CaptionedImage::withParagraph(
+            new Picture(
+                [['srcset' => '/path/to/svg']],
+                new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')
+            ),
+            'heading',
+            'caption'
+        );
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new ViewerInline(
-                'REF:', '1234', '#', '#', '#', self::imageStub()
-            )],
+            [
+                new ViewerInline(
+                    'REF:', '1234', '#', '#', '#', self::imageStub()
+                ),
+            ],
         ];
     }
 

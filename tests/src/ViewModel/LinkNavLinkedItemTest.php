@@ -16,10 +16,10 @@ final class LinkNavLinkedItemTest extends ViewModelTest
     {
         parent::setUp();
         $this->img = new Picture(
-          [
-            ['srcset' => '/path/to/svg'],
-          ],
-          new Image('/default/image/path', [500 => '/image/path/in/srcset'], 'alt', ['image-class'])
+            [
+                ['srcset' => '/path/to/svg'],
+            ],
+            new Image('/default/image/path', [500 => '/image/path/in/srcset'], 'alt', ['image-class'])
         );
     }
 
@@ -47,9 +47,9 @@ final class LinkNavLinkedItemTest extends ViewModelTest
     public function it_has_data()
     {
         $dataAsLink = [
-          'path' => '/the/path',
-          'rel' => 'search',
-          'text' => 'the text',
+            'path' => '/the/path',
+            'rel' => 'search',
+            'text' => 'the text',
         ];
 
         $asLink = NavLinkedItem::asLink(new Link('the text', '/the/path'), true);
@@ -63,8 +63,8 @@ final class LinkNavLinkedItemTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-          'basic' => [NavLinkedItem::asLink(new Link('the text', '/the/path'))],
-          'search' => [NavLinkedItem::asLink(new Link('the text', 'the link path'), true)],
+            'basic' => [NavLinkedItem::asLink(new Link('the text', '/the/path'))],
+            'search' => [NavLinkedItem::asLink(new Link('the text', 'the link path'), true)],
         ];
     }
 

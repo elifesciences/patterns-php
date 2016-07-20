@@ -7,7 +7,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 
-class DecisionLetterProfileTest extends ViewModelTest
+final class DecisionLetterProfileTest extends ViewModelTest
 {
     /**
      * @test

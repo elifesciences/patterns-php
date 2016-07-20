@@ -15,19 +15,19 @@ final class ProfileSnippetTest extends ViewModelTest
     {
         $data = [
             'picture' => [
-                    'fallback' => [
-                            'altText' => 'the alt text',
-                            'defaultPath' => '/default/path',
-                            'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
-                            'classes' => 'profile-snippet__image',
-                        ],
-                    'sources' => [
-                            0 => [
-                                    'srcset' => '/path/to/svg',
-                                ],
-                        ],
-                    'pictureClasses' => 'profile-snippet__picture',
+                'fallback' => [
+                    'altText' => 'the alt text',
+                    'defaultPath' => '/default/path',
+                    'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                    'classes' => 'profile-snippet__image',
                 ],
+                'sources' => [
+                    0 => [
+                        'srcset' => '/path/to/svg',
+                    ],
+                ],
+                'pictureClasses' => 'profile-snippet__picture',
+            ],
             'title' => 'Title McTitle',
             'name' => 'Name McName',
         ];
@@ -48,9 +48,20 @@ final class ProfileSnippetTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ProfileSnippet('Name McName', 'Title McTitle', new Picture([
-                ['srcset' => '/path/to/svg'],
-            ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')))],
+            [
+                new ProfileSnippet(
+                    'Name McName',
+                    'Title McTitle',
+                    new Picture(
+                        [['srcset' => '/path/to/svg']],
+                        new Image(
+                            '/default/path',
+                            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            'the alt text'
+                        )
+                    )
+                ),
+            ],
         ];
     }
 

@@ -4,28 +4,35 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Date;
 use DateTimeImmutable;
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 
-class MetaTest extends ViewModelTest
+final class MetaTest extends ViewModelTest
 {
-
     /**
      * @test
      */
     public function it_has_data()
     {
-        $date = self::getDateStub();
         $data = [
-            'type' => 'Research article',
-            'date' => $date->toArray(),
-            'typeLink' => '#',
+            'url' => '#',
+            'text' => 'Research article',
+            'date' => [
+                'isExpanded' => false,
+                'forHuman' => [
+                    'dayOfMonth' => 15,
+                    'month' => 'May',
+                    'year' => 2015,
+                ],
+                'forMachine' => '2015-05-15',
+            ],
         ];
-        $meta = new Meta($data['type'], $date, $data['typeLink']);
+        $meta = Meta::withLink(new Link($data['text'], $data['url']), new Date(new DateTimeImmutable('2015-05-15')));
 
         $this->assertSame($data, $meta->toArray());
-        $this->assertSame($data['type'], $meta['type']);
+        $this->assertSame($data['url'], $meta['url']);
+        $this->assertSame($data['text'], $meta['text']);
         $this->assertSame($data['date'], $meta['date']->toArray());
-        $this->assertSame($data['typeLink'], $meta['typeLink']);
     }
 
     public static function getDateStub()
@@ -36,8 +43,11 @@ class MetaTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Meta('Research article with link', self::getDateStub(), '#')],
-            [new Meta('Research article without link', self::getDateStub())],
+            'link' => [Meta::withLink(new Link('foo', '#'), self::getDateStub())],
+            'link and date' => [Meta::withLink(new Link('foo', '#'), self::getDateStub())],
+            'text' => [Meta::withText('foo', self::getDateStub())],
+            'text and date' => [Meta::withText('foo', self::getDateStub())],
+            'date' => [Meta::withDate(self::getDateStub())],
         ];
     }
 

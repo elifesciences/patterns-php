@@ -31,7 +31,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-          'button' => $this->button->toArray(),
+            'button' => $this->button->toArray(),
         ];
 
         $buttonNavLinkedItem = NavLinkedItem::asButton($button = $this->button);
@@ -45,7 +45,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
         $button = Button::link('the button text', '/the/button/path');
 
         return [
-          'basic' => [NavLinkedItem::asButton($button)],
+            'basic' => [NavLinkedItem::asButton($button)],
         ];
     }
 

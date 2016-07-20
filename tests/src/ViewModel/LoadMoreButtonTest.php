@@ -105,7 +105,9 @@ final class LoadMoreButtonTest extends ViewModelTest
             'extra small' => [Button::loadMoreLink('text', 'path', Button::SIZE_SMALL)],
             'outline' => [Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
             'inactive' => [Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, false)],
-            'full width' => [Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true)],
+            'full width' => [
+                Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true),
+            ],
         ];
     }
 

@@ -37,7 +37,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     public function it_has_data()
     {
         $viewModel = new TeaserNonArticleContent($this->content, $this->date, $this->headerText, $this->link,
-          $this->subHeader, $this->image, $this->footerText, $this->downloadSrc);
+            $this->subHeader, $this->image, $this->footerText, $this->downloadSrc);
 
         $this->assertSame($this->content, $viewModel['content']);
         $this->assertSame($this->date, $viewModel['date']);
@@ -56,7 +56,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent('', $this->date, $this->headerText, $this->link, $this->subHeader, $this->image,
-          $this->footerText, $this->downloadSrc);
+            $this->footerText, $this->downloadSrc);
     }
 
     /**
@@ -66,7 +66,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, '', $this->link, $this->subHeader, $this->image,
-          $this->footerText, $this->downloadSrc);
+            $this->footerText, $this->downloadSrc);
     }
 
     /**
@@ -76,7 +76,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, '', $this->subHeader, $this->image,
-          $this->footerText, $this->downloadSrc);
+            $this->footerText, $this->downloadSrc);
     }
 
     /**
@@ -86,7 +86,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, $this->link, '', $this->image,
-          $this->footerText, $this->downloadSrc);
+            $this->footerText, $this->downloadSrc);
     }
 
     /**
@@ -96,7 +96,7 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, $this->link, $this->subHeader,
-          $this->image, '', $this->downloadSrc);
+            $this->image, '', $this->downloadSrc);
     }
 
     /**
@@ -106,44 +106,66 @@ final class TeaserNonArticleContentTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new TeaserNonArticleContent($this->content, $this->date, $this->headerText, $this->link, $this->subHeader,
-          $this->image, $this->footerText, '');
+            $this->image, $this->footerText, '');
     }
 
     public function viewModelProvider() : array
     {
         return [
 
-          'minimal' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'Header Text', 'link')],
+            'minimal' => [
+                new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+                    'Header Text', 'link'),
+            ],
 
-          'with: subheading' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'Header Text', 'link', 'subheading', null)],
+            'with: subheading' => [
+                new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+                    'Header Text', 'link', 'subheading', null),
+            ],
 
-          'with: image' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'Header Text', 'link', null, new Image('/foo.png', [10 => '/bar.png'], 'Alt'), 'footer text')],
+            'with: image' => [
+                new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+                    'Header Text', 'link', null, new Image('/foo.png', [10 => '/bar.png'], 'Alt'), 'footer text'),
+            ],
 
-          'with: footer text' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'Header Text', 'link', null, null, 'footer text')],
+            'with: footer text' => [
+                new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+                    'Header Text', 'link', null, null, 'footer text'),
+            ],
 
-          'with: download source' => [new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
-            'Header Text', 'link', null, null, null, 'download source')],
+            'with: download source' => [
+                new TeaserNonArticleContent('i am the content', new Date(new DateTimeImmutable()),
+                    'Header Text', 'link', null, null, null, 'download source'),
+            ],
 
-          'with: subheading, footer text' => [new TeaserNonArticleContent('i am the content',
-            new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', null, 'footer text')],
+            'with: subheading, footer text' => [
+                new TeaserNonArticleContent('i am the content',
+                    new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', null, 'footer text'),
+            ],
 
-          'with: subheading, footer text, download source' => [new TeaserNonArticleContent('i am the content',
-            new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', null, 'footer text',
-            'download source')],
+            'with: subheading, footer text, download source' => [
+                new TeaserNonArticleContent('i am the content',
+                    new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', null, 'footer text',
+                    'download source'),
+            ],
 
-          'with: subheading, footer text, download source, image' => [new TeaserNonArticleContent('i am the content',
-            new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading',
-            new Image('/foo.png', [10 => '/bar.png'], 'Alt'), 'footer text', 'download source')],
+            'with: subheading, footer text, download source, image' => [
+                new TeaserNonArticleContent('i am the content',
+                    new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading',
+                    new Image('/foo.png', [10 => '/bar.png'], 'Alt'), 'footer text', 'download source'),
+            ],
 
-          'with: subheading, download source' => [new TeaserNonArticleContent('i am the content',
-            new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', null, null, 'download source')],
+            'with: subheading, download source' => [
+                new TeaserNonArticleContent('i am the content',
+                    new Date(new DateTimeImmutable()), 'Header Text', 'link', 'subheading', null, null,
+                    'download source'),
+            ],
 
-          'with: footer text, download source' => [new TeaserNonArticleContent('i am the content',
-            new Date(new DateTimeImmutable()), 'Header Text', 'link', null, null, 'footer text', 'download source')],
+            'with: footer text, download source' => [
+                new TeaserNonArticleContent('i am the content',
+                    new Date(new DateTimeImmutable()), 'Header Text', 'link', null, null, 'footer text',
+                    'download source'),
+            ],
 
         ];
     }
