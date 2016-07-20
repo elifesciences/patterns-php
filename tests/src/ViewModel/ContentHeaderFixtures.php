@@ -432,4 +432,190 @@ JSON;
 
         return json_decode($fixture, true);
     }
+
+    public static function nonArticleBasicFixture()
+    {
+        $fixture = <<<JSON
+            {
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "title": "About <i>eLife</i>",
+              "titleClass": "content-header__title--medium"
+            }
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticleBasicWithStraplineFixture()
+    {
+        $fixture = <<<JSON
+            {
+              "rootClasses": "content-header-nonarticle",
+              "title": "About <i>eLife</i>",
+              "titleClass": "content-header__title--medium",
+              "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research."
+            }
+
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticleBasicWithStraplineBackgroundFixture()
+    {
+        $fixture = <<<JSON
+            {
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "title": "About <i>eLife</i>",
+              "titleClass": "content-header__title--medium",
+              "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research."
+            }
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticleBasicWithStraplineBackgroundCtaMetaFixture()
+    {
+        $fixture = <<<JSON
+            {
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "title": "About <i>eLife</i>",
+              "titleClass": "content-header__title--medium",
+              "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
+              "hasCtaOrMeta": true,
+              "button": {
+                "text": "Subscribe",
+                "path": "#",
+                "classes": "button--outline button--small"
+              },
+              "meta": {
+                "url": "#",
+                "text": "Collection",
+                "date": {
+                  "forHuman": {
+                    "dayOfMonth": 29,
+                    "month": "Feb",
+                    "year": 2016
+                  },
+                  "forMachine": "2016-02-29"
+                }
+              }
+            }
+JSON;
+
+        return json_decode($fixture, true);
+    }
+
+    public static function nonArticleCuratedContent()
+    {
+        $fixture = <<<JSON
+            {
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "behaviour": "ContentHeaderSelectNav",
+              "title": "About <i>eLife</i>",
+              "titleClass": "content-header__title--medium",
+              "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
+              "hasProfile": true,
+              "profile": {
+                "name": "Prabhat Jha",
+                "link": "#",
+                "avatar": {
+                  "x1": "./assets/img/avatars/pjha1.png",
+                  "x2": "./assets/img/avatars/pjha2.png"
+                }
+              },
+              "hasCtaOrMeta": true,
+              "button": {
+                "text": "Subscribe",
+                "path": "#",
+                "classes": "button--outline button--small"
+              },
+              "meta": {
+                "url": "#",
+                "text": "Collection",
+                "date": {
+                  "forHuman": {
+                    "dayOfMonth": 29,
+                    "month": "Feb",
+                    "year": 2016
+                  },
+                  "forMachine": "2016-02-29"
+                }
+              }
+            }
+
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticleSubject()
+    {
+        $fixture = <<<JSON
+            {
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background content-header--background-image",
+              "behaviour": "ContentHeaderSelectNav",
+              "title": "About <i>eLife</i>",
+              "titleClass": "content-header__title--medium",
+              "hasCtaOrMeta": true,
+              "button": {
+                "text": "Subscribe",
+                "path": "#",
+                "classes": "button--outline button--small"
+              },
+              "backgroundImage": {
+                "images": {
+                  "lores": "http://unsplash.it/950/400/",
+                  "hires": "http://unsplash.it/1800/900/"
+                }
+              }
+            }
+
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticleArchiveFixture()
+    {
+        $fixture = <<<JSON
+            {
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background content-header--background-image",
+              "behaviour": "ContentHeaderSelectNav",
+              "title": "Archive",
+              "titleClass": "content-header__title--medium",
+              "hasCtaOrMeta": true,
+              "selectNav": {
+                "route": "/path/to/archive",
+                "select": {
+                  "id": "archiveYear",
+                  "label": {
+                    "labelText": "Archive year",
+                    "for": "archiveYear",
+                    "isVisuallyHidden": true
+                  },
+                  "options": [
+                    {
+                      "value": "2016",
+                      "displayValue": "2016"
+                    },
+                    {
+                      "value": "2015",
+                      "displayValue": "2015"
+                    },
+                    {
+                      "value": "2014",
+                      "displayValue": "2014"
+                    }
+                  ]
+                },
+                "button": {
+                  "text": "Go",
+                  "type": "submit",
+                  "classes": "button--outline button--extra-small"
+                }
+              }
+            }
+
+
+JSON;
+
+        return json_decode($fixture, true);
+    }
 }
