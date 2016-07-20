@@ -7,7 +7,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-final class Image implements CastsToArray
+final class Image implements CastsToArray, IsImage
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
