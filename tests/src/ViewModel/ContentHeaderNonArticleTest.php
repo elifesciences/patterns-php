@@ -13,9 +13,8 @@ use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
 
-class ContentHeaderNonArticleTest extends ViewModelTest
+final class ContentHeaderNonArticleTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -91,6 +90,7 @@ class ContentHeaderNonArticleTest extends ViewModelTest
         if ($form) {
             return Button::form($data['text'], $data['type'], $size, $style);
         }
+
         return Button::link($data['text'], $data['path'], $size, $style);
     }
 
@@ -109,7 +109,7 @@ class ContentHeaderNonArticleTest extends ViewModelTest
             );
         }
         // Throw maybe? Or expected.
-        return null;
+        return;
     }
 
     /**
@@ -174,7 +174,7 @@ class ContentHeaderNonArticleTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [ContentHeaderNonArticle::basic('title')]
+            [ContentHeaderNonArticle::basic('title')],
         ];
     }
 
