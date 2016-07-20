@@ -2,8 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Date;
 use DateTimeImmutable;
+use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 
