@@ -19,14 +19,12 @@ final class SortControlOption implements CastsToArray
     private $url;
     private $sorting;
 
-    public function __construct(string $option, string $url, string $sorting)
+    public function __construct(Link $link, string $sorting)
     {
-        Assertion::notBlank($option);
-        Assertion::notBlank($url);
         Assertion::inArray($sorting, [self::ASC, self::DESC]);
 
-        $this->option = $option;
-        $this->url = $url;
+        $this->option = $link['name'];
+        $this->url = $link['url'];
         $this->sorting = $sorting;
     }
 }

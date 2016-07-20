@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\SortControl;
 use eLife\Patterns\ViewModel\SortControlOption;
 
@@ -29,8 +30,8 @@ final class SortControlTest extends ViewModelTest
                 ],
         ];
         $sortControl = new SortControl([
-            new SortControlOption($data['options'][0]['option'], $data['options'][0]['url'], $data['options'][0]['sorting']),
-            new SortControlOption($data['options'][1]['option'], $data['options'][1]['url'], $data['options'][1]['sorting']),
+            new SortControlOption(new Link($data['options'][0]['option'], $data['options'][0]['url']), $data['options'][0]['sorting']),
+            new SortControlOption(new Link($data['options'][1]['option'], $data['options'][1]['url']), $data['options'][1]['sorting']),
         ]);
 
         $this->assertSame($data, $sortControl->toArray());
@@ -41,14 +42,14 @@ final class SortControlTest extends ViewModelTest
         return [
             [
                 new SortControl([
-                    new SortControlOption('option 1', '#', SortControlOption::ASC),
-                    new SortControlOption('option 2', '#', SortControlOption::DESC),
+                    new SortControlOption(new Link('option 1', '#'), SortControlOption::ASC),
+                    new SortControlOption(new Link('option 2', '#'), SortControlOption::DESC),
                 ]),
             ],
             [
                 new SortControl([
-                    new SortControlOption('alt option 1', '#', 'descending'),
-                    new SortControlOption('alt option 2', '#', 'ascending'),
+                    new SortControlOption(new Link('alt option 1', '#'), 'descending'),
+                    new SortControlOption(new Link('alt option 2', '#'), 'ascending'),
                 ]),
             ],
         ];
