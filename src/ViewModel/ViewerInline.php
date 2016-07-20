@@ -30,15 +30,14 @@ final class ViewerInline implements ViewModel
         string $downloadLink,
         string $newWindowLink,
         CaptionedImage $captionedImage
-    )
-    {
+    ) {
         Assertion::notBlank($prominentText);
         Assertion::notBlank($normalText);
         Assertion::notBlank($seeAllLink);
         Assertion::notBlank($downloadLink);
         Assertion::notBlank($newWindowLink);
 
-        $this->id = 'viewerInline' . hash('crc32', $prominentText . $normalText . $downloadLink);
+        $this->id = 'viewerInline'.hash('crc32', $prominentText.$normalText.$downloadLink);
         $this->prominentText = $prominentText;
         $this->normalText = $normalText;
         $this->seeAllLink = $seeAllLink;

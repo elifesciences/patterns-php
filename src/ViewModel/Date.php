@@ -15,20 +15,18 @@ final class Date implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    private $isExpanded;
     private $forHuman;
     private $forMachine;
 
     public function __construct(DateTimeImmutable $date, bool $isExpanded = false)
     {
-        if ($isExpanded) {
-            $this->forHuman = [
-              'dayOfMonth' => ltrim($date->format('d'), '0'),
-              'month' => $date->format('M'),
-              'year' => $date->format('Y'),
-            ];
-        } else {
-            $this->forHuman = $date->format('M j, Y');
-        }
+        $this->isExpanded = $isExpanded;
+        $this->forHuman = [
+            'dayOfMonth' => (int) $date->format('j'),
+            'month' => $date->format('M'),
+            'year' => (int) $date->format('Y'),
+        ];
         $this->forMachine = $date->format('Y-m-d');
     }
 

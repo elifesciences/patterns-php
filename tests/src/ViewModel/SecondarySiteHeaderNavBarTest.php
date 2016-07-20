@@ -23,10 +23,10 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
     {
         parent::setUp();
         $this->img = new Picture(
-          [
-            ['srcset' => '/path/to/svg'],
-          ],
-          new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [
+                ['srcset' => '/path/to/svg'],
+            ],
+            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
 
         $this->button = Button::form('button text', 'button');
@@ -89,9 +89,9 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $button = Button::form('button text', 'button');
 
         $navLinkItems = [
-          NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $img, false),
-          NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
-          NavLinkedItem::asButton($button),
+            NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $img, false),
+            NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
+            NavLinkedItem::asButton($button),
         ];
 
         return [

@@ -6,21 +6,27 @@ use eLife\Patterns\ViewModel\Date;
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Meta;
 
-class MetaTest extends ViewModelTest
+final class MetaTest extends ViewModelTest
 {
-
     /**
      * @test
      */
     public function it_has_data()
     {
-        $date = self::getDateStub();
         $data = [
             'type' => 'Research article',
-            'date' => $date->toArray(),
+            'date' => [
+                'isExpanded' => false,
+                'forHuman' => [
+                    'dayOfMonth' => 15,
+                    'month' => 'May',
+                    'year' => 2015,
+                ],
+                'forMachine' => '2015-05-15',
+            ],
             'typeLink' => '#',
         ];
-        $meta = new Meta($data['type'], $date, $data['typeLink']);
+        $meta = new Meta($data['type'], new Date(new DateTimeImmutable('2015-05-15')), $data['typeLink']);
 
         $this->assertSame($data, $meta->toArray());
         $this->assertSame($data['type'], $meta['type']);

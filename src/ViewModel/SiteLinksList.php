@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
@@ -10,9 +9,8 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class SiteLinksList implements ViewModel
+final class SiteLinksList implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;

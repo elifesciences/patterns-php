@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class ArticleDownloadLinksList implements ViewModel
+final class ArticleDownloadLinksList implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
