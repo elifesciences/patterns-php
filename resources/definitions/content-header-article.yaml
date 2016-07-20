@@ -137,10 +137,10 @@ schema:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
-                typeLink:
+                url:
                     type: string
                     minLength: 1
-                type:
+                text:
                     type: string
                     minLength: 1
                 date:
@@ -172,6 +172,13 @@ schema:
                     required:
                         - forHuman
                         - forMachine
-            required:
-                - type
-                - date
+            dependencies:
+                url:
+                    - text
+            anyOf:
+                -
+                    required:
+                        - date
+                -
+                    required:
+                        - text
