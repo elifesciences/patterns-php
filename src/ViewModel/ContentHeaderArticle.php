@@ -36,7 +36,7 @@ final class ContentHeaderArticle implements ViewModel
     private $title;
     private $titleClass;
     private $strapline;
-    private $subject;
+    private $subjects;
     private $articleType;
     private $authors;
     private $institutions;
@@ -50,17 +50,18 @@ final class ContentHeaderArticle implements ViewModel
         string $articleType,
         AuthorList $authors,
         string $strapline = null,
-        SubjectList $subject = null,
+        SubjectList $subjects = null,
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
-    ) {
+    )
+    {
         $this->rootClasses = implode(' ', $rootClasses);
         $this->behaviour = $behaviour;
         $this->title = $title;
         $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
-        $this->subject = $subject;
+        $this->subjects = $subjects;
         $this->articleType = $articleType;
         $this->authors = $authors;
         $this->institutions = $institutions;
@@ -101,10 +102,11 @@ final class ContentHeaderArticle implements ViewModel
         string $title,
         string $articleType,
         AuthorList $authors,
-        SubjectList $subject = null,
+        SubjectList $subjects = null,
         Picture $download = null,
         Meta $meta = null
-    ) {
+    )
+    {
         if ($authors['hasEtAl'] === false) {
             $authors = AuthorList::readMoreFromList($authors);
         }
@@ -113,7 +115,7 @@ final class ContentHeaderArticle implements ViewModel
             $title,
             $articleType,
             $authors,
-            $subject,
+            $subjects,
             null,
             $download,
             $meta
@@ -124,11 +126,12 @@ final class ContentHeaderArticle implements ViewModel
         string $title,
         string $articleType,
         AuthorList $authors,
-        SubjectList $subject = null,
+        SubjectList $subjects = null,
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
-    ) {
+    )
+    {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
         $behaviour = self::BEHAVIOUR_BASE;
@@ -146,7 +149,7 @@ final class ContentHeaderArticle implements ViewModel
             $articleType,
             $authors,
             $strapline,
-            $subject,
+            $subjects,
             $institutions,
             $download,
             $meta
@@ -159,17 +162,18 @@ final class ContentHeaderArticle implements ViewModel
         string $articleType,
         AuthorList $authors,
         Picture $download = null,
-        SubjectList $subject = null,
+        SubjectList $subjects = null,
         Meta $meta = null,
         InstitutionList $institutions = null
-    ) {
+    )
+    {
         return self::magazine(
             $title,
             $strapline,
             $articleType,
             $authors,
             $download,
-            $subject,
+            $subjects,
             $meta,
             $institutions,
             true
@@ -182,11 +186,12 @@ final class ContentHeaderArticle implements ViewModel
         string $articleType,
         AuthorList $authors,
         Picture $download = null,
-        SubjectList $subject = null,
+        SubjectList $subjects = null,
         Meta $meta = null,
         InstitutionList $institutions = null,
         bool $background = false
-    ) {
+    )
+    {
         $rootClasses = [self::STYLE_BASE, self::STYLE_MAGAZINE];
         $behaviour = self::BEHAVIOUR_BASE;
         // Can be re-enabled when background image is added.
@@ -206,7 +211,7 @@ final class ContentHeaderArticle implements ViewModel
             $articleType,
             $authors,
             $strapline,
-            $subject,
+            $subjects,
             $institutions,
             $download,
             $meta

@@ -15,7 +15,7 @@ use eLife\Patterns\ViewModel\Picture;
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\SubjectList;
 
-class ContentHeaderArticleTest extends ViewModelTest
+final class ContentHeaderArticleTest extends ViewModelTest
 {
     /**
      * @test
@@ -44,6 +44,22 @@ class ContentHeaderArticleTest extends ViewModelTest
             $this->metaFromData($data['meta'])
         );
         $this->assertSameWithoutOrder($data, $magazine->toArray());
+    }
+
+    public function metaFromData($data)
+    {
+        if (isset($data['url'])) {
+            return Meta::withLink(
+                new Link($data['text'], $data['url']),
+                new Date(new DateTimeImmutable($data['date']['forMachine']))
+            );
+        }
+        if (isset($data['text'])) {
+            return Meta::withText(
+                $data['text'],
+                new Date(new DateTimeImmutable($data['date']['forMachine']))
+            );
+        }
     }
 
     /**
@@ -107,6 +123,7 @@ class ContentHeaderArticleTest extends ViewModelTest
         );
         $this->assertSameWithoutOrder($data, $research->toArray());
     }
+
     /**
      * @test
      */
@@ -132,14 +149,6 @@ class ContentHeaderArticleTest extends ViewModelTest
     public function it_can_create_magazine_with_background_image()
     {
         $this->markTestSkipped('This is waiting for background image refactoring');
-    }
-
-    public function metaFromData($data) {
-        return new Meta(
-            $data['type'],
-            new Date(new DateTimeImmutable($data['date']['forMachine'])),
-            $data['typeLink']
-        );
     }
 
     /**
@@ -182,9 +191,9 @@ class ContentHeaderArticleTest extends ViewModelTest
                             '../../assets/img/icons/download-full-1x.png',
                             [500 => '/path/to/image/500/wide'], 'Download icon')
                     ),
-                    new SubjectList([ new Link('subject', '#') ]),
-                    new Meta(
-                        'Insight', new Date(new DateTimeImmutable('2015-12-15')), '#'
+                    new SubjectList([new Link('subject', '#')]),
+                    Meta::withText(
+                        'Insight', new Date(new DateTimeImmutable('2015-12-15'))
                     )
                 ),
             ],
