@@ -11,7 +11,6 @@ use Traversable;
 
 final class SelectNav implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
