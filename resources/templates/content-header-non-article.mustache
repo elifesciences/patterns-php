@@ -1,0 +1,56 @@
+<header class="content-header
+      {{#rootClasses}}{{rootClasses}}{{/rootClasses}}"
+        {{#behaviour}}data-behaviour="{{behaviour}}"{{/behaviour}}
+  {{#behaviour}}data-behaviour="{{behaviour}}"{{/behaviour}}>
+
+  {{#backgroundImage}}
+    {{> atoms-content-header-background-style-markup}}
+  {{/backgroundImage}}
+
+  {{#hasProfile}}
+    <div class="content-header__top">
+      <a class="content-header__top_info" href="{{{profile.link}}}">
+        <dl>
+          <dt class="content-header__top_label">Curated by</dt>
+          <dd class="content-header__top_data">{{profile.name}}</dd>
+        </dl>
+      </a>
+    </div>
+  {{/hasProfile}}
+
+  {{#download}}
+    <a href="#articleDownloadLinksList" class="content-header__download_link">
+      {{> atoms-picture}}
+    </a>
+  {{/download}}
+
+  <div class="content-header__inner">
+    <div class="content-header__hgroup">
+      <h2 class="content-header__title {{titleClass}}">{{{title}}}</h2>
+      {{#strapline}}
+        <div class="content-header__strapline">{{{strapline}}}</div>
+      {{/strapline}}
+    </div>
+  </div> <!--  /.content-header__inner -->
+
+  {{#hasCtaOrMeta}}
+    <div class="content-header__bottom">
+      <div class="content-header__cta">
+        {{! Expect atoms-button and the form element to be mutually exclusive. }}
+      {{#button.text}}
+        {{#button}}
+          {{>atoms-button}}
+        {{/button}}
+      {{/button.text}}
+      {{#selectNav}}
+        {{> molecules-select-nav}}
+      {{/selectNav}}
+      </div>
+      {{#meta}}
+        {{> molecules-meta}}
+      {{/meta}}
+    </div>
+  {{/hasCtaOrMeta}}
+
+  <div class="content-header__bottom_line"></div>
+</header>
