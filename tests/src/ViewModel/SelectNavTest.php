@@ -2,16 +2,14 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
 
-class SelectNavTest extends ViewModelTest
+final class SelectNavTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -19,11 +17,9 @@ class SelectNavTest extends ViewModelTest
     {
         $data = [
             'route' => '#',
-            'select' =>
-                [
+            'select' => [
                     'id' => 'id',
-                    'options' =>
-                        [
+                    'options' => [
                             [
                                 'value' => 'value 1',
                                 'displayValue' => 'display value 1',
@@ -37,26 +33,25 @@ class SelectNavTest extends ViewModelTest
                                 'displayValue' => 'display value 3',
                             ],
                         ],
-                    'label' =>
-                        [
+                    'label' => [
                             'labelText' => 'label',
                             'for' => 'id',
                             'isVisuallyHidden' => false,
                         ],
                 ],
-            'button' =>
-                [
+            'button' => [
                     'classes' => 'button--default',
                     'text' => 'Search',
                     'type' => 'submit',
                 ],
         ];
+
         $selectNav = new SelectNav(
             $data['route'],
             new Select(
                 $data['select']['id'],
-                array_map(function($option){
-                    return new SelectOption($option['value'], $option['display_value']);
+                array_map(function ($option) {
+                    return new SelectOption($option['value'], $option['displayValue']);
                 }, $data['select']['options']),
                 new FormLabel(
                     $data['select']['label']['labelText'],
@@ -67,16 +62,25 @@ class SelectNavTest extends ViewModelTest
             Button::form('Search', 'submit')
         );
 
+        $this->assertSame($data['route'], $selectNav['route']);
+        $this->assertSame($data['select'], $selectNav['select']->toArray());
+        $this->assertSame($data['button'], $selectNav['button']->toArray());
         $this->assertSame($data, $selectNav->toArray());
     }
 
     public function viewModelProvider() : array
     {
-        // TODO: Implement viewModelProvider() method.
+        return [
+            [
+                new SelectNav('id', new Select('id', [
+                    new SelectOption('value', 'display value'),
+                ], new FormLabel('label', 'id', false)), Button::form('Search', 'submit')),
+            ],
+        ];
     }
 
     protected function expectedTemplate() : string
     {
-        // TODO: Implement expectedTemplate() method.
+        return '/elife/patterns/templates/select-nav.mustache';
     }
 }
