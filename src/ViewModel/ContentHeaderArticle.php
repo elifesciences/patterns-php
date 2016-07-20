@@ -8,7 +8,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class ContentHeaderMagazineArticle implements ViewModel
+final class ContentHeaderArticle implements ViewModel
 {
 
     use ArrayFromProperties;
@@ -22,6 +22,8 @@ class ContentHeaderMagazineArticle implements ViewModel
 
     const STYLE_BASE = 'content-header-article';
     const STYLE_MAGAZINE = 'content-header-article-magazine';
+    const STYLE_RESEARCH = 'content-header-article-research';
+    const STYLE_RESEARCH_READ_MORE = 'content-header-article-research--readmore';
     const STYLE_MAGAZINE_BACKGROUND = 'content-header-article-magazine--background';
     const STYLE_BACKGROUND_IMAGE = 'content-header--background-image';
 
@@ -42,7 +44,7 @@ class ContentHeaderMagazineArticle implements ViewModel
     private $download;
     private $meta;
 
-    protected function __construct(
+    private function __construct(
         array $rootClasses,
         string $behaviour,
         string $title,
@@ -64,8 +66,59 @@ class ContentHeaderMagazineArticle implements ViewModel
         $this->articleType = $articleType;
         $this->authors = $authors;
         $this->institutions = $institutions;
-        $this->download = $this->setDownload($download);
+        if ($download) {
+            $this->download = $this->setDownload($download);
+        }
         $this->meta = $meta;
+    }
+
+    private function deriveTitleClass($title) : string
+    {
+        $titleLength = strlen($title);
+        if ($titleLength >= 80) {
+            return self::TITLE_EXTRA_SMALL;
+        }
+        if ($titleLength >= 60) {
+            return self::TITLE_SMALL;
+        }
+        if ($titleLength >= 30) {
+            return self::TITLE_MEDIUM;
+        }
+        return self::TITLE_LARGE;
+    }
+
+    private function setDownload(Picture $picture)
+    {
+        $picture = FlexibleViewModel::fromViewModel($picture);
+
+        $fallback = $picture['fallback'];
+        $fallback['classes'] = static::FALLBACK_CLASSES;
+
+        return $picture
+            ->withProperty('fallback', $fallback);
+    }
+
+    public static function researchReadMore(
+        string $title,
+        string $articleType,
+        AuthorList $authors,
+        Link $subject = null,
+        Picture $download = null,
+        Meta $meta = null
+    )
+    {
+        if ($authors['hasEtAl'] === false) {
+            $authors = AuthorList::readMoreFromList($authors);
+        }
+        return self::research(
+            $title,
+            $articleType,
+            $authors,
+            $subject,
+            null,
+            $download,
+            $meta
+        );
     }
 
     public static function research(
@@ -76,10 +129,15 @@ class ContentHeaderMagazineArticle implements ViewModel
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
-    ) {
+    )
+    {
         // Defaults for research article.
-        $rootClasses = [ self::STYLE_BASE ];
+        $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
         $behaviour = self::BEHAVIOUR_BASE;
+        // For read more add the extra class.
+        if ($authors['hasEtAl'] === true) {
+            array_push($rootClasses, self::STYLE_RESEARCH_READ_MORE);
+        }
         // This can never be set.
         $strapline = null;
         // Constructor.
@@ -97,18 +155,43 @@ class ContentHeaderMagazineArticle implements ViewModel
         );
     }
 
+    public static function magazineWithBackground(
+        string $title,
+        string $strapline,
+        string $articleType,
+        AuthorList $authors,
+        Picture $download = null,
+        Link $subject = null,
+        Meta $meta = null,
+        InstitutionList $institutions = null
+    )
+    {
+        return self::magazine(
+            $title,
+            $strapline,
+            $articleType,
+            $authors,
+            $download,
+            $subject,
+            $meta,
+            $institutions,
+            true
+        );
+    }
+
     public static function magazine(
         string $title,
         string $strapline,
         string $articleType,
         AuthorList $authors,
-        Picture $download,
+        Picture $download = null,
         Link $subject = null,
         Meta $meta = null,
         InstitutionList $institutions = null,
         bool $background = false
-    ) {
-        $rootClasses = [ self::STYLE_BASE, self::STYLE_MAGAZINE ];
+    )
+    {
+        $rootClasses = [self::STYLE_BASE, self::STYLE_MAGAZINE];
         $behaviour = self::BEHAVIOUR_BASE;
         // Can be re-enabled when background image is added.
         // if ($backgroundImage) {
@@ -132,32 +215,6 @@ class ContentHeaderMagazineArticle implements ViewModel
             $download,
             $meta
         );
-    }
-
-    private function setDownload(Picture $picture)
-    {
-        $picture = FlexibleViewModel::fromViewModel($picture);
-
-        $fallback = $picture['fallback'];
-        $fallback['classes'] = static::FALLBACK_CLASSES;
-
-        return $picture
-            ->withProperty('fallback', $fallback)
-        ;
-    }
-
-    protected function deriveTitleClass($title) : string {
-        $titleLength = strlen($title);
-        if ($titleLength >= 80) {
-            return self::TITLE_EXTRA_SMALL;
-        }
-        if ($titleLength >= 60) {
-            return self::TITLE_SMALL;
-        }
-        if ($titleLength >= 30) {
-            return self::TITLE_MEDIUM;
-        }
-        return self::TITLE_LARGE;
     }
 
     public function getTemplateName() : string
