@@ -8,7 +8,6 @@ final class ContentHeaderFixtures
     {
         // @note
         // Changed titleClass from small to medium
-        // Changed subject.href -> subject.url
         $magazine = <<<JSON
         {
           "rootClasses": "content-header-article content-header-article-magazine",
@@ -232,10 +231,6 @@ JSON;
 
     public static function researchFixture()
     {
-
-        // @note
-        // Change subject.href -> subject.url
-        // Added srcset to fallback image
         $fixture = <<<JSON
         {
           "rootClasses": "content-header-article content-header-article-research",
@@ -396,19 +391,6 @@ JSON;
 
     public static function researchReadMoreFixture()
     {
-        // @note
-        // Changed href -> url
-        // Removed `images` field (see below.)
-        /*
-         "images": {
-            "download": {
-              "svg": "../../assets/img/icons/download.svg",
-              "svgFull": "../../assets/img/icons/download-full.svg",
-              "bitmap": "../../assets/img/icons/download-1x.png",
-              "bitmapFull": "../../assets/img/icons/download-full-1x.png"
-            }
-          },
-         */
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-article content-header-article-research content-header-article-research--readmore",
