@@ -48,14 +48,13 @@ final class ContentHeaderArticle implements ViewModel
         string $behaviour,
         string $title,
         string $articleType,
-        AuthorList $authors,
+        AuthorList $authors = null,
         string $strapline = null,
         SubjectList $subjects = null,
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
-    )
-    {
+    ) {
         $this->rootClasses = implode(' ', $rootClasses);
         $this->behaviour = $behaviour;
         $this->title = $title;
@@ -105,8 +104,7 @@ final class ContentHeaderArticle implements ViewModel
         SubjectList $subjects = null,
         Picture $download = null,
         Meta $meta = null
-    )
-    {
+    ) {
         if ($authors['hasEtAl'] === false) {
             $authors = AuthorList::readMoreFromList($authors);
         }
@@ -130,8 +128,7 @@ final class ContentHeaderArticle implements ViewModel
         InstitutionList $institutions = null,
         Picture $download = null,
         Meta $meta = null
-    )
-    {
+    ) {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
         $behaviour = self::BEHAVIOUR_BASE;
@@ -165,8 +162,7 @@ final class ContentHeaderArticle implements ViewModel
         SubjectList $subjects = null,
         Meta $meta = null,
         InstitutionList $institutions = null
-    )
-    {
+    ) {
         return self::magazine(
             $title,
             $strapline,
@@ -190,8 +186,7 @@ final class ContentHeaderArticle implements ViewModel
         Meta $meta = null,
         InstitutionList $institutions = null,
         bool $background = false
-    )
-    {
+    ) {
         $rootClasses = [self::STYLE_BASE, self::STYLE_MAGAZINE];
         $behaviour = self::BEHAVIOUR_BASE;
         // Can be re-enabled when background image is added.

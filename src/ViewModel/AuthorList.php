@@ -35,6 +35,7 @@ final class AuthorList implements CastsToArray
 
     public static function asList($list)
     {
+        Assertion::notEmpty($list, 'Author list must have at least one item.');
         Assertion::allIsInstanceOf($list, Author::class);
 
         return new static(
@@ -44,7 +45,7 @@ final class AuthorList implements CastsToArray
 
     public static function asReadMore(string $firstAuthor)
     {
-        Assertion::minLength($firstAuthor, 1);
+        Assertion::notBlank($firstAuthor);
 
         return new static(
           null,
