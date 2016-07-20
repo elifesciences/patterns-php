@@ -12,7 +12,6 @@ use Traversable;
 
 final class ContentHeaderNonArticle implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
@@ -48,8 +47,7 @@ final class ContentHeaderNonArticle implements ViewModel
         Meta $meta = null,
         Profile $profile = null,
         SelectNav $selectNav = null
-    )
-    {
+    ) {
         Assertion::allInArray($rootClasses, [self::STYLE_BASE, self::STYLE_BACKGROUND]);
         Assertion::allInArray($behaviour, [self::BEHAVIOUR_SELECT_NAV]);
         Assertion::notBlank($title);
@@ -95,8 +93,7 @@ final class ContentHeaderNonArticle implements ViewModel
         string $strapline = null,
         Button $button = null,
         Meta $meta = null
-    )
-    {
+    ) {
         $rootClasses = [self::STYLE_BASE];
         if ($background) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
@@ -119,13 +116,13 @@ final class ContentHeaderNonArticle implements ViewModel
         Button $button = null,
         Meta $meta = null,
         Profile $profile = null
-    )
-    {
+    ) {
         $rootClasses = [self::STYLE_BASE];
         $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         if ($background) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
+
         return new static (
             $rootClasses,
             $behaviours,
@@ -143,13 +140,13 @@ final class ContentHeaderNonArticle implements ViewModel
         string $strapline = null,
         Button $button = null,
         Meta $meta = null
-    )
-    {
+    ) {
         $rootClasses = [self::STYLE_BASE];
         $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         if ($background) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
+
         return new static (
             $rootClasses,
             $behaviours,
@@ -164,14 +161,14 @@ final class ContentHeaderNonArticle implements ViewModel
         string $title,
         bool $background = false,
         Button $button = null
-    )
-    {
+    ) {
         $rootClasses = [self::STYLE_BASE];
         $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         $strapline = null;
         if ($background) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
+
         return new static (
             $rootClasses,
             $behaviours,
@@ -185,8 +182,7 @@ final class ContentHeaderNonArticle implements ViewModel
         string $title,
         bool $background,
         SelectNav $selectNav
-    )
-    {
+    ) {
         $rootClasses = [self::STYLE_BASE];
         $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         $strapline = null;
@@ -196,6 +192,7 @@ final class ContentHeaderNonArticle implements ViewModel
         if ($background) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
+
         return new static (
             $rootClasses,
             $behaviours,
@@ -207,7 +204,6 @@ final class ContentHeaderNonArticle implements ViewModel
             $selectNav
         );
     }
-
 
     public function getTemplateName() : string
     {

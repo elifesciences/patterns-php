@@ -2,12 +2,10 @@
 
 namespace eLife\Patterns\ViewModel;
 
-
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
-
 
 class SubjectList implements CastsToArray
 {

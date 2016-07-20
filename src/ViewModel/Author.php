@@ -17,7 +17,7 @@ final class Author implements CastsToArray
     public function __construct($name)
     {
         Assertion::notBlank($name);
-        
+
         $this->name = $name;
     }
 }
