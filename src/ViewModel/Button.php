@@ -4,10 +4,10 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\MultipleTemplates;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use eLife\Patterns\MultipleTemplates;
 use Traversable;
 
 final class Button implements ViewModel
