@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class FilterPanel implements ViewModel
+final class FilterPanel implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

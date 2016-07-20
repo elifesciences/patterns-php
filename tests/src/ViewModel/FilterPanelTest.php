@@ -8,7 +8,7 @@ use eLife\Patterns\ViewModel\Filter;
 use eLife\Patterns\ViewModel\FilterGroup;
 use eLife\Patterns\ViewModel\FilterPanel;
 
-class FilterPanelTest extends ViewModelTest
+final class FilterPanelTest extends ViewModelTest
 {
     /**
      * @test
