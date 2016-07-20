@@ -4,8 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use ArrayObject;
 use eLife\Patterns\CastsToArray;
-use function eLife\Patterns\flatten;
-use function eLife\Patterns\sanitise_traversable;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
 use PHPUnit_Framework_TestCase;
@@ -13,6 +11,8 @@ use stdClass;
 use Symfony\Component\Yaml\Yaml;
 use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
+use function eLife\Patterns\flatten;
+use function eLife\Patterns\sanitise_traversable;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {

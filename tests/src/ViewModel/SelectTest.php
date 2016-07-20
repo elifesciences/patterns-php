@@ -2,8 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\FormLabel;
+use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectOption;
 
 final class SelectTest extends ViewModelTest
