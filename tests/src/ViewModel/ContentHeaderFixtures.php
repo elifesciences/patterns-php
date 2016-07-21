@@ -27,7 +27,6 @@ final class ContentHeaderFixtures
               }
             ]
           },
-          "articleType": "Insight",
           "authors": {
             "list": [
               {"name": "Melanie Issigonis"},
@@ -98,7 +97,6 @@ JSON;
               }
             ]
           },
-          "articleType": "Insight",
           "authors": {
             "list": [
               {"name": "Melanie Issigonis"},
@@ -169,7 +167,6 @@ JSON;
               }
             ]
           },
-          "articleType": "Insight",
           "authors": {
             "list": [
               {
@@ -248,7 +245,6 @@ JSON;
               }
             ]
           },
-          "articleType": "Research article",
           "authors": {
             "list": [
               {"name": "Lee R Berger"},
@@ -408,7 +404,6 @@ JSON;
                   }
                 ]
               },
-              "articleType": "Research article",
               "authors": {
                 "firstAuthorOnly": "Lee R Berger",
                 "hasEtAl": true

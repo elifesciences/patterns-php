@@ -47,7 +47,6 @@ final class ContentHeaderArticle implements ViewModel
         array $rootClasses,
         string $behaviour,
         string $title,
-        string $articleType,
         AuthorList $authors = null,
         string $strapline = null,
         SubjectList $subjects = null,
@@ -61,7 +60,6 @@ final class ContentHeaderArticle implements ViewModel
         $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
         $this->subjects = $subjects;
-        $this->articleType = $articleType;
         $this->authors = $authors;
         $this->institutions = $institutions;
         if ($download) {
@@ -99,7 +97,6 @@ final class ContentHeaderArticle implements ViewModel
 
     public static function researchReadMore(
         string $title,
-        string $articleType,
         Meta $meta,
         AuthorList $authors,
         SubjectList $subjects,
@@ -111,7 +108,6 @@ final class ContentHeaderArticle implements ViewModel
 
         return self::research(
             $title,
-            $articleType,
             $authors,
             $meta,
             $subjects,
@@ -122,7 +118,6 @@ final class ContentHeaderArticle implements ViewModel
 
     public static function research(
         string $title,
-        string $articleType,
         AuthorList $authors,
         Meta $meta,
         SubjectList $subjects,
@@ -143,7 +138,6 @@ final class ContentHeaderArticle implements ViewModel
             $rootClasses,
             $behaviour,
             $title,
-            $articleType,
             $authors,
             $strapline,
             $subjects,
@@ -156,7 +150,6 @@ final class ContentHeaderArticle implements ViewModel
     public static function magazineWithBackground(
         string $title,
         string $strapline,
-        string $articleType,
         AuthorList $authors,
         Picture $download = null,
         SubjectList $subjects = null,
@@ -166,7 +159,6 @@ final class ContentHeaderArticle implements ViewModel
         return self::magazine(
             $title,
             $strapline,
-            $articleType,
             $authors,
             $download,
             $subjects,
@@ -179,7 +171,6 @@ final class ContentHeaderArticle implements ViewModel
     public static function magazine(
         string $title,
         string $strapline,
-        string $articleType,
         AuthorList $authors,
         Picture $download = null,
         SubjectList $subjects = null,
@@ -203,7 +194,6 @@ final class ContentHeaderArticle implements ViewModel
             $rootClasses,
             $behaviour,
             $title,
-            $articleType,
             $authors,
             $strapline,
             $subjects,

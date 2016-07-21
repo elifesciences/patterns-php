@@ -26,7 +26,6 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $magazine = ContentHeaderArticle::magazine(
             $data['title'],
             $data['strapline'],
-            $data['articleType'],
             AuthorList::asList(array_map(function ($item) {
                 return new Author($item['name']);
             }, $data['authors']['list'])),
@@ -71,7 +70,6 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $magazine = ContentHeaderArticle::magazine(
             $data['title'],
             $data['strapline'],
-            $data['articleType'],
             AuthorList::asList(array_map(function ($item) {
                 return new Author($item['name']);
             }, $data['authors']['list'])),
@@ -101,7 +99,6 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $data = ContentHeaderFixtures::researchFixture();
         $research = ContentHeaderArticle::research(
             $data['title'],
-            $data['articleType'],
             AuthorList::asList(array_map(function ($item) {
                 return new Author($item['name']);
             }, $data['authors']['list'])),
@@ -132,7 +129,6 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $data = ContentHeaderFixtures::researchReadMoreFixture();
         $research = ContentHeaderArticle::researchReadMore(
             $data['title'],
-            $data['articleType'],
             $this->metaFromData($data['meta']),
             AuthorList::asReadMore($data['authors']['firstAuthorOnly']),
             new SubjectList(...array_map(function ($item) {
@@ -166,7 +162,6 @@ final class ContentHeaderArticleTest extends ViewModelTest
                 ContentHeaderArticle::magazine(
                     'title',
                     'strapline',
-                    'Insight',
                     AuthorList::asList(array_map(function ($item) {
                         return new Author($item['name']);
                     }, [
