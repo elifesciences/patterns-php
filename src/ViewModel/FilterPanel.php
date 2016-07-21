@@ -22,6 +22,7 @@ final class FilterPanel implements ViewModel
     public function __construct(string $title, array $filterGroups, Button $button)
     {
         Assertion::notBlank($title);
+        Assertion::notEmpty($filterGroups);
         Assertion::allIsInstanceOf($filterGroups, FilterGroup::class);
 
         $this->title = $title;
