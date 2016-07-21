@@ -686,47 +686,6 @@ module.exports = function () {
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
 
-  function ContentHeaderSelectNav($elm) {
-    var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
-
-    var doc = arguments.length <= 2 || arguments[2] === undefined ? document : arguments[2];
-
-    _classCallCheck(this, ContentHeaderSelectNav);
-
-    if (!$elm) {
-      return;
-    }
-
-    this.window = _window;
-    this.doc = doc;
-    this.$elm = $elm;
-    this.$elm.classList.add('content-header-archive--js');
-    this.$form = $elm.querySelector('form');
-    this.$form.querySelector('select').addEventListener('change', this.triggerSubmit.bind(this));
-  }
-
-  _createClass(ContentHeaderSelectNav, [{
-    key: 'triggerSubmit',
-    value: function triggerSubmit() {
-      this.$form.submit();
-    }
-  }]);
-
-  return ContentHeaderSelectNav;
-}();
-
-},{}],5:[function(require,module,exports){
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-module.exports = function () {
-
-  // Passing window and document separately allows for independent mocking of window in order
-  // to test feature support fallbacks etc.
-
   function MainMenu($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -796,7 +755,7 @@ module.exports = function () {
   return MainMenu;
 }();
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1149,7 +1108,37 @@ module.exports = function () {
   return SearchBox;
 }();
 
-},{"../libs/elife-utils":9}],7:[function(require,module,exports){
+},{"../libs/elife-utils":9}],6:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+module.exports = function () {
+  function SelectNav($elm) {
+    _classCallCheck(this, SelectNav);
+
+    if (!$elm) {
+      return;
+    }
+
+    this.$elm = $elm;
+    this.$elm.classList.add('select-nav--js');
+    this.$elm.querySelector('select').addEventListener('change', this.triggerSubmit.bind(this));
+  }
+
+  _createClass(SelectNav, [{
+    key: 'triggerSubmit',
+    value: function triggerSubmit() {
+      this.$elm.submit();
+    }
+  }]);
+
+  return SelectNav;
+}();
+
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1373,7 +1362,7 @@ module.exports = function () {
   return SiteHeader;
 }();
 
-},{"../libs/elife-utils":9,"./MainMenu":5,"./SearchBox":6}],8:[function(require,module,exports){
+},{"../libs/elife-utils":9,"./MainMenu":4,"./SearchBox":5}],8:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1635,7 +1624,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
     Components.ArticleDownloadLinksList = require('./components/ArticleDownloadLinksList');
     Components.AudioPlayer = require('./components/AudioPlayer');
     Components.ContentHeaderArticle = require('./components/ContentHeaderArticle');
-    Components.ContentHeaderSelectNav = require('./components/ContentHeaderSelectNav');
+    Components.SelectNav = require('./components/SelectNav');
     Components.MainMenu = require('./components/MainMenu');
     Components.SiteHeader = require('./components/SiteHeader');
     Components.SearchBox = require('./components/SearchBox');
@@ -1666,7 +1655,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
   })();
 }
 
-},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/ContentHeaderArticle":3,"./components/ContentHeaderSelectNav":4,"./components/MainMenu":5,"./components/SearchBox":6,"./components/SiteHeader":7,"./components/ViewerModal":8}]},{},[10])
+},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/ContentHeaderArticle":3,"./components/MainMenu":4,"./components/SearchBox":5,"./components/SelectNav":6,"./components/SiteHeader":7,"./components/ViewerModal":8}]},{},[10])
 
 
 //# sourceMappingURL=main.js.map
