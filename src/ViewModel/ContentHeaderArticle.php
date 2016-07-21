@@ -100,10 +100,10 @@ final class ContentHeaderArticle implements ViewModel
     public static function researchReadMore(
         string $title,
         string $articleType,
+        Meta $meta,
         AuthorList $authors,
-        SubjectList $subjects = null,
-        Picture $download = null,
-        Meta $meta = null
+        SubjectList $subjects,
+        Picture $download = null
     ) {
         if ($authors['hasEtAl'] === false) {
             $authors = AuthorList::readMoreFromList($authors);
@@ -113,10 +113,10 @@ final class ContentHeaderArticle implements ViewModel
             $title,
             $articleType,
             $authors,
+            $meta,
             $subjects,
             null,
-            $download,
-            $meta
+            $download
         );
     }
 
@@ -124,10 +124,10 @@ final class ContentHeaderArticle implements ViewModel
         string $title,
         string $articleType,
         AuthorList $authors,
-        SubjectList $subjects = null,
+        Meta $meta,
+        SubjectList $subjects,
         InstitutionList $institutions = null,
-        Picture $download = null,
-        Meta $meta = null
+        Picture $download = null
     ) {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];

@@ -14,7 +14,7 @@ class SubjectList implements CastsToArray
 
     private $list;
 
-    public function __construct(array $list)
+    public function __construct(Link ...$list)
     {
         Assertion::allIsInstanceOf($list, Link::class);
         $this->list = $list;

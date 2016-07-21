@@ -38,7 +38,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
                     $data['download']['fallback']['altText']
                 )
             ),
-            new SubjectList(array_map(function ($item) {
+            new SubjectList(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['subjects']['list'])),
             $this->metaFromData($data['meta'])
@@ -83,7 +83,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
                     $data['download']['fallback']['altText']
                 )
             ),
-            new SubjectList(array_map(function ($item) {
+            new SubjectList(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['subjects']['list'])),
             $this->metaFromData($data['meta']),
@@ -105,7 +105,8 @@ final class ContentHeaderArticleTest extends ViewModelTest
             AuthorList::asList(array_map(function ($item) {
                 return new Author($item['name']);
             }, $data['authors']['list'])),
-            new SubjectList(array_map(function ($item) {
+            $this->metaFromData($data['meta']),
+            new SubjectList(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['subjects']['list'])),
             new InstitutionList(array_map(function ($item) {
@@ -118,8 +119,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
                     $this->srcsetToArray($data['download']['fallback']['srcset']),
                     $data['download']['fallback']['altText']
                 )
-            ),
-            $this->metaFromData($data['meta'])
+            )
         );
         $this->assertSameWithoutOrder($data, $research->toArray());
     }
@@ -133,12 +133,12 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $research = ContentHeaderArticle::researchReadMore(
             $data['title'],
             $data['articleType'],
+            $this->metaFromData($data['meta']),
             AuthorList::asReadMore($data['authors']['firstAuthorOnly']),
-            new SubjectList(array_map(function ($item) {
+            new SubjectList(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['subjects']['list'])),
-            null,
-            $this->metaFromData($data['meta'])
+            null
         );
         $this->assertSameWithoutOrder($data, $research->toArray());
     }
@@ -191,7 +191,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
                             '../../assets/img/icons/download-full-1x.png',
                             [500 => '/path/to/image/500/wide'], 'Download icon')
                     ),
-                    new SubjectList([new Link('subject', '#')]),
+                    new SubjectList(...[new Link('subject', '#')]),
                     Meta::withText(
                         'Insight', new Date(new DateTimeImmutable('2015-12-15'))
                     )
