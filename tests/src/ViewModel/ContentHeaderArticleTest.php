@@ -186,7 +186,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
                             '../../assets/img/icons/download-full-1x.png',
                             [500 => '/path/to/image/500/wide'], 'Download icon')
                     ),
-                    new SubjectList(...[new Link('subject', '#')]),
+                    new SubjectList(new Link('subject', '#'), new Link('subject', '#')),
                     Meta::withText(
                         'Insight', new Date(new DateTimeImmutable('2015-12-15'))
                     )
