@@ -13,14 +13,21 @@ final class Author implements CastsToArray
     use ReadOnlyArrayAccess;
 
     private $name;
-    private $link;
+    private $url;
 
-    public function __construct(string $authorName, string $authorLink = null)
+    public function __construct(string $name, string $url = null)
     {
-        Assertion::notBlank($authorName);
+        Assertion::notBlank($name);
 
-        $this->name = $authorName;
-        $this->link = $authorLink;
+        $this->name = $name;
+        $this->url = $url;
     }
 
+    public static function asLink(Link $link)
+    {
+        return new static(
+          $link['name'],
+          $link['url']
+        );
+    }
 }

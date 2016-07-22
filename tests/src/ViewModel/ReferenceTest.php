@@ -19,8 +19,8 @@ final class ReferenceTest extends ViewModelTest
                 ['name' => 'View', 'url' => '/view'],
             ],
             'authors' => [
-                ['authorName' => 'Person Foo'],
-                ['authorName' => 'Person Bar', 'authorLink' => '/bar'],
+                ['name' => 'Person Foo'],
+                ['name' => 'Person Bar', 'url' => '/bar'],
             ],
             'origin' => 'the origin',
             'secondaryLinkText' => 'the secondary',
@@ -31,8 +31,8 @@ final class ReferenceTest extends ViewModelTest
         ];
 
         $reference = new Reference($data['title'], $data['titleLink'], $data['origin'], $data['secondaryLinkText'], [
-            new Author($data['authors'][0]['authorName']),
-            new Author($data['authors'][1]['authorName'], $data['authors'][1]['authorLink']),
+            new Author($data['authors'][0]['name']),
+            new Author($data['authors'][1]['name'], $data['authors'][1]['url']),
         ], [
             new Link($data['abstracts'][0]['name'], $data['abstracts'][0]['url']),
             new Link($data['abstracts'][1]['name'], $data['abstracts'][1]['url']),
@@ -49,6 +49,18 @@ final class ReferenceTest extends ViewModelTest
         $reference = new Reference('some title', '/', 'origin');
 
         $this->assertSame('', $reference['secondaryLinkText']);
+    }
+    /**
+     * @test
+     */
+    public function it_can_be_constructed_as_link()
+    {
+        $reference = new Reference('some title', '/', 'origin', 'secondary', [
+            Author::asLink(new Link('some author', '#')),
+        ], []);
+
+        $this->assertSame($reference['authors'][0]['name'], 'some author');
+        $this->assertSame($reference['authors'][0]['url'], '#');
     }
 
     /**
@@ -71,7 +83,7 @@ final class ReferenceTest extends ViewModelTest
      */
     public function it_can_be_provided_an_empty_abstract_list()
     {
-        $reference = new Reference('some title', '/', 'origin', 'secondary',[
+        $reference = new Reference('some title', '/', 'origin', 'secondary', [
             new Author('Person Foo'),
             new Author('Person Bar', '/bar'),
         ], []);
