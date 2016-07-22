@@ -28,7 +28,7 @@ final class Reference implements ViewModel
         string $title,
         string $titleLink,
         string $origin,
-        string $secondaryLinkText = '',
+        string $secondaryLinkText = null,
         array $authors = [],
         array $abstracts = []
     ) {
