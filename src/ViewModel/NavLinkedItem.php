@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
@@ -15,39 +14,46 @@ final class NavLinkedItem implements ViewModel
     use SimplifyAssets;
 
     private $button;
-    private $classes;
     private $img;
     private $path;
     private $rel;
     private $text;
     private $textClasses;
 
-    private function __construct(array $classes = [])
+    private function __construct()
     {
-        Assertion::allString($classes);
-        $this->classes = implode(' ', $classes);
     }
 
-    public static function asLink(string $text, string $path, array $classes = [], array $textClasses = [],
-                                  bool $search = false, PictureSvgWithFallback $img = null): NavLinkedItem
-    {
-        Assertion::notBlank($text);
-        Assertion::notBlank($path);
-        Assertion::allString($textClasses);
+    public static function asIcon(
+        Link $link,
+        Picture $img,
+        bool $showText = true,
+        bool $search = false
+    ): NavLinkedItem {
+        $itemAsIcon = static::asLink($link, $search);
+        $itemAsIcon->img = $img;
+        if (false === $showText) {
+            $itemAsIcon->textClasses = 'visuallyhidden';
+        }
 
-        $itemAsText = new static($classes);
-        $itemAsText->text = $text;
-        $itemAsText->path = $path;
-        $itemAsText->textClasses = implode(' ', $textClasses);
+        return $itemAsIcon;
+    }
+
+    public static function asLink(
+        Link $link,
+        bool $search = false
+    ): NavLinkedItem {
+        $itemAsText = new static();
+        $itemAsText->text = $link['name'];
+        $itemAsText->path = $link['url'];
         $itemAsText->rel = $search ? 'search' : null;
-        $itemAsText->img = $img;
 
         return $itemAsText;
     }
 
-    public static function asButton(Button $button, array $classes = []): NavLinkedItem
+    public static function asButton(Button $button): NavLinkedItem
     {
-        $itemAsButton = new static($classes);
+        $itemAsButton = new static();
         $itemAsButton->button = $button;
 
         return $itemAsButton;

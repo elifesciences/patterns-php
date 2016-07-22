@@ -1,0 +1,16 @@
+<div class="meta">
+
+  {{#url}}
+    <a class="meta__type" href="{{url}}">{{text}}</a>
+  {{/url}}
+
+  {{^url}}
+    {{#text}}
+    <span class="meta__type">{{text}}</span>
+    {{/text}}
+  {{/url}}
+
+  {{#date}}
+    {{>atoms-date}}
+  {{/date}}
+</div>

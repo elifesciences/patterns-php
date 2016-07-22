@@ -4,11 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use ArrayObject;
 use eLife\Patterns\CastsToArray;
-use function eLife\Patterns\flatten;
-use function eLife\Patterns\sanitise_traversable;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
 use PHPUnit_Framework_TestCase;
+use function eLife\Patterns\flatten;
+use function eLife\Patterns\sanitise_traversable;
 
 final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
 {

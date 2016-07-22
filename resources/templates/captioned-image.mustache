@@ -1,0 +1,27 @@
+<figure class="captioned-image">
+
+  {{#picture}}
+  {{> atoms-picture }}
+  {{/picture}}
+
+  {{^picture}}
+    <img src="{{defaultPath}}"
+         alt="{{altText}}"{{#srcset}}
+         srcset="{{srcset}}"{{/srcset}}
+      {{#classes}} class="{{classes}}"{{/classes}} />
+  {{/picture}}
+
+  <figcaption class="captioned-image__caption">
+    {{#customContent}}
+        {{{ customContent }}}
+    {{/customContent}}
+    {{^customContent}}
+      {{#heading}}
+        <p class="captioned-image__caption_heading">{{{ heading }}}</p>
+      {{/heading}}
+      {{#captions}}
+        <p class="captioned-image__caption_text">{{ caption }}</p>
+      {{/captions}}
+    {{/customContent}}
+  </figcaption>
+</figure>

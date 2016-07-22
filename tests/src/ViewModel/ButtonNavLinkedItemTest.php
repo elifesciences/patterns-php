@@ -31,14 +31,13 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-          'classes' => 'class-1 class-2',
-          'button' => $this->button,
+            'button' => $this->button->toArray(),
         ];
 
-        $buttonNavLinkedItem = NavLinkedItem::asButton($this->button, ['class-1', 'class-2']);
+        $buttonNavLinkedItem = NavLinkedItem::asButton($button = $this->button);
 
-        $this->assertSame($data['classes'], $buttonNavLinkedItem['classes']);
-        $this->assertSame($data['button'], $buttonNavLinkedItem['button']);
+        $this->assertEquals($button, $buttonNavLinkedItem['button']);
+        $this->assertSame($data, $buttonNavLinkedItem->toArray());
     }
 
     public function viewModelProvider() : array
@@ -46,8 +45,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
         $button = Button::link('the button text', '/the/button/path');
 
         return [
-          'basic' => [NavLinkedItem::asButton($button)],
-          'with classes' => [NavLinkedItem::asButton($button, ['class-1', 'class-2'])],
+            'basic' => [NavLinkedItem::asButton($button)],
         ];
     }
 

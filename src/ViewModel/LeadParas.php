@@ -15,10 +15,12 @@ final class LeadParas implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    /** @var LeadPara[] */
     protected $paras;
 
-    public function __construct($leadParas)
+    /**
+     * @param $leadParas LeadPara[]
+     */
+    public function __construct(array $leadParas)
     {
         Assertion::notEmpty($leadParas);
         Assertion::allIsInstanceOf($leadParas, LeadPara::class);

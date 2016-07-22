@@ -5,8 +5,9 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\LeadPara;
 use eLife\Patterns\ViewModel\LeadParas;
 use InvalidArgumentException;
+use TypeError;
 
-class LeadParasTest extends ViewModelTest
+final class LeadParasTest extends ViewModelTest
 {
     /**
      * @test
@@ -29,8 +30,16 @@ class LeadParasTest extends ViewModelTest
             new LeadPara($data['paras'][1]['text']),
         ]);
 
-        $this->assertSame($data['paras'][0]['text'], $paras['paras'][0]['text'], 'First lead paragraph contains paragraph text');
-        $this->assertSame($data['paras'][1]['text'], $paras['paras'][1]['text'], 'Second lead paragraph contains paragraph text');
+        $this->assertSame(
+            $data['paras'][0]['text'],
+            $paras['paras'][0]['text'],
+            'First lead paragraph contains paragraph text'
+        );
+        $this->assertSame(
+            $data['paras'][1]['text'],
+            $paras['paras'][1]['text'],
+            'Second lead paragraph contains paragraph text'
+        );
         $this->assertSame($paras->toArray(), $data);
     }
 
@@ -49,7 +58,7 @@ class LeadParasTest extends ViewModelTest
      */
     public function it_cannot_have_input_other_than_array()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(TypeError::class);
 
         new LeadParas('not a valid construction');
     }

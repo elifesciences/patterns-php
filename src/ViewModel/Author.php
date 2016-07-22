@@ -22,4 +22,5 @@ final class Author implements CastsToArray
         $this->authorName = $authorName;
         $this->authorLink = $authorLink;
     }
+
 }

@@ -14,27 +14,33 @@ final class DateTest extends ViewModelTest
     {
         $dateIn = '2015-10-05';
         $dataSimple = [
-            'forHuman' => 'Oct 5, 2015',
+            'isExpanded' => false,
+            'forHuman' => [
+                'dayOfMonth' => 5,
+                'month' => 'Oct',
+                'year' => 2015,
+            ],
             'forMachine' => '2015-10-05',
         ];
         $viewModelSimple = new Date(new DateTimeImmutable($dateIn), false);
-        $this->assertSame('Oct 5, 2015', $viewModelSimple['forHuman']);
-        $this->assertSame('2015-10-05', $viewModelSimple['forMachine']);
+        $this->assertSame($dataSimple['isExpanded'], $viewModelSimple['isExpanded']);
+        $this->assertSame($dataSimple['forHuman'], $viewModelSimple['forHuman']);
+        $this->assertSame($dataSimple['forMachine'], $viewModelSimple['forMachine']);
         $this->assertSame($dataSimple, $viewModelSimple->toArray());
 
         $dataExpanded = [
+            'isExpanded' => true,
             'forHuman' => [
-                'dayOfMonth' => '5',
+                'dayOfMonth' => 5,
                 'month' => 'Oct',
-                'year' => '2015',
+                'year' => 2015,
             ],
             'forMachine' => '2015-10-05',
         ];
         $viewModelExpanded = new Date(new DateTimeImmutable($dateIn), true);
-        $this->assertSame('5', $viewModelExpanded['forHuman']['dayOfMonth']);
-        $this->assertSame('Oct', $viewModelExpanded['forHuman']['month']);
-        $this->assertSame('2015', $viewModelExpanded['forHuman']['year']);
-        $this->assertSame('2015-10-05', $viewModelExpanded['forMachine']);
+        $this->assertSame($dataExpanded['isExpanded'], $viewModelExpanded['isExpanded']);
+        $this->assertSame($dataExpanded['forHuman'], $viewModelExpanded['forHuman']);
+        $this->assertSame($dataExpanded['forMachine'], $viewModelExpanded['forMachine']);
         $this->assertSame($dataExpanded, $viewModelExpanded->toArray());
     }
 

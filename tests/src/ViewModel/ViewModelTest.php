@@ -4,8 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use ArrayObject;
 use eLife\Patterns\CastsToArray;
-use function eLife\Patterns\flatten;
-use function eLife\Patterns\sanitise_traversable;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
 use PHPUnit_Framework_TestCase;
@@ -13,6 +11,8 @@ use stdClass;
 use Symfony\Component\Yaml\Yaml;
 use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
+use function eLife\Patterns\flatten;
+use function eLife\Patterns\sanitise_traversable;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -172,6 +172,31 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $yamlFile = '/elife/patterns/definitions/'.substr($templateName, 0, -8).'yaml';
 
         return Yaml::parse($this->puli->get($yamlFile)->getBody(), Yaml::PARSE_OBJECT_FOR_MAP);
+    }
+
+    protected function srcsetToArray($srcset)
+    {
+        $sets = explode(', ', $srcset);
+        $array = [];
+        foreach ($sets as $set) {
+            $parts = explode(' ', $set);
+            $array[substr($parts[1], 0, -1)] = $parts[0];
+        }
+        return $array;
+    }
+
+    protected function assertSameWithoutOrder($actual, $expected)
+    {
+        foreach ($actual as $k => $d) {
+            if (!isset($expected[$k])) {
+                $this->fail('Key missing in array: ' . $k);
+            }
+            if ($expected[$k] instanceof CastsToArray || is_array($expected[$k])) {
+                $this->assertSameWithoutOrder($d, $expected[$k]);
+                continue;
+            }
+            $this->assertSame($expected[$k], $d, "asserting key: " . $k);
+        }
     }
 
     private function handleValue($value)
