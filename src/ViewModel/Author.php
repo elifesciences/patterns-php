@@ -12,15 +12,15 @@ final class Author implements CastsToArray
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
 
-    private $authorName;
-    private $authorLink;
+    private $name;
+    private $link;
 
     public function __construct(string $authorName, string $authorLink = null)
     {
         Assertion::notBlank($authorName);
 
-        $this->authorName = $authorName;
-        $this->authorLink = $authorLink;
+        $this->name = $authorName;
+        $this->link = $authorLink;
     }
 
 }
