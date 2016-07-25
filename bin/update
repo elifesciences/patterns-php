@@ -13,6 +13,12 @@ use Symfony\Component\Yaml\Yaml;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+if (!empty($argv[1])) {
+    $reference = $argv[1];
+} else {
+    $reference = 'origin/master';
+}
+
 $sourceDir = __DIR__.'/../pattern-library';
 $outputDir = __DIR__.'/../resources';
 $filesystem = new Filesystem();
@@ -24,11 +30,10 @@ if (false === is_dir($sourceDir)) {
     $repo = $wrapper->cloneRepository('git@github.com:elifesciences/pattern-library.git', $sourceDir);
 } else {
     $repo = new GitWorkingCopy($wrapper, $sourceDir);
-    if ($repo->hasChanges()) {
-        $repo->reset(['hard' => true]);
-    }
-    $repo->pull();
+    $repo->fetch();
 }
+
+$repo->reset($reference, ['hard' => true]);
 
 ProcessBuilder::create()
     ->setArguments(['npm', 'install'])
