@@ -182,3 +182,7 @@ schema:
                 -
                     required:
                         - text
+    required:
+        - rootClasses
+        - title
+        - titleClass

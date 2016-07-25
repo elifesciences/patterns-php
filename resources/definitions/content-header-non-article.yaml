@@ -213,3 +213,7 @@ schema:
                 - name
                 - link
                 - avatar
+    required:
+        - rootClasses
+        - title
+        - titleClass
