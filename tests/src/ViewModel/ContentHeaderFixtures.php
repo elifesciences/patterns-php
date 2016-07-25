@@ -588,15 +588,18 @@ JSON;
                   "options": [
                     {
                       "value": "2016",
-                      "displayValue": "2016"
+                      "displayValue": "2016",
+                      "selected": false
                     },
                     {
                       "value": "2015",
-                      "displayValue": "2015"
+                      "displayValue": "2015",
+                      "selected": true
                     },
                     {
                       "value": "2014",
-                      "displayValue": "2014"
+                      "displayValue": "2014",
+                      "selected": false
                     }
                   ]
                 },

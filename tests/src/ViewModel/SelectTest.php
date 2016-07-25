@@ -19,10 +19,12 @@ final class SelectTest extends ViewModelTest
                 [
                     'value' => 'choice-1',
                     'displayValue' => 'Choice 1',
+                    'selected' => false,
                 ],
                 [
                     'value' => 'choice-2',
                     'displayValue' => 'Choice 2',
+                    'selected' => true,
                 ],
             ],
             'label' => [
@@ -32,8 +34,16 @@ final class SelectTest extends ViewModelTest
             ],
         ];
         $select = new Select($data['id'], [
-            new SelectOption($data['options'][0]['value'], $data['options'][0]['displayValue']),
-            new SelectOption($data['options'][1]['value'], $data['options'][1]['displayValue']),
+            new SelectOption(
+                $data['options'][0]['value'],
+                $data['options'][0]['displayValue'],
+                $data['options'][0]['selected']
+            ),
+            new SelectOption(
+                $data['options'][1]['value'],
+                $data['options'][1]['displayValue'],
+                $data['options'][1]['selected']
+            ),
         ], new FormLabel($data['label']['labelText'], $data['label']['for'], $data['label']['isVisuallyHidden']));
 
         $this->assertSame($data, $select->toArray());
@@ -44,8 +54,8 @@ final class SelectTest extends ViewModelTest
         return [
             'Select with label' => [
                 new Select('id', [
-                    new SelectOption('choice-1', 'Choice 1'),
-                    new SelectOption('choice-2', 'Choice 2'),
+                    new SelectOption('choice-1', 'Choice 1', false),
+                    new SelectOption('choice-2', 'Choice 2', true),
                 ], new FormLabel('Form label', 'id')),
             ],
         ];

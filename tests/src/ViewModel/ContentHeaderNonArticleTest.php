@@ -157,7 +157,7 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
                 new Select(
                     $data['selectNav']['select']['id'],
                     array_map(function ($option) {
-                        return new SelectOption($option['value'], $option['displayValue']);
+                        return new SelectOption($option['value'], $option['displayValue'], $option['selected']);
                     }, $data['selectNav']['select']['options']),
                     new FormLabel(
                         $data['selectNav']['select']['label']['labelText'],

@@ -23,14 +23,17 @@ final class SelectNavTest extends ViewModelTest
                             [
                                 'value' => 'value 1',
                                 'displayValue' => 'display value 1',
+                                'selected' => false,
                             ],
                             [
                                 'value' => 'value 2',
                                 'displayValue' => 'display value 2',
+                                'selected' => true,
                             ],
                             [
                                 'value' => 'value 3',
                                 'displayValue' => 'display value 3',
+                                'selected' => false,
                             ],
                         ],
                     'label' => [
@@ -51,7 +54,7 @@ final class SelectNavTest extends ViewModelTest
             new Select(
                 $data['select']['id'],
                 array_map(function ($option) {
-                    return new SelectOption($option['value'], $option['displayValue']);
+                    return new SelectOption($option['value'], $option['displayValue'], $option['selected']);
                 }, $data['select']['options']),
                 new FormLabel(
                     $data['select']['label']['labelText'],

@@ -13,10 +13,12 @@ final class SelectOption implements CastsToArray
 
     private $value;
     private $displayValue;
+    private $selected;
 
-    public function __construct(string $value, string $displayValue)
+    public function __construct(string $value, string $displayValue, bool $selected = false)
     {
         $this->value = $value;
         $this->displayValue = $displayValue;
+        $this->selected = $selected;
     }
 }
