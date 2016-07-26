@@ -37,11 +37,11 @@ final class ContentHeaderArticle implements ViewModel
     private $titleClass;
     private $strapline;
     private $subjects;
-    private $articleType;
     private $authors;
     private $institutions;
     private $download;
     private $meta;
+    private $backgroundImage;
 
     private function __construct(
         array $rootClasses,
@@ -52,7 +52,8 @@ final class ContentHeaderArticle implements ViewModel
         SubjectList $subjects = null,
         InstitutionList $institutions = null,
         Picture $download = null,
-        Meta $meta = null
+        Meta $meta = null,
+        BackgroundImage $backgroundImage = null
     ) {
         $this->rootClasses = implode(' ', $rootClasses);
         $this->behaviour = $behaviour;
@@ -66,6 +67,7 @@ final class ContentHeaderArticle implements ViewModel
             $this->download = $this->setDownload($download);
         }
         $this->meta = $meta;
+        $this->backgroundImage = $backgroundImage;
     }
 
     private function deriveTitleClass($title) : string
@@ -133,6 +135,8 @@ final class ContentHeaderArticle implements ViewModel
         }
         // This can never be set.
         $strapline = null;
+        // For now.
+        $backgroundImage = null;
         // Constructor.
         return new static(
             $rootClasses,
@@ -143,7 +147,8 @@ final class ContentHeaderArticle implements ViewModel
             $subjects,
             $institutions,
             $download,
-            $meta
+            $meta,
+            $backgroundImage
         );
     }
 
@@ -154,8 +159,14 @@ final class ContentHeaderArticle implements ViewModel
         Picture $download = null,
         SubjectList $subjects = null,
         Meta $meta = null,
-        InstitutionList $institutions = null
+        InstitutionList $institutions = null,
+        BackgroundImage $backgroundImage = null
     ) {
+        $background = true;
+        if ($backgroundImage) {
+            $background = false;
+        }
+
         return self::magazine(
             $title,
             $strapline,
@@ -164,7 +175,8 @@ final class ContentHeaderArticle implements ViewModel
             $subjects,
             $meta,
             $institutions,
-            true
+            $background,
+            $backgroundImage
         );
     }
 
@@ -176,30 +188,30 @@ final class ContentHeaderArticle implements ViewModel
         SubjectList $subjects = null,
         Meta $meta = null,
         InstitutionList $institutions = null,
-        bool $background = false
+        bool $background = false,
+        BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE, self::STYLE_MAGAZINE];
-        $behaviour = self::BEHAVIOUR_BASE;
-        // Can be re-enabled when background image is added.
-        // if ($backgroundImage) {
-        //     array_push($rootClasses, self::STYLE_BACKGROUND_IMAGE);
-        //     array_push($behaviour, self::BEHAVIOUR_BACKGROUND_IMAGE);
-        // }
+        $behaviours = [self::BEHAVIOUR_BASE];
+        if ($backgroundImage) {
+            $background = true;
+            $behaviour = array_push($behaviours, self::BEHAVIOUR_BACKGROUND_IMAGE);
+        }
         if ($background) {
             array_push($rootClasses, self::STYLE_MAGAZINE_BACKGROUND);
         }
-
         // Constructor.
         return new static(
             $rootClasses,
-            $behaviour,
+            implode(' ', $behaviours),
             $title,
             $authors,
             $strapline,
             $subjects,
             $institutions,
             $download,
-            $meta
+            $meta,
+            $backgroundImage
         );
     }
 
