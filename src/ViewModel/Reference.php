@@ -15,19 +15,19 @@ final class Reference implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    protected $abstracts;
-    protected $authors;
-    protected $origin;
-    protected $secondaryLinkText;
-    protected $title;
-    protected $titleLink;
-    protected $hasAuthors;
-    protected $hasAbstracts;
+    private $abstracts;
+    private $authors;
+    private $origin;
+    private $secondaryLinkText;
+    private $title;
+    private $titleLink;
+    private $hasAuthors;
+    private $hasAbstracts;
 
     public function __construct(
         string $title,
-        string $titleLink,
         string $origin,
+        string $titleLink = null,
         string $secondaryLinkText = null,
         array $authors = [],
         array $abstracts = []

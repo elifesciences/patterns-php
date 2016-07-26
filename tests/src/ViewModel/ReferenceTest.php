@@ -30,7 +30,7 @@ final class ReferenceTest extends ViewModelTest
             'hasAbstracts' => true,
         ];
 
-        $reference = new Reference($data['title'], $data['titleLink'], $data['origin'], $data['secondaryLinkText'], [
+        $reference = new Reference($data['title'], $data['origin'], $data['titleLink'], $data['secondaryLinkText'], [
             Author::asText($data['authors'][0]['name']),
             Author::asLink(new Link($data['authors'][1]['name'], $data['authors'][1]['url'])),
         ], [
@@ -46,7 +46,7 @@ final class ReferenceTest extends ViewModelTest
      */
     public function it_can_be_provided_without_secondary_link_text()
     {
-        $reference = new Reference('some title', '/', 'origin');
+        $reference = new Reference('some title', 'origin', '/');
 
         $this->assertNull($reference['secondaryLinkText']);
     }
@@ -55,7 +55,7 @@ final class ReferenceTest extends ViewModelTest
      */
     public function it_can_be_constructed_as_link()
     {
-        $reference = new Reference('some title', '/', 'origin', 'secondary', [
+        $reference = new Reference('some title', 'origin', '/', 'secondary', [
             Author::asLink(new Link('some author', '#')),
         ], []);
 
@@ -68,7 +68,7 @@ final class ReferenceTest extends ViewModelTest
      */
     public function it_can_be_provided_an_empty_author_list()
     {
-        $reference = new Reference('some title', '/', 'origin', 'secondary', [],
+        $reference = new Reference('some title', 'origin', '/', 'secondary', [],
             [
                 new Link('Download', '/download'),
                 new Link('View', '/view'),
@@ -83,7 +83,7 @@ final class ReferenceTest extends ViewModelTest
      */
     public function it_can_be_provided_an_empty_abstract_list()
     {
-        $reference = new Reference('some title', '/', 'origin', 'secondary', [
+        $reference = new Reference('some title', 'origin', '/', 'secondary', [
             Author::asText('Person Foo'),
             Author::asLink(new Link('Person Bar', '/bar')),
         ], []);
@@ -95,7 +95,7 @@ final class ReferenceTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Reference('title of reference', '/', 'the origin', 'the secondary', [
+            [new Reference('title of reference', 'the origin', '/', 'the secondary', [
                 Author::asText('Person Foo'),
                 Author::asLink(new Link('Person Bar', '/bar')),
             ], [
