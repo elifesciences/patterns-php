@@ -75,7 +75,6 @@ JSON;
 
         return json_decode($magazine, true);
     }
-
     public static function magazineBackgroundImageFixture()
     {
         $fixture = <<<JSON
@@ -152,7 +151,6 @@ JSON;
 
         return json_decode($fixture, true);
     }
-
     public static function magazineBackgroundFixture()
     {
         $fixture = <<<JSON
@@ -222,7 +220,6 @@ JSON;
 
         return json_decode($fixture, true);
     }
-
     public static function researchFixture()
     {
         $fixture = <<<JSON
@@ -381,7 +378,6 @@ JSON;
 
         return json_decode($fixture, true);
     }
-
     public static function researchReadMoreFixture()
     {
         $fixture = <<<JSON
@@ -424,7 +420,6 @@ JSON;
 
         return json_decode($fixture, true);
     }
-
     public static function nonArticleBasicFixture()
     {
         $fixture = <<<JSON
@@ -469,6 +464,7 @@ JSON;
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
               "titleClass": "content-header__title--medium",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
@@ -489,19 +485,23 @@ JSON;
                   },
                   "forMachine": "2016-02-29"
                 }
+              },
+
+              "backgroundImage": {
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
 JSON;
 
         return json_decode($fixture, true);
     }
-
     public static function nonArticleCuratedContent()
     {
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-              "behaviour": "ContentHeaderSelectNav",
+              "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
               "titleClass": "content-header__title--medium",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
@@ -531,6 +531,10 @@ JSON;
                   },
                   "forMachine": "2016-02-29"
                 }
+              },
+              "backgroundImage": {
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
 
@@ -542,8 +546,8 @@ JSON;
     {
         $fixture = <<<JSON
             {
-              "rootClasses": "content-header-nonarticle content-header-nonarticle--background content-header--background-image",
-              "behaviour": "ContentHeaderSelectNav",
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
               "titleClass": "content-header__title--medium",
               "hasCtaOrMeta": true,
@@ -553,13 +557,64 @@ JSON;
                 "classes": "button--outline button--small"
               },
               "backgroundImage": {
-                "images": {
-                  "lores": "http://unsplash.it/950/400/",
-                  "hires": "http://unsplash.it/1800/900/"
-                }
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
 
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticlePodcastFixture()
+    {
+        $fixture = <<<JSON
+        {
+          "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+          "behaviour": "ContentHeaderBackgroundImage",
+          "title": "Multicellular life, potato blight and Hepatitis B",
+          "strapline": "Episode 21",
+          "titleClass": "content-header__title--small",
+          "hasCtaOrMeta": true,
+          "meta": {
+            "text": "Podcast",
+            "date": {
+              "forHuman": {
+                "dayOfMonth": 29,
+                "month": "Feb",
+                "year": 2016
+              },
+              "forMachine": "2016-02-29"
+            }
+          },
+          "download": {
+            "sources": [
+              {
+                "srcset": "../../assets/img/icons/download-full-reverse.svg",
+                "media": "(min-width: 35em)",
+                "type": "image/svg+xml"
+              },
+              {
+                "srcset": "../../assets/img/icons/download-full-reverse-1x.png",
+                "media": "(min-width: 35em)"
+              },
+              {
+                "srcset": "../../assets/img/icons/download-reverse.svg",
+                "type": "image/svg+xml"
+              }
+            ],
+            "fallback": {
+              "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
+              "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
+              "classes": "content-header__download_icon",
+              "altText": "Download icon"
+            }
+          },
+          "backgroundImage": {
+            "lowResImageSource": "http://unsplash.it/950/400",
+            "highResImageSource": "http://unsplash.it/1900/800"
+          }
+        }
 JSON;
 
         return json_decode($fixture, true);

@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ContentHeaderNonArticle;
 use eLife\Patterns\ViewModel\FormLabel;
@@ -54,14 +55,6 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
     }
 
     /**
-     * @skip
-     */
-    public function it_can_create_basic_with_strapline_background_image()
-    {
-        // Waiting for background image refactor.
-    }
-
-    /**
      * @test
      */
     public function it_can_create_basic_with_strapline_cta_meta_background()
@@ -72,7 +65,8 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $this->hasBackground($data),
             $data['strapline'],
             $this->buttonFromData($data['button']),
-            $this->metaFromData($data['meta'])
+            $this->metaFromData($data['meta']),
+            $this->backgroundImageFromData($data['backgroundImage'])
         );
         $this->assertSameWithoutOrder($header, $data);
     }
@@ -92,6 +86,14 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
         }
 
         return Button::link($data['text'], $data['path'], $size, $style);
+    }
+
+    private function backgroundImageFromData(array $data) : BackgroundImage
+    {
+        return new BackgroundImage(
+            $data['lowResImageSource'],
+            $data['highResImageSource']
+        );
     }
 
     private function metaFromData(array $data) : Meta
@@ -124,7 +126,8 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $data['strapline'],
             $this->buttonFromData($data['button']),
             $this->metaFromData($data['meta']),
-            Profile::asLink(new Link($data['profile']['name'], $data['profile']['link']), $data['profile']['avatar'])
+            Profile::asLink(new Link($data['profile']['name'], $data['profile']['link']), $data['profile']['avatar']),
+            $this->backgroundImageFromData($data['backgroundImage'])
         );
         $this->assertSameWithoutOrder($header, $data);
     }
@@ -167,6 +170,23 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
                 ),
                 $this->buttonFromData($data['selectNav']['button'], true)
             )
+        );
+        $this->assertSameWithoutOrder($header, $data);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_create_podcast()
+    {
+        $data = ContentHeaderFixtures::nonArticlePodcastFixture();
+        $header = ContentHeaderNonArticle::podcast(
+            $data['title'],
+            $this->hasBackground($data),
+            $data['strapline'],
+            null,
+            $this->metaFromData($data['meta']),
+            $this->backgroundImageFromData($data['backgroundImage'])
         );
         $this->assertSameWithoutOrder($header, $data);
     }

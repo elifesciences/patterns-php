@@ -37,6 +37,7 @@ final class ContentHeaderNonArticle implements ViewModel
     private $profile;
     private $hasProfile = false;
     private $selectNav;
+    private $backgroundImage;
 
     protected function __construct(
         array $rootClasses,
@@ -46,7 +47,8 @@ final class ContentHeaderNonArticle implements ViewModel
         Button $button = null,
         Meta $meta = null,
         Profile $profile = null,
-        SelectNav $selectNav = null
+        SelectNav $selectNav = null,
+        BackgroundImage $backgroundImage = null
     ) {
         Assertion::allInArray($rootClasses, [self::STYLE_BASE, self::STYLE_BACKGROUND]);
         Assertion::allInArray($behaviour, [self::BEHAVIOUR_SELECT_NAV]);
@@ -69,6 +71,7 @@ final class ContentHeaderNonArticle implements ViewModel
         if ($meta || $button || $selectNav) {
             $this->hasCtaOrMeta = true;
         }
+        $this->backgroundImage = $backgroundImage;
     }
 
     private function deriveTitleClass($title) : string
@@ -92,10 +95,11 @@ final class ContentHeaderNonArticle implements ViewModel
         bool $background = false,
         string $strapline = null,
         Button $button = null,
-        Meta $meta = null
+        Meta $meta = null,
+        BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE];
-        if ($background) {
+        if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
 
@@ -105,7 +109,10 @@ final class ContentHeaderNonArticle implements ViewModel
             $title,
             $strapline,
             $button,
-            $meta
+            $meta,
+            null,
+            null,
+            $backgroundImage
         );
     }
 
@@ -115,11 +122,12 @@ final class ContentHeaderNonArticle implements ViewModel
         string $strapline = null,
         Button $button = null,
         Meta $meta = null,
-        Profile $profile = null
+        Profile $profile = null,
+        BackgroundImage $backgroundImage
     ) {
         $rootClasses = [self::STYLE_BASE];
         $behaviours = [self::BEHAVIOUR_SELECT_NAV];
-        if ($background) {
+        if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
 
@@ -130,7 +138,9 @@ final class ContentHeaderNonArticle implements ViewModel
             $strapline,
             $button,
             $meta,
-            $profile
+            $profile,
+            null,
+            $backgroundImage
         );
     }
 
@@ -139,11 +149,12 @@ final class ContentHeaderNonArticle implements ViewModel
         bool $background = false,
         string $strapline = null,
         Button $button = null,
-        Meta $meta = null
+        Meta $meta = null,
+        BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE];
         $behaviours = [self::BEHAVIOUR_SELECT_NAV];
-        if ($background) {
+        if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
 
@@ -153,19 +164,23 @@ final class ContentHeaderNonArticle implements ViewModel
             $title,
             $strapline,
             $button,
-            $meta
+            $meta,
+            null,
+            null,
+            $backgroundImage
         );
     }
 
     public static function subject(
         string $title,
         bool $background = false,
-        Button $button = null
+        Button $button = null,
+        BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE];
         $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         $strapline = null;
-        if ($background) {
+        if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
 
@@ -174,7 +189,11 @@ final class ContentHeaderNonArticle implements ViewModel
             $behaviours,
             $title,
             $strapline,
-            $button
+            $button,
+            null,
+            null,
+            null,
+            $backgroundImage
         );
     }
 
