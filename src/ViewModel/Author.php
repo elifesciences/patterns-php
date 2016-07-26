@@ -15,12 +15,17 @@ final class Author implements CastsToArray
     private $name;
     private $url;
 
-    public function __construct(string $name, string $url = null)
+    private function __construct(string $name, string $url = null)
     {
         Assertion::notBlank($name);
 
         $this->name = $name;
         $this->url = $url;
+    }
+
+    public static function asText(string $name)
+    {
+        return new static($name);
     }
 
     public static function asLink(Link $link)

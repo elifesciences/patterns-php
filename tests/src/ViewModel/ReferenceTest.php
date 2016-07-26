@@ -31,8 +31,8 @@ final class ReferenceTest extends ViewModelTest
         ];
 
         $reference = new Reference($data['title'], $data['titleLink'], $data['origin'], $data['secondaryLinkText'], [
-            new Author($data['authors'][0]['name']),
-            new Author($data['authors'][1]['name'], $data['authors'][1]['url']),
+            Author::asText($data['authors'][0]['name']),
+            Author::asLink(new Link($data['authors'][1]['name'], $data['authors'][1]['url'])),
         ], [
             new Link($data['abstracts'][0]['name'], $data['abstracts'][0]['url']),
             new Link($data['abstracts'][1]['name'], $data['abstracts'][1]['url']),
@@ -48,7 +48,7 @@ final class ReferenceTest extends ViewModelTest
     {
         $reference = new Reference('some title', '/', 'origin');
 
-        $this->assertSame('', $reference['secondaryLinkText']);
+        $this->assertNull($reference['secondaryLinkText']);
     }
     /**
      * @test
@@ -84,8 +84,8 @@ final class ReferenceTest extends ViewModelTest
     public function it_can_be_provided_an_empty_abstract_list()
     {
         $reference = new Reference('some title', '/', 'origin', 'secondary', [
-            new Author('Person Foo'),
-            new Author('Person Bar', '/bar'),
+            Author::asText('Person Foo'),
+            Author::asLink(new Link('Person Bar', '/bar')),
         ], []);
 
         $this->assertSame([], $reference['abstracts'], 'Abstracts appears empty');
@@ -96,8 +96,8 @@ final class ReferenceTest extends ViewModelTest
     {
         return [
             [new Reference('title of reference', '/', 'the origin', 'the secondary', [
-                new Author('Person Foo'),
-                new Author('Person Bar', '/bar'),
+                Author::asText('Person Foo'),
+                Author::asLink(new Link('Person Bar', '/bar')),
             ], [
                 new Link('Download', '/download'),
                 new Link('View', '/view'),

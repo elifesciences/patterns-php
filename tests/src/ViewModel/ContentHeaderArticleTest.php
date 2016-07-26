@@ -27,7 +27,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
             $data['title'],
             $data['strapline'],
             AuthorList::asList(array_map(function ($item) {
-                return new Author($item['name']);
+                return Author::asText($item['name']);
             }, $data['authors']['list'])),
             new Picture(
                 $data['download']['sources'],
@@ -71,7 +71,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
             $data['title'],
             $data['strapline'],
             AuthorList::asList(array_map(function ($item) {
-                return new Author($item['name']);
+                return Author::asText($item['name']);
             }, $data['authors']['list'])),
             new Picture(
                 $data['download']['sources'],
@@ -100,7 +100,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $research = ContentHeaderArticle::research(
             $data['title'],
             AuthorList::asList(array_map(function ($item) {
-                return new Author($item['name']);
+                return Author::asText($item['name']);
             }, $data['authors']['list'])),
             $this->metaFromData($data['meta']),
             new SubjectList(...array_map(function ($item) {
@@ -163,7 +163,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
                     'title',
                     'strapline',
                     AuthorList::asList(array_map(function ($item) {
-                        return new Author($item['name']);
+                        return Author::asText($item['name']);
                     }, [
                         ['name' => 'name1'],
                         ['name' => 'name2'],
