@@ -33,7 +33,6 @@ final class Reference implements ViewModel
         array $abstracts = []
     ) {
         Assertion::notBlank($title);
-        Assertion::notBlank($titleLink);
         Assertion::notBlank($origin);
         Assertion::allIsInstanceOf($authors, Author::class);
         Assertion::allIsInstanceOf($abstracts, Link::class);
@@ -43,9 +42,9 @@ final class Reference implements ViewModel
         $this->secondaryLinkText = $secondaryLinkText;
         $this->origin = $origin;
         $this->authors = $authors;
-        $this->hasAuthors = !!$authors;
+        $this->hasAuthors = !empty($authors);
         $this->abstracts = $abstracts;
-        $this->hasAbstracts = !!$abstracts;
+        $this->hasAbstracts = !empty($abstracts);
     }
 
     public function getStyleSheets() : Traversable
