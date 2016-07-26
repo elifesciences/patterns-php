@@ -7,7 +7,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class BackgroundImage implements CastsToArray
+final class BackgroundImage implements CastsToArray
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
@@ -15,7 +15,7 @@ class BackgroundImage implements CastsToArray
     private $lowResImageSource;
     private $highResImageSource;
 
-    public function __construct($lowResImageSource, $highResImageSource)
+    public function __construct(string $lowResImageSource, string $highResImageSource)
     {
         Assertion::notBlank($lowResImageSource);
         Assertion::notBlank($highResImageSource);

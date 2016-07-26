@@ -135,8 +135,6 @@ final class ContentHeaderArticle implements ViewModel
         }
         // This can never be set.
         $strapline = null;
-        // For now.
-        $backgroundImage = null;
         // Constructor.
         return new static(
             $rootClasses,
@@ -148,7 +146,7 @@ final class ContentHeaderArticle implements ViewModel
             $institutions,
             $download,
             $meta,
-            $backgroundImage
+            null
         );
     }
 
@@ -162,11 +160,6 @@ final class ContentHeaderArticle implements ViewModel
         InstitutionList $institutions = null,
         BackgroundImage $backgroundImage = null
     ) {
-        $background = true;
-        if ($backgroundImage) {
-            $background = false;
-        }
-
         return self::magazine(
             $title,
             $strapline,
@@ -175,7 +168,7 @@ final class ContentHeaderArticle implements ViewModel
             $subjects,
             $meta,
             $institutions,
-            $background,
+            null === $backgroundImage,
             $backgroundImage
         );
     }
