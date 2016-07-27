@@ -480,6 +480,7 @@ JSON;
           }
         }
 JSON;
+
         return json_decode($fixture, true);
     }
     public static function nonArticleBasicWithStraplineBackgroundCtaMetaFixture()

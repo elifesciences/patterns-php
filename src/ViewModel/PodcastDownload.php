@@ -2,14 +2,13 @@
 
 namespace eLife\Patterns\ViewModel;
 
-
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class PodcastDownload implements CastsToArray, IsImage
+final class PodcastDownload implements CastsToArray, IsImage
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
 
@@ -19,12 +18,15 @@ class PodcastDownload implements CastsToArray, IsImage
 
     public function __construct(string $downloadLink, Picture $picture)
     {
+        Assertion::notBlank($downloadLink);
+
         $this->downloadLink = $downloadLink;
         $this->fallback = $this->fallbackFromPicture($picture);
         $this->sources = $picture['sources'];
     }
 
-    private function fallbackFromPicture(Picture $source) {
+    private function fallbackFromPicture(Picture $source)
+    {
         $picture = $source->toArray();
         $fallback = $picture['fallback'];
         // Split into classes.
@@ -35,7 +37,7 @@ class PodcastDownload implements CastsToArray, IsImage
         $classes = array_unique($classes);
         // Glue back together.
         $fallback['classes'] = implode(' ', $classes);
+
         return $fallback;
     }
-
 }
