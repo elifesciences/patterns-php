@@ -212,11 +212,11 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $this->backgroundImageFromData($data['backgroundImage']),
             new PodcastDownload('#',
                 new Picture(
-                    $data['download']['sources'],
+                    $data['download']['picture']['sources'],
                     new Image(
-                        $data['download']['fallback']['defaultPath'],
-                        $this->srcsetToArray($data['download']['fallback']['srcset']),
-                        $data['download']['fallback']['altText']
+                        $data['download']['picture']['fallback']['defaultPath'],
+                        $this->srcsetToArray($data['download']['picture']['fallback']['srcset']),
+                        $data['download']['picture']['fallback']['altText']
                     )
                 )
             )

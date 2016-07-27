@@ -15,14 +15,30 @@ final class PodcastDownload implements CastsToArray, IsImage
     private $downloadLink;
     private $fallback;
     private $sources;
+    private $picture;
 
-    public function __construct(string $downloadLink, Picture $picture)
+    const STYLE_DOWNLOAD_ICON = 'content-header__download_icon';
+
+    public function __construct(string $downloadLink, Picture $picture, string $style = null)
     {
         Assertion::notBlank($downloadLink);
-
+        if ($style) {
+            Assertion::inArray($style, [ self::STYLE_DOWNLOAD_ICON ]);
+        }
+        
+        $this->picture = $this->setPicture($picture);
         $this->downloadLink = $downloadLink;
-        $this->fallback = $this->fallbackFromPicture($picture);
-        $this->sources = $picture['sources'];
+    }
+
+    private function setPicture(Picture $picture)
+    {
+        $picture = FlexibleViewModel::fromViewModel($picture);
+
+        $fallback = $picture['fallback'];
+        $fallback['classes'] = static::STYLE_DOWNLOAD_ICON;
+
+        return $picture
+            ->withProperty('fallback', $fallback);
     }
 
     private function fallbackFromPicture(Picture $source)
