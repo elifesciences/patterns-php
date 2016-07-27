@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 final class ContentHeaderFixtures
 {
+    // Article
     public static function magazineFixture()
     {
         // @note
@@ -71,6 +72,7 @@ final class ContentHeaderFixtures
         }
 
 
+
 JSON;
 
         return json_decode($magazine, true);
@@ -133,7 +135,6 @@ JSON;
             "lowResImageSource": "http://unsplash.it/950/400",
             "highResImageSource": "http://unsplash.it/1900/800"
           },
-
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -147,6 +148,7 @@ JSON;
             }
           }
         }
+
 JSON;
 
         return json_decode($fixture, true);
@@ -201,7 +203,6 @@ JSON;
               "altText": "Download icon"
             }
           },
-
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -374,6 +375,7 @@ JSON;
         }
 
 
+
 JSON;
 
         return json_decode($fixture, true);
@@ -401,7 +403,6 @@ JSON;
                 "firstAuthorOnly": "Lee R Berger",
                 "hasEtAl": true
               },
-
               "meta": {
                 "url": "#",
                 "text": "Research article",
@@ -416,10 +417,13 @@ JSON;
               }
             }
 
+
 JSON;
 
         return json_decode($fixture, true);
     }
+
+    // Non-article
     public static function nonArticleBasicFixture()
     {
         $fixture = <<<JSON
@@ -428,6 +432,7 @@ JSON;
               "title": "About <i>eLife</i>",
               "titleClass": "content-header__title--large"
             }
+
 JSON;
 
         return json_decode($fixture, true);
@@ -455,8 +460,26 @@ JSON;
               "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research."
             }
+
 JSON;
 
+        return json_decode($fixture, true);
+    }
+    public static function nonArticleBasicWithStraplineBackgroundImageFixture()
+    {
+        $fixture = <<<JSON
+        {
+          "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+          "behaviour": "ContentHeaderBackgroundImage",
+          "title": "About <i>eLife</i>",
+          "titleClass": "content-header__title--large",
+          "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
+          "backgroundImage": {
+            "lowResImageSource": "http://unsplash.it/950/400",
+            "highResImageSource": "http://unsplash.it/1900/800"
+          }
+        }
+JSON;
         return json_decode($fixture, true);
     }
     public static function nonArticleBasicWithStraplineBackgroundCtaMetaFixture()
@@ -518,7 +541,7 @@ JSON;
               "button": {
                 "text": "Subscribe",
                 "path": "#",
-                "classes": "button--small button--outline"
+                "classes": "button--outline button--small"
               },
               "meta": {
                 "url": "#",
@@ -537,7 +560,6 @@ JSON;
                 "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
-
 JSON;
 
         return json_decode($fixture, true);
@@ -554,7 +576,7 @@ JSON;
               "button": {
                 "text": "Subscribe",
                 "path": "#",
-                "classes": "button--small button--outline"
+                "classes": "button--outline button--small"
               },
               "backgroundImage": {
                 "lowResImageSource": "http://unsplash.it/950/400",
@@ -665,8 +687,6 @@ JSON;
                 "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
-
-
 
 JSON;
 

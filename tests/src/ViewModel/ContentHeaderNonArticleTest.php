@@ -6,10 +6,13 @@ use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ContentHeaderNonArticle;
 use eLife\Patterns\ViewModel\FormLabel;
+use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Date;
+use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PodcastDownload;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
@@ -66,6 +69,23 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $data['strapline'],
             $this->buttonFromData($data['button']),
             $this->metaFromData($data['meta']),
+            $this->backgroundImageFromData($data['backgroundImage'])
+        );
+        $this->assertSameWithoutOrder($data, $header);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_create_basic_with_strapline_background_image()
+    {
+        $data = ContentHeaderFixtures::nonArticleBasicWithStraplineBackgroundImageFixture();
+        $header = ContentHeaderNonArticle::basic(
+            $data['title'],
+            $this->hasBackground($data),
+            $data['strapline'],
+            null,
+            null,
             $this->backgroundImageFromData($data['backgroundImage'])
         );
         $this->assertSameWithoutOrder($data, $header);
@@ -178,7 +198,7 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
     }
 
     /**
-     * @skiptest Incomplete, waiting for download to be cleared up.
+     * @test
      */
     public function it_can_create_podcast()
     {
@@ -189,7 +209,17 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $data['strapline'],
             null,
             $this->metaFromData($data['meta']),
-            $this->backgroundImageFromData($data['backgroundImage'])
+            $this->backgroundImageFromData($data['backgroundImage']),
+            new PodcastDownload('#',
+                new Picture(
+                    $data['download']['sources'],
+                    new Image(
+                        $data['download']['fallback']['defaultPath'],
+                        $this->srcsetToArray($data['download']['fallback']['srcset']),
+                        $data['download']['fallback']['altText']
+                    )
+                )
+            )
         );
         $this->assertSameWithoutOrder($data, $header);
     }
