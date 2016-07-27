@@ -56,7 +56,6 @@ final class ContentHeaderFixtures
               "altText": "Download icon"
             }
           },
-
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -70,6 +69,7 @@ final class ContentHeaderFixtures
             }
           }
         }
+
 
 JSON;
 
@@ -426,7 +426,7 @@ JSON;
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium"
+              "titleClass": "content-header__title--large"
             }
 JSON;
 
@@ -438,7 +438,7 @@ JSON;
             {
               "rootClasses": "content-header-nonarticle",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research."
             }
 
@@ -452,7 +452,7 @@ JSON;
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research."
             }
 JSON;
@@ -466,13 +466,13 @@ JSON;
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
               "hasCtaOrMeta": true,
               "button": {
                 "text": "Subscribe",
                 "path": "#",
-                "classes": "button--outline button--small"
+                "classes": "button--small button--outline"
               },
               "meta": {
                 "url": "#",
@@ -503,7 +503,7 @@ JSON;
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
               "hasProfile": true,
               "profile": {
@@ -518,7 +518,7 @@ JSON;
               "button": {
                 "text": "Subscribe",
                 "path": "#",
-                "classes": "button--outline button--small"
+                "classes": "button--small button--outline"
               },
               "meta": {
                 "url": "#",
@@ -549,18 +549,19 @@ JSON;
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "hasCtaOrMeta": true,
               "button": {
                 "text": "Subscribe",
                 "path": "#",
-                "classes": "button--outline button--small"
+                "classes": "button--small button--outline"
               },
               "backgroundImage": {
                 "lowResImageSource": "http://unsplash.it/950/400",
                 "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
+
 
 JSON;
 
@@ -574,7 +575,7 @@ JSON;
           "behaviour": "ContentHeaderBackgroundImage",
           "title": "Multicellular life, potato blight and Hepatitis B",
           "strapline": "Episode 21",
-          "titleClass": "content-header__title--small",
+          "titleClass": "content-header__title--medium",
           "hasCtaOrMeta": true,
           "meta": {
             "text": "Podcast",
@@ -615,6 +616,7 @@ JSON;
             "highResImageSource": "http://unsplash.it/1900/800"
           }
         }
+
 JSON;
 
         return json_decode($fixture, true);
@@ -623,10 +625,10 @@ JSON;
     {
         $fixture = <<<JSON
             {
-              "rootClasses": "content-header-nonarticle content-header-nonarticle--background content-header--background-image",
-              "behaviour": "ContentHeaderSelectNav",
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "behaviour": "ContentHeaderSelectNav ContentHeaderBackgroundImage",
               "title": "Archive",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "hasCtaOrMeta": true,
               "selectNav": {
                 "route": "/path/to/archive",
@@ -640,18 +642,15 @@ JSON;
                   "options": [
                     {
                       "value": "2016",
-                      "displayValue": "2016",
-                      "selected": false
+                      "displayValue": "2016"
                     },
                     {
                       "value": "2015",
-                      "displayValue": "2015",
-                      "selected": true
+                      "displayValue": "2015"
                     },
                     {
                       "value": "2014",
-                      "displayValue": "2014",
-                      "selected": false
+                      "displayValue": "2014"
                     }
                   ]
                 },
@@ -660,8 +659,13 @@ JSON;
                   "type": "submit",
                   "classes": "button--outline button--extra-small"
                 }
+              },
+              "backgroundImage": {
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
+
 
 
 JSON;

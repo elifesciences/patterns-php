@@ -25,6 +25,7 @@ final class ContentHeaderNonArticle implements ViewModel
     const TITLE_EXTRA_SMALL = 'content-header__title--extra-small';
 
     const BEHAVIOUR_SELECT_NAV = 'ContentHeaderSelectNav';
+    const BEHAVIOUR_BACKGROUND_IMAGE = 'ContentHeaderBackgroundImage';
 
     private $rootClasses;
     private $title;
@@ -41,7 +42,6 @@ final class ContentHeaderNonArticle implements ViewModel
 
     protected function __construct(
         array $rootClasses,
-        array $behaviour,
         string $title,
         string $strapline = null,
         Button $button = null,
@@ -51,11 +51,18 @@ final class ContentHeaderNonArticle implements ViewModel
         BackgroundImage $backgroundImage = null
     ) {
         Assertion::allInArray($rootClasses, [self::STYLE_BASE, self::STYLE_BACKGROUND]);
-        Assertion::allInArray($behaviour, [self::BEHAVIOUR_SELECT_NAV]);
         Assertion::notBlank($title);
 
+        $behaviours = [];
+        if ($backgroundImage) {
+            array_push($behaviours, self::BEHAVIOUR_BACKGROUND_IMAGE);
+        }
+        if ($selectNav) {
+            array_push($behaviours, self::BEHAVIOUR_SELECT_NAV);
+        }
+
         $this->rootClasses = implode(' ', $rootClasses);
-        $this->behaviour = implode(' ', $behaviour);
+        $this->behaviour = implode(' ', $behaviours);
         $this->title = $title;
         $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
@@ -76,7 +83,8 @@ final class ContentHeaderNonArticle implements ViewModel
 
     private function deriveTitleClass($title) : string
     {
-        $titleLength = strlen($title);
+        $titleLength = strlen(strip_tags($title));
+
         if ($titleLength >= 80) {
             return self::TITLE_EXTRA_SMALL;
         }
@@ -105,7 +113,6 @@ final class ContentHeaderNonArticle implements ViewModel
 
         return new static(
             $rootClasses,
-            [],
             $title,
             $strapline,
             $button,
@@ -126,14 +133,12 @@ final class ContentHeaderNonArticle implements ViewModel
         BackgroundImage $backgroundImage
     ) {
         $rootClasses = [self::STYLE_BASE];
-        $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
 
         return new static (
             $rootClasses,
-            $behaviours,
             $title,
             $strapline,
             $button,
@@ -153,14 +158,12 @@ final class ContentHeaderNonArticle implements ViewModel
         BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE];
-        $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
 
         return new static (
             $rootClasses,
-            $behaviours,
             $title,
             $strapline,
             $button,
@@ -178,7 +181,6 @@ final class ContentHeaderNonArticle implements ViewModel
         BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE];
-        $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         $strapline = null;
         if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
@@ -186,7 +188,6 @@ final class ContentHeaderNonArticle implements ViewModel
 
         return new static (
             $rootClasses,
-            $behaviours,
             $title,
             $strapline,
             $button,
@@ -200,27 +201,27 @@ final class ContentHeaderNonArticle implements ViewModel
     public static function archive(
         string $title,
         bool $background,
-        SelectNav $selectNav
+        SelectNav $selectNav,
+        BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE];
-        $behaviours = [self::BEHAVIOUR_SELECT_NAV];
         $strapline = null;
         $profile = null;
         $button = null;
         $meta = null;
-        if ($background) {
+        if ($background || $backgroundImage) {
             array_push($rootClasses, self::STYLE_BACKGROUND);
         }
 
         return new static (
             $rootClasses,
-            $behaviours,
             $title,
             $strapline,
             $button,
             $meta,
             $profile,
-            $selectNav
+            $selectNav,
+            $backgroundImage
         );
     }
 

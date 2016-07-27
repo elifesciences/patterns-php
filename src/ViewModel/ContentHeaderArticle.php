@@ -72,7 +72,8 @@ final class ContentHeaderArticle implements ViewModel
 
     private function deriveTitleClass($title) : string
     {
-        $titleLength = strlen($title);
+        $titleLength = strlen(strip_tags($title));
+
         if ($titleLength >= 80) {
             return self::TITLE_EXTRA_SMALL;
         }
