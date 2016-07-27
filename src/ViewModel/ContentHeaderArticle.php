@@ -45,7 +45,6 @@ final class ContentHeaderArticle implements ViewModel
 
     private function __construct(
         array $rootClasses,
-        string $behaviour,
         string $title,
         AuthorList $authors = null,
         string $strapline = null,
@@ -55,8 +54,13 @@ final class ContentHeaderArticle implements ViewModel
         Meta $meta = null,
         BackgroundImage $backgroundImage = null
     ) {
+        $behaviours = [self::BEHAVIOUR_BASE];
+        if ($backgroundImage) {
+            array_push($behaviours, self::BEHAVIOUR_BACKGROUND_IMAGE);
+        }
+
         $this->rootClasses = implode(' ', $rootClasses);
-        $this->behaviour = $behaviour;
+        $this->behaviour = implode(' ', $behaviours);
         $this->title = $title;
         $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
@@ -129,7 +133,6 @@ final class ContentHeaderArticle implements ViewModel
     ) {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
-        $behaviour = self::BEHAVIOUR_BASE;
         // For read more add the extra class.
         if ($authors['hasEtAl'] === true) {
             array_push($rootClasses, self::STYLE_RESEARCH_READ_MORE);
@@ -139,7 +142,6 @@ final class ContentHeaderArticle implements ViewModel
         // Constructor.
         return new static(
             $rootClasses,
-            $behaviour,
             $title,
             $authors,
             $strapline,
@@ -186,18 +188,12 @@ final class ContentHeaderArticle implements ViewModel
         BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE, self::STYLE_MAGAZINE];
-        $behaviours = [self::BEHAVIOUR_BASE];
-        if ($backgroundImage) {
-            $background = true;
-            $behaviour = array_push($behaviours, self::BEHAVIOUR_BACKGROUND_IMAGE);
-        }
-        if ($background) {
+        if ($backgroundImage || $background) {
             array_push($rootClasses, self::STYLE_MAGAZINE_BACKGROUND);
         }
         // Constructor.
         return new static(
             $rootClasses,
-            implode(' ', $behaviours),
             $title,
             $authors,
             $strapline,
