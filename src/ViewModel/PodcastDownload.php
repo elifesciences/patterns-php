@@ -23,7 +23,7 @@ final class PodcastDownload implements CastsToArray, IsImage
     {
         Assertion::notBlank($downloadLink);
         if ($style) {
-            Assertion::inArray($style, [ self::STYLE_DOWNLOAD_ICON ]);
+            Assertion::inArray($style, [self::STYLE_DOWNLOAD_ICON]);
         }
 
         $this->picture = $this->setPicture($picture);
@@ -40,5 +40,4 @@ final class PodcastDownload implements CastsToArray, IsImage
         return $picture
             ->withProperty('fallback', $fallback);
     }
-
 }
