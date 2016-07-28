@@ -13,10 +13,11 @@ final class Image implements CastsToArray, IsImage
     use ReadOnlyArrayAccess;
 
     private $altText;
+    private $classes;
     private $defaultPath;
     private $srcset;
 
-    public function __construct(string $defaultPath, array $srcset, string $altText = '')
+    public function __construct(string $defaultPath, array $srcset, string $altText = '', array $classes = null)
     {
         Assertion::notBlank($defaultPath);
         Assertion::notEmpty($srcset);
@@ -30,5 +31,8 @@ final class Image implements CastsToArray, IsImage
         }
         $this->srcset = implode(', ', $this->srcset);
         $this->altText = $altText;
+        if (!empty($classes)) {
+            $this->classes = implode(' ', $classes);
+        }
     }
 }
