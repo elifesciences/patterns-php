@@ -27,6 +27,7 @@ final class PictureTest extends ViewModelTest
         $data = [
             'fallback' => [
                 'altText' => 'the alt text',
+                'classes' => 'class-1 class-2',
                 'defaultPath' => '/default/path',
                 'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
             ],
@@ -44,6 +45,7 @@ final class PictureTest extends ViewModelTest
         $picture = new Picture($data['sources'], $this->imageFixture);
         $this->assertSame($data['fallback']['defaultPath'], $picture['fallback']['defaultPath']);
         $this->assertSame($data['fallback']['altText'], $picture['fallback']['altText']);
+        $this->assertSame($data['fallback']['classes'], $picture['fallback']['classes']);
         $this->assertSame($data['sources'], $picture['sources']);
         $this->assertSame($data, $picture->toArray());
     }
