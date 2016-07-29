@@ -25,7 +25,7 @@ final class ContentHeaderNonArticle implements ViewModel
     const TITLE_EXTRA_SMALL = 'content-header__title--extra-small';
 
     const BEHAVIOUR_SELECT_NAV = 'ContentHeaderSelectNav';
-    const BEHAVIOUR_BACKGROUND_IMAGE = 'ContentHeaderBackgroundImage';
+    const BEHAVIOUR_BACKGROUND_IMAGE = 'BackgroundImage';
 
     private $rootClasses;
     private $title;
