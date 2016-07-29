@@ -16,9 +16,13 @@ use eLife\Patterns\ViewModel\PodcastDownload;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
+use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
 
 final class ContentHeaderNonArticleTest extends ViewModelTest
 {
+
+    use MetaFromData;
+
     /**
      * @test
      */
@@ -114,24 +118,6 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $data['lowResImageSource'],
             $data['highResImageSource']
         );
-    }
-
-    private function metaFromData(array $data) : Meta
-    {
-        if (isset($data['url'])) {
-            return Meta::withLink(
-                new Link($data['text'], $data['url']),
-                new Date(new DateTimeImmutable($data['date']['forMachine']))
-            );
-        }
-        if (isset($data['text'])) {
-            return Meta::withText(
-                $data['text'],
-                new Date(new DateTimeImmutable($data['date']['forMachine']))
-            );
-        }
-        // Throw maybe? Or expected.
-        return;
     }
 
     /**

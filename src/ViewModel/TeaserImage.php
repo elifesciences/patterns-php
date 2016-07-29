@@ -87,12 +87,15 @@ final class TeaserImage implements CastsToArray
         );
     }
 
-    private function srcsetFromArray(array $srcset = null)
+    private function srcsetFromArray(array $array = null) : string
     {
-        return $srcset === null ?
-            null :
-            implode(', ', array_map(function ($src, $width) {
-                return $src.' '.$width.'w';
-            }, $srcset));
+        if ($array === null) {
+            return null;
+        }
+        $srcsets = [];
+        foreach ($array as $width => $src) {
+            $srcsets[] = $src.' '.$width.'w';
+        }
+        return implode(', ', $srcsets);
     }
 }

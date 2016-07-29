@@ -15,6 +15,8 @@ final class Teaser implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    const STYLE_SECONDARY = 'teaser--secondary';
+
     private $title;
     private $rootClasses;
     private $url;
@@ -28,7 +30,7 @@ final class Teaser implements ViewModel
 
     protected function __construct(
         string $title,
-        string $rootClasses = null,
+        array $rootClasses = [],
         string $url = null,
         string $content = null,
         string $secondaryInfo = null,
@@ -41,7 +43,7 @@ final class Teaser implements ViewModel
         Assertion::notBlank($title);
 
         $this->title = $title;
-        $this->rootClasses = $rootClasses;
+        $this->rootClasses = implode(' ', $rootClasses);
         $this->url = $url;
         $this->content = $content;
         $this->secondaryInfo = $secondaryInfo;
@@ -52,9 +54,25 @@ final class Teaser implements ViewModel
         $this->footer = $footer;
     }
 
-    public static function basic($title)
+    public static function basic(
+        string $title,
+        string $url = null,
+        TeaserImage $image = null,
+        TeaserFooter $footer = null)
     {
-        return new static($title);
+        $rootClasses = [self::STYLE_SECONDARY];
+        return new static(
+            $title,
+            $rootClasses,
+            $url,
+            null,
+            null,
+            null,
+            null,
+            null,
+            $image,
+            $footer
+        );
     }
 
     public function getTemplateName() : string
