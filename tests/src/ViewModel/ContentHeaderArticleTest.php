@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Author;
 use eLife\Patterns\ViewModel\AuthorList;
+use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\ContentHeaderArticle;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Image;
@@ -94,6 +95,37 @@ final class ContentHeaderArticleTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_can_create_magazine_with_background_image()
+    {
+        $data = ContentHeaderFixtures::magazineBackgroundImageFixture();
+        $magazine = ContentHeaderArticle::magazine(
+            $data['title'],
+            $data['strapline'],
+            AuthorList::asList(array_map(function ($item) {
+                return Author::asText($item['name']);
+            }, $data['authors']['list'])),
+            new Picture(
+                $data['download']['sources'],
+                new Image(
+                    $data['download']['fallback']['defaultPath'],
+                    $this->srcsetToArray($data['download']['fallback']['srcset']),
+                    $data['download']['fallback']['altText']
+                )
+            ),
+            new SubjectList(...array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['subjects']['list'])),
+            $this->metaFromData($data['meta']),
+            null,
+            false,
+            new BackgroundImage($data['backgroundImage']['lowResImageSource'], $data['backgroundImage']['highResImageSource'])
+        );
+        $this->assertSameWithoutOrder($data, $magazine->toArray());
+    }
+
+    /**
+     * @test
+     */
     public function it_can_create_research()
     {
         $data = ContentHeaderFixtures::researchFixture();
@@ -137,14 +169,6 @@ final class ContentHeaderArticleTest extends ViewModelTest
             null
         );
         $this->assertSameWithoutOrder($data, $research->toArray());
-    }
-
-    /**
-     * @wiptest
-     */
-    public function it_can_create_magazine_with_background_image()
-    {
-        $this->markTestSkipped('This is waiting for background image refactoring');
     }
 
     /**

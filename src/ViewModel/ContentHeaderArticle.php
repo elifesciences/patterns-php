@@ -37,25 +37,30 @@ final class ContentHeaderArticle implements ViewModel
     private $titleClass;
     private $strapline;
     private $subjects;
-    private $articleType;
     private $authors;
     private $institutions;
     private $download;
     private $meta;
+    private $backgroundImage;
 
     private function __construct(
         array $rootClasses,
-        string $behaviour,
         string $title,
         AuthorList $authors = null,
         string $strapline = null,
         SubjectList $subjects = null,
         InstitutionList $institutions = null,
         Picture $download = null,
-        Meta $meta = null
+        Meta $meta = null,
+        BackgroundImage $backgroundImage = null
     ) {
+        $behaviours = [self::BEHAVIOUR_BASE];
+        if ($backgroundImage) {
+            array_push($behaviours, self::BEHAVIOUR_BACKGROUND_IMAGE);
+        }
+
         $this->rootClasses = implode(' ', $rootClasses);
-        $this->behaviour = $behaviour;
+        $this->behaviour = implode(' ', $behaviours);
         $this->title = $title;
         $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
@@ -66,11 +71,13 @@ final class ContentHeaderArticle implements ViewModel
             $this->download = $this->setDownload($download);
         }
         $this->meta = $meta;
+        $this->backgroundImage = $backgroundImage;
     }
 
     private function deriveTitleClass($title) : string
     {
-        $titleLength = strlen($title);
+        $titleLength = strlen(strip_tags($title));
+
         if ($titleLength >= 80) {
             return self::TITLE_EXTRA_SMALL;
         }
@@ -126,7 +133,6 @@ final class ContentHeaderArticle implements ViewModel
     ) {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
-        $behaviour = self::BEHAVIOUR_BASE;
         // For read more add the extra class.
         if ($authors['hasEtAl'] === true) {
             array_push($rootClasses, self::STYLE_RESEARCH_READ_MORE);
@@ -136,14 +142,14 @@ final class ContentHeaderArticle implements ViewModel
         // Constructor.
         return new static(
             $rootClasses,
-            $behaviour,
             $title,
             $authors,
             $strapline,
             $subjects,
             $institutions,
             $download,
-            $meta
+            $meta,
+            null
         );
     }
 
@@ -154,7 +160,8 @@ final class ContentHeaderArticle implements ViewModel
         Picture $download = null,
         SubjectList $subjects = null,
         Meta $meta = null,
-        InstitutionList $institutions = null
+        InstitutionList $institutions = null,
+        BackgroundImage $backgroundImage = null
     ) {
         return self::magazine(
             $title,
@@ -164,7 +171,8 @@ final class ContentHeaderArticle implements ViewModel
             $subjects,
             $meta,
             $institutions,
-            true
+            null === $backgroundImage,
+            $backgroundImage
         );
     }
 
@@ -176,30 +184,24 @@ final class ContentHeaderArticle implements ViewModel
         SubjectList $subjects = null,
         Meta $meta = null,
         InstitutionList $institutions = null,
-        bool $background = false
+        bool $background = false,
+        BackgroundImage $backgroundImage = null
     ) {
         $rootClasses = [self::STYLE_BASE, self::STYLE_MAGAZINE];
-        $behaviour = self::BEHAVIOUR_BASE;
-        // Can be re-enabled when background image is added.
-        // if ($backgroundImage) {
-        //     array_push($rootClasses, self::STYLE_BACKGROUND_IMAGE);
-        //     array_push($behaviour, self::BEHAVIOUR_BACKGROUND_IMAGE);
-        // }
-        if ($background) {
+        if ($backgroundImage || $background) {
             array_push($rootClasses, self::STYLE_MAGAZINE_BACKGROUND);
         }
-
         // Constructor.
         return new static(
             $rootClasses,
-            $behaviour,
             $title,
             $authors,
             $strapline,
             $subjects,
             $institutions,
             $download,
-            $meta
+            $meta,
+            $backgroundImage
         );
     }
 
