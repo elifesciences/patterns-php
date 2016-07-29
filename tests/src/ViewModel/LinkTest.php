@@ -42,14 +42,4 @@ final class LinkTest extends PHPUnit_Framework_TestCase
 
         new Link('', 'url');
     }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_blank_url()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new Link('name', '');
-    }
 }

@@ -7,19 +7,18 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-final class Link implements CastsToArray
+final class ContextLabel implements CastsToArray
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
 
-    private $name;
-    private $url = null;
+    private $list;
 
-    public function __construct(string $name, string $url = null)
+    public function __construct(array $list)
     {
-        Assertion::notBlank($name);
+        Assertion::allIsInstanceOf($list, Link::class);
+        Assertion::notEmpty($list);
 
-        $this->name = $name;
-        $this->url = $url;
+        $this->list = $list;
     }
 }

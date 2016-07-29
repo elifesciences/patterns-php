@@ -9,19 +9,33 @@ use DateTimeImmutable;
 
 trait MetaFromData
 {
-    protected function metaFromData(array $data) : Meta
+    final protected function metaFromData(array $data) : Meta
     {
-        if (isset($data['url'])) {
-            return Meta::withLink(
-                new Link($data['text'], $data['url']),
-                new Date(new DateTimeImmutable($data['date']['forMachine']))
-            );
+        if (isset($data['url']) && $data['url'] !== null) {
+            if (isset($data['date']['forMachine'])) {
+                return Meta::withLink(
+                    new Link($data['text'], $data['url']),
+                    new Date(new DateTimeImmutable($data['date']['forMachine']))
+                );
+            }
+            else {
+                return Meta::withLink(
+                    new Link($data['text'], $data['url'])
+                );
+            }
         }
         if (isset($data['text'])) {
-            return Meta::withText(
-                $data['text'],
-                new Date(new DateTimeImmutable($data['date']['forMachine']))
-            );
+            if (isset($data['date']['forMachine'])) {
+                return Meta::withText(
+                    $data['text'],
+                    new Date(new DateTimeImmutable($data['date']['forMachine']))
+                );
+            }
+            else {
+                return Meta::withText(
+                    $data['text']
+                );
+            }
         }
         if (isset($data['date'])) {
             return Meta::withDate(

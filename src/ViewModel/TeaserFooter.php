@@ -12,8 +12,8 @@ final class TeaserFooter implements CastsToArray
     use ReadOnlyArrayAccess;
 
     private $meta;
-    private $vor;
     private $downloadSrc;
+    private $publishState;
 
     public function __construct(
         Meta $meta,
@@ -21,7 +21,9 @@ final class TeaserFooter implements CastsToArray
         string $downloadSrc = null
     ) {
         $this->meta = $meta;
-        $this->vor = $vor;
+        $this->publishState = [
+            'vor' => $vor,
+        ];
         $this->downloadSrc = $downloadSrc;
     }
 }

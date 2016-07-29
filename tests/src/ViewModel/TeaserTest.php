@@ -2,22 +2,26 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\ContextLabel;
+use eLife\Patterns\ViewModel\Date;
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
+use DateTimeImmutable;
 
 final class TeaserTest extends ViewModelTest
 {
-
     use MetaFromData;
 
-    protected function teaserImageFromData($data, $size = TeaserImage::STYLE_SMALL) {
+    protected function teaserImageFromData($data, $size = TeaserImage::STYLE_SMALL)
+    {
         $data = array_merge([
             'defaultPath' => null,
             'altText' => null,
             'url' => null,
-            'srcset' => null
+            'srcset' => null,
         ], $data);
         $size = [$size];
 
@@ -33,7 +37,8 @@ final class TeaserTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_can_load_basic() {
+    public function it_can_load_basic()
+    {
         $data = TeaserFixtures::load(TeaserFixtures::BASIC);
         $actual = Teaser::basic(
             $data['title'],
@@ -44,6 +49,249 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
+    /**
+     * @test
+     */
+    public function it_can_load_main()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::MAIN);
+        $actual = Teaser::main(
+            $data['title'],
+            $data['url'],
+            $data['content'],
+            $data['secondaryInfo'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            null,
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta']),
+                $data['footer']['publishState']['vor']
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_main_small_image()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::MAIN_SMALL_IMAGE);
+        $actual = Teaser::main(
+            $data['title'],
+            $data['url'],
+            $data['content'],
+            $data['secondaryInfo'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta']),
+                $data['footer']['publishState']['vor']
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_main_big_image()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::MAIN_BIG_IMAGE);
+        $actual = Teaser::main(
+            $data['title'],
+            $data['url'],
+            $data['content'],
+            $data['secondaryInfo'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta']),
+                $data['footer']['publishState']['vor']
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_secondary()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::SECONDARY);
+        $actual = Teaser::secondary(
+            $data['title'],
+            $data['url'],
+            $data['secondaryInfo'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            null,
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta'])
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_secondary_small_image()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_SMALL_IMAGE);
+        $actual = Teaser::secondary(
+            $data['title'],
+            $data['url'],
+            $data['secondaryInfo'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta'])
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_secondary_big_image()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_BIG_IMAGE);
+        $actual = Teaser::secondary(
+            $data['title'],
+            $data['url'],
+            $data['secondaryInfo'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta'])
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_related_item()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::RELATED_ITEM);
+        $actual = Teaser::relatedItem(
+            $data['title'],
+            $data['url'],
+            $data['secondaryInfo'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            null,
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta'])
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_main_event()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::MAIN_EVENT);
+        $actual = Teaser::event(
+            $data['title'],
+            $data['url'],
+            $data['secondaryInfo'],
+            new Date(new DateTimeImmutable($data['eventDate']['forMachine']))
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_secondary_event()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_EVENT);
+        $actual = Teaser::event(
+            $data['title'],
+            $data['url'],
+            $data['secondaryInfo'],
+            new Date(new DateTimeImmutable($data['eventDate']['forMachine'])),
+            true
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_chapter_listing_item()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::CHAPTER_LISTING_ITEM);
+        $actual = Teaser::chapterListingItem(
+            $data['title'],
+            $data['url'],
+            $data['content'],
+            new ContextLabel(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['contextLabel']['list'])),
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta'])
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_grid_style_labs()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::GRID_STYLE_LABS);
+        $actual = Teaser::withGrid(
+            $data['title'],
+            $data['url'],
+            $data['content'],
+            null,
+            $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta'])
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_grid_style_podcast()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::GRID_STYLE_PODCAST);
+        $actual = Teaser::withGrid(
+            $data['title'],
+            $data['url'],
+            $data['content'],
+            $data['secondaryInfo'],
+            $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
+            new TeaserFooter(
+                $this->metaFromData($data['footer']['meta']),
+                null,
+                $data['footer']['downloadSrc']
+            )
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
 
     /**
      * @test
@@ -51,7 +299,7 @@ final class TeaserTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'title' => 'the title'
+            'title' => 'the title',
         ];
         $teaser = Teaser::basic($data['title']);
         $this->assertSameWithoutOrder($data, $teaser);
@@ -61,8 +309,8 @@ final class TeaserTest extends ViewModelTest
     {
         return [
             [
-                Teaser::basic('wat')
-            ]
+                Teaser::basic('wat'),
+            ],
         ];
     }
 
