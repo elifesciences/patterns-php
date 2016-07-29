@@ -23,7 +23,9 @@ final class TeaserTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            []
+            [
+                Teaser::basic('wat')
+            ]
         ];
     }
 
