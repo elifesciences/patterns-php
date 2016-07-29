@@ -182,20 +182,37 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
             $parts = explode(' ', $set);
             $array[substr($parts[1], 0, -1)] = $parts[0];
         }
+
         return $array;
     }
 
-    protected function assertSameWithoutOrder($actual, $expected)
+    protected function assertSameWithoutOrder($expected, $actual)
     {
-        foreach ($actual as $k => $d) {
-            if (!isset($expected[$k])) {
-                $this->fail('Key missing in array: ' . $k);
-            }
-            if ($expected[$k] instanceof CastsToArray || is_array($expected[$k])) {
-                $this->assertSameWithoutOrder($d, $expected[$k]);
+        $reasons = [];
+        foreach ($expected as $key => $expected_item) {
+            if (!isset($actual[$key])) {
+                array_push($reasons, 'Key missing in array: '.$key);
                 continue;
             }
-            $this->assertSame($expected[$k], $d, "asserting key: " . $k);
+            if ($actual[$key] instanceof CastsToArray || is_array($actual[$key])) {
+                $this->assertSameWithoutOrder($expected_item, $actual[$key]);
+                continue;
+            }
+            if ($key === 'behaviour' || $key === 'classes') {
+                $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]));
+                continue;
+            }
+            $this->assertSame($expected_item, $actual[$key]);
+        }
+        if ($reasons) {
+            $this->fail(implode("\n", $reasons));
+        }
+    }
+
+    protected function assertSameValuesWithoutOrder($expected, $actual)
+    {
+        foreach ($expected as $expected_item) {
+            $this->assertContains($expected_item, $actual);
         }
     }
 

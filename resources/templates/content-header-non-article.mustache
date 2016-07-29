@@ -1,11 +1,11 @@
 <header class="content-header
       {{#rootClasses}}{{rootClasses}}{{/rootClasses}}"
-        {{#behaviour}}data-behaviour="{{behaviour}}"{{/behaviour}}
-  {{#behaviour}}data-behaviour="{{behaviour}}"{{/behaviour}}>
+    {{#behaviour}} data-behaviour="{{behaviour}}"{{/behaviour}}
+    {{#backgroundImage}}
+          data-low-res-image-source="{{lowResImageSource}}"
+          data-high-res-image-source="{{highResImageSource}}"
+    {{/backgroundImage}}>
 
-  {{#backgroundImage}}
-    {{> atoms-content-header-background-style-markup}}
-  {{/backgroundImage}}
 
   {{#hasProfile}}
     <div class="content-header__top">
@@ -18,9 +18,13 @@
     </div>
   {{/hasProfile}}
 
+  {{! Used for the Podcast download link }}
   {{#download}}
-    <a href="#articleDownloadLinksList" class="content-header__download_link">
-      {{> atoms-picture}}
+    <a href="{{{downloadLink}}}" class="content-header__download_link">
+      {{#download.picture}}
+        {{> atoms-picture}}
+      {{/download.picture}}
+      <span class="visuallyhidden">Download</span>
     </a>
   {{/download}}
 

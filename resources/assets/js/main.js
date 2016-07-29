@@ -11,6 +11,7 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
+
   function ArticleDownloadLinksList($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -117,7 +118,7 @@ module.exports = function () {
   return ArticleDownloadLinksList;
 }();
 
-},{"../libs/elife-utils":9}],2:[function(require,module,exports){
+},{"../libs/elife-utils":10}],2:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -129,6 +130,7 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
+
   function AudioPlayer($elm) {
     var _this = this;
 
@@ -372,7 +374,7 @@ module.exports = function () {
   return AudioPlayer;
 }();
 
-},{"../libs/elife-utils":9}],3:[function(require,module,exports){
+},{"../libs/elife-utils":10}],3:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -383,6 +385,7 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
+
   function ContentHeaderArticle($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -678,10 +681,83 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var utils = require('../libs/elife-utils')();
+
+module.exports = function () {
+  function ContentHeaderBackgroundImage($elm) {
+    var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
+
+    var doc = arguments.length <= 2 || arguments[2] === undefined ? document : arguments[2];
+
+    _classCallCheck(this, ContentHeaderBackgroundImage);
+
+    if (!$elm) {
+      return;
+    }
+
+    var semiTransparentBlack = 'linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))';
+
+    this.window = _window;
+    this.doc = doc;
+    this.$elm = $elm;
+    this.$elm.classList.add('content-header--background-image');
+    this.sourceToUse = this.calcSourceToUse(this.$elm, utils.isHighDpr(this.window));
+    this.$elm.style.backgroundImage = this.setBackground(this.sourceToUse, semiTransparentBlack);
+  }
+
+  _createClass(ContentHeaderBackgroundImage, [{
+    key: 'setBackground',
+    value: function setBackground(path, semiTransparentBlack) {
+      if (!path || !path.length || path.length === 0) {
+        return '';
+      }
+
+      return semiTransparentBlack + ', url(' + path + ')';
+    }
+  }, {
+    key: 'calcSourceToUse',
+    value: function calcSourceToUse(sourceDefiner, isHighDpr) {
+      var lowResSource = '';
+      var highResSource = '';
+      if (!sourceDefiner) {
+        return '';
+      }
+
+      if (!!sourceDefiner.dataset) {
+        highResSource = sourceDefiner.dataset.highResImageSource;
+        lowResSource = sourceDefiner.dataset.lowResImageSource;
+      } else {
+        highResSource = sourceDefiner.getAttribute('data-highResImageSource');
+        lowResSource = sourceDefiner.getAttribute('data-lowResImageSource');
+      }
+
+      if (isHighDpr && !highResSource || !isHighDpr && !lowResSource) {
+        return '';
+      }
+
+      if (isHighDpr) {
+        return highResSource;
+      }
+
+      return lowResSource;
+    }
+  }]);
+
+  return ContentHeaderBackgroundImage;
+}();
+
+},{"../libs/elife-utils":10}],5:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
+
   function MainMenu($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -751,7 +827,7 @@ module.exports = function () {
   return MainMenu;
 }();
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -764,6 +840,7 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
+
   function SearchBox($elm) {
     var _this = this;
 
@@ -1103,7 +1180,7 @@ module.exports = function () {
   return SearchBox;
 }();
 
-},{"../libs/elife-utils":9}],6:[function(require,module,exports){
+},{"../libs/elife-utils":10}],7:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1133,7 +1210,7 @@ module.exports = function () {
   return SelectNav;
 }();
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1146,6 +1223,7 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
+
   function SiteHeader($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -1356,7 +1434,7 @@ module.exports = function () {
   return SiteHeader;
 }();
 
-},{"../libs/elife-utils":9,"./MainMenu":4,"./SearchBox":5}],8:[function(require,module,exports){
+},{"../libs/elife-utils":10,"./MainMenu":5,"./SearchBox":6}],9:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1404,7 +1482,7 @@ module.exports = function () {
   return ViewerModal;
 }();
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1590,18 +1668,33 @@ module.exports = function () {
     return document.documentElement.clientWidth;
   }
 
+  /**
+   * Returns whether the display is considered to have a high pixel density ratio.
+   *
+   * @param window
+   * @returns {boolean} true if dpr >= 2, false if lower, or unknown.
+   */
+  function isHighDpr(window) {
+    if (!!window.devicePixelRatio) {
+      return window.devicePixelRatio >= 2;
+    }
+
+    return false;
+  }
+
   return {
     adjustPxString: adjustPxString,
     areElementsNested: areElementsNested,
     buildElement: buildElement,
     getViewportWidth: getViewportWidth,
     invertPxString: invertPxString,
+    isHighDpr: isHighDpr,
     uniqueIds: uniqueIds,
     updateElementTranslate: updateElementTranslate
   };
 };
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 // Base level of feature support needed for the js loaded in this file.
@@ -1618,6 +1711,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
     Components.ArticleDownloadLinksList = require('./components/ArticleDownloadLinksList');
     Components.AudioPlayer = require('./components/AudioPlayer');
     Components.ContentHeaderArticle = require('./components/ContentHeaderArticle');
+    Components.ContentHeaderBackgroundImage = require('./components/ContentHeaderBackgroundImage');
     Components.SelectNav = require('./components/SelectNav');
     Components.MainMenu = require('./components/MainMenu');
     Components.SiteHeader = require('./components/SiteHeader');
@@ -1627,20 +1721,29 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
     // App
     var Elife = function Elife() {
 
-      // get all the components on the current page
-      var components = document.querySelectorAll('[data-behaviour]');
+      function initialiseComponent(handler, $elm) {
+        if (Components[handler] && typeof Components[handler] === 'function') {
+          new Components[handler]($elm, window, window.document);
+        }
+      }
 
+      var components = document.querySelectorAll('[data-behaviour]');
       if (components.length) {
+        var _loop = function _loop(i) {
+          var $elm = components[i];
+          var handler = $elm.getAttribute('data-behaviour').trim();
+          if (handler.indexOf(' ') > 0) {
+            var handlers = handler.split(' ');
+            handlers.forEach(function (handler) {
+              initialiseComponent(handler, $elm);
+            });
+          } else {
+            initialiseComponent(handler, $elm);
+          }
+        };
 
         for (var i = 0; i < components.length; i += 1) {
-          var $elm = components[i];
-          var handler = $elm.getAttribute('data-behaviour');
-
-          // Is there a handler?
-          // Is it a function?
-          if (Components[handler] && typeof Components[handler] === 'function') {
-            new Components[handler]($elm, window, window.document);
-          }
+          _loop(i);
         }
       }
     };
@@ -1649,7 +1752,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
   })();
 }
 
-},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/ContentHeaderArticle":3,"./components/MainMenu":4,"./components/SearchBox":5,"./components/SelectNav":6,"./components/SiteHeader":7,"./components/ViewerModal":8}]},{},[10])
+},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/ContentHeaderArticle":3,"./components/ContentHeaderBackgroundImage":4,"./components/MainMenu":5,"./components/SearchBox":6,"./components/SelectNav":7,"./components/SiteHeader":8,"./components/ViewerModal":9}]},{},[11])
 
 
 //# sourceMappingURL=main.js.map

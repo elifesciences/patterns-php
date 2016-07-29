@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 final class ContentHeaderFixtures
 {
+    // Article
     public static function magazineFixture()
     {
         // @note
@@ -56,7 +57,84 @@ final class ContentHeaderFixtures
               "altText": "Download icon"
             }
           },
+          "meta": {
+            "url": "#",
+            "text": "Insight",
+            "date": {
+              "forHuman": {
+                "dayOfMonth": 15,
+                "month": "Dec",
+                "year": 2015
+              },
+              "forMachine": "2015-12-15"
+            }
+          }
+        }
 
+
+
+JSON;
+
+        return json_decode($magazine, true);
+    }
+    public static function magazineBackgroundImageFixture()
+    {
+        $fixture = <<<JSON
+        {
+          "rootClasses": "content-header-article content-header-article-magazine content-header-article-magazine--background",
+          "behaviour": "ContentHeaderArticle ContentHeaderBackgroundImage",
+          "title": "Planarian 'kidneys' go with the flow",
+          "titleClass": "content-header__title--medium",
+          "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
+          "subjects": {
+            "list": [
+              {
+                "name": "Cell Biology",
+                "url": "#"
+              },
+              {
+                "name": "Epidemiology and global health",
+                "url": "#"
+              }
+            ]
+          },
+          "authors": {
+            "list": [
+              {
+                "name": "Melanie Issigonis"
+              },
+              {
+                "name": "Phillip A Newmark"
+              }
+            ]
+          },
+          "download": {
+            "sources": [
+              {
+                "srcset": "../../assets/img/icons/download-full-reverse.svg",
+                "media": "(min-width: 35em)",
+                "type": "image/svg+xml"
+              },
+              {
+                "srcset": "../../assets/img/icons/download-full-reverse-1x.png",
+                "media": "(min-width: 35em)"
+              },
+              {
+                "srcset": "../../assets/img/icons/download-reverse.svg",
+                "type": "image/svg+xml"
+              }
+            ],
+            "fallback": {
+              "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
+              "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
+              "classes": "content-header__download_icon",
+              "altText": "Download icon"
+            }
+          },
+          "backgroundImage": {
+            "lowResImageSource": "http://unsplash.it/950/400",
+            "highResImageSource": "http://unsplash.it/1900/800"
+          },
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -73,9 +151,8 @@ final class ContentHeaderFixtures
 
 JSON;
 
-        return json_decode($magazine, true);
+        return json_decode($fixture, true);
     }
-
     public static function magazineBackgroundFixture()
     {
         $fixture = <<<JSON
@@ -126,7 +203,6 @@ JSON;
               "altText": "Download icon"
             }
           },
-
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -145,87 +221,6 @@ JSON;
 
         return json_decode($fixture, true);
     }
-
-    public static function magazineBackgroundImageFixture()
-    {
-        $fixture = <<<JSON
-        {
-          "rootClasses": "content-header-article content-header-article-magazine content-header-article-magazine--background content-header--background-image",
-          "behaviour": "ContentHeaderArticle ContentHeaderBackgroundImage",
-          "title": "Planarian 'kidneys' go with the flow",
-          "titleClass": "content-header__title--small",
-          "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
-          "subjects": {
-            "list": [
-              {
-                "name": "Cell Biology",
-                "url": "#"
-              },
-              {
-                "name": "Epidemiology and global health",
-                "url": "#"
-              }
-            ]
-          },
-          "authors": {
-            "list": [
-              {
-                "name": "Melanie Issigonis"
-              },
-              {
-                "name": "Phillip A Newmark"
-              }
-            ]
-          },
-          "download": {
-            "sources": [
-              {
-                "srcset": "../../assets/img/icons/download-full-reverse.svg",
-                "media": "(min-width: 35em)",
-                "type": "image/svg+xml"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-full-reverse-1x.png",
-                "media": "(min-width: 35em)"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-reverse.svg",
-                "type": "image/svg+xml"
-              }
-            ],
-            "fallback": {
-              "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
-              "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
-              "classes": "content-header__download_icon",
-              "altText": "Download icon"
-            }
-          },
-          "backgroundImage": {
-            "images": {
-              "hires": "http://unsplash.it/1800/900/",
-              "lores": "http://unsplash.it/950/400"
-            }
-          },
-          "meta": {
-            "url": "#",
-            "text": "Insight",
-            "date": {
-              "forHuman": {
-                "dayOfMonth": 15,
-                "month": "Dec",
-                "year": 2015
-              },
-              "forMachine": "2015-12-15"
-            }
-          }
-        }
-
-
-JSON;
-
-        return json_decode($fixture, true);
-    }
-
     public static function researchFixture()
     {
         $fixture = <<<JSON
@@ -380,11 +375,11 @@ JSON;
         }
 
 
+
 JSON;
 
         return json_decode($fixture, true);
     }
-
     public static function researchReadMoreFixture()
     {
         $fixture = <<<JSON
@@ -408,7 +403,6 @@ JSON;
                 "firstAuthorOnly": "Lee R Berger",
                 "hasEtAl": true
               },
-
               "meta": {
                 "url": "#",
                 "text": "Research article",
@@ -423,19 +417,22 @@ JSON;
               }
             }
 
+
 JSON;
 
         return json_decode($fixture, true);
     }
 
+    // Non-article
     public static function nonArticleBasicFixture()
     {
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium"
+              "titleClass": "content-header__title--large"
             }
+
 JSON;
 
         return json_decode($fixture, true);
@@ -446,7 +443,7 @@ JSON;
             {
               "rootClasses": "content-header-nonarticle",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research."
             }
 
@@ -460,9 +457,28 @@ JSON;
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research."
             }
+
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticleBasicWithStraplineBackgroundImageFixture()
+    {
+        $fixture = <<<JSON
+        {
+          "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+          "behaviour": "ContentHeaderBackgroundImage",
+          "title": "About <i>eLife</i>",
+          "titleClass": "content-header__title--large",
+          "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
+          "backgroundImage": {
+            "lowResImageSource": "http://unsplash.it/950/400",
+            "highResImageSource": "http://unsplash.it/1900/800"
+          }
+        }
 JSON;
 
         return json_decode($fixture, true);
@@ -472,14 +488,15 @@ JSON;
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
               "hasCtaOrMeta": true,
               "button": {
                 "text": "Subscribe",
                 "path": "#",
-                "classes": "button--outline button--small"
+                "classes": "button--small button--outline"
               },
               "meta": {
                 "url": "#",
@@ -492,21 +509,25 @@ JSON;
                   },
                   "forMachine": "2016-02-29"
                 }
+              },
+
+              "backgroundImage": {
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
 JSON;
 
         return json_decode($fixture, true);
     }
-
     public static function nonArticleCuratedContent()
     {
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-              "behaviour": "ContentHeaderSelectNav",
+              "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
               "hasProfile": true,
               "profile": {
@@ -534,9 +555,12 @@ JSON;
                   },
                   "forMachine": "2016-02-29"
                 }
+              },
+              "backgroundImage": {
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
-
 JSON;
 
         return json_decode($fixture, true);
@@ -545,10 +569,10 @@ JSON;
     {
         $fixture = <<<JSON
             {
-              "rootClasses": "content-header-nonarticle content-header-nonarticle--background content-header--background-image",
-              "behaviour": "ContentHeaderSelectNav",
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "behaviour": "ContentHeaderBackgroundImage",
               "title": "About <i>eLife</i>",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "hasCtaOrMeta": true,
               "button": {
                 "text": "Subscribe",
@@ -556,12 +580,69 @@ JSON;
                 "classes": "button--outline button--small"
               },
               "backgroundImage": {
-                "images": {
-                  "lores": "http://unsplash.it/950/400/",
-                  "hires": "http://unsplash.it/1800/900/"
-                }
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
+
+
+JSON;
+
+        return json_decode($fixture, true);
+    }
+    public static function nonArticlePodcastFixture()
+    {
+        $fixture = <<<JSON
+        {
+          "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+          "behaviour": "ContentHeaderBackgroundImage",
+          "title": "Multicellular life, potato blight and Hepatitis B",
+          "strapline": "Episode 21",
+          "titleClass": "content-header__title--medium",
+          "hasCtaOrMeta": true,
+          "meta": {
+            "text": "Podcast",
+            "date": {
+              "forHuman": {
+                "dayOfMonth": 29,
+                "month": "Feb",
+                "year": 2016
+              },
+              "forMachine": "2016-02-29"
+            }
+          },
+          "download": {
+            "picture": {
+              "sources": [
+                {
+                  "srcset": "../../assets/img/icons/download-full-reverse.svg",
+                  "media": "(min-width: 35em)",
+                  "type": "image/svg+xml"
+                },
+                {
+                  "srcset": "../../assets/img/icons/download-full-reverse-1x.png",
+                  "media": "(min-width: 35em)"
+                },
+                {
+                  "srcset": "../../assets/img/icons/download-reverse.svg",
+                  "type": "image/svg+xml"
+                }
+              ],
+              "fallback": {
+                "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
+                "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
+                "classes": "content-header__download_icon",
+                "altText": "Download icon"
+              }
+            },
+            "downloadLink": "#"
+          },
+          "backgroundImage": {
+            "lowResImageSource": "http://unsplash.it/950/400",
+            "highResImageSource": "http://unsplash.it/1900/800"
+          }
+        }
+
 
 JSON;
 
@@ -571,10 +652,10 @@ JSON;
     {
         $fixture = <<<JSON
             {
-              "rootClasses": "content-header-nonarticle content-header-nonarticle--background content-header--background-image",
-              "behaviour": "ContentHeaderSelectNav",
+              "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
+              "behaviour": "ContentHeaderSelectNav ContentHeaderBackgroundImage",
               "title": "Archive",
-              "titleClass": "content-header__title--medium",
+              "titleClass": "content-header__title--large",
               "hasCtaOrMeta": true,
               "selectNav": {
                 "route": "/path/to/archive",
@@ -588,18 +669,15 @@ JSON;
                   "options": [
                     {
                       "value": "2016",
-                      "displayValue": "2016",
-                      "selected": false
+                      "displayValue": "2016"
                     },
                     {
                       "value": "2015",
-                      "displayValue": "2015",
-                      "selected": true
+                      "displayValue": "2015"
                     },
                     {
                       "value": "2014",
-                      "displayValue": "2014",
-                      "selected": false
+                      "displayValue": "2014"
                     }
                   ]
                 },
@@ -608,9 +686,12 @@ JSON;
                   "type": "submit",
                   "classes": "button--outline button--extra-small"
                 }
+              },
+              "backgroundImage": {
+                "lowResImageSource": "http://unsplash.it/950/400",
+                "highResImageSource": "http://unsplash.it/1900/800"
               }
             }
-
 
 JSON;
 
