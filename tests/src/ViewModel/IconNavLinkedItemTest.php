@@ -25,6 +25,15 @@ final class IconNavLinkedItemTest extends ViewModelTest
     /**
      * @test
      */
+    public function classSetOnSearchIcon()
+    {
+        $linkNavLinkedItem = NavLinkedItem::asIcon(new Link('the text', 'the link path'), $this->img, true, true, 'search');
+        $this->assertSame('nav-primary__search_icon', $linkNavLinkedItem->picture->getFallbackImage()['classes']);
+    }
+
+    /**
+     * @test
+     */
     public function text_visible_if_flagged()
     {
         $linkNavLinkedItem = NavLinkedItem::asIcon(new Link('the text', 'the link path'), $this->img, true);

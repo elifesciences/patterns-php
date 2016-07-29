@@ -13,8 +13,13 @@ final class NavLinkedItem implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    const ICON_CLASSES = [
+        'menu' => 'nav-primary__menu_icon',
+        'search' => 'nav-primary__search_icon',
+    ];
+
     private $button;
-    private $img;
+    public $picture;
     private $path;
     private $rel;
     private $text;
@@ -25,18 +30,37 @@ final class NavLinkedItem implements ViewModel
     }
 
     public static function asIcon(
-        Link $link,
-        Picture $img,
-        bool $showText = true,
-        bool $search = false
-    ): NavLinkedItem {
+      Link $link,
+      Picture $picture,
+      bool $showText = true,
+      bool $search = false,
+      string $iconName = null
+    ): NavLinkedItem
+    {
+
         $itemAsIcon = static::asLink($link, $search);
-        $itemAsIcon->img = $img;
+
+        if ($iconName && array_key_exists($iconName, static::ICON_CLASSES)) {
+            $itemAsIcon->picture = static::setImage($picture, $iconName);
+        } else {
+            $itemAsIcon->picture = $picture;
+        }
+
         if (false === $showText) {
             $itemAsIcon->textClasses = 'visuallyhidden';
         }
 
         return $itemAsIcon;
+    }
+
+    private static function setImage(Picture $picture, $iconName)
+    {
+        $picture = FlexibleViewModel::fromViewModel($picture);
+
+        $fallback = $picture['fallback'];
+        $fallback['classes'] = static::ICON_CLASSES[$iconName];
+
+        return $picture->withProperty('fallback', $fallback);
     }
 
     public static function asLink(
