@@ -36,7 +36,7 @@ final class Teaser implements ViewModel
         Date $eventDate = null,
         Link $category = null,
         TeaserImage $image = null,
-        /* TeaserFooter */ $footer = null
+        TeaserFooter $footer = null
     ) {
         Assertion::notBlank($title);
 
