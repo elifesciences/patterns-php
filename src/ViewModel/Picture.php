@@ -33,11 +33,6 @@ final class Picture implements ViewModel, IsImage
         $this->fallback = $fallback;
     }
 
-    public function getFallbackImage() : IsImage
-    {
-        return $this->fallback;
-    }
-
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/picture.mustache';

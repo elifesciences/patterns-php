@@ -38,27 +38,13 @@ final class NavLinkedItem implements ViewModel
     ): NavLinkedItem {
         $itemAsIcon = static::asLink($link, $search);
 
-        if ($iconName && array_key_exists($iconName, static::ICON_CLASSES)) {
-            $itemAsIcon->picture = static::setImage($picture, $iconName);
-        } else {
-            $itemAsIcon->picture = $picture;
-        }
+        $itemAsIcon->picture = $itemAsIcon->determinePicture($picture, $iconName);
 
         if (false === $showText) {
             $itemAsIcon->textClasses = 'visuallyhidden';
         }
 
         return $itemAsIcon;
-    }
-
-    private static function setImage(Picture $picture, $iconName)
-    {
-        $picture = FlexibleViewModel::fromViewModel($picture);
-
-        $fallback = $picture['fallback'];
-        $fallback['classes'] = static::ICON_CLASSES[$iconName];
-
-        return $picture->withProperty('fallback', $fallback);
     }
 
     public static function asLink(
@@ -79,6 +65,20 @@ final class NavLinkedItem implements ViewModel
         $itemAsButton->button = $button;
 
         return $itemAsButton;
+    }
+
+    private function determinePicture(Picture $picture, string $iconName = null)  : ViewModel
+    {
+        if (!array_key_exists($iconName, static::ICON_CLASSES)) {
+            return $picture;
+        }
+
+        $picture = FlexibleViewModel::fromViewModel($picture);
+
+        $fallback = $picture['fallback'];
+        $fallback['classes'] = static::ICON_CLASSES[$iconName];
+
+        return $picture->withProperty('fallback', $fallback);
     }
 
     public function getTemplateName() : string
