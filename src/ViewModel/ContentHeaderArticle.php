@@ -24,10 +24,9 @@ final class ContentHeaderArticle implements ViewModel
     const STYLE_RESEARCH = 'content-header-article-research';
     const STYLE_RESEARCH_READ_MORE = 'content-header-article-research--readmore';
     const STYLE_MAGAZINE_BACKGROUND = 'content-header-article-magazine--background';
-    const STYLE_BACKGROUND_IMAGE = 'content-header--background-image';
 
     const BEHAVIOUR_BASE = 'ContentHeaderArticle';
-    const BEHAVIOUR_BACKGROUND_IMAGE = 'ContentHeaderBackgroundImage';
+    const BEHAVIOUR_BACKGROUND_IMAGE = 'BackgroundImage';
 
     const FALLBACK_CLASSES = 'content-header__download_icon'; // @todo check if there are more icons for download.
 
