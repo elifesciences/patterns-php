@@ -1,0 +1,182 @@
+assets:
+    css:
+        - teaser.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        rootClasses:
+            type: string
+            minLength: 1
+        contextLabel:
+            type: object
+            properties:
+                list:
+                    type: array
+                    minItems: 1
+                    item:
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                minLength: 1
+                            url:
+                                type: string
+                                minLength: 1
+                        required:
+                            - name
+                            - url
+        url:
+            oneOf:
+                -
+                    minLength: 1
+                    type: string
+                -
+                    type: 'null'
+        title:
+            type: string
+            minLength: 1
+        secondaryInfo:
+            type: string
+            minLength: 1
+        eventDate:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                forMachine:
+                    type: string
+                    pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
+                forHuman:
+                    type: object
+                    properties:
+                        dayOfMonth:
+                            type: integer
+                            minimum: 1
+                            maximum: 31
+                        month:
+                            type: string
+                            minLength: 3
+                            maxLength: 3
+                        year:
+                            type: integer
+                    required:
+                        - dayOfMonth
+                        - month
+                        - year
+                isExpanded:
+                    type: boolean
+                    default: false
+            required:
+                - forHuman
+                - forMachine
+        content:
+            type: string
+            minLength: 1
+        category:
+            type: object
+            properties:
+                name:
+                    type: string
+                    minLength: 1
+                url:
+                    type: string
+                    minLength: 1
+            required:
+                - name
+        image:
+            type: object
+            properties:
+                url:
+                    type: string
+                    minLength: 1
+                defaultPath:
+                    type: string
+                    minLength: 1
+                altText:
+                    type: string
+                    minLength: 1
+                srcset:
+                    type: string
+                    minLength: 1
+                classes:
+                    type: string
+                    minLength: 1
+                    enum:
+                        - teaser__img--prominent
+                        - teaser__img--big
+                        - teaser__img--small
+            required:
+                - defaultPath
+                - altText
+        footer:
+            type: object
+            properties:
+                meta:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        url:
+                            oneOf:
+                                -
+                                    minLength: 1
+                                    type: string
+                                -
+                                    type: 'null'
+                        text:
+                            type: string
+                            minLength: 1
+                        date:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                forMachine:
+                                    type: string
+                                    pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
+                                forHuman:
+                                    type: object
+                                    properties:
+                                        dayOfMonth:
+                                            type: integer
+                                            minimum: 1
+                                            maximum: 31
+                                        month:
+                                            type: string
+                                            minLength: 3
+                                            maxLength: 3
+                                        year:
+                                            type: integer
+                                    required:
+                                        - dayOfMonth
+                                        - month
+                                        - year
+                                isExpanded:
+                                    type: boolean
+                                    default: false
+                            required:
+                                - forHuman
+                                - forMachine
+                    dependencies:
+                        url:
+                            - text
+                    anyOf:
+                        -
+                            required:
+                                - date
+                        -
+                            required:
+                                - text
+                publishState:
+                    type: object
+                    properties:
+                        vor:
+                            type: boolean
+                    required:
+                        - vor
+                downloadSrc:
+                    type: string
+                    minLength: 1
+            required:
+                - meta
+    required:
+        - title
