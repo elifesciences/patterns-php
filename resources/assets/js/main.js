@@ -381,6 +381,77 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var utils = require('../libs/elife-utils')();
+
+module.exports = function () {
+  function BackgroundImage($elm) {
+    var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
+
+    var doc = arguments.length <= 2 || arguments[2] === undefined ? document : arguments[2];
+
+    _classCallCheck(this, BackgroundImage);
+
+    if (!$elm) {
+      return;
+    }
+
+    var semiTransparentBlack = 'linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))';
+
+    this.window = _window;
+    this.doc = doc;
+    this.$elm = $elm;
+    this.sourceToUse = this.calcSourceToUse(this.$elm, utils.isHighDpr(this.window));
+    this.$elm.style.backgroundImage = this.setBackground(this.sourceToUse, semiTransparentBlack);
+  }
+
+  _createClass(BackgroundImage, [{
+    key: 'setBackground',
+    value: function setBackground(path, semiTransparentBlack) {
+      if (!path || !path.length || path.length === 0) {
+        return '';
+      }
+
+      return semiTransparentBlack + ', url(' + path + ')';
+    }
+  }, {
+    key: 'calcSourceToUse',
+    value: function calcSourceToUse(sourceDefiner, isHighDpr) {
+      var lowResSource = '';
+      var highResSource = '';
+      if (!sourceDefiner) {
+        return '';
+      }
+
+      if (!!sourceDefiner.dataset) {
+        highResSource = sourceDefiner.dataset.highResImageSource;
+        lowResSource = sourceDefiner.dataset.lowResImageSource;
+      } else {
+        highResSource = sourceDefiner.getAttribute('data-highResImageSource');
+        lowResSource = sourceDefiner.getAttribute('data-lowResImageSource');
+      }
+
+      if (isHighDpr && !highResSource || !isHighDpr && !lowResSource) {
+        return '';
+      }
+
+      if (isHighDpr) {
+        return highResSource;
+      }
+
+      return lowResSource;
+    }
+  }]);
+
+  return BackgroundImage;
+}();
+
+},{"../libs/elife-utils":10}],4:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
@@ -674,79 +745,7 @@ module.exports = function () {
   return ContentHeaderArticle;
 }();
 
-},{}],4:[function(require,module,exports){
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var utils = require('../libs/elife-utils')();
-
-module.exports = function () {
-  function ContentHeaderBackgroundImage($elm) {
-    var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
-
-    var doc = arguments.length <= 2 || arguments[2] === undefined ? document : arguments[2];
-
-    _classCallCheck(this, ContentHeaderBackgroundImage);
-
-    if (!$elm) {
-      return;
-    }
-
-    var semiTransparentBlack = 'linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))';
-
-    this.window = _window;
-    this.doc = doc;
-    this.$elm = $elm;
-    this.$elm.classList.add('content-header--background-image');
-    this.sourceToUse = this.calcSourceToUse(this.$elm, utils.isHighDpr(this.window));
-    this.$elm.style.backgroundImage = this.setBackground(this.sourceToUse, semiTransparentBlack);
-  }
-
-  _createClass(ContentHeaderBackgroundImage, [{
-    key: 'setBackground',
-    value: function setBackground(path, semiTransparentBlack) {
-      if (!path || !path.length || path.length === 0) {
-        return '';
-      }
-
-      return semiTransparentBlack + ', url(' + path + ')';
-    }
-  }, {
-    key: 'calcSourceToUse',
-    value: function calcSourceToUse(sourceDefiner, isHighDpr) {
-      var lowResSource = '';
-      var highResSource = '';
-      if (!sourceDefiner) {
-        return '';
-      }
-
-      if (!!sourceDefiner.dataset) {
-        highResSource = sourceDefiner.dataset.highResImageSource;
-        lowResSource = sourceDefiner.dataset.lowResImageSource;
-      } else {
-        highResSource = sourceDefiner.getAttribute('data-highResImageSource');
-        lowResSource = sourceDefiner.getAttribute('data-lowResImageSource');
-      }
-
-      if (isHighDpr && !highResSource || !isHighDpr && !lowResSource) {
-        return '';
-      }
-
-      if (isHighDpr) {
-        return highResSource;
-      }
-
-      return lowResSource;
-    }
-  }]);
-
-  return ContentHeaderBackgroundImage;
-}();
-
-},{"../libs/elife-utils":10}],5:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1711,7 +1710,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
     Components.ArticleDownloadLinksList = require('./components/ArticleDownloadLinksList');
     Components.AudioPlayer = require('./components/AudioPlayer');
     Components.ContentHeaderArticle = require('./components/ContentHeaderArticle');
-    Components.ContentHeaderBackgroundImage = require('./components/ContentHeaderBackgroundImage');
+    Components.BackgroundImage = require('./components/BackgroundImage');
     Components.SelectNav = require('./components/SelectNav');
     Components.MainMenu = require('./components/MainMenu');
     Components.SiteHeader = require('./components/SiteHeader');
@@ -1752,7 +1751,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
   })();
 }
 
-},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/ContentHeaderArticle":3,"./components/ContentHeaderBackgroundImage":4,"./components/MainMenu":5,"./components/SearchBox":6,"./components/SelectNav":7,"./components/SiteHeader":8,"./components/ViewerModal":9}]},{},[11])
+},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/BackgroundImage":3,"./components/ContentHeaderArticle":4,"./components/MainMenu":5,"./components/SearchBox":6,"./components/SelectNav":7,"./components/SiteHeader":8,"./components/ViewerModal":9}]},{},[11])
 
 
 //# sourceMappingURL=main.js.map

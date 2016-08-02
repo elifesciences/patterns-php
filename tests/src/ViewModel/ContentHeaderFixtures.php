@@ -82,7 +82,7 @@ JSON;
         $fixture = <<<JSON
         {
           "rootClasses": "content-header-article content-header-article-magazine content-header-article-magazine--background",
-          "behaviour": "ContentHeaderArticle ContentHeaderBackgroundImage",
+          "behaviour": "ContentHeaderArticle BackgroundImage",
           "title": "Planarian 'kidneys' go with the flow",
           "titleClass": "content-header__title--medium",
           "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
@@ -470,7 +470,7 @@ JSON;
         $fixture = <<<JSON
         {
           "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-          "behaviour": "ContentHeaderBackgroundImage",
+          "behaviour": "BackgroundImage",
           "title": "About <i>eLife</i>",
           "titleClass": "content-header__title--large",
           "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
@@ -488,7 +488,7 @@ JSON;
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-              "behaviour": "ContentHeaderBackgroundImage",
+              "behaviour": "BackgroundImage",
               "title": "About <i>eLife</i>",
               "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
@@ -525,7 +525,7 @@ JSON;
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-              "behaviour": "ContentHeaderBackgroundImage",
+              "behaviour": "BackgroundImage",
               "title": "About <i>eLife</i>",
               "titleClass": "content-header__title--large",
               "strapline": "<i>eLife</i> publishes outstanding research in the life sciences and biomedicine, from the most fundamental and theoretical work, through to translational, applied, and clinical research.",
@@ -570,7 +570,7 @@ JSON;
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-              "behaviour": "ContentHeaderBackgroundImage",
+              "behaviour": "BackgroundImage",
               "title": "About <i>eLife</i>",
               "titleClass": "content-header__title--large",
               "hasCtaOrMeta": true,
@@ -595,7 +595,7 @@ JSON;
         $fixture = <<<JSON
         {
           "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-          "behaviour": "ContentHeaderBackgroundImage",
+          "behaviour": "BackgroundImage",
           "title": "Multicellular life, potato blight and Hepatitis B",
           "strapline": "Episode 21",
           "titleClass": "content-header__title--medium",
@@ -653,7 +653,7 @@ JSON;
         $fixture = <<<JSON
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
-              "behaviour": "ContentHeaderSelectNav ContentHeaderBackgroundImage",
+              "behaviour": "ContentHeaderSelectNav BackgroundImage",
               "title": "Archive",
               "titleClass": "content-header__title--large",
               "hasCtaOrMeta": true,
