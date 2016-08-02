@@ -14,9 +14,8 @@ final class ContextLabel implements CastsToArray
 
     private $list;
 
-    public function __construct(array $list)
+    public function __construct(Link ...$list)
     {
-        Assertion::allIsInstanceOf($list, Link::class);
         Assertion::notEmpty($list);
 
         $this->list = $list;

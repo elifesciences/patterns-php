@@ -60,7 +60,7 @@ final class TeaserTest extends ViewModelTest
             $data['url'],
             $data['content'],
             $data['secondaryInfo'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             null,
@@ -84,7 +84,7 @@ final class TeaserTest extends ViewModelTest
             $data['url'],
             $data['content'],
             $data['secondaryInfo'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
@@ -108,7 +108,7 @@ final class TeaserTest extends ViewModelTest
             $data['url'],
             $data['content'],
             $data['secondaryInfo'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
@@ -131,7 +131,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['secondaryInfo'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             null,
@@ -152,7 +152,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['secondaryInfo'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
@@ -173,7 +173,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['secondaryInfo'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
@@ -194,7 +194,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['secondaryInfo'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             null,
@@ -246,7 +246,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['content'],
-            new ContextLabel(array_map(function ($item) {
+            new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             TeaserFooter::forNonArticle(
