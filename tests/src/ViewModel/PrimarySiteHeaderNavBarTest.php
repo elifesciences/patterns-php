@@ -43,12 +43,13 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame($this->linkItem1['text'], $siteHeaderNavItems[0]['text']);
         $this->assertSame($this->linkItem1['path'], $siteHeaderNavItems[0]['path']);
         $this->assertSame('nav-primary__item nav-primary__item--first', $siteHeaderNavItems[0]['classes']);
+        $this->assertSame('visuallyhidden nav-primary__menu_text', $siteHeaderNavItems[0]['textClasses']);
         $this->assertSame($this->linkItem1['rel'], $siteHeaderNavItems[0]['rel']);
         $this->assertSame($this->linkItem1['picture']->toArray(), $siteHeaderNavItems[0]['picture']);
 
         $this->assertSame($this->linkItem2['text'], $siteHeaderNavItems[1]['text']);
         $this->assertSame($this->linkItem2['path'], $siteHeaderNavItems[1]['path']);
-        $this->assertSame('nav-primary__item', $siteHeaderNavItems[1]['classes']);
+        $this->assertSame('nav-primary__item nav-primary__item--search', $siteHeaderNavItems[1]['classes']);
         $this->assertSame($this->linkItem2['rel'], $siteHeaderNavItems[1]['rel']);
         $this->assertSame($this->linkItem2['picture'], $siteHeaderNavItems[1]['picture']);
 

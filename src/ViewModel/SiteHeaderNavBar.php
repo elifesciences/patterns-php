@@ -36,8 +36,19 @@ final class SiteHeaderNavBar implements ViewModel
                 $classes[] = $classes[0].'--last';
             }
 
+            if ('search' === $linkedItems[$i]['rel']) {
+                $classes[] = $classes[0].'--search';
+            }
+
             $newLinkedItem = FlexibleViewModel::fromViewModel($linkedItems[$i])
                 ->withProperty('classes', implode(' ', $classes));
+
+            if (!empty($linkedItems[$i]['picture'])) {
+                $textClasses = $newLinkedItem['textClasses'];
+
+                $newLinkedItem = $newLinkedItem
+                    ->withProperty('textClasses', trim($textClasses.' nav-'.$type.'__menu_text'));
+            }
 
             $this->linkedItems[] = $newLinkedItem;
         }
