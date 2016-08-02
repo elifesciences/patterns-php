@@ -42,7 +42,22 @@ class TextAreaTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [ new TextArea(new FormLabel('label text', 'someid'), 'someid', 'name', 'default value') ]
+            [ new TextArea(new FormLabel('label text', 'someid'), 'someid', 'name', 'default value') ],
+            [
+                new TextArea(
+                    new FormLabel('label text', 'someid'),
+                    'someid',
+                    'name',
+                    'default value',
+                    'place holder value',
+                    true, // required
+                    true, // disabled
+                    false, // auto-focus
+                    30, // cols
+                    2, // rows
+                    'some_form_id'
+                )
+            ]
         ];
     }
 

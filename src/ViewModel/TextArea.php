@@ -24,7 +24,14 @@ final class TextArea implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $value = null
+        string $value = null,
+        string $placeholder = null,
+        bool $required = null,
+        bool $disabled = null,
+        bool $autofocus = null,
+        int $cols = null,
+        int $rows = null,
+        string $form = null
     ) {
         Assertion::same($id, $label['for']);
 
