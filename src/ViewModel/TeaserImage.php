@@ -89,7 +89,7 @@ final class TeaserImage implements CastsToArray
     private function srcsetFromArray(array $array = null) : string
     {
         if ($array === null) {
-            return;
+            return '';
         }
         $srcsets = [];
         foreach ($array as $width => $src) {
