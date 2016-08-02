@@ -46,7 +46,7 @@ schema:
                                                 type: string
                                                 enum:
                                                     - search
-                                            img:
+                                            picture:
                                                 $schema: 'http://json-schema.org/draft-04/schema#'
                                                 type: object
                                                 properties:
@@ -171,7 +171,7 @@ schema:
                                                 type: string
                                                 enum:
                                                     - search
-                                            img:
+                                            picture:
                                                 $schema: 'http://json-schema.org/draft-04/schema#'
                                                 type: object
                                                 properties:

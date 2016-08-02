@@ -31,7 +31,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
 
         $this->button = Button::form('button text', 'button');
 
-        $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $this->picture, false);
+        $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $this->picture, true);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false);
         $this->linkItem3 = NavLinkedItem::asButton($this->button);
         $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3];
@@ -48,6 +48,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame($this->linkItem1['text'], $siteHeaderNavItems[0]['text']);
         $this->assertSame($this->linkItem1['path'], $siteHeaderNavItems[0]['path']);
         $this->assertSame('nav-secondary__item nav-secondary__item--first', $siteHeaderNavItems[0]['classes']);
+        $this->assertSame('nav-secondary__menu_text', $siteHeaderNavItems[0]['textClasses']);
         $this->assertSame($this->linkItem1['rel'], $siteHeaderNavItems[0]['rel']);
         $this->assertSame($this->linkItem1['picture']->toArray(), $siteHeaderNavItems[0]['picture']);
 
