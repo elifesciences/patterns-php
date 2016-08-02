@@ -15,15 +15,31 @@ final class TeaserFooter implements CastsToArray
     private $downloadSrc;
     private $publishState;
 
-    public function __construct(
+    private function __construct(
         Meta $meta,
         bool $vor = null,
         string $downloadSrc = null
     ) {
         $this->meta = $meta;
-        $this->publishState = [
-            'vor' => $vor,
-        ];
+        if (null !== $vor) {
+            $this->publishState = [
+                'vor' => $vor,
+            ];
+        }
         $this->downloadSrc = $downloadSrc;
+    }
+
+    public static function forArticle(
+        Meta $meta,
+        bool $vor
+    ) {
+        return new static($meta, $vor);
+    }
+
+    public static function forNonArticle(
+        Meta $meta,
+        string $downloadSrc = null
+    ) {
+        return new static($meta, null, $downloadSrc);
     }
 }

@@ -24,13 +24,12 @@ final class TeaserImage implements CastsToArray
 
     public function __construct(
         string $defaultPath,
-        string $altText,
+        string $altText = null,
         string $url = null,
         array $srcset = null,
         array $classes = null
     ) {
         Assertion::notBlank($defaultPath);
-        Assertion::notBlank($altText);
 
         $this->defaultPath = $defaultPath;
         $this->altText = $altText;

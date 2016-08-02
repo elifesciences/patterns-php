@@ -44,7 +44,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
-            new TeaserFooter($this->metaFromData($data['footer']['meta']))
+            TeaserFooter::forNonArticle($this->metaFromData($data['footer']['meta']))
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -64,7 +64,7 @@ final class TeaserTest extends ViewModelTest
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             null,
-            new TeaserFooter(
+            TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['publishState']['vor']
             )
@@ -87,7 +87,7 @@ final class TeaserTest extends ViewModelTest
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
-            new TeaserFooter(
+            TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['publishState']['vor']
             )
@@ -110,7 +110,7 @@ final class TeaserTest extends ViewModelTest
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
-            new TeaserFooter(
+            TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['publishState']['vor']
             )
@@ -132,7 +132,7 @@ final class TeaserTest extends ViewModelTest
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             null,
-            new TeaserFooter(
+            TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
             )
         );
@@ -153,7 +153,7 @@ final class TeaserTest extends ViewModelTest
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
-            new TeaserFooter(
+            TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
             )
         );
@@ -174,7 +174,7 @@ final class TeaserTest extends ViewModelTest
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
-            new TeaserFooter(
+            TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
             )
         );
@@ -195,7 +195,7 @@ final class TeaserTest extends ViewModelTest
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
             null,
-            new TeaserFooter(
+            TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
             )
         );
@@ -246,7 +246,7 @@ final class TeaserTest extends ViewModelTest
             new ContextLabel(array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['contextLabel']['list'])),
-            new TeaserFooter(
+            TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
             )
         );
@@ -265,7 +265,7 @@ final class TeaserTest extends ViewModelTest
             $data['content'],
             null,
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
-            new TeaserFooter(
+            TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
             )
         );
@@ -284,9 +284,8 @@ final class TeaserTest extends ViewModelTest
             $data['content'],
             $data['secondaryInfo'],
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
-            new TeaserFooter(
+            TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta']),
-                null,
                 $data['footer']['downloadSrc']
             )
         );
