@@ -17,14 +17,12 @@ final class ArticleSection implements ViewModel
 
     private $id;
     private $title;
-    private $downloadLinks;
     private $body;
 
     public function __construct(
       string $id,
       string $title,
-      array $content,
-      ArticleDownloadLinksList $downloadLinks
+      array $content
     ) {
         Assertion::notBlank($id);
         Assertion::notBlank($title);
@@ -32,7 +30,6 @@ final class ArticleSection implements ViewModel
 
         $this->id = $id;
         $this->title = $title;
-        $this->downloadLinks = $downloadLinks;
         $this->body = array_map(function ($item) {
             return ['content' => $item];
         }, $content);
