@@ -29,26 +29,26 @@ final class SiteHeader implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/site-header.css';
-        yield $this->primaryLinks->getStyleSheets();
-        yield $this->secondaryLinks->getStyleSheets();
+        yield from $this->primaryLinks->getStyleSheets();
+        yield from $this->secondaryLinks->getStyleSheets();
     }
 
     public function getInlineStyleSheets() : Traversable
     {
-        yield $this->primaryLinks->getInlineStyleSheets();
-        yield $this->secondaryLinks->getInlineStyleSheets();
+        yield from $this->primaryLinks->getInlineStyleSheets();
+        yield from $this->secondaryLinks->getInlineStyleSheets();
     }
 
     public function getJavaScripts() : Traversable
     {
-        yield $this->primaryLinks->getJavaScripts();
-        yield $this->secondaryLinks->getJavaScripts();
+        yield from $this->primaryLinks->getJavaScripts();
+        yield from $this->secondaryLinks->getJavaScripts();
     }
 
     public function getInlineJavaScripts() : Traversable
     {
-        yield $this->primaryLinks->getInlineJavaScripts();
-        yield $this->secondaryLinks->getInlineJavaScripts();
+        yield from $this->primaryLinks->getInlineJavaScripts();
+        yield from $this->secondaryLinks->getInlineJavaScripts();
     }
 
     public function getTemplateName() : string

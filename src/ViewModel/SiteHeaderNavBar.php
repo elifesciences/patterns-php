@@ -71,7 +71,7 @@ final class SiteHeaderNavBar implements ViewModel
     {
         yield '/elife/patterns/assets/css/site-header-nav-bar-primary.css';
         yield '/elife/patterns/assets/css/site-header-nav-bar-secondary.css';
-        yield $this->linkedItems[0]->getStyleSheets();
+        yield from $this->linkedItems[0]->getStyleSheets();
     }
 
     public function getTemplateName() : string

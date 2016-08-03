@@ -30,7 +30,7 @@ final class LeadParas implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield $this->paras[0]->getStyleSheets();
+        yield from $this->paras[0]->getStyleSheets();
         yield '/elife/patterns/assets/css/lead-paras.css';
     }
 

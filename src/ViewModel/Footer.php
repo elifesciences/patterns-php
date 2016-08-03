@@ -46,6 +46,6 @@ final class Footer implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/site-footer.css';
-        yield $this->_mainMenu->getStyleSheets();
+        yield from $this->_mainMenu->getStyleSheets();
     }
 }

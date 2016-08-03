@@ -49,7 +49,7 @@ final class Meta implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield $this->date->getStyleSheets();
+        yield from $this->date->getStyleSheets();
     }
 
     public function getTemplateName() : string
