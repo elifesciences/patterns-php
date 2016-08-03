@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use Assert\InvalidArgumentException;
 use eLife\Patterns\ViewModel\ContextLabel;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
@@ -293,6 +294,14 @@ final class TeaserTest extends ViewModelTest
             )
         );
         $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_cant_load_context_label_without_arguments() {
+        $this->expectException(InvalidArgumentException::class);
+        new ContextLabel();
     }
 
     /**
