@@ -4,13 +4,14 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ListingItem;
 use eLife\Patterns\MultipleTemplates;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class Button implements ViewModel
+class Button implements ViewModel
 {
     const SIZE_MEDIUM = 'medium';
     const SIZE_SMALL = 'small';
@@ -87,8 +88,10 @@ final class Button implements ViewModel
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
-        $button = self::link($text, $path, $size, $style, $isActive, $isFullWidth);
+        Assertion::notBlank($path);
+        $button = new class($text, $size, $style, $isActive, $isFullWidth) extends Button implements ListingItem {};
         $button->setTemplateName('load-more');
+        $button->path = $path;
 
         return $button;
     }

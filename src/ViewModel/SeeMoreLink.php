@@ -3,12 +3,13 @@
 namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ListingItem;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class SeeMoreLink implements ViewModel
+final class SeeMoreLink implements ViewModel, ListingItem
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
