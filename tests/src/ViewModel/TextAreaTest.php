@@ -8,16 +8,13 @@ use InvalidArgumentException;
 
 class TextAreaTest extends ViewModelTest
 {
-
-
     /**
      * @test
      */
     public function it_has_data()
     {
         $data = [
-            'label' =>
-                [
+            'label' => [
                     'labelText' => 'label text',
                     'for' => 'someid',
                     'isVisuallyHidden' => false,
@@ -34,7 +31,8 @@ class TextAreaTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_have_matching_ids_with_label() {
+    public function it_must_have_matching_ids_with_label()
+    {
         $this->expectException(InvalidArgumentException::class);
         new TextArea(new FormLabel('label text', 'NOT THE SAME'), 'someid', 'name', 'default value');
     }
@@ -42,7 +40,7 @@ class TextAreaTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [ new TextArea(new FormLabel('label text', 'someid'), 'someid', 'name', 'default value') ],
+            [new TextArea(new FormLabel('label text', 'someid'), 'someid', 'name', 'default value')],
             [
                 new TextArea(
                     new FormLabel('label text', 'someid'),
@@ -56,8 +54,8 @@ class TextAreaTest extends ViewModelTest
                     30, // cols
                     2, // rows
                     'some_form_id'
-                )
-            ]
+                ),
+            ],
         ];
     }
 
