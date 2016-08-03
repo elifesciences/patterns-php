@@ -35,7 +35,7 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
 
     private function hasBackground($data) : bool
     {
-        return (strpos($data['rootClasses'], 'content-header-nonarticle--background') !== false);
+        return strpos($data['rootClasses'], 'content-header-nonarticle--background') !== false;
     }
 
     /**
