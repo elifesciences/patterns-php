@@ -25,16 +25,19 @@ final class FilterPanelTest extends ViewModelTest
                                     'isChecked' => true,
                                     'label' => 'something',
                                     'results' => '10',
+                                    'name' => 'some_name_10',
                                 ],
                                 [
                                     'isChecked' => true,
                                     'label' => 'something',
                                     'results' => '100',
+                                    'name' => 'some_name_100',
                                 ],
                                 [
                                     'isChecked' => true,
                                     'label' => 'something',
                                     'results' => '1,000',
+                                    'name' => 'some_name_1000',
                                 ],
                             ],
                     ],
@@ -47,9 +50,9 @@ final class FilterPanelTest extends ViewModelTest
         ];
         $panel = new FilterPanel('Search results', [
             new FilterGroup('title', [
-                new Filter(true, 'something', 10),
-                new Filter(true, 'something', 100),
-                new Filter(true, 'something', 1000),
+                new Filter(true, 'something', 10, 'some_name_10'),
+                new Filter(true, 'something', 100, 'some_name_100'),
+                new Filter(true, 'something', 1000, 'some_name_1000'),
             ]),
         ], Button::form('search', 'submit', Button::SIZE_SMALL));
 
@@ -74,9 +77,9 @@ final class FilterPanelTest extends ViewModelTest
         return [
             [new FilterPanel('Search results', [
                 new FilterGroup('title', [
-                    new Filter(true, 'something', 10),
-                    new Filter(true, 'something', 100),
-                    new Filter(true, 'something', 1000),
+                    new Filter(true, 'something', 10, 'some_name_10'),
+                    new Filter(true, 'something', 100, 'some_name_100'),
+                    new Filter(true, 'something', 1000, 'some_name_1000', 'some value'),
                 ]),
             ], Button::form('search', 'submit', Button::SIZE_SMALL))],
         ];
