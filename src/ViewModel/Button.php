@@ -88,8 +88,12 @@ class Button implements ViewModel
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
+        Assertion::allNotNull([ $text, $size, $style, $isActive, $isFullWidth ]);
         Assertion::notBlank($path);
-        $button = new class($text, $size, $style, $isActive, $isFullWidth) extends Button implements ListingItem {};
+        $button = new class($text, $size, $style, $isActive, $isFullWidth) extends Button implements ListingItem
+        // This is a PHP-CS-Fixer bug.
+ {
+ };
         $button->setTemplateName('load-more');
         $button->path = $path;
 

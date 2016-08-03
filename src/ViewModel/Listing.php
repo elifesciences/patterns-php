@@ -12,7 +12,6 @@ use Traversable;
 
 final class Listing implements ViewModel
 {
-
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
@@ -31,11 +30,13 @@ final class Listing implements ViewModel
         }
     }
 
-    public static function withProfileSnippets($heading, ListingItem $listingItem, ProfileSnippet ...$items) {
+    public static function withProfileSnippets($heading, ListingItem $listingItem, ProfileSnippet ...$items)
+    {
         return new static($heading, $items, $listingItem);
     }
 
-    public static function withTeasers($heading, ListingItem $listingItem, Teaser ...$items) {
+    public static function withTeasers($heading, ListingItem $listingItem, Teaser ...$items)
+    {
         return new static($heading, $items, $listingItem);
     }
 
