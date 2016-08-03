@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use Assert\InvalidArgumentException;
+use DateTimeImmutable;
 use eLife\Patterns\ViewModel\ContextLabel;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
@@ -10,7 +11,6 @@ use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
-use DateTimeImmutable;
 
 final class TeaserTest extends ViewModelTest
 {

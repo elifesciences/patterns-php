@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Author;
 use eLife\Patterns\ViewModel\AuthorList;
 use eLife\Patterns\ViewModel\BackgroundImage;
@@ -13,7 +14,6 @@ use eLife\Patterns\ViewModel\InstitutionList;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Picture;
-use DateTimeImmutable;
 use eLife\Patterns\ViewModel\SubjectList;
 
 final class ContentHeaderArticleTest extends ViewModelTest

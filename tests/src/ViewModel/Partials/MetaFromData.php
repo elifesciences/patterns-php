@@ -2,10 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel\Partials;
 
+use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
-use DateTimeImmutable;
 
 trait MetaFromData
 {
@@ -17,8 +17,7 @@ trait MetaFromData
                     new Link($data['text'], $data['url']),
                     new Date(new DateTimeImmutable($data['date']['forMachine']))
                 );
-            }
-            else {
+            } else {
                 return Meta::withLink(
                     new Link($data['text'], $data['url'])
                 );
@@ -30,8 +29,7 @@ trait MetaFromData
                     $data['text'],
                     new Date(new DateTimeImmutable($data['date']['forMachine']))
                 );
-            }
-            else {
+            } else {
                 return Meta::withText(
                     $data['text']
                 );
