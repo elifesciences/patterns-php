@@ -9,8 +9,6 @@ use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
-use DateTimeImmutable;
-use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\PodcastDownload;
 use eLife\Patterns\ViewModel\Select;
@@ -20,7 +18,6 @@ use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
 
 final class ContentHeaderNonArticleTest extends ViewModelTest
 {
-
     use MetaFromData;
 
     /**
@@ -78,23 +75,6 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $header);
     }
 
-    /**
-     * @test
-     */
-    public function it_can_create_basic_with_strapline_background_image()
-    {
-        $data = ContentHeaderFixtures::nonArticleBasicWithStraplineBackgroundImageFixture();
-        $header = ContentHeaderNonArticle::basic(
-            $data['title'],
-            $this->hasBackground($data),
-            $data['strapline'],
-            null,
-            null,
-            $this->backgroundImageFromData($data['backgroundImage'])
-        );
-        $this->assertSameWithoutOrder($data, $header);
-    }
-
     private function buttonFromData(array $data, $form = false) : Button
     {
         $style = strpos($data['classes'], 'button--outline') !== false ? Button::STYLE_OUTLINE : Button::STYLE_DEFAULT;
@@ -118,6 +98,23 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $data['lowResImageSource'],
             $data['highResImageSource']
         );
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_create_basic_with_strapline_background_image()
+    {
+        $data = ContentHeaderFixtures::nonArticleBasicWithStraplineBackgroundImageFixture();
+        $header = ContentHeaderNonArticle::basic(
+            $data['title'],
+            $this->hasBackground($data),
+            $data['strapline'],
+            null,
+            null,
+            $this->backgroundImageFromData($data['backgroundImage'])
+        );
+        $this->assertSameWithoutOrder($data, $header);
     }
 
     /**
