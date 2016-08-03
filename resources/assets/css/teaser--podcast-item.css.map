@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAIE,qCAAgB,CACd,MAAM,CAAE,CAAC,CAIX,4CAAuB,CACrB,WAAW,CCkBA,gCAAkC,CCnB/C,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,MAAmC",
-"sources": ["../../../../../../assets/sass/patterns/molecules/teaser--podcast-item.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "teaser--podcast-item.css"
-}
