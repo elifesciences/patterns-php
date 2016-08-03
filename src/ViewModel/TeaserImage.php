@@ -22,7 +22,7 @@ final class TeaserImage implements CastsToArray
     const STYLE_BIG = 'teaser__img--big';
     const STYLE_SMALL = 'teaser__img--small';
 
-    public function __construct(
+    private function __construct(
         string $defaultPath,
         string $altText = null,
         string $url = null,

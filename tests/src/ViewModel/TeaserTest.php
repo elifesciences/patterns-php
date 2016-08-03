@@ -24,15 +24,16 @@ final class TeaserTest extends ViewModelTest
             'url' => null,
             'srcset' => null,
         ], $data);
-        $size = [$size];
-
-        return new TeaserImage(
-            $data['defaultPath'],
-            $data['altText'],
-            $data['url'],
-            $this->srcsetToArray($data['srcset']),
-            $size
-        );
+        $data['srcset'] = $this->srcsetToArray($data['srcset']);
+        $params = array_values($data);
+        switch ($size) {
+            case TeaserImage::STYLE_BIG:
+                return TeaserImage::big(...$params);
+            case TeaserImage::STYLE_SMALL:
+                return TeaserImage::small(...$params);
+            case TeaserImage::STYLE_PROMINENT:
+                return TeaserImage::prominent(...$params);
+        }
     }
 
     /**
@@ -299,7 +300,8 @@ final class TeaserTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_cant_load_context_label_without_arguments() {
+    public function it_cant_load_context_label_without_arguments()
+    {
         $this->expectException(InvalidArgumentException::class);
         new ContextLabel();
     }
