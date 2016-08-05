@@ -1,13 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Stephen
  * Date: 05/08/16
- * Time: 11:02
+ * Time: 11:02.
  */
 
 namespace tests\eLife\Patterns\ViewModel;
-
 
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\Image;
@@ -32,15 +32,14 @@ class ListingTest extends ViewModelTest
     public function it_has_data()
     {
         $data = array(
-            'loadMore' =>
-                array(
+            'loadMore' => array(
                     'classes' => 'button--default',
                     'path' => '#',
                     'text' => 'load more',
                     'templateName' => 'load-more',
                 ),
             'heading' => 'heading',
-            'items' => self::getProfileSnippetSource()
+            'items' => self::getProfileSnippetSource(),
         );
         $listing = Listing::withProfileSnippets(
             'heading',
@@ -55,17 +54,14 @@ class ListingTest extends ViewModelTest
     {
         return [
             [
-                'picture' =>
-                    [
-                        'fallback' =>
-                            [
+                'picture' => [
+                        'fallback' => [
                                 'altText' => 'the alt text',
                                 'defaultPath' => '/default/path',
                                 'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                                 'classes' => 'profile-snippet__image',
                             ],
-                        'sources' =>
-                            [
+                        'sources' => [
                                 [
                                     'srcset' => '/path/to/svg',
                                 ],
@@ -76,17 +72,14 @@ class ListingTest extends ViewModelTest
                 'name' => 'Name McName',
             ],
             [
-                'picture' =>
-                    [
-                        'fallback' =>
-                            [
+                'picture' => [
+                        'fallback' => [
                                 'altText' => 'the alt text',
                                 'defaultPath' => '/default/path',
                                 'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                                 'classes' => 'profile-snippet__image',
                             ],
-                        'sources' =>
-                            [
+                        'sources' => [
                                 [
                                     'srcset' => '/path/to/svg',
                                 ],
@@ -97,17 +90,14 @@ class ListingTest extends ViewModelTest
                 'name' => 'Name McName',
             ],
             [
-                'picture' =>
-                    [
-                        'fallback' =>
-                            [
+                'picture' => [
+                        'fallback' => [
                                 'altText' => 'the alt text',
                                 'defaultPath' => '/default/path',
                                 'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                                 'classes' => 'profile-snippet__image',
                             ],
-                        'sources' =>
-                            [
+                        'sources' => [
                                 [
                                     'srcset' => '/path/to/svg',
                                 ],
@@ -158,11 +148,12 @@ class ListingTest extends ViewModelTest
                         'the alt text'
                     )
                 )
-            )
+            ),
         ];
     }
 
-    public function getTeasers() {
+    public function getTeasers()
+    {
         $data = TeaserFixtures::load(TeaserFixtures::BASIC);
         $actual = Teaser::basic(
             $data['title'],
@@ -170,6 +161,7 @@ class ListingTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forNonArticle($this->metaFromData($data['footer']['meta']))
         );
+
         return [$actual, $actual, $actual];
     }
 
@@ -181,15 +173,15 @@ class ListingTest extends ViewModelTest
                     'heading',
                     ListingItem::asLoadMoreLink(Button::loadMoreLink('load more', '#')),
                     ...self::getProfileSnippets()
-                )
+                ),
             ],
             [
                 Listing::withTeasers(
                     'heading',
                     ListingItem::asLoadMoreLink(Button::loadMoreLink('load more', '#')),
                     ...$this->getTeasers()
-                )
-            ]
+                ),
+            ],
         ];
     }
 

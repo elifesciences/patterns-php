@@ -4,8 +4,8 @@ namespace tests\eLife\Patterns\ViewModel\Partials;
 
 use eLife\Patterns\ViewModel\TeaserImage;
 
-trait TeaserImageFromData {
-
+trait TeaserImageFromData
+{
     abstract public function srcsetToArray($data);
 
     public function teaserImageFromData($data, $size = TeaserImage::STYLE_SMALL)
@@ -27,5 +27,4 @@ trait TeaserImageFromData {
                 return TeaserImage::prominent(...$params);
         }
     }
-
 }
