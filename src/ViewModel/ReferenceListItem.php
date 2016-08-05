@@ -18,7 +18,7 @@ final class ReferenceListItem implements CastsToArray
     public function __construct(string $id, int $ordinal, Reference $reference)
     {
         Assertion::notBlank($id);
-        Assertion::true($ordinal > 0);
+        Assertion::min($ordinal, 1);
 
         $this->bibId = [
             'full' => $id,
