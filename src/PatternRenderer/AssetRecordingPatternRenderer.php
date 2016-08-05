@@ -7,8 +7,6 @@ use eLife\Patterns\HasAssets;
 use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\ViewModel;
 use Traversable;
-use function eLife\Patterns\flatten;
-use function eLife\Patterns\sanitise_traversable;
 
 final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
 {

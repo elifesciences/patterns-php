@@ -148,12 +148,12 @@ final class AssetRecordingPatternRendererTest extends PHPUnit_Framework_TestCase
     {
         $basePatternRenderer = $this->prophesize(PatternRenderer::class);
         $patternRenderer = new AssetRecordingPatternRenderer($basePatternRenderer->reveal());
-        $child_generator = function() {
+        $child_generator = function () {
             yield 'baz';
             yield 'bar';
 
         };
-        $generator = function() use ($child_generator) {
+        $generator = function () use ($child_generator) {
             yield 'foo';
             yield from $child_generator();
         };
@@ -168,7 +168,6 @@ final class AssetRecordingPatternRendererTest extends PHPUnit_Framework_TestCase
         $patternRenderer->render($viewModel1->reveal());
 
         $this->assertEquals(new ArrayObject(['foo', 'baz', 'bar']), $patternRenderer->getStyleSheets());
-
     }
 
     /**
