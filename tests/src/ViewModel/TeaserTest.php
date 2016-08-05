@@ -11,30 +11,12 @@ use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
+use tests\eLife\Patterns\ViewModel\Partials\TeaserImageFromData;
 
 final class TeaserTest extends ViewModelTest
 {
     use MetaFromData;
-
-    protected function teaserImageFromData($data, $size = TeaserImage::STYLE_SMALL)
-    {
-        $data = array_merge([
-            'defaultPath' => null,
-            'altText' => null,
-            'url' => null,
-            'srcset' => null,
-        ], $data);
-        $data['srcset'] = $this->srcsetToArray($data['srcset']);
-        $params = array_values($data);
-        switch ($size) {
-            case TeaserImage::STYLE_BIG:
-                return TeaserImage::big(...$params);
-            case TeaserImage::STYLE_SMALL:
-                return TeaserImage::small(...$params);
-            case TeaserImage::STYLE_PROMINENT:
-                return TeaserImage::prominent(...$params);
-        }
-    }
+    use TeaserImageFromData;
 
     /**
      * @test

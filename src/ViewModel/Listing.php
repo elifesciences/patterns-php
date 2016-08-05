@@ -4,7 +4,6 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ListingItem;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -18,16 +17,25 @@ final class Listing implements ViewModel
 
     private $seeMoreLink;
     private $loadMore;
+    /**
+     * @var string
+     */
+    private $heading;
+    /**
+     * @var array
+     */
+    private $items;
+    /**
+     * @var ListingItem
+     */
+    private $listingItem;
 
     private function __construct(string $heading, array $items, ListingItem $listingItem)
     {
         Assertion::notEmpty($items);
-        if ($listingItem instanceof Button) {
-            $this->loadMore = $listingItem;
-        }
-        if ($listingItem instanceof SeeMoreLink) {
-            $this->seeMoreLink = $listingItem;
-        }
+        $this->{$listingItem->getProperty()} = $listingItem->getItem();
+        $this->heading = $heading;
+        $this->items = $items;
     }
 
     public static function withProfileSnippets($heading, ListingItem $listingItem, ProfileSnippet ...$items)

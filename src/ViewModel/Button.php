@@ -4,7 +4,6 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ListingItem;
 use eLife\Patterns\MultipleTemplates;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
@@ -88,12 +87,8 @@ class Button implements ViewModel
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
-        Assertion::allNotNull([ $text, $size, $style, $isActive, $isFullWidth ]);
         Assertion::notBlank($path);
-        $button = new class($text, $size, $style, $isActive, $isFullWidth) extends Button implements ListingItem
-        // This is a PHP-CS-Fixer bug.
- {
- };
+        $button = new static($text, $size, $style, $isActive, $isFullWidth);
         $button->setTemplateName('load-more');
         $button->path = $path;
 
