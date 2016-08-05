@@ -29,25 +29,25 @@ final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
 
     public function render(ViewModel $viewModel) : string
     {
-        foreach (sanitise_traversable($viewModel->getStyleSheets()) as $styleSheet) {
+        foreach ($viewModel->getStyleSheets() as $styleSheet) {
             if (false !== $this->contains($this->styleSheets, $styleSheet)) {
                 continue;
             }
             $this->styleSheets[] = $styleSheet;
         };
 
-        foreach (flatten($viewModel->getInlineStyleSheets()) as $styleSheet) {
+        foreach ($viewModel->getInlineStyleSheets() as $styleSheet) {
             $this->inlineStyleSheets[] = $styleSheet;
         };
 
-        foreach (sanitise_traversable($viewModel->getJavaScripts()) as $javaScript) {
+        foreach ($viewModel->getJavaScripts() as $javaScript) {
             if (false !== $this->contains($this->javaScripts, $javaScript)) {
                 continue;
             }
             $this->javaScripts[] = $javaScript;
         };
 
-        foreach (flatten($viewModel->getInlineJavaScripts()) as $javaScript) {
+        foreach ($viewModel->getInlineJavaScripts() as $javaScript) {
             $this->inlineJavaScripts[] = $javaScript;
         };
 

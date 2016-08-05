@@ -144,6 +144,36 @@ final class AssetRecordingPatternRendererTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function it_handles_yield_from()
+    {
+        $basePatternRenderer = $this->prophesize(PatternRenderer::class);
+        $patternRenderer = new AssetRecordingPatternRenderer($basePatternRenderer->reveal());
+        $child_generator = function() {
+            yield 'baz';
+            yield 'bar';
+
+        };
+        $generator = function() use ($child_generator) {
+            yield 'foo';
+            yield from $child_generator();
+        };
+
+        $viewModel1 = $this->prophesize(ViewModel::class);
+        $viewModel1->getStyleSheets()->willReturn($generator());
+        $viewModel1->getInlineStyleSheets()->willReturn(new ArrayObject());
+        $viewModel1->getJavaScripts()->willReturn(new ArrayObject());
+        $viewModel1->getInlineJavaScripts()->willReturn(new ArrayObject());
+        $basePatternRenderer->render($viewModel1)->willReturn('foo');
+
+        $patternRenderer->render($viewModel1->reveal());
+
+        $this->assertEquals(new ArrayObject(['foo', 'baz', 'bar']), $patternRenderer->getStyleSheets());
+
+    }
+
+    /**
+     * @test
+     */
     public function it_records_inline_javascript()
     {
         $basePatternRenderer = $this->prophesize(PatternRenderer::class);
