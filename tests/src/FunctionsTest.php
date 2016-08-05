@@ -11,17 +11,17 @@ use function eLife\Patterns\traversable_to_array;
 
 final class FunctionsTest extends PHPUnit_Framework_TestCase
 {
-
     /**
      * @test
      */
-    public function traversable_to_array() {
-        $fn1 = function() {
+    public function traversable_to_array()
+    {
+        $fn1 = function () {
             yield 'foo';
             yield 'bar';
             yield 'bar';
         };
-        $fn2 = function() use ($fn1) {
+        $fn2 = function () use ($fn1) {
             yield 'baz';
             yield from $fn1();
         };
@@ -29,7 +29,6 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
         $this->assertSame(['baz', 'foo', 'bar'], traversable_to_array($fn2()));
         $this->assertSame(['baz', 'foo', 'bar', 'bar'], traversable_to_array($fn2(), false));
     }
-
 
     /**
      * @test

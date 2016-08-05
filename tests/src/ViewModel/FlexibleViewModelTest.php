@@ -7,7 +7,6 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
 use PHPUnit_Framework_TestCase;
-use function eLife\Patterns\flatten;
 use function eLife\Patterns\traversable_to_array;
 
 final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
