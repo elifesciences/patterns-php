@@ -6,11 +6,6 @@ use Traversable;
 
 /**
  * Converts traversable type to array with optional distinct.
- *
- * @param Traversable $traversable
- * @param bool $distinct
- *
- * @return array
  */
 function traversable_to_array(Traversable $traversable, $distinct = true) : array
 {
@@ -26,10 +21,6 @@ function traversable_to_array(Traversable $traversable, $distinct = true) : arra
  * Flattens a multi-dimensional array.
  *
  * @internal
- *
- * @param $item
- *
- * @return Traversable
  */
 function flatten($item) : Traversable
 {
@@ -48,10 +39,6 @@ function flatten($item) : Traversable
  * If we can iterate.
  *
  * @internal
- *
- * @param $item
- *
- * @return bool
  */
 function is_iterable($item) : bool
 {
