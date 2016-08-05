@@ -5,6 +5,8 @@ assets:
             - teaser.css
         -
             - load-more.css
+        -
+            - buttons.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
