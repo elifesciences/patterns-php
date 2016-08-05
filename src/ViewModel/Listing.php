@@ -2,13 +2,13 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use Traversable;
-use ReflectionClass;
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use ReflectionClass;
+use Traversable;
 
 final class Listing implements ViewModel
 {
