@@ -8,7 +8,7 @@ use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
 use PHPUnit_Framework_TestCase;
 use function eLife\Patterns\flatten;
-use function eLife\Patterns\sanitise_traversable;
+use function eLife\Patterns\traversable_to_array;
 
 final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -74,23 +74,23 @@ final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
             $inlineJavaScripts = new ArrayObject(['grault'])
         );
 
-        $expectedStylesheets = iterator_to_array(sanitise_traversable($styleSheets));
-        $actualStyleSheets = iterator_to_array(sanitise_traversable($viewModel->getStyleSheets()));
+        $expectedStylesheets = traversable_to_array($styleSheets);
+        $actualStyleSheets = traversable_to_array($viewModel->getStyleSheets());
 
         $this->assertSame($expectedStylesheets, $actualStyleSheets);
 
-        $expectedInlineStylesheets = iterator_to_array(flatten($inlineStyleSheets));
-        $actualInlineStyleSheets = iterator_to_array(flatten($viewModel->getInlineStyleSheets()));
+        $expectedInlineStylesheets = traversable_to_array($inlineStyleSheets);
+        $actualInlineStyleSheets = traversable_to_array($viewModel->getInlineStyleSheets());
 
         $this->assertSame($expectedInlineStylesheets, $actualInlineStyleSheets);
 
-        $expectedJavaScripts = iterator_to_array(sanitise_traversable($javaScripts));
-        $actualJavaScripts = iterator_to_array(sanitise_traversable($viewModel->getJavaScripts()));
+        $expectedJavaScripts = traversable_to_array($javaScripts);
+        $actualJavaScripts = traversable_to_array($viewModel->getJavaScripts());
 
         $this->assertSame($expectedJavaScripts, $actualJavaScripts);
 
-        $expectedInlineJavaScripts = iterator_to_array(flatten($inlineJavaScripts));
-        $actualInlineJavaScripts = iterator_to_array(flatten($viewModel->getInlineJavaScripts()));
+        $expectedInlineJavaScripts = traversable_to_array($inlineJavaScripts);
+        $actualInlineJavaScripts = traversable_to_array($viewModel->getInlineJavaScripts());
 
         $this->assertSame($expectedInlineJavaScripts, $actualInlineJavaScripts);
     }

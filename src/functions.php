@@ -2,39 +2,33 @@
 
 namespace eLife\Patterns;
 
-use ArrayObject;
 use Traversable;
 
 /**
- * Flattens, orders and deduplicates.
+ * Converts traversable type to array with optional distinct
  *
- * @internal
+ * @param Traversable $traversable
+ * @param bool $distinct
+ * @return array
  */
-function sanitise_traversable(Traversable $traversable) : Traversable
-{
-    return new ArrayObject(sanitise_array(iterator_to_array(flatten($traversable))));
+function traversable_to_array(Traversable $traversable, $distinct = true) : array {
+    $array = [];
+    foreach ($traversable as $t) {
+        $array[] = $t;
+    }
+    return $distinct ? array_unique($array) : $array;
 }
 
 /**
- * Flattens, orders and deduplicates.
+ * Flattens a multi-dimensional array.
  *
  * @internal
- */
-function sanitise_array(array $array) : array
-{
-    $array = array_keys(array_flip(iterator_to_array(flatten($array))));
-
-    sort($array);
-
-    return $array;
-}
-
-/**
- * @internal
+ * @param $item
+ * @return Traversable
  */
 function flatten($item) : Traversable
 {
-    if (is_traversable($item)) {
+    if (is_iterable($item)) {
         foreach ($item as $value) {
             foreach (flatten($value) as $flattenedValue) {
                 yield $flattenedValue;
@@ -46,9 +40,13 @@ function flatten($item) : Traversable
 }
 
 /**
+ * If we can iterate.
+ *
  * @internal
+ * @param $item
+ * @return bool
  */
-function is_traversable($item) : bool
+function is_iterable($item) : bool
 {
     return is_array($item) || $item instanceof Traversable;
 }
