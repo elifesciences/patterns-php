@@ -186,7 +186,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         return $array;
     }
 
-    protected function assertSameWithoutOrder($expected, $actual)
+    protected function assertSameWithoutOrder($expected, $actual, $prefix = '')
     {
         $reasons = [];
         foreach ($expected as $key => $expected_item) {
@@ -194,15 +194,15 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
                 continue;
             }
             if (!isset($actual[$key])) {
-                array_push($reasons, 'Key missing in array: '.$key);
+                array_push($reasons, 'Key missing in array: '.$prefix.'.'.$key);
                 continue;
             }
             if ($actual[$key] instanceof CastsToArray || is_array($actual[$key])) {
-                $this->assertSameWithoutOrder($expected_item, $actual[$key]);
+                $this->assertSameWithoutOrder($expected_item, $actual[$key], $key);
                 continue;
             }
             if ($key === 'behaviour' || $key === 'classes') {
-                $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]));
+                $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]), $key);
                 continue;
             }
             $this->assertSame($expected_item, $actual[$key]);
@@ -212,10 +212,10 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    protected function assertSameValuesWithoutOrder($expected, $actual)
+    protected function assertSameValuesWithoutOrder($expected, $actual, $prefix = [])
     {
         foreach ($expected as $expected_item) {
-            $this->assertContains($expected_item, $actual);
+            $this->assertContains($expected_item, $actual, 'Prefix:'.$prefix);
         }
     }
 
