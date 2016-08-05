@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
@@ -18,6 +19,8 @@ final class ReferenceList implements ViewModel
 
     public function __construct(ReferenceListItem ...$references)
     {
+        Assertion::notEmpty($references);
+
         $this->references = $references;
     }
 

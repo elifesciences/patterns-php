@@ -15,13 +15,14 @@ final class ReferenceListItem implements CastsToArray
     private $bibId;
     private $reference;
 
-    public function __construct(string $full_id, int $ordinal_id, Reference $reference)
+    public function __construct(string $id, int $ordinal, Reference $reference)
     {
-        Assertion::notBlank($full_id);
+        Assertion::notBlank($id);
+        Assertion::true($ordinal > 0);
 
         $this->bibId = [
-            'full' => $full_id,
-            'ordinal' => $ordinal_id,
+            'full' => $id,
+            'ordinal' => $ordinal,
         ];
         $this->reference = $reference;
     }
