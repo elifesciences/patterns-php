@@ -10,7 +10,7 @@ namespace eLife\Patterns;
 
 use ReflectionClass;
 
-trait ensureInstance
+trait EnsureInstance
 {
     public function ensureInstance($instance, string $class, array $properties = [], callable $fn = null)
     {
