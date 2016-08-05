@@ -1,7 +1,7 @@
 eLife Patterns
 ==============
 
-[![Build Status](http://ci.alfred.elifesciences.org/buildStatus/icon?job=library-patterns-php)](http://ci.alfred.elifesciences.org/job/library-patterns-php/)
+[![Build Status](http://ci--alfred.elifesciences.org/buildStatus/icon?job=library-patterns-php)](http://ci--alfred.elifesciences.org/job/library-patterns-php/)
 
 This library provides a PHP implementation for the Mustache templates/assets produced by the [eLife Sciences Pattern Library](https://github.com/elifesciences/pattern-library).
 
