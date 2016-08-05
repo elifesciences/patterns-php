@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Stephen
- * Date: 05/08/16
- * Time: 11:02.
- */
-
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
@@ -21,7 +14,7 @@ use eLife\Patterns\ViewModel\TeaserImage;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
 use tests\eLife\Patterns\ViewModel\Partials\TeaserImageFromData;
 
-class ListingTest extends ViewModelTest
+abstract class ListingTest extends ViewModelTest
 {
     use MetaFromData;
     use TeaserImageFromData;
