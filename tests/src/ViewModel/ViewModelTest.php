@@ -205,8 +205,8 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
                 $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]));
                 continue;
             }
-            if (is_int($key)) {
-                $this->assertSameValuesWithoutOrder($expected, $actual);
+            if (is_int($key) && is_array($actual) && is_array($expected)) {
+                $this->assertSameValuesWithoutOrder(array_values($expected), array_values($actual));
                 break;
             }
             $this->assertSame($expected_item, $actual[$key]);
