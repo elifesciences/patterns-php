@@ -1,0 +1,35 @@
+assets:
+    css:
+        - contextual-data.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        cited:
+            type: integer
+        views:
+            type: integer
+        comments:
+            type: integer
+        cite_as:
+            type: string
+            minLength: 1
+        doi:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                uri:
+                    type: string
+                    minLength: 1
+                classNames:
+                    type: string
+                    minLength: 1
+            required:
+                - uri
+    required:
+        - cited
+        - views
+        - comments
+        - cite_as
+        - doi
