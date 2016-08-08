@@ -19,7 +19,7 @@ final class ContextualData implements ViewModel
     private $comments;
     private $cited;
     private $doi;
-    private $cite_as;
+    private $citeAs;
 
     const STYLE_DOI = 'contextual-data__doi';
 
@@ -27,7 +27,7 @@ final class ContextualData implements ViewModel
     {
         Assertion::notBlank($citeAs);
 
-        $this->cite_as = $citeAs;
+        $this->citeAs = $citeAs;
         $this->views = $views;
         $this->comments = $comments;
         $this->cited = $cited;

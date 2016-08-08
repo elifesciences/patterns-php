@@ -20,10 +20,10 @@ final class ContextualDataTest extends ViewModelTest
                     'uri' => '#',
                     'classNames' => 'contextual-data__doi',
                 ],
-            'cite_as' => 'cited as',
+            'citeAs' => 'cited as',
         ];
 
-        $contextualData = new ContextualData($data['cite_as'], $data['views'], $data['comments'], $data['cited'], new Doi($data['doi']['uri']));
+        $contextualData = new ContextualData($data['citeAs'], $data['views'], $data['comments'], $data['cited'], new Doi($data['doi']['uri']));
         $this->assertEquals($data['doi']['classNames'], 'contextual-data__doi');
         $this->assertSameWithoutOrder($data, $contextualData);
     }
