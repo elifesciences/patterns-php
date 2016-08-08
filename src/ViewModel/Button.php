@@ -88,9 +88,8 @@ final class Button implements ViewModel
         bool $isFullWidth = false
     ) : Button {
         Assertion::notBlank($path);
-        $button = new static($text, $size, $style, $isActive, $isFullWidth);
+        $button = self::link($text, $path, $size, $style, $isActive, $isFullWidth);
         $button->setTemplateName('load-more');
-        $button->path = $path;
 
         return $button;
     }
