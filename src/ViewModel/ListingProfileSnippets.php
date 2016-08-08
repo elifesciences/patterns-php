@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class ListingProfileSnippets implements ViewModel
+final class ListingProfileSnippets implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

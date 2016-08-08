@@ -10,7 +10,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-class Button implements ViewModel
+final class Button implements ViewModel
 {
     const SIZE_MEDIUM = 'medium';
     const SIZE_SMALL = 'small';

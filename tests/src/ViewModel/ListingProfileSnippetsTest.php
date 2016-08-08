@@ -9,7 +9,7 @@ use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 
-class ListingProfileSnippetsTest extends ViewModelTest
+final class ListingProfileSnippetsTest extends ViewModelTest
 {
     public static function getProfileSnippetFixture() : ProfileSnippet
     {
