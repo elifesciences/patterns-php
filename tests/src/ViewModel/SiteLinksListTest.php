@@ -56,6 +56,7 @@ final class SiteLinksListTest extends ViewModelTest
                     ],
                 ],
             ],
+
         ];
         $siteLinksList = new SiteLinksList([
             new SiteLinks([
@@ -78,22 +79,20 @@ final class SiteLinksListTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [
-                new SiteLinksList([
-                    new SiteLinks([
-                        new Link('item 1', '#'),
-                        new Link('item 2', '#'),
-                        new Link('item 3', '#'),
-                        new Link('item 4', '#'),
-                    ]),
-                    new SiteLinks([
-                        new Link('item 5', '#'),
-                        new Link('item 6', '#'),
-                        new Link('item 7', '#'),
-                        new Link('item 8', '#'),
-                    ]),
+            [new SiteLinksList([
+                new SiteLinks([
+                    new Link('item 1', '#'),
+                    new Link('item 2', '#'),
+                    new Link('item 3', '#'),
+                    new Link('item 4', '#'),
                 ]),
-            ],
+                new SiteLinks([
+                    new Link('item 5', '#'),
+                    new Link('item 6', '#'),
+                    new Link('item 7', '#'),
+                    new Link('item 8', '#'),
+                ]),
+            ])],
         ];
     }
 
