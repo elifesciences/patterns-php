@@ -218,8 +218,10 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
     protected function assertSameValuesWithoutOrder($expected, $actual)
     {
-        foreach ($expected as $expected_item) {
-            $this->assertContains($expected_item, $actual);
+        if (is_array($expected) && is_array($actual)) {
+            foreach ($expected as $expected_item) {
+                $this->assertContains($expected_item, $actual);
+            }
         }
     }
 
