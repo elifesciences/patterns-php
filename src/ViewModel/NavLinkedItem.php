@@ -3,15 +3,16 @@
 namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use Traversable;
 
 final class NavLinkedItem implements ViewModel
 {
     use ArrayFromProperties;
+    use ComposedAssets;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
 
     const ICON_CLASSES = [
         'menu' => 'nav-primary__menu_icon',
@@ -79,6 +80,12 @@ final class NavLinkedItem implements ViewModel
         $fallback['classes'] = static::ICON_CLASSES[$iconName];
 
         return $picture->withProperty('fallback', $fallback);
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->button;
+        yield $this->picture;
     }
 
     public function getTemplateName() : string
