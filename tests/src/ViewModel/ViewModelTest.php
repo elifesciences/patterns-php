@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use ArrayObject;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
@@ -109,11 +108,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
             $this->puli->get($stylesheet);
         }
 
-        $expectedInlineStylesheets = iterator_to_array(flatten($this->expectedInlineStylesheets($viewModel)));
-        $actualInlineStyleSheets = iterator_to_array(flatten($viewModel->getInlineStyleSheets()));
-
-        $this->assertSame($expectedInlineStylesheets, $actualInlineStyleSheets);
-
         $expectedJavaScripts = iterator_to_array(sanitise_traversable($this->expectedJavaScripts()));
         $actualJavaScripts = iterator_to_array(sanitise_traversable($viewModel->getJavaScripts()));
 
@@ -122,11 +116,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         foreach ($this->expectedJavaScripts() as $javaScript) {
             $this->puli->get($javaScript);
         }
-
-        $expectedInlineJavaScripts = iterator_to_array(flatten($this->expectedInlineJavaScripts($viewModel)));
-        $actualInlineJavaScripts = iterator_to_array(flatten($viewModel->getInlineJavaScripts()));
-
-        $this->assertSame($expectedInlineJavaScripts, $actualInlineJavaScripts);
     }
 
     abstract public function viewModelProvider() : array;
@@ -147,11 +136,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    protected function expectedInlineStylesheets(ViewModel $viewModel) : Traversable
-    {
-        return new ArrayObject();
-    }
-
     private function expectedJavaScripts() : Traversable
     {
         $definition = $this->loadDefinition();
@@ -159,11 +143,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
             yield '/elife/patterns/assets/js/'.$javaScript;
         }
-    }
-
-    protected function expectedInlineJavaScripts(ViewModel $viewModel) : Traversable
-    {
-        return new ArrayObject();
     }
 
     final private function loadDefinition() : stdClass
