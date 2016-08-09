@@ -79,7 +79,7 @@ final class SiteHeaderNavBar implements ViewModel
 
     protected function getComposedViewModels() : Traversable
     {
-        return new ArrayObject($this->linkedItems);
+        yield from $this->linkedItems;
     }
 
     public function getTemplateName() : string

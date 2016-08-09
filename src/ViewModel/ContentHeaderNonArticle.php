@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -14,7 +15,7 @@ final class ContentHeaderNonArticle implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     const STYLE_BASE = 'content-header-nonarticle';
     const STYLE_BACKGROUND = 'content-header-nonarticle--background';
@@ -235,8 +236,14 @@ final class ContentHeaderNonArticle implements ViewModel
         return '/elife/patterns/templates/content-header-non-article.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/content-header-non-article.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->meta;
+        yield $this->selectNav;
     }
 }

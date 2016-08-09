@@ -3,6 +3,7 @@
 namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -12,7 +13,7 @@ final class ContentHeaderArticle implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     const TITLE_LARGE = 'content-header__title--large';
     const TITLE_MEDIUM = 'content-header__title--medium';
@@ -209,9 +210,19 @@ final class ContentHeaderArticle implements ViewModel
         return '/elife/patterns/templates/content-header-article.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/content-header-article-magazine.css';
-        yield '/elife/patterns/assets/css/content-header-article-research.css';
+        if (strpos($this->rootClasses, self::STYLE_MAGAZINE) !== false) {
+            yield '/elife/patterns/assets/css/content-header-article-magazine.css';
+        }
+        if (strpos($this->rootClasses, self::STYLE_RESEARCH) !== false) {
+            yield '/elife/patterns/assets/css/content-header-article-research.css';
+        }
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->meta;
+        yield $this->download;
     }
 }

@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -13,7 +14,7 @@ final class Footer implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $_mainMenu;
 
@@ -43,9 +44,14 @@ final class Footer implements ViewModel
         return '/elife/patterns/templates/footer.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getPublicStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/site-footer.css';
         yield from $this->_mainMenu->getStyleSheets();
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->_mainMenu;
     }
 }

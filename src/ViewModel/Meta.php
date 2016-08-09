@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -13,7 +14,7 @@ final class Meta implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $url;
     private $text;
@@ -47,13 +48,13 @@ final class Meta implements ViewModel
         return new self(null, null, $date);
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield from $this->date->getStyleSheets();
-    }
-
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/meta.mustache';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->date;
     }
 }

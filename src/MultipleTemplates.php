@@ -8,14 +8,14 @@ trait MultipleTemplates
 
     abstract public function getDefaultTemplateName() : string;
 
-    public function setTemplateName(string $templateName)
+    private function setTemplateName(string $templateName)
     {
         $this->templateName = $templateName;
 
         return $this;
     }
 
-    public function getTemplateName() : string
+    final public function getTemplateName() : string
     {
         if ($this->templateName) {
             return '/elife/patterns/templates/'.$this->templateName.'.mustache';

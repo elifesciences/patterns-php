@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -13,7 +14,7 @@ final class DecisionLetterProfile implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $mainText;
     private $profileSnippet;
@@ -26,7 +27,7 @@ final class DecisionLetterProfile implements ViewModel
         $this->mainText = $mainText;
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/decision-letter-profile.css';
     }
@@ -34,5 +35,10 @@ final class DecisionLetterProfile implements ViewModel
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/decision-letter-profile.mustache';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->profileSnippet;
     }
 }

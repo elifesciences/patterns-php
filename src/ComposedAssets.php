@@ -10,7 +10,7 @@ trait ComposedAssets
     final public function getStyleSheets() : Traversable
     {
         yield from $this->getLocalStyleSheets();
-        foreach (array_filter(iterator_to_array($this->getComposedViewModels())) as $viewModel) {
+        foreach (array_filter(iterator_to_array($this->getComposedViewModels(), false)) as $viewModel) {
             yield from $viewModel->getStyleSheets();
         }
     }
@@ -18,7 +18,7 @@ trait ComposedAssets
     final public function getJavaScripts() : Traversable
     {
         yield from $this->getLocalJavaScripts();
-        foreach (array_filter(iterator_to_array($this->getComposedViewModels())) as $viewModel) {
+        foreach (array_filter(iterator_to_array($this->getComposedViewModels(), false)) as $viewModel) {
             yield from $viewModel->getJavaScripts();
         }
     }
@@ -33,5 +33,5 @@ trait ComposedAssets
         return new ArrayObject();
     }
 
-    abstract protected function getComposedViewModels();
+    abstract protected function getComposedViewModels() : Traversable;
 }

@@ -12,6 +12,7 @@ use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
 use function eLife\Patterns\flatten;
 use function eLife\Patterns\iterator_to_unique_array;
+use PHPUnit_Framework_RiskyTestError;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -103,7 +104,11 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
 
         foreach ($actualStyleSheets as $styleSheet) {
-            $this->assertContains($styleSheet, $possibleStylesheets);
+            if (!in_array($styleSheet, $possibleStylesheets)) {
+                throw new PHPUnit_Framework_RiskyTestError(
+                    'Missing stylesheet in YAML:' . $styleSheet
+                );
+            }
         }
 
         foreach ($this->possibleStyleSheets() as $stylesheet) {
