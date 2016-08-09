@@ -35,9 +35,9 @@ final class MiniSection implements ViewModel
     {
         yield '/elife/patterns/assets/css/mini-section.css';
         if ($this->listHeading) {
-            yield $this->listHeading->getStyleSheets();
+            yield from $this->listHeading->getStyleSheets();
         } else {
-            yield (new ListHeading('dummy'))->getStyleSheets();
+            yield from (new ListHeading('dummy'))->getStyleSheets();
         }
     }
 }

@@ -38,8 +38,8 @@ final class FilterPanel implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/filter-panel.css';
-        yield array_map(function (FilterGroup $filter) {
-            yield $filter->getStyleSheets();
-        }, $this->filterGroups);
+        foreach ($this->filterGroups as $fg) {
+            yield from $fg->getStyleSheets();
+        }
     }
 }

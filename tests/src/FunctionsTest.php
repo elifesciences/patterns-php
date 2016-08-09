@@ -5,65 +5,29 @@ namespace tests\eLife\Patterns;
 use ArrayObject;
 use PHPUnit_Framework_TestCase;
 use function eLife\Patterns\flatten;
-use function eLife\Patterns\is_traversable;
+use function eLife\Patterns\is_iterable;
+use function eLife\Patterns\iterator_to_unique_array;
 use function eLife\Patterns\mixed_visibility_text;
-use function eLife\Patterns\sanitise_array;
-use function eLife\Patterns\sanitise_traversable;
 
 final class FunctionsTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @test
      */
-    public function sanitise_traversable()
+    public function iterator_to_unique_array()
     {
-        $input = new ArrayObject([
-            'foo',
-            'foo',
-            [
-                'foo',
-                'bar',
-            ],
-            [
-                new ArrayObject(['qux']),
-            ],
-            'bar',
-        ]);
+        $fn1 = function () {
+            yield 'foo';
+            yield 'bar';
+            yield 'bar';
+        };
+        $fn2 = function () use ($fn1) {
+            yield 'baz';
+            yield from $fn1();
+        };
 
-        $expected = [
-            'bar',
-            'foo',
-            'qux',
-        ];
-
-        $this->assertEquals($expected, iterator_to_array(sanitise_traversable($input)));
-    }
-
-    /**
-     * @test
-     */
-    public function sanitise_array()
-    {
-        $input = [
-            'foo',
-            'foo',
-            [
-                'foo',
-                'bar',
-            ],
-            [
-                new ArrayObject(['qux']),
-            ],
-            'bar',
-        ];
-
-        $expected = [
-            'bar',
-            'foo',
-            'qux',
-        ];
-
-        $this->assertEquals($expected, sanitise_array($input));
+        $this->assertSame(['baz', 'foo', 'bar'], iterator_to_unique_array($fn2()));
+        $this->assertSame(['baz', 'foo', 'bar', 'bar'], iterator_to_array($fn2(), false));
     }
 
     /**
@@ -98,14 +62,14 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @dataProvider TraversableProvider
+     * @dataProvider IterableProvider
      */
-    public function is_traversable($item, bool $expected)
+    public function is_iterable($item, bool $expected)
     {
-        $this->assertSame($expected, is_traversable($item));
+        $this->assertSame($expected, is_iterable($item));
     }
 
-    public function TraversableProvider()
+    public function IterableProvider()
     {
         return [
             ['foo', false],

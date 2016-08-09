@@ -7,7 +7,6 @@ use eLife\Patterns\HasAssets;
 use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\ViewModel;
 use Traversable;
-use function eLife\Patterns\sanitise_traversable;
 
 final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
 {
@@ -24,14 +23,14 @@ final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
 
     public function render(ViewModel $viewModel) : string
     {
-        foreach (sanitise_traversable($viewModel->getStyleSheets()) as $styleSheet) {
+        foreach ($viewModel->getStyleSheets() as $styleSheet) {
             if (false !== $this->contains($this->styleSheets, $styleSheet)) {
                 continue;
             }
             $this->styleSheets[] = $styleSheet;
         };
 
-        foreach (sanitise_traversable($viewModel->getJavaScripts()) as $javaScript) {
+        foreach ($viewModel->getJavaScripts() as $javaScript) {
             if (false !== $this->contains($this->javaScripts, $javaScript)) {
                 continue;
             }

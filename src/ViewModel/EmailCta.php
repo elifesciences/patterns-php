@@ -34,7 +34,7 @@ final class EmailCta implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield $this->compactForm->getStyleSheets();
+        yield from $this->compactForm->getStyleSheets();
         yield '/elife/patterns/assets/css/email-cta.css';
     }
 

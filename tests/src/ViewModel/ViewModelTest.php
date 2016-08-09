@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
 use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
 use function eLife\Patterns\flatten;
-use function eLife\Patterns\sanitise_traversable;
+use function eLife\Patterns\iterator_to_unique_array;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -99,19 +99,19 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $viewModel = $this->createViewModel();
 
-        $expectedStylesheets = iterator_to_array(sanitise_traversable($this->expectedStylesheets()));
-        $actualStyleSheets = iterator_to_array(sanitise_traversable($viewModel->getStyleSheets()));
+        $expectedStylesheets = iterator_to_unique_array($this->expectedStylesheets());
+        $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
 
-        $this->assertSame($expectedStylesheets, $actualStyleSheets);
+        $this->assertSameValuesWithoutOrder($expectedStylesheets, $actualStyleSheets);
 
         foreach ($this->expectedStylesheets() as $stylesheet) {
             $this->puli->get($stylesheet);
         }
 
-        $expectedJavaScripts = iterator_to_array(sanitise_traversable($this->expectedJavaScripts()));
-        $actualJavaScripts = iterator_to_array(sanitise_traversable($viewModel->getJavaScripts()));
+        $expectedJavaScripts = iterator_to_unique_array($this->expectedJavaScripts());
+        $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
 
-        $this->assertSame($expectedJavaScripts, $actualJavaScripts);
+        $this->assertSameValuesWithoutOrder($expectedJavaScripts, $actualJavaScripts);
 
         foreach ($this->expectedJavaScripts() as $javaScript) {
             $this->puli->get($javaScript);
@@ -181,7 +181,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
                 continue;
             }
             if ($key === 'behaviour' || $key === 'classes') {
-                $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]), $key);
+                $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]));
                 continue;
             }
             $this->assertSame($expected_item, $actual[$key]);
@@ -191,10 +191,10 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    protected function assertSameValuesWithoutOrder($expected, $actual, $prefix = [])
+    protected function assertSameValuesWithoutOrder($expected, $actual)
     {
         foreach ($expected as $expected_item) {
-            $this->assertContains($expected_item, $actual, 'Prefix:'.$prefix);
+            $this->assertContains($expected_item, $actual);
         }
     }
 

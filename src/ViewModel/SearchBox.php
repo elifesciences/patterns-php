@@ -31,6 +31,6 @@ final class SearchBox implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/search-box.css';
-        yield $this->compactForm->getStyleSheets();
+        yield from $this->compactForm->getStyleSheets();
     }
 }
