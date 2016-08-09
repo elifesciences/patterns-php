@@ -100,6 +100,7 @@ final class LoadMoreButtonTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
+            'button' => [Button::link('text', 'path')],
             'small' => [new LoadMoreButton('text', 'path', Button::SIZE_SMALL)],
             'extra small' => [new LoadMoreButton('text', 'path', Button::SIZE_SMALL)],
             'outline' => [new LoadMoreButton('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
