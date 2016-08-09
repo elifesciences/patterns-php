@@ -7,7 +7,7 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
 use PHPUnit_Framework_TestCase;
-use function eLife\Patterns\traversable_to_unique_array;
+use function eLife\Patterns\iterator_to_unique_array;
 
 final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -69,13 +69,13 @@ final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
             $javaScripts = new ArrayObject(['corge'])
         );
 
-        $expectedStylesheets = traversable_to_unique_array($styleSheets);
-        $actualStyleSheets = traversable_to_unique_array($viewModel->getStyleSheets());
+        $expectedStylesheets = iterator_to_unique_array($styleSheets);
+        $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
 
         $this->assertSame($expectedStylesheets, $actualStyleSheets);
 
-        $expectedJavaScripts = traversable_to_unique_array($javaScripts);
-        $actualJavaScripts = traversable_to_unique_array($viewModel->getJavaScripts());
+        $expectedJavaScripts = iterator_to_unique_array($javaScripts);
+        $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
 
         $this->assertSame($expectedJavaScripts, $actualJavaScripts);
     }

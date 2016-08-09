@@ -7,22 +7,9 @@ use Traversable;
 /**
  * Converts traversable type to unique array.
  */
-function traversable_to_unique_array(Traversable $traversable) : array
+function iterator_to_unique_array(Traversable $traversable) : array
 {
-    return array_unique(traversable_to_array($traversable));
-}
-
-/**
- * Converts traversable type to array.
- */
-function traversable_to_array(Traversable $traversable) : array
-{
-    $array = [];
-    foreach ($traversable as $t) {
-        $array[] = $t;
-    }
-
-    return $array;
+    return array_unique(iterator_to_array($traversable, false));
 }
 
 /**

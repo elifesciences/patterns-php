@@ -7,15 +7,14 @@ use PHPUnit_Framework_TestCase;
 use function eLife\Patterns\flatten;
 use function eLife\Patterns\is_iterable;
 use function eLife\Patterns\mixed_visibility_text;
-use function eLife\Patterns\traversable_to_array;
-use function eLife\Patterns\traversable_to_unique_array;
+use function eLife\Patterns\iterator_to_unique_array;
 
 final class FunctionsTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @test
      */
-    public function traversable_to_unique_array()
+    public function iterator_to_unique_array()
     {
         $fn1 = function () {
             yield 'foo';
@@ -27,8 +26,8 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
             yield from $fn1();
         };
 
-        $this->assertSame(['baz', 'foo', 'bar'], traversable_to_unique_array($fn2()));
-        $this->assertSame(['baz', 'foo', 'bar', 'bar'], traversable_to_array($fn2(), false));
+        $this->assertSame(['baz', 'foo', 'bar'], iterator_to_unique_array($fn2()));
+        $this->assertSame(['baz', 'foo', 'bar', 'bar'], iterator_to_array($fn2(), false));
     }
 
     /**

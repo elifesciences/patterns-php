@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
 use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
 use function eLife\Patterns\flatten;
-use function eLife\Patterns\traversable_to_unique_array;
+use function eLife\Patterns\iterator_to_unique_array;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -99,8 +99,8 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $viewModel = $this->createViewModel();
 
-        $expectedStylesheets = traversable_to_unique_array($this->expectedStylesheets());
-        $actualStyleSheets = traversable_to_unique_array($viewModel->getStyleSheets());
+        $expectedStylesheets = iterator_to_unique_array($this->expectedStylesheets());
+        $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
 
         $this->assertSameValuesWithoutOrder($expectedStylesheets, $actualStyleSheets);
 
@@ -108,8 +108,8 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
             $this->puli->get($stylesheet);
         }
 
-        $expectedJavaScripts = traversable_to_unique_array($this->expectedJavaScripts());
-        $actualJavaScripts = traversable_to_unique_array($viewModel->getJavaScripts());
+        $expectedJavaScripts = iterator_to_unique_array($this->expectedJavaScripts());
+        $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
 
         $this->assertSameValuesWithoutOrder($expectedJavaScripts, $actualJavaScripts);
 
