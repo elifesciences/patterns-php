@@ -106,7 +106,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         foreach ($actualStyleSheets as $styleSheet) {
             if (!in_array($styleSheet, $possibleStylesheets)) {
                 throw new PHPUnit_Framework_RiskyTestError(
-                    'Missing stylesheet in YAML:' . $styleSheet
+                    'Missing stylesheet in YAML:'.$styleSheet
                 );
             }
         }
