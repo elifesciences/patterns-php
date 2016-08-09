@@ -99,21 +99,25 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $viewModel = $this->createViewModel();
 
-        $expectedStylesheets = iterator_to_unique_array($this->expectedStylesheets());
+        $possibleStylesheets = iterator_to_unique_array($this->possibleStyleSheets());
         $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
 
-        $this->assertSameValuesWithoutOrder($expectedStylesheets, $actualStyleSheets);
+        foreach ($actualStyleSheets as $styleSheet) {
+            $this->assertContains($styleSheet, $possibleStylesheets);
+        }
 
-        foreach ($this->expectedStylesheets() as $stylesheet) {
+        foreach ($this->possibleStyleSheets() as $stylesheet) {
             $this->puli->get($stylesheet);
         }
 
-        $expectedJavaScripts = iterator_to_unique_array($this->expectedJavaScripts());
+        $possibleJavaScripts = iterator_to_unique_array($this->possibleJavaScripts());
         $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
 
-        $this->assertSameValuesWithoutOrder($expectedJavaScripts, $actualJavaScripts);
+        foreach ($actualJavaScripts as $javaScript) {
+            $this->assertContains($javaScript, $possibleJavaScripts);
+        }
 
-        foreach ($this->expectedJavaScripts() as $javaScript) {
+        foreach ($this->possibleJavaScripts() as $javaScript) {
             $this->puli->get($javaScript);
         }
     }
@@ -127,7 +131,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
     abstract protected function expectedTemplate() : string;
 
-    private function expectedStylesheets() : Traversable
+    private function possibleStyleSheets() : Traversable
     {
         $definition = $this->loadDefinition();
 
@@ -136,7 +140,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    private function expectedJavaScripts() : Traversable
+    private function possibleJavaScripts() : Traversable
     {
         $definition = $this->loadDefinition();
 
