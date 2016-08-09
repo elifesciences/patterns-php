@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
@@ -11,6 +12,7 @@ use Traversable;
 final class SiteHeader implements ViewModel
 {
     use ArrayFromProperties;
+    use ComposedAssets;
     use ReadOnlyArrayAccess;
 
     private $homePagePath;
@@ -26,17 +28,15 @@ final class SiteHeader implements ViewModel
         $this->secondaryLinks = $secondaryLinks;
     }
 
-    public function getStyleSheets() : Traversable
+    protected function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/site-header.css';
-        yield from $this->primaryLinks->getStyleSheets();
-        yield from $this->secondaryLinks->getStyleSheets();
     }
 
-    public function getJavaScripts() : Traversable
+    protected function getComposedViewModels() : Traversable
     {
-        yield from $this->primaryLinks->getJavaScripts();
-        yield from $this->secondaryLinks->getJavaScripts();
+        yield $this->primaryLinks;
+        yield $this->secondaryLinks;
     }
 
     public function getTemplateName() : string
