@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use ArrayObject;
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;

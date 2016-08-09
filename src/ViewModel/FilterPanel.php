@@ -8,7 +8,6 @@ use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
-use ArrayObject;
 
 final class FilterPanel implements ViewModel
 {

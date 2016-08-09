@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 

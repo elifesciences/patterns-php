@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -33,7 +32,6 @@ final class LeadParas implements ViewModel
     {
         yield '/elife/patterns/assets/css/lead-paras.css';
     }
-
 
     public function getTemplateName() : string
     {
