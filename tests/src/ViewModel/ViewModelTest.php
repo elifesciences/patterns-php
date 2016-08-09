@@ -5,14 +5,14 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
+use PHPUnit_Framework_RiskyTestError;
 use PHPUnit_Framework_TestCase;
+use stdClass;
 use Symfony\Component\Yaml\Yaml;
 use tests\eLife\Patterns\PuliAwareTestCase;
+use Traversable;
 use function eLife\Patterns\flatten;
 use function eLife\Patterns\iterator_to_unique_array;
-use PHPUnit_Framework_RiskyTestError;
-use stdClass;
-use Traversable;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
