@@ -12,24 +12,18 @@ final class FlexibleViewModel implements ViewModel
     private $templateName;
     private $properties;
     private $styleSheets;
-    private $inlineStyleSheets;
     private $javaScripts;
-    private $inlineJavaScripts;
 
     public function __construct(
         string $templateName,
         array $properties,
         Traversable $styleSheets = null,
-        Traversable $inlineStyleSheets = null,
-        Traversable $javaScripts = null,
-        Traversable $inlineJavaScripts = null
+        Traversable $javaScripts = null
     ) {
         $this->templateName = $templateName;
         $this->properties = $properties;
         $this->styleSheets = $styleSheets ?? new ArrayObject();
-        $this->inlineStyleSheets = $inlineStyleSheets ?? new ArrayObject();
         $this->javaScripts = $javaScripts ?? new ArrayObject();
-        $this->inlineJavaScripts = $inlineJavaScripts ?? new ArrayObject();
     }
 
     public static function fromViewModel(ViewModel $viewModel) : FlexibleViewModel
@@ -38,9 +32,7 @@ final class FlexibleViewModel implements ViewModel
             $viewModel->getTemplateName(),
             $viewModel->toArray(),
             $viewModel->getStyleSheets(),
-            $viewModel->getInlineStyleSheets(),
-            $viewModel->getJavaScripts(),
-            $viewModel->getInlineJavaScripts()
+            $viewModel->getJavaScripts()
         );
     }
 
@@ -91,18 +83,8 @@ final class FlexibleViewModel implements ViewModel
         return $this->styleSheets;
     }
 
-    public function getInlineStyleSheets() : Traversable
-    {
-        return $this->inlineStyleSheets;
-    }
-
     public function getJavaScripts() : Traversable
     {
         return $this->javaScripts;
-    }
-
-    public function getInlineJavaScripts() : Traversable
-    {
-        return $this->inlineJavaScripts;
     }
 }

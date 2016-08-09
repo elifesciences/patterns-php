@@ -33,22 +33,10 @@ final class SiteHeader implements ViewModel
         yield $this->secondaryLinks->getStyleSheets();
     }
 
-    public function getInlineStyleSheets() : Traversable
-    {
-        yield $this->primaryLinks->getInlineStyleSheets();
-        yield $this->secondaryLinks->getInlineStyleSheets();
-    }
-
     public function getJavaScripts() : Traversable
     {
         yield $this->primaryLinks->getJavaScripts();
         yield $this->secondaryLinks->getJavaScripts();
-    }
-
-    public function getInlineJavaScripts() : Traversable
-    {
-        yield $this->primaryLinks->getInlineJavaScripts();
-        yield $this->secondaryLinks->getInlineJavaScripts();
     }
 
     public function getTemplateName() : string
