@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Yaml;
 use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
 use function eLife\Patterns\flatten;
-use function eLife\Patterns\traversable_to_array;
+use function eLife\Patterns\traversable_to_unique_array;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -132,8 +132,8 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $viewModel = $this->createViewModel();
 
-        $expectedStylesheets = traversable_to_array($this->expectedStylesheets());
-        $actualStyleSheets = traversable_to_array($viewModel->getStyleSheets());
+        $expectedStylesheets = traversable_to_unique_array($this->expectedStylesheets());
+        $actualStyleSheets = traversable_to_unique_array($viewModel->getStyleSheets());
 
         $this->assertSameWithoutOrder($expectedStylesheets, $actualStyleSheets);
 
@@ -141,13 +141,13 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
             $this->puli->get($stylesheet);
         }
 
-        $expectedInlineStylesheets = traversable_to_array($this->expectedInlineStylesheets($viewModel));
-        $actualInlineStyleSheets = traversable_to_array($viewModel->getInlineStyleSheets());
+        $expectedInlineStylesheets = traversable_to_unique_array($this->expectedInlineStylesheets($viewModel));
+        $actualInlineStyleSheets = traversable_to_unique_array($viewModel->getInlineStyleSheets());
 
         $this->assertSameWithoutOrder($expectedInlineStylesheets, $actualInlineStyleSheets);
 
-        $expectedJavaScripts = traversable_to_array($this->expectedJavaScripts());
-        $actualJavaScripts = traversable_to_array($viewModel->getJavaScripts());
+        $expectedJavaScripts = traversable_to_unique_array($this->expectedJavaScripts());
+        $actualJavaScripts = traversable_to_unique_array($viewModel->getJavaScripts());
 
         $this->assertSameWithoutOrder($expectedJavaScripts, $actualJavaScripts);
 
@@ -155,8 +155,8 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
             $this->puli->get($javaScript);
         }
 
-        $expectedInlineJavaScripts = traversable_to_array($this->expectedInlineJavaScripts($viewModel));
-        $actualInlineJavaScripts = traversable_to_array($viewModel->getInlineJavaScripts());
+        $expectedInlineJavaScripts = traversable_to_unique_array($this->expectedInlineJavaScripts($viewModel));
+        $actualInlineJavaScripts = traversable_to_unique_array($viewModel->getInlineJavaScripts());
 
         $this->assertSameWithoutOrder($expectedInlineJavaScripts, $actualInlineJavaScripts);
     }
@@ -165,7 +165,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $definition = $this->loadDefinition();
 
-        foreach (traversable_to_array(flatten($definition->assets->css)) as $stylesheet) {
+        foreach (traversable_to_unique_array(flatten($definition->assets->css)) as $stylesheet) {
             yield '/elife/patterns/assets/css/'.$stylesheet;
         }
     }

@@ -5,20 +5,28 @@ namespace eLife\Patterns;
 use Traversable;
 
 /**
- * Converts traversable type to array with optional distinct.
+ * Converts traversable type to unique array.
  */
-function traversable_to_array(Traversable $traversable, $distinct = true) : array
+function traversable_to_unique_array(Traversable $traversable) : array
+{
+    return array_unique(traversable_to_array($traversable));
+}
+
+/**
+ * Converts traversable type to array.
+ */
+function traversable_to_array(Traversable $traversable) : array
 {
     $array = [];
     foreach ($traversable as $t) {
         $array[] = $t;
     }
 
-    return $distinct ? array_unique($array) : $array;
+    return $array;
 }
 
 /**
- * Flattens a multi-dimensional array.
+ * Flattens a multi-dimensional iterable.
  *
  * @internal
  */
