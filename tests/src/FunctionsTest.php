@@ -6,8 +6,8 @@ use ArrayObject;
 use PHPUnit_Framework_TestCase;
 use function eLife\Patterns\flatten;
 use function eLife\Patterns\is_iterable;
-use function eLife\Patterns\mixed_visibility_text;
 use function eLife\Patterns\iterator_to_unique_array;
+use function eLife\Patterns\mixed_visibility_text;
 
 final class FunctionsTest extends PHPUnit_Framework_TestCase
 {
