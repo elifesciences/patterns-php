@@ -60,7 +60,7 @@ final class FlexibleViewModel implements ViewModel
             return $this->properties[$offset];
         }
 
-        return;
+        return null;
     }
 
     public function offsetSet($offset, $value)
