@@ -12,17 +12,7 @@ trait SimplifyAssets
         return new ArrayObject();
     }
 
-    public function getInlineStyleSheets() : Traversable
-    {
-        return new ArrayObject();
-    }
-
     public function getJavaScripts() : Traversable
-    {
-        return new ArrayObject();
-    }
-
-    public function getInlineJavaScripts() : Traversable
     {
         return new ArrayObject();
     }

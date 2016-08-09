@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use ArrayObject;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
@@ -33,13 +32,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(ViewModel::class, $viewModel);
     }
 
-    final protected function createViewModel() : ViewModel
-    {
-        return array_values($this->viewModelProvider())[0][0];
-    }
-
-    abstract public function viewModelProvider() : array;
-
     /**
      * @test
      */
@@ -51,8 +43,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $this->puli->get($viewModel->getTemplateName());
     }
 
-    abstract protected function expectedTemplate() : string;
-
     /**
      * @test
      * @depends it_has_a_template
@@ -60,14 +50,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     final public function it_has_a_definition()
     {
         $this->loadDefinition();
-    }
-
-    final private function loadDefinition() : stdClass
-    {
-        $templateName = $this->puli->get($this->createViewModel()->getTemplateName())->getName();
-        $yamlFile = '/elife/patterns/definitions/'.substr($templateName, 0, -8).'yaml';
-
-        return Yaml::parse($this->puli->get($yamlFile)->getBody(), Yaml::PARSE_OBJECT_FOR_MAP);
     }
 
     /**
@@ -83,21 +65,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
             $this->assertSame($value, $actual);
         }
-    }
-
-    private function handleValue($value)
-    {
-        if (is_array($value)) {
-            foreach ($value as $subKey => $subValue) {
-                $value[$subKey] = $this->handleValue($subValue);
-            }
-        }
-
-        if ($value instanceof CastsToArray) {
-            return $value->toArray();
-        }
-
-        return $value;
     }
 
     /**
@@ -135,39 +102,67 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $expectedStylesheets = traversable_to_unique_array($this->expectedStylesheets());
         $actualStyleSheets = traversable_to_unique_array($viewModel->getStyleSheets());
 
-        $this->assertSameWithoutOrder($expectedStylesheets, $actualStyleSheets);
+        $this->assertSameValuesWithoutOrder($expectedStylesheets, $actualStyleSheets);
 
         foreach ($this->expectedStylesheets() as $stylesheet) {
             $this->puli->get($stylesheet);
         }
 
-        $expectedInlineStylesheets = traversable_to_unique_array($this->expectedInlineStylesheets($viewModel));
-        $actualInlineStyleSheets = traversable_to_unique_array($viewModel->getInlineStyleSheets());
-
-        $this->assertSameWithoutOrder($expectedInlineStylesheets, $actualInlineStyleSheets);
-
         $expectedJavaScripts = traversable_to_unique_array($this->expectedJavaScripts());
         $actualJavaScripts = traversable_to_unique_array($viewModel->getJavaScripts());
 
-        $this->assertSameWithoutOrder($expectedJavaScripts, $actualJavaScripts);
+        $this->assertSameValuesWithoutOrder($expectedJavaScripts, $actualJavaScripts);
 
         foreach ($this->expectedJavaScripts() as $javaScript) {
             $this->puli->get($javaScript);
         }
-
-        $expectedInlineJavaScripts = traversable_to_unique_array($this->expectedInlineJavaScripts($viewModel));
-        $actualInlineJavaScripts = traversable_to_unique_array($viewModel->getInlineJavaScripts());
-
-        $this->assertSameWithoutOrder($expectedInlineJavaScripts, $actualInlineJavaScripts);
     }
+
+    abstract public function viewModelProvider() : array;
+
+    final protected function createViewModel() : ViewModel
+    {
+        return array_values($this->viewModelProvider())[0][0];
+    }
+
+    abstract protected function expectedTemplate() : string;
 
     private function expectedStylesheets() : Traversable
     {
         $definition = $this->loadDefinition();
 
-        foreach (traversable_to_unique_array(flatten($definition->assets->css)) as $stylesheet) {
+        foreach (array_unique(iterator_to_array(flatten($definition->assets->css))) as $stylesheet) {
             yield '/elife/patterns/assets/css/'.$stylesheet;
         }
+    }
+
+    private function expectedJavaScripts() : Traversable
+    {
+        $definition = $this->loadDefinition();
+
+        foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
+            yield '/elife/patterns/assets/js/'.$javaScript;
+        }
+    }
+
+    final private function loadDefinition() : stdClass
+    {
+        $templateName = $this->puli->get($this->createViewModel()->getTemplateName())->getName();
+        $yamlFile = '/elife/patterns/definitions/'.substr($templateName, 0, -8).'yaml';
+
+        return Yaml::parse($this->puli->get($yamlFile)->getBody(), Yaml::PARSE_OBJECT_FOR_MAP);
+    }
+
+    protected function srcsetToArray($srcset)
+    {
+        $sets = explode(', ', $srcset);
+        $array = [];
+        foreach ($sets as $set) {
+            $parts = explode(' ', $set);
+            $array[substr($parts[1], 0, -1)] = $parts[0];
+        }
+
+        return $array;
     }
 
     protected function assertSameWithoutOrder($expected, $actual, $prefix = '')
@@ -186,12 +181,8 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
                 continue;
             }
             if ($key === 'behaviour' || $key === 'classes') {
-                $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]), $key);
+                $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]));
                 continue;
-            }
-            if (is_int($key) && is_array($actual) && is_array($expected)) {
-                $this->assertSameValuesWithoutOrder(array_values($expected), array_values($actual));
-                break;
             }
             $this->assertSame($expected_item, $actual[$key]);
         }
@@ -202,41 +193,23 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
     protected function assertSameValuesWithoutOrder($expected, $actual)
     {
-        if (is_array($expected) && is_array($actual)) {
-            foreach ($expected as $expected_item) {
-                $this->assertContains($expected_item, $actual);
+        foreach ($expected as $expected_item) {
+            $this->assertContains($expected_item, $actual);
+        }
+    }
+
+    private function handleValue($value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $subKey => $subValue) {
+                $value[$subKey] = $this->handleValue($subValue);
             }
         }
-    }
 
-    protected function expectedInlineStylesheets(ViewModel $viewModel) : Traversable
-    {
-        return new ArrayObject();
-    }
-
-    private function expectedJavaScripts() : Traversable
-    {
-        $definition = $this->loadDefinition();
-
-        foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
-            yield '/elife/patterns/assets/js/'.$javaScript;
-        }
-    }
-
-    protected function expectedInlineJavaScripts(ViewModel $viewModel) : Traversable
-    {
-        return new ArrayObject();
-    }
-
-    protected function srcsetToArray($srcset)
-    {
-        $sets = explode(', ', $srcset);
-        $array = [];
-        foreach ($sets as $set) {
-            $parts = explode(' ', $set);
-            $array[substr($parts[1], 0, -1)] = $parts[0];
+        if ($value instanceof CastsToArray) {
+            return $value->toArray();
         }
 
-        return $array;
+        return $value;
     }
 }
