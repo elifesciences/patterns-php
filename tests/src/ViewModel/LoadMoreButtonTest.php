@@ -100,7 +100,6 @@ final class LoadMoreButtonTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'button' => [Button::link('text', 'path')],
             'small' => [new LoadMoreButton('text', 'path', Button::SIZE_SMALL)],
             'extra small' => [new LoadMoreButton('text', 'path', Button::SIZE_SMALL)],
             'outline' => [new LoadMoreButton('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
@@ -118,6 +117,6 @@ final class LoadMoreButtonTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/button.mustache';
+        return '/elife/patterns/templates/load-more.mustache';
     }
 }
