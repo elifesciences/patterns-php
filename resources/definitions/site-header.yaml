@@ -4,6 +4,8 @@ assets:
         -
             - site-header-nav-bar-primary.css
             - site-header-nav-bar-secondary.css
+            -
+                - buttons.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
