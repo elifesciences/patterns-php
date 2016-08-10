@@ -5,12 +5,16 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
+use eLife\Patterns\ComposedAssets;
+use eLife\Patterns\HasAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
+use Traversable;
 
-final class PodcastDownload implements CastsToArray, IsImage
+final class PodcastDownload implements CastsToArray, IsImage, HasAssets
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
+    use ComposedAssets;
 
     private $downloadLink;
     private $fallback;
@@ -39,5 +43,10 @@ final class PodcastDownload implements CastsToArray, IsImage
 
         return $picture
             ->withProperty('fallback', $fallback);
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->picture;
     }
 }

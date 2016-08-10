@@ -5,12 +5,15 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
+use eLife\Patterns\HasAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
+use eLife\Patterns\SimplifyAssets;
 
-final class Image implements CastsToArray, IsImage
+final class Image implements CastsToArray, IsImage, HasAssets
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
+    use SimplifyAssets;
 
     private $altText;
     private $defaultPath;

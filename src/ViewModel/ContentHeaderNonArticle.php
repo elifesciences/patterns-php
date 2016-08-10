@@ -245,5 +245,6 @@ final class ContentHeaderNonArticle implements ViewModel
         yield $this->meta;
         yield $this->selectNav;
         yield $this->button;
+        yield $this->download;
     }
 }

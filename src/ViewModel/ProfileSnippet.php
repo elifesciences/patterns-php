@@ -4,8 +4,8 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,7 +13,7 @@ final class ProfileSnippet implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     const FALLBACK_CLASSES = 'profile-snippet__image';
     const PICTURE_CLASSES = 'profile-snippet__picture';
@@ -45,7 +45,7 @@ final class ProfileSnippet implements ViewModel
         ;
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/profile-snippet.css';
     }
@@ -53,5 +53,10 @@ final class ProfileSnippet implements ViewModel
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/profile-snippet.mustache';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->picture;
     }
 }
