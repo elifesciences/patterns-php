@@ -43,10 +43,9 @@ final class Footer implements ViewModel
         return '/elife/patterns/templates/footer.mustache';
     }
 
-    public function getPublicStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/site-footer.css';
-        yield from $this->_mainMenu->getStyleSheets();
     }
 
     protected function getComposedViewModels() : Traversable

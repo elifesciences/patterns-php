@@ -1,6 +1,8 @@
 assets:
     css:
         - reference-list.css
+        -
+            - reference.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

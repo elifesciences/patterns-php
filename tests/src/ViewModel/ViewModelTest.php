@@ -5,7 +5,6 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
-use PHPUnit_Framework_RiskyTestError;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 use Symfony\Component\Yaml\Yaml;
@@ -105,7 +104,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
         foreach ($actualStyleSheets as $styleSheet) {
             if (!in_array($styleSheet, $possibleStylesheets)) {
-                throw new PHPUnit_Framework_RiskyTestError(
+                $this->fail(
                     'Missing stylesheet in YAML:'.$styleSheet
                 );
             }
