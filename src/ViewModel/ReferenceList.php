@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -13,7 +14,7 @@ final class ReferenceList implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $references;
 
@@ -29,8 +30,13 @@ final class ReferenceList implements ViewModel
         return '/elife/patterns/templates/reference-list.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/reference-list.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield from $this->references;
     }
 }

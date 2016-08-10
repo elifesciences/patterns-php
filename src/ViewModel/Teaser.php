@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -13,7 +14,7 @@ final class Teaser implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     const STYLE_SECONDARY = 'teaser--secondary';
     const STYLE_RELATED = 'teaser--related';
@@ -232,8 +233,13 @@ final class Teaser implements ViewModel
         return '/elife/patterns/templates/teaser.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/teaser.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->footer;
     }
 }
