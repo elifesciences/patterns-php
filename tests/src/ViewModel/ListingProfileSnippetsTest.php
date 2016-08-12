@@ -11,6 +11,38 @@ use eLife\Patterns\ViewModel\SeeMoreLink;
 
 final class ListingProfileSnippetsTest extends ViewModelTest
 {
+    /**
+     * @test
+     */
+    public function it_has_data()
+    {
+        $data = [
+            'seeMoreLink' => [
+                'name' => 'See more',
+                'url' => '#',
+            ],
+            'items' => [
+                self::getProfileSnippetData(),
+                self::getProfileSnippetData(),
+                self::getProfileSnippetData(),
+            ],
+        ];
+        $listingProfileSnippets = ListingProfileSnippets::withSeeMoreLink(
+            [
+                self::getProfileSnippetFixture(),
+                self::getProfileSnippetFixture(),
+                self::getProfileSnippetFixture(),
+            ],
+            new SeeMoreLink(new Link($data['seeMoreLink']['name'], $data['seeMoreLink']['url']))
+        );
+        $this->assertSameWithoutOrder($data, $listingProfileSnippets);
+    }
+
+    public static function getProfileSnippetData() : array
+    {
+        return self::getProfileSnippetFixture()->toArray();
+    }
+
     public static function getProfileSnippetFixture() : ProfileSnippet
     {
         return new ProfileSnippet(
@@ -27,44 +59,21 @@ final class ListingProfileSnippetsTest extends ViewModelTest
         );
     }
 
-    public static function getProfileSnippetData() : array
-    {
-        return self::getProfileSnippetFixture()->toArray();
-    }
-
-    /**
-     * @test
-     */
-    public function it_has_data()
-    {
-        $data = [
-            'seeMoreLink' => [
-                    'name' => 'See more',
-                    'url' => '#',
-                ],
-            'items' => [
-                self::getProfileSnippetData(),
-                self::getProfileSnippetData(),
-                self::getProfileSnippetData(),
-            ],
-        ];
-        $listingProfileSnippets = ListingProfileSnippets::withoutHeading(
-            new SeeMoreLink(new Link($data['seeMoreLink']['name'], $data['seeMoreLink']['url'])),
-            self::getProfileSnippetFixture(),
-            self::getProfileSnippetFixture(),
-            self::getProfileSnippetFixture()
-        );
-        $this->assertSameWithoutOrder($data, $listingProfileSnippets);
-    }
-
     public function viewModelProvider() : array
     {
         return [
             [
-                ListingProfileSnippets::withoutHeading(new SeeMoreLink(new Link('name', '#')), self::getProfileSnippetFixture(), self::getProfileSnippetFixture(), self::getProfileSnippetFixture()),
+                ListingProfileSnippets::withSeeMoreLink(
+                    [
+                        self::getProfileSnippetFixture(),
+                        self::getProfileSnippetFixture(),
+                        self::getProfileSnippetFixture(),
+                    ],
+                    new SeeMoreLink(new Link('name', '#'))
+                ),
             ],
             [
-                ListingProfileSnippets::withHeading('Some heading', new SeeMoreLink(new Link('name', '#')), self::getProfileSnippetFixture(), self::getProfileSnippetFixture(), self::getProfileSnippetFixture()),
+                ListingProfileSnippets::basic([self::getProfileSnippetFixture(), self::getProfileSnippetFixture(), self::getProfileSnippetFixture()], 'Some heading'),
             ],
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
@@ -20,24 +21,22 @@ final class ListingProfileSnippets implements ViewModel
 
     private function __construct(array $items, string $heading = null, SeeMoreLink $seeMoreLink = null)
     {
+        Assertion::notEmpty($items);
+        Assertion::allIsInstanceOf($items, ProfileSnippet::class);
+
         $this->seeMoreLink = $seeMoreLink;
         $this->heading = $heading;
         $this->items = $items;
     }
 
-    public static function basic(ProfileSnippet ...$items)
+    public static function basic(array $items, $heading = null)
     {
-        return new static ($items);
+        return new static ($items, $heading);
     }
 
-    public static function withHeading(string $heading, SeeMoreLink $seeMoreLink, ProfileSnippet ...$items)
+    public static function withSeeMoreLink(array $items, SeeMoreLink $seeMoreLink, string $heading = null)
     {
         return new static($items, $heading, $seeMoreLink);
-    }
-
-    public static function withoutHeading(SeeMoreLink $seeMoreLink, ProfileSnippet ...$items)
-    {
-        return new static($items, null, $seeMoreLink);
     }
 
     public function getTemplateName() : string
