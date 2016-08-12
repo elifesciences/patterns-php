@@ -15,11 +15,9 @@ final class IFrame implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    private $id;
     private $src;
-    private $width;
-    private $height;
     private $allowFullScreen;
+    private $paddingBottom;
 
     public function __construct(string $src, int $width, int $height, bool $allowFullScreen = true)
     {
@@ -27,10 +25,8 @@ final class IFrame implements ViewModel
         Assertion::min($width, 1);
         Assertion::min($height, 1);
 
-        $this->id = hash('crc32', $src);
         $this->src = $src;
-        $this->width = $width;
-        $this->height = $height;
+        $this->paddingBottom = ($height / $width) * 100;
         $this->allowFullScreen = $allowFullScreen;
     }
 
@@ -42,12 +38,5 @@ final class IFrame implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/iframe.css';
-    }
-
-    public function getInlineStyleSheets() : Traversable
-    {
-        yield '.iframe--'.$this->id.' {
-    padding-bottom: '.(($this->height / $this->width) * 100).'%;
-}';
     }
 }

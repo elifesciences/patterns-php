@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
+use eLife\Patterns\ViewModel\LoadMoreButton;
 use InvalidArgumentException;
 use Traversable;
 
@@ -17,10 +18,9 @@ final class LoadMoreButtonTest extends ViewModelTest
             'classes' => 'button--small button--outline button--full',
             'path' => 'path',
             'text' => 'text',
-            'templateName' => 'load-more',
         ];
 
-        $button = Button::loadMoreLink('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
+        $button = new LoadMoreButton('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
 
         $this->assertSame($data['text'], $button['text']);
         $this->assertSame($data['path'], $button['path']);
@@ -33,7 +33,7 @@ final class LoadMoreButtonTest extends ViewModelTest
      */
     public function it_has_correct_assets()
     {
-        $button = Button::loadMoreLink('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
+        $button = new LoadMoreButton('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
 
         $sheets = [];
         foreach ($button->getStyleSheets() as $styleSheet) {
@@ -52,7 +52,7 @@ final class LoadMoreButtonTest extends ViewModelTest
      */
     public function it_merges_outline_and_inactive_states()
     {
-        $button = Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, false);
+        $button = new LoadMoreButton('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, false);
 
         $this->assertSame('button--outline-inactive', $button['classes']);
     }
@@ -64,7 +64,7 @@ final class LoadMoreButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::loadMoreLink('', 'path');
+        new LoadMoreButton('', 'path');
     }
 
     /**
@@ -74,7 +74,7 @@ final class LoadMoreButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::loadMoreLink('text', '');
+        new LoadMoreButton('text', '');
     }
 
     /**
@@ -84,7 +84,7 @@ final class LoadMoreButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::loadMoreLink('text', 'path', Button::TYPE_BUTTON, 'foo');
+        new LoadMoreButton('text', 'path', Button::TYPE_BUTTON, 'foo');
     }
 
     /**
@@ -94,19 +94,18 @@ final class LoadMoreButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::loadMoreLink('text', 'path', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, 'foo');
+        new LoadMoreButton('text', 'path', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, 'foo');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'button' => [Button::link('text', 'path')],
-            'small' => [Button::loadMoreLink('text', 'path', Button::SIZE_SMALL)],
-            'extra small' => [Button::loadMoreLink('text', 'path', Button::SIZE_SMALL)],
-            'outline' => [Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
-            'inactive' => [Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, false)],
+            'small' => [new LoadMoreButton('text', 'path', Button::SIZE_SMALL)],
+            'extra small' => [new LoadMoreButton('text', 'path', Button::SIZE_SMALL)],
+            'outline' => [new LoadMoreButton('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
+            'inactive' => [new LoadMoreButton('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, false)],
             'full width' => [
-                Button::loadMoreLink('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true),
+                new LoadMoreButton('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true),
             ],
         ];
     }
@@ -118,6 +117,6 @@ final class LoadMoreButtonTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/button.mustache';
+        return '/elife/patterns/templates/load-more.mustache';
     }
 }

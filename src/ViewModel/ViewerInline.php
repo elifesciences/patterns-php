@@ -4,8 +4,8 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,7 +13,7 @@ final class ViewerInline implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $id;
     private $prominentText;
@@ -46,7 +46,7 @@ final class ViewerInline implements ViewModel
         $this->captionedImage = $captionedImage;
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/viewer-inline.css';
     }
@@ -54,5 +54,10 @@ final class ViewerInline implements ViewModel
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/viewer-inline.mustache';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->captionedImage;
     }
 }

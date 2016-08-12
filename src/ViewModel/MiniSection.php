@@ -4,8 +4,8 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,7 +13,7 @@ final class MiniSection implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $body;
     private $listHeading;
@@ -31,13 +31,13 @@ final class MiniSection implements ViewModel
         return '/elife/patterns/templates/mini-section.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/mini-section.css';
-        if ($this->listHeading) {
-            yield $this->listHeading->getStyleSheets();
-        } else {
-            yield (new ListHeading('dummy'))->getStyleSheets();
-        }
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->listHeading;
     }
 }

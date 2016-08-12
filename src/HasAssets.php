@@ -8,9 +8,5 @@ interface HasAssets
 {
     public function getStyleSheets() : Traversable;
 
-    public function getInlineStyleSheets() : Traversable;
-
     public function getJavaScripts() : Traversable;
-
-    public function getInlineJavaScripts() : Traversable;
 }

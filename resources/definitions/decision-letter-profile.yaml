@@ -1,5 +1,8 @@
 assets:
-    css: decision-letter-profile.css
+    css:
+        - decision-letter-profile.css
+        -
+            - profile-snippet.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

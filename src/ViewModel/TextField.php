@@ -18,29 +18,53 @@ final class TextField implements ViewModel
     private $inputType;
     private $label;
     private $name;
+    private $id;
+    private $placeholder;
+    private $required;
+    private $disabled;
 
     protected function __construct(
         string $inputType,
         FormLabel $label,
-        string $name
+        string $id,
+        string $name,
+        bool $placeholder = null,
+        bool $required = null,
+        bool $disabled = null
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['text', 'email']);
-        Assertion::same($name, $label['for']);
+        Assertion::same($id, $label['for']);
 
         $this->inputType = $inputType;
         $this->label = $label;
         $this->name = $name;
+        $this->id = $id;
+        $this->placeholder = $placeholder;
+        $this->required = $required;
+        $this->disabled = $disabled;
     }
 
-    public static function textInput(FormLabel $label, string $name)
-    {
-        return new static('text', $label, $name);
+    public static function textInput(
+        FormLabel $label,
+        string $id,
+        string $name,
+        bool $placeholder = null,
+        bool $required = null,
+        bool $disabled = null
+    ) {
+        return new static('text', $label, $id, $name, $placeholder, $required, $disabled);
     }
 
-    public static function emailInput(FormLabel $label, string $name)
-    {
-        return new static('email', $label, $name);
+    public static function emailInput(
+        FormLabel $label,
+        string $id,
+        string $name,
+        bool $placeholder = null,
+        bool $required = null,
+        bool $disabled = null
+    ) {
+        return new static('email', $label, $id, $name, $placeholder, $required, $disabled);
     }
 
     public function getTemplateName() : string

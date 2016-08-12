@@ -4,7 +4,6 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\MultipleTemplates;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
@@ -26,7 +25,6 @@ final class Button implements ViewModel
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
-    use MultipleTemplates;
 
     private $classes;
     private $path;
@@ -79,21 +77,6 @@ final class Button implements ViewModel
         return $button;
     }
 
-    public static function loadMoreLink(
-        string $text,
-        string $path,
-        string $size = self::SIZE_MEDIUM,
-        string $style = self::STYLE_DEFAULT,
-        bool $isActive = true,
-        bool $isFullWidth = false
-    ) : Button {
-        Assertion::notBlank($path);
-        $button = self::link($text, $path, $size, $style, $isActive, $isFullWidth);
-        $button->setTemplateName('load-more');
-
-        return $button;
-    }
-
     public static function link(
         string $text,
         string $path,
@@ -110,7 +93,7 @@ final class Button implements ViewModel
         return $button;
     }
 
-    public function getDefaultTemplateName() : string
+    public function getTemplateName() : string
     {
         return '/elife/patterns/templates/button.mustache';
     }
@@ -118,8 +101,5 @@ final class Button implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/buttons.css';
-        if ($this->templateName) {
-            yield '/elife/patterns/assets/css/'.$this->templateName.'.css';
-        }
     }
 }

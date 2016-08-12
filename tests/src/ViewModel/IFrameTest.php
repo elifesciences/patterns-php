@@ -2,10 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\IFrame;
 use InvalidArgumentException;
-use Traversable;
 
 final class IFrameTest extends ViewModelTest
 {
@@ -15,20 +13,16 @@ final class IFrameTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'id' => hash('crc32', 'http://www.example.com/'),
             'src' => 'http://www.example.com/',
-            'width' => 100,
-            'height' => 100,
             'allowFullScreen' => true,
+            'paddingBottom' => 100,
         ];
 
-        $iFrame = new IFrame($data['src'], $data['width'], $data['height'], $data['allowFullScreen']);
+        $iFrame = new IFrame($data['src'], 100, 100, $data['allowFullScreen']);
 
-        $this->assertSame($iFrame['id'], $data['id']);
         $this->assertSame($iFrame['src'], $data['src']);
-        $this->assertSame($iFrame['width'], $data['width']);
-        $this->assertSame($iFrame['height'], $data['height']);
         $this->assertSame($iFrame['allowFullScreen'], $data['allowFullScreen']);
+        $this->assertSame($iFrame['paddingBottom'], $data['paddingBottom']);
         $this->assertSame($iFrame->toArray(), $data);
     }
 
@@ -75,12 +69,5 @@ final class IFrameTest extends ViewModelTest
     protected function expectedTemplate() : string
     {
         return '/elife/patterns/templates/iframe.mustache';
-    }
-
-    protected function expectedInlineStylesheets(ViewModel $viewModel) : Traversable
-    {
-        yield '.iframe--'.$viewModel['id'].' {
-    padding-bottom: '.(($viewModel['height'] / $viewModel['width']) * 100).'%;
-}';
     }
 }

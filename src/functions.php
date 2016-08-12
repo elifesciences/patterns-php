@@ -2,39 +2,24 @@
 
 namespace eLife\Patterns;
 
-use ArrayObject;
 use Traversable;
 
 /**
- * Flattens, orders and deduplicates.
- *
- * @internal
+ * Converts traversable type to unique array.
  */
-function sanitise_traversable(Traversable $traversable) : Traversable
+function iterator_to_unique_array(Traversable $traversable) : array
 {
-    return new ArrayObject(sanitise_array(iterator_to_array(flatten($traversable))));
+    return array_unique(iterator_to_array($traversable, false));
 }
 
 /**
- * Flattens, orders and deduplicates.
+ * Flattens a multi-dimensional iterable.
  *
- * @internal
- */
-function sanitise_array(array $array) : array
-{
-    $array = array_keys(array_flip(iterator_to_array(flatten($array))));
-
-    sort($array);
-
-    return $array;
-}
-
-/**
  * @internal
  */
 function flatten($item) : Traversable
 {
-    if (is_traversable($item)) {
+    if (is_iterable($item)) {
         foreach ($item as $value) {
             foreach (flatten($value) as $flattenedValue) {
                 yield $flattenedValue;
@@ -46,9 +31,11 @@ function flatten($item) : Traversable
 }
 
 /**
+ * If we can iterate.
+ *
  * @internal
  */
-function is_traversable($item) : bool
+function is_iterable($item) : bool
 {
     return is_array($item) || $item instanceof Traversable;
 }

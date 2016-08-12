@@ -4,8 +4,8 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,7 +13,7 @@ final class SelectNav implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $route;
     private $select;
@@ -33,8 +33,14 @@ final class SelectNav implements ViewModel
         return '/elife/patterns/templates/select-nav.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/select-nav.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->select;
+        yield $this->button;
     }
 }

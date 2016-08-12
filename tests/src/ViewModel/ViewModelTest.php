@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use ArrayObject;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
@@ -12,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
 use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
 use function eLife\Patterns\flatten;
-use function eLife\Patterns\sanitise_traversable;
+use function eLife\Patterns\iterator_to_unique_array;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -100,33 +99,27 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $viewModel = $this->createViewModel();
 
-        $expectedStylesheets = iterator_to_array(sanitise_traversable($this->expectedStylesheets()));
-        $actualStyleSheets = iterator_to_array(sanitise_traversable($viewModel->getStyleSheets()));
+        $possibleStylesheets = iterator_to_unique_array($this->possibleStyleSheets());
+        $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
 
-        $this->assertSame($expectedStylesheets, $actualStyleSheets);
+        foreach ($actualStyleSheets as $styleSheet) {
+            $this->assertContains($styleSheet, $possibleStylesheets, 'StyleSheet not in definition');
+        }
 
-        foreach ($this->expectedStylesheets() as $stylesheet) {
+        foreach ($this->possibleStyleSheets() as $stylesheet) {
             $this->puli->get($stylesheet);
         }
 
-        $expectedInlineStylesheets = iterator_to_array(flatten($this->expectedInlineStylesheets($viewModel)));
-        $actualInlineStyleSheets = iterator_to_array(flatten($viewModel->getInlineStyleSheets()));
+        $possibleJavaScripts = iterator_to_unique_array($this->possibleJavaScripts());
+        $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
 
-        $this->assertSame($expectedInlineStylesheets, $actualInlineStyleSheets);
-
-        $expectedJavaScripts = iterator_to_array(sanitise_traversable($this->expectedJavaScripts()));
-        $actualJavaScripts = iterator_to_array(sanitise_traversable($viewModel->getJavaScripts()));
-
-        $this->assertSame($expectedJavaScripts, $actualJavaScripts);
-
-        foreach ($this->expectedJavaScripts() as $javaScript) {
-            $this->puli->get($javaScript);
+        foreach ($actualJavaScripts as $javaScript) {
+            $this->assertContains($javaScript, $possibleJavaScripts, 'JavaScript not in definition');
         }
 
-        $expectedInlineJavaScripts = iterator_to_array(flatten($this->expectedInlineJavaScripts($viewModel)));
-        $actualInlineJavaScripts = iterator_to_array(flatten($viewModel->getInlineJavaScripts()));
-
-        $this->assertSame($expectedInlineJavaScripts, $actualInlineJavaScripts);
+        foreach ($this->possibleJavaScripts() as $javaScript) {
+            $this->puli->get($javaScript);
+        }
     }
 
     abstract public function viewModelProvider() : array;
@@ -138,7 +131,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 
     abstract protected function expectedTemplate() : string;
 
-    private function expectedStylesheets() : Traversable
+    private function possibleStyleSheets() : Traversable
     {
         $definition = $this->loadDefinition();
 
@@ -147,23 +140,13 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    protected function expectedInlineStylesheets(ViewModel $viewModel) : Traversable
-    {
-        return new ArrayObject();
-    }
-
-    private function expectedJavaScripts() : Traversable
+    private function possibleJavaScripts() : Traversable
     {
         $definition = $this->loadDefinition();
 
         foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
             yield '/elife/patterns/assets/js/'.$javaScript;
         }
-    }
-
-    protected function expectedInlineJavaScripts(ViewModel $viewModel) : Traversable
-    {
-        return new ArrayObject();
     }
 
     final private function loadDefinition() : stdClass
@@ -186,7 +169,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         return $array;
     }
 
-    protected function assertSameWithoutOrder($expected, $actual)
+    protected function assertSameWithoutOrder($expected, $actual, $prefix = '')
     {
         $reasons = [];
         foreach ($expected as $key => $expected_item) {
@@ -194,11 +177,11 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
                 continue;
             }
             if (!isset($actual[$key])) {
-                array_push($reasons, 'Key missing in array: '.$key);
+                array_push($reasons, 'Key missing in array: '.$prefix.'.'.$key);
                 continue;
             }
             if ($actual[$key] instanceof CastsToArray || is_array($actual[$key])) {
-                $this->assertSameWithoutOrder($expected_item, $actual[$key]);
+                $this->assertSameWithoutOrder($expected_item, $actual[$key], $key);
                 continue;
             }
             if ($key === 'behaviour' || $key === 'classes') {

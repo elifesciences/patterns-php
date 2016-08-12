@@ -4,8 +4,8 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
@@ -14,7 +14,7 @@ final class CaptionedImage implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $heading;
     private $captions;
@@ -23,6 +23,8 @@ final class CaptionedImage implements ViewModel
     private $defaultPath;
     private $srcset;
     private $customContent;
+
+    private $_image;
 
     private function __construct(
         IsImage $image,
@@ -36,6 +38,7 @@ final class CaptionedImage implements ViewModel
             $this->altText = $image['altText'];
             $this->defaultPath = $image['defaultPath'];
             $this->srcset = $image['srcset'];
+            $this->_image = $image;
         } elseif ($image instanceof Picture) {
             $this->picture = $image;
         } else {
@@ -72,7 +75,7 @@ final class CaptionedImage implements ViewModel
         return new static($image, null, null, $content);
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/captioned-image.css';
     }
@@ -80,5 +83,10 @@ final class CaptionedImage implements ViewModel
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/captioned-image.mustache';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->picture;
     }
 }
