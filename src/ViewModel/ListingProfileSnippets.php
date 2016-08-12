@@ -3,9 +3,8 @@
 namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\EnsureInstance;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,8 +12,7 @@ final class ListingProfileSnippets implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
-    use EnsureInstance;
+    use ComposedAssets;
 
     private $seeMoreLink;
     private $heading;
@@ -47,10 +45,14 @@ final class ListingProfileSnippets implements ViewModel
         return '/elife/patterns/templates/listing-profile-snippets.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/listing.css';
-        yield from $this->ensureInstance($this->seeMoreLink, SeeMoreLink::class)->getStyleSheets();
-        yield from $this->ensureInstance($this->items[0], ProfileSnippet::class)->getStyleSheets();
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield from $this->items;
+        yield $this->seeMoreLink;
     }
 }

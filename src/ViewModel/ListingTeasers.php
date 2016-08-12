@@ -2,31 +2,24 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\EnsureInstance;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class ListingTeasers implements ViewModel
 {
-    use EnsureInstance;
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $items;
     private $heading;
     private $loadMore;
 
-    private function __construct(array $items, string $heading = null, Button $loadMore = null)
+    private function __construct(array $items, string $heading = null, LoadMoreButton $loadMore = null)
     {
-        if (null !== $loadMore) {
-            Assertion::same($loadMore['templateName'], 'load-more');
-        }
-
         $this->items = $items;
         $this->heading = $heading;
         $this->loadMore = $loadMore;
@@ -37,12 +30,12 @@ final class ListingTeasers implements ViewModel
         return new static ($items);
     }
 
-    public static function withoutHeading(Button $loadMore, Teaser ...$items)
+    public static function withoutHeading(LoadMoreButton $loadMore, Teaser ...$items)
     {
         return new static($items, null, $loadMore);
     }
 
-    public static function withHeading(string $heading, Button $loadMore = null, Teaser ...$items)
+    public static function withHeading(string $heading, LoadMoreButton $loadMore = null, Teaser ...$items)
     {
         return new static($items, $heading, $loadMore);
     }
@@ -52,10 +45,14 @@ final class ListingTeasers implements ViewModel
         return '/elife/patterns/templates/listing-teasers.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/listing.css';
-        yield from $this->ensureInstance($this->items[0], Teaser::class)->getStylesheets();
-        yield from $this->ensureInstance($this->loadMore, Button::class, ['templateName' => 'load-more'])->getStyleSheets();
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield from $this->items;
+        yield $this->loadMore;
     }
 }
