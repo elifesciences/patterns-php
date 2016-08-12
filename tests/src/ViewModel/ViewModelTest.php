@@ -103,11 +103,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
 
         foreach ($actualStyleSheets as $styleSheet) {
-            if (!in_array($styleSheet, $possibleStylesheets)) {
-                $this->fail(
-                    'Missing stylesheet in YAML:'.$styleSheet
-                );
-            }
+            $this->assertContains($styleSheet, $possibleStylesheets, 'StyleSheet not in definition');
         }
 
         foreach ($this->possibleStyleSheets() as $stylesheet) {
@@ -118,7 +114,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
 
         foreach ($actualJavaScripts as $javaScript) {
-            $this->assertContains($javaScript, $possibleJavaScripts);
+            $this->assertContains($javaScript, $possibleJavaScripts, 'JavaScript not in definition');
         }
 
         foreach ($this->possibleJavaScripts() as $javaScript) {
