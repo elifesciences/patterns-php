@@ -4,16 +4,15 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
+use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Picture implements ViewModel, IsImage
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use ComposedAssets;
+    use SimplifyAssets;
 
     private $fallback;
     private $sources;
@@ -37,10 +36,5 @@ final class Picture implements ViewModel, IsImage
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/picture.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->fallback;
     }
 }

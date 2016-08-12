@@ -88,6 +88,5 @@ final class CaptionedImage implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield $this->picture;
-        yield $this->_image;
     }
 }
