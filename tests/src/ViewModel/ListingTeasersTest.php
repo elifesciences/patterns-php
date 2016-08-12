@@ -35,7 +35,7 @@ final class ListingTeasersTest extends ViewModelTest
                 ],
         ];
         $listingTeaser = ListingTeasers::basic(
-            ...array_map(function ($item) {
+            array_map(function ($item) {
                 return Teaser::basic($item['title'], $item['url']);
             }, $data['items'])
         );
@@ -47,45 +47,49 @@ final class ListingTeasersTest extends ViewModelTest
     {
         return [
             [
-                ListingTeasers::basic(
+                ListingTeasers::basic([
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url')
-                ),
+                    Teaser::basic('title', 'url'),
+                ]),
             ],
             [
-                ListingTeasers::withHeading(
-                    'heading',
-                    null,
+                ListingTeasers::basic([
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url')
-                ),
+                    Teaser::basic('title', 'url'),
+                ], 'heading'),
             ],
             [
-                ListingTeasers::withHeading(
-                    'heading',
+                ListingTeasers::withLoadMore(
+                    [
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                    ],
                     new LoadMoreButton('testing', '#'),
-                    Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url')
+                    'heading'
                 ),
             ],
             [
                 ListingTeasers::withSeeMore(
-                    'heading',
+                    [
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                    ],
                     new SeeMoreLink(new Link('testing', '#')),
-                    Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url')
+                    'heading'
                 ),
             ],
             [
-                ListingTeasers::withoutHeading(
-                    new LoadMoreButton('testing', '#'),
-                    Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url'),
-                    Teaser::basic('title', 'url')
+                ListingTeasers::withLoadMore(
+                    [
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                    ],
+                    new LoadMoreButton('testing', '#')
                 ),
             ],
         ];

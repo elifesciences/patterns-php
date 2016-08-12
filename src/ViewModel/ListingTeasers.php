@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
@@ -28,28 +29,24 @@ final class ListingTeasers implements ViewModel
         ) {
             throw new InvalidArgumentException('You cannot have both LoadMore and SeeMoreLink in Teaser Listings.');
         }
+        Assertion::allIsInstanceOf($items, Teaser::class);
         $this->items = $items;
         $this->heading = $heading;
         $this->loadMore = $loadMore;
         $this->seeMoreLink = $seeMoreLink;
     }
 
-    public static function basic(Teaser ...$items)
+    public static function basic(array $items, $heading = null)
     {
-        return new static ($items);
+        return new static ($items, $heading);
     }
 
-    public static function withoutHeading(LoadMoreButton $loadMore, Teaser ...$items)
-    {
-        return new static($items, null, $loadMore);
-    }
-
-    public static function withHeading(string $heading, LoadMoreButton $loadMore = null, Teaser ...$items)
+    public static function withLoadMore(array $items, LoadMoreButton $loadMore, $heading = null)
     {
         return new static($items, $heading, $loadMore);
     }
 
-    public static function withSeeMore(string $heading, SeeMoreLink $seeMoreLink = null, Teaser ...$items)
+    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null)
     {
         return new static($items, $heading, null, $seeMoreLink);
     }
