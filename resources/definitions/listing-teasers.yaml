@@ -5,8 +5,8 @@ assets:
             - teaser.css
         -
             - load-more.css
-        -
-            - buttons.css
+            -
+                - buttons.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -234,5 +234,18 @@ schema:
                                     minLength: 1
                             required:
                                 - path
+        seeMoreLink:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                url:
+                    type: string
+                    minLength: 1
+                name:
+                    type: string
+                    minLength: 1
+            required:
+                - url
+                - name
     required:
         - items

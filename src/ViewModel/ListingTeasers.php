@@ -7,6 +7,7 @@ use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
+use InvalidArgumentException;
 
 final class ListingTeasers implements ViewModel
 {
@@ -17,12 +18,20 @@ final class ListingTeasers implements ViewModel
     private $items;
     private $heading;
     private $loadMore;
+    private $seeMoreLink;
 
-    private function __construct(array $items, string $heading = null, LoadMoreButton $loadMore = null)
+    private function __construct(array $items, string $heading = null, LoadMoreButton $loadMore = null, SeeMoreLink $seeMoreLink = null)
     {
+        if (
+            null !== $loadMore &&
+            null !== $seeMoreLink
+        ) {
+            throw new InvalidArgumentException('You cannot have both LoadMore and SeeMoreLink in Teaser Listings.');
+        }
         $this->items = $items;
         $this->heading = $heading;
         $this->loadMore = $loadMore;
+        $this->seeMoreLink = $seeMoreLink;
     }
 
     public static function basic(Teaser ...$items)
