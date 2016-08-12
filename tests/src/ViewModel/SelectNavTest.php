@@ -46,6 +46,7 @@ final class SelectNavTest extends ViewModelTest
                     'classes' => 'button--default',
                     'text' => 'Search',
                     'type' => 'submit',
+                    'name' => 'some name',
                 ],
         ];
 
@@ -62,7 +63,7 @@ final class SelectNavTest extends ViewModelTest
                     $data['select']['label']['isVisuallyHidden']
                 )
             ),
-            Button::form('Search', 'submit')
+            Button::form('Search', 'submit', 'some name')
         );
 
         $this->assertSame($data['route'], $selectNav['route']);
@@ -77,7 +78,7 @@ final class SelectNavTest extends ViewModelTest
             [
                 new SelectNav('id', new Select('id', [
                     new SelectOption('value', 'display value'),
-                ], new FormLabel('label', 'id', false)), Button::form('Search', 'submit')),
+                ], new FormLabel('label', 'id', false)), Button::form('Search', 'submit', 'some name')),
             ],
         ];
     }

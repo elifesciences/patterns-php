@@ -44,6 +44,7 @@ final class FilterPanelTest extends ViewModelTest
                     ],
                 ],
             'button' => [
+                    'name' => 'some name',
                     'classes' => 'button--small button--default',
                     'text' => 'search',
                     'type' => 'submit',
@@ -55,12 +56,13 @@ final class FilterPanelTest extends ViewModelTest
                 new Filter(true, 'something', 100, 'some_name_100'),
                 new Filter(true, 'something', 1000, 'some_name_1000'),
             ]),
-        ], Button::form('search', 'submit', Button::SIZE_SMALL), $data['name']);
+        ], Button::form('search', 'submit', 'some name', Button::SIZE_SMALL));
 
         $this->assertSame($data['title'], $panel['title']);
         $this->assertSame($data['filterGroups'], $this->allToArray($panel['filterGroups']));
-        $this->assertSame($data['button'], $panel['button']->toArray());
-        $this->assertSameWithoutOrder($data, $panel);
+        $this->assertSameWithoutOrder($data['button'], $panel['button']);
+        $this->assertSameWithoutOrder($data, $panel->toArray());
+
     }
 
     private function allToArray(array $all) : array

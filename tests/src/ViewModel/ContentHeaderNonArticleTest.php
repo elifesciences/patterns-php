@@ -87,7 +87,7 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $size = Button::SIZE_MEDIUM;
         }
         if ($form) {
-            return Button::form($data['text'], $data['type'], $size, $style);
+            return Button::form($data['text'], $data['type'], $data['name'], $size, $style);
         }
 
         return Button::link($data['text'], $data['path'], $size, $style);

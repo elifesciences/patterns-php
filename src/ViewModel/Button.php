@@ -30,8 +30,10 @@ final class Button implements ViewModel
     private $path;
     private $text;
     private $type;
+    private $id;
+    private $name;
 
-    private function __construct(string $text, string $size, string $style, bool $isActive, bool $isFullWidth = true)
+    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
     {
         Assertion::notBlank($text);
         Assertion::choice($size, [self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
@@ -59,19 +61,23 @@ final class Button implements ViewModel
 
         $this->text = $text;
         $this->classes = implode(' ', $classes);
+        $this->id = $id;
+        $this->name = $name;
     }
 
     public static function form(
         string $text,
         string $type,
+        string $name,
         string $size = self::SIZE_MEDIUM,
         string $style = self::STYLE_DEFAULT,
+        string $id = null,
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
         Assertion::choice($type, [self::TYPE_BUTTON, self::TYPE_SUBMIT, self::TYPE_RESET]);
 
-        $button = new static($text, $size, $style, $isActive, $isFullWidth);
+        $button = new static($text, $size, $style, $isActive,  $name, $id, $isFullWidth);
         $button->type = $type;
 
         return $button;
@@ -87,7 +93,7 @@ final class Button implements ViewModel
     ) : Button {
         Assertion::notBlank($path);
 
-        $button = new static($text, $size, $style, $isActive, $isFullWidth);
+        $button = new static($text, $size, $style, $isActive, null, null, $isFullWidth);
         $button->path = $path;
 
         return $button;
