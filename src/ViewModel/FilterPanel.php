@@ -18,9 +18,16 @@ final class FilterPanel implements ViewModel
     private $title;
     private $filterGroups;
     private $button;
+    private $name;
+    private $value;
 
-    public function __construct(string $title, array $filterGroups, Button $button)
-    {
+    public function __construct(
+        string $title,
+        array $filterGroups,
+        Button $button,
+        string $name,
+        string $value = null
+    ) {
         Assertion::notBlank($title);
         Assertion::notEmpty($filterGroups);
         Assertion::allIsInstanceOf($filterGroups, FilterGroup::class);
@@ -28,6 +35,8 @@ final class FilterPanel implements ViewModel
         $this->title = $title;
         $this->filterGroups = $filterGroups;
         $this->button = $button;
+        $this->name = $name;
+        $this->value = $value;
     }
 
     public function getTemplateName() : string

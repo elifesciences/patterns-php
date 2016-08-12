@@ -16,6 +16,7 @@ final class FilterPanelTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'name' => 'some name',
             'title' => 'Search results',
             'filterGroups' => [
                     [
@@ -54,12 +55,12 @@ final class FilterPanelTest extends ViewModelTest
                 new Filter(true, 'something', 100, 'some_name_100'),
                 new Filter(true, 'something', 1000, 'some_name_1000'),
             ]),
-        ], Button::form('search', 'submit', Button::SIZE_SMALL));
+        ], Button::form('search', 'submit', Button::SIZE_SMALL), $data['name']);
 
         $this->assertSame($data['title'], $panel['title']);
         $this->assertSame($data['filterGroups'], $this->allToArray($panel['filterGroups']));
         $this->assertSame($data['button'], $panel['button']->toArray());
-        $this->assertSame($data, $panel->toArray());
+        $this->assertSameWithoutOrder($data, $panel);
     }
 
     private function allToArray(array $all) : array
@@ -81,7 +82,7 @@ final class FilterPanelTest extends ViewModelTest
                     new Filter(true, 'something', 100, 'some_name_100'),
                     new Filter(true, 'something', 1000, 'some_name_1000', 'some value'),
                 ]),
-            ], Button::form('search', 'submit', Button::SIZE_SMALL))],
+            ], Button::form('search', 'submit', Button::SIZE_SMALL), 'some name')],
         ];
     }
 
