@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ListingTeasers;
 use eLife\Patterns\ViewModel\LoadMoreButton;
 use eLife\Patterns\ViewModel\Teaser;
