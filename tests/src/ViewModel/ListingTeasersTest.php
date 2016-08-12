@@ -7,6 +7,7 @@ use eLife\Patterns\ViewModel\ListingTeasers;
 use eLife\Patterns\ViewModel\LoadMoreButton;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 use eLife\Patterns\ViewModel\Teaser;
+use InvalidArgumentException;
 
 final class ListingTeasersTest extends ViewModelTest
 {
@@ -41,6 +42,16 @@ final class ListingTeasersTest extends ViewModelTest
         );
 
         $this->assertSameWithoutOrder($data, $listingTeaser->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_cannot_have_no_teasers()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ListingTeasers::basic([]);
     }
 
     public function viewModelProvider() : array

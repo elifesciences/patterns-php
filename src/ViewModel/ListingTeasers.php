@@ -29,6 +29,7 @@ final class ListingTeasers implements ViewModel
         ) {
             throw new InvalidArgumentException('You cannot have both LoadMore and SeeMoreLink in Teaser Listings.');
         }
+        Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, Teaser::class);
         $this->items = $items;
         $this->heading = $heading;
