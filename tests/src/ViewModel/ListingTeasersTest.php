@@ -2,8 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingTeasers;
 use eLife\Patterns\ViewModel\LoadMoreButton;
+use eLife\Patterns\ViewModel\SeeMoreLink;
 use eLife\Patterns\ViewModel\Teaser;
 
 final class ListingTeasersTest extends ViewModelTest
@@ -64,6 +66,15 @@ final class ListingTeasersTest extends ViewModelTest
                 ListingTeasers::withHeading(
                     'heading',
                     new LoadMoreButton('testing', '#'),
+                    Teaser::basic('title', 'url'),
+                    Teaser::basic('title', 'url'),
+                    Teaser::basic('title', 'url')
+                ),
+            ],
+            [
+                ListingTeasers::withSeeMore(
+                    'heading',
+                    new SeeMoreLink(new Link('testing', '#')),
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url')

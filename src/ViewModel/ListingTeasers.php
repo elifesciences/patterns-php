@@ -6,8 +6,8 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
-use Traversable;
 use InvalidArgumentException;
+use Traversable;
 
 final class ListingTeasers implements ViewModel
 {
@@ -47,6 +47,11 @@ final class ListingTeasers implements ViewModel
     public static function withHeading(string $heading, LoadMoreButton $loadMore = null, Teaser ...$items)
     {
         return new static($items, $heading, $loadMore);
+    }
+
+    public static function withSeeMore(string $heading, SeeMoreLink $seeMoreLink = null, Teaser ...$items)
+    {
+        return new static($items, $heading, null, $seeMoreLink);
     }
 
     public function getTemplateName() : string
