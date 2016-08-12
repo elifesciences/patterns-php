@@ -4,8 +4,8 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,7 +13,7 @@ final class FilterPanel implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $title;
     private $filterGroups;
@@ -35,11 +35,13 @@ final class FilterPanel implements ViewModel
         return '/elife/patterns/templates/filter-panel.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/filter-panel.css';
-        foreach ($this->filterGroups as $fg) {
-            yield from $fg->getStyleSheets();
-        }
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield from $this->filterGroups;
     }
 }

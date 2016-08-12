@@ -4,12 +4,16 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
+use eLife\Patterns\ComposedAssets;
+use eLife\Patterns\HasAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
+use Traversable;
 
-final class TeaserFooter implements CastsToArray
+final class TeaserFooter implements CastsToArray, HasAssets
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
+    use ComposedAssets;
 
     private $meta;
     private $downloadSrc;
@@ -45,5 +49,10 @@ final class TeaserFooter implements CastsToArray
         string $downloadSrc = null
     ) {
         return new static($meta, null, $downloadSrc);
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->meta;
     }
 }
