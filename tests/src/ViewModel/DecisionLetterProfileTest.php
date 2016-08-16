@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\DecisionLetterProfile;
 use eLife\Patterns\ViewModel\Image;
-use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 
 final class DecisionLetterProfileTest extends ViewModelTest
@@ -28,9 +27,9 @@ final class DecisionLetterProfileTest extends ViewModelTest
 
     protected static function getProfileStub()
     {
-        return new ProfileSnippet('Name McName', 'Title McTitle', new Picture([
-            ['srcset' => '/path/to/svg'],
-        ], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')));
+        return new ProfileSnippet('Name McName', 'Title McTitle',
+            new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')
+        );
     }
 
     public function viewModelProvider() : array

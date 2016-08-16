@@ -24,59 +24,24 @@ schema:
                 contactDetails:
                     type: string
                     minLength: 1
-                picture:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
+                image:
                     type: object
                     properties:
-                        pictureClasses:
+                        srcset:
+                            type: string
+                            pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                        defaultPath:
                             type: string
                             minLength: 1
-                        sources:
-                            type: array
-                            minItems: 1
-                            uniqueItems: true
-                            items:
-                                type: object
-                                properties:
-                                    srcset:
-                                        type: string
-                                        minLength: 1
-                                    media:
-                                        type: string
-                                        minLength: 1
-                                    type:
-                                        type: string
-                                        enum:
-                                            - image/svg+xml
-                                            - image/webp
-                                            - image/png
-                                            - image/jpeg
-                                required:
-                                    - srcset
-                        fallback:
-                            type: object
-                            properties:
-                                srcset:
-                                    type: string
-                                    pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
-                                defaultPath:
-                                    type: string
-                                    minLength: 1
-                                altText:
-                                    type: string
-                                classes:
-                                    type: string
-                            required:
-                                - srcset
-                                - defaultPath
-                                - altText
+                        altText:
+                            type: string
                     required:
-                        - sources
-                        - fallback
+                        - srcset
+                        - defaultPath
+                        - altText
             required:
                 - title
                 - name
-                - picture
     required:
         - mainText
         - profileSnippet
