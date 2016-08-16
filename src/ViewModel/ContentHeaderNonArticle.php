@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
-use tests\eLife\Patterns\ViewModel\Profile;
 use Traversable;
 
 final class ContentHeaderNonArticle implements ViewModel
