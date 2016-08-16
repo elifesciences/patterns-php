@@ -1,11 +1,10 @@
 <?php
 
-namespace tests\eLife\Patterns\ViewModel;
+namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\ViewModel\Link;
 
 final class Profile implements CastsToArray
 {
