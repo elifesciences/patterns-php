@@ -56,7 +56,7 @@ final class FilterPanelTest extends ViewModelTest
                 new Filter(true, 'something', 100, 'some_name_100'),
                 new Filter(true, 'something', 1000, 'some_name_1000'),
             ]),
-        ], Button::form('search', 'submit', 'some name', Button::SIZE_SMALL));
+        ], Button::form('search', 'submit', 'some name', Button::SIZE_SMALL), $data['name']);
 
         $this->assertSame($data['title'], $panel['title']);
         $this->assertSame($data['filterGroups'], $this->allToArray($panel['filterGroups']));
