@@ -16,14 +16,16 @@ final class FormButtonTest extends ViewModelTest
             'classes' => 'button--small button--outline button--full',
             'text' => 'text',
             'type' => Button::TYPE_BUTTON,
+            'name' => 'some name',
+            'id' => 'someId',
         ];
 
-        $button = Button::form('text', Button::TYPE_BUTTON, Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
+        $button = Button::form('text', Button::TYPE_BUTTON, $data['name'], Button::SIZE_SMALL, Button::STYLE_OUTLINE, 'someId', true, true);
 
         $this->assertSame($data['text'], $button['text']);
         $this->assertSame($data['type'], $button['type']);
         $this->assertSame($data['classes'], $button['classes']);
-        $this->assertSame($data, $button->toArray());
+        $this->assertSameWithoutOrder($data, $button);
     }
 
     /**
@@ -31,7 +33,7 @@ final class FormButtonTest extends ViewModelTest
      */
     public function it_merges_outline_and_inactive_states()
     {
-        $button = Button::form('text', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, false);
+        $button = Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, 'someId', false);
 
         $this->assertSame('button--outline-inactive', $button['classes']);
     }
@@ -43,7 +45,7 @@ final class FormButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('', Button::TYPE_BUTTON);
+        Button::form('', Button::TYPE_BUTTON, 'some name');
     }
 
     /**
@@ -53,7 +55,7 @@ final class FormButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('text', 'foo');
+        Button::form('text', 'foo', 'name');
     }
 
     /**
@@ -63,7 +65,7 @@ final class FormButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('text', Button::TYPE_BUTTON, 'foo');
+        Button::form('text', Button::TYPE_BUTTON, 'some name', 'foo');
     }
 
     /**
@@ -73,23 +75,23 @@ final class FormButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('text', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, 'foo');
+        Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, 'foo');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'button' => [Button::form('text', Button::TYPE_BUTTON)],
-            'reset' => [Button::form('text', Button::TYPE_RESET)],
-            'submit' => [Button::form('text', Button::TYPE_SUBMIT)],
-            'small' => [Button::form('text', Button::TYPE_BUTTON, Button::SIZE_SMALL)],
-            'extra small' => [Button::form('text', Button::TYPE_BUTTON, Button::SIZE_SMALL)],
-            'outline' => [Button::form('text', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
+            'button' => [Button::form('text', Button::TYPE_BUTTON, 'some name')],
+            'reset' => [Button::form('text', Button::TYPE_RESET, 'some name')],
+            'submit' => [Button::form('text', Button::TYPE_SUBMIT, 'some name')],
+            'small' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_SMALL)],
+            'extra small' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_SMALL)],
+            'outline' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
             'inactive' => [
-                Button::form('text', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, false),
+                Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', false),
             ],
             'full width' => [
-                Button::form('text', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true),
+                Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', true, true),
             ],
         ];
     }

@@ -29,7 +29,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
             new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
 
-        $this->button = Button::form('button text', 'button');
+        $this->button = Button::form('button text', 'button', 'name');
 
         $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $this->picture, true);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false);
@@ -87,7 +87,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
             new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
         );
 
-        $button = Button::form('button text', 'button');
+        $button = Button::form('button text', 'button', 'name');
 
         $navLinkItems = [
             NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $img, false),

@@ -684,6 +684,7 @@ JSON;
                 "button": {
                   "text": "Go",
                   "type": "submit",
+                  "name": "some name",
                   "classes": "button--outline button--extra-small"
                 }
               },
