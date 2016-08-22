@@ -47,6 +47,13 @@ final class CaptionedImage implements ViewModel
         $this->customContent = $customContent;
     }
 
+    public static function withOnlyHeading(IsImage $image, string $heading) : CaptionedImage
+    {
+        Assertion::notBlank($heading);
+
+        return new static($image, $heading);
+    }
+
     public static function withParagraph(IsImage $image, string $heading, string $caption) : CaptionedImage
     {
         Assertion::notBlank($heading);

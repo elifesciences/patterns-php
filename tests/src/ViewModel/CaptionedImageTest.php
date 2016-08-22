@@ -106,6 +106,16 @@ final class CaptionedImageTest extends ViewModelTest
                     'caption'
                 ),
             ],
+            'Captioned image with only heading' => [
+                CaptionedImage::withOnlyHeading(
+                    new Picture(
+                        [['srcset' => '/path/to/svg']],
+                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            'the alt text')
+                    ),
+                    'heading'
+                ),
+            ],
         ];
     }
 
