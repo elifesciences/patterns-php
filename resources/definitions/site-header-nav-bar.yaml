@@ -82,7 +82,6 @@ schema:
                                                     classes:
                                                         type: string
                                                 required:
-                                                    - srcset
                                                     - defaultPath
                                                     - altText
                                         required:
