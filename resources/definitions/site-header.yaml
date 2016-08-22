@@ -91,7 +91,6 @@ schema:
                                                             classes:
                                                                 type: string
                                                         required:
-                                                            - srcset
                                                             - defaultPath
                                                             - altText
                                                 required:
@@ -223,7 +222,6 @@ schema:
                                                             classes:
                                                                 type: string
                                                         required:
-                                                            - srcset
                                                             - defaultPath
                                                             - altText
                                                 required:

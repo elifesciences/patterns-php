@@ -16,10 +16,9 @@ final class Image implements CastsToArray, IsImage
     private $defaultPath;
     private $srcset;
 
-    public function __construct(string $defaultPath, array $srcset, string $altText = '')
+    public function __construct(string $defaultPath, array $srcset = [], string $altText = '')
     {
         Assertion::notBlank($defaultPath);
-        Assertion::notEmpty($srcset);
         Assertion::allInteger(array_keys($srcset));
         Assertion::allNotBlank($srcset);
 

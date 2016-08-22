@@ -51,16 +51,6 @@ final class ImageTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function it_cannot_have_an_empty_srcset()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new Image('/foo.png', []);
-    }
-
-    /**
-     * @test
-     */
     public function it_cannot_have_a_blank_srcset_path()
     {
         $this->expectException(InvalidArgumentException::class);
