@@ -62,7 +62,6 @@ final class FilterPanelTest extends ViewModelTest
         $this->assertSame($data['filterGroups'], $this->allToArray($panel['filterGroups']));
         $this->assertSameWithoutOrder($data['button'], $panel['button']);
         $this->assertSameWithoutOrder($data, $panel->toArray());
-
     }
 
     private function allToArray(array $all) : array
