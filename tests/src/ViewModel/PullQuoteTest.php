@@ -26,6 +26,7 @@ final class PullQuoteTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
+            'with quote' => [new PullQuote('quote')],
             'with quote and cite' => [new PullQuote('quote', 'cite')],
             'with links in cite' => [new PullQuote('quote', 'cite <a href="#">with link</a>')],
             'with links in cite not paragraph' => [new PullQuote('quote', 'cite <a href="#">with link</a>', false)],

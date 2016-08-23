@@ -21,11 +21,10 @@ final class PullQuote implements ViewModel
 
     public function __construct(
         string $quote,
-        string $cite,
+        string $cite = null,
         bool $asPara = true
     ) {
         Assertion::notBlank($quote);
-        Assertion::notBlank($cite);
 
         $this->quote = $quote;
         $this->cite = $cite;
