@@ -272,8 +272,7 @@ final class TeaserTest extends ViewModelTest
             $data['secondaryInfo'],
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
             TeaserFooter::forNonArticle(
-                $this->metaFromData($data['footer']['meta']),
-                $data['footer']['downloadSrc']
+                $this->metaFromData($data['footer']['meta'])
             )
         );
         $this->assertSameWithoutOrder($data, $actual);
