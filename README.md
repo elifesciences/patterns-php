@@ -34,10 +34,15 @@ use eLife\Patterns\Mustache\PatternLabLoader;
 use eLife\Patterns\Mustache\PuliLoader;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 
+$helpers = ['assetsPath' => $puliUrlGenerator->generateUrl('/elife/patterns/assets')];
 $puliLoader = new PuliLoader($puliRepository);
-$patternLabLoader = new PatternLabLoader($repo->get('/elife/patterns/templates')->getFilesystemPath());
+$patternLabLoader = new PatternLabLoader($puliRepository->get('/elife/patterns/templates')->getFilesystemPath());
 
-$mustache = new Mustache_Engine(['loader' => $puliLoader, 'partials_loader' => $patternLabLoader]);
+$mustache = new Mustache_Engine([
+    'helpers' => $helpers,
+    'loader' => $puliLoader,
+    'partials_loader' => $patternLabLoader,
+]);
 $patternRenderer = new MustachePatternRenderer($mustache);
 
 var_dump($patternRenderer->render($viewModel));

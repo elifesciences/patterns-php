@@ -18,21 +18,17 @@ final class Footer implements ViewModel
     private $_mainMenu;
 
     private $year;
-    private $assetsPath;
     private $mainMenuLinks;
     private $footerMenuLinks;
 
     public function __construct(
-        string $assetsPath,
         MainMenu $mainMenu,
         array $footerMenuLinks
     ) {
-        Assertion::notBlank($assetsPath);
         Assertion::notEmpty($footerMenuLinks);
         Assertion::allIsInstanceOf($footerMenuLinks, Link::class);
 
         $this->year = (int) date('Y');
-        $this->assetsPath = $assetsPath;
         $this->_mainMenu = $mainMenu;
         $this->mainMenuLinks = $mainMenu['mainMenuLinks'];
         $this->footerMenuLinks = $footerMenuLinks;
