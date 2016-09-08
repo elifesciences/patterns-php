@@ -13,9 +13,6 @@ schema:
             properties:
                 year:
                     type: integer
-                assetsPath:
-                    type: string
-                    minLength: 1
                 footerMenuLinks:
                     type: array
                     items:
@@ -33,7 +30,6 @@ schema:
                     minItems: 1
             required:
                 - year
-                - assetsPath
                 - footerMenuLinks
         -
             $schema: 'http://json-schema.org/draft-04/schema#'

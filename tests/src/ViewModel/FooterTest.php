@@ -16,7 +16,6 @@ final class FooterTest extends ViewModelTest
     {
         $data = [
             'year' => (int) date('Y'),
-            'assetsPath' => '/assets',
             'mainMenuLinks' => [
                 [
                     'title' => 'title',
@@ -28,7 +27,6 @@ final class FooterTest extends ViewModelTest
         ];
 
         $footer = new Footer(
-            $data['assetsPath'],
             new MainMenu($mainMenuLinks = [
                 new MainMenuLink($data['mainMenuLinks'][0]['title'],
                     $links = [
@@ -40,7 +38,6 @@ final class FooterTest extends ViewModelTest
         );
 
         $this->assertSame($data['year'], $footer['year']);
-        $this->assertSame($data['assetsPath'], $footer['assetsPath']);
         $this->assertEquals($mainMenuLinks, $footer['mainMenuLinks']);
         $this->assertEquals($footerMenuLinks, $footer['footerMenuLinks']);
         $this->assertSame($data, $footer->toArray());
@@ -50,7 +47,7 @@ final class FooterTest extends ViewModelTest
     {
         return [
             [
-                new Footer('/', new MainMenu([new MainMenuLink('title', [new Link('name1', 'url1')])]),
+                new Footer(new MainMenu([new MainMenuLink('title', [new Link('name1', 'url1')])]),
                     [new Link('name2', 'url2')], [new Link('name3', 'url3')]),
             ],
         ];

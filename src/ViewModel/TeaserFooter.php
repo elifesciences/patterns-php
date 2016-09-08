@@ -17,28 +17,24 @@ final class TeaserFooter implements CastsToArray, HasAssets
 
     private $meta;
     private $publishState;
-    private $assetsPath;
 
     private function __construct(
         Meta $meta,
-        bool $vor = null,
-        string $assetsPath = null
+        bool $vor = null
     ) {
         $this->meta = $meta;
         if (null !== $vor) {
             $this->publishState = [
                 'vor' => $vor,
             ];
-            $this->assetsPath = $assetsPath;
         }
     }
 
     public static function forArticle(
         Meta $meta,
-        bool $vor,
-        string $assetsPath
+        bool $vor
     ) {
-        return new static($meta, $vor, null, $assetsPath);
+        return new static($meta, $vor, null);
     }
 
     public static function forNonArticle(
