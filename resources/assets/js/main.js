@@ -11,7 +11,6 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
-
   function ArticleDownloadLinksList($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -130,7 +129,6 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
-
   function AudioPlayer($elm) {
     var _this = this;
 
@@ -456,7 +454,6 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
-
   function ContentHeaderArticle($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -756,7 +753,6 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
-
   function MainMenu($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
@@ -839,7 +835,6 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
-
   function SearchBox($elm) {
     var _this = this;
 
@@ -1222,7 +1217,6 @@ module.exports = function () {
 
   // Passing window and document separately allows for independent mocking of window in order
   // to test feature support fallbacks etc.
-
   function SiteHeader($elm) {
     var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
 
