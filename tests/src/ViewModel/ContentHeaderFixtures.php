@@ -9,7 +9,7 @@ final class ContentHeaderFixtures
     {
         // @note
         // Changed titleClass from small to medium
-        $magazine = <<<JSON
+        $magazine = <<<'JSON'
         {
           "rootClasses": "content-header-article content-header-article-magazine",
           "behaviour": "ContentHeaderArticle",
@@ -79,7 +79,7 @@ JSON;
     }
     public static function magazineBackgroundImageFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
         {
           "rootClasses": "content-header-article content-header-article-magazine content-header-article-magazine--background",
           "behaviour": "ContentHeaderArticle BackgroundImage",
@@ -155,7 +155,7 @@ JSON;
     }
     public static function magazineBackgroundFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
         {
           "rootClasses": "content-header-article content-header-article-magazine content-header-article-magazine--background",
           "behaviour": "ContentHeaderArticle",
@@ -223,7 +223,7 @@ JSON;
     }
     public static function researchFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
         {
           "rootClasses": "content-header-article content-header-article-research",
           "behaviour": "ContentHeaderArticle",
@@ -382,7 +382,7 @@ JSON;
     }
     public static function researchReadMoreFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-article content-header-article-research content-header-article-research--readmore",
               "title": "<i>Homo naledi</i>, a new species of the genus <i>Homo</i> from the Dinaledi Chamber, South Africa",
@@ -426,7 +426,7 @@ JSON;
     // Non-article
     public static function nonArticleBasicFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "title": "About <i>eLife</i>",
@@ -439,7 +439,7 @@ JSON;
     }
     public static function nonArticleBasicWithStraplineFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-nonarticle",
               "title": "About <i>eLife</i>",
@@ -453,7 +453,7 @@ JSON;
     }
     public static function nonArticleBasicWithStraplineBackgroundFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "title": "About <i>eLife</i>",
@@ -467,7 +467,7 @@ JSON;
     }
     public static function nonArticleBasicWithStraplineBackgroundImageFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
         {
           "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
           "behaviour": "BackgroundImage",
@@ -485,7 +485,7 @@ JSON;
     }
     public static function nonArticleBasicWithStraplineBackgroundCtaMetaFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "behaviour": "BackgroundImage",
@@ -522,7 +522,7 @@ JSON;
     }
     public static function nonArticleCuratedContent()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "behaviour": "BackgroundImage",
@@ -567,7 +567,7 @@ JSON;
     }
     public static function nonArticleSubject()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "behaviour": "BackgroundImage",
@@ -592,7 +592,7 @@ JSON;
     }
     public static function nonArticlePodcastFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
         {
           "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
           "behaviour": "BackgroundImage",
@@ -650,7 +650,7 @@ JSON;
     }
     public static function nonArticleArchiveFixture()
     {
-        $fixture = <<<JSON
+        $fixture = <<<'JSON'
             {
               "rootClasses": "content-header-nonarticle content-header-nonarticle--background",
               "behaviour": "ContentHeaderSelectNav BackgroundImage",

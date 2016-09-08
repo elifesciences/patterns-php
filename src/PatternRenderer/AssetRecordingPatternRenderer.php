@@ -28,14 +28,14 @@ final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
                 continue;
             }
             $this->styleSheets[] = $styleSheet;
-        };
+        }
 
         foreach ($viewModel->getJavaScripts() as $javaScript) {
             if (false !== $this->contains($this->javaScripts, $javaScript)) {
                 continue;
             }
             $this->javaScripts[] = $javaScript;
-        };
+        }
 
         return $this->patternRenderer->render($viewModel);
     }
