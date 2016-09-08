@@ -86,7 +86,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $message = '';
         foreach ($validator->getErrors() as $error) {
             $message .= sprintf("[%s] %s\n", $error['property'], $error['message']);
-        };
+        }
 
         $this->assertTrue($validator->isValid(), $message);
     }

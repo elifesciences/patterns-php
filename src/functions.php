@@ -40,7 +40,7 @@ function is_iterable($item) : bool
     return is_array($item) || $item instanceof Traversable;
 }
 
-function mixed_visibility_text(string $prefix = '', string $text, string $suffix = '') : string
+function mixed_visibility_text(string $prefix, string $text, string $suffix = '') : string
 {
     $wrappedPrefix = '';
     $wrappedSuffix = '';

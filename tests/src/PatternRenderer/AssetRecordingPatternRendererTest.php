@@ -103,7 +103,6 @@ final class AssetRecordingPatternRendererTest extends PHPUnit_Framework_TestCase
         $child_generator = function () {
             yield 'baz';
             yield 'bar';
-
         };
         $generator = function () use ($child_generator) {
             yield 'foo';

@@ -127,7 +127,7 @@ final class ContentHeaderNonArticle implements ViewModel
 
     public static function curatedContentListing(
         string $title,
-        bool $background = false,
+        bool $background,
         string $strapline = null,
         Button $button = null,
         Meta $meta = null,
