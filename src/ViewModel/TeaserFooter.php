@@ -16,14 +16,12 @@ final class TeaserFooter implements CastsToArray, HasAssets
     use ComposedAssets;
 
     private $meta;
-    private $downloadSrc;
     private $publishState;
     private $assetsPath;
 
     private function __construct(
         Meta $meta,
         bool $vor = null,
-        string $downloadSrc = null,
         string $assetsPath = null
     ) {
         $this->meta = $meta;
@@ -33,7 +31,6 @@ final class TeaserFooter implements CastsToArray, HasAssets
             ];
             $this->assetsPath = $assetsPath;
         }
-        $this->downloadSrc = $downloadSrc;
     }
 
     public static function forArticle(
@@ -45,10 +42,9 @@ final class TeaserFooter implements CastsToArray, HasAssets
     }
 
     public static function forNonArticle(
-        Meta $meta,
-        string $downloadSrc = null
+        Meta $meta
     ) {
-        return new static($meta, null, $downloadSrc);
+        return new static($meta);
     }
 
     protected function getComposedViewModels() : Traversable
