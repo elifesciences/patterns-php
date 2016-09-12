@@ -14,7 +14,6 @@ final class TeaserImage implements CastsToArray
 
     private $defaultPath;
     private $altText;
-    private $url;
     private $srcset;
     private $classes;
 
@@ -25,7 +24,6 @@ final class TeaserImage implements CastsToArray
     private function __construct(
         string $defaultPath,
         string $altText = null,
-        string $url = null,
         array $srcset = null,
         array $classes = null
     ) {
@@ -33,7 +31,6 @@ final class TeaserImage implements CastsToArray
 
         $this->defaultPath = $defaultPath;
         $this->altText = $altText;
-        $this->url = $url;
         $this->srcset = $this->srcsetFromArray($srcset);
         if ($classes) {
             Assertion::allInArray($classes, [self::STYLE_PROMINENT, self::STYLE_BIG, self::STYLE_SMALL]);
@@ -44,13 +41,11 @@ final class TeaserImage implements CastsToArray
     public static function prominent(
         string $defaultPath,
         string $altText,
-        string $url = null,
         array $srcset = null
     ) {
         return new static (
             $defaultPath,
             $altText,
-            $url,
             $srcset,
             [self::STYLE_PROMINENT]
         );
@@ -59,13 +54,11 @@ final class TeaserImage implements CastsToArray
     public static function big(
         string $defaultPath,
         string $altText,
-        string $url = null,
         array $srcset = null
     ) {
         return new static (
             $defaultPath,
             $altText,
-            $url,
             $srcset,
             [self::STYLE_BIG]
         );
@@ -74,13 +67,11 @@ final class TeaserImage implements CastsToArray
     public static function small(
         string $defaultPath,
         string $altText,
-        string $url = null,
         array $srcset = null
     ) {
         return new static (
             $defaultPath,
             $altText,
-            $url,
             $srcset,
             [self::STYLE_SMALL]
         );

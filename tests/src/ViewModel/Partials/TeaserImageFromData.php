@@ -13,7 +13,6 @@ trait TeaserImageFromData
         $data = array_merge([
             'defaultPath' => null,
             'altText' => null,
-            'url' => null,
             'srcset' => null,
         ], $data);
         $data['srcset'] = $this->srcsetToArray($data['srcset']);
