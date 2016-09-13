@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\AudioPlayer;
 use eLife\Patterns\ViewModel\AudioSource;
+use eLife\Patterns\ViewModel\MediaChapterListingItem;
 use InvalidArgumentException;
 
 final class AudioPlayerTest extends ViewModelTest
@@ -15,10 +16,48 @@ final class AudioPlayerTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
         new AudioPlayer(
+            1,
             'this will fail',
             [
                 new AudioSource('/nope.jpg', ['forHuman' => 'jpg', 'forMachine' => 'image/jpeg']),
+            ],
+            [
+                new MediaChapterListingItem('chapter 1', 0, 1),
             ]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_requires_a_positive_episode_number()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new AudioPlayer(
+            0,
+            'this will fail',
+            [
+                new AudioSource('/nope.jpg', ['forHuman' => 'jpg', 'forMachine' => 'image/jpeg']),
+            ],
+            [
+                new MediaChapterListingItem('chapter 1', 0, 1),
+            ]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_requires_at_least_one_chapter()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new AudioPlayer(
+            1,
+            'this will fail',
+            [
+                new AudioSource('/nope.jpg', ['forHuman' => 'jpg', 'forMachine' => 'image/jpeg']),
+            ],
+            []
         );
     }
 
@@ -27,7 +66,12 @@ final class AudioPlayerTest extends ViewModelTest
      */
     public function it_has_data()
     {
+        $chapters = [
+            ['number' => 1, 'title' => 'Chapter 1', 'time' => 10],
+            ['number' => 2, 'title' => 'Chapter 2', 'time' => 25],
+        ];
         $data = [
+            'episodeNumber' => 1,
             'title' => 'title of player',
             'sources' => [
                 [
@@ -39,13 +83,23 @@ final class AudioPlayerTest extends ViewModelTest
                     'src' => '/audio.ogg',
                 ],
             ],
+            'metadata' => str_replace('"', '\'', json_encode(['number' => 1, 'chapters' => $chapters])),
         ];
 
-        $audioPlayer = new AudioPlayer($data['title'], [
-            new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']),
-        ]);
+        $audioPlayer = new AudioPlayer($data['episodeNumber'], $data['title'],
+            [
+                new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']),
+            ],
+            [
+                new MediaChapterListingItem($chapters[0]['title'], $chapters[0]['time'],
+                    $chapters[0]['number']),
+                new MediaChapterListingItem($chapters[1]['title'], $chapters[1]['time'],
+                    $chapters[1]['number']),
+            ]
+        );
         $audioPlayer->addSource(new AudioSource($data['sources'][1]['src'], $data['sources'][1]['mimeType']));
 
+        $this->assertSame($data['episodeNumber'], $audioPlayer['episodeNumber']);
         $this->assertSame($data['title'], $audioPlayer['title']);
         $this->assertSame($data['sources'][0], $audioPlayer['sources'][0]->toArray());
         $this->assertSame($data['sources'][0]['mimeType'], $audioPlayer['sources'][0]['mimeType']);
@@ -53,6 +107,7 @@ final class AudioPlayerTest extends ViewModelTest
         $this->assertSame($data['sources'][1], $audioPlayer['sources'][1]->toArray());
         $this->assertSame($data['sources'][1]['mimeType'], $audioPlayer['sources'][1]['mimeType']);
         $this->assertSame($data['sources'][1]['src'], $audioPlayer['sources'][1]['src']);
+        $this->assertSame($data['metadata'], $audioPlayer['metadata']);
         $this->assertSame($data, $audioPlayer->toArray());
     }
 
@@ -60,10 +115,15 @@ final class AudioPlayerTest extends ViewModelTest
     {
         return [
             [
-                new AudioPlayer('title of player', [
-                    new AudioSource('/audio.mp3', AudioSource::TYPE_MP3),
-                    new AudioSource('/audio.ogg', AudioSource::TYPE_OGG),
-                ]),
+                new AudioPlayer(1, 'title of player',
+                    [
+                        new AudioSource('/audio.mp3', AudioSource::TYPE_MP3),
+                        new AudioSource('/audio.ogg', AudioSource::TYPE_OGG),
+                    ],
+                    [
+                        new MediaChapterListingItem('chapter 1', 0, 1),
+                    ]
+                ),
             ],
         ];
     }

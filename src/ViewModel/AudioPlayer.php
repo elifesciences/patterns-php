@@ -15,17 +15,35 @@ final class AudioPlayer implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    protected $title;
+    private $episodeNumber;
+    private $title;
     /** @var AudioSource[] */
-    protected $sources;
+    private $sources;
+    private $metadata;
 
-    public function __construct(string $title, array $sources)
+    public function __construct(int $episodeNumber, string $title, array $sources, array $chapters)
     {
+        Assertion::min($episodeNumber, 1);
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($sources, AudioSource::class);
+        Assertion::notEmpty($chapters);
+        Assertion::allIsInstanceOf($chapters, MediaChapterListingItem::class);
 
+        $this->episodeNumber = $episodeNumber;
         $this->title = $title;
         $this->sources = $sources;
+        $this->metadata = [
+            'number' => $episodeNumber,
+            'chapters' => [],
+        ];
+        foreach ($chapters as $chapter) {
+            $this->metadata['chapters'][] = [
+                'number' => $chapter['chapterNumber'],
+                'title' => $chapter['title'],
+                'time' => $chapter['startTime']['forMachine'],
+            ];
+        }
+        $this->metadata = str_replace('"', '\'', json_encode($this->metadata));
     }
 
     public function addSource(AudioSource $source)

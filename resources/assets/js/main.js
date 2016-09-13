@@ -117,7 +117,7 @@ module.exports = function () {
   return ArticleDownloadLinksList;
 }();
 
-},{"../libs/elife-utils":10}],2:[function(require,module,exports){
+},{"../libs/elife-utils":11}],2:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -126,9 +126,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var utils = require('../libs/elife-utils')();
 module.exports = function () {
-
-  // Passing window and document separately allows for independent mocking of window in order
-  // to test feature support fallbacks etc.
   function AudioPlayer($elm) {
     var _this = this;
 
@@ -143,59 +140,97 @@ module.exports = function () {
       return;
     }
 
-    if (!_window.HTMLAudioElement) {
+    this.window = _window;
+    if (!this.window.HTMLAudioElement) {
       console.warn('Audio element not supported');
       return;
     }
 
     console.log('Initialising Audio Player...');
 
-    this.uniqueId = utils.uniqueIds.get('audio', doc);
     this.$elm = $elm;
-    this.$elm.id = this.uniqueId;
     this.$audioElement = this.$elm.querySelector('audio');
-    this.$playButton = AudioPlayer.buildPlayButton(this);
-    this.$icon = this.$playButton.querySelector('.audio-player__toggle_play_icon');
-    this.$possibleProgressTrack = AudioPlayer.buildProgressIndicator(this);
-    this.$progressBar = this.$possibleProgressTrack.querySelector('[class*="progress_bar"]');
-    this.$timeIndicators = AudioPlayer.buildTimeIndicators(this);
-    this.$currentTime = this.$timeIndicators.querySelector('[class*="current_time"]');
-    this.$duration = this.$timeIndicators.querySelector('[class*="duration"]');
-
     if (!this.$audioElement) {
       console.warn('No audio element found');
       return;
     }
 
+    this.uniqueId = utils.uniqueIds.get('audio', doc);
+    this.$elm.id = this.uniqueId;
+    this.$playButton = AudioPlayer.buildPlayButton(this);
+    this.$icon = this.$playButton.querySelector('.audio-player__toggle_play_icon');
+
+    // $title must be prepared before buildProgressIndicator is called
+    this.$title = this.prepare$title(this.$elm.querySelector('.audio-player__header'), doc);
+    this.$progressTrack = AudioPlayer.buildProgressIndicator(this);
+    this.$progressBar = this.$progressTrack.querySelector('[class*="progress_bar"]');
+    this.$timeIndicators = AudioPlayer.buildTimeIndicators(this);
+    this.$currentTime = this.$timeIndicators.querySelector('[class*="current_time"]');
+    this.$duration = this.$timeIndicators.querySelector('[class*="duration"]');
+
     // state
     this.duration = null;
     this.isPlaying = false;
 
-    // setup
     this.$elm.classList.add('audio-player--js');
 
-    // events
-    this.$playButton.addEventListener('click', function () {
-      _this.togglePlay(_this.$audioElement, _this.$playButton);
-    }, false);
-
+    this.$playButton.classList.add('loading');
     this.$audioElement.addEventListener('loadedmetadata', function () {
-      _this.duration = _this.$audioElement.duration;
-      _this.$duration.innerHTML = AudioPlayer.secondsToMinutes(_this.duration);
+      _this.playerReady(_this);
     });
 
-    this.$audioElement.addEventListener('timeupdate', this.update.bind(this));
+    this.usingMetadata = false; // set to true in loadMetadata if no errors thrown
+    this.loadMetadata(this.$elm.dataset.episodeNumber);
   }
 
-  /**
-   * Converts seconds to a display of minutes & seconds.
-   *
-   * @param {Number} seconds The time to convert, in seconds
-   * @returns {string} The time in a [m]m:ss string
-   */
-
-
   _createClass(AudioPlayer, [{
+    key: 'playerReady',
+    value: function playerReady(player) {
+      player.duration = player.$audioElement.duration;
+      player.$duration.innerHTML = AudioPlayer.secondsToMinutes(player.duration);
+      player.$playButton.addEventListener('click', function () {
+        player.togglePlay(player.$audioElement, player.$playButton);
+      }, false);
+      player.$audioElement.addEventListener('timeupdate', player.update.bind(player));
+      player.window.addEventListener('hashchange', player.seekNewTime.bind(player));
+      player.window.addEventListener('load', player.seekNewTime.bind(player));
+      this.$playButton.classList.remove('loading');
+
+      var playerReady = void 0;
+      try {
+        playerReady = new CustomEvent('playerReady', { detail: this.uniqueId });
+      } catch (e) {
+        // CustomEvent not supported, do it the old fashioned way
+        playerReady = document.createEvent('playerReady');
+        playerReady.initCustomEvent('playerReady', true, true, { detail: this.uniqueId });
+      }
+
+      player.window.dispatchEvent(playerReady);
+    }
+  }, {
+    key: 'prepare$title',
+    value: function prepare$title(parent, doc) {
+      var span = doc.createElement('span');
+      try {
+        span.innerHTML = parent.innerHTML;
+      } catch (e) {
+        return;
+      }
+
+      span.classList.add('audio-player__title');
+      parent.innerHTML = '';
+      parent.appendChild(span);
+      return span;
+    }
+
+    /**
+     * Converts seconds to a display of minutes & seconds.
+     *
+     * @param {Number} seconds The time to convert, in seconds
+     * @returns {string} The time in a [m]m:ss string
+     */
+
+  }, {
     key: 'togglePlay',
 
 
@@ -208,18 +243,28 @@ module.exports = function () {
      */
     value: function togglePlay($audioElement, $togglePlayButton) {
       if (this.isPlaying) {
-        $audioElement.pause();
-        AudioPlayer.updateIconState(this.$icon, 'play');
-        $togglePlayButton.classList.add('audio-player__toggle_play--playable');
-        $togglePlayButton.classList.remove('audio-player__toggle_play--pauseable');
-        this.isPlaying = false;
+        this.pause($audioElement, $togglePlayButton);
       } else {
-        $audioElement.play();
-        AudioPlayer.updateIconState(this.$icon, 'pause');
-        $togglePlayButton.classList.add('audio-player__toggle_play--pauseable');
-        $togglePlayButton.classList.remove('audio-player__toggle_play--playable');
-        this.isPlaying = true;
+        this.play($audioElement, $togglePlayButton);
       }
+    }
+  }, {
+    key: 'play',
+    value: function play($audioElement, $togglePlayButton) {
+      $audioElement.play();
+      AudioPlayer.updateIconState(this.$icon, 'pause');
+      $togglePlayButton.classList.add('audio-player__toggle_play--pauseable');
+      $togglePlayButton.classList.remove('audio-player__toggle_play--playable');
+      this.isPlaying = true;
+    }
+  }, {
+    key: 'pause',
+    value: function pause($audioElement, $togglePlayButton) {
+      $audioElement.pause();
+      AudioPlayer.updateIconState(this.$icon, 'play');
+      $togglePlayButton.classList.add('audio-player__toggle_play--playable');
+      $togglePlayButton.classList.remove('audio-player__toggle_play--pauseable');
+      this.isPlaying = false;
     }
 
     /**
@@ -229,15 +274,48 @@ module.exports = function () {
   }, {
     key: 'update',
     value: function update() {
-      var pc = this.$audioElement.currentTime / this.duration * 100;
-      var currentTime2Dis = AudioPlayer.secondsToMinutes(Math.floor(this.$audioElement.currentTime));
+      var currentTime = Math.floor(this.$audioElement.currentTime);
+      var pc = currentTime / this.duration * 100;
+      var currentTime2Dis = AudioPlayer.secondsToMinutes(currentTime);
       this.$progressBar.style.width = pc + '%';
       this.$currentTime.innerHTML = currentTime2Dis;
+
+      if (this.usingMetadata) {
+        var chapterNumberOnLastUpdate = this.getCurrentChapterNumber();
+        this.setCurrentChapterMetadata(this.getChapterMetadataAtTime(currentTime, this.chapterMetadata));
+        if (this.getCurrentChapterMetadata().number !== chapterNumberOnLastUpdate) {
+          this.changeChapter(this.getCurrentChapterNumber(), this.getCurrentChapterMetadata().title, this.$elm);
+        }
+      }
 
       if (this.$audioElement.ended) {
         AudioPlayer.updateIconState(this.$icon, 'play');
         this.isPlaying = false;
       }
+    }
+
+    /**
+     * Updates player title with chapter number & name, and dispatches chapterChanged event.
+     *
+     * @param {int} number New chapter number Used as value of detail property of
+     * @param {String} title new chapter title
+     * @param {HTMLElement} $elm Element from which to dispatch the event
+     */
+
+  }, {
+    key: 'changeChapter',
+    value: function changeChapter(number, title, $elm) {
+      this.setTitle(this.episodeTitle, title);
+      var chapterChanged = void 0;
+      try {
+        chapterChanged = new CustomEvent('chapterChanged', { detail: number });
+      } catch (e) {
+        // CustomEvent not supported, do it the old fashioned way
+        chapterChanged = document.createEvent('chapterChanged');
+        chapterChanged.initCustomEvent('chapterChanged', true, true, { detail: number });
+      }
+
+      $elm.dispatchEvent(chapterChanged);
     }
 
     /**
@@ -248,8 +326,28 @@ module.exports = function () {
      */
 
   }, {
-    key: 'handleSeek',
+    key: 'seekNewTime',
+    value: function seekNewTime(e) {
+      var hash;
+      var shouldPlay = false;
+      try {
+        hash = e.newURL.substring(e.newURL.indexOf('#') + 1);
 
+        // Should play when chapter changed within the page, but not autoplay on page load :-)
+        shouldPlay = true;
+      } catch (e) {
+        // newURL only available on hashchange event, but load event may also invoke this handler
+        hash = this.window.location.hash.substring(1);
+        shouldPlay = false;
+      }
+
+      if (!isNaN(hash) && hash >= 0) {
+        this.seek(hash, this.$audioElement);
+        if (!this.isPlaying && shouldPlay) {
+          this.play(this.$audioElement, this.$playButton);
+        }
+      }
+    }
 
     /**
      * Event handler to determine track seek time in response to user interaction.
@@ -257,9 +355,12 @@ module.exports = function () {
      * @param e The user-generated click event
      * @param {AudioPlayer} player The audio player object that the new element belongs to
      */
+
+  }, {
+    key: 'handleSeek',
     value: function handleSeek(e, player) {
       var newSeekPosition = parseInt(e.offsetX, 10);
-      var availableWidth = player.$possibleProgressTrack.clientWidth;
+      var availableWidth = player.$progressTrack.clientWidth;
       var durationProportionToSeek = newSeekPosition / parseInt(availableWidth, 10);
       this.seek(durationProportionToSeek * player.duration, player.$audioElement);
     }
@@ -286,6 +387,125 @@ module.exports = function () {
      * @returns {Element} The progress indicator
      */
 
+  }, {
+    key: 'setTitle',
+
+
+    /**
+     * Set the title based on both episode and chapter titles
+     * @param episodeTitle
+     * @param chapterTitle
+     */
+    value: function setTitle(episodeTitle, chapterTitle) {
+      this.title = episodeTitle;
+      if (!!chapterTitle) {
+        this.title += ': ' + chapterTitle;
+      }
+
+      this.$title.innerHTML = this.title;
+    }
+  }, {
+    key: 'getCurrentChapterMetadata',
+    value: function getCurrentChapterMetadata() {
+      return this.currentChapterMetadata;
+    }
+  }, {
+    key: 'setCurrentChapterMetadata',
+    value: function setCurrentChapterMetadata(metadata) {
+      this.currentChapterMetadata = metadata;
+    }
+  }, {
+    key: 'getCurrentChapterNumber',
+    value: function getCurrentChapterNumber() {
+      return this.getCurrentChapterMetadata().number || 0;
+    }
+
+    /**
+     * Returns a chapter's title and number, based on the playback position
+     * @param time
+     * @param {Array} chapterMetadata
+     * An array of objects that must contain as a minimum
+     * @returns {*}
+     */
+
+  }, {
+    key: 'getChapterMetadataAtTime',
+    value: function getChapterMetadataAtTime(time, chapterMetadata) {
+      if (!chapterMetadata) {
+        return '';
+      }
+
+      var chapterTitle = '';
+      var chapterNumber = 0;
+      chapterMetadata.forEach(function (chapter, i, chapters) {
+        var chapterStartTime = parseInt(chapter.time, 10);
+        var nextChapterStartTime = i < chapters.length - 1 ? chapters[i + 1].time : null;
+        if (time >= chapterStartTime) {
+          if (!nextChapterStartTime || time < nextChapterStartTime) {
+            chapterTitle = chapter.title;
+            chapterNumber = chapter.number;
+          }
+        }
+      });
+
+      return {
+        title: chapterTitle,
+        number: chapterNumber
+      };
+    }
+
+    /**
+     * Sets episode title and respective chapter information from metadata
+     * @param metadata
+     */
+
+  }, {
+    key: 'processMetadata',
+    value: function processMetadata(metadata) {
+      this.episodeTitle = 'Episode ' + metadata.number;
+      this.setTitle(this.episodeTitle);
+
+      this.chapterMetadata = this.prepareChapterMetadata(metadata);
+      this.currentChapterMetadata = { number: 0, title: '' };
+    }
+
+    /**
+     * Returns array of objects describing respective chapter information
+     * @param metadata
+     * @returns {Array} of objects containing time, number and title properties
+     */
+
+  }, {
+    key: 'prepareChapterMetadata',
+    value: function prepareChapterMetadata(metadata) {
+      var chapterMetadata = [];
+      metadata.chapters.forEach(function (chapter) {
+        chapterMetadata.push({
+          time: chapter.time,
+          number: chapter.number,
+          title: chapter.number + '. ' + chapter.title
+        });
+      });
+
+      return chapterMetadata;
+    }
+
+    /**
+     * Metadata is expected in the data-metadata attribute of $elm as a JSON-like string with single-
+     * quoted instead of double-quoted values.
+     */
+
+  }, {
+    key: 'loadMetadata',
+    value: function loadMetadata() {
+      try {
+        this.processMetadata(JSON.parse(this.$elm.dataset.metadata.replace(/'/g, '"')));
+        this.usingMetadata = true;
+      } catch (e) {
+        console.error(e);
+        this.usingMetadata = false;
+      }
+    }
   }], [{
     key: 'secondsToMinutes',
     value: function secondsToMinutes(seconds) {
@@ -372,7 +592,7 @@ module.exports = function () {
   return AudioPlayer;
 }();
 
-},{"../libs/elife-utils":10}],3:[function(require,module,exports){
+},{"../libs/elife-utils":11}],3:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -443,7 +663,7 @@ module.exports = function () {
   return BackgroundImage;
 }();
 
-},{"../libs/elife-utils":10}],4:[function(require,module,exports){
+},{"../libs/elife-utils":11}],4:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -829,6 +1049,98 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+module.exports = function () {
+  function MediaChapterListingItem($elm) {
+    var _window = arguments.length <= 1 || arguments[1] === undefined ? window : arguments[1];
+
+    var doc = arguments.length <= 2 || arguments[2] === undefined ? document : arguments[2];
+
+    _classCallCheck(this, MediaChapterListingItem);
+
+    if (!$elm) {
+      console.warn('No element provided');
+      return;
+    }
+
+    console.log('Initialising Chapter listing item...');
+
+    this.$elm = $elm;
+    this.startTime = $elm.dataset.startTime;
+    if (!this.startTime || isNaN(this.startTime) || this.startTime < 0) {
+      return;
+    }
+
+    this.window = _window;
+    this.document = doc;
+
+    // When ready, AudioPlayer dispatches a custom event 'playerReady' on window, that supplies that
+    // player's html element id.
+    _window.addEventListener('playerReady', this.listenForChapterChange.bind(this));
+    this.$link = this.createLink(doc, this.$elm, this.startTime);
+    this.setupEventHandlers(this.$link);
+  }
+
+  _createClass(MediaChapterListingItem, [{
+    key: 'listenForChapterChange',
+    value: function listenForChapterChange(e) {
+      var $player = this.document.querySelector('#' + e.detail);
+      if (!!$player) {
+        $player.addEventListener('chapterChanged', this.indicateChapterChanged.bind(this));
+      }
+    }
+  }, {
+    key: 'createLink',
+    value: function createLink(document, $rootElm, startTime) {
+      var $title = $rootElm.querySelector('.teaser__header_text');
+      if (!$title) {
+        return;
+      }
+
+      var titleText = void 0;
+      var $existingLink = void 0;
+      try {
+        $existingLink = $title.querySelector('.teaser__header_text_link');
+        titleText = $existingLink.innerHTML;
+        $existingLink.parentNode.removeChild($existingLink);
+      } catch (e) {
+        titleText = $title.innerHTML;
+      }
+
+      var $link = document.createElement('a');
+      $link.innerHTML = titleText;
+      $link.setAttribute('href', '#' + startTime);
+      $link.classList.add('teaser__header_text_link');
+      $title.innerHTML = '';
+      $title.appendChild($link);
+      return $link;
+    }
+  }, {
+    key: 'indicateChapterChanged',
+    value: function indicateChapterChanged(e) {
+      var currentChapterNumber = e.detail;
+      if (currentChapterNumber === this.window.parseInt(this.$elm.dataset.chapterNumber)) {
+        this.$elm.classList.add('current-chapter');
+      } else {
+        this.$elm.classList.remove('current-chapter');
+      }
+    }
+  }, {
+    key: 'setupEventHandlers',
+    value: function setupEventHandlers($link) {
+      $link.addEventListener('chapterChanged', this.indicateChapterChanged);
+    }
+  }]);
+
+  return MediaChapterListingItem;
+}();
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var utils = require('../libs/elife-utils')();
 
 module.exports = function () {
@@ -1174,7 +1486,7 @@ module.exports = function () {
   return SearchBox;
 }();
 
-},{"../libs/elife-utils":10}],7:[function(require,module,exports){
+},{"../libs/elife-utils":11}],8:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1204,7 +1516,7 @@ module.exports = function () {
   return SelectNav;
 }();
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1427,7 +1739,7 @@ module.exports = function () {
   return SiteHeader;
 }();
 
-},{"../libs/elife-utils":10,"./MainMenu":5,"./SearchBox":6}],9:[function(require,module,exports){
+},{"../libs/elife-utils":11,"./MainMenu":5,"./SearchBox":7}],10:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1475,7 +1787,7 @@ module.exports = function () {
   return ViewerModal;
 }();
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1687,7 +1999,7 @@ module.exports = function () {
   };
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 // Base level of feature support needed for the js loaded in this file.
@@ -1707,6 +2019,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
     Components.BackgroundImage = require('./components/BackgroundImage');
     Components.SelectNav = require('./components/SelectNav');
     Components.MainMenu = require('./components/MainMenu');
+    Components.MediaChapterListingItem = require('./components/MediaChapterListingItem');
     Components.SiteHeader = require('./components/SiteHeader');
     Components.SearchBox = require('./components/SearchBox');
     Components.ViewerModal = require('./components/ViewerModal');
@@ -1714,30 +2027,20 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
     // App
     var Elife = function Elife() {
 
-      function initialiseComponent(handler, $elm) {
-        if (Components[handler] && typeof Components[handler] === 'function') {
-          new Components[handler]($elm, window, window.document);
+      function initialiseComponent($component) {
+        // When present, data-behaviour contains a space-separated list of handlers for that component
+        var handlers = $component.getAttribute('data-behaviour').trim().split(' ');
+        for (var i = 0; i < handlers.length; i += 1) {
+          var handler = handlers[i];
+          if (Components[handler] && typeof Components[handler] === 'function') {
+            new Components[handler]($component, window, window.document);
+          }
         }
       }
 
       var components = document.querySelectorAll('[data-behaviour]');
-      if (components.length) {
-        var _loop = function _loop(i) {
-          var $elm = components[i];
-          var handler = $elm.getAttribute('data-behaviour').trim();
-          if (handler.indexOf(' ') > 0) {
-            var handlers = handler.split(' ');
-            handlers.forEach(function (handler) {
-              initialiseComponent(handler, $elm);
-            });
-          } else {
-            initialiseComponent(handler, $elm);
-          }
-        };
-
-        for (var i = 0; i < components.length; i += 1) {
-          _loop(i);
-        }
+      if (components) {
+        [].forEach.call(components, initialiseComponent);
       }
     };
 
@@ -1745,7 +2048,7 @@ if (window.localStorage && document.querySelector && window.addEventListener && 
   })();
 }
 
-},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/BackgroundImage":3,"./components/ContentHeaderArticle":4,"./components/MainMenu":5,"./components/SearchBox":6,"./components/SelectNav":7,"./components/SiteHeader":8,"./components/ViewerModal":9}]},{},[11])
+},{"./components/ArticleDownloadLinksList":1,"./components/AudioPlayer":2,"./components/BackgroundImage":3,"./components/ContentHeaderArticle":4,"./components/MainMenu":5,"./components/MediaChapterListingItem":6,"./components/SearchBox":7,"./components/SelectNav":8,"./components/SiteHeader":9,"./components/ViewerModal":10}]},{},[12])
 
 
 //# sourceMappingURL=main.js.map
