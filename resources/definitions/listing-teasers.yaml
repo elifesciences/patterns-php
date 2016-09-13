@@ -43,12 +43,8 @@ schema:
                                         - name
                                         - url
                     url:
-                        oneOf:
-                            -
-                                minLength: 1
-                                type: string
-                            -
-                                type: 'null'
+                        minLength: 1
+                        type: string
                     title:
                         type: string
                         minLength: 1
