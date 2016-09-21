@@ -18,11 +18,13 @@ final class ArticleSection implements ViewModel
     private $id;
     private $title;
     private $body;
+    private $first;
 
     public function __construct(
-      string $id,
-      string $title,
-      array $content
+        string $id,
+        string $title,
+        array $content,
+        bool $first = false
     ) {
         Assertion::notBlank($id);
         Assertion::notBlank($title);
@@ -33,6 +35,7 @@ final class ArticleSection implements ViewModel
         $this->body = array_map(function ($item) {
             return ['content' => $item];
         }, $content);
+        $this->first = $first;
     }
 
     public function getTemplateName() : string

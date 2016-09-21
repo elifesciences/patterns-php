@@ -24,6 +24,7 @@ final class ArticleSectionTest extends ViewModelTest
                         'content' => '<b>Something else</b>',
                     ],
                 ],
+            'first' => false,
         ];
 
         $actionSection = new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>']);
@@ -31,6 +32,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($data['id'], $actionSection['id']);
         $this->assertSame($data['title'], $actionSection['title']);
         $this->assertSame($data['body'], $actionSection['body']);
+        $this->assertSame($data['first'], $actionSection['first']);
 
         $this->assertSame($data, $actionSection->toArray());
     }
@@ -38,7 +40,8 @@ final class ArticleSectionTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>'])],
+            'first' => [new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>'], true)],
+            'not-first' => [new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>'], false)],
         ];
     }
 
