@@ -19,7 +19,7 @@ final class AudioPlayerTest extends ViewModelTest
             1,
             'this will fail',
             [
-                new AudioSource('/nope.jpg', ['forHuman' => 'jpg', 'forMachine' => 'image/jpeg']),
+                new AudioSource('/nope.jpg', 'image/jpeg'),
             ],
             [
                 new MediaChapterListingItem('chapter 1', 0, 1),
@@ -37,7 +37,7 @@ final class AudioPlayerTest extends ViewModelTest
             0,
             'this will fail',
             [
-                new AudioSource('/nope.jpg', ['forHuman' => 'jpg', 'forMachine' => 'image/jpeg']),
+                new AudioSource('/nope.mp3', 'audio/mpeg'),
             ],
             [
                 new MediaChapterListingItem('chapter 1', 0, 1),
@@ -55,7 +55,7 @@ final class AudioPlayerTest extends ViewModelTest
             1,
             'this will fail',
             [
-                new AudioSource('/nope.jpg', ['forHuman' => 'jpg', 'forMachine' => 'image/jpeg']),
+                new AudioSource('/nope.mp3', 'audio/mpeg'),
             ],
             []
         );
@@ -75,11 +75,17 @@ final class AudioPlayerTest extends ViewModelTest
             'title' => 'title of player',
             'sources' => [
                 [
-                    'mimeType' => AudioSource::TYPE_MP3,
+                    'mimeType' => [
+                        'forMachine' => 'audio/mpeg; codecs="mp3"',
+                        'forHuman' => 'MP3',
+                    ],
                     'src' => '/audio.mp3',
                 ],
                 [
-                    'mimeType' => AudioSource::TYPE_OGG,
+                    'mimeType' => [
+                        'forMachine' => 'audio/ogg',
+                        'forHuman' => 'OGG',
+                    ],
                     'src' => '/audio.ogg',
                 ],
             ],
@@ -88,7 +94,7 @@ final class AudioPlayerTest extends ViewModelTest
 
         $audioPlayer = new AudioPlayer($data['episodeNumber'], $data['title'],
             [
-                new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']),
+                new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']['forMachine']),
             ],
             [
                 new MediaChapterListingItem($chapters[0]['title'], $chapters[0]['time'],
@@ -97,7 +103,8 @@ final class AudioPlayerTest extends ViewModelTest
                     $chapters[1]['number']),
             ]
         );
-        $audioPlayer->addSource(new AudioSource($data['sources'][1]['src'], $data['sources'][1]['mimeType']));
+        $audioPlayer->addSource(new AudioSource($data['sources'][1]['src'],
+            $data['sources'][1]['mimeType']['forMachine']));
 
         $this->assertSame($data['episodeNumber'], $audioPlayer['episodeNumber']);
         $this->assertSame($data['title'], $audioPlayer['title']);
@@ -117,8 +124,8 @@ final class AudioPlayerTest extends ViewModelTest
             [
                 new AudioPlayer(1, 'title of player',
                     [
-                        new AudioSource('/audio.mp3', AudioSource::TYPE_MP3),
-                        new AudioSource('/audio.ogg', AudioSource::TYPE_OGG),
+                        new AudioSource('/audio.mp3', 'audio/mpeg'),
+                        new AudioSource('/audio.ogg', 'audio/ogg'),
                     ],
                     [
                         new MediaChapterListingItem('chapter 1', 0, 1),
