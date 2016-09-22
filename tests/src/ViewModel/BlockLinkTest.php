@@ -20,9 +20,10 @@ final class BlockLinkTest extends ViewModelTest
             'backgroundImage' => true,
             'lowResImageSource' => 'lores.jpg',
             'highResImageSource' => 'hires.jpg',
+            'thresholdWidth' => 100,
         ];
 
-        $blockLink = new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg'));
+        $blockLink = new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100));
 
         $this->assertSame($data['text'], $data['text']);
         $this->assertSame($data['url'], $data['url']);
@@ -37,6 +38,9 @@ final class BlockLinkTest extends ViewModelTest
         return [
             'without image' => [new BlockLink(new Link('text', 'url'))],
             'with image' => [new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg'))],
+            'with image and threshold' => [
+                new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100)),
+            ],
         ];
     }
 
