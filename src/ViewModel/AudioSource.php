@@ -12,41 +12,35 @@ final class AudioSource implements CastsToArray
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
 
-    const MIME_TYPES = [
-        self::TYPE_MP3,
-        self::TYPE_MPEG,
-        self::TYPE_WEBM,
-        self::TYPE_OGG,
-    ];
-
-    const TYPE_MP3 = [
-        'forHuman' => 'mp3',
-        'forMachine' => 'audio/mp3',
-    ];
-
-    const TYPE_MPEG = [
-        'forHuman' => 'mpeg',
-        'forMachine' => 'audio/mpeg',
-    ];
-
-    const TYPE_WEBM = [
-        'forHuman' => 'webm',
-        'forMachine' => 'audio/webm',
-    ];
-
-    const TYPE_OGG = [
-        'forHuman' => 'ogg',
-        'forMachine' => 'audio/ogg',
-    ];
-
     protected $mimeType;
     protected $src;
 
-    public function __construct(string $src, array $type)
+    public function __construct(string $src, string $mediaType)
     {
-        Assertion::inArray($type, static::MIME_TYPES);
+        Assertion::regex($mediaType,
+            '/^(audio\/[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+)(; *[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+=(([a-zA-Z0-9\.\-]+)|(".+")))*$/');
 
         $this->src = $src;
-        $this->mimeType = $type;
+        $this->mimeType = [
+            'forMachine' => $mediaType,
+            'forHuman' => $this->guessHumanType($mediaType),
+        ];
+    }
+
+    private function guessHumanType(string $mediaType)
+    {
+        $parts = explode(';', $mediaType);
+
+        switch ($parts[0]) {
+            case 'audio/mp3':
+            case 'audio/mpeg':
+                return 'MP3';
+            case 'audio/ogg':
+                return 'OGG';
+            case 'audio/webm':
+                return 'WebM';
+        }
+
+        return $mediaType;
     }
 }
