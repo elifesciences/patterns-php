@@ -20,6 +20,7 @@ final class BlockLink implements ViewModel
     private $backgroundImage = false;
     private $lowResImageSource;
     private $highResImageSource;
+    private $thresholdWidth;
 
     public function __construct(Link $link, BackgroundImage $backgroundImage = null)
     {
@@ -30,6 +31,7 @@ final class BlockLink implements ViewModel
             $this->backgroundImage = true;
             $this->lowResImageSource = $backgroundImage['lowResImageSource'];
             $this->highResImageSource = $backgroundImage['highResImageSource'];
+            $this->thresholdWidth = $backgroundImage['thresholdWidth'];
         }
     }
 

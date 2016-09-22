@@ -22,6 +22,7 @@ final class ArchiveNavLinkTest extends ViewModelTest
                 'backgroundImage' => true,
                 'lowResImageSource' => 'lores.jpg',
                 'highResImageSource' => 'hires.jpg',
+                'thresholdWidth' => 100,
             ],
             'label' => 'label',
             'links' => [
@@ -33,7 +34,7 @@ final class ArchiveNavLinkTest extends ViewModelTest
         ];
 
         $archiveNavLink = new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
-            new BackgroundImage('lores.jpg', 'hires.jpg')), 'label', [new Link('name', 'url')]);
+            new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('name', 'url')]);
 
         $this->assertSame($data['blockLink'], $data['blockLink']);
         $this->assertSame($data['label'], $data['label']);
@@ -50,6 +51,10 @@ final class ArchiveNavLinkTest extends ViewModelTest
             'with image' => [
                 new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
                     new BackgroundImage('lores.jpg', 'hires.jpg')), 'label', [new Link('text', 'url')]),
+            ],
+            'with image and threshold' => [
+                new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
+                    new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('text', 'url')]),
             ],
         ];
     }
