@@ -5,7 +5,9 @@ assets:
         -
             - lead-para.css
         -
-            - date.css
+            - meta.css
+            -
+                - date.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

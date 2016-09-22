@@ -52,6 +52,11 @@ final class Meta implements ViewModel
         return '/elife/patterns/templates/meta.mustache';
     }
 
+    protected function getLocalStyleSheets() : Traversable
+    {
+        yield '/elife/patterns/assets/css/meta.css';
+    }
+
     protected function getComposedViewModels() : Traversable
     {
         yield $this->date;
