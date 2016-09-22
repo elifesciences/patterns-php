@@ -3,6 +3,10 @@ assets:
         - listing.css
         -
             - teaser.css
+            -
+                - meta.css
+                -
+                    - date.css
         -
             - load-more.css
             -
