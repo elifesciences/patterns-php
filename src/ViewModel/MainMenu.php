@@ -15,14 +15,21 @@ final class MainMenu implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    private $mainMenuLinks;
+    private $links;
+    private $button;
 
-    public function __construct(array $mainMenuLinks)
+    public function __construct(array $links)
     {
-        Assertion::notEmpty($mainMenuLinks);
-        Assertion::allIsInstanceOf($mainMenuLinks, MainMenuLink::class);
+        Assertion::notEmpty($links);
+        Assertion::allIsInstanceOf($links, Link::class);
 
-        $this->mainMenuLinks = $mainMenuLinks;
+        $this->links = ['items' => $links];
+
+        $button = Button::link('Back to top', '#siteHeader', Button::SIZE_SMALL, Button::STYLE_DEFAULT, true,
+            true);
+        $button = FlexibleViewModel::fromViewModel($button);
+        $classes = $button['classes'];
+        $this->button = $button->withProperty('classes', $classes.' main_menu__quit');
     }
 
     public function getTemplateName() : string

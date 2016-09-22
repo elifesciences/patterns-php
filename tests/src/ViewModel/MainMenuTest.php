@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MainMenu;
-use eLife\Patterns\ViewModel\MainMenuLink;
 
 final class MainMenuTest extends ViewModelTest
 {
@@ -14,31 +13,26 @@ final class MainMenuTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'mainMenuLinks' => [
-                [
-                    'title' => 'title',
-                    'titleId' => 'mainMenu'.hash('crc32', 'title'),
-                    'items' => [['name' => 'name', 'url' => 'url']],
-                ],
+            'links' => ['items' => [['name' => 'name', 'url' => 'url']]],
+            'button' => [
+                'classes' => 'button--small button--default button--full main_menu__quit',
+                'path' => '#siteHeader',
+                'text' => 'Back to top',
             ],
         ];
 
-        $mainMenu = new MainMenu($mainMenuLinks = [
-            new MainMenuLink($data['mainMenuLinks'][0]['title'],
-                [
-                    new Link($data['mainMenuLinks'][0]['items'][0]['name'],
-                        $data['mainMenuLinks'][0]['items'][0]['url']),
-                ]),
+        $mainMenu = new MainMenu($links = [
+            new Link($data['links']['items'][0]['name'], $data['links']['items'][0]['url']),
         ]);
 
-        $this->assertEquals($mainMenuLinks, $mainMenu['mainMenuLinks']);
+        $this->assertEquals($links, $mainMenu['links']['items']);
         $this->assertSame($data, $mainMenu->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new MainMenu([new MainMenuLink('title', [new Link('name', 'url')])])],
+            [new MainMenu([new Link('name', 'url')])],
         ];
     }
 

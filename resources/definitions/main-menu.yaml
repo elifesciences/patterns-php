@@ -6,36 +6,63 @@ schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
     type: object
     properties:
-        mainMenuLinks:
-            type: array
-            items:
-                type: object
-                properties:
-                    title:
-                        type: string
-                        minLength: 1
-                    titleId:
-                        type: string
-                        minLength: 1
-                    items:
-                        type: array
-                        items:
-                            type: object
+        links:
+            type: object
+            properties:
+                items:
+                    type: array
+                    properties:
+                        name:
+                            type: string
+                            minLength: 1
+                        url:
+                            type: string
+                            minLength: 1
+                    required:
+                        - name
+                        - url
+                    minItems: 1
+            required:
+                - items
+        button:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            allOf:
+                -
+                    properties:
+                        text:
+                            type: string
+                            minLength: 1
+                        classes:
+                            type: string
+                    required:
+                        - text
+                -
+                    oneOf:
+                        -
                             properties:
+                                type:
+                                    type: string
+                                    enum:
+                                        - button
+                                        - reset
+                                        - submit
+                                id:
+                                    type: string
+                                    minLength: 1
                                 name:
                                     type: string
                                     minLength: 1
-                                url:
+                            required:
+                                - type
+                                - name
+                        -
+                            properties:
+                                path:
                                     type: string
                                     minLength: 1
                             required:
-                                - name
-                                - url
-                        minItems: 1
-                required:
-                    - title
-                    - titleId
-                    - items
-            minItems: 1
+                                - path
     required:
-        - mainMenuLinks
+        - links
+        - button
