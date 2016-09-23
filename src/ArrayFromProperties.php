@@ -15,7 +15,7 @@ trait ArrayFromProperties
 
             $value = $this->handleValue($value);
 
-            if (null !== $value) {
+            if (null !== $value && [] !== $value) {
                 $vars[$key] = $value;
             }
         }
