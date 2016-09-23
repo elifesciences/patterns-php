@@ -17,10 +17,11 @@ final class BlockLinkTest extends ViewModelTest
             'text' => 'text',
             'url' => 'url',
             'behaviour' => 'BackgroundImage',
-            'backgroundImage' => true,
-            'lowResImageSource' => 'lores.jpg',
-            'highResImageSource' => 'hires.jpg',
-            'thresholdWidth' => 100,
+            'backgroundImage' => [
+                'lowResImageSource' => 'lores.jpg',
+                'highResImageSource' => 'hires.jpg',
+                'thresholdWidth' => 100,
+            ],
         ];
 
         $blockLink = new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100));
@@ -28,8 +29,7 @@ final class BlockLinkTest extends ViewModelTest
         $this->assertSame($data['text'], $data['text']);
         $this->assertSame($data['url'], $data['url']);
         $this->assertSame($data['behaviour'], $data['behaviour']);
-        $this->assertSame($data['lowResImageSource'], $data['lowResImageSource']);
-        $this->assertSame($data['highResImageSource'], $data['highResImageSource']);
+        $this->assertSame($data['backgroundImage'], $data['backgroundImage']);
         $this->assertSame($data, $blockLink->toArray());
     }
 

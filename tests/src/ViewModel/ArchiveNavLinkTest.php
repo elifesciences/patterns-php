@@ -19,10 +19,11 @@ final class ArchiveNavLinkTest extends ViewModelTest
                 'text' => 'text',
                 'url' => 'url',
                 'behaviour' => 'BackgroundImage',
-                'backgroundImage' => true,
-                'lowResImageSource' => 'lores.jpg',
-                'highResImageSource' => 'hires.jpg',
-                'thresholdWidth' => 100,
+                'backgroundImage' => [
+                    'lowResImageSource' => 'lores.jpg',
+                    'highResImageSource' => 'hires.jpg',
+                    'thresholdWidth' => 100,
+                ],
             ],
             'label' => 'label',
             'links' => [
