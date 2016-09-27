@@ -11,37 +11,56 @@ final class ArticleSectionTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $data = [
+        $basicData = [
             'id' => 'id',
             'title' => 'some title',
-            'body' => [
-
-                    [
-                        'content' => '<p>para 1</p>',
-                    ],
-
-                    [
-                        'content' => '<b>Something else</b>',
-                    ],
-                ],
-            'first' => false,
+            'headingLevel' => 2,
+            'hasBehaviour' => false,
+            'isInitiallyClosed' => false,
+            'body' => '<p>body</p>',
+            'isFirst' => true,
         ];
 
-        $actionSection = new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>']);
+        $basicArticleSection = ArticleSection::basic('some title', 2, '<p>body</p>', 'id', true);
 
-        $this->assertSame($data['id'], $actionSection['id']);
-        $this->assertSame($data['title'], $actionSection['title']);
-        $this->assertSame($data['body'], $actionSection['body']);
-        $this->assertSame($data['first'], $actionSection['first']);
+        $this->assertSame($basicData['id'], $basicArticleSection['id']);
+        $this->assertSame($basicData['title'], $basicArticleSection['title']);
+        $this->assertSame($basicData['headingLevel'], $basicArticleSection['headingLevel']);
+        $this->assertSame($basicData['hasBehaviour'], $basicArticleSection['hasBehaviour']);
+        $this->assertSame($basicData['isInitiallyClosed'], $basicArticleSection['isInitiallyClosed']);
+        $this->assertSame($basicData['body'], $basicArticleSection['body']);
+        $this->assertSame($basicData['isFirst'], $basicArticleSection['isFirst']);
+        $this->assertSame($basicData, $basicArticleSection->toArray());
 
-        $this->assertSame($data, $actionSection->toArray());
+        $collapsibleData = [
+            'id' => 'id',
+            'title' => 'some title',
+            'headingLevel' => 2,
+            'hasBehaviour' => true,
+            'isInitiallyClosed' => true,
+            'body' => '<p>body</p>',
+            'isFirst' => true,
+        ];
+
+        $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true);
+
+        $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
+        $this->assertSame($collapsibleData['title'], $collapsibleArticleSection['title']);
+        $this->assertSame($collapsibleData['headingLevel'], $collapsibleArticleSection['headingLevel']);
+        $this->assertSame($collapsibleData['hasBehaviour'], $collapsibleArticleSection['hasBehaviour']);
+        $this->assertSame($collapsibleData['isInitiallyClosed'], $collapsibleArticleSection['isInitiallyClosed']);
+        $this->assertSame($collapsibleData['body'], $collapsibleArticleSection['body']);
+        $this->assertSame($collapsibleData['isFirst'], $collapsibleArticleSection['isFirst']);
+        $this->assertSame($collapsibleData, $collapsibleArticleSection->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'first' => [new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>'], true)],
-            'not-first' => [new ArticleSection('id', 'some title', ['<p>para 1</p>', '<b>Something else</b>'], false)],
+            'basic minimum' => [ArticleSection::basic('some title', 2, '<p>body</p>')],
+            'basic complete' => [ArticleSection::basic('some title', 2, '<p>body</p>', 'id', true)],
+            'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
+            'collapsible complete' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true)],
         ];
     }
 

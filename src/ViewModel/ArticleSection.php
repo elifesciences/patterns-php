@@ -17,25 +17,54 @@ final class ArticleSection implements ViewModel
 
     private $id;
     private $title;
+    private $headingLevel;
+    private $hasBehaviour;
+    private $isInitiallyClosed;
     private $body;
-    private $first;
+    private $isFirst;
 
-    public function __construct(
-        string $id,
+    private function __construct(
+        string $id = null,
         string $title,
-        array $content,
-        bool $first = false
+        int $headingLevel,
+        string $body,
+        bool $isFirst = false,
+        bool $hasBehaviour = false,
+        bool $isInitiallyClosed = false
     ) {
-        Assertion::notBlank($id);
         Assertion::notBlank($title);
-        Assertion::notEmpty($content);
+        Assertion::min($headingLevel, 2);
+        Assertion::max($headingLevel, 6);
+        Assertion::notBlank($body);
 
         $this->id = $id;
         $this->title = $title;
-        $this->body = array_map(function ($item) {
-            return ['content' => $item];
-        }, $content);
-        $this->first = $first;
+        $this->headingLevel = $headingLevel;
+        $this->hasBehaviour = $hasBehaviour;
+        $this->isInitiallyClosed = $isInitiallyClosed;
+        $this->body = $body;
+        $this->isFirst = $isFirst;
+    }
+
+    public static function basic(
+        string $title,
+        int $headingLevel,
+        string $body,
+        $id = null,
+        bool $isFirst = false
+    ) : ArticleSection {
+        return new self($id, $title, $headingLevel, $body, $isFirst);
+    }
+
+    public static function collapsible(
+        string $id,
+        string $title,
+        int $headingLevel,
+        string $body,
+        bool $isInitiallyClosed = false,
+        bool $isFirst = false
+    ) : ArticleSection {
+        return new self($id, $title, $headingLevel, $body, $isFirst, true, $isInitiallyClosed);
     }
 
     public function getTemplateName() : string
