@@ -84,6 +84,8 @@ final class GridListingTest extends ViewModelTest
             $archiveNavLinks['archiveNavLinks'][0]->toArray());
         $this->assertSame($archiveNavLinksData, $archiveNavLinks->toArray());
 
+        $date = new DateTimeImmutable();
+
         $teasersData = [
             'heading' => 'heading',
             'teasers' => [
@@ -106,11 +108,11 @@ final class GridListingTest extends ViewModelTest
                             'date' => [
                                 'isExpanded' => false,
                                 'forHuman' => [
-                                    'dayOfMonth' => 23,
-                                    'month' => 'Sep',
-                                    'year' => 2016,
+                                    'dayOfMonth' => (int) $date->format('j'),
+                                    'month' => $date->format('M'),
+                                    'year' => (int) $date->format('Y'),
                                 ],
-                                'forMachine' => '2016-09-23',
+                                'forMachine' => $date->format('Y-m-d'),
                             ],
 
                         ],
@@ -136,7 +138,7 @@ final class GridListingTest extends ViewModelTest
                     TeaserFooter::forNonArticle(
                         Meta::withLink(
                             new Link('name', 'path'),
-                            new Date(new DateTimeImmutable())
+                            new Date($date)
                         )
                     )
                 ),
