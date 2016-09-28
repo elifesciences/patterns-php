@@ -1,2 +1,2 @@
-.doi{font-family:"Avenir Next Webfont",Arial,Helvetica,sans-serif;font-size:11px;font-size:.6875rem;font-weight:700;line-height:1;text-transform:uppercase;color:#888}.doi__link{color:#888;text-decoration:none;text-transform:none}.doi__link:hover{color:#0288d1}
+.doi{font-family:"Avenir Next Webfont",Arial,Helvetica,sans-serif;font-size:11px;font-size:.6875rem;font-weight:700;line-height:1;text-transform:uppercase;color:#888}.doi a.doi__link{color:#888;text-decoration:none;text-transform:none}.doi a.doi__link:hover{color:#0288d1}.doi--article-section{display:block}
 /*# sourceMappingURL=doi.css.map */
