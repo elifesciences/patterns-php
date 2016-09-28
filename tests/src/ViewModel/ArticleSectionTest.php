@@ -3,6 +3,8 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArticleSection;
+use eLife\Patterns\ViewModel\Doi;
+use InvalidArgumentException;
 
 final class ArticleSectionTest extends ViewModelTest
 {
@@ -13,6 +15,10 @@ final class ArticleSectionTest extends ViewModelTest
     {
         $basicData = [
             'id' => 'id',
+            'doi' => [
+                'doi' => '10.7554/eLife.10181.001',
+                'variant' => 'article-section',
+            ],
             'title' => 'some title',
             'headingLevel' => 2,
             'hasBehaviour' => false,
@@ -21,9 +27,11 @@ final class ArticleSectionTest extends ViewModelTest
             'isFirst' => true,
         ];
 
-        $basicArticleSection = ArticleSection::basic('some title', 2, '<p>body</p>', 'id', true);
+        $basicArticleSection = ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
+            new Doi('10.7554/eLife.10181.001'), true);
 
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
+        $this->assertSame($basicData['doi'], $basicArticleSection['doi']->toArray());
         $this->assertSame($basicData['title'], $basicArticleSection['title']);
         $this->assertSame($basicData['headingLevel'], $basicArticleSection['headingLevel']);
         $this->assertSame($basicData['hasBehaviour'], $basicArticleSection['hasBehaviour']);
@@ -34,6 +42,10 @@ final class ArticleSectionTest extends ViewModelTest
 
         $collapsibleData = [
             'id' => 'id',
+            'doi' => [
+                'doi' => '10.7554/eLife.10181.001',
+                'variant' => 'article-section',
+            ],
             'title' => 'some title',
             'headingLevel' => 2,
             'hasBehaviour' => true,
@@ -42,9 +54,11 @@ final class ArticleSectionTest extends ViewModelTest
             'isFirst' => true,
         ];
 
-        $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true);
+        $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true,
+            new Doi('10.7554/eLife.10181.001'));
 
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
+        $this->assertSame($collapsibleData['doi'], $collapsibleArticleSection['doi']->toArray());
         $this->assertSame($collapsibleData['title'], $collapsibleArticleSection['title']);
         $this->assertSame($collapsibleData['headingLevel'], $collapsibleArticleSection['headingLevel']);
         $this->assertSame($collapsibleData['hasBehaviour'], $collapsibleArticleSection['hasBehaviour']);
@@ -54,13 +68,28 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($collapsibleData, $collapsibleArticleSection->toArray());
     }
 
+    /**
+     * @test
+     */
+    public function it_cannot_have_a_doi_without_an_id()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ArticleSection::basic('some title', 2, '<p>body</p>', null, new Doi('10.7554/eLife.10181.001'));
+    }
+
     public function viewModelProvider() : array
     {
         return [
             'basic minimum' => [ArticleSection::basic('some title', 2, '<p>body</p>')],
-            'basic complete' => [ArticleSection::basic('some title', 2, '<p>body</p>', 'id', true)],
+            'basic complete' => [
+                ArticleSection::basic('some title', 2, '<p>body</p>', 'id', new Doi('10.7554/eLife.10181.001'), true),
+            ],
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
-            'collapsible complete' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true)],
+            'collapsible complete' => [
+                ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true,
+                    new Doi('10.7554/eLife.10181.001')),
+            ],
         ];
     }
 

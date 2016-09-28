@@ -15,17 +15,13 @@ final class Doi implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    private $uri;
-    private $classNames;
+    private $doi;
 
-    public function __construct(string $uri, array $classNames = [])
+    public function __construct(string $doi)
     {
-        Assertion::notBlank($uri);
+        Assertion::regex($doi, '~^10[.][0-9]{4,}[^\s"/<>]*/[^\s"]+$~');
 
-        $this->uri = $uri;
-        if ($classNames) {
-            $this->classNames = implode(' ', $classNames);
-        }
+        $this->doi = $doi;
     }
 
     public function getTemplateName() : string
