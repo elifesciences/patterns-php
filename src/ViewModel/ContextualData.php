@@ -38,16 +38,15 @@ final class ContextualData implements ViewModel
     {
         Assertion::notEmpty($metrics);
 
-        return new ContextualData($metrics, $citeAs, $doi);
+        return new self($metrics, $citeAs, $doi);
     }
 
     public static function withCitation(string $citeAs, Doi $doi, array $metrics = []) : ContextualData
     {
         Assertion::notBlank($citeAs);
 
-        return new ContextualData($metrics, $citeAs, $doi);
+        return new self($metrics, $citeAs, $doi);
     }
-
 
     public function getTemplateName() : string
     {
