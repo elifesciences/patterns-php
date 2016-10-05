@@ -1,4 +1,7 @@
 <?php
+
+namespace eLife\Patterns;
+
 /**
  * Array from properties.
  *
@@ -8,9 +11,6 @@
  *
  * @author Stephen Fraser <stephen.fraser@digirati.com>
  */
-
-namespace eLife\Patterns;
-
 trait ArrayFromNullProperties
 {
     final public function toArray() : array
