@@ -28,6 +28,35 @@ final class MediaSource implements ViewModel
         $this->fallback = $fallback;
     }
 
+    public static function audioSource(string $src, string $mediaType, MediaSourceFallback $fallback = null)
+    {
+        Assertion::regex($mediaType,
+            '/^(audio\/[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+)(; *[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+=(([a-zA-Z0-9\.\-]+)|(".+")))*$/');
+
+        return new static(
+            $src,
+            new MimeType($mediaType, self::guessHumanType($mediaType)),
+            $fallback
+        );
+    }
+
+    private static function guessHumanType(string $mediaType)
+    {
+        $parts = explode(';', $mediaType);
+
+        switch ($parts[0]) {
+            case 'audio/mp3':
+            case 'audio/mpeg':
+                return 'MP3';
+            case 'audio/ogg':
+                return 'OGG';
+            case 'audio/webm':
+                return 'WebM';
+        }
+
+        return $mediaType;
+    }
+
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/media-source.mustache';

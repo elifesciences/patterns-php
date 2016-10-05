@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\AudioPlayer;
 use eLife\Patterns\ViewModel\AudioSource;
 use eLife\Patterns\ViewModel\MediaChapterListingItem;
+use eLife\Patterns\ViewModel\MediaSource;
 use InvalidArgumentException;
 
 final class AudioPlayerTest extends ViewModelTest
@@ -19,7 +20,7 @@ final class AudioPlayerTest extends ViewModelTest
             1,
             'this will fail',
             [
-                new AudioSource('/nope.jpg', 'image/jpeg'),
+                MediaSource::audioSource('/nope.jpg', 'image/jpeg'),
             ],
             [
                 new MediaChapterListingItem('chapter 1', 0, 1),
@@ -37,7 +38,7 @@ final class AudioPlayerTest extends ViewModelTest
             0,
             'this will fail',
             [
-                new AudioSource('/nope.mp3', 'audio/mpeg'),
+                MediaSource::audioSource('/nope.mp3', 'audio/mpeg'),
             ],
             [
                 new MediaChapterListingItem('chapter 1', 0, 1),
@@ -55,7 +56,7 @@ final class AudioPlayerTest extends ViewModelTest
             1,
             'this will fail',
             [
-                new AudioSource('/nope.mp3', 'audio/mpeg'),
+                MediaSource::audioSource('/nope.mp3', 'audio/mpeg'),
             ],
             []
         );
@@ -94,7 +95,7 @@ final class AudioPlayerTest extends ViewModelTest
 
         $audioPlayer = new AudioPlayer($data['episodeNumber'], $data['title'],
             [
-                new AudioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']['forMachine']),
+                MediaSource::audioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']['forMachine']),
             ],
             [
                 new MediaChapterListingItem($chapters[0]['title'], $chapters[0]['time'],
@@ -103,19 +104,19 @@ final class AudioPlayerTest extends ViewModelTest
                     $chapters[1]['number']),
             ]
         );
-        $audioPlayer->addSource(new AudioSource($data['sources'][1]['src'],
+        $audioPlayer->addSource(MediaSource::audioSource($data['sources'][1]['src'],
             $data['sources'][1]['mimeType']['forMachine']));
 
         $this->assertSame($data['episodeNumber'], $audioPlayer['episodeNumber']);
         $this->assertSame($data['title'], $audioPlayer['title']);
-        $this->assertSame($data['sources'][0], $audioPlayer['sources'][0]->toArray());
-        $this->assertSame($data['sources'][0]['mimeType'], $audioPlayer['sources'][0]['mimeType']);
+        $this->assertSameWithoutOrder($data['sources'][0], $audioPlayer['sources'][0]);
+        $this->assertSameWithoutOrder($data['sources'][0]['mimeType'], $audioPlayer['sources'][0]['mimeType']);
         $this->assertSame($data['sources'][0]['src'], $audioPlayer['sources'][0]['src']);
-        $this->assertSame($data['sources'][1], $audioPlayer['sources'][1]->toArray());
-        $this->assertSame($data['sources'][1]['mimeType'], $audioPlayer['sources'][1]['mimeType']);
+        $this->assertSameWithoutOrder($data['sources'][1], $audioPlayer['sources'][1]);
+        $this->assertSameWithoutOrder($data['sources'][1]['mimeType'], $audioPlayer['sources'][1]['mimeType']);
         $this->assertSame($data['sources'][1]['src'], $audioPlayer['sources'][1]['src']);
         $this->assertSame($data['metadata'], $audioPlayer['metadata']);
-        $this->assertSame($data, $audioPlayer->toArray());
+        $this->assertSameWithoutOrder($data, $audioPlayer);
     }
 
     public function viewModelProvider() : array
@@ -124,8 +125,8 @@ final class AudioPlayerTest extends ViewModelTest
             [
                 new AudioPlayer(1, 'title of player',
                     [
-                        new AudioSource('/audio.mp3', 'audio/mpeg'),
-                        new AudioSource('/audio.ogg', 'audio/ogg'),
+                        MediaSource::audioSource('/audio.mp3', 'audio/mpeg'),
+                        MediaSource::audioSource('/audio.ogg', 'audio/ogg'),
                     ],
                     [
                         new MediaChapterListingItem('chapter 1', 0, 1),
