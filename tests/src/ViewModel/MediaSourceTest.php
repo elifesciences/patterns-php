@@ -2,14 +2,12 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaSourceFallback;
 use eLife\Patterns\ViewModel\MimeType;
 
 final class MediaSourceTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -17,13 +15,11 @@ final class MediaSourceTest extends ViewModelTest
     {
         $data = [
             'src' => 'http://google.com/test.mp3',
-            'mimeType' =>
-                [
+            'mimeType' => [
                     'forMachine' => 'audio/mp3',
                     'forHuman' => 'MP3',
                 ],
-            'fallback' =>
-                [
+            'fallback' => [
                     'content' => 'Download me',
                     'isExternal' => true,
                     'classes' => 'test-class',
@@ -46,20 +42,20 @@ final class MediaSourceTest extends ViewModelTest
                     'http://google.com/test.mp3',
                     new MimeType('audio/mp3', 'MP3'),
                     new MediaSourceFallback('Download me', true, ['test-class'])
-                )
+                ),
             ],
             [
                 new MediaSource(
                     'http://google.com/test.mp3',
                     new MimeType('audio/mp3', 'MP3')
-                )
+                ),
             ],
             [
                 new MediaSource(
                     'http://google.com/test.mp4',
                     new MimeType('video/mp4', 'Video')
-                )
-            ]
+                ),
+            ],
         ];
     }
 
