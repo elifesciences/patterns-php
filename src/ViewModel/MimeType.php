@@ -21,6 +21,7 @@ final class MimeType implements CastsToArray
             strpos($forMachine, 'audio') === 0 ||
             strpos($forMachine, 'video') === 0
         );
+        Assertion::notBlank($forHuman);
 
         $this->forMachine = $forMachine;
         $this->forHuman = $forHuman;
