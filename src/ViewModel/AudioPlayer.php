@@ -17,7 +17,7 @@ final class AudioPlayer implements ViewModel
 
     private $episodeNumber;
     private $title;
-    /** @var AudioSource[] */
+    /** @var MediaSource[] */
     private $sources;
     private $metadata;
 
@@ -25,7 +25,7 @@ final class AudioPlayer implements ViewModel
     {
         Assertion::min($episodeNumber, 1);
         Assertion::notBlank($title);
-        Assertion::allIsInstanceOf($sources, AudioSource::class);
+        Assertion::allIsInstanceOf($sources, MediaSource::class);
         Assertion::notEmpty($chapters);
         Assertion::allIsInstanceOf($chapters, MediaChapterListingItem::class);
 
@@ -46,7 +46,7 @@ final class AudioPlayer implements ViewModel
         $this->metadata = str_replace('"', '\'', json_encode($this->metadata));
     }
 
-    public function addSource(AudioSource $source)
+    public function addSource(MediaSource $source)
     {
         $this->sources[] = $source;
     }
