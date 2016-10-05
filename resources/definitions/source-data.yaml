@@ -1,0 +1,43 @@
+assets:
+    css:
+        - source-data.css
+        -
+            - doi.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    allOf:
+        -
+            properties:
+                text:
+                    type: string
+                    minLength: 1
+            required:
+                - text
+        -
+            oneOf:
+                -
+                    properties:
+                        nonDoiLink:
+                            type: string
+                            minLength: 1
+                    required:
+                        - nonDoiLink
+                -
+                    properties:
+                        doi:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                doi:
+                                    type: string
+                                    minLength: 1
+                                variant:
+                                    type: string
+                                    enum:
+                                        - article-section
+                            required:
+                                - doi
+                    reqiured:
+                        - doi
