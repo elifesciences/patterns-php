@@ -31,6 +31,24 @@ final class AudioPlayerTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_should_not_accept_video_type()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new AudioPlayer(
+            1,
+            'this will fail',
+            [
+                MediaSource::videoSource('/nope.jpg', 'video/mp4'),
+            ],
+            [
+                new MediaChapterListingItem('chapter 1', 0, 1),
+            ]
+        );
+    }
+
+    /**
+     * @test
+     */
     public function it_requires_a_positive_episode_number()
     {
         $this->expectException(InvalidArgumentException::class);
