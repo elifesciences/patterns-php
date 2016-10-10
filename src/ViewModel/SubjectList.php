@@ -6,7 +6,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class SubjectList implements CastsToArray
+final class SubjectList implements CastsToArray
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

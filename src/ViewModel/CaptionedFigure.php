@@ -19,13 +19,10 @@ final class CaptionedFigure implements ViewModel
     private $heading;
     private $captions;
     private $picture;
-    private $altText;
-    private $defaultPath;
-    private $srcset;
     private $customContent;
     private $video;
-
-    private $_image;
+    private $table;
+    private $image;
 
     private function __construct(
         IsCaptioned $image,
@@ -36,14 +33,13 @@ final class CaptionedFigure implements ViewModel
         $this->heading = $heading;
         $this->captions = $captions;
         if ($image instanceof Image) {
-            $this->altText = $image['altText'];
-            $this->defaultPath = $image['defaultPath'];
-            $this->srcset = $image['srcset'];
-            $this->_image = $image;
+            $this->image = $image;
         } elseif ($image instanceof Picture) {
             $this->picture = $image;
         } elseif ($image instanceof Video) {
             $this->video = $image;
+        } elseif ($image instanceof Table) {
+            $this->table = (string) $image;
         } else {
             throw new InvalidArgumentException('Unknown image type '.get_class($image));
         }
