@@ -25,25 +25,40 @@ final class CaptionedFigure implements ViewModel
     private $image;
 
     private function __construct(
-        IsCaptioned $image,
+        IsCaptioned $figure,
         string $heading = null,
         array $captions = null,
         string $customContent = null
     ) {
         $this->heading = $heading;
         $this->captions = $captions;
-        if ($image instanceof Image) {
-            $this->image = $image;
-        } elseif ($image instanceof Picture) {
-            $this->picture = $image;
-        } elseif ($image instanceof Video) {
-            $this->video = $image;
-        } elseif ($image instanceof Table) {
-            $this->table = (string) $image;
-        } else {
-            throw new InvalidArgumentException('Unknown image type '.get_class($image));
-        }
         $this->customContent = $customContent;
+        $this->setFigure($figure);
+    }
+
+    public function setFigure($figure)
+    {
+        // Reverse switch (i.e. which evaluates to true)
+        switch (true) {
+            case $figure instanceof Image:
+                $this->image = $figure;
+                break;
+
+            case $figure instanceof Picture:
+                $this->picture = $figure;
+                break;
+
+            case $figure instanceof Video:
+                $this->video = $figure;
+                break;
+
+            case $figure instanceof Table:
+                $this->table = (string) $figure;
+                break;
+
+            default:
+                throw new InvalidArgumentException('Unknown figure type '.get_class($figure));
+        }
     }
 
     public static function withOnlyHeading(IsCaptioned $image, string $heading) : CaptionedFigure
