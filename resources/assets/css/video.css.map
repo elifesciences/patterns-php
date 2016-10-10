@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,KAAM,CACJ,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI",
+"sources": ["../../../../../../assets/sass/patterns/atoms/video.scss"],
+"names": [],
+"file": "video.css"
+}

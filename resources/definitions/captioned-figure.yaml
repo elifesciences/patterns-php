@@ -1,0 +1,170 @@
+assets:
+    css:
+        - captioned-figure.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    allOf:
+        -
+            oneOf:
+                -
+                    properties:
+                        customContent:
+                            type: string
+                            minLength: 1
+                    required:
+                        - customContent
+                -
+                    anyOf:
+                        -
+                            oneOf:
+                                -
+                                    properties:
+                                        heading:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - heading
+                        -
+                            oneOf:
+                                -
+                                    properties:
+                                        captions:
+                                            type: array
+                                            items:
+                                                type: object
+                                                properties:
+                                                    caption:
+                                                        type: string
+                                                        minLength: 1
+                                                required:
+                                                    - caption
+                                                minItems: 1
+                                    required:
+                                        - captions
+        -
+            oneOf:
+                -
+                    properties:
+                        picture:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                pictureClasses:
+                                    type: string
+                                    minLength: 1
+                                sources:
+                                    type: array
+                                    minItems: 1
+                                    uniqueItems: true
+                                    items:
+                                        type: object
+                                        properties:
+                                            srcset:
+                                                type: string
+                                                minLength: 1
+                                            media:
+                                                type: string
+                                                minLength: 1
+                                            type:
+                                                type: string
+                                                enum:
+                                                    - image/svg+xml
+                                                    - image/webp
+                                                    - image/png
+                                                    - image/jpeg
+                                        required:
+                                            - srcset
+                                fallback:
+                                    type: object
+                                    properties:
+                                        srcset:
+                                            type: string
+                                            pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                        defaultPath:
+                                            type: string
+                                            minLength: 1
+                                        altText:
+                                            type: string
+                                        classes:
+                                            type: string
+                                    required:
+                                        - defaultPath
+                                        - altText
+                            required:
+                                - sources
+                                - fallback
+                    required:
+                        - picture
+                -
+                    properties:
+                        video:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                posterFrame:
+                                    type: string
+                                    minLength: 1
+                                sources:
+                                    type: array
+                                    minItems: 1
+                                    items:
+                                        $schema: 'http://json-schema.org/draft-04/schema#'
+                                        properties:
+                                            src:
+                                                type: string
+                                                minLength: 1
+                                            fallback:
+                                                type: object
+                                                properties:
+                                                    classes:
+                                                        type: string
+                                                        min-length: 1
+                                                    isExternal:
+                                                        type: boolean
+                                                        default: false
+                                                    content:
+                                                        type: string
+                                                        minLength: 1
+                                            mimeType:
+                                                type: object
+                                                properties:
+                                                    forMachine:
+                                                        type: string
+                                                        pattern: ^(audio)|(video)\/.+$
+                                                    forHuman:
+                                                        type: string
+                                                        minLength: 1
+                                        required:
+                                            - src
+                    required:
+                        - video
+                -
+                    properties:
+                        table:
+                            type: string
+                            pattern: '^<table>.*<\/table>$'
+                    required:
+                        - table
+                -
+                    properties:
+                        image:
+                            type: object
+                            properties:
+                                defaultPath:
+                                    type: string
+                                    minLength: 1
+                                altText:
+                                    type: string
+                                classes:
+                                    type: string
+                                    minLength: 1
+                                srcset:
+                                    type: string
+                                    pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                            required:
+                                - defaultPath
+                                - altText
+                    required:
+                        - image

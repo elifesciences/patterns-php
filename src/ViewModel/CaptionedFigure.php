@@ -10,7 +10,7 @@ use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
 
-final class CaptionedImage implements ViewModel
+final class CaptionedFigure implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
