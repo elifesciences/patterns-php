@@ -4,6 +4,9 @@ namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
 
+/**
+ * @SuppressWarnings(ForbiddenAbleSuffix)
+ */
 final class Table implements IsCaptioned
 {
     private $data;
