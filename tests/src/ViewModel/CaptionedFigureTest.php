@@ -2,11 +2,11 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\CaptionedImage;
+use eLife\Patterns\ViewModel\CaptionedFigure;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 
-final class CaptionedImageTest extends ViewModelTest
+final class CaptionedFigureTest extends ViewModelTest
 {
     /**
      * @test
@@ -33,7 +33,7 @@ final class CaptionedImageTest extends ViewModelTest
                 ],
             ],
         ];
-        $captionedImage = CaptionedImage::withParagraph(
+        $captionedImage = CaptionedFigure::withParagraph(
             new Picture(
                 [['srcset' => $data['picture']['sources'][0]['srcset']]],
                 new Image(
@@ -59,7 +59,7 @@ final class CaptionedImageTest extends ViewModelTest
             'defaultPath' => '/default/path',
             'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
         ];
-        $captionedImage = CaptionedImage::withParagraph(
+        $captionedImage = CaptionedFigure::withParagraph(
             new Image(
                 $data['defaultPath'],
                 [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
@@ -76,7 +76,7 @@ final class CaptionedImageTest extends ViewModelTest
     {
         return [
             'Captioned image with custom content' => [
-                CaptionedImage::withCustomContent(
+                CaptionedFigure::withCustomContent(
                     new Picture(
                         [['srcset' => '/path/to/svg']],
                         new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
@@ -85,7 +85,7 @@ final class CaptionedImageTest extends ViewModelTest
                     '<b>Custom content</b>'),
             ],
             'Captioned image with multiple paragraphs' => [
-                CaptionedImage::withParagraphs(
+                CaptionedFigure::withParagraphs(
                     new Picture(
                         [['srcset' => '/path/to/svg']],
                         new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
@@ -96,7 +96,7 @@ final class CaptionedImageTest extends ViewModelTest
                 ),
             ],
             'Captioned image with single paragraph' => [
-                CaptionedImage::withParagraph(
+                CaptionedFigure::withParagraph(
                     new Picture(
                         [['srcset' => '/path/to/svg']],
                         new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
@@ -107,7 +107,7 @@ final class CaptionedImageTest extends ViewModelTest
                 ),
             ],
             'Captioned image with only heading' => [
-                CaptionedImage::withOnlyHeading(
+                CaptionedFigure::withOnlyHeading(
                     new Picture(
                         [['srcset' => '/path/to/svg']],
                         new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
@@ -121,6 +121,6 @@ final class CaptionedImageTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/captioned-image.mustache';
+        return '/elife/patterns/templates/captioned-figure.mustache';
     }
 }

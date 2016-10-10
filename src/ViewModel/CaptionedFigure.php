@@ -23,11 +23,12 @@ final class CaptionedFigure implements ViewModel
     private $defaultPath;
     private $srcset;
     private $customContent;
+    private $video;
 
     private $_image;
 
     private function __construct(
-        IsImage $image,
+        IsCaptioned $image,
         string $heading = null,
         array $captions = null,
         string $customContent = null
@@ -41,20 +42,22 @@ final class CaptionedFigure implements ViewModel
             $this->_image = $image;
         } elseif ($image instanceof Picture) {
             $this->picture = $image;
+        } elseif ($image instanceof Video) {
+            $this->video = $image;
         } else {
             throw new InvalidArgumentException('Unknown image type '.get_class($image));
         }
         $this->customContent = $customContent;
     }
 
-    public static function withOnlyHeading(IsImage $image, string $heading) : CaptionedImage
+    public static function withOnlyHeading(IsCaptioned $image, string $heading) : CaptionedFigure
     {
         Assertion::notBlank($heading);
 
         return new static($image, $heading);
     }
 
-    public static function withParagraph(IsImage $image, string $heading, string $caption) : CaptionedImage
+    public static function withParagraph(IsCaptioned $image, string $heading, string $caption) : CaptionedFigure
     {
         Assertion::notBlank($heading);
         Assertion::notBlank($caption);
@@ -62,7 +65,7 @@ final class CaptionedFigure implements ViewModel
         return new static($image, $heading, [['caption' => $caption]]);
     }
 
-    public static function withParagraphs(IsImage $image, string $heading, array $captions) : CaptionedImage
+    public static function withParagraphs(IsCaptioned $image, string $heading, array $captions) : CaptionedFigure
     {
         Assertion::notBlank($heading);
         Assertion::notBlank($captions);
@@ -75,7 +78,7 @@ final class CaptionedFigure implements ViewModel
         return new static($image, $heading, $captions);
     }
 
-    public static function withCustomContent(IsImage $image, string $content) : CaptionedImage
+    public static function withCustomContent(IsCaptioned $image, string $content) : CaptionedFigure
     {
         Assertion::notBlank($content);
 
@@ -84,12 +87,12 @@ final class CaptionedFigure implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/captioned-image.css';
+        yield '/elife/patterns/assets/css/captioned-figure.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/captioned-image.mustache';
+        return '/elife/patterns/templates/captioned-figure.mustache';
     }
 
     protected function getComposedViewModels() : Traversable
