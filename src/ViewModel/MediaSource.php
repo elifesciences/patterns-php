@@ -39,6 +39,17 @@ final class MediaSource implements ViewModel
             $fallback
         );
     }
+    public static function videoSource(string $src, string $mediaType, MediaSourceFallback $fallback = null)
+    {
+        Assertion::regex($mediaType,
+            '/^(video\/[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+)(; *[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+=(([a-zA-Z0-9\.\-]+)|(".+")))*$/');
+
+        return new static(
+            $src,
+            new MimeType($mediaType, self::guessHumanType($mediaType)),
+            $fallback
+        );
+    }
 
     private static function guessHumanType(string $mediaType)
     {
@@ -51,7 +62,11 @@ final class MediaSource implements ViewModel
             case 'audio/ogg':
                 return 'OGG';
             case 'audio/webm':
+            case 'video/webm':
                 return 'WebM';
+            case 'video/mp4':
+            case 'video/mpeg':
+                return 'MP4';
         }
 
         return $mediaType;
