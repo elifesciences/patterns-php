@@ -21,7 +21,7 @@ final class ViewerInline implements ViewModel
     private $seeAllLink;
     private $downloadLink;
     private $newWindowLink;
-    private $captionedImage;
+    private $captionedFigure;
 
     public function __construct(
         string $prominentText,
@@ -29,7 +29,7 @@ final class ViewerInline implements ViewModel
         string $seeAllLink,
         string $downloadLink,
         string $newWindowLink,
-        CaptionedImage $captionedImage
+        CaptionedFigure $captionedFigure
     ) {
         Assertion::notBlank($prominentText);
         Assertion::notBlank($normalText);
@@ -43,7 +43,7 @@ final class ViewerInline implements ViewModel
         $this->seeAllLink = $seeAllLink;
         $this->downloadLink = $downloadLink;
         $this->newWindowLink = $newWindowLink;
-        $this->captionedImage = $captionedImage;
+        $this->captionedFigure = $captionedFigure;
     }
 
     public function getLocalStyleSheets() : Traversable
@@ -58,6 +58,6 @@ final class ViewerInline implements ViewModel
 
     protected function getComposedViewModels() : Traversable
     {
-        yield $this->captionedImage;
+        yield $this->captionedFigure;
     }
 }

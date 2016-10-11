@@ -8,7 +8,7 @@ use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
-final class Picture implements ViewModel, IsImage
+final class Picture implements ViewModel, IsCaptioned
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

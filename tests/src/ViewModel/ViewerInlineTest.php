@@ -2,7 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\CaptionedImage;
+use eLife\Patterns\ViewModel\CaptionedFigure;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\ViewerInline;
@@ -21,7 +21,7 @@ final class ViewerInlineTest extends ViewModelTest
             'seeAllLink' => '#',
             'downloadLink' => '#',
             'newWindowLink' => '#',
-            'captionedImage' => [
+            'captionedFigure' => [
                 'heading' => 'heading',
                 'captions' => [
                     [
@@ -51,13 +51,13 @@ final class ViewerInlineTest extends ViewModelTest
         $this->assertSame($data['seeAllLink'], $viewer['seeAllLink']);
         $this->assertSame($data['downloadLink'], $viewer['downloadLink']);
         $this->assertSame($data['newWindowLink'], $viewer['newWindowLink']);
-        $this->assertSame($data['captionedImage'], $viewer['captionedImage']->toArray());
+        $this->assertSame($data['captionedFigure'], $viewer['captionedFigure']->toArray());
         $this->assertSame($data, $viewer->toArray());
     }
 
-    public static function imageStub() : CaptionedImage
+    public static function imageStub() : CaptionedFigure
     {
-        return CaptionedImage::withParagraph(
+        return CaptionedFigure::withParagraph(
             new Picture(
                 [['srcset' => '/path/to/svg']],
                 new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')

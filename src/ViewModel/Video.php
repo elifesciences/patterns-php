@@ -9,7 +9,7 @@ use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class Video implements ViewModel
+final class Video implements ViewModel, IsCaptioned
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

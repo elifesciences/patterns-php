@@ -29,6 +29,7 @@ final class PictureTest extends ViewModelTest
                 'altText' => 'the alt text',
                 'defaultPath' => '/default/path',
                 'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                'classes' => 'class-1 class-2',
             ],
             'sources' => [
                 [

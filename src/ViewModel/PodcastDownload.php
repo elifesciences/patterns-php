@@ -10,7 +10,7 @@ use eLife\Patterns\HasAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use Traversable;
 
-final class PodcastDownload implements CastsToArray, IsImage, HasAssets
+final class PodcastDownload implements CastsToArray, IsCaptioned, HasAssets
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

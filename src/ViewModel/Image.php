@@ -7,7 +7,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-final class Image implements CastsToArray, IsImage
+final class Image implements CastsToArray, IsCaptioned
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
@@ -15,8 +15,9 @@ final class Image implements CastsToArray, IsImage
     private $altText;
     private $defaultPath;
     private $srcset;
+    private $classes;
 
-    public function __construct(string $defaultPath, array $srcset = [], string $altText = '')
+    public function __construct(string $defaultPath, array $srcset = [], string $altText = '', array $classes = null)
     {
         Assertion::notBlank($defaultPath);
         Assertion::allInteger(array_keys($srcset));
@@ -29,5 +30,6 @@ final class Image implements CastsToArray, IsImage
         }
         $this->srcset = implode(', ', $this->srcset);
         $this->altText = $altText;
+        $this->classes = $classes ? implode(' ', $classes) : null;
     }
 }

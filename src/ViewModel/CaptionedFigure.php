@@ -10,7 +10,7 @@ use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
 
-final class CaptionedImage implements ViewModel
+final class CaptionedFigure implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
@@ -19,42 +19,56 @@ final class CaptionedImage implements ViewModel
     private $heading;
     private $captions;
     private $picture;
-    private $altText;
-    private $defaultPath;
-    private $srcset;
     private $customContent;
-
-    private $_image;
+    private $video;
+    private $table;
+    private $image;
 
     private function __construct(
-        IsImage $image,
+        IsCaptioned $figure,
         string $heading = null,
         array $captions = null,
         string $customContent = null
     ) {
         $this->heading = $heading;
         $this->captions = $captions;
-        if ($image instanceof Image) {
-            $this->altText = $image['altText'];
-            $this->defaultPath = $image['defaultPath'];
-            $this->srcset = $image['srcset'];
-            $this->_image = $image;
-        } elseif ($image instanceof Picture) {
-            $this->picture = $image;
-        } else {
-            throw new InvalidArgumentException('Unknown image type '.get_class($image));
-        }
         $this->customContent = $customContent;
+        $this->setFigure($figure);
     }
 
-    public static function withOnlyHeading(IsImage $image, string $heading) : CaptionedImage
+    public function setFigure($figure)
+    {
+        // Reverse switch (i.e. which evaluates to true)
+        switch (true) {
+            case $figure instanceof Image:
+                $this->image = $figure;
+                break;
+
+            case $figure instanceof Picture:
+                $this->picture = $figure;
+                break;
+
+            case $figure instanceof Video:
+                $this->video = $figure;
+                break;
+
+            case $figure instanceof Table:
+                $this->table = (string) $figure;
+                break;
+
+            default:
+                throw new InvalidArgumentException('Unknown figure type '.get_class($figure));
+        }
+    }
+
+    public static function withOnlyHeading(IsCaptioned $image, string $heading) : CaptionedFigure
     {
         Assertion::notBlank($heading);
 
         return new static($image, $heading);
     }
 
-    public static function withParagraph(IsImage $image, string $heading, string $caption) : CaptionedImage
+    public static function withParagraph(IsCaptioned $image, string $heading, string $caption) : CaptionedFigure
     {
         Assertion::notBlank($heading);
         Assertion::notBlank($caption);
@@ -62,7 +76,7 @@ final class CaptionedImage implements ViewModel
         return new static($image, $heading, [['caption' => $caption]]);
     }
 
-    public static function withParagraphs(IsImage $image, string $heading, array $captions) : CaptionedImage
+    public static function withParagraphs(IsCaptioned $image, string $heading, array $captions) : CaptionedFigure
     {
         Assertion::notBlank($heading);
         Assertion::notBlank($captions);
@@ -75,7 +89,7 @@ final class CaptionedImage implements ViewModel
         return new static($image, $heading, $captions);
     }
 
-    public static function withCustomContent(IsImage $image, string $content) : CaptionedImage
+    public static function withCustomContent(IsCaptioned $image, string $content) : CaptionedFigure
     {
         Assertion::notBlank($content);
 
@@ -84,12 +98,12 @@ final class CaptionedImage implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/captioned-image.css';
+        yield '/elife/patterns/assets/css/captioned-figure.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/captioned-image.mustache';
+        return '/elife/patterns/templates/captioned-figure.mustache';
     }
 
     protected function getComposedViewModels() : Traversable
