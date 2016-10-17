@@ -10,6 +10,8 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Yaml\Yaml;
+use function eLife\Patterns\flatten;
+use function eLife\Patterns\iterator_to_unique_array;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -81,6 +83,10 @@ $resolvedTemplates = [];
 foreach ($finder as $file) {
     $yaml = Yaml::parse($file->getContents());
     $yaml = resolveJsonReferences($yaml, $file);
+    $yaml['assets']['css'] = iterator_to_unique_array(flatten($yaml['assets']['css']));
+    sort($yaml['assets']['css']);
+    $yaml['assets']['js'] = iterator_to_unique_array(flatten($yaml['assets']['js']));
+    sort($yaml['assets']['js']);
     $yaml = Yaml::dump($yaml, 100);
     $yaml = str_replace(' {  }', ' []', $yaml);
 

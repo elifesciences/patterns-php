@@ -1,16 +1,11 @@
 assets:
     css:
+        - buttons.css
+        - date.css
         - listing.css
-        -
-            - teaser.css
-            -
-                - meta.css
-                -
-                    - date.css
-        -
-            - load-more.css
-            -
-                - buttons.css
+        - load-more.css
+        - meta.css
+        - teaser.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

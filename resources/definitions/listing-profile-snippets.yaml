@@ -1,10 +1,8 @@
 assets:
     css:
         - listing.css
-        -
-            - profile-snippet.css
-        -
-            - see-more-link.css
+        - profile-snippet.css
+        - see-more-link.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

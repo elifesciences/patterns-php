@@ -1,8 +1,7 @@
 assets:
     css:
+        - filter-group.css
         - filter-panel.css
-        -
-            - filter-group.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

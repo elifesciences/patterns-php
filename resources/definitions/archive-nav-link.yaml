@@ -1,8 +1,7 @@
 assets:
     css:
         - archive-nav-link.css
-        -
-            - block-link.css
+        - block-link.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

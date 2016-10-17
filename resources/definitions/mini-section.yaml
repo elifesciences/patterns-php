@@ -1,8 +1,7 @@
 assets:
     css:
+        - list-heading.css
         - mini-section.css
-        -
-            - list-heading.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
