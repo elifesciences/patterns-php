@@ -18,15 +18,26 @@ final class ViewSelector implements ViewModel
     private $articleUrl;
     private $jumpLinks;
     private $figureUrl;
+    private $sideBySideUrl;
 
-    public function __construct(string $articleUrl, array $jumpLinks, string $figureUrl = null)
-    {
+    public function __construct(
+        string $articleUrl,
+        array $jumpLinks = [],
+        string $figureUrl = null,
+        string $sideBySideUrl = null
+    ) {
         Assertion::notBlank($articleUrl);
         Assertion::allIsInstanceOf($jumpLinks, Link::class);
+        if (count($jumpLinks) > 0) {
+            Assertion::min(count($jumpLinks), 2);
+        }
 
         $this->articleUrl = $articleUrl;
-        $this->jumpLinks = $jumpLinks;
+        if (count($jumpLinks) > 0) {
+            $this->jumpLinks = ['links' => $jumpLinks];
+        }
         $this->figureUrl = $figureUrl;
+        $this->sideBySideUrl = $sideBySideUrl;
     }
 
     public function getTemplateName() : string
