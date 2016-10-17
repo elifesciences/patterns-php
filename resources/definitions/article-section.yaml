@@ -1,8 +1,7 @@
 assets:
     css:
         - article-section.css
-        -
-            - doi.css
+        - doi.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

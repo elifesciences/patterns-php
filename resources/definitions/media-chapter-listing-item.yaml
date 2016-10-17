@@ -1,11 +1,9 @@
 assets:
     css:
+        - date.css
         - media-chapter-listing-item.css
+        - meta.css
         - teaser.css
-        -
-            - meta.css
-            -
-                - date.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

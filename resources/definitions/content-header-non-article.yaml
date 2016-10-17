@@ -1,10 +1,8 @@
 assets:
     css:
         - content-header-non-article.css
-        -
-            - meta.css
-            -
-                - date.css
+        - date.css
+        - meta.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

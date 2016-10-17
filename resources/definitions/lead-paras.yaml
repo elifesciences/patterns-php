@@ -1,8 +1,7 @@
 assets:
     css:
+        - lead-para.css
         - lead-paras.css
-        -
-            - lead-para.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

@@ -2,12 +2,9 @@ assets:
     css:
         - content-header-article-magazine.css
         - content-header-article-research.css
-        -
-            - lead-para.css
-        -
-            - meta.css
-            -
-                - date.css
+        - date.css
+        - lead-para.css
+        - meta.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

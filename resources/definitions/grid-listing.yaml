@@ -1,18 +1,11 @@
 assets:
     css:
+        - archive-nav-link.css
+        - block-link.css
+        - date.css
         - grid-listing.css
-        -
-            - block-link.css
-        -
-            - archive-nav-link.css
-            -
-                - block-link.css
-        -
-            - teaser.css
-            -
-                - meta.css
-                -
-                    - date.css
+        - meta.css
+        - teaser.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
