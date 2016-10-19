@@ -176,8 +176,8 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
             if ($expected_item === null && !isset($actual[$key])) {
                 continue;
             }
-            if (!isset($actual[$key])) {
-                array_push($reasons, 'Key missing in array: '.$prefix.'.'.$key);
+            if (!isset($actual[$key]) && $expected[$key] !== null) {
+                array_push($reasons, 'Key missing in array: '.$prefix.'.'.$key.' with value'.json_encode($expected_item));
                 continue;
             }
             if ($actual[$key] instanceof CastsToArray || is_array($actual[$key])) {
