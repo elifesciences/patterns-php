@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\CaptionedFigure;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\MediaSource;
+use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\Video;
@@ -143,7 +144,8 @@ final class CaptionedFigureTest extends ViewModelTest
             ],
             'Captioned video with custom content' => [
                 CaptionedFigure::withCustomContent(
-                    new Video('http://some.image.com/test.jpg', [MediaSource::videoSource('/file.mp4', 'video/mp4')]),
+                    new Video('http://some.image.com/test.jpg',
+                        [new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
                     '<h3>This is custom content</h3><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>'
                 ),
             ],

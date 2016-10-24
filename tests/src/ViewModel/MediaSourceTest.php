@@ -4,7 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaSourceFallback;
-use eLife\Patterns\ViewModel\MimeType;
+use eLife\Patterns\ViewModel\MediaType;
 
 final class MediaSourceTest extends ViewModelTest
 {
@@ -15,20 +15,21 @@ final class MediaSourceTest extends ViewModelTest
     {
         $data = [
             'src' => 'http://google.com/test.mp3',
-            'mimeType' => [
-                    'forMachine' => 'audio/mp3',
-                    'forHuman' => 'MP3',
-                ],
+            'mediaType' => [
+                'forMachine' => 'audio/mp3',
+                'forHuman' => 'MP3',
+            ],
             'fallback' => [
-                    'content' => 'Download me',
-                    'isExternal' => true,
-                    'classes' => 'test-class',
-                ],
+                'content' => 'Download me',
+                'isExternal' => true,
+                'classes' => 'test-class',
+            ],
         ];
         $mediaSource = new MediaSource(
             $data['src'],
-            new MimeType($data['mimeType']['forMachine'], $data['mimeType']['forHuman']),
-            new MediaSourceFallback($data['fallback']['content'], $data['fallback']['isExternal'], explode(' ', $data['fallback']['classes']))
+            new MediaType($data['mediaType']['forMachine']),
+            new MediaSourceFallback($data['fallback']['content'], $data['fallback']['isExternal'],
+                explode(' ', $data['fallback']['classes']))
         );
 
         $this->assertSameValuesWithoutOrder($mediaSource, $data);
@@ -40,20 +41,20 @@ final class MediaSourceTest extends ViewModelTest
             [
                 new MediaSource(
                     'http://google.com/test.mp3',
-                    new MimeType('audio/mp3', 'MP3'),
+                    new MediaType('audio/mp3'),
                     new MediaSourceFallback('Download me', true, ['test-class'])
                 ),
             ],
             [
                 new MediaSource(
                     'http://google.com/test.mp3',
-                    new MimeType('audio/mp3', 'MP3')
+                    new MediaType('audio/mp3')
                 ),
             ],
             [
                 new MediaSource(
                     'http://google.com/test.mp4',
-                    new MimeType('video/mp4', 'Video')
+                    new MediaType('video/mp4')
                 ),
             ],
         ];

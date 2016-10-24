@@ -30,7 +30,7 @@ schema:
                             content:
                                 type: string
                                 minLength: 1
-                    mimeType:
+                    mediaType:
                         type: object
                         properties:
                             forMachine:
