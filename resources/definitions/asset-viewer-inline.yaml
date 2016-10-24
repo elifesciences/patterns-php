@@ -1,8 +1,10 @@
 assets:
     css:
+        - additional-assets.css
+        - asset-viewer-inline.css
         - buttons.css
         - captioned-asset.css
-        - viewer-inline.css
+        - doi.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -11,22 +13,26 @@ schema:
         id:
             type: string
             minLength: 1
-        prominentText:
+        variant:
+            type: string
+            enum:
+                - figure
+                - table
+                - video
+                - supplement
+        supplementOrdinal:
+            type: integer
+            minimum: 1
+        parentId:
             type: string
             minLength: 1
-        normalText:
+        label:
             type: string
             minLength: 1
-        seeAllLink:
+        figuresPageFragLink:
             type: string
             minLength: 1
-        downloadLink:
-            type: string
-            minLength: 1
-        newWindowLink:
-            type: string
-            minLength: 1
-        captionedFigure:
+        captionedAsset:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             allOf:
@@ -221,11 +227,86 @@ schema:
                                         - altText
                             required:
                                 - image
+        additionalAssets:
+            type: array
+            minItems: 1
+            items:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    heading:
+                        type: string
+                        minLength: 1
+                    data:
+                        type: array
+                        minItems: 1
+                        items:
+                            type: object
+                            allOf:
+                                -
+                                    properties:
+                                        headingPart1:
+                                            type: string
+                                            minLength: 1
+                                        headingPart2:
+                                            type: string
+                                            minLength: 1
+                                        textPart:
+                                            type: string
+                                            minLength: 1
+                                        downloadLink:
+                                            type: object
+                                            properties:
+                                                url:
+                                                    type: string
+                                                    minLength: 1
+                                                name:
+                                                    type: string
+                                                    minLength: 1
+                                                fileName:
+                                                    type: string
+                                                    minLength: 1
+                                            required:
+                                                - url
+                                                - name
+                                    required:
+                                        - headingPart1
+                                -
+                                    oneOf:
+                                        -
+                                            properties:
+                                                nonDoiLink:
+                                                    type: string
+                                                    minLength: 1
+                                            required:
+                                                - nonDoiLink
+                                        -
+                                            properties:
+                                                doi:
+                                                    $schema: 'http://json-schema.org/draft-04/schema#'
+                                                    type: object
+                                                    properties:
+                                                        doi:
+                                                            type: string
+                                                            minLength: 1
+                                                        variant:
+                                                            type: string
+                                                            enum:
+                                                                - article-section
+                                                    required:
+                                                        - doi
+                                            reqiured:
+                                                - doi
+                required:
+                    - data
+    dependencies:
+        parentId:
+            - supplementOrdinal
+        supplementOrdinal:
+            - parentId
     required:
         - id
-        - prominentText
-        - normalText
-        - seeAllLink
-        - downloadLink
-        - newWindowLink
-        - captionedFigure
+        - variant
+        - label
+        - figuresPageFragLink
+        - captionedAsset
