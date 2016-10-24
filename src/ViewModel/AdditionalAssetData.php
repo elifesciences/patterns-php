@@ -6,7 +6,7 @@ use Assert\Assertion;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class AdditionalAssetData implements CastsToArray
+final class AdditionalAssetData implements CastsToArray
 {
     use ReadOnlyArrayAccess;
 
@@ -37,11 +37,9 @@ class AdditionalAssetData implements CastsToArray
         return new static($text, null, $doi, $textPart, $downloadLink);
     }
 
-    public static function withoutDoi(string $text, string $nonDoiLink, string $textPart = null, DownloadLink $downloadLink = null)
+    public static function withoutDoi(Link $link, string $textPart = null, DownloadLink $downloadLink = null)
     {
-        Assertion::notBlank($nonDoiLink);
-
-        return new static($text, $nonDoiLink, null, $textPart, $downloadLink);
+        return new static($link['name'], $link['url'], null, $textPart, $downloadLink);
     }
 
     final public function toArray() : array

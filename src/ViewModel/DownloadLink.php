@@ -6,7 +6,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ReadOnlyArrayAccess;
 
-class DownloadLink implements CastsToArray
+final class DownloadLink implements CastsToArray
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;

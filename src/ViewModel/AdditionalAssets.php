@@ -12,8 +12,8 @@ use Traversable;
 final class AdditionalAssets implements ViewModel
 {
     use ArrayFromNullProperties;
-    use ReadOnlyArrayAccess;
     use ComposedAssets;
+    use ReadOnlyArrayAccess;
 
     private $heading;
     private $data;

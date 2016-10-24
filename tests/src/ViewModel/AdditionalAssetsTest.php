@@ -5,8 +5,9 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\AdditionalAssetData;
 use eLife\Patterns\ViewModel\AdditionalAssets;
 use eLife\Patterns\ViewModel\Doi;
+use eLife\Patterns\ViewModel\Link;
 
-class AdditionalAssetsTest extends ViewModelTest
+final class AdditionalAssetsTest extends ViewModelTest
 {
     /**
      * @test
@@ -22,7 +23,11 @@ class AdditionalAssetsTest extends ViewModelTest
                 ],
             ],
         ];
-        $sourceData = new AdditionalAssets($data['heading'], [AdditionalAssetData::withoutDoi($data['data'][0]['headingPart'], $data['data'][0]['nonDoiLink'])]);
+        $sourceData = new AdditionalAssets($data['heading'],
+            [
+                AdditionalAssetData::withoutDoi(new Link($data['data'][0]['headingPart'],
+                    $data['data'][0]['nonDoiLink'])),
+            ]);
         $this->assertSameWithoutOrder($data, $sourceData);
 
         $dataDoi = [
@@ -36,21 +41,23 @@ class AdditionalAssetsTest extends ViewModelTest
                 ],
             ],
         ];
-        $sourceDataDoi = new AdditionalAssets($data['heading'], [AdditionalAssetData::withDoi($dataDoi['data'][0]['headingPart'], new Doi($dataDoi['data'][0]['doi']['doi']))]);
+        $sourceDataDoi = new AdditionalAssets($data['heading'], [
+            AdditionalAssetData::withDoi($dataDoi['data'][0]['headingPart'],
+                new Doi($dataDoi['data'][0]['doi']['doi'])),
+        ]);
         $this->assertSameWithoutOrder($dataDoi, $sourceDataDoi);
     }
 
     public function viewModelProvider() : array
     {
-        $m1 = new AdditionalAssets('Some title', [AdditionalAssetData::withoutDoi('Without doi', 'http://google.com/')]);
-//        var_dump($m1->toArray());
-//        exit;
         return [
             [
-                new AdditionalAssets('Some title', [AdditionalAssetData::withDoi('With doi', new Doi('10.7554/eLife.10181.001'))]),
+                new AdditionalAssets('Some title',
+                    [AdditionalAssetData::withDoi('With doi', new Doi('10.7554/eLife.10181.001'))]),
             ],
             [
-                new AdditionalAssets('Some title', [AdditionalAssetData::withoutDoi('Without doi', 'http://google.com/')]),
+                new AdditionalAssets('Some title',
+                    [AdditionalAssetData::withoutDoi(new Link('Without doi', 'http://google.com/'))]),
             ],
         ];
     }
