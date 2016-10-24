@@ -15,14 +15,14 @@ final class DownloadLink implements CastsToArray
     private $url;
     private $fileName;
 
-    public function __construct(string $name, string $url = null, string $fileName = null)
+    private function __construct(string $name, string $url, string $fileName = null)
     {
         $this->name = $name;
         $this->url = $url;
         $this->fileName = $fileName;
     }
 
-    public static function fromLink(Link $link, string $fileName)
+    public static function fromLink(Link $link, string $fileName = null)
     {
         return new static($link['name'], $link['url'], $fileName);
     }

@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\AdditionalAssetData;
 use eLife\Patterns\ViewModel\AdditionalAssets;
 use eLife\Patterns\ViewModel\Doi;
+use eLife\Patterns\ViewModel\DownloadLink;
 use eLife\Patterns\ViewModel\Link;
 
 final class AdditionalAssetsTest extends ViewModelTest
@@ -18,15 +19,23 @@ final class AdditionalAssetsTest extends ViewModelTest
             'heading' => 'Some title',
             'data' => [
                 [
-                    'headingPart' => 'with doi',
+                    'headingPart' => 'without doi',
                     'nonDoiLink' => 'http://google.com/',
+                    'textPart' => 'text',
+                    'downloadLink' => [
+                        'name' => 'download link',
+                        'url' => 'http://google.com/download',
+                        'fileName' => 'file name',
+                    ],
                 ],
             ],
         ];
         $sourceData = new AdditionalAssets($data['heading'],
             [
                 AdditionalAssetData::withoutDoi(new Link($data['data'][0]['headingPart'],
-                    $data['data'][0]['nonDoiLink'])),
+                    $data['data'][0]['nonDoiLink']), 'text',
+                    DownloadLink::fromLink(new Link($data['data'][0]['downloadLink']['name'],
+                        $data['data'][0]['downloadLink']['url']), $data['data'][0]['downloadLink']['fileName'])),
             ]);
         $this->assertSameWithoutOrder($data, $sourceData);
 
@@ -58,6 +67,14 @@ final class AdditionalAssetsTest extends ViewModelTest
             [
                 new AdditionalAssets('Some title',
                     [AdditionalAssetData::withoutDoi(new Link('Without doi', 'http://google.com/'))]),
+            ],
+            [
+                new AdditionalAssets('Some title',
+                    [
+                        AdditionalAssetData::withoutDoi(new Link('Without doi', 'http://google.com/'), 'text',
+                            DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                                'File name')),
+                    ]),
             ],
         ];
     }
