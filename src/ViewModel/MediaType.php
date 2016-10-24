@@ -26,7 +26,9 @@ final class MediaType implements CastsToArray
 
     private function guessHumanType()
     {
-        switch ($this->forMachine) {
+        $parts = explode(';', $this->forMachine);
+
+        switch ($parts[0]) {
             case 'image/pjpeg':
                 return 'JPEG';
             case 'audio/mp4':
@@ -43,7 +45,7 @@ final class MediaType implements CastsToArray
                 return 'WebP';
         }
 
-        $parts = explode('/', $this->forMachine);
+        $parts = explode('/', $parts[0]);
 
         return strtoupper($parts[1]);
     }
