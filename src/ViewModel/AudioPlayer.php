@@ -29,7 +29,7 @@ final class AudioPlayer implements ViewModel
         Assertion::notEmpty($chapters);
         Assertion::allIsInstanceOf($chapters, MediaChapterListingItem::class);
         Assertion::allTrue(array_map(function (MediaSource $mediaSource) {
-            return strpos($mediaSource['mimeType']['forMachine'], 'audio') === 0;
+            return strpos($mediaSource['mediaType']['forMachine'], 'audio') === 0;
         }, $sources), 'All sources must be audio types.');
 
         $this->episodeNumber = $episodeNumber;

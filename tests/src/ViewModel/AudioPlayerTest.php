@@ -3,9 +3,9 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\AudioPlayer;
-use eLife\Patterns\ViewModel\AudioSource;
 use eLife\Patterns\ViewModel\MediaChapterListingItem;
 use eLife\Patterns\ViewModel\MediaSource;
+use eLife\Patterns\ViewModel\MediaType;
 use InvalidArgumentException;
 
 final class AudioPlayerTest extends ViewModelTest
@@ -20,7 +20,7 @@ final class AudioPlayerTest extends ViewModelTest
             1,
             'this will fail',
             [
-                MediaSource::audioSource('/nope.jpg', 'image/jpeg'),
+                new MediaSource('/nope.jpg', new MediaType('image/jpeg')),
             ],
             [
                 new MediaChapterListingItem('chapter 1', 0, 1),
@@ -38,7 +38,7 @@ final class AudioPlayerTest extends ViewModelTest
             1,
             'this will fail',
             [
-                MediaSource::videoSource('/nope.jpg', 'video/mp4'),
+                new MediaSource('/nope.jpg', new MediaType('video/mp4')),
             ],
             [
                 new MediaChapterListingItem('chapter 1', 0, 1),
@@ -56,7 +56,7 @@ final class AudioPlayerTest extends ViewModelTest
             0,
             'this will fail',
             [
-                MediaSource::audioSource('/nope.mp3', 'audio/mpeg'),
+                new MediaSource('/nope.mp3', new MediaType('audio/mpeg')),
             ],
             [
                 new MediaChapterListingItem('chapter 1', 0, 1),
@@ -74,7 +74,7 @@ final class AudioPlayerTest extends ViewModelTest
             1,
             'this will fail',
             [
-                MediaSource::audioSource('/nope.mp3', 'audio/mpeg'),
+                new MediaSource('/nope.mp3', new MediaType('audio/mpeg')),
             ],
             []
         );
@@ -94,14 +94,14 @@ final class AudioPlayerTest extends ViewModelTest
             'title' => 'title of player',
             'sources' => [
                 [
-                    'mimeType' => [
+                    'mediaType' => [
                         'forMachine' => 'audio/mpeg; codecs="mp3"',
                         'forHuman' => 'MP3',
                     ],
                     'src' => '/audio.mp3',
                 ],
                 [
-                    'mimeType' => [
+                    'mediaType' => [
                         'forMachine' => 'audio/ogg',
                         'forHuman' => 'OGG',
                     ],
@@ -113,7 +113,8 @@ final class AudioPlayerTest extends ViewModelTest
 
         $audioPlayer = new AudioPlayer($data['episodeNumber'], $data['title'],
             [
-                MediaSource::audioSource($data['sources'][0]['src'], $data['sources'][0]['mimeType']['forMachine']),
+                new MediaSource($data['sources'][0]['src'],
+                    new MediaType($data['sources'][0]['mediaType']['forMachine'])),
             ],
             [
                 new MediaChapterListingItem($chapters[0]['title'], $chapters[0]['time'],
@@ -122,16 +123,16 @@ final class AudioPlayerTest extends ViewModelTest
                     $chapters[1]['number']),
             ]
         );
-        $audioPlayer->addSource(MediaSource::audioSource($data['sources'][1]['src'],
-            $data['sources'][1]['mimeType']['forMachine']));
+        $audioPlayer->addSource(new MediaSource($data['sources'][1]['src'],
+            new MediaType($data['sources'][1]['mediaType']['forMachine'])));
 
         $this->assertSame($data['episodeNumber'], $audioPlayer['episodeNumber']);
         $this->assertSame($data['title'], $audioPlayer['title']);
         $this->assertSameWithoutOrder($data['sources'][0], $audioPlayer['sources'][0]);
-        $this->assertSameWithoutOrder($data['sources'][0]['mimeType'], $audioPlayer['sources'][0]['mimeType']);
+        $this->assertSameWithoutOrder($data['sources'][0]['mediaType'], $audioPlayer['sources'][0]['mediaType']);
         $this->assertSame($data['sources'][0]['src'], $audioPlayer['sources'][0]['src']);
         $this->assertSameWithoutOrder($data['sources'][1], $audioPlayer['sources'][1]);
-        $this->assertSameWithoutOrder($data['sources'][1]['mimeType'], $audioPlayer['sources'][1]['mimeType']);
+        $this->assertSameWithoutOrder($data['sources'][1]['mediaType'], $audioPlayer['sources'][1]['mediaType']);
         $this->assertSame($data['sources'][1]['src'], $audioPlayer['sources'][1]['src']);
         $this->assertSame($data['metadata'], $audioPlayer['metadata']);
         $this->assertSameWithoutOrder($data, $audioPlayer);
@@ -143,8 +144,8 @@ final class AudioPlayerTest extends ViewModelTest
             [
                 new AudioPlayer(1, 'title of player',
                     [
-                        MediaSource::audioSource('/audio.mp3', 'audio/mpeg'),
-                        MediaSource::audioSource('/audio.ogg', 'audio/ogg'),
+                        new MediaSource('/audio.mp3', new MediaType('audio/mpeg')),
+                        new MediaSource('/audio.ogg', new MediaType('audio/ogg')),
                     ],
                     [
                         new MediaChapterListingItem('chapter 1', 0, 1),

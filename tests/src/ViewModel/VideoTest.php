@@ -3,7 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\MediaSource;
-use eLife\Patterns\ViewModel\MimeType;
+use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Video;
 use InvalidArgumentException;
 
@@ -18,17 +18,17 @@ final class VideoTest extends ViewModelTest
             'posterFrame' => 'http://some.image.com/test.jpg',
             'sources' => [
 
-                    [
-                        'src' => '/file.mp4',
-                        'mimeType' => [
-                                'forMachine' => 'video/mp4',
-                                'forHuman' => 'MP4',
-                            ],
+                [
+                    'src' => '/file.mp4',
+                    'mediaType' => [
+                        'forMachine' => 'video/mp4',
+                        'forHuman' => 'MP4',
                     ],
                 ],
+            ],
         ];
         $video = new Video($data['posterFrame'], array_map(function ($source) {
-            return new MediaSource($source['src'], new MimeType($source['mimeType']['forMachine'], $source['mimeType']['forHuman']));
+            return new MediaSource($source['src'], new MediaType($source['mediaType']['forMachine']));
         }, $data['sources']));
 
         $this->assertSameWithoutOrder($data, $video->toArray());
@@ -40,7 +40,7 @@ final class VideoTest extends ViewModelTest
     public function testCantUseAudioAsVideoSource()
     {
         $this->expectException(InvalidArgumentException::class);
-        new Video('http://some.image.com/test.jpg', [MediaSource::videoSource('/file.mp4', 'audio/mp4')]);
+        new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MediaType('audio/mp4'))]);
     }
 
     /**
@@ -49,17 +49,14 @@ final class VideoTest extends ViewModelTest
     public function testCantUseAudioSource()
     {
         $this->expectException(InvalidArgumentException::class);
-        new Video('http://some.image.com/test.jpg', [MediaSource::audioSource('/file.mp3', 'audio/mp3')]);
+        new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp3', new MediaType('audio/mp3'))]);
     }
 
     public function viewModelProvider() : array
     {
         return [
             [
-                new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MimeType('video/mp4', 'MP4'))]),
-            ],
-            [
-                new Video('http://some.image.com/test.jpg', [MediaSource::videoSource('/file.mp4', 'video/mp4')]),
+                new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
             ],
         ];
     }
