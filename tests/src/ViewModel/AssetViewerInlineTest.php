@@ -4,14 +4,13 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\AdditionalAssetData;
 use eLife\Patterns\ViewModel\AdditionalAssets;
+use eLife\Patterns\ViewModel\AssetViewerInline;
 use eLife\Patterns\ViewModel\CaptionedAsset;
 use eLife\Patterns\ViewModel\DownloadLink;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaType;
-use eLife\Patterns\ViewModel\Picture;
-use eLife\Patterns\ViewModel\AssetViewerInline;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\Video;
 

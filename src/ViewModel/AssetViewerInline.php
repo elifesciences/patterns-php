@@ -63,9 +63,8 @@ final class AssetViewerInline implements ViewModel
         string $label,
         CaptionedAsset $captionedAsset,
         array $additionalAssets = []
-    ) : AssetViewerInline
-    {
-        return new AssetViewerInline($id, null, null, $label, $captionedAsset, $additionalAssets);
+    ) : AssetViewerInline {
+        return new self($id, null, null, $label, $captionedAsset, $additionalAssets);
     }
 
     public static function supplement(
@@ -75,9 +74,8 @@ final class AssetViewerInline implements ViewModel
         string $label,
         CaptionedAsset $captionedAsset,
         array $additionalAssets = []
-    ) : AssetViewerInline
-    {
-        return new AssetViewerInline($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets);
+    ) : AssetViewerInline {
+        return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets);
     }
 
     public function getLocalStyleSheets() : Traversable
