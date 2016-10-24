@@ -23,17 +23,31 @@ final class CaptionedAsset implements ViewModel
     private $video;
     private $tables;
     private $image;
+    private $doi;
+    private $download;
 
     private function __construct(
         IsCaptioned $figure,
         string $heading = null,
         array $captions = null,
-        string $customContent = null
+        string $customContent = null,
+        Doi $doi = null,
+        Link $download = null
     ) {
         $this->heading = $heading;
         $this->captions = $captions;
         $this->customContent = $customContent;
         $this->setFigure($figure);
+        if ($doi) {
+            $doi = FlexibleViewModel::fromViewModel($doi);
+            $this->doi = $doi->withProperty('variant', 'article-section');
+        }
+        if ($download) {
+            $this->download = [
+                'link' => $download['url'],
+                'filename' => $download['name'],
+            ];
+        }
     }
 
     private function setFigure($figure)
@@ -61,23 +75,37 @@ final class CaptionedAsset implements ViewModel
         }
     }
 
-    public static function withOnlyHeading(IsCaptioned $image, string $heading) : CaptionedAsset
-    {
+    public static function withOnlyHeading(
+        IsCaptioned $image,
+        string $heading,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($heading);
 
-        return new static($image, $heading);
+        return new static($image, $heading, null, null, $doi, $download);
     }
 
-    public static function withParagraph(IsCaptioned $image, string $heading, string $caption) : CaptionedAsset
-    {
+    public static function withParagraph(
+        IsCaptioned $image,
+        string $heading,
+        string $caption,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($heading);
         Assertion::notBlank($caption);
 
-        return new static($image, $heading, [['caption' => $caption]]);
+        return new static($image, $heading, [['caption' => $caption]], null, $doi, $download);
     }
 
-    public static function withParagraphs(IsCaptioned $image, string $heading, array $captions) : CaptionedAsset
-    {
+    public static function withParagraphs(
+        IsCaptioned $image,
+        string $heading,
+        array $captions,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($heading);
         Assertion::notBlank($captions);
         Assertion::allString($captions);
@@ -86,14 +114,18 @@ final class CaptionedAsset implements ViewModel
             return ['caption' => $caption];
         }, $captions);
 
-        return new static($image, $heading, $captions);
+        return new static($image, $heading, $captions, null, $doi, $download);
     }
 
-    public static function withCustomContent(IsCaptioned $image, string $content) : CaptionedAsset
-    {
+    public static function withCustomContent(
+        IsCaptioned $image,
+        string $content,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($content);
 
-        return new static($image, null, null, $content);
+        return new static($image, null, null, $content, $doi, $download);
     }
 
     public function getLocalStyleSheets() : Traversable
@@ -109,5 +141,6 @@ final class CaptionedAsset implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield $this->picture;
+        yield $this->doi;
     }
 }
