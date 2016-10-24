@@ -95,15 +95,15 @@ final class AudioPlayerTest extends ViewModelTest
             'sources' => [
                 [
                     'mediaType' => [
-                        'forMachine' => 'audio/mpeg; codecs="mp3"',
-                        'forHuman' => 'MP3',
+                        'forMachine' => 'audio/mpeg',
+                        'forHuman' => 'MPEG',
                     ],
                     'src' => '/audio.mp3',
                 ],
                 [
                     'mediaType' => [
                         'forMachine' => 'audio/ogg',
-                        'forHuman' => 'OGG',
+                        'forHuman' => 'Ogg',
                     ],
                     'src' => '/audio.ogg',
                 ],

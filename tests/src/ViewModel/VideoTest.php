@@ -22,7 +22,7 @@ final class VideoTest extends ViewModelTest
                     'src' => '/file.mp4',
                     'mediaType' => [
                         'forMachine' => 'video/mp4',
-                        'forHuman' => 'MP4',
+                        'forHuman' => 'MPEG-4',
                     ],
                 ],
             ],
