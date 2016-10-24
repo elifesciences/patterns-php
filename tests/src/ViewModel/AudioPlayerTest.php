@@ -151,7 +151,8 @@ final class AudioPlayerTest extends ViewModelTest
             [
                 new AudioPlayer(1, 'title of player',
                     [
-                        new MediaSource('/audio.mp3', new MediaType('audio/mpeg')),
+                        new MediaSource('/audio.mp3', new MediaType('audio/mpeg'),
+                            new MediaSourceFallback('fallback', true)),
                         new MediaSource('/audio.ogg', new MediaType('audio/ogg')),
                     ],
                     [

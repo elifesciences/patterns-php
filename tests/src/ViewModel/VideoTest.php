@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\MediaSource;
+use eLife\Patterns\ViewModel\MediaSourceFallback;
 use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Video;
 use InvalidArgumentException;
@@ -24,11 +25,16 @@ final class VideoTest extends ViewModelTest
                         'forMachine' => 'video/mp4',
                         'forHuman' => 'MPEG-4',
                     ],
+                    'fallback' => [
+                        'content' => 'fallback',
+                        'isExternal' => true,
+                    ],
                 ],
             ],
         ];
         $video = new Video($data['posterFrame'], array_map(function ($source) {
-            return new MediaSource($source['src'], new MediaType($source['mediaType']['forMachine']));
+            return new MediaSource($source['src'], new MediaType($source['mediaType']['forMachine']),
+                new MediaSourceFallback('fallback', true));
         }, $data['sources']));
 
         $this->assertSameWithoutOrder($data, $video->toArray());
@@ -55,6 +61,10 @@ final class VideoTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
+            [
+                new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MediaType('video/mp4'))],
+                    new MediaSourceFallback('fallback', true)),
+            ],
             [
                 new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
             ],
