@@ -36,7 +36,7 @@ final class CaptionedFigure implements ViewModel
         $this->setFigure($figure);
     }
 
-    public function setFigure($figure)
+    private function setFigure($figure)
     {
         // Reverse switch (i.e. which evaluates to true)
         switch (true) {
