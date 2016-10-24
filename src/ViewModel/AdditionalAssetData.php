@@ -10,36 +10,49 @@ final class AdditionalAssetData implements CastsToArray
 {
     use ReadOnlyArrayAccess;
 
-    private $headingPart;
+    private $headingPart1;
+    private $headingPart2;
     private $nonDoiLink;
     private $doi = null;
     private $textPart;
     private $downloadLink;
 
     private function __construct(
-        string $headingPart,
+        string $headingPart1,
+        string $headingPart2 = null,
         string $nonDoiLink = null,
         Doi $doi = null,
         string $textPart = null,
         DownloadLink $downloadLink = null
     ) {
-        Assertion::notBlank($headingPart);
+        Assertion::notBlank($headingPart1);
 
-        $this->headingPart = $headingPart;
+        $this->headingPart1 = $headingPart1;
+        $this->headingPart2 = $headingPart2;
         $this->nonDoiLink = $nonDoiLink;
         $this->doi = $doi;
         $this->textPart = $textPart;
         $this->downloadLink = $downloadLink;
     }
 
-    public static function withDoi(string $text, Doi $doi, string $textPart = null, DownloadLink $downloadLink = null)
-    {
-        return new static($text, null, $doi, $textPart, $downloadLink);
+    public static function withDoi(
+        string $headingPart1,
+        string $headingPart2 = null,
+        Doi $doi,
+        string $textPart = null,
+        DownloadLink $downloadLink = null
+    ) {
+        return new static($headingPart1, $headingPart2, null, $doi, $textPart, $downloadLink);
     }
 
-    public static function withoutDoi(Link $link, string $textPart = null, DownloadLink $downloadLink = null)
-    {
-        return new static($link['name'], $link['url'], null, $textPart, $downloadLink);
+    public static function withoutDoi(
+        string $headingPart1,
+        string $headingPart2 = null,
+        string $uri,
+        string $textPart = null,
+        DownloadLink $downloadLink = null
+    ) {
+        return new static($headingPart1, $headingPart2, $uri, null, $textPart, $downloadLink);
     }
 
     final public function toArray() : array
