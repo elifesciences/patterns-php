@@ -19,7 +19,8 @@ final class AdditionalAssetsTest extends ViewModelTest
             'heading' => 'Some title',
             'data' => [
                 [
-                    'headingPart' => 'without doi',
+                    'headingPart1' => 'without doi',
+                    'headingPart2' => 'without doi 2',
                     'nonDoiLink' => 'http://google.com/',
                     'textPart' => 'text',
                     'downloadLink' => [
@@ -32,8 +33,8 @@ final class AdditionalAssetsTest extends ViewModelTest
         ];
         $sourceData = new AdditionalAssets($data['heading'],
             [
-                AdditionalAssetData::withoutDoi(new Link($data['data'][0]['headingPart'],
-                    $data['data'][0]['nonDoiLink']), 'text',
+                AdditionalAssetData::withoutDoi($data['data'][0]['headingPart1'], $data['data'][0]['headingPart2'],
+                    $data['data'][0]['nonDoiLink'], 'text',
                     DownloadLink::fromLink(new Link($data['data'][0]['downloadLink']['name'],
                         $data['data'][0]['downloadLink']['url']), $data['data'][0]['downloadLink']['fileName'])),
             ]);
@@ -43,7 +44,7 @@ final class AdditionalAssetsTest extends ViewModelTest
             'heading' => 'Some title',
             'data' => [
                 [
-                    'headingPart' => 'with doi',
+                    'headingPart1' => 'with doi',
                     'doi' => [
                         'doi' => '10.7554/eLife.10181.001',
                     ],
@@ -51,7 +52,7 @@ final class AdditionalAssetsTest extends ViewModelTest
             ],
         ];
         $sourceDataDoi = new AdditionalAssets($data['heading'], [
-            AdditionalAssetData::withDoi($dataDoi['data'][0]['headingPart'],
+            AdditionalAssetData::withDoi($dataDoi['data'][0]['headingPart1'], null,
                 new Doi($dataDoi['data'][0]['doi']['doi'])),
         ]);
         $this->assertSameWithoutOrder($dataDoi, $sourceDataDoi);
@@ -62,16 +63,16 @@ final class AdditionalAssetsTest extends ViewModelTest
         return [
             [
                 new AdditionalAssets('Some title',
-                    [AdditionalAssetData::withDoi('With doi', new Doi('10.7554/eLife.10181.001'))]),
+                    [AdditionalAssetData::withDoi('With doi', null, new Doi('10.7554/eLife.10181.001'))]),
             ],
             [
                 new AdditionalAssets('Some title',
-                    [AdditionalAssetData::withoutDoi(new Link('Without doi', 'http://google.com/'))]),
+                    [AdditionalAssetData::withoutDoi('Without doi', null, 'http://google.com/')]),
             ],
             [
                 new AdditionalAssets('Some title',
                     [
-                        AdditionalAssetData::withoutDoi(new Link('Without doi', 'http://google.com/'), 'text',
+                        AdditionalAssetData::withoutDoi('Without doi', 'part 2', 'http://google.com/', 'text',
                             DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
                                 'File name')),
                     ]),

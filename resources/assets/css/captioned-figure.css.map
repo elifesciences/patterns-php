@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,iBAAkB,CAChB,MAAM,CAAE,CAAC,CAGX,0BAA2B,CACzB,OAAO,CAAE,KAAK,CCkCZ,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CD/B5D,wBAAyB,CACvB,OAAO,CAAE,KAAK,CACd,KAAK,CAAE,IAAI,CAGb,0BAA2B,CACzB,OAAO,CAAE,IAAI,CAGf,kCAAmC,CEwKjC,WAAW,CC/JI,gDAAmD,CFjBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CCiL9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,GAAG,CD7Kd,cAAqB,CAAE,GAAgB,CACvC,cAAqB,CAAE,QAAkC,CDK7D,+BAAgC,CE4K9B,WAAW,CCvKI,gDAAmD,CFjBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CCyL9C,WAAW,CAAE,GAAG,CDpLd,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,SAAkC,CCqL3D,eAAe,CAAE,IAAI,CF5KvB,4CAA8D,CAC5D,0BAA2B,CACzB,OAAO,CAAE,CAAC",
-"sources": ["../../../../../../assets/sass/patterns/molecules/captioned-figure.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss"],
-"names": [],
-"file": "captioned-figure.css"
-}

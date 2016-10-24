@@ -10,7 +10,7 @@ use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
 
-final class CaptionedFigure implements ViewModel
+final class CaptionedAsset implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
@@ -21,22 +21,36 @@ final class CaptionedFigure implements ViewModel
     private $picture;
     private $customContent;
     private $video;
-    private $table;
+    private $tables;
     private $image;
+    private $doi;
+    private $download;
 
     private function __construct(
         IsCaptioned $figure,
         string $heading = null,
         array $captions = null,
-        string $customContent = null
+        string $customContent = null,
+        Doi $doi = null,
+        Link $download = null
     ) {
         $this->heading = $heading;
         $this->captions = $captions;
         $this->customContent = $customContent;
         $this->setFigure($figure);
+        if ($doi) {
+            $doi = FlexibleViewModel::fromViewModel($doi);
+            $this->doi = $doi->withProperty('variant', 'article-section');
+        }
+        if ($download) {
+            $this->download = [
+                'link' => $download['url'],
+                'filename' => $download['name'],
+            ];
+        }
     }
 
-    public function setFigure($figure)
+    private function setFigure($figure)
     {
         // Reverse switch (i.e. which evaluates to true)
         switch (true) {
@@ -53,7 +67,7 @@ final class CaptionedFigure implements ViewModel
                 break;
 
             case $figure instanceof Table:
-                $this->table = (string) $figure;
+                $this->tables = $figure['tables'];
                 break;
 
             default:
@@ -61,23 +75,37 @@ final class CaptionedFigure implements ViewModel
         }
     }
 
-    public static function withOnlyHeading(IsCaptioned $image, string $heading) : CaptionedFigure
-    {
+    public static function withOnlyHeading(
+        IsCaptioned $image,
+        string $heading,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($heading);
 
-        return new static($image, $heading);
+        return new static($image, $heading, null, null, $doi, $download);
     }
 
-    public static function withParagraph(IsCaptioned $image, string $heading, string $caption) : CaptionedFigure
-    {
+    public static function withParagraph(
+        IsCaptioned $image,
+        string $heading,
+        string $caption,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($heading);
         Assertion::notBlank($caption);
 
-        return new static($image, $heading, [['caption' => $caption]]);
+        return new static($image, $heading, [['caption' => $caption]], null, $doi, $download);
     }
 
-    public static function withParagraphs(IsCaptioned $image, string $heading, array $captions) : CaptionedFigure
-    {
+    public static function withParagraphs(
+        IsCaptioned $image,
+        string $heading,
+        array $captions,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($heading);
         Assertion::notBlank($captions);
         Assertion::allString($captions);
@@ -86,28 +114,33 @@ final class CaptionedFigure implements ViewModel
             return ['caption' => $caption];
         }, $captions);
 
-        return new static($image, $heading, $captions);
+        return new static($image, $heading, $captions, null, $doi, $download);
     }
 
-    public static function withCustomContent(IsCaptioned $image, string $content) : CaptionedFigure
-    {
+    public static function withCustomContent(
+        IsCaptioned $image,
+        string $content,
+        Doi $doi = null,
+        Link $download = null
+    ) : CaptionedAsset {
         Assertion::notBlank($content);
 
-        return new static($image, null, null, $content);
+        return new static($image, null, null, $content, $doi, $download);
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/captioned-figure.css';
+        yield '/elife/patterns/assets/css/captioned-asset.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/captioned-figure.mustache';
+        return '/elife/patterns/templates/captioned-asset.mustache';
     }
 
     protected function getComposedViewModels() : Traversable
     {
         yield $this->picture;
+        yield $this->doi;
     }
 }
