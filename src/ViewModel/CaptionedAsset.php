@@ -21,7 +21,7 @@ final class CaptionedAsset implements ViewModel
     private $picture;
     private $customContent;
     private $video;
-    private $table;
+    private $tables;
     private $image;
 
     private function __construct(
@@ -53,7 +53,7 @@ final class CaptionedAsset implements ViewModel
                 break;
 
             case $figure instanceof Table:
-                $this->table = (string) $figure;
+                $this->tables = $figure['tables'];
                 break;
 
             default:

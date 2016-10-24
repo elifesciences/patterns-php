@@ -3,22 +3,23 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\CastsToArray;
+use eLife\Patterns\ReadOnlyArrayAccess;
 
 /**
  * @SuppressWarnings(ForbiddenAbleSuffix)
  */
-final class Table implements IsCaptioned
+final class Table implements CastsToArray, IsCaptioned
 {
-    private $data;
+    use ArrayFromProperties;
+    use ReadOnlyArrayAccess;
 
-    public function __construct(string $data)
-    {
-        Assertion::regex($data, '~^<table>.*<\/table>$~');
-        $this->data = $data;
-    }
+    private $tables;
 
-    public function __toString() : string
+    public function __construct(string ...$data)
     {
-        return $this->data;
+        Assertion::allRegex($data, '~^<table>.*<\/table>$~');
+        $this->tables = $data;
     }
 }
