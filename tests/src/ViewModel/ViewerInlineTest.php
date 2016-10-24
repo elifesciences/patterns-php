@@ -2,7 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\CaptionedFigure;
+use eLife\Patterns\ViewModel\CaptionedAsset;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\ViewerInline;
@@ -55,9 +55,9 @@ final class ViewerInlineTest extends ViewModelTest
         $this->assertSame($data, $viewer->toArray());
     }
 
-    public static function imageStub() : CaptionedFigure
+    public static function imageStub() : CaptionedAsset
     {
-        return CaptionedFigure::withParagraph(
+        return CaptionedAsset::withParagraph(
             new Picture(
                 [['srcset' => '/path/to/svg']],
                 new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')

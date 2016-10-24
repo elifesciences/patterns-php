@@ -29,7 +29,7 @@ final class ViewerInline implements ViewModel
         string $seeAllLink,
         string $downloadLink,
         string $newWindowLink,
-        CaptionedFigure $captionedFigure
+        CaptionedAsset $captionedFigure
     ) {
         Assertion::notBlank($prominentText);
         Assertion::notBlank($normalText);

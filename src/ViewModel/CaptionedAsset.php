@@ -10,7 +10,7 @@ use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
 
-final class CaptionedFigure implements ViewModel
+final class CaptionedAsset implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
@@ -61,14 +61,14 @@ final class CaptionedFigure implements ViewModel
         }
     }
 
-    public static function withOnlyHeading(IsCaptioned $image, string $heading) : CaptionedFigure
+    public static function withOnlyHeading(IsCaptioned $image, string $heading) : CaptionedAsset
     {
         Assertion::notBlank($heading);
 
         return new static($image, $heading);
     }
 
-    public static function withParagraph(IsCaptioned $image, string $heading, string $caption) : CaptionedFigure
+    public static function withParagraph(IsCaptioned $image, string $heading, string $caption) : CaptionedAsset
     {
         Assertion::notBlank($heading);
         Assertion::notBlank($caption);
@@ -76,7 +76,7 @@ final class CaptionedFigure implements ViewModel
         return new static($image, $heading, [['caption' => $caption]]);
     }
 
-    public static function withParagraphs(IsCaptioned $image, string $heading, array $captions) : CaptionedFigure
+    public static function withParagraphs(IsCaptioned $image, string $heading, array $captions) : CaptionedAsset
     {
         Assertion::notBlank($heading);
         Assertion::notBlank($captions);
@@ -89,7 +89,7 @@ final class CaptionedFigure implements ViewModel
         return new static($image, $heading, $captions);
     }
 
-    public static function withCustomContent(IsCaptioned $image, string $content) : CaptionedFigure
+    public static function withCustomContent(IsCaptioned $image, string $content) : CaptionedAsset
     {
         Assertion::notBlank($content);
 
@@ -98,12 +98,12 @@ final class CaptionedFigure implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/captioned-figure.css';
+        yield '/elife/patterns/assets/css/captioned-asset.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/captioned-figure.mustache';
+        return '/elife/patterns/templates/captioned-asset.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

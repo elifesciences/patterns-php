@@ -1,7 +1,7 @@
 assets:
     css:
         - buttons.css
-        - captioned-figure.css
+        - captioned-asset.css
         - viewer-inline.css
     js: []
 schema:
