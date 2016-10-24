@@ -14,14 +14,12 @@ final class MediaSourceFallback implements CastsToArray
 
     private $content;
     private $isExternal;
-    private $classes;
 
-    public function __construct(string $content, bool $isExternal = false, $classes = [])
+    public function __construct(string $content, bool $isExternal = false)
     {
         Assertion::notBlank($content);
 
         $this->content = $content;
         $this->isExternal = $isExternal;
-        $this->classes = implode(' ', $classes);
     }
 }

@@ -22,14 +22,12 @@ final class MediaSourceTest extends ViewModelTest
             'fallback' => [
                 'content' => 'Download me',
                 'isExternal' => true,
-                'classes' => 'test-class',
             ],
         ];
         $mediaSource = new MediaSource(
             $data['src'],
             new MediaType($data['mediaType']['forMachine']),
-            new MediaSourceFallback($data['fallback']['content'], $data['fallback']['isExternal'],
-                explode(' ', $data['fallback']['classes']))
+            new MediaSourceFallback($data['fallback']['content'], $data['fallback']['isExternal'])
         );
 
         $this->assertSameValuesWithoutOrder($mediaSource, $data);
@@ -42,7 +40,7 @@ final class MediaSourceTest extends ViewModelTest
                 new MediaSource(
                     'http://google.com/test.mp3',
                     new MediaType('audio/mp3'),
-                    new MediaSourceFallback('Download me', true, ['test-class'])
+                    new MediaSourceFallback('Download me', true)
                 ),
             ],
             [
