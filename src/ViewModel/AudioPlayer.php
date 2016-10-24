@@ -34,7 +34,16 @@ final class AudioPlayer implements ViewModel
 
         $this->episodeNumber = $episodeNumber;
         $this->title = $title;
-        $this->sources = $sources;
+        $this->sources = array_map(function (MediaSource $source) {
+            if (empty($source['fallback'])) {
+                return $source;
+            }
+
+            $fallback = $source['fallback']->toArray();
+            $fallback['classes'] = 'media-source__fallback_link--audio-player';
+
+            return FlexibleViewModel::fromViewModel($source)->withProperty('fallback', $fallback);
+        }, $sources);
         $this->metadata = [
             'number' => $episodeNumber,
             'chapters' => [],
@@ -47,11 +56,6 @@ final class AudioPlayer implements ViewModel
             ];
         }
         $this->metadata = str_replace('"', '\'', json_encode($this->metadata));
-    }
-
-    public function addSource(MediaSource $source)
-    {
-        $this->sources[] = $source;
     }
 
     public function getTemplateName() : string

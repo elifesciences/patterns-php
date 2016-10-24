@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\AudioPlayer;
 use eLife\Patterns\ViewModel\MediaChapterListingItem;
 use eLife\Patterns\ViewModel\MediaSource;
+use eLife\Patterns\ViewModel\MediaSourceFallback;
 use eLife\Patterns\ViewModel\MediaType;
 use InvalidArgumentException;
 
@@ -99,6 +100,11 @@ final class AudioPlayerTest extends ViewModelTest
                         'forHuman' => 'MPEG',
                     ],
                     'src' => '/audio.mp3',
+                    'fallback' => [
+                        'content' => 'fallback',
+                        'isExternal' => true,
+                        'classes' => 'media-source__fallback_link--audio-player',
+                    ],
                 ],
                 [
                     'mediaType' => [
@@ -114,7 +120,10 @@ final class AudioPlayerTest extends ViewModelTest
         $audioPlayer = new AudioPlayer($data['episodeNumber'], $data['title'],
             [
                 new MediaSource($data['sources'][0]['src'],
-                    new MediaType($data['sources'][0]['mediaType']['forMachine'])),
+                    new MediaType($data['sources'][0]['mediaType']['forMachine']),
+                    new MediaSourceFallback('fallback', true)),
+                new MediaSource($data['sources'][1]['src'],
+                    new MediaType($data['sources'][1]['mediaType']['forMachine'])),
             ],
             [
                 new MediaChapterListingItem($chapters[0]['title'], $chapters[0]['time'],
@@ -123,8 +132,6 @@ final class AudioPlayerTest extends ViewModelTest
                     $chapters[1]['number']),
             ]
         );
-        $audioPlayer->addSource(new MediaSource($data['sources'][1]['src'],
-            new MediaType($data['sources'][1]['mediaType']['forMachine'])));
 
         $this->assertSame($data['episodeNumber'], $audioPlayer['episodeNumber']);
         $this->assertSame($data['title'], $audioPlayer['title']);
@@ -144,7 +151,8 @@ final class AudioPlayerTest extends ViewModelTest
             [
                 new AudioPlayer(1, 'title of player',
                     [
-                        new MediaSource('/audio.mp3', new MediaType('audio/mpeg')),
+                        new MediaSource('/audio.mp3', new MediaType('audio/mpeg'),
+                            new MediaSourceFallback('fallback', true)),
                         new MediaSource('/audio.ogg', new MediaType('audio/ogg')),
                     ],
                     [
