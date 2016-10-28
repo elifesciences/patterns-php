@@ -3,7 +3,7 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
-use eLife\Patterns\ArrayFromNullProperties;
+use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
@@ -11,7 +11,7 @@ use Traversable;
 
 final class AdditionalAssets implements ViewModel
 {
-    use ArrayFromNullProperties;
+    use ArrayFromProperties;
     use ComposedAssets;
     use ReadOnlyArrayAccess;
 
@@ -19,10 +19,9 @@ final class AdditionalAssets implements ViewModel
     private $data;
 
     public function __construct(
-        string $heading,
+        string $heading = null,
         array $data
     ) {
-        Assertion::notBlank($heading);
         Assertion::notEmpty($data);
         Assertion::allIsInstanceOf($data, AdditionalAssetData::class);
 

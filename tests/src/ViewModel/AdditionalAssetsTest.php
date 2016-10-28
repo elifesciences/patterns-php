@@ -62,6 +62,10 @@ final class AdditionalAssetsTest extends ViewModelTest
     {
         return [
             [
+                new AdditionalAssets(null,
+                    [AdditionalAssetData::withDoi('With doi', null, new Doi('10.7554/eLife.10181.001'))]),
+            ],
+            [
                 new AdditionalAssets('Some title',
                     [AdditionalAssetData::withDoi('With doi', null, new Doi('10.7554/eLife.10181.001'))]),
             ],
