@@ -34,6 +34,11 @@ final class Doi implements ViewModel
         $this->isTruncated = $isTruncated;
     }
 
+    public function truncate() : Doi
+    {
+        return new static($this->doi, $this->variant, true);
+    }
+
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/doi.mustache';
