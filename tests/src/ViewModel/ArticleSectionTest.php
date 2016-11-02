@@ -17,6 +17,7 @@ final class ArticleSectionTest extends ViewModelTest
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
+                'isTruncated' => false,
                 'variant' => 'article-section',
             ],
             'title' => 'some title',
@@ -31,19 +32,20 @@ final class ArticleSectionTest extends ViewModelTest
             new Doi('10.7554/eLife.10181.001'), true);
 
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
-        $this->assertSame($basicData['doi'], $basicArticleSection['doi']->toArray());
+        $this->assertSameWithoutOrder($basicData['doi'], $basicArticleSection['doi']);
         $this->assertSame($basicData['title'], $basicArticleSection['title']);
         $this->assertSame($basicData['headingLevel'], $basicArticleSection['headingLevel']);
         $this->assertSame($basicData['hasBehaviour'], $basicArticleSection['hasBehaviour']);
         $this->assertSame($basicData['isInitiallyClosed'], $basicArticleSection['isInitiallyClosed']);
         $this->assertSame($basicData['body'], $basicArticleSection['body']);
         $this->assertSame($basicData['isFirst'], $basicArticleSection['isFirst']);
-        $this->assertSame($basicData, $basicArticleSection->toArray());
+        $this->assertSameWithoutOrder($basicData, $basicArticleSection);
 
         $collapsibleData = [
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
+                'isTruncated' => false,
                 'variant' => 'article-section',
             ],
             'title' => 'some title',
@@ -58,14 +60,14 @@ final class ArticleSectionTest extends ViewModelTest
             new Doi('10.7554/eLife.10181.001'));
 
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
-        $this->assertSame($collapsibleData['doi'], $collapsibleArticleSection['doi']->toArray());
+        $this->assertSameWithoutOrder($collapsibleData['doi'], $collapsibleArticleSection['doi']);
         $this->assertSame($collapsibleData['title'], $collapsibleArticleSection['title']);
         $this->assertSame($collapsibleData['headingLevel'], $collapsibleArticleSection['headingLevel']);
         $this->assertSame($collapsibleData['hasBehaviour'], $collapsibleArticleSection['hasBehaviour']);
         $this->assertSame($collapsibleData['isInitiallyClosed'], $collapsibleArticleSection['isInitiallyClosed']);
         $this->assertSame($collapsibleData['body'], $collapsibleArticleSection['body']);
         $this->assertSame($collapsibleData['isFirst'], $collapsibleArticleSection['isFirst']);
-        $this->assertSame($collapsibleData, $collapsibleArticleSection->toArray());
+        $this->assertSameWithoutOrder($collapsibleData, $collapsibleArticleSection);
     }
 
     /**

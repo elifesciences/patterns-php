@@ -38,9 +38,8 @@ final class CaptionedAsset implements ViewModel
         $this->captions = $captions;
         $this->customContent = $customContent;
         $this->setFigure($figure);
-        if ($doi) {
-            $doi = FlexibleViewModel::fromViewModel($doi);
-            $this->doi = $doi->withProperty('variant', 'article-section');
+        if ($doi !== null) {
+            $this->doi = new Doi($doi['doi'], Doi::ARTICLE_SECTION);
         }
         if ($download) {
             $this->download = [

@@ -15,13 +15,23 @@ final class Doi implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    private $doi;
+    const ARTICLE_SECTION = 'article-section';
+    const ASSET = 'asset';
 
-    public function __construct(string $doi)
+    private $doi;
+    private $variant;
+    private $isTruncated;
+
+    public function __construct(string $doi, string $variant = null, bool $isTruncated = false)
     {
         Assertion::regex($doi, '~^10[.][0-9]{4,}[^\s"/<>]*/[^\s"]+$~');
+        if ($variant !== null) {
+            Assertion::inArray($variant, [self::ARTICLE_SECTION, self::ASSET]);
+        }
 
+        $this->variant = $variant;
         $this->doi = $doi;
+        $this->isTruncated = $isTruncated;
     }
 
     public function getTemplateName() : string

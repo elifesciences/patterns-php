@@ -29,7 +29,7 @@ final class ContextualData implements ViewModel
         if ($citeAs && $doi) {
             $this->citation = [
                 'citeAs' => $citeAs,
-                'doi' => $doi,
+                'doi' => new Doi($doi['doi'], $doi['variant'], true),
             ];
         }
     }

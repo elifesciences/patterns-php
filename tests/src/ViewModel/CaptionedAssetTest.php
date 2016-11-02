@@ -41,6 +41,7 @@ final class CaptionedAssetTest extends ViewModelTest
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
                 'variant' => 'article-section',
+                'isTruncated' => false,
             ],
             'download' => [
                 'link' => 'http://google.com/',
@@ -79,6 +80,7 @@ final class CaptionedAssetTest extends ViewModelTest
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
                 'variant' => 'article-section',
+                'isTruncated' => false,
             ],
             'download' => [
                 'link' => 'http://google.com/',
