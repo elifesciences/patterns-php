@@ -45,7 +45,8 @@ final class ArticleSection implements ViewModel
         }
 
         if ($doi !== null) {
-            $doi = new Doi($doi['doi'], Doi::ARTICLE_SECTION);
+            $doi = FlexibleViewModel::fromViewModel($doi);
+            $doi = $doi->withProperty('variant', Doi::ARTICLE_SECTION);
         }
 
         $this->id = $id;

@@ -17,7 +17,6 @@ final class ArticleSectionTest extends ViewModelTest
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
-                'isTruncated' => false,
                 'variant' => 'article-section',
             ],
             'title' => 'some title',
@@ -45,7 +44,6 @@ final class ArticleSectionTest extends ViewModelTest
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
-                'isTruncated' => false,
                 'variant' => 'article-section',
             ],
             'title' => 'some title',

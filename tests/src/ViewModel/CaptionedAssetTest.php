@@ -41,7 +41,6 @@ final class CaptionedAssetTest extends ViewModelTest
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
                 'variant' => 'article-section',
-                'isTruncated' => false,
             ],
             'download' => [
                 'link' => 'http://google.com/',
@@ -63,7 +62,7 @@ final class CaptionedAssetTest extends ViewModelTest
             new Link($data['download']['filename'], $data['download']['link'])
         );
 
-        $this->assertSame($data, $captionedImage->toArray());
+        $this->assertSameWithoutOrder($data, $captionedImage->toArray());
 
         $widthFirst = 500;
         $widthSecond = 250;
@@ -79,8 +78,6 @@ final class CaptionedAssetTest extends ViewModelTest
             ],
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
-                'variant' => 'article-section',
-                'isTruncated' => false,
             ],
             'download' => [
                 'link' => 'http://google.com/',
@@ -99,7 +96,7 @@ final class CaptionedAssetTest extends ViewModelTest
             new Link($data['download']['filename'], $data['download']['link'])
         );
 
-        $this->assertSame($data, $captionedImage->toArray());
+        $this->assertSameWithoutOrder($data, $captionedImage);
 
         $data = [
             'customContent' => '<h3>This is custom content</h3><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>',

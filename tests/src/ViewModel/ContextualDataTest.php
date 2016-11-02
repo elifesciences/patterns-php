@@ -28,6 +28,7 @@ final class ContextualDataTest extends ViewModelTest
                 'doi' => [
                     'doi' => '10.7554/eLife.10181.001',
                     'isTruncated' => true,
+                    'variant' => Doi::ASSET,
                 ],
             ],
         ];

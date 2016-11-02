@@ -19,24 +19,11 @@ final class Doi implements ViewModel
     const ASSET = 'asset';
 
     private $doi;
-    private $variant;
-    private $isTruncated;
 
-    public function __construct(string $doi, string $variant = null, bool $isTruncated = false)
+    public function __construct(string $doi)
     {
         Assertion::regex($doi, '~^10[.][0-9]{4,}[^\s"/<>]*/[^\s"]+$~');
-        if ($variant !== null) {
-            Assertion::inArray($variant, [self::ARTICLE_SECTION, self::ASSET]);
-        }
-
-        $this->variant = $variant;
         $this->doi = $doi;
-        $this->isTruncated = $isTruncated;
-    }
-
-    public function truncate() : Doi
-    {
-        return new static($this->doi, $this->variant, true);
     }
 
     public function getTemplateName() : string

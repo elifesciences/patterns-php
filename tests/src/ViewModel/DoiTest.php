@@ -14,10 +14,8 @@ final class DoiTest extends ViewModelTest
     {
         $data = [
             'doi' => '10.7554/eLife.10181.001',
-            'variant' => 'article-section',
-            'isTruncated' => false,
         ];
-        $doi = new Doi($data['doi'], Doi::ARTICLE_SECTION, $data['isTruncated']);
+        $doi = new Doi($data['doi']);
 
         $this->assertSame($data['doi'], $doi['doi']);
         $this->assertSame($data, $doi->toArray());
@@ -37,7 +35,6 @@ final class DoiTest extends ViewModelTest
             [new Doi('10.7554/eLife.10181.001', null, true)],
             [new Doi('10.7554/eLife.10181.001', Doi::ASSET)],
             [new Doi('10.7554/eLife.10181.001', Doi::ARTICLE_SECTION)],
-            [(new Doi('10.7554/eLife.10181.001'))->truncate()],
         ];
     }
 
