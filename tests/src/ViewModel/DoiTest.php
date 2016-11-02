@@ -37,6 +37,7 @@ final class DoiTest extends ViewModelTest
             [new Doi('10.7554/eLife.10181.001', null, true)],
             [new Doi('10.7554/eLife.10181.001', Doi::ASSET)],
             [new Doi('10.7554/eLife.10181.001', Doi::ARTICLE_SECTION)],
+            [(new Doi('10.7554/eLife.10181.001'))->truncate()],
         ];
     }
 
