@@ -154,7 +154,7 @@ final class ContentHeaderArticle implements ViewModel
 
     public static function magazineWithBackground(
         string $title,
-        string $strapline,
+        string $strapline = null,
         AuthorList $authors,
         Picture $download = null,
         SubjectList $subjects = null,
