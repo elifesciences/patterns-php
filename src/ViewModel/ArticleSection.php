@@ -44,8 +44,9 @@ final class ArticleSection implements ViewModel
             throw new InvalidArgumentException('DOI requires an ID');
         }
 
-        if ($doi) {
-            $doi = FlexibleViewModel::fromViewModel($doi)->withProperty('variant', 'article-section');
+        if ($doi !== null) {
+            $doi = FlexibleViewModel::fromViewModel($doi);
+            $doi = $doi->withProperty('variant', Doi::ARTICLE_SECTION);
         }
 
         $this->id = $id;

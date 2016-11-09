@@ -15,12 +15,14 @@ final class Doi implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    const ARTICLE_SECTION = 'article-section';
+    const ASSET = 'asset';
+
     private $doi;
 
     public function __construct(string $doi)
     {
         Assertion::regex($doi, '~^10[.][0-9]{4,}[^\s"/<>]*/[^\s"]+$~');
-
         $this->doi = $doi;
     }
 
