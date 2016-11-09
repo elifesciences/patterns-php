@@ -30,9 +30,7 @@ final class ContextualData implements ViewModel
             $doi = FlexibleViewModel::fromViewModel($doi);
             $this->citation = [
                 'citeAs' => $citeAs,
-                'doi' => $doi
-                    ->withProperty('isTruncated', true)
-                    ->withProperty('variant', Doi::ASSET),
+                'doi' => $doi->withProperty('isTruncated', true),
             ];
         }
     }
