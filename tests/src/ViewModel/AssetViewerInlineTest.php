@@ -61,9 +61,8 @@ final class AssetViewerInlineTest extends ViewModelTest
             [
                 new AdditionalAssets('additional assets',
                     [
-                        AdditionalAssetData::withoutDoi('Without doi', 'part 2', 'http://google.com/', 'text',
-                            DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
-                                'File name')),
+                        AdditionalAssetData::withoutDoi('Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                            'File name'), 'part 2', 'http://google.com/', 'text'),
                     ]),
             ]);
 
@@ -179,9 +178,8 @@ final class AssetViewerInlineTest extends ViewModelTest
                         [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'), [
                         new AdditionalAssets('additional assets',
                             [
-                                AdditionalAssetData::withoutDoi('Without doi', 'part 2', 'http://google.com/', 'text',
-                                    DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
-                                        'File name')),
+                                AdditionalAssetData::withoutDoi('Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                                    'File name'), 'part 2', 'http://google.com/', 'text'),
                             ]),
                     ]),
             ],

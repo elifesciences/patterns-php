@@ -33,10 +33,16 @@ final class AdditionalAssetsTest extends ViewModelTest
         ];
         $sourceData = new AdditionalAssets($data['heading'],
             [
-                AdditionalAssetData::withoutDoi($data['data'][0]['headingPart1'], $data['data'][0]['headingPart2'],
-                    $data['data'][0]['nonDoiLink'], 'text',
-                    DownloadLink::fromLink(new Link($data['data'][0]['downloadLink']['name'],
-                        $data['data'][0]['downloadLink']['url']), $data['data'][0]['downloadLink']['fileName'])),
+                AdditionalAssetData::withoutDoi(
+                    $data['data'][0]['headingPart1'],
+                    DownloadLink::fromLink(
+                        new Link($data['data'][0]['downloadLink']['name'], $data['data'][0]['downloadLink']['url']),
+                        $data['data'][0]['downloadLink']['fileName']
+                    ),
+                    $data['data'][0]['headingPart2'],
+                    $data['data'][0]['nonDoiLink'],
+                    'text'
+                ),
             ]);
         $this->assertSameWithoutOrder($data, $sourceData);
 
@@ -52,33 +58,37 @@ final class AdditionalAssetsTest extends ViewModelTest
             ],
         ];
         $sourceDataDoi = new AdditionalAssets($data['heading'], [
-            AdditionalAssetData::withDoi($dataDoi['data'][0]['headingPart1'], null,
-                new Doi($dataDoi['data'][0]['doi']['doi'])),
+            AdditionalAssetData::withDoi(
+                $dataDoi['data'][0]['headingPart1'],
+                DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name'),
+                null,
+                new Doi($dataDoi['data'][0]['doi']['doi'])
+            ),
         ]);
         $this->assertSameWithoutOrder($dataDoi, $sourceDataDoi);
     }
 
     public function viewModelProvider() : array
     {
+        $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
+
         return [
             [
                 new AdditionalAssets(null,
-                    [AdditionalAssetData::withDoi('With doi', null, new Doi('10.7554/eLife.10181.001'))]),
+                    [AdditionalAssetData::withDoi('With doi', $downloadLink, null, new Doi('10.7554/eLife.10181.001'))]),
             ],
             [
                 new AdditionalAssets('Some title',
-                    [AdditionalAssetData::withDoi('With doi', null, new Doi('10.7554/eLife.10181.001'))]),
+                    [AdditionalAssetData::withDoi('With doi', $downloadLink, null, new Doi('10.7554/eLife.10181.001'))]),
             ],
             [
                 new AdditionalAssets('Some title',
-                    [AdditionalAssetData::withoutDoi('Without doi', null, 'http://google.com/')]),
+                    [AdditionalAssetData::withoutDoi('Without doi', $downloadLink, null, 'http://google.com/')]),
             ],
             [
                 new AdditionalAssets('Some title',
                     [
-                        AdditionalAssetData::withoutDoi('Without doi', 'part 2', 'http://google.com/', 'text',
-                            DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
-                                'File name')),
+                        AdditionalAssetData::withoutDoi('Without doi', $downloadLink, 'part 2', 'http://google.com/', 'text'),
                     ]),
             ],
         ];

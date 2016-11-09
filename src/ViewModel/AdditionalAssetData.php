@@ -19,11 +19,11 @@ final class AdditionalAssetData implements CastsToArray
 
     private function __construct(
         string $headingPart1,
+        DownloadLink $downloadLink,
         string $headingPart2 = null,
         string $nonDoiLink = null,
         Doi $doi = null,
-        string $textPart = null,
-        DownloadLink $downloadLink = null
+        string $textPart = null
     ) {
         Assertion::notBlank($headingPart1);
 
@@ -37,22 +37,22 @@ final class AdditionalAssetData implements CastsToArray
 
     public static function withDoi(
         string $headingPart1,
+        DownloadLink $downloadLink,
         string $headingPart2 = null,
         Doi $doi,
-        string $textPart = null,
-        DownloadLink $downloadLink = null
+        string $textPart = null
     ) {
-        return new static($headingPart1, $headingPart2, null, $doi, $textPart, $downloadLink);
+        return new static($headingPart1, $downloadLink, $headingPart2, null, $doi, $textPart);
     }
 
     public static function withoutDoi(
         string $headingPart1,
+        DownloadLink $downloadLink,
         string $headingPart2 = null,
         string $uri,
-        string $textPart = null,
-        DownloadLink $downloadLink = null
+        string $textPart = null
     ) {
-        return new static($headingPart1, $headingPart2, $uri, null, $textPart, $downloadLink);
+        return new static($headingPart1, $downloadLink, $headingPart2, $uri, null, $textPart);
     }
 
     final public function toArray() : array
