@@ -49,6 +49,11 @@ schema:
                                     type: string
                                     enum:
                                         - article-section
+                                        - asset
+                                isTruncated:
+                                    type: boolean
+                                    default:
+                                        - false
                             required:
                                 - doi
                     required:

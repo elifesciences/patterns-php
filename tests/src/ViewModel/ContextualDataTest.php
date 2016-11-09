@@ -27,6 +27,8 @@ final class ContextualDataTest extends ViewModelTest
                 'citeAs' => 'qux',
                 'doi' => [
                     'doi' => '10.7554/eLife.10181.001',
+                    'isTruncated' => true,
+                    'variant' => Doi::ASSET,
                 ],
             ],
         ];
@@ -38,6 +40,15 @@ final class ContextualDataTest extends ViewModelTest
         $this->assertSame($data['citation']['citeAs'], $contextualData['citation']['citeAs']);
         $this->assertSame($data['citation']['doi'], $contextualData['citation']['doi']->toArray());
         $this->assertSame($data, $contextualData->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_truncates_doi()
+    {
+        $contextualData = ContextualData::withCitation('foo', new Doi('10.7554/eLife.10181.001'));
+        $this->assertTrue($contextualData['citation']['doi']['isTruncated']);
     }
 
     public function viewModelProvider() : array
