@@ -20,6 +20,11 @@ schema:
                 - table
                 - video
                 - supplement
+        classes:
+            type: string
+            minLength: 1
+        isSupplement:
+            type: boolean
         supplementOrdinal:
             type: integer
             minimum: 1
@@ -276,6 +281,7 @@ schema:
                                                 - name
                                     required:
                                         - headingPart1
+                                        - downloadLink
                                 -
                                     oneOf:
                                         -
