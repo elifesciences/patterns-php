@@ -37,7 +37,7 @@ final class AssetViewerInline implements ViewModel
         Assertion::nullOrMin($supplementOrdinal, 1);
         Assertion::nullOrNotBlank($parentId);
         Assertion::notBlank($label);
-        Assertion::allIsInstanceOf($additionalAssets, AdditionalAssets::class);
+        Assertion::allIsInstanceOf($additionalAssets, AdditionalAssetData::class);
 
         $this->id = $id;
         if ($supplementOrdinal) {
@@ -55,7 +55,11 @@ final class AssetViewerInline implements ViewModel
         $this->label = $label;
         $this->figuresPageFragLink = '#'.$id;
         $this->captionedAsset = $captionedAsset;
-        $this->additionalAssets = $additionalAssets;
+        if (!empty($additionalAssets)) {
+            $this->additionalAssets = [new AdditionalAssets(null, $additionalAssets)];
+        } else {
+            $this->additionalAssets = [];
+        }
     }
 
     public static function primary(
