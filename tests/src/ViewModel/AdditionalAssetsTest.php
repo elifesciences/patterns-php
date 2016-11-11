@@ -19,6 +19,7 @@ final class AdditionalAssetsTest extends ViewModelTest
             'heading' => 'Some title',
             'data' => [
                 [
+                    'assetId' => 'id',
                     'headingPart1' => 'without doi',
                     'headingPart2' => 'without doi 2',
                     'nonDoiLink' => 'http://google.com/',
@@ -34,6 +35,7 @@ final class AdditionalAssetsTest extends ViewModelTest
         $sourceData = new AdditionalAssets($data['heading'],
             [
                 AdditionalAssetData::withoutDoi(
+                    $data['data'][0]['assetId'],
                     $data['data'][0]['headingPart1'],
                     DownloadLink::fromLink(
                         new Link($data['data'][0]['downloadLink']['name'], $data['data'][0]['downloadLink']['url']),
@@ -50,6 +52,7 @@ final class AdditionalAssetsTest extends ViewModelTest
             'heading' => 'Some title',
             'data' => [
                 [
+                    'assetId' => 'id',
                     'headingPart1' => 'with doi',
                     'doi' => [
                         'doi' => '10.7554/eLife.10181.001',
@@ -59,6 +62,7 @@ final class AdditionalAssetsTest extends ViewModelTest
         ];
         $sourceDataDoi = new AdditionalAssets($data['heading'], [
             AdditionalAssetData::withDoi(
+                $dataDoi['data'][0]['assetId'],
                 $dataDoi['data'][0]['headingPart1'],
                 DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name'),
                 null,
@@ -75,20 +79,20 @@ final class AdditionalAssetsTest extends ViewModelTest
         return [
             [
                 new AdditionalAssets(null,
-                    [AdditionalAssetData::withDoi('With doi', $downloadLink, null, new Doi('10.7554/eLife.10181.001'))]),
+                    [AdditionalAssetData::withDoi('id', 'With doi', $downloadLink, null, new Doi('10.7554/eLife.10181.001'))]),
             ],
             [
                 new AdditionalAssets('Some title',
-                    [AdditionalAssetData::withDoi('With doi', $downloadLink, null, new Doi('10.7554/eLife.10181.001'))]),
+                    [AdditionalAssetData::withDoi('id', 'With doi', $downloadLink, null, new Doi('10.7554/eLife.10181.001'))]),
             ],
             [
                 new AdditionalAssets('Some title',
-                    [AdditionalAssetData::withoutDoi('Without doi', $downloadLink, null, 'http://google.com/')]),
+                    [AdditionalAssetData::withoutDoi('id', 'Without doi', $downloadLink, null, 'http://google.com/')]),
             ],
             [
                 new AdditionalAssets('Some title',
                     [
-                        AdditionalAssetData::withoutDoi('Without doi', $downloadLink, 'part 2', 'http://google.com/', 'text'),
+                        AdditionalAssetData::withoutDoi('id', 'Without doi', $downloadLink, 'part 2', 'http://google.com/', 'text'),
                     ]),
             ],
         ];
