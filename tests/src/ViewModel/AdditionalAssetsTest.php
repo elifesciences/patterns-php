@@ -55,6 +55,7 @@ final class AdditionalAssetsTest extends ViewModelTest
                     'assetId' => 'id',
                     'headingPart1' => 'with doi',
                     'doi' => [
+                        'variant' => 'asset',
                         'doi' => '10.7554/eLife.10181.001',
                     ],
                 ],

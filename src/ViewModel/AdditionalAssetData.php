@@ -30,6 +30,11 @@ final class AdditionalAssetData implements CastsToArray
         Assertion::notBlank($id);
         Assertion::notBlank($headingPart1);
 
+        if ($doi) {
+            $doi = FlexibleViewModel::fromViewModel($doi)
+                ->withProperty('variant', Doi::ASSET);
+        }
+
         $this->assetId = $id;
         $this->headingPart1 = $headingPart1;
         $this->headingPart2 = $headingPart2;
