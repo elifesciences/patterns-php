@@ -10,6 +10,7 @@ final class AdditionalAssetData implements CastsToArray
 {
     use ReadOnlyArrayAccess;
 
+    private $assetId;
     private $headingPart1;
     private $headingPart2;
     private $nonDoiLink;
@@ -18,15 +19,23 @@ final class AdditionalAssetData implements CastsToArray
     private $downloadLink;
 
     private function __construct(
+        string $id,
         string $headingPart1,
+        DownloadLink $downloadLink,
         string $headingPart2 = null,
         string $nonDoiLink = null,
         Doi $doi = null,
-        string $textPart = null,
-        DownloadLink $downloadLink = null
+        string $textPart = null
     ) {
+        Assertion::notBlank($id);
         Assertion::notBlank($headingPart1);
 
+        if ($doi) {
+            $doi = FlexibleViewModel::fromViewModel($doi)
+                ->withProperty('variant', Doi::ASSET);
+        }
+
+        $this->assetId = $id;
         $this->headingPart1 = $headingPart1;
         $this->headingPart2 = $headingPart2;
         $this->nonDoiLink = $nonDoiLink;
@@ -36,23 +45,25 @@ final class AdditionalAssetData implements CastsToArray
     }
 
     public static function withDoi(
+        string $id,
         string $headingPart1,
+        DownloadLink $downloadLink,
         string $headingPart2 = null,
         Doi $doi,
-        string $textPart = null,
-        DownloadLink $downloadLink = null
+        string $textPart = null
     ) {
-        return new static($headingPart1, $headingPart2, null, $doi, $textPart, $downloadLink);
+        return new static($id, $headingPart1, $downloadLink, $headingPart2, null, $doi, $textPart);
     }
 
     public static function withoutDoi(
+        string $id,
         string $headingPart1,
+        DownloadLink $downloadLink,
         string $headingPart2 = null,
         string $uri,
-        string $textPart = null,
-        DownloadLink $downloadLink = null
+        string $textPart = null
     ) {
-        return new static($headingPart1, $headingPart2, $uri, null, $textPart, $downloadLink);
+        return new static($id, $headingPart1, $downloadLink, $headingPart2, $uri, null, $textPart);
     }
 
     final public function toArray() : array

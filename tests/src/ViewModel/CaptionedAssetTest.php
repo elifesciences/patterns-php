@@ -40,7 +40,7 @@ final class CaptionedAssetTest extends ViewModelTest
             ],
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
-                'variant' => 'article-section',
+                'variant' => 'asset',
             ],
             'download' => [
                 'link' => 'http://google.com/',
@@ -62,7 +62,7 @@ final class CaptionedAssetTest extends ViewModelTest
             new Link($data['download']['filename'], $data['download']['link'])
         );
 
-        $this->assertSame($data, $captionedImage->toArray());
+        $this->assertSameWithoutOrder($data, $captionedImage->toArray());
 
         $widthFirst = 500;
         $widthSecond = 250;
@@ -78,7 +78,6 @@ final class CaptionedAssetTest extends ViewModelTest
             ],
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
-                'variant' => 'article-section',
             ],
             'download' => [
                 'link' => 'http://google.com/',
@@ -97,14 +96,14 @@ final class CaptionedAssetTest extends ViewModelTest
             new Link($data['download']['filename'], $data['download']['link'])
         );
 
-        $this->assertSame($data, $captionedImage->toArray());
+        $this->assertSameWithoutOrder($data, $captionedImage);
 
         $data = [
             'customContent' => '<h3>This is custom content</h3><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>',
             'tables' => ['<table><thead><tr><th>F(Dfn, Dfd)</th><th>Partial η<sup>2</sup></th><th>Original effect size <em>f</em></th><th>Replication total sample size</th><th>Detectable effect size <em>f</em></th></tr></thead><tbody><tr><td>F(24,39) = 0.8678 (interaction)</td><td>0.348120</td><td>0.7307699</td><td>169<a class="xref-table-fn" href="#tblfn2">*</a></td><td>0.3895070<a class="xref-table-fn" href="#tblfn3">†</a></td></tr><tr><td>F(2,39) = 0.8075 (treatments)</td><td>0.039766</td><td>0.2035014</td><td>169<a class="xref-table-fn" href="#tblfn2">*</a></td><td>0.2415459<a class="xref-table-fn" href="#tblfn3">†</a></td></tr><tr><td>F(12,39) = 187.6811 (hematology parameters)</td><td>0.982978</td><td>7.599178</td><td>169<a class="xref-table-fn" href="#tblfn2">*</a></td><td>0.3331365<a class="xref-table-fn" href="#tblfn4">‡</a></td></tr></tbody></table>'],
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
-                'variant' => 'article-section',
+                'variant' => 'asset',
             ],
             'download' => [
                 'link' => 'http://google.com/',

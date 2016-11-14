@@ -20,6 +20,11 @@ schema:
                 - table
                 - video
                 - supplement
+        classes:
+            type: string
+            minLength: 1
+        isSupplement:
+            type: boolean
         supplementOrdinal:
             type: integer
             minimum: 1
@@ -61,6 +66,11 @@ schema:
                                     type: string
                                     enum:
                                         - article-section
+                                        - asset
+                                isTruncated:
+                                    type: boolean
+                                    default:
+                                        - false
                             required:
                                 - doi
                     oneOf:
@@ -245,6 +255,9 @@ schema:
                             allOf:
                                 -
                                     properties:
+                                        assetId:
+                                            type: string
+                                            minLength: 1
                                         headingPart1:
                                             type: string
                                             minLength: 1
@@ -270,7 +283,9 @@ schema:
                                                 - url
                                                 - name
                                     required:
+                                        - assetId
                                         - headingPart1
+                                        - downloadLink
                                 -
                                     oneOf:
                                         -
@@ -293,6 +308,11 @@ schema:
                                                             type: string
                                                             enum:
                                                                 - article-section
+                                                                - asset
+                                                        isTruncated:
+                                                            type: boolean
+                                                            default:
+                                                                - false
                                                     required:
                                                         - doi
                                             reqiured:

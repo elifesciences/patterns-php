@@ -36,9 +36,9 @@ final class AssetViewerInlineTest extends ViewModelTest
             ],
             'additionalAssets' => [
                 [
-                    'heading' => 'additional assets',
                     'data' => [
                         [
+                            'assetId' => 'id',
                             'headingPart1' => 'Without doi',
                             'headingPart2' => 'part 2',
                             'nonDoiLink' => 'http://google.com/',
@@ -59,12 +59,8 @@ final class AssetViewerInlineTest extends ViewModelTest
             CaptionedAsset::withOnlyHeading(new Image('/default/path',
                 [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'),
             [
-                new AdditionalAssets('additional assets',
-                    [
-                        AdditionalAssetData::withoutDoi('Without doi', 'part 2', 'http://google.com/', 'text',
-                            DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
-                                'File name')),
-                    ]),
+                AdditionalAssetData::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                    'File name'), 'part 2', 'http://google.com/', 'text'),
             ]);
 
         $this->assertSame($data['id'], $viewer['id']);
@@ -177,12 +173,8 @@ final class AssetViewerInlineTest extends ViewModelTest
                 AssetViewerInline::supplement('id', 1, 'parentId', 'label',
                     CaptionedAsset::withOnlyHeading(new Image('/default/path',
                         [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'), [
-                        new AdditionalAssets('additional assets',
-                            [
-                                AdditionalAssetData::withoutDoi('Without doi', 'part 2', 'http://google.com/', 'text',
-                                    DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
-                                        'File name')),
-                            ]),
+                        AdditionalAssetData::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                            'File name'), 'part 2', 'http://google.com/', 'text'),
                     ]),
             ],
         ];
