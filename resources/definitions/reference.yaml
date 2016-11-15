@@ -61,6 +61,7 @@ schema:
                     - suffix
         origin:
             type: string
+            minLength: 1
         hasAbstracts:
             type: boolean
         abstracts:
