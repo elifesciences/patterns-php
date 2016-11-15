@@ -16,17 +16,17 @@ final class AdditionalAssets implements ViewModel
     use ReadOnlyArrayAccess;
 
     private $heading;
-    private $data;
+    private $assets;
 
     public function __construct(
         string $heading = null,
-        array $data
+        array $assets
     ) {
-        Assertion::notEmpty($data);
-        Assertion::allIsInstanceOf($data, AdditionalAssetData::class);
+        Assertion::notEmpty($assets);
+        Assertion::allIsInstanceOf($assets, AdditionalAsset::class);
 
         $this->heading = $heading;
-        $this->data = $data;
+        $this->assets = $assets;
     }
 
     public function getTemplateName() : string
@@ -41,8 +41,6 @@ final class AdditionalAssets implements ViewModel
 
     protected function getComposedViewModels() : Traversable
     {
-        foreach ($this->data as $assetData) {
-            yield $assetData['doi'];
-        }
+        yield from $this->assets;
     }
 }

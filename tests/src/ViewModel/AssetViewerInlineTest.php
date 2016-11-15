@@ -2,7 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\AdditionalAssetData;
+use eLife\Patterns\ViewModel\AdditionalAsset;
 use eLife\Patterns\ViewModel\AdditionalAssets;
 use eLife\Patterns\ViewModel\AssetViewerInline;
 use eLife\Patterns\ViewModel\CaptionedAsset;
@@ -36,13 +36,12 @@ final class AssetViewerInlineTest extends ViewModelTest
             ],
             'additionalAssets' => [
                 [
-                    'data' => [
+                    'assets' => [
                         [
                             'assetId' => 'id',
                             'headingPart1' => 'Without doi',
                             'headingPart2' => 'part 2',
                             'nonDoiLink' => 'http://google.com/',
-                            'doi' => null,
                             'textPart' => 'text',
                             'downloadLink' => [
                                 'name' => 'Download link',
@@ -59,7 +58,7 @@ final class AssetViewerInlineTest extends ViewModelTest
             CaptionedAsset::withOnlyHeading(new Image('/default/path',
                 [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'),
             [
-                AdditionalAssetData::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                AdditionalAsset::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
                     'File name'), 'part 2', 'http://google.com/', 'text'),
             ]);
 
@@ -173,7 +172,7 @@ final class AssetViewerInlineTest extends ViewModelTest
                 AssetViewerInline::supplement('id', 1, 'parentId', 'label',
                     CaptionedAsset::withOnlyHeading(new Image('/default/path',
                         [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'), [
-                        AdditionalAssetData::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                        AdditionalAsset::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
                             'File name'), 'part 2', 'http://google.com/', 'text'),
                     ]),
             ],

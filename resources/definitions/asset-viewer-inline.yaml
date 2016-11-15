@@ -1,5 +1,6 @@
 assets:
     css:
+        - additional-asset.css
         - additional-assets.css
         - asset-viewer-inline.css
         - buttons.css
@@ -251,37 +252,59 @@ schema:
                         type: array
                         minItems: 1
                         items:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
+                            properties:
+                                assetId:
+                                    type: string
+                                    minLength: 1
+                                headingPart1:
+                                    type: string
+                                    minLength: 1
+                                headingPart2:
+                                    type: string
+                                    minLength: 1
+                                textPart:
+                                    type: string
+                                    minLength: 1
+                                doi:
+                                    $schema: 'http://json-schema.org/draft-04/schema#'
+                                    type: object
+                                    properties:
+                                        doi:
+                                            type: string
+                                            minLength: 1
+                                        variant:
+                                            type: string
+                                            enum:
+                                                - article-section
+                                                - asset
+                                        isTruncated:
+                                            type: boolean
+                                            default:
+                                                - false
+                                    required:
+                                        - doi
+                                nonDoiLink:
+                                    type: string
+                                    minLength: 1
+                                downloadLink:
+                                    type: object
+                                    properties:
+                                        url:
+                                            type: string
+                                            minLength: 1
+                                        name:
+                                            type: string
+                                            minLength: 1
+                                        fileName:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - url
+                                        - name
                             allOf:
                                 -
-                                    properties:
-                                        assetId:
-                                            type: string
-                                            minLength: 1
-                                        headingPart1:
-                                            type: string
-                                            minLength: 1
-                                        headingPart2:
-                                            type: string
-                                            minLength: 1
-                                        textPart:
-                                            type: string
-                                            minLength: 1
-                                        downloadLink:
-                                            type: object
-                                            properties:
-                                                url:
-                                                    type: string
-                                                    minLength: 1
-                                                name:
-                                                    type: string
-                                                    minLength: 1
-                                                fileName:
-                                                    type: string
-                                                    minLength: 1
-                                            required:
-                                                - url
-                                                - name
                                     required:
                                         - assetId
                                         - headingPart1
@@ -289,36 +312,13 @@ schema:
                                 -
                                     oneOf:
                                         -
-                                            properties:
-                                                nonDoiLink:
-                                                    type: string
-                                                    minLength: 1
+                                            required:
+                                                - doi
+                                        -
                                             required:
                                                 - nonDoiLink
-                                        -
-                                            properties:
-                                                doi:
-                                                    $schema: 'http://json-schema.org/draft-04/schema#'
-                                                    type: object
-                                                    properties:
-                                                        doi:
-                                                            type: string
-                                                            minLength: 1
-                                                        variant:
-                                                            type: string
-                                                            enum:
-                                                                - article-section
-                                                                - asset
-                                                        isTruncated:
-                                                            type: boolean
-                                                            default:
-                                                                - false
-                                                    required:
-                                                        - doi
-                                            reqiured:
-                                                - doi
                 required:
-                    - data
+                    - assets
     dependencies:
         parentId:
             - supplementOrdinal
