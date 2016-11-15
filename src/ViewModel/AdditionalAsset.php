@@ -3,18 +3,23 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
-use eLife\Patterns\CastsToArray;
+use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ReadOnlyArrayAccess;
+use eLife\Patterns\ViewModel;
+use Traversable;
 
-final class AdditionalAssetData implements CastsToArray
+final class AdditionalAsset implements ViewModel
 {
+    use ArrayFromProperties;
+    use ComposedAssets;
     use ReadOnlyArrayAccess;
 
     private $assetId;
     private $headingPart1;
     private $headingPart2;
     private $nonDoiLink;
-    private $doi = null;
+    private $doi;
     private $textPart;
     private $downloadLink;
 
@@ -66,41 +71,18 @@ final class AdditionalAssetData implements CastsToArray
         return new static($id, $headingPart1, $downloadLink, $headingPart2, $uri, null, $textPart);
     }
 
-    final public function toArray() : array
+    public function getTemplateName() : string
     {
-        $vars = [];
-
-        foreach (get_object_vars($this) as $key => $value) {
-            if ('_' === substr($key, 0, 1)) {
-                continue;
-            }
-            // @todo fix this DOI null bug.
-            if ($key === 'doi' && $value === null) {
-                $vars[$key] = null;
-            }
-
-            $value = $this->handleValue($value);
-
-            if (null !== $value && [] !== $value) {
-                $vars[$key] = $value;
-            }
-        }
-
-        return $vars;
+        return '/elife/patterns/templates/additional-asset.mustache';
     }
 
-    private function handleValue($value)
+    public function getLocalStyleSheets() : Traversable
     {
-        if (is_array($value)) {
-            foreach ($value as $subKey => $subValue) {
-                $value[$subKey] = $this->handleValue($subValue);
-            }
-        }
+        yield '/elife/patterns/assets/css/additional-asset.css';
+    }
 
-        if ($value instanceof CastsToArray) {
-            return $value->toArray();
-        }
-
-        return $value;
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->doi;
     }
 }

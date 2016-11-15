@@ -37,7 +37,7 @@ final class AssetViewerInline implements ViewModel
         Assertion::nullOrMin($supplementOrdinal, 1);
         Assertion::nullOrNotBlank($parentId);
         Assertion::notBlank($label);
-        Assertion::allIsInstanceOf($additionalAssets, AdditionalAssetData::class);
+        Assertion::allIsInstanceOf($additionalAssets, AdditionalAsset::class);
 
         $this->id = $id;
         if ($supplementOrdinal) {
