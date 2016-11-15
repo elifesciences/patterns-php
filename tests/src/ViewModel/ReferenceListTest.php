@@ -3,8 +3,10 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Author;
+use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Reference;
+use eLife\Patterns\ViewModel\ReferenceAuthorList;
 use eLife\Patterns\ViewModel\ReferenceList;
 use eLife\Patterns\ViewModel\ReferenceListItem;
 
@@ -12,13 +14,7 @@ final class ReferenceListTest extends ViewModelTest
 {
     private static function referenceStub() : Reference
     {
-        return new Reference('title of reference', 'the origin', '/', 'the secondary', [
-            Author::asText('Person Foo'),
-            Author::asLink(new Link('Person Bar', '/bar')),
-        ], [
-            new Link('Download', '/download'),
-            new Link('View', '/view'),
-        ]);
+        return Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), 'origin', [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')]);
     }
 
     private static function referenceStubArray() : array
