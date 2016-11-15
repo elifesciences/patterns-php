@@ -62,8 +62,8 @@ final class ReferenceTest extends ViewModelTest
             'authorLists' => [
                 [
                     'authors' => [
-                        ['name' => 'Person Foo'],
-                        ['name' => 'Person Bar', 'url' => '/bar'],
+                        ['name' => 'Person Foo', 'url' => '/foo'],
+                        ['name' => 'Person Bar'],
                     ],
                     'suffix' => 'suffix',
                 ],
@@ -77,8 +77,8 @@ final class ReferenceTest extends ViewModelTest
 
         $reference = Reference::withOutDoi(new Link($data['title'], $data['titleLink']), $data['origin'], [
             new ReferenceAuthorList([
-                Author::asText($data['authorLists'][0]['authors'][0]['name']),
-                Author::asLink(new Link($data['authorLists'][0]['authors'][1]['name'], $data['authorLists'][0]['authors'][1]['url'])),
+                Author::asLink(new Link($data['authorLists'][0]['authors'][0]['name'], $data['authorLists'][0]['authors'][0]['url'])),
+                Author::asText($data['authorLists'][0]['authors'][1]['name']),
             ], $data['authorLists'][0]['suffix']),
         ], [new Link($data['abstracts'][0]['name'], $data['abstracts'][0]['url'])]);
 
