@@ -14,7 +14,7 @@ final class ReferenceListTest extends ViewModelTest
 {
     private static function referenceStub() : Reference
     {
-        return Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), 'origin', [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')]);
+        return Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')]);
     }
 
     private static function referenceStubArray() : array

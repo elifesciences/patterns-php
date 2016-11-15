@@ -26,20 +26,21 @@ final class Reference implements ViewModel
 
     private function __construct(
         string $title,
-        string $origin = null,
+        array $origin,
         string $titleLink = null,
         Doi $doi = null,
         array $authorLists = [],
         array $abstracts = []
     ) {
         Assertion::notBlank($title);
+        Assertion::allString($origin);
         Assertion::allIsInstanceOf($authorLists, ReferenceAuthorList::class);
         Assertion::allIsInstanceOf($abstracts, Link::class);
 
         $this->titleLink = $titleLink;
         $this->title = $title;
         $this->doi = $doi;
-        $this->origin = $origin;
+        $this->origin = empty($origin) ? null : implode('. ', $origin).'.';
         $this->authorLists = $authorLists;
         $this->hasAuthors = !empty($authorLists);
         $this->abstracts = $abstracts;
@@ -49,7 +50,7 @@ final class Reference implements ViewModel
     public static function withDoi(
         string $title,
         Doi $doi,
-        string $origin = null,
+        array $origin = [],
         array $authorLists = [],
         array $abstracts = []
     ) : Reference {
@@ -58,7 +59,7 @@ final class Reference implements ViewModel
 
     public static function withOutDoi(
         Link $title,
-        string $origin = null,
+        array $origin = [],
         array $authorLists = [],
         array $abstracts = []
     ) : Reference {

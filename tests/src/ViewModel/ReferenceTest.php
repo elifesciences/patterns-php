@@ -28,7 +28,7 @@ final class ReferenceTest extends ViewModelTest
                     'suffix' => 'suffix',
                 ],
             ],
-            'origin' => 'the origin',
+            'origin' => 'origin 1. origin 2.',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
             ],
@@ -37,7 +37,7 @@ final class ReferenceTest extends ViewModelTest
             'hasAbstracts' => true,
         ];
 
-        $reference = Reference::withDoi($data['title'], new Doi($data['doi']['doi']), $data['origin'], [
+        $reference = Reference::withDoi($data['title'], new Doi($data['doi']['doi']), ['origin 1', 'origin 2'], [
             new ReferenceAuthorList([
                 Author::asText($data['authorLists'][0]['authors'][0]['name']),
                 Author::asLink(new Link($data['authorLists'][0]['authors'][1]['name'], $data['authorLists'][0]['authors'][1]['url'])),
@@ -68,14 +68,14 @@ final class ReferenceTest extends ViewModelTest
                     'suffix' => 'suffix',
                 ],
             ],
-            'origin' => 'the origin',
+            'origin' => 'origin 1. origin 2.',
             'title' => 'title of reference',
             'titleLink' => 'link',
             'hasAuthors' => true,
             'hasAbstracts' => true,
         ];
 
-        $reference = Reference::withOutDoi(new Link($data['title'], $data['titleLink']), $data['origin'], [
+        $reference = Reference::withOutDoi(new Link($data['title'], $data['titleLink']), ['origin 1', 'origin 2'], [
             new ReferenceAuthorList([
                 Author::asLink(new Link($data['authorLists'][0]['authors'][0]['name'], $data['authorLists'][0]['authors'][0]['url'])),
                 Author::asText($data['authorLists'][0]['authors'][1]['name']),
@@ -98,9 +98,9 @@ final class ReferenceTest extends ViewModelTest
     {
         return [
             'minimum with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'))],
-            'complete with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), 'origin', [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
+            'complete with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
             'minimum without DOI' => [Reference::withOutDoi(new Link('title', 'title-link'))],
-            'complete without DOI' => [Reference::withOutDoi(new Link('title', 'title-link'), 'origin', [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
+            'complete without DOI' => [Reference::withOutDoi(new Link('title', 'title-link'), ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
         ];
     }
 
