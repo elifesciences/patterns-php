@@ -1,7 +1,6 @@
 assets:
     css:
         - additional-asset.css
-        - additional-assets.css
         - doi.css
     js: []
 schema:

@@ -1,7 +1,6 @@
 assets:
     css:
         - additional-asset.css
-        - additional-assets.css
         - asset-viewer-inline.css
         - buttons.css
         - captioned-asset.css
