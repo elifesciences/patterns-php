@@ -34,11 +34,6 @@ final class AdditionalAssets implements ViewModel
         return '/elife/patterns/templates/additional-assets.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield '/elife/patterns/assets/css/additional-assets.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->assets;
