@@ -23,7 +23,7 @@ final class AdditionalAssetsTest extends ViewModelTest
                     'assetId' => 'id',
                     'captionText' => [
                         'heading' => 'heading',
-                        'standFirst' => 'stand first',
+                        'standfirst' => 'standfirst',
                         'text' => 'text',
                     ],
                     'nonDoiLink' => 'http://google.com/',
@@ -39,7 +39,7 @@ final class AdditionalAssetsTest extends ViewModelTest
             [
                 AdditionalAsset::withoutDoi(
                     $data['assets'][0]['assetId'],
-                    new CaptionText($data['assets'][0]['captionText']['heading'], $data['assets'][0]['captionText']['standFirst'], $data['assets'][0]['captionText']['text']),
+                    new CaptionText($data['assets'][0]['captionText']['heading'], $data['assets'][0]['captionText']['standfirst'], $data['assets'][0]['captionText']['text']),
                     DownloadLink::fromLink(
                         new Link($data['assets'][0]['downloadLink']['name'], $data['assets'][0]['downloadLink']['url']),
                         $data['assets'][0]['downloadLink']['fileName']

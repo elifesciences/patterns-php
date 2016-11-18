@@ -14,14 +14,14 @@ final class CaptionTextTest extends ViewModelTest
     {
         $data = [
             'heading' => 'heading',
-            'standFirst' => 'stand first',
+            'standfirst' => 'standfirst',
             'text' => 'text',
         ];
 
         $captionText = new CaptionText(...array_values($data));
 
         $this->assertSame($data['heading'], $captionText['heading']);
-        $this->assertSame($data['standFirst'], $captionText['standFirst']);
+        $this->assertSame($data['standfirst'], $captionText['standfirst']);
         $this->assertSame($data['text'], $captionText['text']);
         $this->assertSame($data, $captionText->toArray());
     }

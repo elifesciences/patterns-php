@@ -16,15 +16,15 @@ final class CaptionText implements ViewModel
     use SimplifyAssets;
 
     private $heading;
-    private $standFirst;
+    private $standfirst;
     private $text;
 
-    public function __construct(string $heading, string $standFirst = null, string $text = null)
+    public function __construct(string $heading, string $standfirst = null, string $text = null)
     {
         Assertion::notBlank($heading);
 
         $this->heading = $heading;
-        $this->standFirst = $standFirst;
+        $this->standfirst = $standfirst;
         $this->text = $text;
     }
 
