@@ -1,6 +1,7 @@
 assets:
     css:
         - additional-asset.css
+        - caption-text.css
         - doi.css
     js: []
 schema:
@@ -20,15 +21,21 @@ schema:
                     assetId:
                         type: string
                         minLength: 1
-                    headingPart1:
-                        type: string
-                        minLength: 1
-                    headingPart2:
-                        type: string
-                        minLength: 1
-                    textPart:
-                        type: string
-                        minLength: 1
+                    captionText:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            heading:
+                                type: string
+                                minLength: 1
+                            standfirst:
+                                type: string
+                                minLength: 1
+                            text:
+                                type: string
+                                minLength: 1
+                        required:
+                            - heading
                     doi:
                         $schema: 'http://json-schema.org/draft-04/schema#'
                         type: object
@@ -69,8 +76,7 @@ schema:
                     -
                         required:
                             - assetId
-                            - headingPart1
-                            - downloadLink
+                            - captionText
                     -
                         oneOf:
                             -
