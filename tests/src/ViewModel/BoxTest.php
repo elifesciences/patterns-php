@@ -2,9 +2,9 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use InvalidArgumentException;
 use eLife\Patterns\ViewModel\Box;
 use eLife\Patterns\ViewModel\Doi;
+use InvalidArgumentException;
 
 final class BoxTest extends ViewModelTest
 {
