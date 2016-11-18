@@ -16,24 +16,19 @@ final class AdditionalAsset implements ViewModel
     use ReadOnlyArrayAccess;
 
     private $assetId;
-    private $headingPart1;
-    private $headingPart2;
+    private $captionText;
     private $nonDoiLink;
     private $doi;
-    private $textPart;
     private $downloadLink;
 
     private function __construct(
         string $id,
-        string $headingPart1,
-        DownloadLink $downloadLink,
-        string $headingPart2 = null,
+        CaptionText $captionText = null,
+        DownloadLink $downloadLink = null,
         string $nonDoiLink = null,
-        Doi $doi = null,
-        string $textPart = null
+        Doi $doi = null
     ) {
         Assertion::notBlank($id);
-        Assertion::notBlank($headingPart1);
 
         if ($doi) {
             $doi = FlexibleViewModel::fromViewModel($doi)
@@ -41,34 +36,28 @@ final class AdditionalAsset implements ViewModel
         }
 
         $this->assetId = $id;
-        $this->headingPart1 = $headingPart1;
-        $this->headingPart2 = $headingPart2;
+        $this->captionText = $captionText;
         $this->nonDoiLink = $nonDoiLink;
         $this->doi = $doi;
-        $this->textPart = $textPart;
         $this->downloadLink = $downloadLink;
     }
 
     public static function withDoi(
         string $id,
-        string $headingPart1,
-        DownloadLink $downloadLink,
-        string $headingPart2 = null,
-        Doi $doi,
-        string $textPart = null
+        CaptionText $captionText,
+        DownloadLink $downloadLink = null,
+        Doi $doi
     ) {
-        return new static($id, $headingPart1, $downloadLink, $headingPart2, null, $doi, $textPart);
+        return new static($id, $captionText, $downloadLink, null, $doi);
     }
 
     public static function withoutDoi(
         string $id,
-        string $headingPart1,
-        DownloadLink $downloadLink,
-        string $headingPart2 = null,
-        string $uri,
-        string $textPart = null
+        CaptionText $captionText,
+        DownloadLink $downloadLink = null,
+        string $uri
     ) {
-        return new static($id, $headingPart1, $downloadLink, $headingPart2, $uri, null, $textPart);
+        return new static($id, $captionText, $downloadLink, $uri);
     }
 
     public function getTemplateName() : string
@@ -83,6 +72,7 @@ final class AdditionalAsset implements ViewModel
 
     protected function getComposedViewModels() : Traversable
     {
+        yield $this->captionText;
         yield $this->doi;
     }
 }

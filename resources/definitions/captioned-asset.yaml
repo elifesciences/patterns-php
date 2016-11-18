@@ -1,6 +1,9 @@
 assets:
     css:
+        - caption-text.css
         - captioned-asset.css
+        - doi.css
+        - media-source.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -20,6 +23,21 @@ schema:
                     required:
                         - link
                         - filename
+                captionText:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        heading:
+                            type: string
+                            minLength: 1
+                        standfirst:
+                            type: string
+                            minLength: 1
+                        text:
+                            type: string
+                            minLength: 1
+                    required:
+                        - heading
                 doi:
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
@@ -38,42 +56,8 @@ schema:
                                 - false
                     required:
                         - doi
-            oneOf:
-                -
-                    properties:
-                        customContent:
-                            type: string
-                            minLength: 1
-                    required:
-                        - customContent
-                -
-                    anyOf:
-                        -
-                            oneOf:
-                                -
-                                    properties:
-                                        heading:
-                                            type: string
-                                            minLength: 1
-                                    required:
-                                        - heading
-                        -
-                            oneOf:
-                                -
-                                    properties:
-                                        captions:
-                                            type: array
-                                            items:
-                                                type: object
-                                                properties:
-                                                    caption:
-                                                        type: string
-                                                        minLength: 1
-                                                required:
-                                                    - caption
-                                                minItems: 1
-                                    required:
-                                        - captions
+            required:
+                - captionText
         -
             oneOf:
                 -
