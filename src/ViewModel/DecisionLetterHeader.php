@@ -9,35 +9,40 @@ use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class DecisionLetterProfile implements ViewModel
+final class DecisionLetterHeader implements ViewModel
 {
     use ArrayFromProperties;
     use ReadOnlyArrayAccess;
     use ComposedAssets;
 
     private $mainText;
-    private $profileSnippet;
+    private $hasProfiles;
+    private $profiles;
 
-    public function __construct(string $mainText, ProfileSnippet $profileSnippet)
+    public function __construct(string $mainText, array $profiles = [])
     {
         Assertion::notBlank($mainText);
+        Assertion::allIsInstanceOf($profiles, ProfileSnippet::class);
 
-        $this->profileSnippet = $profileSnippet;
+        $this->hasProfiles = !empty($profiles) ? true : null;
+        $this->profiles = $profiles;
+
         $this->mainText = $mainText;
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/decision-letter-profile.css';
+        yield '/elife/patterns/assets/css/decision-letter-header.css';
+        yield '/elife/patterns/assets/css/listing.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/decision-letter-profile.mustache';
+        return '/elife/patterns/templates/decision-letter-header.mustache';
     }
 
     protected function getComposedViewModels() : Traversable
     {
-        yield $this->profileSnippet;
+        yield from $this->profiles;
     }
 }

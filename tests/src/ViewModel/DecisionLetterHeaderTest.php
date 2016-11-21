@@ -2,11 +2,11 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\DecisionLetterProfile;
+use eLife\Patterns\ViewModel\DecisionLetterHeader;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 
-final class DecisionLetterProfileTest extends ViewModelTest
+final class DecisionLetterHeaderTest extends ViewModelTest
 {
     /**
      * @test
@@ -15,13 +15,15 @@ final class DecisionLetterProfileTest extends ViewModelTest
     {
         $data = [
             'mainText' => 'This is the main text',
-            'profileSnippet' => self::getProfileStub()->toArray(),
+            'hasProfiles' => true,
+            'profiles' => [self::getProfileStub()->toArray()],
         ];
 
-        $decisionLetter = new DecisionLetterProfile($data['mainText'], self::getProfileStub());
+        $decisionLetter = new DecisionLetterHeader($data['mainText'], [self::getProfileStub()]);
 
         $this->assertSame($data['mainText'], $decisionLetter['mainText']);
-        $this->assertSame($data['profileSnippet'], $decisionLetter['profileSnippet']->toArray());
+        $this->assertSame($data['hasProfiles'], $decisionLetter['hasProfiles']);
+        $this->assertSame($data['profiles'][0], $decisionLetter['profiles'][0]->toArray());
         $this->assertSame($data, $decisionLetter->toArray());
     }
 
@@ -35,12 +37,13 @@ final class DecisionLetterProfileTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new DecisionLetterProfile('Main text of letter', self::getProfileStub())],
+            'without profiles' => [new DecisionLetterHeader('Main text of letter')],
+            'with profiles' => [new DecisionLetterHeader('Main text of letter', [self::getProfileStub()])],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/decision-letter-profile.mustache';
+        return '/elife/patterns/templates/decision-letter-header.mustache';
     }
 }
