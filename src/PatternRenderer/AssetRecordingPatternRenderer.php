@@ -21,23 +21,25 @@ final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
         $this->javaScripts = new ArrayObject();
     }
 
-    public function render(ViewModel $viewModel) : string
+    public function render(ViewModel ...$viewModels) : string
     {
-        foreach ($viewModel->getStyleSheets() as $styleSheet) {
-            if (false !== $this->contains($this->styleSheets, $styleSheet)) {
-                continue;
+        foreach ($viewModels as $viewModel) {
+            foreach ($viewModel->getStyleSheets() as $styleSheet) {
+                if (false !== $this->contains($this->styleSheets, $styleSheet)) {
+                    continue;
+                }
+                $this->styleSheets[] = $styleSheet;
             }
-            $this->styleSheets[] = $styleSheet;
+
+            foreach ($viewModel->getJavaScripts() as $javaScript) {
+                if (false !== $this->contains($this->javaScripts, $javaScript)) {
+                    continue;
+                }
+                $this->javaScripts[] = $javaScript;
+            }
         }
 
-        foreach ($viewModel->getJavaScripts() as $javaScript) {
-            if (false !== $this->contains($this->javaScripts, $javaScript)) {
-                continue;
-            }
-            $this->javaScripts[] = $javaScript;
-        }
-
-        return $this->patternRenderer->render($viewModel);
+        return $this->patternRenderer->render(...$viewModels);
     }
 
     public function getStyleSheets() : Traversable
