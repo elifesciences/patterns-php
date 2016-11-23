@@ -25,18 +25,23 @@ final class CallbackPatternRendererTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function it_renders_a_view_model()
+    public function it_renders_view_models()
     {
-        $callback = function () {
+        $callback = function (ViewModel ...$viewModels) {
             return 'foo';
         };
         $patternRenderer = new CallbackPatternRenderer($callback);
 
-        $viewModel = $this->prophesize(ViewModel::class);
-        $viewModel->offsetExists('foo')->willReturn(true);
-        $viewModel->offsetGet('foo')->willReturn('bar');
-        $viewModel->getTemplateName()->willReturn('foo {{foo}}');
+        $viewModel1 = $this->prophesize(ViewModel::class);
+        $viewModel1->offsetExists('foo')->willReturn(true);
+        $viewModel1->offsetGet('foo')->willReturn('bar');
+        $viewModel1->getTemplateName()->willReturn('foo {{foo}}');
 
-        $this->assertSame('foo', $patternRenderer->render($viewModel->reveal()));
+        $viewModel2 = $this->prophesize(ViewModel::class);
+        $viewModel2->offsetExists('baz')->willReturn(true);
+        $viewModel2->offsetGet('baz')->willReturn('qux');
+        $viewModel2->getTemplateName()->willReturn('baz {{baz}}');
+
+        $this->assertSame('foo', $patternRenderer->render($viewModel1->reveal(), $viewModel2->reveal()));
     }
 }
