@@ -27,7 +27,7 @@ final class CallbackPatternRendererTest extends PHPUnit_Framework_TestCase
      */
     public function it_renders_view_models()
     {
-        $callback = function () {
+        $callback = function (ViewModel ...$viewModels) {
             return 'foo';
         };
         $patternRenderer = new CallbackPatternRenderer($callback);

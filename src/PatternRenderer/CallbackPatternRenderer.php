@@ -16,6 +16,6 @@ final class CallbackPatternRenderer implements PatternRenderer
 
     public function render(ViewModel ...$viewModels) : string
     {
-        return call_user_func($this->callback, $viewModels);
+        return call_user_func($this->callback, ...$viewModels);
     }
 }
