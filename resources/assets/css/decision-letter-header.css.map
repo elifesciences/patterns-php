@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,uEACqC,CCqJnC,WAAW,CC5HE,aAAc,CChB3B,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CF6I9C,WAAW,CAAE,YAAY,CExIvB,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,QAAkC,CHZ7D,oCAAqC,CACnC,KAAK,CEHS,OAAO,CFIrB,eAAe,CAAE,IAAI,CAGvB,sFAC4C,CAC1C,KAAK,CERc,OAAO",
+"mappings": "AAEA,uEACqC,CCuJnC,WAAW,CC9HE,aAAc,CChB3B,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CF+I9C,WAAW,CAAE,YAAY,CE1IvB,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,QAAkC,CHZ7D,oCAAqC,CACnC,KAAK,CEHS,OAAO,CFIrB,eAAe,CAAE,IAAI,CAGvB,sFAC4C,CAC1C,KAAK,CERc,OAAO",
 "sources": ["../../../../../../assets/sass/patterns/organisms/decision-letter-header.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
 "names": [],
 "file": "decision-letter-header.css"
