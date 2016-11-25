@@ -19,7 +19,7 @@ final class Table implements CastsToArray, IsCaptioned
 
     public function __construct(string ...$data)
     {
-        Assertion::allRegex($data, '~^<table>.*<\/table>$~');
+        Assertion::allRegex($data, '/^<table>[\s\S]+<\/table>$/');
         $this->tables = $data;
     }
 }
