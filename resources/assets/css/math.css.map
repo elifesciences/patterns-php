@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,KAAM,CCyIJ,WAAW,CC/GE,aAAc,CChB3B,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,IAAmC,CFgI9C,WAAW,CAAE,MAAM,CACnB,WAAW,CAAE,GAAG,CD1IhB,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,WAAW,CAG7B,YAAa,CGUT,YAAqB,CAAE,GAAgB,CACvC,YAAqB,CAAE,OAAkC,CHP7D,WAAY,CACV,OAAO,CAAE,KAAK,CCsId,MAAM,CAAE,CAAC,CE1GP,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CH3B1D,SAAS,CAAE,CAAC,CACZ,UAAU,CAAE,MAAM",
+"sources": ["../../../../../../assets/sass/patterns/atoms/math.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
+"names": [],
+"file": "math.css"
+}
