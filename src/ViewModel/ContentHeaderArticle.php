@@ -41,6 +41,7 @@ final class ContentHeaderArticle implements ViewModel
     private $download;
     private $meta;
     private $backgroundImage;
+    private $hasBackground;
 
     private function __construct(
         array $rootClasses,
@@ -49,7 +50,7 @@ final class ContentHeaderArticle implements ViewModel
         string $strapline = null,
         SubjectList $subjects = null,
         InstitutionList $institutions = null,
-        Picture $download = null,
+        string $download = null,
         Meta $meta = null,
         BackgroundImage $backgroundImage = null
     ) {
@@ -66,11 +67,12 @@ final class ContentHeaderArticle implements ViewModel
         $this->subjects = $subjects;
         $this->authors = $authors;
         $this->institutions = $institutions;
-        if ($download) {
-            $this->download = $this->setDownload($download);
-        }
+        $this->download = $download;
         $this->meta = $meta;
         $this->backgroundImage = $backgroundImage;
+        if($this->backgroundImage || in_array(self:: STYLE_MAGAZINE_BACKGROUND, $rootClasses)) {
+            $this->hasBackground = true;
+        }
     }
 
     private function deriveTitleClass($title) : string
@@ -90,23 +92,12 @@ final class ContentHeaderArticle implements ViewModel
         return self::TITLE_LARGE;
     }
 
-    private function setDownload(Picture $picture)
-    {
-        $picture = FlexibleViewModel::fromViewModel($picture);
-
-        $fallback = $picture['fallback'];
-        $fallback['classes'] = static::FALLBACK_CLASSES;
-
-        return $picture
-            ->withProperty('fallback', $fallback);
-    }
-
     public static function researchReadMore(
         string $title,
         Meta $meta,
         AuthorList $authors,
         SubjectList $subjects,
-        Picture $download = null
+        string $download = null
     ) {
         if ($authors['hasEtAl'] === false) {
             $authors = AuthorList::readMoreFromList($authors);
@@ -128,7 +119,7 @@ final class ContentHeaderArticle implements ViewModel
         Meta $meta,
         SubjectList $subjects,
         InstitutionList $institutions = null,
-        Picture $download = null
+        string $download = null
     ) {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
@@ -138,6 +129,7 @@ final class ContentHeaderArticle implements ViewModel
         }
         // This can never be set.
         $strapline = null;
+
         // Constructor.
         return new static(
             $rootClasses,
@@ -156,7 +148,7 @@ final class ContentHeaderArticle implements ViewModel
         string $title,
         string $strapline = null,
         AuthorList $authors,
-        Picture $download = null,
+        string $download = null,
         SubjectList $subjects = null,
         Meta $meta = null,
         InstitutionList $institutions = null,
@@ -179,7 +171,7 @@ final class ContentHeaderArticle implements ViewModel
         string $title,
         string $strapline = null,
         AuthorList $authors,
-        Picture $download = null,
+        string $download = null,
         SubjectList $subjects = null,
         Meta $meta = null,
         InstitutionList $institutions = null,
@@ -190,6 +182,7 @@ final class ContentHeaderArticle implements ViewModel
         if ($backgroundImage || $background) {
             array_push($rootClasses, self::STYLE_MAGAZINE_BACKGROUND);
         }
+
         // Constructor.
         return new static(
             $rootClasses,
@@ -222,6 +215,5 @@ final class ContentHeaderArticle implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield $this->meta;
-        yield $this->download;
     }
 }

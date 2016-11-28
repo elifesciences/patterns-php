@@ -194,16 +194,7 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             null,
             $this->metaFromData($data['meta']),
             $this->backgroundImageFromData($data['backgroundImage']),
-            new PodcastDownload('#',
-                new Picture(
-                    $data['download']['picture']['sources'],
-                    new Image(
-                        $data['download']['picture']['fallback']['defaultPath'],
-                        $this->srcsetToArray($data['download']['picture']['fallback']['srcset']),
-                        $data['download']['picture']['fallback']['altText']
-                    )
-                )
-            )
+            '#download'
         );
         $this->assertSameWithoutOrder($data, $header);
     }

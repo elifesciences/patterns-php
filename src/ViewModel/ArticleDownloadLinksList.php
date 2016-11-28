@@ -15,14 +15,17 @@ final class ArticleDownloadLinksList implements ViewModel
     use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
+    private $id;
     private $description;
     private $groups;
 
-    public function __construct(string $description, array $groups)
+    public function __construct(string $id, string $description, array $groups)
     {
+        Assertion::notBlank($id);
         Assertion::notBlank($description);
         Assertion::notEmpty($groups);
 
+        $this->id = $id;
         $this->description = $description;
         $this->groups = array_map(function (string $title, array $items) {
             Assertion::notBlank($title);

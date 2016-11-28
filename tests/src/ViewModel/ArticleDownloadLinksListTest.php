@@ -14,6 +14,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'id' => 'id',
             'description' => 'description',
             'groups' => [
                 [
@@ -28,9 +29,19 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             ],
         ];
 
-        $downloadList = new ArticleDownloadLinksList('description', ['group' => [new Link('name', 'url')]]);
+        $downloadList = new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url')]]);
 
         $this->assertSame($data, $downloadList->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_an_id()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ArticleDownloadLinksList('', 'description', ['group' => [new Link('name', 'url')]]);
     }
 
     /**
@@ -40,7 +51,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('', ['group' => [new Link('name', 'url')]]);
+        new ArticleDownloadLinksList('id', '', ['group' => [new Link('name', 'url')]]);
     }
 
     /**
@@ -50,7 +61,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('description', []);
+        new ArticleDownloadLinksList('id', 'description', []);
     }
 
     /**
@@ -60,7 +71,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('description', ['group' => []]);
+        new ArticleDownloadLinksList('id', 'description', ['group' => []]);
     }
 
     /**
@@ -70,13 +81,13 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('description', ['group' => ['foo']]);
+        new ArticleDownloadLinksList('id', 'description', ['group' => ['foo']]);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleDownloadLinksList('description', ['group' => [new Link('name', 'url')]])],
+            [new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url')]])],
         ];
     }
 
