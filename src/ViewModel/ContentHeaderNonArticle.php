@@ -81,7 +81,7 @@ final class ContentHeaderNonArticle implements ViewModel
             $this->hasCtaOrMeta = true;
         }
         $this->backgroundImage = $backgroundImage;
-        if($this->backgroundImage || in_array(self::STYLE_BACKGROUND, $rootClasses)) {
+        if ($this->backgroundImage || in_array(self::STYLE_BACKGROUND, $rootClasses)) {
             $this->hasBackground = true;
         }
         $this->download = $download;

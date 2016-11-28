@@ -70,7 +70,7 @@ final class ContentHeaderArticle implements ViewModel
         $this->download = $download;
         $this->meta = $meta;
         $this->backgroundImage = $backgroundImage;
-        if($this->backgroundImage || in_array(self:: STYLE_MAGAZINE_BACKGROUND, $rootClasses)) {
+        if ($this->backgroundImage || in_array(self:: STYLE_MAGAZINE_BACKGROUND, $rootClasses)) {
             $this->hasBackground = true;
         }
     }

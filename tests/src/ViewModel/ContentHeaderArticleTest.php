@@ -8,12 +8,10 @@ use eLife\Patterns\ViewModel\AuthorList;
 use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\ContentHeaderArticle;
 use eLife\Patterns\ViewModel\Date;
-use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Institution;
 use eLife\Patterns\ViewModel\InstitutionList;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
-use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SubjectList;
 
 final class ContentHeaderArticleTest extends ViewModelTest
