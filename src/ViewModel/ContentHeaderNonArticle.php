@@ -38,6 +38,7 @@ final class ContentHeaderNonArticle implements ViewModel
     private $hasProfile = false;
     private $selectNav;
     private $backgroundImage;
+    private $hasBackground;
     private $download;
 
     protected function __construct(
@@ -49,7 +50,7 @@ final class ContentHeaderNonArticle implements ViewModel
         Profile $profile = null,
         SelectNav $selectNav = null,
         BackgroundImage $backgroundImage = null,
-        PodcastDownload $podcastDownload = null
+        string $download = null
     ) {
         Assertion::allInArray($rootClasses, [self::STYLE_BASE, self::STYLE_BACKGROUND]);
         Assertion::notBlank($title);
@@ -80,7 +81,10 @@ final class ContentHeaderNonArticle implements ViewModel
             $this->hasCtaOrMeta = true;
         }
         $this->backgroundImage = $backgroundImage;
-        $this->download = $podcastDownload;
+        if ($this->backgroundImage || in_array(self::STYLE_BACKGROUND, $rootClasses)) {
+            $this->hasBackground = true;
+        }
+        $this->download = $download;
     }
 
     private function deriveTitleClass($title) : string
@@ -158,7 +162,7 @@ final class ContentHeaderNonArticle implements ViewModel
         Button $button = null,
         Meta $meta = null,
         BackgroundImage $backgroundImage = null,
-        PodcastDownload $podcastDownload = null
+        string $download = null
     ) {
         $rootClasses = [self::STYLE_BASE];
         if ($background || $backgroundImage) {
@@ -174,7 +178,7 @@ final class ContentHeaderNonArticle implements ViewModel
             null,
             null,
             $backgroundImage,
-            $podcastDownload
+            $download
         );
     }
 
@@ -244,6 +248,5 @@ final class ContentHeaderNonArticle implements ViewModel
         yield $this->meta;
         yield $this->selectNav;
         yield $this->button;
-        yield $this->download;
     }
 }

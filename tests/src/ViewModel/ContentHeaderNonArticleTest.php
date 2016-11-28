@@ -6,11 +6,8 @@ use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ContentHeaderNonArticle;
 use eLife\Patterns\ViewModel\FormLabel;
-use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
-use eLife\Patterns\ViewModel\Picture;
-use eLife\Patterns\ViewModel\PodcastDownload;
 use eLife\Patterns\ViewModel\Profile;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
@@ -194,16 +191,7 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             null,
             $this->metaFromData($data['meta']),
             $this->backgroundImageFromData($data['backgroundImage']),
-            new PodcastDownload('#',
-                new Picture(
-                    $data['download']['picture']['sources'],
-                    new Image(
-                        $data['download']['picture']['fallback']['defaultPath'],
-                        $this->srcsetToArray($data['download']['picture']['fallback']['srcset']),
-                        $data['download']['picture']['fallback']['altText']
-                    )
-                )
-            )
+            '#download'
         );
         $this->assertSameWithoutOrder($data, $header);
     }
