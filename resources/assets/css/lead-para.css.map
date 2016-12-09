@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,UAAW,CCuCP,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,IAAkC,CDtC1D,cAAc,CAAE,CAAC,CAGnB,qBAAsB,CCuKlB,aAAa,CAAE,CAAC,CAChB,cAAc,CAAE,CAAC",
+"mappings": "AAEA,UAAW,CCuCP,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,IAAkC,CDtC1D,cAAc,CAAE,CAAC,CAGnB,qBAAsB,CC2KlB,aAAa,CAAE,CAAC,CAChB,cAAc,CAAE,CAAC",
 "sources": ["../../../../../../assets/sass/patterns/atoms/lead-para.scss","../../../../../../assets/sass/_mixins.scss"],
 "names": [],
 "file": "lead-para.css"
