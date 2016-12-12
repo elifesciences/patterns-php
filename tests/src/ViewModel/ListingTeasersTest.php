@@ -4,7 +4,8 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingTeasers;
-use eLife\Patterns\ViewModel\LoadMoreButton;
+use eLife\Patterns\ViewModel\LoadMore;
+use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 use eLife\Patterns\ViewModel\Teaser;
 use InvalidArgumentException;
@@ -18,22 +19,22 @@ final class ListingTeasersTest extends ViewModelTest
     {
         $data = [
             'items' => [
-                    [
-                        'title' => 'title',
-                        'rootClasses' => 'teaser--secondary',
-                        'url' => 'url',
-                    ],
-                    [
-                        'title' => 'title',
-                        'rootClasses' => 'teaser--secondary',
-                        'url' => 'url',
-                    ],
-                    [
-                        'title' => 'title',
-                        'rootClasses' => 'teaser--secondary',
-                        'url' => 'url',
-                    ],
+                [
+                    'title' => 'title',
+                    'rootClasses' => 'teaser--secondary',
+                    'url' => 'url',
                 ],
+                [
+                    'title' => 'title',
+                    'rootClasses' => 'teaser--secondary',
+                    'url' => 'url',
+                ],
+                [
+                    'title' => 'title',
+                    'rootClasses' => 'teaser--secondary',
+                    'url' => 'url',
+                ],
+            ],
         ];
         $listingTeaser = ListingTeasers::basic(
             array_map(function ($item) {
@@ -72,13 +73,24 @@ final class ListingTeasersTest extends ViewModelTest
                 ], 'heading'),
             ],
             [
-                ListingTeasers::withLoadMore(
+                ListingTeasers::withPagination(
                     [
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                     ],
-                    new LoadMoreButton('testing', '#'),
+                    new LoadMore(new Link('testing', '#')),
+                    'heading'
+                ),
+            ],
+            [
+                ListingTeasers::withPagination(
+                    [
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                    ],
+                    new Pager(new Link('previous'), new Link('next')),
                     'heading'
                 ),
             ],
@@ -91,16 +103,6 @@ final class ListingTeasersTest extends ViewModelTest
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
                     'heading'
-                ),
-            ],
-            [
-                ListingTeasers::withLoadMore(
-                    [
-                        Teaser::basic('title', 'url'),
-                        Teaser::basic('title', 'url'),
-                        Teaser::basic('title', 'url'),
-                    ],
-                    new LoadMoreButton('testing', '#')
                 ),
             ],
         ];

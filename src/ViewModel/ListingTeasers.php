@@ -18,13 +18,13 @@ final class ListingTeasers implements ViewModel
 
     private $items;
     private $heading;
-    private $loadMore;
+    private $pagination;
     private $seeMoreLink;
 
-    private function __construct(array $items, string $heading = null, LoadMoreButton $loadMore = null, SeeMoreLink $seeMoreLink = null)
+    private function __construct(array $items, string $heading = null, PaginationControl $pagination = null, SeeMoreLink $seeMoreLink = null)
     {
         if (
-            null !== $loadMore &&
+            null !== $pagination &&
             null !== $seeMoreLink
         ) {
             throw new InvalidArgumentException('You cannot have both LoadMore and SeeMoreLink in Teaser Listings.');
@@ -33,7 +33,7 @@ final class ListingTeasers implements ViewModel
         Assertion::allIsInstanceOf($items, Teaser::class);
         $this->items = $items;
         $this->heading = $heading;
-        $this->loadMore = $loadMore;
+        $this->pagination = $pagination;
         $this->seeMoreLink = $seeMoreLink;
     }
 
@@ -42,9 +42,9 @@ final class ListingTeasers implements ViewModel
         return new static ($items, $heading);
     }
 
-    public static function withLoadMore(array $items, LoadMoreButton $loadMore, $heading = null)
+    public static function withPagination(array $items, PaginationControl $pagination, $heading = null)
     {
-        return new static($items, $heading, $loadMore);
+        return new static($items, $heading, $pagination);
     }
 
     public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null)
@@ -65,6 +65,6 @@ final class ListingTeasers implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->items;
-        yield $this->loadMore;
+        yield $this->pagination;
     }
 }

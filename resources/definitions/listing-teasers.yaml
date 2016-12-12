@@ -5,6 +5,8 @@ assets:
         - listing.css
         - load-more.css
         - meta.css
+        - pager.css
+        - see-more-link.css
         - teaser.css
     js: []
 schema:
@@ -187,45 +189,50 @@ schema:
                             - meta
                 required:
                     - title
-        loadMore:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            allOf:
+        pagination:
+            oneOf:
                 -
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
                     properties:
-                        text:
+                        name:
                             type: string
                             minLength: 1
-                        classes:
+                        url:
                             type: string
+                            minLength: 1
                     required:
-                        - text
+                        - name
+                        - url
                 -
-                    oneOf:
-                        -
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        previousPage:
+                            type: object
                             properties:
-                                type:
-                                    type: string
-                                    enum:
-                                        - button
-                                        - reset
-                                        - submit
-                                id:
-                                    type: string
-                                    minLength: 1
                                 name:
                                     type: string
                                     minLength: 1
-                            required:
-                                - type
-                                - name
-                        -
-                            properties:
-                                path:
+                                url:
                                     type: string
                                     minLength: 1
                             required:
-                                - path
+                                - name
+                        nextPage:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    minLength: 1
+                                url:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - name
+                    required:
+                        - previousPage
+                        - nextPage
         seeMoreLink:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
