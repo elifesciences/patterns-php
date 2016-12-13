@@ -2,11 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\LoadMore;
-use InvalidArgumentException;
-use Traversable;
 
 final class LoadMoreTest extends ViewModelTest
 {
