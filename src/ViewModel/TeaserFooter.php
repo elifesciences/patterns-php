@@ -2,17 +2,17 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\HasAssets;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use Traversable;
 
 final class TeaserFooter implements CastsToArray, HasAssets
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
     use ComposedAssets;
 
     private $meta;

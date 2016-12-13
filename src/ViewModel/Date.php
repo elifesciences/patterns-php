@@ -3,16 +3,16 @@
 namespace eLife\Patterns\ViewModel;
 
 use DateTimeImmutable;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class Date implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
     private $isExpanded;

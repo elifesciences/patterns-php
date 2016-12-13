@@ -2,14 +2,14 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ReadOnlyArrayAccess;
 
 final class DownloadLink implements CastsToArray
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
 
     private $name;
     private $url;

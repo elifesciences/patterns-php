@@ -3,14 +3,14 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ReadOnlyArrayAccess;
 
 final class SubjectFilter implements CastsToArray
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
 
     private $name;
     private $value;

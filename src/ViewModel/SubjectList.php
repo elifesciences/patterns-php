@@ -2,14 +2,14 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ReadOnlyArrayAccess;
 
 final class SubjectList implements CastsToArray
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
 
     private $list;
 
