@@ -3,14 +3,14 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ReadOnlyArrayAccess;
 
 final class Author implements CastsToArray
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
 
     private $name;
     private $url;
@@ -31,8 +31,8 @@ final class Author implements CastsToArray
     public static function asLink(Link $link)
     {
         return new static(
-          $link['name'],
-          $link['url']
+            $link['name'],
+            $link['url']
         );
     }
 }

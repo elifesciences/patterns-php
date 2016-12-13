@@ -3,8 +3,8 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
@@ -22,8 +22,8 @@ final class Button implements ViewModel
     const TYPE_SUBMIT = 'submit';
     const TYPE_RESET = 'reset';
 
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
     private $classes;
@@ -77,7 +77,7 @@ final class Button implements ViewModel
     ) : Button {
         Assertion::choice($type, [self::TYPE_BUTTON, self::TYPE_SUBMIT, self::TYPE_RESET]);
 
-        $button = new static($text, $size, $style, $isActive,  $name, $id, $isFullWidth);
+        $button = new static($text, $size, $style, $isActive, $name, $id, $isFullWidth);
         $button->type = $type;
 
         return $button;

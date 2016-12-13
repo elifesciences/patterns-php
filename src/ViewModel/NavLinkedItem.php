@@ -2,17 +2,17 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class NavLinkedItem implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use ComposedAssets;
-    use ReadOnlyArrayAccess;
 
     const ICON_CLASSES = [
         'menu' => 'nav-primary__menu_icon',
@@ -36,7 +36,7 @@ final class NavLinkedItem implements ViewModel
         bool $showText = true,
         bool $search = false,
         string $iconName = null
-    ): NavLinkedItem {
+    ) : NavLinkedItem {
         $itemAsIcon = static::asLink($link, $search);
 
         $itemAsIcon->picture = $itemAsIcon->determinePicture($picture, $iconName);
@@ -51,7 +51,7 @@ final class NavLinkedItem implements ViewModel
     public static function asLink(
         Link $link,
         bool $search = false
-    ): NavLinkedItem {
+    ) : NavLinkedItem {
         $itemAsText = new static();
         $itemAsText->text = $link['name'];
         $itemAsText->path = $link['url'];
@@ -60,7 +60,7 @@ final class NavLinkedItem implements ViewModel
         return $itemAsText;
     }
 
-    public static function asButton(Button $button): NavLinkedItem
+    public static function asButton(Button $button) : NavLinkedItem
     {
         $itemAsButton = new static();
         $itemAsButton->button = $button;
@@ -68,7 +68,7 @@ final class NavLinkedItem implements ViewModel
         return $itemAsButton;
     }
 
-    private function determinePicture(Picture $picture, string $iconName = null)  : ViewModel
+    private function determinePicture(Picture $picture, string $iconName = null) : ViewModel
     {
         if (!array_key_exists($iconName, static::ICON_CLASSES)) {
             return $picture;

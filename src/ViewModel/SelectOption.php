@@ -2,13 +2,13 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ReadOnlyArrayAccess;
 
 final class SelectOption implements CastsToArray
 {
-    use ReadOnlyArrayAccess;
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
     private $value;
