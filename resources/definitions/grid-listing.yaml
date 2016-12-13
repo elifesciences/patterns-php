@@ -2,9 +2,12 @@ assets:
     css:
         - archive-nav-link.css
         - block-link.css
+        - buttons.css
         - date.css
         - grid-listing.css
+        - load-more.css
         - meta.css
+        - pager.css
         - teaser.css
     js: []
 schema:
@@ -308,5 +311,135 @@ schema:
                                             - meta
                                 required:
                                     - title
+                        pagination:
+                            oneOf:
+                                -
+                                    $schema: 'http://json-schema.org/draft-04/schema#'
+                                    type: object
+                                    allOf:
+                                        -
+                                            properties:
+                                                text:
+                                                    type: string
+                                                    minLength: 1
+                                                classes:
+                                                    type: string
+                                            required:
+                                                - text
+                                        -
+                                            oneOf:
+                                                -
+                                                    properties:
+                                                        type:
+                                                            type: string
+                                                            enum:
+                                                                - button
+                                                                - reset
+                                                                - submit
+                                                        id:
+                                                            type: string
+                                                            minLength: 1
+                                                        name:
+                                                            type: string
+                                                            minLength: 1
+                                                    required:
+                                                        - type
+                                                        - name
+                                                -
+                                                    properties:
+                                                        path:
+                                                            type: string
+                                                            minLength: 1
+                                                    required:
+                                                        - path
+                                -
+                                    $schema: 'http://json-schema.org/draft-04/schema#'
+                                    type: object
+                                    properties:
+                                        previousPage:
+                                            $schema: 'http://json-schema.org/draft-04/schema#'
+                                            type: object
+                                            allOf:
+                                                -
+                                                    properties:
+                                                        text:
+                                                            type: string
+                                                            minLength: 1
+                                                        classes:
+                                                            type: string
+                                                    required:
+                                                        - text
+                                                -
+                                                    oneOf:
+                                                        -
+                                                            properties:
+                                                                type:
+                                                                    type: string
+                                                                    enum:
+                                                                        - button
+                                                                        - reset
+                                                                        - submit
+                                                                id:
+                                                                    type: string
+                                                                    minLength: 1
+                                                                name:
+                                                                    type: string
+                                                                    minLength: 1
+                                                            required:
+                                                                - type
+                                                                - name
+                                                        -
+                                                            properties:
+                                                                path:
+                                                                    type: string
+                                                                    minLength: 1
+                                                            required:
+                                                                - path
+                                        nextPage:
+                                            $schema: 'http://json-schema.org/draft-04/schema#'
+                                            type: object
+                                            allOf:
+                                                -
+                                                    properties:
+                                                        text:
+                                                            type: string
+                                                            minLength: 1
+                                                        classes:
+                                                            type: string
+                                                    required:
+                                                        - text
+                                                -
+                                                    oneOf:
+                                                        -
+                                                            properties:
+                                                                type:
+                                                                    type: string
+                                                                    enum:
+                                                                        - button
+                                                                        - reset
+                                                                        - submit
+                                                                id:
+                                                                    type: string
+                                                                    minLength: 1
+                                                                name:
+                                                                    type: string
+                                                                    minLength: 1
+                                                            required:
+                                                                - type
+                                                                - name
+                                                        -
+                                                            properties:
+                                                                path:
+                                                                    type: string
+                                                                    minLength: 1
+                                                            required:
+                                                                - path
+                                    anyOf:
+                                        -
+                                            required:
+                                                - previousPage
+                                        -
+                                            required:
+                                                - nextPage
                     required:
                         - teasers

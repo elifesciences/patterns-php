@@ -9,7 +9,9 @@ use eLife\Patterns\ViewModel\BlockLink;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\GridListing;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\LoadMore;
 use eLife\Patterns\ViewModel\Meta;
+use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
@@ -199,6 +201,58 @@ final class GridListingTest extends ViewModelTest
                         ),
                     ],
                     'heading'),
+            ],
+            'teasers with load more' => [
+                GridListing::forTeasers(
+                    [
+                        Teaser::withGrid(
+                            'title',
+                            'url',
+                            'content',
+                            'secondary info',
+                            TeaserImage::prominent(
+                                '250.jpg',
+                                'alt',
+                                [
+                                    500 => '500.jpg',
+                                    250 => '250.jpg',
+                                ]
+                            ),
+                            TeaserFooter::forNonArticle(
+                                Meta::withLink(
+                                    new Link('name', 'path'),
+                                    new Date(new DateTimeImmutable())
+                                )
+                            )
+                        ),
+                    ],
+                    'heading', new LoadMore(new Link('testing', '#'))),
+            ],
+            'teasers with pager' => [
+                GridListing::forTeasers(
+                    [
+                        Teaser::withGrid(
+                            'title',
+                            'url',
+                            'content',
+                            'secondary info',
+                            TeaserImage::prominent(
+                                '250.jpg',
+                                'alt',
+                                [
+                                    500 => '500.jpg',
+                                    250 => '250.jpg',
+                                ]
+                            ),
+                            TeaserFooter::forNonArticle(
+                                Meta::withLink(
+                                    new Link('name', 'path'),
+                                    new Date(new DateTimeImmutable())
+                                )
+                            )
+                        ),
+                    ],
+                    'heading', new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
             ],
         ];
     }
