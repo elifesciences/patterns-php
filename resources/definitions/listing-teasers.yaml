@@ -194,45 +194,131 @@ schema:
                 -
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
-                    properties:
-                        name:
-                            type: string
-                            minLength: 1
-                        url:
-                            type: string
-                            minLength: 1
-                    required:
-                        - name
-                        - url
+                    allOf:
+                        -
+                            properties:
+                                text:
+                                    type: string
+                                    minLength: 1
+                                classes:
+                                    type: string
+                            required:
+                                - text
+                        -
+                            oneOf:
+                                -
+                                    properties:
+                                        type:
+                                            type: string
+                                            enum:
+                                                - button
+                                                - reset
+                                                - submit
+                                        id:
+                                            type: string
+                                            minLength: 1
+                                        name:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - type
+                                        - name
+                                -
+                                    properties:
+                                        path:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - path
                 -
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
                         previousPage:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
-                            properties:
-                                name:
-                                    type: string
-                                    minLength: 1
-                                url:
-                                    type: string
-                                    minLength: 1
-                            required:
-                                - name
+                            allOf:
+                                -
+                                    properties:
+                                        text:
+                                            type: string
+                                            minLength: 1
+                                        classes:
+                                            type: string
+                                    required:
+                                        - text
+                                -
+                                    oneOf:
+                                        -
+                                            properties:
+                                                type:
+                                                    type: string
+                                                    enum:
+                                                        - button
+                                                        - reset
+                                                        - submit
+                                                id:
+                                                    type: string
+                                                    minLength: 1
+                                                name:
+                                                    type: string
+                                                    minLength: 1
+                                            required:
+                                                - type
+                                                - name
+                                        -
+                                            properties:
+                                                path:
+                                                    type: string
+                                                    minLength: 1
+                                            required:
+                                                - path
                         nextPage:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
-                            properties:
-                                name:
-                                    type: string
-                                    minLength: 1
-                                url:
-                                    type: string
-                                    minLength: 1
+                            allOf:
+                                -
+                                    properties:
+                                        text:
+                                            type: string
+                                            minLength: 1
+                                        classes:
+                                            type: string
+                                    required:
+                                        - text
+                                -
+                                    oneOf:
+                                        -
+                                            properties:
+                                                type:
+                                                    type: string
+                                                    enum:
+                                                        - button
+                                                        - reset
+                                                        - submit
+                                                id:
+                                                    type: string
+                                                    minLength: 1
+                                                name:
+                                                    type: string
+                                                    minLength: 1
+                                            required:
+                                                - type
+                                                - name
+                                        -
+                                            properties:
+                                                path:
+                                                    type: string
+                                                    minLength: 1
+                                            required:
+                                                - path
+                    anyOf:
+                        -
                             required:
-                                - name
-                    required:
-                        - previousPage
-                        - nextPage
+                                - previousPage
+                        -
+                            required:
+                                - nextPage
         seeMoreLink:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object

@@ -2,24 +2,19 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ArrayAccessFromProperties;
-use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ComposedViewModel;
+use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class LoadMore implements PaginationControl
 {
-    use ArrayAccessFromProperties;
-    use ArrayFromProperties;
-    use SimplifyAssets;
+    use ComposedViewModel;
 
-    private $name;
-    private $url;
+    private $button;
 
     public function __construct(Link $link)
     {
-        $this->name = $link['name'];
-        $this->url = $link['url'];
+        $this->button = Button::link($link['name'], $link['url'], Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true);
     }
 
     public function getTemplateName() : string
@@ -27,9 +22,13 @@ final class LoadMore implements PaginationControl
         return '/elife/patterns/templates/load-more.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/buttons.css';
         yield '/elife/patterns/assets/css/load-more.css';
+    }
+
+    protected function getViewModel() : ViewModel
+    {
+        return $this->button;
     }
 }

@@ -14,12 +14,14 @@ final class PagerTest extends ViewModelTest
     {
         $data = [
             'previousPage' => [
-                'name' => 'previous',
-                'url' => 'previous-url',
+                'classes' => 'button--default',
+                'path' => 'previous-url',
+                'text' => 'previous',
             ],
             'nextPage' => [
-                'name' => 'next',
-                'url' => 'next-url',
+                'classes' => 'button--default',
+                'path' => 'next-url',
+                'text' => 'next',
             ],
         ];
 
@@ -33,8 +35,9 @@ final class PagerTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'active' => [new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url'))],
-            'inactive' => [new Pager(new Link('previous'), new Link('next'))],
+            'both' => [new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url'))],
+            'previous only' => [new Pager(new Link('previous', 'previous-url'))],
+            'next only' => [new Pager(null, new Link('next', 'next-url'))],
         ];
     }
 

@@ -13,14 +13,14 @@ final class LoadMoreTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'name' => 'name',
-            'url' => 'url',
+            'classes' => 'button--default button--full',
+            'path' => 'url',
+            'text' => 'name',
         ];
-
         $button = new LoadMore(new Link('name', 'url'));
-
-        $this->assertSame($data['name'], $button['name']);
-        $this->assertSame($data['url'], $button['url']);
+        $this->assertSame($data['classes'], $button['classes']);
+        $this->assertSame($data['path'], $button['path']);
+        $this->assertSame($data['text'], $button['text']);
         $this->assertSame($data, $button->toArray());
     }
 

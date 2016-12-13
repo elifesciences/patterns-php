@@ -90,7 +90,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                     ],
-                    new Pager(new Link('previous'), new Link('next')),
+                    new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
                     'heading'
                 ),
             ],

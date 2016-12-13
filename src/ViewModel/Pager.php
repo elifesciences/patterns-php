@@ -4,22 +4,26 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ComposedAssets;
 use Traversable;
 
 final class Pager implements PaginationControl
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $previousPage;
     private $nextPage;
 
-    public function __construct(Link $previousPage, Link $nextPage)
+    public function __construct(Link $previousPage = null, Link $nextPage = null)
     {
-        $this->previousPage = $previousPage;
-        $this->nextPage = $nextPage;
+        if ($previousPage) {
+            $this->previousPage = Button::link($previousPage['name'], $previousPage['url']);
+        }
+        if ($nextPage) {
+            $this->nextPage = Button::link($nextPage['name'], $nextPage['url']);
+        }
     }
 
     public function getTemplateName() : string
@@ -29,7 +33,12 @@ final class Pager implements PaginationControl
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/buttons.css';
         yield '/elife/patterns/assets/css/pager.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->previousPage;
+        yield $this->nextPage;
     }
 }
