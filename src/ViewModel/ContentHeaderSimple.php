@@ -1,0 +1,38 @@
+<?php
+
+namespace eLife\Patterns\ViewModel;
+
+use Assert\Assertion;
+use eLife\Patterns\ArrayFromProperties;
+use eLife\Patterns\ReadOnlyArrayAccess;
+use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ViewModel;
+use Traversable;
+
+final class ContentHeaderSimple implements ViewModel
+{
+    use ArrayFromProperties;
+    use ReadOnlyArrayAccess;
+    use SimplifyAssets;
+
+    private $title;
+    private $strapline;
+
+    public function __construct(string $title, string $strapline = null)
+    {
+        Assertion::notBlank($title);
+
+        $this->title = $title;
+        $this->strapline = $strapline;
+    }
+
+    public function getTemplateName() : string
+    {
+        return '/elife/patterns/templates/content-header-simple.mustache';
+    }
+
+    public function getLocalStyleSheets() : Traversable
+    {
+        yield '/elife/patterns/assets/css/content-header-simple.css';
+    }
+}

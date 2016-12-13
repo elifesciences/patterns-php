@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,sBAAuB,CCgBnB,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,MAAkC,CADzD,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CDd3D,YAAY,CAAE,EAAE,CAChB,aAAa,CAAE,EAAE,CACjB,UAAU,CAAE,MAAM,CAGpB,6BAA8B,CE2C5B,WAAW,CCxBI,gDAAmD,CDyBlE,WAAW,CAAE,GAAG,CD1ChB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CCmE9C,WAAW,CAAE,gBAAgB,CFpE7B,KAAK,CGHM,OAAO,CFGlB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CDC9C,WAAW,CAAE,GAAG,CC2Jd,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CDxJd,iCAAkC,CAChC,KAAK,CGVM,OAAO,CDsIlB,WAAW,CCnHE,aAAc,CFhB3B,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,IAAmC,CCoI9C,WAAW,CAAE,MAAM,CACnB,WAAW,CAAE,GAAG,CDuBd,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CAxJV,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC",
+"sources": ["../../../../../../assets/sass/patterns/organisms/content-header-simple.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss"],
+"names": [],
+"file": "content-header-simple.css"
+}
