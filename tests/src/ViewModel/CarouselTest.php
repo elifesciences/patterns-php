@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\Carousel;
 use eLife\Patterns\ViewModel\CarouselItem;
 use eLife\Patterns\ViewModel\Link;
@@ -36,11 +37,15 @@ final class CarouselTest extends ViewModelTest
                     'meta' => [
                         'text' => 'meta',
                     ],
+                    'backgroundImage' => [
+                        'lowResImageSource' => 'lores.jpg',
+                        'highResImageSource' => 'hires.jpg',
+                    ],
                 ],
             ],
         ];
 
-        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'));
+        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new BackgroundImage('lores.jpg', 'hires.jpg'));
         $carousel = new Carousel($carouselItem);
 
         $this->assertSame($data, $carousel->toArray());
@@ -59,7 +64,7 @@ final class CarouselTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Carousel(new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta')))],
+            [new Carousel(new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new BackgroundImage('lores.jpg', 'hires.jpg')))],
         ];
     }
 

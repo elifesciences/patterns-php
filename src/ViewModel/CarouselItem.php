@@ -20,8 +20,9 @@ final class CarouselItem implements ViewModel
     private $url;
     private $button;
     private $meta;
+    private $backgroundImage;
 
-    public function __construct(array $subjects, Link $title, string $buttonText = null, Meta $meta)
+    public function __construct(array $subjects, Link $title, string $buttonText = null, Meta $meta, BackgroundImage $backgroundImage)
     {
         Assertion::allIsInstanceOf($subjects, Link::class);
 
@@ -34,6 +35,7 @@ final class CarouselItem implements ViewModel
             $this->button = Button::link($buttonText, $this->url, Button::SIZE_MEDIUM, Button::STYLE_OUTLINE);
         }
         $this->meta = $meta;
+        $this->backgroundImage = $backgroundImage;
     }
 
     public function getLocalStyleSheets() : Traversable

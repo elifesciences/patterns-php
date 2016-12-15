@@ -136,10 +136,30 @@ schema:
                                 -
                                     required:
                                         - text
+                        backgroundImage:
+                            type: object
+                            properties:
+                                lowResImageSource:
+                                    type: string
+                                    minLength: 1
+                                highResImageSource:
+                                    type: string
+                                    minLength: 1
+                                thresholdWidth:
+                                    type: number
+                                    minimum: 0
+                            dependencies:
+                                thresholdWidth:
+                                    - lowResImageSource
+                                    - highResImageSource
+                            required:
+                                - lowResImageSource
+                                - highResImageSource
                     required:
                         - name
                         - url
                         - meta
+                        - backgroundImage
             minItems: 1
     required:
         - items
