@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,aAAc,CC4RZ,WAAW,CCjQI,gDAAmD,CCjBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CFmR9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,CAAC,CACd,cAAc,CAAE,SAAS,CEtHvB,UAAU,CAAE,CAAC,CACb,WAAW,CAAE,CAAC,CA3Jd,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CHb3D,aAAa,CAAE,CAAC,CAChB,cAAc,CAAE,SAAS",
+"mappings": "AAEA,aAAc,CC4RZ,WAAW,CCjQI,gDAAmD,CCjBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CFmR9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,CAAC,CACd,cAAc,CAAE,SAAS,CEjFvB,UAAU,CAAE,CAAC,CACb,WAAW,CAAE,CAAC,CAhMd,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CHb3D,aAAa,CAAE,CAAC,CAChB,cAAc,CAAE,SAAS",
 "sources": ["../../../../../../assets/sass/patterns/atoms/list-heading.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
 "names": [],
 "file": "list-heading.css"
