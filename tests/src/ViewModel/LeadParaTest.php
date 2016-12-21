@@ -39,6 +39,7 @@ final class LeadParaTest extends ViewModelTest
         return [
             [
                 new LeadPara('Text testing'),
+                new LeadPara('Text testing', 'idForHTMLElement'),
             ],
         ];
     }
