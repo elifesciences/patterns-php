@@ -2,9 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Link;
-use eLife\Patterns\ViewModel\SiteLinks;
 use eLife\Patterns\ViewModel\AllSubjectsList;
+use eLife\Patterns\ViewModel\Link;
 
 final class AllSubjectsListTest extends ViewModelTest
 {
