@@ -14,7 +14,7 @@ final class LeadParaTest extends ViewModelTest
     {
         $data = [
             'text' => 'testing paragraph text',
-            'id'   => 'testId'
+            'id' => 'testId',
         ];
 
         $lead = new LeadPara($data['text'], $data['id']);
