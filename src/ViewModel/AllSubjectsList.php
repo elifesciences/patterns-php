@@ -9,29 +9,28 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class SiteLinksList implements ViewModel
+final class AllSubjectsList implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
 
-    private $lists;
+    private $subjects;
 
-    public function __construct(array $lists)
+    public function __construct(Link ...$subjects)
     {
-        Assertion::notEmpty($lists);
-        Assertion::allIsInstanceOf($lists, SiteLinks::class);
+        Assertion::notEmpty($subjects);
 
-        $this->lists = $lists;
+        $this->subjects = $subjects;
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/site-links-list.css';
+        yield '/elife/patterns/assets/css/all-subjects-list.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/site-links-list.mustache';
+        return '/elife/patterns/templates/all-subjects-list.mustache';
     }
 }
