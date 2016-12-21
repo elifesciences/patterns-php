@@ -17,11 +17,12 @@ final class LeadPara implements ViewModel
 
     protected $text;
 
-    public function __construct(string $text)
+    public function __construct(string $text, string $id = null)
     {
         Assertion::notBlank($text);
 
         $this->text = $text;
+        $this->id = $id;
     }
 
     public function getStyleSheets() : Traversable

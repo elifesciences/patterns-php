@@ -14,11 +14,13 @@ final class LeadParaTest extends ViewModelTest
     {
         $data = [
             'text' => 'testing paragraph text',
+            'id'   => 'testId'
         ];
 
-        $lead = new LeadPara($data['text']);
+        $lead = new LeadPara($data['text'], $data['id']);
 
         $this->assertSame($data['text'], $lead['text'], 'Lead paragraph contains paragraph text');
+        $this->assertSame($data['id'], $lead['id'], 'testId');
         $this->assertSame($lead->toArray(), $data);
     }
 
