@@ -23,12 +23,13 @@ final class AllSubjectsListTest extends ViewModelTest
                     'url' => '#',
                 ],
             ],
+            'labelledBy' => 'id',
         ];
 
-        $siteLinksList = new AllSubjectsList(
+        $siteLinksList = new AllSubjectsList([
             new Link($data['subjects'][0]['name'], $data['subjects'][0]['url']),
-            new Link($data['subjects'][1]['name'], $data['subjects'][1]['url'])
-        );
+            new Link($data['subjects'][1]['name'], $data['subjects'][1]['url']),
+        ], $data['labelledBy']);
 
         $this->assertSame($data, $siteLinksList->toArray());
     }
@@ -36,11 +37,8 @@ final class AllSubjectsListTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [
-                new AllSubjectsList(
-                    new Link('subject', 'url')
-                ),
-            ],
+            'minimum' => [new AllSubjectsList([new Link('subject', 'url')])],
+            'complete' => [new AllSubjectsList([new Link('subject', 'url')], 'id')],
         ];
     }
 
