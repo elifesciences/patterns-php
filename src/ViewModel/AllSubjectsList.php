@@ -15,14 +15,17 @@ final class AllSubjectsList implements ViewModel
     use ArrayFromProperties;
     use SimplifyAssets;
 
+    private $id;
     private $subjects;
     private $labelledBy;
 
-    public function __construct(array $subjects, string $labelledBy = null)
+    public function __construct(string $id, array $subjects, string $labelledBy = null)
     {
+        Assertion::notBlank($id);
         Assertion::allIsInstanceOf($subjects, Link::class);
         Assertion::notEmpty($subjects);
 
+        $this->id = $id;
         $this->subjects = $subjects;
         $this->labelledBy = $labelledBy;
     }
