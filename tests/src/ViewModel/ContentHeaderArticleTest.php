@@ -42,13 +42,13 @@ final class ContentHeaderArticleTest extends ViewModelTest
         if (isset($data['url'])) {
             return Meta::withLink(
                 new Link($data['text'], $data['url']),
-                new Date(new DateTimeImmutable($data['date']['forMachine']))
+                Date::simple(new DateTimeImmutable($data['date']['forMachine']))
             );
         }
         if (isset($data['text'])) {
             return Meta::withText(
                 $data['text'],
-                new Date(new DateTimeImmutable($data['date']['forMachine']))
+                Date::simple(new DateTimeImmutable($data['date']['forMachine']))
             );
         }
     }
@@ -165,7 +165,7 @@ final class ContentHeaderArticleTest extends ViewModelTest
                     'download',
                     new SubjectList(new Link('subject', '#'), new Link('subject', '#')),
                     Meta::withText(
-                        'Insight', new Date(new DateTimeImmutable('2015-12-15'))
+                        'Insight', Date::simple(new DateTimeImmutable('2015-12-15'))
                     )
                 ),
             ],

@@ -15,6 +15,7 @@ final class DateTest extends ViewModelTest
         $dateIn = '2015-10-05';
         $dataSimple = [
             'isExpanded' => false,
+            'isUpdated' => true,
             'forHuman' => [
                 'dayOfMonth' => 5,
                 'month' => 'Oct',
@@ -22,14 +23,16 @@ final class DateTest extends ViewModelTest
             ],
             'forMachine' => '2015-10-05',
         ];
-        $viewModelSimple = new Date(new DateTimeImmutable($dateIn), false);
+        $viewModelSimple = Date::simple(new DateTimeImmutable($dateIn), $dataSimple['isUpdated']);
         $this->assertSame($dataSimple['isExpanded'], $viewModelSimple['isExpanded']);
+        $this->assertSame($dataSimple['isUpdated'], $viewModelSimple['isUpdated']);
         $this->assertSame($dataSimple['forHuman'], $viewModelSimple['forHuman']);
         $this->assertSame($dataSimple['forMachine'], $viewModelSimple['forMachine']);
         $this->assertSame($dataSimple, $viewModelSimple->toArray());
 
         $dataExpanded = [
             'isExpanded' => true,
+            'isUpdated' => false,
             'forHuman' => [
                 'dayOfMonth' => 5,
                 'month' => 'Oct',
@@ -37,7 +40,7 @@ final class DateTest extends ViewModelTest
             ],
             'forMachine' => '2015-10-05',
         ];
-        $viewModelExpanded = new Date(new DateTimeImmutable($dateIn), true);
+        $viewModelExpanded = Date::expanded(new DateTimeImmutable($dateIn));
         $this->assertSame($dataExpanded['isExpanded'], $viewModelExpanded['isExpanded']);
         $this->assertSame($dataExpanded['forHuman'], $viewModelExpanded['forHuman']);
         $this->assertSame($dataExpanded['forMachine'], $viewModelExpanded['forMachine']);
@@ -47,9 +50,9 @@ final class DateTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-
-            'simple' => [new Date(new DateTimeImmutable(), false)],
-            'expanded' => [new Date(new DateTimeImmutable(), true)],
+            'simple' => [Date::simple(new DateTimeImmutable())],
+            'simple updated' => [Date::simple(new DateTimeImmutable(), true)],
+            'expanded' => [Date::expanded(new DateTimeImmutable())],
         ];
     }
 
