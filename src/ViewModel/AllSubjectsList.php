@@ -16,12 +16,15 @@ final class AllSubjectsList implements ViewModel
     use SimplifyAssets;
 
     private $subjects;
+    private $labelledBy;
 
-    public function __construct(Link ...$subjects)
+    public function __construct(array $subjects, string $labelledBy = null)
     {
+        Assertion::allIsInstanceOf($subjects, Link::class);
         Assertion::notEmpty($subjects);
 
         $this->subjects = $subjects;
+        $this->labelledBy = $labelledBy;
     }
 
     public function getStyleSheets() : Traversable
