@@ -109,6 +109,7 @@ final class GridListingTest extends ViewModelTest
                             'text' => 'name',
                             'date' => [
                                 'isExpanded' => false,
+                                'isUpdated' => false,
                                 'forHuman' => [
                                     'dayOfMonth' => (int) $date->format('j'),
                                     'month' => $date->format('M'),
@@ -140,7 +141,7 @@ final class GridListingTest extends ViewModelTest
                     TeaserFooter::forNonArticle(
                         Meta::withLink(
                             new Link('name', 'path'),
-                            new Date($date)
+                            Date::simple($date)
                         )
                     )
                 ),
@@ -195,7 +196,7 @@ final class GridListingTest extends ViewModelTest
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
                                     new Link('name', 'path'),
-                                    new Date(new DateTimeImmutable())
+                                    Date::simple(new DateTimeImmutable())
                                 )
                             )
                         ),
@@ -221,7 +222,7 @@ final class GridListingTest extends ViewModelTest
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
                                     new Link('name', 'path'),
-                                    new Date(new DateTimeImmutable())
+                                    Date::simple(new DateTimeImmutable())
                                 )
                             )
                         ),
@@ -247,7 +248,7 @@ final class GridListingTest extends ViewModelTest
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
                                     new Link('name', 'path'),
-                                    new Date(new DateTimeImmutable())
+                                    Date::simple(new DateTimeImmutable())
                                 )
                             )
                         ),

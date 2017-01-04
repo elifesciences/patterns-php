@@ -20,6 +20,7 @@ final class MetaTest extends ViewModelTest
             'text' => 'Research article',
             'date' => [
                 'isExpanded' => false,
+                'isUpdated' => false,
                 'forHuman' => [
                     'dayOfMonth' => 15,
                     'month' => 'May',
@@ -28,7 +29,7 @@ final class MetaTest extends ViewModelTest
                 'forMachine' => '2015-05-15',
             ],
         ];
-        $meta = Meta::withLink(new Link($data['text'], $data['url']), new Date(new DateTimeImmutable('2015-05-15')));
+        $meta = Meta::withLink(new Link($data['text'], $data['url']), Date::simple(new DateTimeImmutable('2015-05-15')));
 
         $this->assertSame($data, $meta->toArray());
         $this->assertSame($data['url'], $meta['url']);
@@ -43,12 +44,12 @@ final class MetaTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Meta::withDate(new Date(new DateTimeImmutable(), true));
+        Meta::withDate(Date::expanded(new DateTimeImmutable()));
     }
 
     public static function getDateStub()
     {
-        return new Date(new DateTimeImmutable(), false);
+        return Date::simple(new DateTimeImmutable());
     }
 
     public function viewModelProvider() : array

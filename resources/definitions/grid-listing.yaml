@@ -198,6 +198,9 @@ schema:
                                                     - dayOfMonth
                                                     - month
                                                     - year
+                                            isUpdated:
+                                                type: boolean
+                                                default: false
                                             isExpanded:
                                                 type: boolean
                                                 default: false
@@ -284,6 +287,9 @@ schema:
                                                                     - dayOfMonth
                                                                     - month
                                                                     - year
+                                                            isUpdated:
+                                                                type: boolean
+                                                                default: false
                                                             isExpanded:
                                                                 type: boolean
                                                                 default: false

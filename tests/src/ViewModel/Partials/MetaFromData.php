@@ -15,7 +15,7 @@ trait MetaFromData
             if (isset($data['date']['forMachine'])) {
                 return Meta::withLink(
                     new Link($data['text'], $data['url']),
-                    new Date(new DateTimeImmutable($data['date']['forMachine']))
+                    Date::simple(new DateTimeImmutable($data['date']['forMachine']))
                 );
             } else {
                 return Meta::withLink(
@@ -27,7 +27,7 @@ trait MetaFromData
             if (isset($data['date']['forMachine'])) {
                 return Meta::withText(
                     $data['text'],
-                    new Date(new DateTimeImmutable($data['date']['forMachine']))
+                    Date::simple(new DateTimeImmutable($data['date']['forMachine']))
                 );
             } else {
                 return Meta::withText(
@@ -37,7 +37,7 @@ trait MetaFromData
         }
         if (isset($data['date'])) {
             return Meta::withDate(
-                new Date(new DateTimeImmutable($data['date']['forMachine']))
+                Date::simple(new DateTimeImmutable($data['date']['forMachine']))
             );
         }
         // Throw maybe? Or expected.
