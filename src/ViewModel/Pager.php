@@ -29,12 +29,12 @@ final class Pager implements ViewModel
 
     public static function firstPage(Link $nextPage) : Pager
     {
-        return new Pager(null, $nextPage);
+        return new self(null, $nextPage);
     }
 
     public static function subsequentPage(Link $previousPage, Link $nextPage = null) : Pager
     {
-        return new Pager($previousPage, $nextPage);
+        return new self($previousPage, $nextPage);
     }
 
     public function getTemplateName() : string

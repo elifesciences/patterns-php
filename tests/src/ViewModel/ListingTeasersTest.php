@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingTeasers;
-use eLife\Patterns\ViewModel\LoadMore;
 use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 use eLife\Patterns\ViewModel\Teaser;

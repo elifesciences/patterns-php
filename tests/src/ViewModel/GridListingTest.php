@@ -9,7 +9,6 @@ use eLife\Patterns\ViewModel\BlockLink;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\GridListing;
 use eLife\Patterns\ViewModel\Link;
-use eLife\Patterns\ViewModel\LoadMore;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\Teaser;
