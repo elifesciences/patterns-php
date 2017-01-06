@@ -13,6 +13,19 @@ final class PagerTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'nextPage' => [
+                'classes' => 'button--default button--full',
+                'path' => 'next-url',
+                'text' => 'next',
+            ],
+        ];
+
+        $pager = Pager::firstPage(new Link('next', 'next-url'));
+
+        $this->assertSame($data['nextPage'], $pager['nextPage']->toArray());
+        $this->assertSame($data, $pager->toArray());
+
+        $data = [
             'previousPage' => [
                 'classes' => 'button--default',
                 'path' => 'previous-url',
@@ -25,7 +38,7 @@ final class PagerTest extends ViewModelTest
             ],
         ];
 
-        $pager = new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url'));
+        $pager = Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'));
 
         $this->assertSame($data['previousPage'], $pager['previousPage']->toArray());
         $this->assertSame($data['nextPage'], $pager['nextPage']->toArray());
@@ -35,9 +48,9 @@ final class PagerTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'both' => [new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url'))],
-            'previous only' => [new Pager(new Link('previous', 'previous-url'))],
-            'next only' => [new Pager(null, new Link('next', 'next-url'))],
+            'both' => [Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))],
+            'previous only' => [Pager::subsequentPage(new Link('previous', 'previous-url'))],
+            'next only' => [Pager::firstPage(new Link('next', 'next-url'))],
         ];
     }
 

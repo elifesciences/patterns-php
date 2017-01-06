@@ -85,10 +85,20 @@ schema:
                                     minLength: 1
                             required:
                                 - path
-    anyOf:
-        -
-            required:
-                - previousPage
+    oneOf:
         -
             required:
                 - nextPage
+            not:
+                required:
+                    - previousPage
+        -
+            required:
+                - previousPage
+            not:
+                required:
+                    - nextPage
+        -
+            required:
+                - nextPage
+                - previousPage

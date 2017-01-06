@@ -227,7 +227,7 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    'heading', new LoadMore(new Link('testing', '#'))),
+                    'heading', Pager::firstPage(new Link('testing', '#'))),
             ],
             'teasers with pager' => [
                 GridListing::forTeasers(
@@ -253,7 +253,7 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    'heading', new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
+                    'heading', Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
             ],
         ];
     }

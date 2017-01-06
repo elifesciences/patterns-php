@@ -70,7 +70,7 @@ final class ListingTeasersTest extends ViewModelTest
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
-                ], 'heading'),
+                ], 'heading', 'id'),
             ],
             [
                 ListingTeasers::withPagination(
@@ -79,8 +79,8 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                     ],
-                    new LoadMore(new Link('testing', '#')),
-                    'heading'
+                    Pager::firstPage(new Link('testing', '#')),
+                    'heading', 'id'
                 ),
             ],
             [
@@ -90,7 +90,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                     ],
-                    new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
+                    Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
                     'heading'
                 ),
             ],
@@ -102,7 +102,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
-                    'heading'
+                    'heading', 'id'
                 ),
             ],
         ];
