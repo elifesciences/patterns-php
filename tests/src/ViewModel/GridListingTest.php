@@ -9,7 +9,6 @@ use eLife\Patterns\ViewModel\BlockLink;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\GridListing;
 use eLife\Patterns\ViewModel\Link;
-use eLife\Patterns\ViewModel\LoadMore;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\Teaser;
@@ -227,7 +226,7 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    'heading', new LoadMore(new Link('testing', '#'))),
+                    'heading', Pager::firstPage(new Link('testing', '#'))),
             ],
             'teasers with pager' => [
                 GridListing::forTeasers(
@@ -253,7 +252,7 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    'heading', new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
+                    'heading', Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
             ],
         ];
     }

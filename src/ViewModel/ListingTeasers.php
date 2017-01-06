@@ -17,39 +17,41 @@ final class ListingTeasers implements ViewModel
     use ComposedAssets;
 
     private $items;
+    private $id;
     private $heading;
     private $pagination;
     private $seeMoreLink;
 
-    private function __construct(array $items, string $heading = null, PaginationControl $pagination = null, SeeMoreLink $seeMoreLink = null)
+    private function __construct(array $items, string $id = null, string $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null)
     {
         if (
             null !== $pagination &&
             null !== $seeMoreLink
         ) {
-            throw new InvalidArgumentException('You cannot have both LoadMore and SeeMoreLink in Teaser Listings.');
+            throw new InvalidArgumentException('You cannot have both Pager and SeeMoreLink in Teaser Listings.');
         }
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, Teaser::class);
         $this->items = $items;
+        $this->id = $id;
         $this->heading = $heading;
         $this->pagination = $pagination;
         $this->seeMoreLink = $seeMoreLink;
     }
 
-    public static function basic(array $items, $heading = null)
+    public static function basic(array $items, $heading = null, string $id = null)
     {
-        return new static ($items, $heading);
+        return new static ($items, $id, $heading);
     }
 
-    public static function withPagination(array $items, PaginationControl $pagination, $heading = null)
+    public static function withPagination(array $items, Pager $pagination, $heading = null, string $id = null)
     {
-        return new static($items, $heading, $pagination);
+        return new static($items, $id, $heading, $pagination);
     }
 
-    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null)
+    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null, string $id = null)
     {
-        return new static($items, $heading, null, $seeMoreLink);
+        return new static($items, $id, $heading, null, $seeMoreLink);
     }
 
     public function getTemplateName() : string

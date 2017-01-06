@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingTeasers;
-use eLife\Patterns\ViewModel\LoadMore;
 use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 use eLife\Patterns\ViewModel\Teaser;
@@ -70,7 +69,7 @@ final class ListingTeasersTest extends ViewModelTest
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
-                ], 'heading'),
+                ], 'heading', 'id'),
             ],
             [
                 ListingTeasers::withPagination(
@@ -79,8 +78,8 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                     ],
-                    new LoadMore(new Link('testing', '#')),
-                    'heading'
+                    Pager::firstPage(new Link('testing', '#')),
+                    'heading', 'id'
                 ),
             ],
             [
@@ -90,7 +89,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                     ],
-                    new Pager(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
+                    Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
                     'heading'
                 ),
             ],
@@ -102,7 +101,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
-                    'heading'
+                    'heading', 'id'
                 ),
             ],
         ];

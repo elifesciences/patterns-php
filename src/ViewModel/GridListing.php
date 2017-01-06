@@ -28,7 +28,7 @@ final class GridListing implements ViewModel
         array $blockLinks = [],
         array $archiveNavLinks = [],
         array $teasers = [],
-        PaginationControl $pagination = null
+        Pager $pagination = null
     ) {
         $this->classes = $classes;
         $this->heading = $heading;
@@ -60,7 +60,7 @@ final class GridListing implements ViewModel
         return new self(null, $heading, [], $archiveNavLinks);
     }
 
-    public static function forTeasers(array $teasers, string $heading = null, PaginationControl $pagination = null) : GridListing
+    public static function forTeasers(array $teasers, string $heading = null, Pager $pagination = null) : GridListing
     {
         Assertion::notEmpty($teasers);
         Assertion::allIsInstanceOf($teasers, Teaser::class);
