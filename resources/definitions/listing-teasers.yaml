@@ -280,23 +280,13 @@ schema:
                                             minLength: 1
                                     required:
                                         - path
-            oneOf:
-                -
-                    required:
-                        - nextPage
-                    not:
-                        required:
-                            - previousPage
+            anyOf:
                 -
                     required:
                         - previousPage
-                    not:
-                        required:
-                            - nextPage
                 -
                     required:
                         - nextPage
-                        - previousPage
         seeMoreLink:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
