@@ -121,6 +121,7 @@ final class GridListingTest extends ViewModelTest
                     ],
                 ],
             ],
+            'id' => 'id',
         ];
         $teasers = GridListing::forTeasers(
             [
@@ -145,11 +146,15 @@ final class GridListingTest extends ViewModelTest
                     )
                 ),
             ],
-            'heading');
+            'heading',
+            null,
+            'id'
+        );
 
         $this->assertSame($teasersData['heading'], $teasers['heading']);
         $this->assertCount(1, $teasersData['teasers']);
         $this->assertSame($teasersData['teasers'][0], $teasers['teasers'][0]->toArray());
+        $this->assertSame($teasersData['id'], $teasers['id']);
         $this->assertSame($teasersData, $teasers->toArray());
     }
 
@@ -253,6 +258,7 @@ final class GridListingTest extends ViewModelTest
                         ),
                     ],
                     'heading', Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
+                'id',
             ],
         ];
     }

@@ -21,6 +21,9 @@ schema:
                 heading:
                     type: string
                     minLength: 1
+                id:
+                    type: string
+                    minLength: 1
         -
             oneOf:
                 -
@@ -398,12 +401,15 @@ schema:
                                                             minLength: 1
                                                     required:
                                                         - path
+                                targetId:
+                                    type: string
+                                    minLength: 1
                             anyOf:
                                 -
                                     required:
-                                        - previousPage
+                                        - nextPage
                                 -
                                     required:
-                                        - nextPage
+                                        - previousPage
                     required:
                         - teasers

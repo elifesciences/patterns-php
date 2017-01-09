@@ -21,6 +21,7 @@ final class GridListing implements ViewModel
     private $archiveNavLinks;
     private $teasers;
     private $pagination;
+    private $id;
 
     private function __construct(
         string $classes = null,
@@ -28,7 +29,8 @@ final class GridListing implements ViewModel
         array $blockLinks = [],
         array $archiveNavLinks = [],
         array $teasers = [],
-        Pager $pagination = null
+        Pager $pagination = null,
+        string $id = null
     ) {
         $this->classes = $classes;
         $this->heading = $heading;
@@ -36,6 +38,7 @@ final class GridListing implements ViewModel
         $this->archiveNavLinks = $archiveNavLinks;
         $this->teasers = $teasers;
         $this->pagination = $pagination;
+        $this->id = $id;
     }
 
     public static function forBlockLinks(array $blockLinks, string $heading = null) : GridListing
@@ -60,12 +63,12 @@ final class GridListing implements ViewModel
         return new self(null, $heading, [], $archiveNavLinks);
     }
 
-    public static function forTeasers(array $teasers, string $heading = null, Pager $pagination = null) : GridListing
+    public static function forTeasers(array $teasers, string $heading = null, Pager $pagination = null, string $id = null) : GridListing
     {
         Assertion::notEmpty($teasers);
         Assertion::allIsInstanceOf($teasers, Teaser::class);
 
-        return new self(null, $heading, [], [], $teasers, $pagination);
+        return new self(null, $heading, [], [], $teasers, $pagination, $id);
     }
 
     public function getTemplateName() : string
