@@ -280,13 +280,16 @@ schema:
                                             minLength: 1
                                     required:
                                         - path
+                targetId:
+                    type: string
+                    minLength: 1
             anyOf:
                 -
                     required:
-                        - previousPage
+                        - nextPage
                 -
                     required:
-                        - nextPage
+                        - previousPage
         seeMoreLink:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object

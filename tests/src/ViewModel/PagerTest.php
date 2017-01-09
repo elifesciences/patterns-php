@@ -18,11 +18,13 @@ final class PagerTest extends ViewModelTest
                 'path' => 'next-url',
                 'text' => 'next',
             ],
+            'targetId' => 'targetId',
         ];
 
-        $pager = Pager::firstPage(new Link('next', 'next-url'));
+        $pager = Pager::firstPage(new Link('next', 'next-url'), 'targetId');
 
         $this->assertSame($data['nextPage'], $pager['nextPage']->toArray());
+        $this->assertSame($data['targetId'], $pager['targetId']);
         $this->assertSame($data, $pager->toArray());
 
         $data = [
@@ -36,19 +38,21 @@ final class PagerTest extends ViewModelTest
                 'path' => 'next-url',
                 'text' => 'next',
             ],
+            'targetId' => 'targetId',
         ];
 
-        $pager = Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'));
+        $pager = Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'), 'targetId');
 
         $this->assertSame($data['previousPage'], $pager['previousPage']->toArray());
         $this->assertSame($data['nextPage'], $pager['nextPage']->toArray());
+        $this->assertSame($data['targetId'], $pager['targetId']);
         $this->assertSame($data, $pager->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'both' => [Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))],
+            'both' => [Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')), 'targetId'],
             'previous only' => [Pager::subsequentPage(new Link('previous', 'previous-url'))],
             'next only' => [Pager::firstPage(new Link('next', 'next-url'))],
         ];
