@@ -7,6 +7,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use Traversable;
 
 final class AllSubjectsListLink implements ViewModel
 {
@@ -26,5 +27,10 @@ final class AllSubjectsListLink implements ViewModel
     public function getTemplateName() : string
     {
         return '/elife/patterns/templates/all-subjects-list-link.mustache';
+    }
+
+    public function getStyleSheets() : Traversable
+    {
+        yield '/elife/patterns/assets/css/all-subjects-list-link.css';
     }
 }
