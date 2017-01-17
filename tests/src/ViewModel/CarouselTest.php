@@ -30,7 +30,7 @@ final class CarouselTest extends ViewModelTest
                     'name' => 'carousel item',
                     'url' => 'carousel-item-url',
                     'button' => [
-                        'classes' => 'button--outline',
+                        'classes' => 'button--default',
                         'path' => 'carousel-item-url',
                         'text' => 'button',
                     ],

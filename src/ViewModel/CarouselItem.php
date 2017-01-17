@@ -32,7 +32,7 @@ final class CarouselItem implements ViewModel
         $this->name = $title['name'];
         $this->url = $title['url'];
         if ($buttonText) {
-            $this->button = Button::link($buttonText, $this->url, Button::SIZE_MEDIUM, Button::STYLE_OUTLINE);
+            $this->button = Button::link($buttonText, $this->url);
         }
         $this->meta = $meta;
         $this->backgroundImage = $backgroundImage;
