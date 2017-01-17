@@ -22,7 +22,8 @@ final class TableTest extends ViewModelTest
             'footnotes' => [
                 [
                     'text' => 'Footnote 1',
-                    'id' => 'fn1',
+                    'footnoteId' => 'fn1',
+                    'footnoteLabel' => '*',
                 ],
                 [
                     'text' => 'Footnote 2',
@@ -33,7 +34,7 @@ final class TableTest extends ViewModelTest
         $table = new Table(
             $data['tables'],
             [
-                new TableFootnote($data['footnotes'][0]['text'], $data['footnotes'][0]['id']),
+                new TableFootnote($data['footnotes'][0]['text'], $data['footnotes'][0]['footnoteId'], $data['footnotes'][0]['footnoteLabel']),
                 new TableFootnote($data['footnotes'][1]['text']),
             ]
         );
@@ -71,6 +72,7 @@ final class TableTest extends ViewModelTest
     {
         return [
             'minimum' => [new Table(['<table><tr><td>foo</td></tr></table>'])],
+            'complete' => [new Table(['<table><tr><td>foo</td></tr></table>'], [new TableFootnote('footnote', 'id', 'label')])],
         ];
     }
 
