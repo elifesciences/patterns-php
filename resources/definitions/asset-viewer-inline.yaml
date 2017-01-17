@@ -6,6 +6,7 @@ assets:
         - captioned-asset.css
         - doi.css
         - media-source.css
+        - table.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -190,14 +191,51 @@ schema:
                                 - video
                         -
                             properties:
-                                tables:
-                                    type: array
-                                    minItems: 1
-                                    items:
-                                        type: string
-                                        pattern: '^<table>.*<\/table>$'
+                                table:
+                                    $schema: 'http://json-schema.org/draft-04/schema#'
+                                    type: object
+                                    properties:
+                                        tables:
+                                            type: array
+                                            minItems: 1
+                                            items:
+                                                type: string
+                                                pattern: '^<table>.*<\/table>$'
+                                        hasFootnotes:
+                                            type: boolean
+                                            enum:
+                                                - true
+                                        footnotes:
+                                            type: array
+                                            minItems: 1
+                                            items:
+                                                type: object
+                                                properties:
+                                                    text:
+                                                        type: string
+                                                        minLength: 1
+                                                    footnoteId:
+                                                        type: string
+                                                        minLength: 1
+                                                    footnoteLabel:
+                                                        type: string
+                                                        minLength: 1
+                                                required:
+                                                    - text
+                                                dependencies:
+                                                    footnoteId:
+                                                        - footnoteLabel
+                                                    footnoteLabel:
+                                                        - footnoteId
+                                    required:
+                                        - tables
+                                    dependencies:
+                                        hasFootnotes:
+                                            - footnotes
+                                        footnotes:
+                                            - hasFootnotes
                             required:
-                                - tables
+                                - table
                         -
                             properties:
                                 image:

@@ -18,7 +18,7 @@ final class CaptionedAsset implements ViewModel
     private $captionText;
     private $picture;
     private $video;
-    private $tables;
+    private $table;
     private $image;
     private $doi;
     private $download;
@@ -60,7 +60,7 @@ final class CaptionedAsset implements ViewModel
                 break;
 
             case $figure instanceof Table:
-                $this->tables = $figure['tables'];
+                $this->table = $figure;
                 break;
 
             default:
@@ -84,5 +84,6 @@ final class CaptionedAsset implements ViewModel
         yield $this->picture;
         yield $this->doi;
         yield $this->video;
+        yield $this->table;
     }
 }
