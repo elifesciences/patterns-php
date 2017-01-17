@@ -108,13 +108,13 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $data = ContentHeaderFixtures::researchFixture();
         $research = ContentHeaderArticle::research(
             $data['title'],
-            AuthorList::asList(array_map(function ($item) {
-                return Author::asText($item['name']);
-            }, $data['authors']['list'])),
             $this->metaFromData($data['meta']),
             new SubjectList(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['subjects']['list'])),
+            AuthorList::asList(array_map(function ($item) {
+                return Author::asText($item['name']);
+            }, $data['authors']['list'])),
             new InstitutionList(array_map(function ($item) {
                 return new Institution($item['name']);
             }, $data['institutions']['list'])),
@@ -132,10 +132,10 @@ final class ContentHeaderArticleTest extends ViewModelTest
         $research = ContentHeaderArticle::researchReadMore(
             $data['title'],
             $this->metaFromData($data['meta']),
-            AuthorList::asReadMore($data['authors']['firstAuthorOnly']),
             new SubjectList(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['subjects']['list'])),
+            AuthorList::asReadMore($data['authors']['firstAuthorOnly']),
             null
         );
         $this->assertSameWithoutOrder($data, $research->toArray());
