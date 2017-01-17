@@ -95,19 +95,19 @@ final class ContentHeaderArticle implements ViewModel
     public static function researchReadMore(
         string $title,
         Meta $meta,
-        AuthorList $authors,
         SubjectList $subjects,
+        AuthorList $authors = null,
         string $download = null
     ) {
-        if ($authors['hasEtAl'] === false) {
+        if ($authors && $authors['hasEtAl'] === false) {
             $authors = AuthorList::readMoreFromList($authors);
         }
 
         return self::research(
             $title,
-            $authors,
             $meta,
             $subjects,
+            $authors,
             null,
             $download
         );
@@ -115,16 +115,16 @@ final class ContentHeaderArticle implements ViewModel
 
     public static function research(
         string $title,
-        AuthorList $authors,
         Meta $meta,
         SubjectList $subjects,
+        AuthorList $authors = null,
         InstitutionList $institutions = null,
         string $download = null
     ) {
         // Defaults for research article.
         $rootClasses = [self::STYLE_BASE, self::STYLE_RESEARCH];
         // For read more add the extra class.
-        if ($authors['hasEtAl'] === true) {
+        if ($authors && $authors['hasEtAl'] === true) {
             array_push($rootClasses, self::STYLE_RESEARCH_READ_MORE);
         }
         // This can never be set.
@@ -147,7 +147,7 @@ final class ContentHeaderArticle implements ViewModel
     public static function magazineWithBackground(
         string $title,
         string $strapline = null,
-        AuthorList $authors,
+        AuthorList $authors = null,
         string $download = null,
         SubjectList $subjects = null,
         Meta $meta = null,
@@ -170,7 +170,7 @@ final class ContentHeaderArticle implements ViewModel
     public static function magazine(
         string $title,
         string $strapline = null,
-        AuthorList $authors,
+        AuthorList $authors = null,
         string $download = null,
         SubjectList $subjects = null,
         Meta $meta = null,
