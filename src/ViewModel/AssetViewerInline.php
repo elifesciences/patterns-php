@@ -47,7 +47,7 @@ final class AssetViewerInline implements ViewModel
             $this->variant = 'figure';
         } elseif ($captionedAsset['video']) {
             $this->variant = 'video';
-        } elseif ($captionedAsset['tables']) {
+        } elseif ($captionedAsset['table']) {
             $this->variant = 'table';
         }
         $this->supplementOrdinal = $supplementOrdinal;

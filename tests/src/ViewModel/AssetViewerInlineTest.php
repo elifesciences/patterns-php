@@ -117,14 +117,16 @@ final class AssetViewerInlineTest extends ViewModelTest
                 'captionText' => [
                     'heading' => 'heading',
                 ],
-                'tables' => [
-                    '<table><tr><td>foo</td></tr></table>',
+                'table' => [
+                    'tables' => [
+                        '<table><tr><td>foo</td></tr></table>',
+                    ],
                 ],
             ],
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
-            new CaptionedAsset(new Table('<table><tr><td>foo</td></tr></table>'), new CaptionText('heading')));
+            new CaptionedAsset(new Table(['<table><tr><td>foo</td></tr></table>']), new CaptionText('heading')));
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
