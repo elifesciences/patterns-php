@@ -13,6 +13,6 @@ elifeLibrary {
 
     stage 'Push and pull-request', {
         sh "git push origin ${branch}"
-        sh "hub pull-request -m "Updated pattern-library"
+        sh "hub pull-request -m 'Updated pattern-library'"
     }
 }
