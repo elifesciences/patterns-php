@@ -8,7 +8,7 @@ elifeLibrary {
     stage "Update", {
         sh "${env.BUILD_NUMBER} >> build-number.log"
         sh "git add ."
-        sh "git commit -m "Updated pattern-library (not yet)"
+        sh "git commit -m \"Updated pattern-library (not yet)\""
     }
 
     stage 'Push and pull-request', {
