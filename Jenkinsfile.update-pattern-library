@@ -1,0 +1,18 @@
+elifeLibrary {
+    def branch = "update_pattern_library_${env.BUILD_NUMBER}"
+    stage 'Checkout and branch', {
+        checkout scm
+        sh "git checkout -b ${branch}"
+    }
+
+    stage "Update", {
+        sh "echo ${env.BUILD_NUMBER} >> build-number.log"
+        sh "git add ."
+        sh "git commit -m 'Updated pattern-library (not yet)'"
+    }
+
+    stage 'Push and pull-request', {
+        sh "git push origin ${branch}"
+        sh "hub pull-request -m 'Updated pattern-library'"
+    }
+}
