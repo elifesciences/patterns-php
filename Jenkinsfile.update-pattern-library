@@ -16,7 +16,7 @@ elifeLibrary {
 
     def differences = false
     stage 'Commit', {
-        differences = sh(script: "git diff --exit-code", returnStatus: true)
+        differences = sh(script: "git diff --cached --exit-code", returnStatus: true)
         if (differences) {
             def patternLibraryCommit = sh(script: "cd pattern-library; git rev-parse HEAD", returnStdout: true).trim()
             def patternLibraryMessage = sh(script: "cd pattern-library; git log -1 --pretty='%B' | head -n 1", returnStdout: true).trim()
