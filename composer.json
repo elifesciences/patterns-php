@@ -2,7 +2,7 @@
     "name": "elife/patterns",
     "description": "eLife patterns",
     "type": "library",
-    "license": "GPL-3.0+",
+    "license": "MIT",
     "autoload": {
         "files": [
             "src/functions.php"
