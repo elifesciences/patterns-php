@@ -10,6 +10,8 @@ elifeLibrary {
         sh "composer install"
 
         sh "bin/update"
+        sh "touch test_file"
+        sh "git add ."
     }
 
     def differences = false
@@ -20,7 +22,6 @@ elifeLibrary {
             def patternLibraryMessage = sh(script: "cd pattern-library; git log -1 --pretty='%B' | head -n 1", returnStdout: true).trim()
             shortDescription = "Updated pattern-library to ${patternLibraryCommit}: ${patternLibraryMessage}"
             writeFile(file: "pattern-library-short-description.log", text:shortDescription)
-            sh "git add ."
             sh "git commit -F pattern-library-short-description.log"
         } else {
             echo "Nothing to do"
