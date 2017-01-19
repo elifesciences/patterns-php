@@ -7,7 +7,8 @@ elifeLibrary {
 
     def shortDescription
     stage "Update", {
-        sh "bin/update || echo bin/update FAILED"
+        sh "composer install"
+        sh "bin/update"
         def patternLibraryCommit = sh(script: "cd pattern-library; git rev-parse HEAD", returnStdout: true).trim()
         def patternLibraryMessage = sh(script: "cd pattern-library; git log -1 --pretty='%B' | head -n 1", returnStdout: true).trim()
         shortDescription = "Updated pattern-library to ${patternLibraryCommit}: ${patternLibraryMessage}"
