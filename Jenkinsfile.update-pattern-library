@@ -10,7 +10,6 @@ elifeLibrary {
         sh "composer install"
 
         sh "bin/update"
-        sh "touch test_file"
         sh "git add ."
     }
 
