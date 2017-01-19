@@ -8,7 +8,11 @@ elifeLibrary {
     def shortDescription
     stage "Update", {
         sh "composer install"
+
         sh "bin/update"
+    }
+
+    stage 'Commit', {
         def patternLibraryCommit = sh(script: "cd pattern-library; git rev-parse HEAD", returnStdout: true).trim()
         def patternLibraryMessage = sh(script: "cd pattern-library; git log -1 --pretty='%B' | head -n 1", returnStdout: true).trim()
         shortDescription = "Updated pattern-library to ${patternLibraryCommit}: ${patternLibraryMessage}"
@@ -18,7 +22,7 @@ elifeLibrary {
     }
 
     stage 'Push and pull-request', {
-        def longDescription = shortDescription + "\n\n" + env.BUILD_URL
+        def longDescription = shortDescription + "\n\n" + "I have run ${env.BUILD_URL} which resulted in this pull request."
         writeFile(file: "pattern-library-long-description.log", text: longDescription)
         sh "git push origin ${branch}"
         sh "hub pull-request -F pattern-library-long-description.log"
