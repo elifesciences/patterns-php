@@ -5,15 +5,15 @@ elifeLibrary {
         sh "git checkout -b ${branch}"
     }
 
-    def shortDescription
     stage "Update", {
-        sh "composer install"
+        sh "composer install --no-interaction"
 
         sh "bin/update"
         sh "git add ."
     }
 
-    def differences = false
+    def differences
+    def shortDescription
     stage 'Commit', {
         differences = sh(script: "git diff --cached --exit-code", returnStatus: true)
         if (differences) {
@@ -27,7 +27,7 @@ elifeLibrary {
         }
     }
 
-    stage 'Push and pull-request', {
+    stage 'Push and pull request', {
         if (differences) {
             def longDescription = shortDescription + "\n\n" + "I have run ${env.BUILD_URL} which resulted in this pull request."
             writeFile(file: "pattern-library-long-description.log", text: longDescription)
