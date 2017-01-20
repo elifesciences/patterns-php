@@ -10,7 +10,7 @@ elifeLibrary {
         sh "composer install"
 
         sh "bin/update"
-        sh "git add ."
+        sh "git add --all ."
     }
 
     def differences = false
