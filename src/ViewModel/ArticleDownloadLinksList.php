@@ -3,70 +3,40 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class ArticleDownloadLinksList implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
-    private $dlLinkArticle;
-    private $dlLinkFigure;
-    private $dlLinkCitsBibtex;
-    private $dlLinkCitsEndnote;
-    private $dlLinkCitsEndnote8;
-    private $dlLinkCitsRefworks;
-    private $dlLinkCitsRIS;
-    private $dlLinkCitsMedlars;
-    private $linkCitsMendeley;
-    private $linkCitsReadCube;
-    private $linkCitsPapers;
-    private $linkCitsCiteULike;
+    private $id;
+    private $description;
+    private $groups;
 
-    public function __construct(
-        string $dlLinkArticle,
-        string $dlLinkFigure,
-        string $dlLinkCitsBibtex,
-        string $dlLinkCitsEndnote,
-        string $dlLinkCitsEndnote8,
-        string $dlLinkCitsRefworks,
-        string $dlLinkCitsRIS,
-        string $dlLinkCitsMedlars,
-        string $linkCitsMendeley,
-        string $linkCitsReadCube,
-        string $linkCitsPapers,
-        string $linkCitsCiteULike
-    ) {
-        Assertion::notBlank($dlLinkArticle);
-        Assertion::notBlank($dlLinkFigure);
-        Assertion::notBlank($dlLinkCitsBibtex);
-        Assertion::notBlank($dlLinkCitsEndnote);
-        Assertion::notBlank($dlLinkCitsEndnote8);
-        Assertion::notBlank($dlLinkCitsRefworks);
-        Assertion::notBlank($dlLinkCitsRIS);
-        Assertion::notBlank($dlLinkCitsMedlars);
-        Assertion::notBlank($linkCitsMendeley);
-        Assertion::notBlank($linkCitsReadCube);
-        Assertion::notBlank($linkCitsPapers);
-        Assertion::notBlank($linkCitsCiteULike);
+    public function __construct(string $id, string $description, array $groups)
+    {
+        Assertion::notBlank($id);
+        Assertion::notBlank($description);
+        Assertion::notEmpty($groups);
 
-        $this->dlLinkArticle = $dlLinkArticle;
-        $this->dlLinkFigure = $dlLinkFigure;
-        $this->dlLinkCitsBibtex = $dlLinkCitsBibtex;
-        $this->dlLinkCitsEndnote = $dlLinkCitsEndnote;
-        $this->dlLinkCitsEndnote8 = $dlLinkCitsEndnote8;
-        $this->dlLinkCitsRefworks = $dlLinkCitsRefworks;
-        $this->dlLinkCitsRIS = $dlLinkCitsRIS;
-        $this->dlLinkCitsMedlars = $dlLinkCitsMedlars;
-        $this->linkCitsMendeley = $linkCitsMendeley;
-        $this->linkCitsReadCube = $linkCitsReadCube;
-        $this->linkCitsPapers = $linkCitsPapers;
-        $this->linkCitsCiteULike = $linkCitsCiteULike;
+        $this->id = $id;
+        $this->description = $description;
+        $this->groups = array_map(function (string $title, array $items) {
+            Assertion::notBlank($title);
+            Assertion::notEmpty($items);
+            Assertion::allIsInstanceOf($items, Link::class);
+
+            return [
+                'title' => $title,
+                'items' => $items,
+            ];
+        }, array_keys($groups), array_values($groups));
     }
 
     public function getTemplateName() : string

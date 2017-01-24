@@ -2,7 +2,7 @@
     "name": "elife/patterns",
     "description": "eLife patterns",
     "type": "library",
-    "license": "GPL-3.0+",
+    "license": "MIT",
     "autoload": {
         "files": [
             "src/functions.php"
@@ -28,7 +28,7 @@
         "justinrainbow/json-schema": "^1.6",
         "php-jsonpointer/php-jsonpointer": "^1.0",
         "phpunit/phpunit": "^5.2",
-        "phpspec/prophecy": "^1.5",
+        "phpspec/prophecy": "^1.6",
         "symfony/filesystem": "^3.0",
         "symfony/finder": "^3.0",
         "symfony/process": "^3.0",

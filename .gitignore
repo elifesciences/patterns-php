@@ -1,6 +1,7 @@
 /.puli/
 /build/
 /composer.lock
+/pattern-library-*-description.log
 /pattern-library/
 /phpunit.xml
 /vendor/

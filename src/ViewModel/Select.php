@@ -3,15 +3,15 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class Select implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
     use SimplifyAssets;
 
     private $id;

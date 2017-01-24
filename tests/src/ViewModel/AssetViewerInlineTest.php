@@ -2,10 +2,11 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\AdditionalAssetData;
+use eLife\Patterns\ViewModel\AdditionalAsset;
 use eLife\Patterns\ViewModel\AdditionalAssets;
 use eLife\Patterns\ViewModel\AssetViewerInline;
 use eLife\Patterns\ViewModel\CaptionedAsset;
+use eLife\Patterns\ViewModel\CaptionText;
 use eLife\Patterns\ViewModel\DownloadLink;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
@@ -27,7 +28,9 @@ final class AssetViewerInlineTest extends ViewModelTest
             'label' => 'label',
             'figuresPageFragLink' => '#id',
             'captionedAsset' => [
-                'heading' => 'heading',
+                'captionText' => [
+                    'heading' => 'heading',
+                ],
                 'image' => [
                     'altText' => '',
                     'defaultPath' => '/default/path',
@@ -36,14 +39,13 @@ final class AssetViewerInlineTest extends ViewModelTest
             ],
             'additionalAssets' => [
                 [
-                    'data' => [
+                    'assets' => [
                         [
                             'assetId' => 'id',
-                            'headingPart1' => 'Without doi',
-                            'headingPart2' => 'part 2',
+                            'captionText' => [
+                                'heading' => 'Without doi',
+                            ],
                             'nonDoiLink' => 'http://google.com/',
-                            'doi' => null,
-                            'textPart' => 'text',
                             'downloadLink' => [
                                 'name' => 'Download link',
                                 'url' => 'http://google.com/download',
@@ -56,11 +58,10 @@ final class AssetViewerInlineTest extends ViewModelTest
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
-            CaptionedAsset::withOnlyHeading(new Image('/default/path',
-                [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'),
+            new CaptionedAsset(new Image('/default/path',
+                [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')),
             [
-                AdditionalAssetData::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
-                    'File name'), 'part 2', 'http://google.com/', 'text'),
+                AdditionalAsset::withoutDoi('id', new CaptionText('Without doi'), DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name'), 'http://google.com/'),
             ]);
 
         $this->assertSame($data['id'], $viewer['id']);
@@ -78,7 +79,9 @@ final class AssetViewerInlineTest extends ViewModelTest
             'label' => 'label',
             'figuresPageFragLink' => '#id',
             'captionedAsset' => [
-                'heading' => 'heading',
+                'captionText' => [
+                    'heading' => 'heading',
+                ],
                 'video' => [
                     'posterFrame' => 'http://some.image.com/test.jpg',
                     'sources' => [
@@ -95,8 +98,8 @@ final class AssetViewerInlineTest extends ViewModelTest
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
-            CaptionedAsset::withOnlyHeading(new Video('http://some.image.com/test.jpg',
-                [new MediaSource('/file.mp4', new MediaType('video/mp4'))]), 'heading'));
+            new CaptionedAsset(new Video('http://some.image.com/test.jpg',
+                [new MediaSource('/file.mp4', new MediaType('video/mp4'))]), new CaptionText('heading')));
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
@@ -111,15 +114,19 @@ final class AssetViewerInlineTest extends ViewModelTest
             'label' => 'label',
             'figuresPageFragLink' => '#id',
             'captionedAsset' => [
-                'heading' => 'heading',
-                'tables' => [
-                    '<table></table>',
+                'captionText' => [
+                    'heading' => 'heading',
+                ],
+                'table' => [
+                    'tables' => [
+                        '<table><tr><td>foo</td></tr></table>',
+                    ],
                 ],
             ],
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
-            CaptionedAsset::withOnlyHeading(new Table('<table></table>'), 'heading'));
+            new CaptionedAsset(new Table(['<table><tr><td>foo</td></tr></table>']), new CaptionText('heading')));
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
@@ -137,7 +144,9 @@ final class AssetViewerInlineTest extends ViewModelTest
             'label' => 'label',
             'figuresPageFragLink' => '#id',
             'captionedAsset' => [
-                'heading' => 'heading',
+                'captionText' => [
+                    'heading' => 'heading',
+                ],
                 'image' => [
                     'altText' => '',
                     'defaultPath' => '/default/path',
@@ -147,8 +156,8 @@ final class AssetViewerInlineTest extends ViewModelTest
         ];
 
         $viewer = AssetViewerInline::supplement('id', 1, 'parentId', 'label',
-            CaptionedAsset::withOnlyHeading(new Image('/default/path',
-                [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'));
+            new CaptionedAsset(new Image('/default/path',
+                [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')));
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
@@ -166,15 +175,15 @@ final class AssetViewerInlineTest extends ViewModelTest
         return [
             'primary' => [
                 AssetViewerInline::primary('id', 'label',
-                    CaptionedAsset::withOnlyHeading(new Image('/default/path',
-                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading')),
+                    new CaptionedAsset(new Image('/default/path',
+                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading'))),
             ],
             'supplement' => [
                 AssetViewerInline::supplement('id', 1, 'parentId', 'label',
-                    CaptionedAsset::withOnlyHeading(new Image('/default/path',
-                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), 'heading'), [
-                        AdditionalAssetData::withoutDoi('id', 'Without doi', DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
-                            'File name'), 'part 2', 'http://google.com/', 'text'),
+                    new CaptionedAsset(new Image('/default/path',
+                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')), [
+                        AdditionalAsset::withoutDoi('id', new CaptionText('Without doi'), DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
+                            'File name'), 'http://google.com/'),
                     ]),
             ],
         ];

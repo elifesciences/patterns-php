@@ -3,30 +3,30 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class AdditionalAssets implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use ComposedAssets;
-    use ReadOnlyArrayAccess;
 
     private $heading;
-    private $data;
+    private $assets;
 
     public function __construct(
         string $heading = null,
-        array $data
+        array $assets
     ) {
-        Assertion::notEmpty($data);
-        Assertion::allIsInstanceOf($data, AdditionalAssetData::class);
+        Assertion::notEmpty($assets);
+        Assertion::allIsInstanceOf($assets, AdditionalAsset::class);
 
         $this->heading = $heading;
-        $this->data = $data;
+        $this->assets = $assets;
     }
 
     public function getTemplateName() : string
@@ -34,15 +34,8 @@ final class AdditionalAssets implements ViewModel
         return '/elife/patterns/templates/additional-assets.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield '/elife/patterns/assets/css/additional-assets.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
-        foreach ($this->data as $assetData) {
-            yield $assetData['doi'];
-        }
+        yield from $this->assets;
     }
 }

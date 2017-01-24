@@ -199,7 +199,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['secondaryInfo'],
-            new Date(new DateTimeImmutable($data['eventDate']['forMachine']))
+            Date::simple(new DateTimeImmutable($data['eventDate']['forMachine']))
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -214,7 +214,7 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['secondaryInfo'],
-            new Date(new DateTimeImmutable($data['eventDate']['forMachine'])),
+            Date::simple(new DateTimeImmutable($data['eventDate']['forMachine'])),
             true
         );
         $this->assertSameWithoutOrder($data, $actual);

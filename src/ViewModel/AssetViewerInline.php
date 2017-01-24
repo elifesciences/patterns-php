@@ -3,16 +3,16 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class AssetViewerInline implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
     use ComposedAssets;
 
     private $id;
@@ -37,7 +37,7 @@ final class AssetViewerInline implements ViewModel
         Assertion::nullOrMin($supplementOrdinal, 1);
         Assertion::nullOrNotBlank($parentId);
         Assertion::notBlank($label);
-        Assertion::allIsInstanceOf($additionalAssets, AdditionalAssetData::class);
+        Assertion::allIsInstanceOf($additionalAssets, AdditionalAsset::class);
 
         $this->id = $id;
         if ($supplementOrdinal) {
@@ -47,7 +47,7 @@ final class AssetViewerInline implements ViewModel
             $this->variant = 'figure';
         } elseif ($captionedAsset['video']) {
             $this->variant = 'video';
-        } elseif ($captionedAsset['tables']) {
+        } elseif ($captionedAsset['table']) {
             $this->variant = 'table';
         }
         $this->supplementOrdinal = $supplementOrdinal;

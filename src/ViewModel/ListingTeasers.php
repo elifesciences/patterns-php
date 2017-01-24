@@ -3,53 +3,55 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
-use eLife\Patterns\ReadOnlyArrayAccess;
 use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
 
 final class ListingTeasers implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
     use ComposedAssets;
 
     private $items;
+    private $id;
     private $heading;
-    private $loadMore;
+    private $pagination;
     private $seeMoreLink;
 
-    private function __construct(array $items, string $heading = null, LoadMoreButton $loadMore = null, SeeMoreLink $seeMoreLink = null)
+    private function __construct(array $items, string $id = null, string $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null)
     {
         if (
-            null !== $loadMore &&
+            null !== $pagination &&
             null !== $seeMoreLink
         ) {
-            throw new InvalidArgumentException('You cannot have both LoadMore and SeeMoreLink in Teaser Listings.');
+            throw new InvalidArgumentException('You cannot have both Pager and SeeMoreLink in Teaser Listings.');
         }
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, Teaser::class);
         $this->items = $items;
+        $this->id = $id;
         $this->heading = $heading;
-        $this->loadMore = $loadMore;
+        $this->pagination = $pagination;
         $this->seeMoreLink = $seeMoreLink;
     }
 
-    public static function basic(array $items, $heading = null)
+    public static function basic(array $items, $heading = null, string $id = null)
     {
-        return new static ($items, $heading);
+        return new static ($items, $id, $heading);
     }
 
-    public static function withLoadMore(array $items, LoadMoreButton $loadMore, $heading = null)
+    public static function withPagination(array $items, Pager $pagination, $heading = null, string $id = null)
     {
-        return new static($items, $heading, $loadMore);
+        return new static($items, $id, $heading, $pagination);
     }
 
-    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null)
+    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null, string $id = null)
     {
-        return new static($items, $heading, null, $seeMoreLink);
+        return new static($items, $id, $heading, null, $seeMoreLink);
     }
 
     public function getTemplateName() : string
@@ -65,6 +67,6 @@ final class ListingTeasers implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->items;
-        yield $this->loadMore;
+        yield $this->pagination;
     }
 }

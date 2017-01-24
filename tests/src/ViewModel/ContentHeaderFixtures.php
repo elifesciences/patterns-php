@@ -34,29 +34,7 @@ final class ContentHeaderFixtures
               {"name": "Phillip A Newmark"}
             ]
           },
-          "download": {
-            "sources": [
-              {
-                "srcset": "../../assets/img/icons/download-full.svg",
-                "media": "(min-width: 35em)",
-                "type": "image/svg+xml"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-full-1x.png",
-                "media": "(min-width: 35em)"
-              },
-              {
-                "srcset": "../../assets/img/icons/download.svg",
-                "type": "image/svg+xml"
-              }
-            ],
-            "fallback": {
-              "defaultPath": "../../assets/img/icons/download-full-1x.png",
-              "srcset": "../../assets/img/icons/download-full-2x.png 88w, ../../assets/img/icons/download-full-1x.png 44w",
-              "classes": "content-header__download_icon",
-              "altText": "Download icon"
-            }
-          },
+          "download": "#download",
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -108,33 +86,12 @@ JSON;
               }
             ]
           },
-          "download": {
-            "sources": [
-              {
-                "srcset": "../../assets/img/icons/download-full-reverse.svg",
-                "media": "(min-width: 35em)",
-                "type": "image/svg+xml"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-full-reverse-1x.png",
-                "media": "(min-width: 35em)"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-reverse.svg",
-                "type": "image/svg+xml"
-              }
-            ],
-            "fallback": {
-              "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
-              "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
-              "classes": "content-header__download_icon",
-              "altText": "Download icon"
-            }
-          },
+          "download": "#download",
           "backgroundImage": {
             "lowResImageSource": "http://unsplash.it/950/400",
             "highResImageSource": "http://unsplash.it/1900/800"
           },
+          "hasBackground": true,
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -180,29 +137,8 @@ JSON;
               {"name": "Phillip A Newmark"}
             ]
           },
-          "download": {
-            "sources": [
-              {
-                "srcset": "../../assets/img/icons/download-full-reverse.svg",
-                "media": "(min-width: 35em)",
-                "type": "image/svg+xml"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-full-reverse-1x.png",
-                "media": "(min-width: 35em)"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-reverse.svg",
-                "type": "image/svg+xml"
-              }
-            ],
-            "fallback": {
-              "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
-              "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
-              "classes": "content-header__download_icon",
-              "altText": "Download icon"
-            }
-          },
+          "download": "#download",
+          "hasBackground": true,
           "meta": {
             "url": "#",
             "text": "Insight",
@@ -336,29 +272,7 @@ JSON;
 
           "titleClass": "content-header__title--extra-small",
 
-          "download": {
-            "sources": [
-              {
-                "srcset": "../../assets/img/icons/download-full.svg",
-                "media": "(min-width: 35em)",
-                "type": "image/svg+xml"
-              },
-              {
-                "srcset": "../../assets/img/icons/download-full-1x.png",
-                "media": "(min-width: 35em)"
-              },
-              {
-                "srcset": "../../assets/img/icons/download.svg",
-                "type": "image/svg+xml"
-              }
-            ],
-            "fallback": {
-              "defaultPath": "../../assets/img/icons/download-full-1x.png",
-              "srcset": "../../assets/img/icons/download-full-2x.png 88w, ../../assets/img/icons/download-full-1x.png 44w",
-              "classes": "content-header__download_icon",
-              "altText": "Download icon"
-            }
-          },
+          "download": "download",
 
           "meta": {
             "url": "#",
@@ -477,7 +391,8 @@ JSON;
           "backgroundImage": {
             "lowResImageSource": "http://unsplash.it/950/400",
             "highResImageSource": "http://unsplash.it/1900/800"
-          }
+          },
+          "hasBackground": true
         }
 JSON;
 
@@ -510,7 +425,7 @@ JSON;
                   "forMachine": "2016-02-29"
                 }
               },
-
+              "hasBackground": true,
               "backgroundImage": {
                 "lowResImageSource": "http://unsplash.it/950/400",
                 "highResImageSource": "http://unsplash.it/1900/800"
@@ -556,6 +471,7 @@ JSON;
                   "forMachine": "2016-02-29"
                 }
               },
+              "hasBackground": true,
               "backgroundImage": {
                 "lowResImageSource": "http://unsplash.it/950/400",
                 "highResImageSource": "http://unsplash.it/1900/800"
@@ -579,6 +495,7 @@ JSON;
                 "path": "#",
                 "classes": "button--outline button--small"
               },
+              "hasBackground": true,
               "backgroundImage": {
                 "lowResImageSource": "http://unsplash.it/950/400",
                 "highResImageSource": "http://unsplash.it/1900/800"
@@ -611,32 +528,8 @@ JSON;
               "forMachine": "2016-02-29"
             }
           },
-          "download": {
-            "picture": {
-              "sources": [
-                {
-                  "srcset": "../../assets/img/icons/download-full-reverse.svg",
-                  "media": "(min-width: 35em)",
-                  "type": "image/svg+xml"
-                },
-                {
-                  "srcset": "../../assets/img/icons/download-full-reverse-1x.png",
-                  "media": "(min-width: 35em)"
-                },
-                {
-                  "srcset": "../../assets/img/icons/download-reverse.svg",
-                  "type": "image/svg+xml"
-                }
-              ],
-              "fallback": {
-                "defaultPath": "../../assets/img/icons/download-full-reverse-1x.png",
-                "srcset": "../../assets/img/icons/download-full-reverse-2x.png 88w, ../../assets/img/icons/download-full-reverse-1x.png 44w",
-                "classes": "content-header__download_icon",
-                "altText": "Download icon"
-              }
-            },
-            "downloadLink": "#"
-          },
+          "download": "#download",
+          "hasBackground": true,
           "backgroundImage": {
             "lowResImageSource": "http://unsplash.it/950/400",
             "highResImageSource": "http://unsplash.it/1900/800"
@@ -688,6 +581,7 @@ JSON;
                   "classes": "button--outline button--extra-small"
                 }
               },
+              "hasBackground": true,
               "backgroundImage": {
                 "lowResImageSource": "http://unsplash.it/950/400",
                 "highResImageSource": "http://unsplash.it/1900/800"

@@ -3,6 +3,8 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
+use eLife\Patterns\ViewModel\Link;
+use InvalidArgumentException;
 
 final class ArticleDownloadLinksListTest extends ViewModelTest
 {
@@ -12,58 +14,80 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'dlLinkArticle' => '#1',
-            'dlLinkFigure' => '#2',
-            'dlLinkCitsBibtex' => '#3',
-            'dlLinkCitsEndnote' => '#4',
-            'dlLinkCitsEndnote8' => '#5',
-            'dlLinkCitsRefworks' => '#6',
-            'dlLinkCitsRIS' => '#7',
-            'dlLinkCitsMedlars' => '#8',
-            'linkCitsMendeley' => '#9',
-            'linkCitsReadCube' => '#10',
-            'linkCitsPapers' => '#11',
-            'linkCitsCiteULike' => '#12',
+            'id' => 'id',
+            'description' => 'description',
+            'groups' => [
+                [
+                    'title' => 'group',
+                    'items' => [
+                        [
+                            'name' => 'name',
+                            'url' => 'url',
+                        ],
+                    ],
+                ],
+            ],
         ];
 
-        $downloadList = new ArticleDownloadLinksList(
-            $data['dlLinkArticle'],
-            $data['dlLinkFigure'],
-            $data['dlLinkCitsBibtex'],
-            $data['dlLinkCitsEndnote'],
-            $data['dlLinkCitsEndnote8'],
-            $data['dlLinkCitsRefworks'],
-            $data['dlLinkCitsRIS'],
-            $data['dlLinkCitsMedlars'],
-            $data['linkCitsMendeley'],
-            $data['linkCitsReadCube'],
-            $data['linkCitsPapers'],
-            $data['linkCitsCiteULike']
-        );
+        $downloadList = new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url')]]);
 
-        $this->assertSame($data['dlLinkArticle'], $downloadList['dlLinkArticle']);
-        $this->assertSame($data['dlLinkFigure'], $downloadList['dlLinkFigure']);
-        $this->assertSame($data['dlLinkCitsBibtex'], $downloadList['dlLinkCitsBibtex']);
-        $this->assertSame($data['dlLinkCitsEndnote'], $downloadList['dlLinkCitsEndnote']);
-        $this->assertSame($data['dlLinkCitsEndnote8'], $downloadList['dlLinkCitsEndnote8']);
-        $this->assertSame($data['dlLinkCitsRefworks'], $downloadList['dlLinkCitsRefworks']);
-        $this->assertSame($data['dlLinkCitsRIS'], $downloadList['dlLinkCitsRIS']);
-        $this->assertSame($data['dlLinkCitsMedlars'], $downloadList['dlLinkCitsMedlars']);
-        $this->assertSame($data['linkCitsMendeley'], $downloadList['linkCitsMendeley']);
-        $this->assertSame($data['linkCitsReadCube'], $downloadList['linkCitsReadCube']);
-        $this->assertSame($data['linkCitsPapers'], $downloadList['linkCitsPapers']);
-        $this->assertSame($data['linkCitsCiteULike'], $downloadList['linkCitsCiteULike']);
         $this->assertSame($data, $downloadList->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_an_id()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ArticleDownloadLinksList('', 'description', ['group' => [new Link('name', 'url')]]);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_description()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ArticleDownloadLinksList('id', '', ['group' => [new Link('name', 'url')]]);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_group()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ArticleDownloadLinksList('id', 'description', []);
+    }
+
+    /**
+     * @test
+     */
+    public function groups_must_have_at_least_1_link()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ArticleDownloadLinksList('id', 'description', ['group' => []]);
+    }
+
+    /**
+     * @test
+     */
+    public function groups_must_have_a_link()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ArticleDownloadLinksList('id', 'description', ['group' => ['foo']]);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [
-                new ArticleDownloadLinksList(
-                    '#01', '#02', '#03', '#04', '#05', '#06', '#07', '#08', '#09', '#10', '#11', '#12'
-                ),
-            ],
+            [new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url')]])],
         ];
     }
 

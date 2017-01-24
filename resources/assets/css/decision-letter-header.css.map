@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,uEACqC,CCyJnC,WAAW,CChIE,aAAc,CDiI3B,UAAU,CAAE,MAAM,CEjJlB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CFkJ9C,WAAW,CAAE,gBAAgB,CE7I3B,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CHZ7D,oCAAqC,CACnC,KAAK,CEHS,OAAO,CFIrB,eAAe,CAAE,IAAI,CAGvB,sFAC4C,CAC1C,KAAK,CERc,OAAO",
+"sources": ["../../../../../../assets/sass/patterns/organisms/decision-letter-header.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
+"names": [],
+"file": "decision-letter-header.css"
+}

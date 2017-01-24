@@ -10,6 +10,7 @@ use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\GridListing;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
+use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
@@ -107,6 +108,7 @@ final class GridListingTest extends ViewModelTest
                             'text' => 'name',
                             'date' => [
                                 'isExpanded' => false,
+                                'isUpdated' => false,
                                 'forHuman' => [
                                     'dayOfMonth' => (int) $date->format('j'),
                                     'month' => $date->format('M'),
@@ -119,6 +121,7 @@ final class GridListingTest extends ViewModelTest
                     ],
                 ],
             ],
+            'id' => 'id',
         ];
         $teasers = GridListing::forTeasers(
             [
@@ -138,16 +141,20 @@ final class GridListingTest extends ViewModelTest
                     TeaserFooter::forNonArticle(
                         Meta::withLink(
                             new Link('name', 'path'),
-                            new Date($date)
+                            Date::simple($date)
                         )
                     )
                 ),
             ],
-            'heading');
+            'heading',
+            null,
+            'id'
+        );
 
         $this->assertSame($teasersData['heading'], $teasers['heading']);
         $this->assertCount(1, $teasersData['teasers']);
         $this->assertSame($teasersData['teasers'][0], $teasers['teasers'][0]->toArray());
+        $this->assertSame($teasersData['id'], $teasers['id']);
         $this->assertSame($teasersData, $teasers->toArray());
     }
 
@@ -193,12 +200,65 @@ final class GridListingTest extends ViewModelTest
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
                                     new Link('name', 'path'),
-                                    new Date(new DateTimeImmutable())
+                                    Date::simple(new DateTimeImmutable())
                                 )
                             )
                         ),
                     ],
                     'heading'),
+            ],
+            'teasers with load more' => [
+                GridListing::forTeasers(
+                    [
+                        Teaser::withGrid(
+                            'title',
+                            'url',
+                            'content',
+                            'secondary info',
+                            TeaserImage::prominent(
+                                '250.jpg',
+                                'alt',
+                                [
+                                    500 => '500.jpg',
+                                    250 => '250.jpg',
+                                ]
+                            ),
+                            TeaserFooter::forNonArticle(
+                                Meta::withLink(
+                                    new Link('name', 'path'),
+                                    Date::simple(new DateTimeImmutable())
+                                )
+                            )
+                        ),
+                    ],
+                    'heading', Pager::firstPage(new Link('testing', '#'))),
+            ],
+            'teasers with pager' => [
+                GridListing::forTeasers(
+                    [
+                        Teaser::withGrid(
+                            'title',
+                            'url',
+                            'content',
+                            'secondary info',
+                            TeaserImage::prominent(
+                                '250.jpg',
+                                'alt',
+                                [
+                                    500 => '500.jpg',
+                                    250 => '250.jpg',
+                                ]
+                            ),
+                            TeaserFooter::forNonArticle(
+                                Meta::withLink(
+                                    new Link('name', 'path'),
+                                    Date::simple(new DateTimeImmutable())
+                                )
+                            )
+                        ),
+                    ],
+                    'heading', Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
+                'id',
             ],
         ];
     }

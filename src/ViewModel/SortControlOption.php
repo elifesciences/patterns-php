@@ -3,13 +3,13 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ReadOnlyArrayAccess;
 
 final class SortControlOption implements CastsToArray
 {
-    use ReadOnlyArrayAccess;
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
     const ASC = 'ascending';

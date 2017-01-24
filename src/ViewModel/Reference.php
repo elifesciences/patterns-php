@@ -3,53 +3,77 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ReadOnlyArrayAccess;
-use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class Reference implements ViewModel
 {
+    use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ReadOnlyArrayAccess;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $abstracts;
-    private $authors;
+    private $authorLists;
     private $origin;
-    private $secondaryLinkText;
+    private $doi;
     private $title;
     private $titleLink;
     private $hasAuthors;
     private $hasAbstracts;
 
-    public function __construct(
+    private function __construct(
         string $title,
-        string $origin,
+        array $origin,
         string $titleLink = null,
-        string $secondaryLinkText = null,
-        array $authors = [],
+        Doi $doi = null,
+        array $authorLists = [],
         array $abstracts = []
     ) {
         Assertion::notBlank($title);
-        Assertion::notBlank($origin);
-        Assertion::allIsInstanceOf($authors, Author::class);
+        Assertion::allString($origin);
+        Assertion::allIsInstanceOf($authorLists, ReferenceAuthorList::class);
         Assertion::allIsInstanceOf($abstracts, Link::class);
 
         $this->titleLink = $titleLink;
         $this->title = $title;
-        $this->secondaryLinkText = $secondaryLinkText;
-        $this->origin = $origin;
-        $this->authors = $authors;
-        $this->hasAuthors = !empty($authors);
+        $this->doi = $doi;
+        $this->origin = empty($origin) ? null : implode('. ', $origin).'.';
+        $this->authorLists = $authorLists;
+        $this->hasAuthors = !empty($authorLists);
         $this->abstracts = $abstracts;
         $this->hasAbstracts = !empty($abstracts);
     }
 
-    public function getStyleSheets() : Traversable
+    public static function withDoi(
+        string $title,
+        Doi $doi,
+        array $origin = [],
+        array $authorLists = [],
+        array $abstracts = []
+    ) : Reference {
+        return new self($title, $origin, null, $doi, $authorLists, $abstracts);
+    }
+
+    public static function withOutDoi(
+        Link $title,
+        array $origin = [],
+        array $authorLists = [],
+        array $abstracts = []
+    ) : Reference {
+        return new self($title['name'], $origin, $title['url'], null, $authorLists, $abstracts);
+    }
+
+    protected function getLocalStyleSheets() : Traversable
     {
         yield '/elife/patterns/assets/css/reference.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->doi;
     }
 
     public function getTemplateName() : string
