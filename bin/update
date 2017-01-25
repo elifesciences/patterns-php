@@ -18,7 +18,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 if (!empty($argv[1])) {
     $reference = $argv[1];
 } else {
-    $reference = 'origin/master';
+    $reference = 'origin/errors';
 }
 
 $sourceDir = __DIR__.'/../pattern-library';
@@ -29,7 +29,7 @@ $wrapper->addOutputListener(new GitOutputStreamListener());
 $tokenizer = new Mustache_Tokenizer();
 
 if (false === is_dir($sourceDir)) {
-    $repo = $wrapper->cloneRepository('git@github.com:elifesciences/pattern-library.git', $sourceDir);
+    $repo = $wrapper->cloneRepository('git@github.com:thewilkybarkid/pattern-library.git', $sourceDir);
 } else {
     $repo = new GitWorkingCopy($wrapper, $sourceDir);
     $repo->fetch();
