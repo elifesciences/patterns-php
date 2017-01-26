@@ -68,7 +68,7 @@ final class Button implements ViewModel
     public static function form(
         string $text,
         string $type,
-        string $name,
+        string $name = null,
         string $size = self::SIZE_MEDIUM,
         string $style = self::STYLE_DEFAULT,
         string $id = null,

@@ -81,7 +81,7 @@ final class FormButtonTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'button' => [Button::form('text', Button::TYPE_BUTTON, 'some name')],
+            'button' => [Button::form('text', Button::TYPE_BUTTON)],
             'reset' => [Button::form('text', Button::TYPE_RESET, 'some name')],
             'submit' => [Button::form('text', Button::TYPE_SUBMIT, 'some name')],
             'small' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_SMALL)],

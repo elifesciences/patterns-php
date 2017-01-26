@@ -132,7 +132,6 @@ schema:
                                                                         minLength: 1
                                                                 required:
                                                                     - type
-                                                                    - name
                                                             -
                                                                 properties:
                                                                     path:
@@ -263,7 +262,6 @@ schema:
                                                                         minLength: 1
                                                                 required:
                                                                     - type
-                                                                    - name
                                                             -
                                                                 properties:
                                                                     path:
