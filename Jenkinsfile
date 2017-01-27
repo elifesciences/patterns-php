@@ -10,6 +10,7 @@ elifeLibrary {
     elifeMainlineOnly {
         stage 'Downstream', {
             build job: 'dependencies-journal-update-patterns-php', wait: false
+            build job: 'dependencies-error-pages-update-patterns-php', wait: false
         }
     }
 }
