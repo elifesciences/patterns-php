@@ -18,8 +18,8 @@ final class ContextualDataTest extends ViewModelTest
                 'data' => [
                     [
                         'name' => 'foo',
-                        'elementId' => 'bar',
-                        'value' => 'baz',
+                        'value' => 'bar',
+                        'elementId' => 'baz',
                     ],
                 ],
             ],
@@ -53,7 +53,7 @@ final class ContextualDataTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'metrics only' => [ContextualData::withMetrics([new ContextualDataMetric('foo', 'bar', 'baz')])],
+            'metrics only' => [ContextualData::withMetrics([new ContextualDataMetric('foo', 'bar')])],
             'cite as only' => [ContextualData::withCitation('foo', new Doi('10.7554/eLife.10181.001'))],
             'both' => [
                 ContextualData::withMetrics([new ContextualDataMetric('foo', 'bar', 'baz')], 'qux',

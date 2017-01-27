@@ -13,17 +13,16 @@ final class ContextualDataMetric implements CastsToArray
     use ArrayFromProperties;
 
     private $name;
-    private $elementId;
     private $value;
+    private $elementId;
 
-    public function __construct(string $name, string $elementId, string $value)
+    public function __construct(string $name, string $value, string $elementId = null)
     {
         Assertion::notBlank($name);
-        Assertion::notBlank($elementId);
         Assertion::notBlank($value);
 
         $this->name = $name;
-        $this->elementId = $elementId;
         $this->value = $value;
+        $this->elementId = $elementId;
     }
 }
