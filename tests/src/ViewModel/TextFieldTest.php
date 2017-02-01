@@ -21,24 +21,44 @@ final class TextFieldTest extends ViewModelTest
             ],
             'name' => 'someName',
             'id' => 'id',
+            'placeholder' => 'placeholder',
+            'required' => true,
+            'disabled' => true,
+            'autofocus' => true,
+            'value' => 'value',
+            'classNames' => 'text-field--error',
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText'], $data['label']['for']),
             $data['id'],
-            $data['name']
+            $data['name'],
+            $data['placeholder'],
+            $data['required'],
+            $data['disabled'],
+            $data['autofocus'],
+            $data['value'],
+            TextField::STATUS_ERROR
         );
 
         $this->assertSame($data['name'], $textField['name']);
         $this->assertSame($data['id'], $textField['id']);
         $this->assertSame($data['label'], $textField['label']->toArray());
+        $this->assertSame($data['placeholder'], $textField['placeholder']);
+        $this->assertSame($data['required'], $textField['required']);
+        $this->assertSame($data['disabled'], $textField['disabled']);
+        $this->assertSame($data['autofocus'], $textField['autofocus']);
+        $this->assertSame($data['value'], $textField['value']);
+        $this->assertSame($data['classNames'], $textField['classNames']);
         $this->assertSame($data, $textField->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'email input' => [TextField::emailInput(new FormLabel('label', 'id'), 'id', 'some name')],
-            'text input' => [TextField::textInput(new FormLabel('label', 'id'), 'id', 'some name')],
+            'minimal email input' => [TextField::emailInput(new FormLabel('label', 'id'), 'id', 'some name')],
+            'complete email input' => [TextField::emailInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'minimal text input' => [TextField::textInput(new FormLabel('label', 'id'), 'id', 'some name')],
+            'complete text input' => [TextField::textInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
         ];
     }
 

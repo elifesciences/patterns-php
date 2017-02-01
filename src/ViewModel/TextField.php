@@ -11,6 +11,9 @@ use Traversable;
 
 final class TextField implements ViewModel
 {
+    const STATUS_ERROR = 'error';
+    const STATUS_VALID = 'valid';
+
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
@@ -22,19 +25,26 @@ final class TextField implements ViewModel
     private $placeholder;
     private $required;
     private $disabled;
+    private $autofocus;
+    private $value;
+    private $classNames;
 
     protected function __construct(
         string $inputType,
         FormLabel $label,
         string $id,
         string $name,
-        bool $placeholder = null,
+        string $placeholder = null,
         bool $required = null,
-        bool $disabled = null
+        bool $disabled = null,
+        bool $autofocus = null,
+        string $value = null,
+        string $status = null
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['text', 'email']);
         Assertion::same($id, $label['for']);
+        Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
 
         $this->inputType = $inputType;
         $this->label = $label;
@@ -43,28 +53,39 @@ final class TextField implements ViewModel
         $this->placeholder = $placeholder;
         $this->required = $required;
         $this->disabled = $disabled;
+        $this->autofocus = $autofocus;
+        $this->value = $value;
+        if (false === empty($status)) {
+            $this->classNames = 'text-field--'.$status;
+        }
     }
 
     public static function textInput(
         FormLabel $label,
         string $id,
         string $name,
-        bool $placeholder = null,
+        string $placeholder = null,
         bool $required = null,
-        bool $disabled = null
+        bool $disabled = null,
+        bool $autofocus = null,
+        string $value = null,
+        string $status = null
     ) {
-        return new static('text', $label, $id, $name, $placeholder, $required, $disabled);
+        return new static('text', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
     }
 
     public static function emailInput(
         FormLabel $label,
         string $id,
         string $name,
-        bool $placeholder = null,
+        string $placeholder = null,
         bool $required = null,
-        bool $disabled = null
+        bool $disabled = null,
+        bool $autofocus = null,
+        string $value = null,
+        string $status = null
     ) {
-        return new static('email', $label, $id, $name, $placeholder, $required, $disabled);
+        return new static('email', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
     }
 
     public function getTemplateName() : string
