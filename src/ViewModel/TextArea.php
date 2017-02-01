@@ -11,6 +11,9 @@ use Traversable;
 
 final class TextArea implements ViewModel
 {
+    const STATUS_ERROR = 'error';
+    const STATUS_VALID = 'valid';
+
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
@@ -19,6 +22,14 @@ final class TextArea implements ViewModel
     private $name;
     private $id;
     private $value;
+    private $placeholder;
+    private $required;
+    private $disabled;
+    private $autofocus;
+    private $cols;
+    private $rows;
+    private $form;
+    private $classNames;
 
     public function __construct(
         FormLabel $label,
@@ -31,14 +42,26 @@ final class TextArea implements ViewModel
         bool $autofocus = null,
         int $cols = null,
         int $rows = null,
-        string $form = null
+        string $form = null,
+        string $status = null
     ) {
         Assertion::same($id, $label['for']);
+        Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
 
         $this->label = $label;
         $this->name = $name;
         $this->id = $id;
         $this->value = $value;
+        $this->placeholder = $placeholder;
+        $this->required = $required;
+        $this->disabled = $disabled;
+        $this->autofocus = $autofocus;
+        $this->cols = $cols;
+        $this->rows = $rows;
+        $this->form = $form;
+        if (false === empty($status)) {
+            $this->classNames = 'text-field--'.$status;
+        }
     }
 
     public function getTemplateName() : string

@@ -15,15 +15,36 @@ class TextAreaTest extends ViewModelTest
     {
         $data = [
             'label' => [
-                    'labelText' => 'label text',
-                    'for' => 'someid',
-                    'isVisuallyHidden' => false,
-                ],
+                'labelText' => 'label text',
+                'for' => 'someid',
+                'isVisuallyHidden' => false,
+            ],
             'name' => 'name',
             'id' => 'someid',
             'value' => 'default value',
+            'placeholder' => 'placeholder',
+            'required' => true,
+            'disabled' => true,
+            'autofocus' => true,
+            'cols' => 10,
+            'rows' => 10,
+            'form' => 'form',
+            'classNames' => 'text-field--error',
         ];
-        $textArea = new TextArea(new FormLabel($data['label']['labelText'], $data['label']['for']), $data['id'], $data['name'], $data['value']);
+        $textArea = new TextArea(
+            new FormLabel($data['label']['labelText'], $data['label']['for']),
+            $data['id'],
+            $data['name'],
+            $data['value'],
+            $data['placeholder'],
+            $data['required'],
+            $data['disabled'],
+            $data['autofocus'],
+            $data['cols'],
+            $data['rows'],
+            $data['form'],
+            TextArea::STATUS_ERROR
+        );
 
         $this->assertSameWithoutOrder($data, $textArea);
     }
@@ -53,7 +74,8 @@ class TextAreaTest extends ViewModelTest
                     false, // auto-focus
                     30, // cols
                     2, // rows
-                    'some_form_id'
+                    'some_form_id',
+                    TextArea::STATUS_ERROR
                 ),
             ],
         ];
