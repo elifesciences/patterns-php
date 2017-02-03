@@ -75,7 +75,7 @@ final class GridListingTest extends ViewModelTest
             ],
         ];
         $archiveNavLinks = GridListing::forArchiveNavLinks([
-            new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
+            ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
                 new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('name', 'url')]),
         ], 'heading');
 
@@ -175,8 +175,8 @@ final class GridListingTest extends ViewModelTest
             'archive nav links' => [
                 GridListing::forArchiveNavLinks(
                     [
-                        new ArchiveNavLink(new BlockLink(new Link('text', 'url')), 'label', [new Link('text', 'url')]),
-                        new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
+                        ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'))),
+                        ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
                             new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('text', 'url')]),
                     ],
                     'heading'),

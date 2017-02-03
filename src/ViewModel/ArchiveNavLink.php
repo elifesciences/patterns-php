@@ -19,15 +19,27 @@ final class ArchiveNavLink implements ViewModel
     private $label;
     private $links;
 
-    public function __construct(BlockLink $blockLink, string $label, array $links)
+    private function __construct(BlockLink $blockLink, string $label = null, array $links = null)
     {
-        Assertion::notBlank($label);
-        Assertion::notEmpty($links);
-        Assertion::allIsInstanceOf($links, Link::class);
+        Assertion::nullOrNotBlank($label);
+        Assertion::nullOrNotEmpty($links);
+        if ($links) {
+            Assertion::allIsInstanceOf($links, Link::class);
+        }
 
         $this->blockLink = $blockLink;
         $this->label = $label;
         $this->links = $links;
+    }
+
+    public static function basic(BlockLink $blockLink) : self
+    {
+        return new self($blockLink);
+    }
+
+    public static function withLinks(BlockLink $blockLink, string $label, array $links) : self
+    {
+        return new self($blockLink, $label, $links);
     }
 
     public function getTemplateName() : string

@@ -25,6 +25,24 @@ final class ArchiveNavLinkTest extends ViewModelTest
                     'thresholdWidth' => 100,
                 ],
             ],
+        ];
+
+        $archiveNavLink = ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100)));
+
+        $this->assertSame($data['blockLink'], $data['blockLink']);
+        $this->assertSame($data, $archiveNavLink->toArray());
+
+        $data = [
+            'blockLink' => [
+                'text' => 'text',
+                'url' => 'url',
+                'behaviour' => 'BackgroundImage',
+                'backgroundImage' => [
+                    'lowResImageSource' => 'lores.jpg',
+                    'highResImageSource' => 'hires.jpg',
+                    'thresholdWidth' => 100,
+                ],
+            ],
             'label' => 'label',
             'links' => [
                 [
@@ -34,7 +52,7 @@ final class ArchiveNavLinkTest extends ViewModelTest
             ],
         ];
 
-        $archiveNavLink = new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
+        $archiveNavLink = ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
             new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('name', 'url')]);
 
         $this->assertSame($data['blockLink'], $data['blockLink']);
@@ -46,16 +64,12 @@ final class ArchiveNavLinkTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'without image' => [
-                new ArchiveNavLink(new BlockLink(new Link('text', 'url')), 'label', [new Link('text', 'url')]),
+            'without links' => [
+                ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100))),
             ],
-            'with image' => [
-                new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
-                    new BackgroundImage('lores.jpg', 'hires.jpg')), 'label', [new Link('text', 'url')]),
-            ],
-            'with image and threshold' => [
-                new ArchiveNavLink(new BlockLink(new Link('text', 'url'),
-                    new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('text', 'url')]),
+            'with links' => [
+                ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
+                    new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('name', 'url')]),
             ],
         ];
     }
