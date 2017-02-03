@@ -37,8 +37,26 @@ if (false === is_dir($sourceDir)) {
 
 $repo->reset($reference, ['hard' => true]);
 
+$package_manager = 'npm';
+
+try {
+    ProcessBuilder::create()
+        ->setArguments(['which', 'yarn'])
+        ->getProcess()
+        ->enableOutput()
+        ->mustRun(function ($type, $buffer) use (&$package_manager) {
+            if (Process::ERR !== $type) {
+                echo "\e[32mSetting package manager to Yarn \u{1F4E6} \u{1F408} \e[39m\n";
+                $package_manager = 'yarn';
+            }
+        });
+
+} catch (Throwable $e) {
+    echo "\e[33mDefaulting to NPM, you can speed this up by installing yarn `npm install -g yarn` \e[39m\n";
+}
+
 ProcessBuilder::create()
-    ->setArguments(['npm', 'install'])
+    ->setArguments([$package_manager, 'install'])
     ->setWorkingDirectory($sourceDir)
     ->setTimeout(180)
     ->getProcess()
