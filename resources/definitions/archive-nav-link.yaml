@@ -63,4 +63,8 @@ schema:
                     - url
     required:
         - blockLink
-        - links
+    dependencies:
+        label:
+            - links
+        links:
+            - label
