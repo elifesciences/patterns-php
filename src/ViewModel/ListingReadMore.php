@@ -10,7 +10,7 @@ use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
 
-class ListingReadMore implements ViewModel
+final class ListingReadMore implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -22,7 +22,7 @@ class ListingReadMore implements ViewModel
     private $pagination;
     private $seeMoreLink;
 
-    public function __construct(array $items, string $id = null, string $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null)
+    private function __construct(array $items, string $id = null, string $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null)
     {
         if (
             null !== $pagination &&

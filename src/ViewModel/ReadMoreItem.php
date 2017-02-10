@@ -6,7 +6,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 
-class ReadMoreItem implements CastsToArray
+final class ReadMoreItem implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;

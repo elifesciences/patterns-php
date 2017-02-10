@@ -9,7 +9,7 @@ use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\ReadMoreItem;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 
-class ListingReadMoreTest extends ViewModelTest
+final class ListingReadMoreTest extends ViewModelTest
 {
     /**
      * @test
@@ -50,7 +50,7 @@ class ListingReadMoreTest extends ViewModelTest
             return new ReadMoreItem(ContentHeaderArticle::magazine($item['article']['title']), $item['content'] ?? null);
         }, $data['items']);
 
-        $listingReadMore = new ListingReadMore($list);
+        $listingReadMore = ListingReadMore::basic($list);
 
         $this->assertSameWithoutOrder($data, $listingReadMore->toArray());
     }
