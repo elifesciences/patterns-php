@@ -12,6 +12,7 @@ use Traversable;
 
 final class ListingTeasers implements ViewModel
 {
+    use ListingConstructors;
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use ComposedAssets;
@@ -37,21 +38,6 @@ final class ListingTeasers implements ViewModel
         $this->heading = $heading;
         $this->pagination = $pagination;
         $this->seeMoreLink = $seeMoreLink;
-    }
-
-    public static function basic(array $items, $heading = null, string $id = null)
-    {
-        return new static ($items, $id, $heading);
-    }
-
-    public static function withPagination(array $items, Pager $pagination, $heading = null, string $id = null)
-    {
-        return new static($items, $id, $heading, $pagination);
-    }
-
-    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null, string $id = null)
-    {
-        return new static($items, $id, $heading, null, $seeMoreLink);
     }
 
     public function getTemplateName() : string
