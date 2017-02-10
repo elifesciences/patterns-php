@@ -31,7 +31,7 @@ class ListingReadMore implements ViewModel
             throw new InvalidArgumentException('You cannot have both Pager and SeeMoreLink in ReadMore Listings.');
         }
         Assertion::notEmpty($items);
-        Assertion::allIsInstanceOf($items, ContentHeaderArticle::class);
+        Assertion::allIsInstanceOf($items, ReadMoreItem::class);
         $this->items = $items;
         $this->id = $id;
         $this->heading = $heading;
