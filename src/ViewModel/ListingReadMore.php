@@ -33,15 +33,15 @@ final class ListingReadMore implements ViewModel
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, ReadMoreItem::class);
         $this->items = $items;
-        $this->id = $id;
+        $this->seeMoreLink = $seeMoreLink;
         $this->heading = $heading;
         $this->pagination = $pagination;
-        $this->seeMoreLink = $seeMoreLink;
+        $this->id = $id;
     }
 
-    public static function basic(array $items, $heading = null, string $id = null)
+    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null, string $id = null)
     {
-        return new static ($items, $id, $heading);
+        return new static($items, $id, $heading, null, $seeMoreLink);
     }
 
     public static function withPagination(array $items, Pager $pagination, $heading = null, string $id = null)
@@ -49,9 +49,9 @@ final class ListingReadMore implements ViewModel
         return new static($items, $id, $heading, $pagination);
     }
 
-    public static function withSeeMore(array $items, SeeMoreLink $seeMoreLink, string $heading = null, string $id = null)
+    public static function basic(array $items, $heading = null, string $id = null)
     {
-        return new static($items, $id, $heading, null, $seeMoreLink);
+        return new static ($items, $id, $heading);
     }
 
     protected function getComposedViewModels(): Traversable
