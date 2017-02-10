@@ -5,8 +5,10 @@ namespace eLife\Patterns\ViewModel;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
+use eLife\Patterns\HasAssets;
+use Traversable;
 
-final class ReadMoreItem implements CastsToArray
+final class ReadMoreItem implements CastsToArray, HasAssets
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -22,12 +24,12 @@ final class ReadMoreItem implements CastsToArray
         $this->content = $content;
     }
 
-    public function getStyleSheets()
+    public function getStyleSheets() : Traversable
     {
         yield from $this->article->getStyleSheets();
     }
 
-    public function getJavaScripts()
+    public function getJavaScripts() : Traversable
     {
         yield from $this->article->getJavaScripts();
     }
