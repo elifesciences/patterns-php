@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContentHeaderArticle;
+use eLife\Patterns\ViewModel\ContentHeaderReadMore;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingReadMore;
 use eLife\Patterns\ViewModel\Pager;
@@ -19,7 +20,7 @@ final class ListingReadMoreTest extends ViewModelTest
         $data = [
             'items' => [
                     [
-                        'article' => [
+                        'item' => [
                                 'rootClasses' => 'content-header-article content-header-article-magazine',
                                 'behaviour' => 'ContentHeaderArticle',
                                 'title' => 'title a',
@@ -28,7 +29,7 @@ final class ListingReadMoreTest extends ViewModelTest
                         'content' => 'With extra content',
                     ],
                     [
-                        'article' => [
+                        'item' => [
                                 'rootClasses' => 'content-header-article content-header-article-magazine',
                                 'behaviour' => 'ContentHeaderArticle',
                                 'title' => 'title b',
@@ -36,7 +37,7 @@ final class ListingReadMoreTest extends ViewModelTest
                             ],
                     ],
                     [
-                        'article' => [
+                        'item' => [
                                 'rootClasses' => 'content-header-article content-header-article-magazine',
                                 'behaviour' => 'ContentHeaderArticle',
                                 'title' => 'title c',
@@ -47,7 +48,7 @@ final class ListingReadMoreTest extends ViewModelTest
         ];
 
         $list = array_map(function ($item) {
-            return new ReadMoreItem(ContentHeaderArticle::magazine($item['article']['title']), $item['content'] ?? null);
+            return new ReadMoreItem(new ContentHeaderReadMore($item['article']['title']), $item['content'] ?? null);
         }, $data['items']);
 
         $listingReadMore = ListingReadMore::basic($list);
@@ -60,24 +61,24 @@ final class ListingReadMoreTest extends ViewModelTest
         return [
             [
                 ListingReadMore::basic([
-                    new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                    new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                    new ReadMoreItem(ContentHeaderArticle::magazine('title'), 'some extra content'),
+                    new ReadMoreItem(new ContentHeaderReadMore('title')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title'), 'some extra content'),
                 ]),
             ],
             [
                 ListingReadMore::basic([
-                    new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                    new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                    new ReadMoreItem(ContentHeaderArticle::magazine('title'), 'some extra content'),
+                    new ReadMoreItem(new ContentHeaderReadMore('title')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title'), 'some extra content'),
                 ], 'heading', 'id'),
             ],
             [
                 ListingReadMore::withPagination(
                     [
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
                     ],
                     Pager::firstPage(new Link('testing', '#')),
                     'heading', 'id'
@@ -86,9 +87,9 @@ final class ListingReadMoreTest extends ViewModelTest
             [
                 ListingReadMore::withPagination(
                     [
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
                     ],
                     Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
                     'heading'
@@ -97,9 +98,9 @@ final class ListingReadMoreTest extends ViewModelTest
             [
                 ListingReadMore::withSeeMore(
                     [
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
-                        new ReadMoreItem(ContentHeaderArticle::magazine('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title')),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
                     'heading', 'id'

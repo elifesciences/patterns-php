@@ -154,7 +154,7 @@ schema:
                     content:
                         type: string
                 required:
-                    - content
+                    - item
         pagination:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
