@@ -21,7 +21,6 @@ final class ListingReadMoreTest extends ViewModelTest
             'items' => [
                     [
                         'item' => [
-                                'rootClasses' => 'content-header-article content-header-article-magazine',
                                 'behaviour' => 'ContentHeaderArticle',
                                 'title' => 'title a',
                                 'titleClass' => 'content-header__title--large',
@@ -30,7 +29,6 @@ final class ListingReadMoreTest extends ViewModelTest
                     ],
                     [
                         'item' => [
-                                'rootClasses' => 'content-header-article content-header-article-magazine',
                                 'behaviour' => 'ContentHeaderArticle',
                                 'title' => 'title b',
                                 'titleClass' => 'content-header__title--large',
@@ -38,7 +36,6 @@ final class ListingReadMoreTest extends ViewModelTest
                     ],
                     [
                         'item' => [
-                                'rootClasses' => 'content-header-article content-header-article-magazine',
                                 'behaviour' => 'ContentHeaderArticle',
                                 'title' => 'title c',
                                 'titleClass' => 'content-header__title--large',
@@ -48,7 +45,7 @@ final class ListingReadMoreTest extends ViewModelTest
         ];
 
         $list = array_map(function ($item) {
-            return new ReadMoreItem(new ContentHeaderReadMore($item['article']['title']), $item['content'] ?? null);
+            return new ReadMoreItem(new ContentHeaderReadMore($item['item']['title']), $item['content'] ?? null);
         }, $data['items']);
 
         $listingReadMore = ListingReadMore::basic($list);
