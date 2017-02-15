@@ -4,6 +4,49 @@ namespace tests\eLife\Patterns\ViewModel;
 
 final class ContentHeaderFixtures
 {
+    public static function readMoreFixture()
+    {
+        $readmore = <<<'JSON'
+        {
+          "behaviour": "ContentHeaderArticle",
+          "title": "Planarian 'kidneys' go with the flow",
+          "titleClass": "content-header__title--medium",
+          "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
+          "subjects": {
+            "list": [
+              {
+                "name": "Cell Biology",
+                "url": "#"
+              },
+              {
+                "name": "Epidemiology and global health",
+                "url": "#"
+              }
+            ]
+          },
+          "authors": {
+            "list": [
+              {"name": "Melanie Issigonis"},
+              {"name": "Phillip A Newmark"}
+            ]
+          },
+          "meta": {
+            "url": "#",
+            "text": "Insight",
+            "date": {
+              "forHuman": {
+                "dayOfMonth": 15,
+                "month": "Dec",
+                "year": 2015
+              },
+              "forMachine": "2015-12-15"
+            }
+          }
+        }
+JSON;
+        return json_decode($readmore, true);
+    }
+
     // Article
     public static function magazineFixture()
     {

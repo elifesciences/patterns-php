@@ -34,8 +34,8 @@ final class ContentHeaderReadMore implements ViewModel
 
     public function __construct(
         string $title,
-        AuthorList $authors = null,
         string $strapline = null,
+        AuthorList $authors = null,
         SubjectList $subjects = null,
         Meta $meta = null
     )
