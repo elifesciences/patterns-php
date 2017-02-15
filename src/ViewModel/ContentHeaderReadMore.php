@@ -38,8 +38,7 @@ final class ContentHeaderReadMore implements ViewModel
         AuthorList $authors = null,
         SubjectList $subjects = null,
         Meta $meta = null
-    )
-    {
+    ) {
         $behaviours = [self::BEHAVIOUR_BASE];
 
         $this->behaviour = implode(' ', $behaviours);
