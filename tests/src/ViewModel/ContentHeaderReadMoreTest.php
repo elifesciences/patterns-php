@@ -13,9 +13,6 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\SubjectList;
 
-/**
- * @group failing
- */
 class ContentHeaderReadMoreTest extends ViewModelTest
 {
 
