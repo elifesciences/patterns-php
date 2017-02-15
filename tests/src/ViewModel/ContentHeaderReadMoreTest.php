@@ -1,8 +1,6 @@
 <?php
 
-
 namespace tests\eLife\Patterns\ViewModel;
-
 
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Author;
@@ -15,7 +13,6 @@ use eLife\Patterns\ViewModel\SubjectList;
 
 class ContentHeaderReadMoreTest extends ViewModelTest
 {
-
     /**
      * @test
      */
@@ -55,18 +52,18 @@ class ContentHeaderReadMoreTest extends ViewModelTest
     public function viewModelProvider(): array
     {
         return [
-            'content header read more with minimum' => [ new ContentHeaderReadMore('some title') ],
+            'content header read more with minimum' => [new ContentHeaderReadMore('some title')],
             'content header read more with full' => [
                 new ContentHeaderReadMore(
                     'some title',
                     'strap line',
-                    AuthorList::asList([ Author::asText('Someone') ]),
+                    AuthorList::asList([Author::asText('Someone')]),
                     new SubjectList(new Link('biology', 'http://google.com/?q=biology')),
                     Meta::withText(
                         'Something meta',
                         Date::simple(new DateTimeImmutable())
                     )
-                )
+                ),
             ],
         ];
     }

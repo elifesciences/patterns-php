@@ -44,6 +44,7 @@ final class ContentHeaderFixtures
           }
         }
 JSON;
+
         return json_decode($readmore, true);
     }
 

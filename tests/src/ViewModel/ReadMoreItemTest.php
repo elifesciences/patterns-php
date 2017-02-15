@@ -1,23 +1,19 @@
 <?php
 
-
 namespace tests\eLife\Patterns\ViewModel;
-
 
 use eLife\Patterns\ViewModel\ContentHeaderReadMore;
 use eLife\Patterns\ViewModel\ReadMoreItem;
 
 final class ReadMoreItemTest extends ViewModelTest
 {
-
     /**
      * @test
      */
     public function it_has_data()
     {
         $data = [
-            'item' =>
-                [
+            'item' => [
                     'behaviour' => 'ContentHeaderArticle',
                     'title' => 'some title',
                     'titleClass' => 'content-header__title--large',
@@ -34,11 +30,11 @@ final class ReadMoreItemTest extends ViewModelTest
     {
         return [
             'Read more item without content' => [
-                new ReadMoreItem(new ContentHeaderReadMore('some title'))
+                new ReadMoreItem(new ContentHeaderReadMore('some title')),
             ],
             'Read more item with content' => [
-                new ReadMoreItem(new ContentHeaderReadMore('some title'), '<p>Some content</p>')
-            ]
+                new ReadMoreItem(new ContentHeaderReadMore('some title'), '<p>Some content</p>'),
+            ],
         ];
     }
 
