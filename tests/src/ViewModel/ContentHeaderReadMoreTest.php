@@ -10,9 +10,12 @@ use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\SubjectList;
+use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
 
 class ContentHeaderReadMoreTest extends ViewModelTest
 {
+    use MetaFromData;
+
     /**
      * @test
      */
@@ -31,22 +34,6 @@ class ContentHeaderReadMoreTest extends ViewModelTest
             $this->metaFromData($data['meta'])
         );
         $this->assertSameWithoutOrder($data, $magazine->toArray());
-    }
-
-    public function metaFromData($data)
-    {
-        if (isset($data['url'])) {
-            return Meta::withLink(
-                new Link($data['text'], $data['url']),
-                Date::simple(new DateTimeImmutable($data['date']['forMachine']))
-            );
-        }
-        if (isset($data['text'])) {
-            return Meta::withText(
-                $data['text'],
-                Date::simple(new DateTimeImmutable($data['date']['forMachine']))
-            );
-        }
     }
 
     public function viewModelProvider(): array
