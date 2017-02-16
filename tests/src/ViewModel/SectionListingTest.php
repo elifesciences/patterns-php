@@ -2,8 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\SectionListing;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\SectionListing;
 use InvalidArgumentException;
 
 final class SectionListingTest extends ViewModelTest
