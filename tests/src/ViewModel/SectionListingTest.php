@@ -2,11 +2,11 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\AllSubjectsList;
+use eLife\Patterns\ViewModel\SectionListing;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
 
-final class AllSubjectsListTest extends ViewModelTest
+final class SectionListingTest extends ViewModelTest
 {
     /**
      * @test
@@ -15,7 +15,7 @@ final class AllSubjectsListTest extends ViewModelTest
     {
         $data = [
             'id' => 'id',
-            'subjects' => [
+            'sections' => [
                 [
                     'name' => 'subject 1',
                     'url' => '#',
@@ -25,15 +25,17 @@ final class AllSubjectsListTest extends ViewModelTest
                     'url' => '#',
                 ],
             ],
+            'singleLine' => true,
             'labelledBy' => 'labelledBy',
         ];
 
-        $siteLinksList = new AllSubjectsList(
+        $siteLinksList = new SectionListing(
             $data['id'],
             [
-                new Link($data['subjects'][0]['name'], $data['subjects'][0]['url']),
-                new Link($data['subjects'][1]['name'], $data['subjects'][1]['url']),
+                new Link($data['sections'][0]['name'], $data['sections'][0]['url']),
+                new Link($data['sections'][1]['name'], $data['sections'][1]['url']),
             ],
+            $data['singleLine'],
             $data['labelledBy']
         );
 
@@ -47,19 +49,19 @@ final class AllSubjectsListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new AllSubjectsList('', [new Link('subject', 'url')]);
+        new SectionListing('', [new Link('subject', 'url')]);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new AllSubjectsList('id', [new Link('subject', 'url')])],
-            'complete' => [new AllSubjectsList('id', [new Link('subject', 'url')], 'labelledBy')],
+            'minimum' => [new SectionListing('id', [new Link('subject', 'url')])],
+            'complete' => [new SectionListing('id', [new Link('subject', 'url')], true, 'labelledBy')],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/all-subjects-list.mustache';
+        return '/elife/patterns/templates/section-listing.mustache';
     }
 }

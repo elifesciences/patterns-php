@@ -9,34 +9,36 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class AllSubjectsList implements ViewModel
+final class SectionListing implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
 
     private $id;
-    private $subjects;
+    private $sections;
+    private $singleLine;
     private $labelledBy;
 
-    public function __construct(string $id, array $subjects, string $labelledBy = null)
+    public function __construct(string $id, array $sections, bool $singleLine = false, string $labelledBy = null)
     {
         Assertion::notBlank($id);
-        Assertion::allIsInstanceOf($subjects, Link::class);
-        Assertion::notEmpty($subjects);
+        Assertion::allIsInstanceOf($sections, Link::class);
+        Assertion::notEmpty($sections);
 
         $this->id = $id;
-        $this->subjects = $subjects;
+        $this->sections = $sections;
+        $this->singleLine = $singleLine;
         $this->labelledBy = $labelledBy;
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/all-subjects-list.css';
+        yield '/elife/patterns/assets/css/section-listing.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/all-subjects-list.mustache';
+        return '/elife/patterns/templates/section-listing.mustache';
     }
 }
