@@ -14,12 +14,16 @@ final class Link implements CastsToArray
 
     private $name;
     private $url = null;
+    private $isCurrent;
 
-    public function __construct(string $name, string $url = null)
+    public function __construct(string $name, string $url = null, bool $isCurrent = false)
     {
         Assertion::notBlank($name);
 
         $this->name = $name;
         $this->url = $url;
+        if ($isCurrent) {
+            $this->isCurrent = true;
+        }
     }
 }

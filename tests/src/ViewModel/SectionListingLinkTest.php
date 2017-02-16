@@ -2,10 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\AllSubjectsListLink;
+use eLife\Patterns\ViewModel\SectionListingLink;
 use InvalidArgumentException;
 
-final class AllSubjectsListLinkTest extends ViewModelTest
+final class SectionListingLinkTest extends ViewModelTest
 {
     /**
      * @test
@@ -13,13 +13,25 @@ final class AllSubjectsListLinkTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'text' => 'foo',
             'targetFragmentId' => 'id',
         ];
 
-        $subjectsListLink = new AllSubjectsListLink($data['targetFragmentId']);
+        $subjectsListLink = new SectionListingLink($data['text'], $data['targetFragmentId']);
 
+        $this->assertSame($data['text'], $subjectsListLink['text']);
         $this->assertSame($data['targetFragmentId'], $subjectsListLink['targetFragmentId']);
         $this->assertSame($data, $subjectsListLink->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_text()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new SectionListingLink('', 'foo');
     }
 
     /**
@@ -29,18 +41,18 @@ final class AllSubjectsListLinkTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new AllSubjectsListLink('');
+        new SectionListingLink('foo', '');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new AllSubjectsListLink('id')],
+            [new SectionListingLink('text', 'id')],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/all-subjects-list-link.mustache';
+        return '/elife/patterns/templates/section-listing-link.mustache';
     }
 }

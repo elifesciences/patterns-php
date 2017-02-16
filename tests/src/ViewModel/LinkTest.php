@@ -24,12 +24,13 @@ final class LinkTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_data()
     {
-        $data = ['name' => 'name', 'url' => 'url'];
+        $data = ['name' => 'name', 'url' => 'url', 'isCurrent' => true];
 
         $link = new Link(...array_values($data));
 
         $this->assertSame($data['name'], $link['name']);
         $this->assertSame($data['url'], $link['url']);
+        $this->assertSame($data['isCurrent'], $link['isCurrent']);
         $this->assertSame($data, $link->toArray());
     }
 
