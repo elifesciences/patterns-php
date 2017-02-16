@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,kBAAmB,CCwOf,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CDvOZ,UAAU,CAAE,IAAI,CAGlB,6BAA8B,CE6S5B,WAAW,CCvRI,gDAAmD,CFjBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,MAAmC,CCyS9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,IAAI,CD7Ef,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CD/Nd,6BAA8B,CAC5B,KAAK,CGJM,OAAO,CHKlB,eAAe,CAAE,IAAI,CACrB,cAAc,CAAE,SAAS,CAEzB,mCAAQ,CACN,KAAK,CGbO,OAAO,CHiBvB,4CAAmF,CAEjF,kBAAmB,CACjB,YAAY,CAAE,CAAC",
-"sources": ["../../../../../../assets/sass/patterns/molecules/all-subjects-list.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss"],
-"names": [],
-"file": "all-subjects-list.css"
-}
