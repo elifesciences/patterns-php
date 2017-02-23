@@ -4,7 +4,6 @@ assets:
         - content-header-article-magazine.css
         - content-header-article-research.css
         - date.css
-        - lead-para.css
         - listing.css
         - meta.css
         - pager.css
@@ -24,41 +23,16 @@ schema:
             type: array
             minItems: 1
             items:
+                $schema: 'http://json-schema.org/draft-04/schema#'
                 type: object
                 properties:
-                    body:
-                        type: string
-                    article:
+                    item:
                         $schema: 'http://json-schema.org/draft-04/schema#'
                         type: object
                         properties:
-                            rootClasses:
-                                type: string
-                                minLength: 1
                             behaviour:
                                 type: string
                                 minLength: 1
-                            backgroundImage:
-                                type: object
-                                properties:
-                                    lowResImageSource:
-                                        type: string
-                                        minLength: 1
-                                    highResImageSource:
-                                        type: string
-                                        minLength: 1
-                                    thresholdWidth:
-                                        type: number
-                                        minimum: 0
-                                dependencies:
-                                    thresholdWidth:
-                                        - lowResImageSource
-                                        - highResImageSource
-                                required:
-                                    - lowResImageSource
-                                    - highResImageSource
-                            hasBackground:
-                                type: boolean
                             title:
                                 type: string
                                 minLength: 1
@@ -80,59 +54,14 @@ schema:
                                                 name:
                                                     type: string
                                                     minLength: 1
-                                                url:
-                                                    type: string
-                                                    minLength: 1
-                                            required:
-                                                - name
-                                                - url
-                                required:
-                                    - list
-                            authors:
-                                type: object
-                                oneOf:
-                                    -
-                                        properties:
-                                            list:
-                                                type: array
-                                                minItems: 1
-                                                items:
-                                                    type: object
-                                                    properties:
-                                                        name:
-                                                            type: string
-                                                            minLength: 1
-                                                    required:
-                                                        - name
-                                        required:
-                                            - list
-                                    -
-                                        properties:
-                                            firstAuthorOnly:
-                                                type: string
-                                                minLength: 1
-                                            hasEtAl:
-                                                type: boolean
-                                                default: false
-                                        required:
-                                            - firstAuthorOnly
-                            institutions:
-                                type: object
-                                properties:
-                                    list:
-                                        type: array
-                                        minItems: 1
-                                        items:
-                                            type: object
-                                            properties:
-                                                name:
-                                                    type: string
-                                                    minLength: 1
                                             required:
                                                 - name
                                 required:
                                     - list
-                            download:
+                            author:
+                                type: string
+                                minLength: 1
+                            url:
                                 type: string
                                 minLength: 1
                             meta:
@@ -193,11 +122,13 @@ schema:
                                         required:
                                             - text
                         required:
-                            - rootClasses
                             - title
+                            - url
                             - titleClass
+                    content:
+                        type: string
                 required:
-                    - article
+                    - item
         pagination:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
