@@ -3,7 +3,6 @@ assets:
         - content-header-article-magazine.css
         - content-header-article-research.css
         - date.css
-        - lead-para.css
         - listing.css
         - meta.css
     js: []
@@ -39,42 +38,16 @@ schema:
                                     name:
                                         type: string
                                         minLength: 1
-                                    url:
-                                        type: string
-                                        minLength: 1
                                 required:
                                     - name
-                                    - url
                     required:
                         - list
-                authors:
-                    type: object
-                    oneOf:
-                        -
-                            properties:
-                                list:
-                                    type: array
-                                    minItems: 1
-                                    items:
-                                        type: object
-                                        properties:
-                                            name:
-                                                type: string
-                                                minLength: 1
-                                        required:
-                                            - name
-                            required:
-                                - list
-                        -
-                            properties:
-                                firstAuthorOnly:
-                                    type: string
-                                    minLength: 1
-                                hasEtAl:
-                                    type: boolean
-                                    default: false
-                            required:
-                                - firstAuthorOnly
+                author:
+                    type: string
+                    minLength: 1
+                url:
+                    type: string
+                    minLength: 1
                 meta:
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
@@ -134,6 +107,7 @@ schema:
                                 - text
             required:
                 - title
+                - url
                 - titleClass
         content:
             type: string
