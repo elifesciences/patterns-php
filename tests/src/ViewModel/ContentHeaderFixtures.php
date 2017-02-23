@@ -11,6 +11,7 @@ final class ContentHeaderFixtures
           "behaviour": "ContentHeaderArticle",
           "title": "Planarian 'kidneys' go with the flow",
           "titleClass": "content-header__title--medium",
+          "url": "#",
           "strapline": "Flatworms have organs called protonephridia that could be used as a model system for the study of kidney disease.",
           "subjects": {
             "list": [

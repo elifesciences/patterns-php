@@ -26,6 +26,7 @@ final class ContentHeaderReadMore implements ViewModel
 
     private $behaviour;
     private $title;
+    private $url;
     private $titleClass;
     private $strapline;
     private $subjects;
@@ -34,6 +35,7 @@ final class ContentHeaderReadMore implements ViewModel
 
     public function __construct(
         string $title,
+        string $url,
         string $strapline = null,
         AuthorList $authors = null,
         SubjectList $subjects = null,
@@ -43,6 +45,7 @@ final class ContentHeaderReadMore implements ViewModel
 
         $this->behaviour = implode(' ', $behaviours);
         $this->title = $title;
+        $this->url = $url;
         $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
         $this->subjects = $subjects;

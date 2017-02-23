@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\ContentHeaderArticle;
 use eLife\Patterns\ViewModel\ContentHeaderReadMore;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingReadMore;
@@ -19,33 +18,36 @@ final class ListingReadMoreTest extends ViewModelTest
     {
         $data = [
             'items' => [
-                    [
-                        'item' => [
-                                'behaviour' => 'ContentHeaderArticle',
-                                'title' => 'title a',
-                                'titleClass' => 'content-header__title--large',
-                            ],
-                        'content' => 'With extra content',
+                [
+                    'item' => [
+                        'behaviour' => 'ContentHeaderArticle',
+                        'title' => 'title a',
+                        'url' => '#',
+                        'titleClass' => 'content-header__title--large',
                     ],
-                    [
-                        'item' => [
-                                'behaviour' => 'ContentHeaderArticle',
-                                'title' => 'title b',
-                                'titleClass' => 'content-header__title--large',
-                            ],
-                    ],
-                    [
-                        'item' => [
-                                'behaviour' => 'ContentHeaderArticle',
-                                'title' => 'title c',
-                                'titleClass' => 'content-header__title--large',
-                            ],
+                    'content' => 'With extra content',
+                ],
+                [
+                    'item' => [
+                        'behaviour' => 'ContentHeaderArticle',
+                        'title' => 'title b',
+                        'url' => '#',
+                        'titleClass' => 'content-header__title--large',
                     ],
                 ],
+                [
+                    'item' => [
+                        'behaviour' => 'ContentHeaderArticle',
+                        'title' => 'title c',
+                        'url' => '#',
+                        'titleClass' => 'content-header__title--large',
+                    ],
+                ],
+            ],
         ];
 
         $list = array_map(function ($item) {
-            return new ReadMoreItem(new ContentHeaderReadMore($item['item']['title']), $item['content'] ?? null);
+            return new ReadMoreItem(new ContentHeaderReadMore($item['item']['title'], $item['item']['url']), $item['content'] ?? null);
         }, $data['items']);
 
         $listingReadMore = ListingReadMore::basic($list);
@@ -58,24 +60,24 @@ final class ListingReadMoreTest extends ViewModelTest
         return [
             [
                 ListingReadMore::basic([
-                    new ReadMoreItem(new ContentHeaderReadMore('title')),
-                    new ReadMoreItem(new ContentHeaderReadMore('title')),
-                    new ReadMoreItem(new ContentHeaderReadMore('title'), 'some extra content'),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#'), 'some extra content'),
                 ]),
             ],
             [
                 ListingReadMore::basic([
-                    new ReadMoreItem(new ContentHeaderReadMore('title')),
-                    new ReadMoreItem(new ContentHeaderReadMore('title')),
-                    new ReadMoreItem(new ContentHeaderReadMore('title'), 'some extra content'),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#'), 'some extra content'),
                 ], 'heading', 'id'),
             ],
             [
                 ListingReadMore::withPagination(
                     [
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
                     ],
                     Pager::firstPage(new Link('testing', '#')),
                     'heading', 'id'
@@ -84,9 +86,9 @@ final class ListingReadMoreTest extends ViewModelTest
             [
                 ListingReadMore::withPagination(
                     [
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
                     ],
                     Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
                     'heading'
@@ -95,9 +97,9 @@ final class ListingReadMoreTest extends ViewModelTest
             [
                 ListingReadMore::withSeeMore(
                     [
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
-                        new ReadMoreItem(new ContentHeaderReadMore('title')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                        new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
                     'heading', 'id'

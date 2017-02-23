@@ -24,6 +24,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
         $data = ContentHeaderFixtures::readMoreFixture();
         $magazine = new ContentHeaderReadMore(
             $data['title'],
+            $data['url'],
             $data['strapline'],
             AuthorList::asList(array_map(function ($item) {
                 return Author::asText($item['name']);
@@ -39,10 +40,11 @@ class ContentHeaderReadMoreTest extends ViewModelTest
     public function viewModelProvider(): array
     {
         return [
-            'content header read more with minimum' => [new ContentHeaderReadMore('some title')],
+            'content header read more with minimum' => [new ContentHeaderReadMore('some title', "#")],
             'content header read more with full' => [
                 new ContentHeaderReadMore(
                     'some title',
+                    "#",
                     'strap line',
                     AuthorList::asList([Author::asText('Someone')]),
                     new SubjectList(new Link('biology', 'http://google.com/?q=biology')),

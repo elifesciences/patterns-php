@@ -21,7 +21,7 @@ final class ReadMoreItemTest extends ViewModelTest
             'content' => '<p>Some content</p>',
         ];
 
-        $model = new ReadMoreItem(new ContentHeaderReadMore($data['item']['title']), $data['content']);
+        $model = new ReadMoreItem(new ContentHeaderReadMore($data['item']['title'], '#'), $data['content']);
 
         $this->assertSameWithoutOrder($data, $model->toArray());
     }
@@ -30,10 +30,10 @@ final class ReadMoreItemTest extends ViewModelTest
     {
         return [
             'Read more item without content' => [
-                new ReadMoreItem(new ContentHeaderReadMore('some title')),
+                new ReadMoreItem(new ContentHeaderReadMore('some title', '#')),
             ],
             'Read more item with content' => [
-                new ReadMoreItem(new ContentHeaderReadMore('some title'), '<p>Some content</p>'),
+                new ReadMoreItem(new ContentHeaderReadMore('some title', '#'), '<p>Some content</p>'),
             ],
         ];
     }
