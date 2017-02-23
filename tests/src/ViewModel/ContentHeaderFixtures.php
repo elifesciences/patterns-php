@@ -16,18 +16,15 @@ final class ContentHeaderFixtures
           "subjects": {
             "list": [
               {
-                "name": "Cell Biology",
-                "url": "#"
+                "name": "Cell Biology"
               },
               {
-                "name": "Epidemiology and global health",
-                "url": "#"
+                "name": "Epidemiology and global health"
               }
             ]
           },
           "authorLine": "Melanie Issigonis",
           "meta": {
-            "url": "#",
             "text": "Insight",
             "date": {
               "forHuman": {

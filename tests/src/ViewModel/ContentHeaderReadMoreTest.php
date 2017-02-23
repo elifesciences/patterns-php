@@ -28,7 +28,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
             $data['strapline'],
             $data['authorLine'],
             new SubjectList(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name']);
             }, $data['subjects']['list'])),
             $this->metaFromData($data['meta'])
         );
@@ -45,7 +45,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
                     "#",
                     'strap line',
                     'Someone',
-                    new SubjectList(new Link('biology', 'http://google.com/?q=biology')),
+                    new SubjectList(new Link('biology')),
                     Meta::withText(
                         'Something meta',
                         Date::simple(new DateTimeImmutable())
