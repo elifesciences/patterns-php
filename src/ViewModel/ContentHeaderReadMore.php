@@ -30,14 +30,14 @@ final class ContentHeaderReadMore implements ViewModel
     private $titleClass;
     private $strapline;
     private $subjects;
-    private $authors;
+    private $authorLine;
     private $meta;
 
     public function __construct(
         string $title,
         string $url,
         string $strapline = null,
-        AuthorList $authors = null,
+        string $authorLine = null,
         SubjectList $subjects = null,
         Meta $meta = null
     ) {
@@ -49,7 +49,7 @@ final class ContentHeaderReadMore implements ViewModel
         $this->titleClass = $this->deriveTitleClass($title);
         $this->strapline = $strapline;
         $this->subjects = $subjects;
-        $this->authors = $authors;
+        $this->authorLine = $authorLine;
         $this->meta = $meta;
     }
 

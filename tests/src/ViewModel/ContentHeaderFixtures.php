@@ -25,12 +25,7 @@ final class ContentHeaderFixtures
               }
             ]
           },
-          "authors": {
-            "list": [
-              {"name": "Melanie Issigonis"},
-              {"name": "Phillip A Newmark"}
-            ]
-          },
+          "authorLine": "Melanie Issigonis",
           "meta": {
             "url": "#",
             "text": "Insight",

@@ -26,9 +26,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
             $data['title'],
             $data['url'],
             $data['strapline'],
-            AuthorList::asList(array_map(function ($item) {
-                return Author::asText($item['name']);
-            }, $data['authors']['list'])),
+            $data['authorLine'],
             new SubjectList(...array_map(function ($item) {
                 return new Link($item['name'], $item['url']);
             }, $data['subjects']['list'])),
@@ -46,7 +44,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
                     'some title',
                     "#",
                     'strap line',
-                    AuthorList::asList([Author::asText('Someone')]),
+                    'Someone',
                     new SubjectList(new Link('biology', 'http://google.com/?q=biology')),
                     Meta::withText(
                         'Something meta',
