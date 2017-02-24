@@ -10,7 +10,7 @@ use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
 use Traversable;
 
-final class ListingTeasers implements ViewModel
+final class ListingReadMore implements ViewModel
 {
     use ListingConstructors;
     use ArrayAccessFromProperties;
@@ -29,30 +29,30 @@ final class ListingTeasers implements ViewModel
             null !== $pagination &&
             null !== $seeMoreLink
         ) {
-            throw new InvalidArgumentException('You cannot have both Pager and SeeMoreLink in Teaser Listings.');
+            throw new InvalidArgumentException('You cannot have both Pager and SeeMoreLink in ReadMore Listings.');
         }
         Assertion::notEmpty($items);
-        Assertion::allIsInstanceOf($items, Teaser::class);
+        Assertion::allIsInstanceOf($items, ReadMoreItem::class);
         $this->items = $items;
-        $this->id = $id;
+        $this->seeMoreLink = $seeMoreLink;
         $this->heading = $heading;
         $this->pagination = $pagination;
-        $this->seeMoreLink = $seeMoreLink;
+        $this->id = $id;
     }
 
-    public function getTemplateName() : string
-    {
-        return '/elife/patterns/templates/listing-teasers.mustache';
-    }
-
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield '/elife/patterns/assets/css/listing.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
+    protected function getComposedViewModels(): Traversable
     {
         yield from $this->items;
         yield $this->pagination;
+    }
+
+    public function getTemplateName(): string
+    {
+        return '/elife/patterns/templates/listing-read-more.mustache';
+    }
+
+    public function getLocalStyleSheets(): Traversable
+    {
+        yield '/elife/patterns/assets/css/listing.css';
     }
 }
