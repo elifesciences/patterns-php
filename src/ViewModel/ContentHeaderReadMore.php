@@ -20,7 +20,6 @@ final class ContentHeaderReadMore implements ViewModel
     const TITLE_EXTRA_SMALL = 'content-header__title--extra-small';
 
     const BEHAVIOUR_BASE = 'ContentHeaderArticle';
-    const BEHAVIOUR_BACKGROUND_IMAGE = 'BackgroundImage';
 
     const FALLBACK_CLASSES = 'content-header__download_icon'; // @todo check if there are more icons for download.
 
@@ -41,9 +40,7 @@ final class ContentHeaderReadMore implements ViewModel
         SubjectList $subjects = null,
         Meta $meta = null
     ) {
-        $behaviours = [self::BEHAVIOUR_BASE];
-
-        $this->behaviour = implode(' ', $behaviours);
+        $this->behaviour = self::BEHAVIOUR_BASE;
         $this->title = $title;
         $this->url = $url;
         $this->titleClass = $this->deriveTitleClass($title);
@@ -78,6 +75,7 @@ final class ContentHeaderReadMore implements ViewModel
     protected function getLocalStyleSheets(): Traversable
     {
         yield '/elife/patterns/assets/css/content-header-article-research.css';
+        yield '/elife/patterns/assets/css/content-header-article-magazine.css';
     }
 
     protected function getComposedViewModels(): Traversable
