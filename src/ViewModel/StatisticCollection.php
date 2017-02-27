@@ -26,7 +26,7 @@ final class StatisticCollection implements ViewModel
 
     protected function getLocalStyleSheets(): Traversable
     {
-        yield '/elife/patterns/assets/css/statistics.css';
+        yield '/elife/patterns/assets/css/statistic-collection.css';
     }
 
     protected function getComposedViewModels(): Traversable
