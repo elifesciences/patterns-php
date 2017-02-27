@@ -26,10 +26,10 @@ class StatisticTest extends ViewModelTest
                 Statistic::fromNumber('Downloads', 2034),
             ],
             'full' => [
-                Statistic::fromString('Downloads', '2,034', 'some--modifier'),
+                Statistic::fromString('Downloads', '2,034'),
             ],
             'full from number' => [
-                Statistic::fromNumber('Downloads', 2034, 'some--modifier'),
+                Statistic::fromNumber('Downloads', 2034),
             ],
         ];
     }

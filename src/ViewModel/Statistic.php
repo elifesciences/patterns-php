@@ -17,26 +17,24 @@ final class Statistic implements ViewModel
 
     private $label;
     private $value;
-    private $modifiers;
 
-    public static function fromString(string $label, string $value, string $modifiers = null)
+    public static function fromString(string $label, string $value)
     {
-        return new static($label, $value, $modifiers);
+        return new static($label, $value);
     }
 
-    public static function fromNumber(string $label, int $value, string $modifiers = null)
+    public static function fromNumber(string $label, int $value)
     {
-        return new static($label, number_format($value), $modifiers);
+        return new static($label, number_format($value));
     }
 
-    private function __construct(string $label, string $value, string $modifiers = null)
+    private function __construct(string $label, string $value)
     {
         Assertion::notBlank($label);
         Assertion::notBlank($value);
 
         $this->label = $label;
         $this->value = $value;
-        $this->modifiers = $modifiers;
     }
 
     public function getStyleSheets(): Traversable
