@@ -19,20 +19,20 @@ final class BarChart implements ViewModel
     private $type;
     private $containerId;
     private $apiEndpoint;
-    private $monthlyId;
-    private $dailyId;
     private $daily;
     private $monthly;
     private $next;
     private $prev;
+    private $metric;
+    private $period;
 
     public function __construct(
         string $id,
         string $type,
         string $containerId,
         string $apiEndpoint,
-        string $monthlyId = null,
-        string $dailyId = null,
+        string $metric = null,
+        string $period = null,
         Button $daily = null,
         Button $monthly = null,
         Picture $next = null,
@@ -47,12 +47,12 @@ final class BarChart implements ViewModel
         $this->type = $type;
         $this->containerId = $containerId;
         $this->apiEndpoint = $apiEndpoint;
-        $this->monthlyId = $monthlyId;
-        $this->dailyId = $dailyId;
         $this->daily = $daily;
         $this->monthly = $monthly;
         $this->next = $next;
         $this->prev = $prev;
+        $this->metric = $metric;
+        $this->period = $period;
     }
 
     protected function getComposedViewModels(): Traversable

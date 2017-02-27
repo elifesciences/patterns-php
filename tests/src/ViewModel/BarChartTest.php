@@ -40,8 +40,8 @@ class BarChartTest extends ViewModelTest
                     'article',
                     'chart-id-container',
                     'http://sub.api/',
-                    'monthly-id',
-                    'daily-id',
+                    'downloads',
+                    'daily',
                     Button::form('Daily', 'button'),
                     Button::form('Monthly', 'button'),
                     new Picture([
