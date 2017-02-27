@@ -16,11 +16,13 @@ final class SearchBox implements ViewModel
 
     private $compactForm;
     private $subjectFilter;
+    private $behaviour;
 
-    public function __construct(CompactForm $compactForm, SubjectFilter $subjectFilter = null)
+    public function __construct(CompactForm $compactForm, SubjectFilter $subjectFilter = null, bool $behaviour = true)
     {
         $this->compactForm = $compactForm;
         $this->subjectFilter = $subjectFilter;
+        $this->behaviour = $behaviour;
     }
 
     public function getTemplateName() : string
