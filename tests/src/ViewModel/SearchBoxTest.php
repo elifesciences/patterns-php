@@ -32,7 +32,6 @@ final class SearchBoxTest extends ViewModelTest
                 'value' => 'value',
                 'text' => 'text',
             ],
-            'inContentHeader' => true,
         ];
 
         $searchBox = new SearchBox(
@@ -44,8 +43,7 @@ final class SearchBoxTest extends ViewModelTest
                     $data['compactForm']['inputPlaceholder']),
                 $data['compactForm']['ctaText']
             ),
-            $subjectFilter = new SubjectFilter(...array_values($data['subjectFilter'])),
-            $data['inContentHeader']
+            $subjectFilter = new SubjectFilter(...array_values($data['subjectFilter']))
         );
 
         $this->assertEquals($compactForm, $searchBox['compactForm']);
@@ -72,8 +70,7 @@ final class SearchBoxTest extends ViewModelTest
                         new Input('label', 'text', 'input', 'value', 'placeholder'),
                         'cta'
                     ),
-                    null,
-                    false
+                    null
                 ),
             ],
             'with subject filter' => [
