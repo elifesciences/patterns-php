@@ -69,5 +69,7 @@ schema:
                 - name
                 - value
                 - text
+        inContentHeader:
+            type: boolean
     required:
         - compactForm
