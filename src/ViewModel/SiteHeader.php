@@ -27,7 +27,9 @@ final class SiteHeader implements ViewModel
         $this->homePagePath = $homePagePath;
         $this->primaryLinks = $primaryLinks;
         $this->secondaryLinks = $secondaryLinks;
-        $this->searchBox = $searchBox;
+        if ($searchBox) {
+            $this->searchBox = FlexibleViewModel::fromViewModel($searchBox)->withProperty('inContentHeader', true);
+        }
     }
 
     protected function getLocalStyleSheets() : Traversable
