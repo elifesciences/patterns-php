@@ -36,6 +36,6 @@ final class StatisticCollection implements ViewModel
 
     public function getTemplateName(): string
     {
-        return '/elife/patterns/templates/statistics.mustache';
+        return '/elife/patterns/templates/statistic-collection.mustache';
     }
 }
