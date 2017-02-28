@@ -63,16 +63,6 @@ final class SearchBoxTest extends ViewModelTest
                     )
                 ),
             ],
-            'without subject filter without behaviour' => [
-                new SearchBox(
-                    new CompactForm(
-                        new Form('/foo', 'foo', 'GET'),
-                        new Input('label', 'text', 'input', 'value', 'placeholder'),
-                        'cta'
-                    ),
-                    null
-                ),
-            ],
             'with subject filter' => [
                 new SearchBox(
                     new CompactForm(
