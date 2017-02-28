@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,qBAAsB,CACpB,WAAW,CAAE,UAAU,CACvB,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,IAAI,CACf,eAAe,CAAE,aAAa,CAC9B,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CAGZ,2BAA4B,CAC1B,eAAe,CAAE,IAAI,CACrB,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC",
+"sources": ["../../../../../../assets/sass/patterns/organisms/statistic-collection.scss"],
+"names": [],
+"file": "statistic-collection.css"
+}
