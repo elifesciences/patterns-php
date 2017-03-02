@@ -98,6 +98,7 @@ schema:
                                                     - fallback
                                         required:
                                             - text
+                                            - path
                                     -
                                         properties:
                                             button:
@@ -227,6 +228,7 @@ schema:
                                                     - fallback
                                         required:
                                             - text
+                                            - path
                                     -
                                         properties:
                                             button:
