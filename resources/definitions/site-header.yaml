@@ -98,7 +98,6 @@ schema:
                                                     - fallback
                                         required:
                                             - text
-                                            - path
                                     -
                                         properties:
                                             button:
@@ -228,7 +227,6 @@ schema:
                                                     - fallback
                                         required:
                                             - text
-                                            - path
                                     -
                                         properties:
                                             button:
@@ -340,6 +338,8 @@ schema:
                         - name
                         - value
                         - text
+                inContentHeader:
+                    type: boolean
             required:
                 - compactForm
     required:

@@ -67,7 +67,8 @@ final class SiteHeaderTest extends ViewModelTest
         $this->assertSame($this->homePagePath, $siteHeader['homePagePath']);
         $this->assertSame($this->primaryLinks, $siteHeader['primaryLinks']);
         $this->assertSame($this->secondaryLinks, $siteHeader['secondaryLinks']);
-        $this->assertSame($this->searchBox, $siteHeader['searchBox']);
+        $this->assertSameValuesWithoutOrder($this->searchBox, $siteHeader['searchBox']);
+        $this->assertTrue($siteHeader['searchBox']['inContentHeader']);
     }
 
     /**
