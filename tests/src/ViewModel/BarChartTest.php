@@ -3,14 +3,8 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\BarChart;
-use eLife\Patterns\ViewModel\Button;
-use eLife\Patterns\ViewModel\Image;
-use eLife\Patterns\ViewModel\Picture;
 
-/**
- * @group failing
- */
-class BarChartTest extends ViewModelTest
+final class BarChartTest extends ViewModelTest
 {
     /**
      * @test
@@ -22,8 +16,10 @@ class BarChartTest extends ViewModelTest
             'type' => 'article',
             'containerId' => 'chart-id-container',
             'apiEndpoint' => 'http://sub.api/',
+            'metric' => 'downloads',
+            'period' => 'day',
         ];
-        $model = new BarChart($data['id'], $data['type'], $data['containerId'], $data['apiEndpoint']);
+        $model = new BarChart($data['id'], $data['type'], $data['containerId'], $data['apiEndpoint'], $data['metric'], $data['period']);
 
         $this->assertSameValuesWithoutOrder($data, $model->toArray());
     }
@@ -31,9 +27,6 @@ class BarChartTest extends ViewModelTest
     public function viewModelProvider(): array
     {
         return [
-            'basic' => [
-                new BarChart('chart-id', 'article', 'chart-id-container', 'http://sub.api/'),
-            ],
             'full' => [
                 new BarChart(
                     'chart-id',
@@ -41,19 +34,7 @@ class BarChartTest extends ViewModelTest
                     'chart-id-container',
                     'http://sub.api/',
                     'downloads',
-                    'daily',
-                    Button::form('Daily', 'button'),
-                    Button::form('Monthly', 'button'),
-                    new Picture([
-                        [
-                            'srcset' => 'http://d.com/next.svg',
-                        ],
-                    ], new Image('http://d.com/next.png')),
-                    new Picture([
-                        [
-                            'srcset' => 'http://d.com/next.svg',
-                        ],
-                    ], new Image('http://d.com/prev.png'))
+                    'month'
                 ),
             ],
         ];

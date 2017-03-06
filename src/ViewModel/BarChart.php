@@ -5,24 +5,20 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
+use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
 final class BarChart implements ViewModel
 {
-    use ComposedAssets;
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    use SimplifyAssets;
 
     private $id;
     private $type;
     private $containerId;
     private $apiEndpoint;
-    private $daily;
-    private $monthly;
-    private $next;
-    private $prev;
     private $metric;
     private $period;
 
@@ -31,12 +27,8 @@ final class BarChart implements ViewModel
         string $type,
         string $containerId,
         string $apiEndpoint,
-        string $metric = null,
-        string $period = null,
-        Button $daily = null,
-        Button $monthly = null,
-        Picture $next = null,
-        Picture $prev = null
+        string $metric,
+        string $period
     ) {
         Assertion::notBlank($id);
         Assertion::notBlank($type);
@@ -47,20 +39,8 @@ final class BarChart implements ViewModel
         $this->type = $type;
         $this->containerId = $containerId;
         $this->apiEndpoint = $apiEndpoint;
-        $this->daily = $daily;
-        $this->monthly = $monthly;
-        $this->next = $next;
-        $this->prev = $prev;
         $this->metric = $metric;
         $this->period = $period;
-    }
-
-    protected function getComposedViewModels(): Traversable
-    {
-        yield $this->daily;
-        yield $this->monthly;
-        yield $this->next;
-        yield $this->prev;
     }
 
     public function getTemplateName(): string
