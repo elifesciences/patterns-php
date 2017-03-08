@@ -10,7 +10,7 @@ elifeLibrary {
     stage "Update", {
         sh "composer install"
 
-        sh "bin/update"
+        sh "bin/update " + (params.commit ?: "")
         sh "git add --all ."
     }
 
