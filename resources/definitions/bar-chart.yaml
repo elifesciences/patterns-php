@@ -1,7 +1,10 @@
 assets:
     css:
+        - button-collection.css
         - buttons.css
-        - captioned-asset.css
+        - chart.css
+        - tooltip.css
+        - triggers.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
