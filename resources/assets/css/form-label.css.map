@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,WAAY,CACV,OAAO,CAAE,KAAK,CCqVd,KAAK,CC/UM,OAAO,CDgVlB,WAAW,CC5TI,gDAAmD,CCjBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CF8U9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,GAAG,CEnTd,aAAoB,CAAE,GAAgB,CACtC,aAAoB,CAAE,OAAkC",
+"mappings": "AAEA,WAAY,CACV,OAAO,CAAE,KAAK,CCqVd,KAAK,CC/UM,OAAO,CDgVlB,WAAW,CC3TI,gDAAmD,CClBlE,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CF8U9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,GAAG,CEnTd,aAAoB,CAAE,GAAgB,CACtC,aAAoB,CAAE,OAAkC",
 "sources": ["../../../../../../assets/sass/patterns/atoms/form-label.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
 "names": [],
 "file": "form-label.css"
