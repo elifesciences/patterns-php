@@ -41,3 +41,9 @@ schema:
                                 minLength: 1
                 required:
                     - src
+        autoplay:
+            type: boolean
+            default: false
+        loop:
+            type: boolean
+            default: false
