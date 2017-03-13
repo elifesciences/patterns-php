@@ -8,9 +8,12 @@ use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\BlockLink;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\GridListing;
+use eLife\Patterns\ViewModel\Image;
+use eLife\Patterns\ViewModel\ImageLink;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Pager;
+use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
@@ -86,6 +89,35 @@ final class GridListingTest extends ViewModelTest
         $this->assertSame($archiveNavLinksData, $archiveNavLinks->toArray());
 
         $date = new DateTimeImmutable();
+
+        $imageLinksData = [
+            'classes' => 'grid-listing--image-link',
+            'heading' => 'heading',
+            'imageLinks' => [
+                [
+                    'url' => 'url',
+                    'image' => [
+                        'fallback' => [
+                            'classes' => 'image-link__img',
+                            'altText' => 'the alt text',
+                            'defaultPath' => '/default/path',
+                            'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                        ],
+                        'pictureClasses' => 'image-link__picture',
+                    ],
+                    'variant' => 'grid-listing',
+                ],
+            ],
+        ];
+        $imageLinks = GridListing::forImageLinks([
+            new ImageLink('url', new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))),
+        ], 'heading');
+
+        $this->assertSame($imageLinksData['classes'], $imageLinks['classes']);
+        $this->assertSame($imageLinksData['heading'], $imageLinks['heading']);
+        $this->assertCount(1, $imageLinksData['imageLinks']);
+        $this->assertSame($imageLinksData['imageLinks'][0], $imageLinks['imageLinks'][0]->toArray());
+        $this->assertSame($imageLinksData, $imageLinks->toArray());
 
         $teasersData = [
             'heading' => 'heading',
@@ -180,6 +212,13 @@ final class GridListingTest extends ViewModelTest
                             new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('text', 'url')]),
                     ],
                     'heading'),
+            ],
+            'image links' => [
+                GridListing::forImageLinks(
+                    [
+                        new ImageLink('url', new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))),
+                    ]
+                ),
             ],
             'teasers' => [
                 GridListing::forTeasers(

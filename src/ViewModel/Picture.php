@@ -19,15 +19,7 @@ final class Picture implements ViewModel, IsCaptioned
 
     public function __construct(array $sources, Image $fallback)
     {
-        Assertion::notEmpty($sources);
-        $nullMediaCount = 0;
-        foreach ($sources as $source) {
-            Assertion::isArray($source);
-            if (empty($source['media'])) {
-                ++$nullMediaCount;
-            }
-        }
-        Assertion::max($nullMediaCount, 1);
+        Assertion::allIsArray($sources);
 
         $this->sources = $sources;
         $this->fallback = $fallback;

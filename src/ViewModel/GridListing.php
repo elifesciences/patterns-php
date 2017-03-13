@@ -18,6 +18,7 @@ final class GridListing implements ViewModel
     private $classes;
     private $heading;
     private $blockLinks;
+    private $imageLinks;
     private $archiveNavLinks;
     private $teasers;
     private $pagination;
@@ -28,6 +29,7 @@ final class GridListing implements ViewModel
         string $heading = null,
         array $blockLinks = [],
         array $archiveNavLinks = [],
+        array $imageLinks = [],
         array $teasers = [],
         Pager $pagination = null,
         string $id = null
@@ -35,6 +37,7 @@ final class GridListing implements ViewModel
         $this->classes = $classes;
         $this->heading = $heading;
         $this->blockLinks = $blockLinks;
+        $this->imageLinks = $imageLinks;
         $this->archiveNavLinks = $archiveNavLinks;
         $this->teasers = $teasers;
         $this->pagination = $pagination;
@@ -63,12 +66,26 @@ final class GridListing implements ViewModel
         return new self(null, $heading, [], $archiveNavLinks);
     }
 
+    public static function forImageLinks(array $imageLinks, string $heading = null) : GridListing
+    {
+        Assertion::notEmpty($imageLinks);
+        Assertion::allIsInstanceOf($imageLinks, ImageLink::class);
+
+        $imageLinks = array_map(function (ImageLink $imageLink) {
+            $imageLink = FlexibleViewModel::fromViewModel($imageLink);
+
+            return $imageLink->withProperty('variant', 'grid-listing');
+        }, $imageLinks);
+
+        return new self('grid-listing--image-link', $heading, [], [], $imageLinks);
+    }
+
     public static function forTeasers(array $teasers, string $heading = null, Pager $pagination = null, string $id = null) : GridListing
     {
         Assertion::notEmpty($teasers);
         Assertion::allIsInstanceOf($teasers, Teaser::class);
 
-        return new self(null, $heading, [], [], $teasers, $pagination, $id);
+        return new self(null, $heading, [], [], [], $teasers, $pagination, $id);
     }
 
     public function getTemplateName() : string

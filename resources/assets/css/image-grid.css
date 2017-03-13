@@ -1,2 +1,0 @@
-.image-grid{overflow-x:hidden}.image-grid__cell{float:left;margin-bottom:15px;margin-bottom:.9375rem;padding:0px 7.5px;padding:0rem .46875rem;width:33.33%}.image-grid__image{display:block;width:100%}@media only screen{.image-grid__container{display:flex;flex-wrap:wrap;margin:0px -7.5px;margin:0rem -.46875rem}.image-grid__cell{width:50%}}@media only screen and (min-width: 32.5em){.image-grid__cell{width:33.33%}}@media only screen and (min-width: 45em){.image-grid__cell{width:24.98%}}
-/*# sourceMappingURL=image-grid.css.map */

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,WAAY,CACV,UAAU,CAAE,MAAM,CAGpB,iBAAkB,CAChB,KAAK,CAAE,IAAI,CCkCT,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,QAAkC,CAZxD,OAAO,CALM,SAAsC,CAMnD,OAAO,CAHO,cAAyD,CDlBzE,KAAK,CAAE,MAAM,CAGf,kBAAmB,CACjB,OAAO,CAAE,KAAK,CACd,KAAK,CAAE,IAAI,CAGb,kBAAmB,CACjB,sBAAuB,CACrB,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,IAAI,CCgCf,MAAM,CALO,UAAsC,CAMnD,MAAM,CAHQ,eAAyD,CD1BzE,iBAAkB,CAChB,KAAK,CAAE,GAAG,EAId,0CAA8D,CAC5D,iBAAkB,CAChB,KAAK,CAAE,MAAM,EAIjB,wCAA8D,CAC5D,iBAAkB,CAEhB,KAAK,CAAE,MAAM",
-"sources": ["../../../../../../assets/sass/patterns/molecules/image-grid.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "image-grid.css"
-}
