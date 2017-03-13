@@ -18,8 +18,10 @@ final class Video implements ViewModel, IsCaptioned
     private $posterFrame;
     /** @var MediaSource[] */
     private $sources;
+    private $autoplay;
+    private $loop;
 
-    public function __construct(string $posterFrame, array $sources)
+    public function __construct(string $posterFrame, array $sources, bool $autoplay = false, bool $loop = false)
     {
         Assertion::notBlank($posterFrame);
         Assertion::notEmpty($sources);
@@ -30,6 +32,12 @@ final class Video implements ViewModel, IsCaptioned
 
         $this->posterFrame = $posterFrame;
         $this->sources = $sources;
+        if ($autoplay) {
+            $this->autoplay = $autoplay;
+        }
+        if ($loop) {
+            $this->loop = $loop;
+        }
     }
 
     public function getTemplateName() : string

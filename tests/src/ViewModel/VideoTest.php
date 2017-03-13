@@ -31,11 +31,13 @@ final class VideoTest extends ViewModelTest
                     ],
                 ],
             ],
+            'autoplay' => true,
+            'loop' => true,
         ];
         $video = new Video($data['posterFrame'], array_map(function ($source) {
             return new MediaSource($source['src'], new MediaType($source['mediaType']['forMachine']),
                 new MediaSourceFallback('fallback', true));
-        }, $data['sources']));
+        }, $data['sources']), $data['autoplay'], $data['loop']);
 
         $this->assertSameWithoutOrder($data, $video->toArray());
     }
@@ -62,8 +64,7 @@ final class VideoTest extends ViewModelTest
     {
         return [
             [
-                new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MediaType('video/mp4'))],
-                    new MediaSourceFallback('fallback', true)),
+                new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MediaType('video/mp4'), new MediaSourceFallback('fallback', true))], true, true),
             ],
             [
                 new Video('http://some.image.com/test.jpg', [new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
