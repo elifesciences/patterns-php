@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
-use InvalidArgumentException;
 
 final class PictureTest extends ViewModelTest
 {
