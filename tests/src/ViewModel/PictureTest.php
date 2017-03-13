@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
-use InvalidArgumentException;
 
 final class PictureTest extends ViewModelTest
 {
@@ -49,39 +48,6 @@ final class PictureTest extends ViewModelTest
         $this->assertSame($data, $picture->toArray());
     }
 
-    /**
-     * @test
-     */
-    public function it_must_have_at_least_one_source()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new Picture([], $this->imageFixture);
-    }
-
-    /**
-     * @test
-     */
-    public function it_can_only_have_one_source_without_media_statement()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $invalidSources = [
-            [
-                'srcset' => '/path/to/svg',
-                'media' => null,
-            ],
-            [
-                'srcset' => '/path/to/svg',
-            ],
-            [
-                'srcset' => '/path/to/svg',
-                'media' => 'media statement',
-            ],
-        ];
-
-        new Picture($invalidSources, $this->imageFixture);
-    }
-
     public function viewModelProvider() : array
     {
         $image = new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text');
@@ -119,6 +85,7 @@ final class PictureTest extends ViewModelTest
         ];
 
         return [
+            'no sources' => [new Picture([], $image)],
             'basic' => [new Picture($sourcesBasic, $image)],
             'has css classes' => [new Picture($sourcesBasic, $imageWithCssClasses)],
             'has media statement' => [new Picture($sourcesWithMedia, $image)],
