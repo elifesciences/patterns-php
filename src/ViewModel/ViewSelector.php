@@ -18,12 +18,14 @@ final class ViewSelector implements ViewModel
     private $articleUrl;
     private $jumpLinks;
     private $figureUrl;
+    private $figureIsActive;
     private $sideBySideUrl;
 
     public function __construct(
         string $articleUrl,
         array $jumpLinks = [],
         string $figureUrl = null,
+        bool $figureIsActive = false,
         string $sideBySideUrl = null
     ) {
         Assertion::notBlank($articleUrl);
@@ -37,6 +39,9 @@ final class ViewSelector implements ViewModel
             $this->jumpLinks = ['links' => $jumpLinks];
         }
         $this->figureUrl = $figureUrl;
+        if ($this->figureUrl && $figureIsActive) {
+            $this->figureIsActive = $figureIsActive;
+        }
         $this->sideBySideUrl = $sideBySideUrl;
     }
 
