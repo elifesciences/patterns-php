@@ -69,6 +69,6 @@ final class FilterGroupTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/filter-group.mustache';
+        return 'resources/templates/filter-group.mustache';
     }
 }

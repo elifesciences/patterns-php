@@ -30,12 +30,12 @@ final class SelectNav implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/select-nav.mustache';
+        return 'resources/templates/select-nav.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/select-nav.css';
+        yield 'resources/assets/css/select-nav.css';
     }
 
     protected function getComposedViewModels() : Traversable

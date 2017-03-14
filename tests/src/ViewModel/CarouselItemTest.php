@@ -60,6 +60,6 @@ final class CarouselItemTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/carousel-item.mustache';
+        return 'resources/templates/carousel-item.mustache';
     }
 }

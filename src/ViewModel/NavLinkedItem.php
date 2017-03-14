@@ -90,6 +90,6 @@ final class NavLinkedItem implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/nav-linked-item.mustache';
+        return 'resources/templates/nav-linked-item.mustache';
     }
 }

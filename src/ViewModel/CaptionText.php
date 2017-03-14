@@ -30,11 +30,11 @@ final class CaptionText implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/caption-text.mustache';
+        return 'resources/templates/caption-text.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/caption-text.css';
+        yield 'resources/assets/css/caption-text.css';
     }
 }

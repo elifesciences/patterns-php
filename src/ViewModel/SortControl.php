@@ -27,11 +27,11 @@ final class SortControl implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/sort-control.mustache';
+        return 'resources/templates/sort-control.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/sort-control.css';
+        yield 'resources/assets/css/sort-control.css';
     }
 }

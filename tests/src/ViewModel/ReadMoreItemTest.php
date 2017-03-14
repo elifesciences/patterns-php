@@ -40,6 +40,6 @@ final class ReadMoreItemTest extends ViewModelTest
 
     protected function expectedTemplate(): string
     {
-        return '/elife/patterns/templates/read-more-item.mustache';
+        return 'resources/templates/read-more-item.mustache';
     }
 }

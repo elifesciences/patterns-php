@@ -88,6 +88,6 @@ final class FilterPanelTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/filter-panel.mustache';
+        return 'resources/templates/filter-panel.mustache';
     }
 }

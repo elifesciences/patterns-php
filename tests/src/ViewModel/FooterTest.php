@@ -52,6 +52,6 @@ final class FooterTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/footer.mustache';
+        return 'resources/templates/footer.mustache';
     }
 }

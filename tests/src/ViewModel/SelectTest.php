@@ -63,6 +63,6 @@ final class SelectTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/select.mustache';
+        return 'resources/templates/select.mustache';
     }
 }

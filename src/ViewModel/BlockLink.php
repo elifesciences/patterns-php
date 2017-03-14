@@ -31,11 +31,11 @@ final class BlockLink implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/block-link.mustache';
+        return 'resources/templates/block-link.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/block-link.css';
+        yield 'resources/assets/css/block-link.css';
     }
 }

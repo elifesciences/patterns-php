@@ -51,12 +51,12 @@ final class ContextualData implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/contextual-data.mustache';
+        return 'resources/templates/contextual-data.mustache';
     }
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/contextual-data.css';
+        yield 'resources/assets/css/contextual-data.css';
     }
 
     protected function getComposedViewModels() : Traversable

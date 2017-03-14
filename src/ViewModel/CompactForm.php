@@ -42,11 +42,11 @@ final class CompactForm implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/compact-form.mustache';
+        return 'resources/templates/compact-form.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/compact-form.css';
+        yield 'resources/assets/css/compact-form.css';
     }
 }

@@ -42,7 +42,7 @@ final class Video implements ViewModel, IsCaptioned
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/video.mustache';
+        return 'resources/templates/video.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

@@ -23,7 +23,7 @@ final class NotFound implements ViewModel
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/errors.css';
+        yield 'resources/assets/css/errors.css';
     }
 
     protected function getComposedViewModels() : Traversable
@@ -33,6 +33,6 @@ final class NotFound implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/not-found.mustache';
+        return 'resources/templates/not-found.mustache';
     }
 }

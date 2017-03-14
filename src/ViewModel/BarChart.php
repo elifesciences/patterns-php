@@ -52,15 +52,15 @@ final class BarChart implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/bar-chart.mustache';
+        return 'resources/templates/bar-chart.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/button-collection.css';
-        yield '/elife/patterns/assets/css/buttons.css';
-        yield '/elife/patterns/assets/css/chart.css';
-        yield '/elife/patterns/assets/css/tooltip.css';
-        yield '/elife/patterns/assets/css/triggers.css';
+        yield 'resources/assets/css/button-collection.css';
+        yield 'resources/assets/css/buttons.css';
+        yield 'resources/assets/css/chart.css';
+        yield 'resources/assets/css/tooltip.css';
+        yield 'resources/assets/css/triggers.css';
     }
 }

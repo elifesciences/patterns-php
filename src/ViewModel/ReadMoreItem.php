@@ -42,6 +42,6 @@ final class ReadMoreItem implements ViewModel
 
     public function getTemplateName(): string
     {
-        return '/elife/patterns/templates/read-more-item.mustache';
+        return 'resources/templates/read-more-item.mustache';
     }
 }

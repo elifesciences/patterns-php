@@ -68,7 +68,7 @@ final class Reference implements ViewModel
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/reference.css';
+        yield 'resources/assets/css/reference.css';
     }
 
     protected function getComposedViewModels() : Traversable
@@ -78,6 +78,6 @@ final class Reference implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/reference.mustache';
+        return 'resources/templates/reference.mustache';
     }
 }

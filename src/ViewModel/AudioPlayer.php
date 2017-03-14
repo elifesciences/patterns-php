@@ -60,11 +60,11 @@ final class AudioPlayer implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/audio-player.mustache';
+        return 'resources/templates/audio-player.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/audio-player.css';
+        yield 'resources/assets/css/audio-player.css';
     }
 }

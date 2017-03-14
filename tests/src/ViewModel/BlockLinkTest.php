@@ -46,6 +46,6 @@ final class BlockLinkTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/block-link.mustache';
+        return 'resources/templates/block-link.mustache';
     }
 }

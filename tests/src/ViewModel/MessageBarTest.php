@@ -29,6 +29,6 @@ final class MessageBarTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/message-bar.mustache';
+        return 'resources/templates/message-bar.mustache';
     }
 }

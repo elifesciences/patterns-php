@@ -78,6 +78,6 @@ final class ListingTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/list.mustache';
+        return 'resources/templates/list.mustache';
     }
 }

@@ -33,11 +33,11 @@ final class PullQuote implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/pull-quote.css';
+        yield 'resources/assets/css/pull-quote.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/pull-quote.mustache';
+        return 'resources/templates/pull-quote.mustache';
     }
 }

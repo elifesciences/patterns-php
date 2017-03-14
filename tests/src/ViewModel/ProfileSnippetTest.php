@@ -52,6 +52,6 @@ final class ProfileSnippetTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/profile-snippet.mustache';
+        return 'resources/templates/profile-snippet.mustache';
     }
 }

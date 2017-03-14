@@ -78,6 +78,6 @@ final class SearchBoxTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/search-box.mustache';
+        return 'resources/templates/search-box.mustache';
     }
 }

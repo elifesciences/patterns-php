@@ -69,13 +69,13 @@ final class ContentHeaderReadMore implements ViewModel
 
     public function getTemplateName(): string
     {
-        return '/elife/patterns/templates/content-header-read-more.mustache';
+        return 'resources/templates/content-header-read-more.mustache';
     }
 
     protected function getLocalStyleSheets(): Traversable
     {
-        yield '/elife/patterns/assets/css/content-header-article-research.css';
-        yield '/elife/patterns/assets/css/content-header-article-magazine.css';
+        yield 'resources/assets/css/content-header-article-research.css';
+        yield 'resources/assets/css/content-header-article-magazine.css';
     }
 
     protected function getComposedViewModels(): Traversable

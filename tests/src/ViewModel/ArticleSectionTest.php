@@ -95,6 +95,6 @@ final class ArticleSectionTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/article-section.mustache';
+        return 'resources/templates/article-section.mustache';
     }
 }

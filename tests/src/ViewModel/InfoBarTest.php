@@ -57,6 +57,6 @@ final class InfoBarTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/info-bar.mustache';
+        return 'resources/templates/info-bar.mustache';
     }
 }

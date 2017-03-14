@@ -93,6 +93,6 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/article-download-links-list.mustache';
+        return 'resources/templates/article-download-links-list.mustache';
     }
 }

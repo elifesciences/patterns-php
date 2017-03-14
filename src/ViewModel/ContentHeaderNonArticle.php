@@ -235,12 +235,12 @@ final class ContentHeaderNonArticle implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/content-header-non-article.mustache';
+        return 'resources/templates/content-header-non-article.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/content-header-non-article.css';
+        yield 'resources/assets/css/content-header-non-article.css';
     }
 
     protected function getComposedViewModels() : Traversable

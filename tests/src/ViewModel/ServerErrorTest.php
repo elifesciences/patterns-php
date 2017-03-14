@@ -36,6 +36,6 @@ final class ServerErrorTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/server-error.mustache';
+        return 'resources/templates/server-error.mustache';
     }
 }

@@ -42,12 +42,12 @@ final class ListingTeasers implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/listing-teasers.mustache';
+        return 'resources/templates/listing-teasers.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/listing.css';
+        yield 'resources/assets/css/listing.css';
     }
 
     protected function getComposedViewModels() : Traversable

@@ -34,11 +34,11 @@ final class ProfileSnippet implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/profile-snippet.css';
+        yield 'resources/assets/css/profile-snippet.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/profile-snippet.mustache';
+        return 'resources/templates/profile-snippet.mustache';
     }
 }

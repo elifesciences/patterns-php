@@ -62,12 +62,12 @@ final class AdditionalAsset implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/additional-asset.mustache';
+        return 'resources/templates/additional-asset.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/additional-asset.css';
+        yield 'resources/assets/css/additional-asset.css';
     }
 
     protected function getComposedViewModels() : Traversable

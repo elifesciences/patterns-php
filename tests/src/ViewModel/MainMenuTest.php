@@ -38,6 +38,6 @@ final class MainMenuTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/main-menu.mustache';
+        return 'resources/templates/main-menu.mustache';
     }
 }

@@ -46,6 +46,6 @@ final class CaptionTextTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/caption-text.mustache';
+        return 'resources/templates/caption-text.mustache';
     }
 }

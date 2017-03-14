@@ -47,11 +47,11 @@ final class ViewSelector implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/view-selector.mustache';
+        return 'resources/templates/view-selector.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/view-selector.css';
+        yield 'resources/assets/css/view-selector.css';
     }
 }

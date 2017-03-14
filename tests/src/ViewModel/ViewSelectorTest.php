@@ -69,6 +69,6 @@ final class ViewSelectorTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/view-selector.mustache';
+        return 'resources/templates/view-selector.mustache';
     }
 }

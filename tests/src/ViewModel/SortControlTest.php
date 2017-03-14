@@ -57,6 +57,6 @@ final class SortControlTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/sort-control.mustache';
+        return 'resources/templates/sort-control.mustache';
     }
 }

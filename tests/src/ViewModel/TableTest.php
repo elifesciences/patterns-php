@@ -78,6 +78,6 @@ final class TableTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/table.mustache';
+        return 'resources/templates/table.mustache';
     }
 }

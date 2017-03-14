@@ -60,6 +60,6 @@ final class PagerTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/pager.mustache';
+        return 'resources/templates/pager.mustache';
     }
 }

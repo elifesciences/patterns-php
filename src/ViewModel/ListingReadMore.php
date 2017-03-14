@@ -48,11 +48,11 @@ final class ListingReadMore implements ViewModel
 
     public function getTemplateName(): string
     {
-        return '/elife/patterns/templates/listing-read-more.mustache';
+        return 'resources/templates/listing-read-more.mustache';
     }
 
     public function getLocalStyleSheets(): Traversable
     {
-        yield '/elife/patterns/assets/css/listing.css';
+        yield 'resources/assets/css/listing.css';
     }
 }

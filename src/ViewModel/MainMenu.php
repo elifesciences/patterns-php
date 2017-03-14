@@ -34,11 +34,11 @@ final class MainMenu implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/main-menu.mustache';
+        return 'resources/templates/main-menu.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/main-menu.css';
+        yield 'resources/assets/css/main-menu.css';
     }
 }

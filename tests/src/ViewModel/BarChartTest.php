@@ -103,6 +103,6 @@ final class BarChartTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/bar-chart.mustache';
+        return 'resources/templates/bar-chart.mustache';
     }
 }

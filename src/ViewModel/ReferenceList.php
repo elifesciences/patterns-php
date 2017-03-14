@@ -26,12 +26,12 @@ final class ReferenceList implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/reference-list.mustache';
+        return 'resources/templates/reference-list.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/reference-list.css';
+        yield 'resources/assets/css/reference-list.css';
     }
 
     protected function getComposedViewModels() : Traversable

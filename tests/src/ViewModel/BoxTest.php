@@ -81,6 +81,6 @@ final class BoxTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/box.mustache';
+        return 'resources/templates/box.mustache';
     }
 }

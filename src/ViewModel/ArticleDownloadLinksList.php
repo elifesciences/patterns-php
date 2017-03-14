@@ -41,11 +41,11 @@ final class ArticleDownloadLinksList implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/article-download-links-list.mustache';
+        return 'resources/templates/article-download-links-list.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/article-download-links-list.css';
+        yield 'resources/assets/css/article-download-links-list.css';
     }
 }

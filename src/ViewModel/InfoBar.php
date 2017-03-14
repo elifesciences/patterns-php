@@ -41,11 +41,11 @@ final class InfoBar implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/info-bar.mustache';
+        return 'resources/templates/info-bar.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/info-bars.css';
+        yield 'resources/assets/css/info-bars.css';
     }
 }

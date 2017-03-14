@@ -8,6 +8,7 @@ use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 use eLife\Patterns\ViewModel;
 use Mustache_Engine;
+use Mustache_Loader_FilesystemLoader;
 use PHPUnit_Framework_TestCase;
 use Puli\Repository\FilesystemRepository;
 
@@ -45,12 +46,10 @@ final class IntegrationTest extends PHPUnit_Framework_TestCase
 
     private function createPatternRenderer() : PatternRenderer
     {
-        $repo = new FilesystemRepository(__DIR__.'/../resources');
-        $puliLoader = new PuliLoader($repo);
-
-        $patternLabLoader = new PatternLabLoader($repo->get('/')->getFilesystemPath());
-
-        $mustache = new Mustache_Engine(['loader' => $puliLoader, 'partials_loader' => $patternLabLoader]);
+        $mustache = new Mustache_Engine([
+            'loader' => new Mustache_Loader_FilesystemLoader(__DIR__.'/../resources'),
+            'partials_loader' => new PatternLabLoader(__DIR__.'/../resources'),
+        ]);
 
         return new MustachePatternRenderer($mustache);
     }

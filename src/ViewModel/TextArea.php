@@ -66,11 +66,11 @@ final class TextArea implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/text-area.mustache';
+        return 'resources/templates/text-area.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/text-fields.css';
+        yield 'resources/assets/css/text-fields.css';
     }
 }

@@ -32,13 +32,13 @@ final class DecisionLetterHeader implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/decision-letter-header.css';
-        yield '/elife/patterns/assets/css/listing.css';
+        yield 'resources/assets/css/decision-letter-header.css';
+        yield 'resources/assets/css/listing.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/decision-letter-header.mustache';
+        return 'resources/templates/decision-letter-header.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

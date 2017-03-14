@@ -96,6 +96,6 @@ final class PictureTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/picture.mustache';
+        return 'resources/templates/picture.mustache';
     }
 }

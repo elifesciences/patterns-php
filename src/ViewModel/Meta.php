@@ -49,12 +49,12 @@ final class Meta implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/meta.mustache';
+        return 'resources/templates/meta.mustache';
     }
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/meta.css';
+        yield 'resources/assets/css/meta.css';
     }
 
     protected function getComposedViewModels() : Traversable

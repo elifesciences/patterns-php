@@ -34,7 +34,7 @@ final class SiteHeader implements ViewModel
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/site-header.css';
+        yield 'resources/assets/css/site-header.css';
     }
 
     protected function getComposedViewModels() : Traversable
@@ -46,6 +46,6 @@ final class SiteHeader implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/site-header.mustache';
+        return 'resources/templates/site-header.mustache';
     }
 }

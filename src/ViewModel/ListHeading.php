@@ -26,11 +26,11 @@ final class ListHeading implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/list-heading.css';
+        yield 'resources/assets/css/list-heading.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/list-heading.mustache';
+        return 'resources/templates/list-heading.mustache';
     }
 }

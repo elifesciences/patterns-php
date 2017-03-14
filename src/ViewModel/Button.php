@@ -101,11 +101,11 @@ final class Button implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/button.mustache';
+        return 'resources/templates/button.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/buttons.css';
+        yield 'resources/assets/css/buttons.css';
     }
 }

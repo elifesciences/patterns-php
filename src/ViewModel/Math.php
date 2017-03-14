@@ -30,11 +30,11 @@ final class Math implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/math.mustache';
+        return 'resources/templates/math.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/math.css';
+        yield 'resources/assets/css/math.css';
     }
 }

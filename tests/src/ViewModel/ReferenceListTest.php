@@ -64,6 +64,6 @@ final class ReferenceListTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/reference-list.mustache';
+        return 'resources/templates/reference-list.mustache';
     }
 }

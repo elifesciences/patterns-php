@@ -84,12 +84,12 @@ final class ArticleSection implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/article-section.mustache';
+        return 'resources/templates/article-section.mustache';
     }
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/article-section.css';
+        yield 'resources/assets/css/article-section.css';
     }
 
     protected function getComposedViewModels() : Traversable

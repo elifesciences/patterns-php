@@ -40,12 +40,12 @@ final class Footer implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/footer.mustache';
+        return 'resources/templates/footer.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/site-footer.css';
+        yield 'resources/assets/css/site-footer.css';
     }
 
     protected function getComposedViewModels() : Traversable

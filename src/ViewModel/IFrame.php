@@ -32,11 +32,11 @@ final class IFrame implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/iframe.mustache';
+        return 'resources/templates/iframe.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/iframe.css';
+        yield 'resources/assets/css/iframe.css';
     }
 }

@@ -26,7 +26,7 @@ final class StatisticCollection implements ViewModel
 
     protected function getLocalStyleSheets(): Traversable
     {
-        yield '/elife/patterns/assets/css/statistic-collection.css';
+        yield 'resources/assets/css/statistic-collection.css';
     }
 
     protected function getComposedViewModels(): Traversable
@@ -36,6 +36,6 @@ final class StatisticCollection implements ViewModel
 
     public function getTemplateName(): string
     {
-        return '/elife/patterns/templates/statistic-collection.mustache';
+        return 'resources/templates/statistic-collection.mustache';
     }
 }

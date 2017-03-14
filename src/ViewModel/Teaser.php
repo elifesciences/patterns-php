@@ -229,12 +229,12 @@ final class Teaser implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/teaser.mustache';
+        return 'resources/templates/teaser.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/teaser.css';
+        yield 'resources/assets/css/teaser.css';
     }
 
     protected function getComposedViewModels() : Traversable

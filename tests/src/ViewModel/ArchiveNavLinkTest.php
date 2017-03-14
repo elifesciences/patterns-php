@@ -76,6 +76,6 @@ final class ArchiveNavLinkTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/archive-nav-link.mustache';
+        return 'resources/templates/archive-nav-link.mustache';
     }
 }

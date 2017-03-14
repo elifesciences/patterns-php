@@ -131,6 +131,6 @@ final class SiteHeaderTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/site-header.mustache';
+        return 'resources/templates/site-header.mustache';
     }
 }
