@@ -8,7 +8,6 @@ use JsonSchema\Validator;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 use Symfony\Component\Yaml\Yaml;
-use tests\eLife\Patterns\PuliAwareTestCase;
 use Traversable;
 use function eLife\Patterns\flatten;
 use function eLife\Patterns\iterator_to_unique_array;

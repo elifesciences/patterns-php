@@ -3,14 +3,12 @@
 namespace tests\eLife\Patterns;
 
 use eLife\Patterns\Mustache\PatternLabLoader;
-use eLife\Patterns\Mustache\PuliLoader;
 use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 use eLife\Patterns\ViewModel;
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;
 use PHPUnit_Framework_TestCase;
-use Puli\Repository\FilesystemRepository;
 
 final class IntegrationTest extends PHPUnit_Framework_TestCase
 {
