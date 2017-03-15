@@ -90,11 +90,11 @@ final class TextField implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/text-field.mustache';
+        return 'resources/templates/text-field.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/text-fields.css';
+        yield 'resources/assets/css/text-fields.css';
     }
 }

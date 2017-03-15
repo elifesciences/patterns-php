@@ -18,7 +18,7 @@ trait MultipleTemplates
     final public function getTemplateName() : string
     {
         if ($this->templateName) {
-            return '/elife/patterns/templates/'.$this->templateName.'.mustache';
+            return __DIR__.'/../../resources/templates/'.$this->templateName.'.mustache';
         } else {
             return $this->getDefaultTemplateName();
         }

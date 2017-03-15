@@ -68,6 +68,6 @@ final class IFrameTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/iframe.mustache';
+        return 'resources/templates/iframe.mustache';
     }
 }

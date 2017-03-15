@@ -97,6 +97,6 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/site-header-nav-bar.mustache';
+        return 'resources/templates/site-header-nav-bar.mustache';
     }
 }

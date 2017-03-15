@@ -44,12 +44,12 @@ final class ArchiveNavLink implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/archive-nav-link.mustache';
+        return 'resources/templates/archive-nav-link.mustache';
     }
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/archive-nav-link.css';
+        yield 'resources/assets/css/archive-nav-link.css';
     }
 
     protected function getComposedViewModels() : Traversable

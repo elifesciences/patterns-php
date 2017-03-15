@@ -30,12 +30,12 @@ final class LeadParas implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/lead-paras.css';
+        yield 'resources/assets/css/lead-paras.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/lead-paras.mustache';
+        return 'resources/templates/lead-paras.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

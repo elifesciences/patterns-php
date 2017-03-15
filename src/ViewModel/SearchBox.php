@@ -25,12 +25,12 @@ final class SearchBox implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/search-box.mustache';
+        return 'resources/templates/search-box.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/search-box.css';
+        yield 'resources/assets/css/search-box.css';
     }
 
     protected function getComposedViewModels() : Traversable

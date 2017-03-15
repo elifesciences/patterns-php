@@ -74,6 +74,6 @@ final class VideoTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/video.mustache';
+        return 'resources/templates/video.mustache';
     }
 }

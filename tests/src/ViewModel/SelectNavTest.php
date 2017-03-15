@@ -85,6 +85,6 @@ final class SelectNavTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/select-nav.mustache';
+        return 'resources/templates/select-nav.mustache';
     }
 }

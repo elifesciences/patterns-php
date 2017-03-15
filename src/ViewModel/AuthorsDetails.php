@@ -26,12 +26,12 @@ final class AuthorsDetails implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/authors-details.mustache';
+        return 'resources/templates/authors-details.mustache';
     }
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/authors-details.css';
+        yield 'resources/assets/css/authors-details.css';
     }
 
     protected function getComposedViewModels() : Traversable

@@ -30,6 +30,6 @@ final class Select implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/select.mustache';
+        return 'resources/templates/select.mustache';
     }
 }

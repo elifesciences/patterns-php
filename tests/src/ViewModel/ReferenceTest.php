@@ -106,6 +106,6 @@ final class ReferenceTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/reference.mustache';
+        return 'resources/templates/reference.mustache';
     }
 }

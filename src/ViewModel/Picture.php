@@ -27,6 +27,6 @@ final class Picture implements ViewModel, IsCaptioned
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/picture.mustache';
+        return 'resources/templates/picture.mustache';
     }
 }

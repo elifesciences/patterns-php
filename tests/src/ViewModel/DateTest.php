@@ -58,6 +58,6 @@ final class DateTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/date.mustache';
+        return 'resources/templates/date.mustache';
     }
 }

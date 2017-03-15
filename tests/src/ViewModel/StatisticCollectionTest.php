@@ -60,6 +60,6 @@ class StatisticCollectionTest extends ViewModelTest
 
     protected function expectedTemplate(): string
     {
-        return '/elife/patterns/templates/statistic-collection.mustache';
+        return 'resources/templates/statistic-collection.mustache';
     }
 }

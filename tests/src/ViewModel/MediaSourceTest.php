@@ -60,6 +60,6 @@ final class MediaSourceTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/media-source.mustache';
+        return 'resources/templates/media-source.mustache';
     }
 }

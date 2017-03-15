@@ -73,6 +73,6 @@ final class CompactFormTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/compact-form.mustache';
+        return 'resources/templates/compact-form.mustache';
     }
 }

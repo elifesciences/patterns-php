@@ -199,16 +199,16 @@ final class ContentHeaderArticle implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/content-header-article.mustache';
+        return 'resources/templates/content-header-article.mustache';
     }
 
     protected function getLocalStyleSheets() : Traversable
     {
         if (strpos($this->rootClasses, self::STYLE_MAGAZINE) !== false) {
-            yield '/elife/patterns/assets/css/content-header-article-magazine.css';
+            yield 'resources/assets/css/content-header-article-magazine.css';
         }
         if (strpos($this->rootClasses, self::STYLE_RESEARCH) !== false) {
-            yield '/elife/patterns/assets/css/content-header-article-research.css';
+            yield 'resources/assets/css/content-header-article-research.css';
         }
     }
 

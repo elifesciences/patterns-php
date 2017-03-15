@@ -53,6 +53,6 @@ final class SectionListingLinkTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/section-listing-link.mustache';
+        return 'resources/templates/section-listing-link.mustache';
     }
 }

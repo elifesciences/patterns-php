@@ -28,12 +28,12 @@ final class MiniSection implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/mini-section.mustache';
+        return 'resources/templates/mini-section.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/mini-section.css';
+        yield 'resources/assets/css/mini-section.css';
     }
 
     protected function getComposedViewModels() : Traversable

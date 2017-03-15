@@ -110,6 +110,6 @@ final class ListingReadMoreTest extends ViewModelTest
 
     protected function expectedTemplate(): string
     {
-        return '/elife/patterns/templates/listing-read-more.mustache';
+        return 'resources/templates/listing-read-more.mustache';
     }
 }

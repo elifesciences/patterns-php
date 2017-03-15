@@ -38,12 +38,12 @@ final class Box implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/box.mustache';
+        return 'resources/templates/box.mustache';
     }
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/box.css';
+        yield 'resources/assets/css/box.css';
     }
 
     protected function getComposedViewModels() : Traversable

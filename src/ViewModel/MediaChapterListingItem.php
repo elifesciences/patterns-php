@@ -50,13 +50,13 @@ final class MediaChapterListingItem implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/media-chapter-listing-item.mustache';
+        return 'resources/templates/media-chapter-listing-item.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/media-chapter-listing-item.css';
-        yield '/elife/patterns/assets/css/teaser.css';
+        yield 'resources/assets/css/media-chapter-listing-item.css';
+        yield 'resources/assets/css/teaser.css';
     }
 
     protected function getComposedViewModels() : Traversable

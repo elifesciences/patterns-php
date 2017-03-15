@@ -26,11 +26,11 @@ final class MessageBar implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/message-bar.mustache';
+        return 'resources/templates/message-bar.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/message-bar.css';
+        yield 'resources/assets/css/message-bar.css';
     }
 }

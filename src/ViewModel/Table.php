@@ -37,11 +37,11 @@ final class Table implements ViewModel, IsCaptioned
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/table.mustache';
+        return 'resources/templates/table.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/table.css';
+        yield 'resources/assets/css/table.css';
     }
 }

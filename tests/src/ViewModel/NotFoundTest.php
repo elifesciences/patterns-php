@@ -36,6 +36,6 @@ final class NotFoundTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/not-found.mustache';
+        return 'resources/templates/not-found.mustache';
     }
 }

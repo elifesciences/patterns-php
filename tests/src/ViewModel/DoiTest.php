@@ -37,6 +37,6 @@ final class DoiTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/doi.mustache';
+        return 'resources/templates/doi.mustache';
     }
 }

@@ -46,6 +46,6 @@ final class LeadParaTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/lead-para.mustache';
+        return 'resources/templates/lead-para.mustache';
     }
 }

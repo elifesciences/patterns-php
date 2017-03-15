@@ -30,11 +30,11 @@ final class MediaSource implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/media-source.mustache';
+        return 'resources/templates/media-source.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/media-source.css';
+        yield 'resources/assets/css/media-source.css';
     }
 }

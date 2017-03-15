@@ -76,6 +76,6 @@ final class ListingProfileSnippetsTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/listing-profile-snippets.mustache';
+        return 'resources/templates/listing-profile-snippets.mustache';
     }
 }

@@ -35,6 +35,6 @@ final class PullQuoteTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/pull-quote.mustache';
+        return 'resources/templates/pull-quote.mustache';
     }
 }

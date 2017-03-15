@@ -34,12 +34,12 @@ final class EmailCta implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/email-cta.css';
+        yield 'resources/assets/css/email-cta.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/email-cta.mustache';
+        return 'resources/templates/email-cta.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

@@ -43,11 +43,11 @@ final class Listing implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/list.css';
+        yield 'resources/assets/css/list.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/list.mustache';
+        return 'resources/templates/list.mustache';
     }
 }

@@ -37,6 +37,6 @@ final class CodeTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/code.mustache';
+        return 'resources/templates/code.mustache';
     }
 }

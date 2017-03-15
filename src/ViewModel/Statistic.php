@@ -39,11 +39,11 @@ final class Statistic implements ViewModel
 
     public function getStyleSheets(): Traversable
     {
-        yield '/elife/patterns/assets/css/statistic.css';
+        yield 'resources/assets/css/statistic.css';
     }
 
     public function getTemplateName(): string
     {
-        return '/elife/patterns/templates/statistic.mustache';
+        return 'resources/templates/statistic.mustache';
     }
 }

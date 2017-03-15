@@ -33,6 +33,6 @@ final class SeeMoreLinkTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/see-more-link.mustache';
+        return 'resources/templates/see-more-link.mustache';
     }
 }

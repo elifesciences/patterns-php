@@ -64,6 +64,6 @@ final class ContextualDataTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/contextual-data.mustache';
+        return 'resources/templates/contextual-data.mustache';
     }
 }

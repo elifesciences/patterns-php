@@ -160,6 +160,6 @@ final class CaptionedAssetTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/captioned-asset.mustache';
+        return 'resources/templates/captioned-asset.mustache';
     }
 }

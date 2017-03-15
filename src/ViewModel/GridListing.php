@@ -90,7 +90,7 @@ final class GridListing implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/grid-listing.mustache';
+        return 'resources/templates/grid-listing.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

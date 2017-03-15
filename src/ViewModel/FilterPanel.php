@@ -35,12 +35,12 @@ final class FilterPanel implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/filter-panel.mustache';
+        return 'resources/templates/filter-panel.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/filter-panel.css';
+        yield 'resources/assets/css/filter-panel.css';
     }
 
     protected function getComposedViewModels() : Traversable

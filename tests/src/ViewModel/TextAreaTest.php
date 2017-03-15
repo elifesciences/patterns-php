@@ -83,6 +83,6 @@ class TextAreaTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/text-area.mustache';
+        return 'resources/templates/text-area.mustache';
     }
 }

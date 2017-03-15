@@ -26,12 +26,12 @@ final class Carousel implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/carousel.css';
+        yield 'resources/assets/css/carousel.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/carousel.mustache';
+        return 'resources/templates/carousel.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

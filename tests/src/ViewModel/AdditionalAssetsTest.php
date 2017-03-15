@@ -72,6 +72,6 @@ final class AdditionalAssetsTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/additional-assets.mustache';
+        return 'resources/templates/additional-assets.mustache';
     }
 }

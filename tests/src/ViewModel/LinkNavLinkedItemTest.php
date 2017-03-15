@@ -70,6 +70,6 @@ final class LinkNavLinkedItemTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/nav-linked-item.mustache';
+        return 'resources/templates/nav-linked-item.mustache';
     }
 }

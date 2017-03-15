@@ -26,11 +26,11 @@ final class ImageLink implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/image-link.mustache';
+        return 'resources/templates/image-link.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/image-link.css';
+        yield 'resources/assets/css/image-link.css';
     }
 }

@@ -44,6 +44,6 @@ final class ContentHeaderSimpleTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/content-header-simple.mustache';
+        return 'resources/templates/content-header-simple.mustache';
     }
 }

@@ -64,6 +64,6 @@ final class TextFieldTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/text-field.mustache';
+        return 'resources/templates/text-field.mustache';
     }
 }

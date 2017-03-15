@@ -70,12 +70,12 @@ final class CaptionedAsset implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/captioned-asset.css';
+        yield 'resources/assets/css/captioned-asset.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/captioned-asset.mustache';
+        return 'resources/templates/captioned-asset.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

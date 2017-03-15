@@ -174,6 +174,6 @@ final class ContentHeaderArticleTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/content-header-article.mustache';
+        return 'resources/templates/content-header-article.mustache';
     }
 }

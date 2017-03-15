@@ -35,6 +35,6 @@ final class MiniSectionTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/mini-section.mustache';
+        return 'resources/templates/mini-section.mustache';
     }
 }

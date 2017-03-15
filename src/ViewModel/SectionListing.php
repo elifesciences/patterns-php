@@ -34,11 +34,11 @@ final class SectionListing implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/section-listing.css';
+        yield 'resources/assets/css/section-listing.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/section-listing.mustache';
+        return 'resources/templates/section-listing.mustache';
     }
 }

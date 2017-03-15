@@ -36,6 +36,6 @@ class StatisticTest extends ViewModelTest
 
     protected function expectedTemplate(): string
     {
-        return '/elife/patterns/templates/statistic.mustache';
+        return 'resources/templates/statistic.mustache';
     }
 }

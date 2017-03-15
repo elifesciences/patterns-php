@@ -364,6 +364,6 @@ final class GridListingTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/grid-listing.mustache';
+        return 'resources/templates/grid-listing.mustache';
     }
 }

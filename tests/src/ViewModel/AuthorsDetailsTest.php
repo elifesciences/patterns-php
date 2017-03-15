@@ -73,6 +73,6 @@ final class AuthorsDetailsTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/authors-details.mustache';
+        return 'resources/templates/authors-details.mustache';
     }
 }

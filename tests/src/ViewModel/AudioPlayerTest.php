@@ -165,6 +165,6 @@ final class AudioPlayerTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/audio-player.mustache';
+        return 'resources/templates/audio-player.mustache';
     }
 }

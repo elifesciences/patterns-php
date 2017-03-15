@@ -41,12 +41,12 @@ final class Pager implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/pager.mustache';
+        return 'resources/templates/pager.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/pager.css';
+        yield 'resources/assets/css/pager.css';
     }
 
     protected function getComposedViewModels() : Traversable

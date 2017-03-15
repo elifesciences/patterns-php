@@ -36,6 +36,6 @@ final class ClientErrorTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/client-error.mustache';
+        return 'resources/templates/client-error.mustache';
     }
 }

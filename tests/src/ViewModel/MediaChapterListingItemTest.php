@@ -77,6 +77,6 @@ final class MediaChapterListingItemTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/media-chapter-listing-item.mustache';
+        return 'resources/templates/media-chapter-listing-item.mustache';
     }
 }

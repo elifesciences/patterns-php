@@ -36,6 +36,6 @@ final class ServiceUnavailableTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/service-unavailable.mustache';
+        return 'resources/templates/service-unavailable.mustache';
     }
 }

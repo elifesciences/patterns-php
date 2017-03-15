@@ -205,6 +205,6 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/content-header-non-article.mustache';
+        return 'resources/templates/content-header-non-article.mustache';
     }
 }

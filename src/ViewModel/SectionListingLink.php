@@ -29,11 +29,11 @@ final class SectionListingLink implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/section-listing-link.mustache';
+        return 'resources/templates/section-listing-link.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/section-listing-link.css';
+        yield 'resources/assets/css/section-listing-link.css';
     }
 }

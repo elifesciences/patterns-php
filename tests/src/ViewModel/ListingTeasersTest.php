@@ -109,6 +109,6 @@ final class ListingTeasersTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/listing-teasers.mustache';
+        return 'resources/templates/listing-teasers.mustache';
     }
 }

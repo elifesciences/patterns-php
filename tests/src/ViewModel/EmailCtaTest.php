@@ -74,6 +74,6 @@ final class EmailCtaTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/email-cta.mustache';
+        return 'resources/templates/email-cta.mustache';
     }
 }

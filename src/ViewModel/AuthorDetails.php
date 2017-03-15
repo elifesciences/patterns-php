@@ -64,11 +64,11 @@ final class AuthorDetails implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/author-details.mustache';
+        return 'resources/templates/author-details.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/author-details.css';
+        yield 'resources/assets/css/author-details.css';
     }
 }

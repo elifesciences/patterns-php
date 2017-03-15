@@ -98,6 +98,6 @@ final class FormButtonTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/button.mustache';
+        return 'resources/templates/button.mustache';
     }
 }

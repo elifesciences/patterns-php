@@ -29,11 +29,11 @@ final class FilterGroup implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/filter-group.mustache';
+        return 'resources/templates/filter-group.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/filter-group.css';
+        yield 'resources/assets/css/filter-group.css';
     }
 }

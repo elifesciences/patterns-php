@@ -55,6 +55,6 @@ class ContentHeaderReadMoreTest extends ViewModelTest
 
     protected function expectedTemplate(): string
     {
-        return '/elife/patterns/templates/content-header-read-more.mustache';
+        return 'resources/templates/content-header-read-more.mustache';
     }
 }

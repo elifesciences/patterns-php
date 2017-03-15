@@ -70,9 +70,9 @@ final class SiteHeaderNavBar implements ViewModel
     protected function getLocalStyleSheets() : Traversable
     {
         if ('nav-primary' === $this->classesOuter) {
-            yield '/elife/patterns/assets/css/site-header-nav-bar-primary.css';
+            yield 'resources/assets/css/site-header-nav-bar-primary.css';
         } else {
-            yield '/elife/patterns/assets/css/site-header-nav-bar-secondary.css';
+            yield 'resources/assets/css/site-header-nav-bar-secondary.css';
         }
     }
 
@@ -83,6 +83,6 @@ final class SiteHeaderNavBar implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/site-header-nav-bar.mustache';
+        return 'resources/templates/site-header-nav-bar.mustache';
     }
 }

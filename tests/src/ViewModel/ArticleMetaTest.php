@@ -82,6 +82,6 @@ final class ArticleMetaTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/article-meta.mustache';
+        return 'resources/templates/article-meta.mustache';
     }
 }

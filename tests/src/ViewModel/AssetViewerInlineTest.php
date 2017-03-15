@@ -191,6 +191,6 @@ final class AssetViewerInlineTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/asset-viewer-inline.mustache';
+        return 'resources/templates/asset-viewer-inline.mustache';
     }
 }

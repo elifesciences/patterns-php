@@ -26,11 +26,11 @@ final class SeeMoreLink implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/see-more-link.css';
+        yield 'resources/assets/css/see-more-link.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/see-more-link.mustache';
+        return 'resources/templates/see-more-link.mustache';
     }
 }

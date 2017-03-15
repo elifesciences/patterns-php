@@ -35,11 +35,11 @@ final class ArticleMeta implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/article-meta.mustache';
+        return 'resources/templates/article-meta.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/article-meta.css';
+        yield 'resources/assets/css/article-meta.css';
     }
 }

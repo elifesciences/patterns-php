@@ -44,6 +44,6 @@ final class DecisionLetterHeaderTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/decision-letter-header.mustache';
+        return 'resources/templates/decision-letter-header.mustache';
     }
 }

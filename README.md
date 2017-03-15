@@ -9,7 +9,6 @@ Dependencies
 ------------
 
 * [Composer](https://getcomposer.org/)
-* [Puli CLI](http://puli.io)
 * PHP 7
 
 Installation
@@ -31,37 +30,26 @@ For example:
 
 ```php
 use eLife\Patterns\Mustache\PatternLabLoader;
-use eLife\Patterns\Mustache\PuliLoader;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 
 $helpers = ['assetsPath' => $puliUrlGenerator->generateUrl('/elife/patterns/assets')];
-$puliLoader = new PuliLoader($puliRepository);
-$patternLabLoader = new PatternLabLoader($puliRepository->get('/elife/patterns/templates')->getFilesystemPath());
 
 $mustache = new Mustache_Engine([
     'helpers' => $helpers,
-    'loader' => $puliLoader,
-    'partials_loader' => $patternLabLoader,
+    'loader' => $loader = new AbsolutePathLoader(),
+    'partials_loader' => new PatternLabLoader($loader),
+    'loader' => $loader = new Mustache_Loader_FilesystemLoader('/path/to/patterns-php'),
+    'partials_loader' => new PatternLabLoader('/path/to/patterns-php/resources/templates'),
 ]);
 $patternRenderer = new MustachePatternRenderer($mustache);
 
 var_dump($patternRenderer->render($viewModel));
 ```
 
-Template loading
-----------------
-
-The library provides two Mustache loaders:
-
-1. `PuliLoader` loads templates from a Puli repository.
-2. `PatternLabLoader` loads templates from the filesystem
-
-Mustache should be configured to use them as the primary and partial loader respectively.
-
 Asset handling
 --------------
 
-As well as providing complete CSS/JavaScript files (eg `/elife/patterns/assets/css/all.css`), the patterns also state which individual assets they require. They can also provide inline CSS and JavaScript.
+As well as providing complete CSS/JavaScript files (eg `resources/assets/css/all.css`), the patterns also state which individual assets they require. They can also provide inline CSS and JavaScript.
 
 Use the `AssetRecordingPatternRenderer` to record which assets are used and include them on the page as necessary.
 

@@ -310,6 +310,6 @@ final class TeaserTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/teaser.mustache';
+        return 'resources/templates/teaser.mustache';
     }
 }

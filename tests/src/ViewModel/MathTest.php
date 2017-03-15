@@ -46,6 +46,6 @@ final class MathTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/math.mustache';
+        return 'resources/templates/math.mustache';
     }
 }

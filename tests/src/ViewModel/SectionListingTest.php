@@ -62,6 +62,6 @@ final class SectionListingTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/section-listing.mustache';
+        return 'resources/templates/section-listing.mustache';
     }
 }

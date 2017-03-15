@@ -44,11 +44,11 @@ final class Date implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/date.css';
+        yield 'resources/assets/css/date.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/date.mustache';
+        return 'resources/templates/date.mustache';
     }
 }

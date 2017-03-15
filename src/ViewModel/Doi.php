@@ -28,11 +28,11 @@ final class Doi implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/doi.mustache';
+        return 'resources/templates/doi.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/doi.css';
+        yield 'resources/assets/css/doi.css';
     }
 }

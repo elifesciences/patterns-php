@@ -26,11 +26,11 @@ final class Code implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/code.mustache';
+        return 'resources/templates/code.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/code.css';
+        yield 'resources/assets/css/code.css';
     }
 }

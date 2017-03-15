@@ -43,6 +43,6 @@ final class ListHeadingTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return '/elife/patterns/templates/list-heading.mustache';
+        return 'resources/templates/list-heading.mustache';
     }
 }

@@ -84,12 +84,12 @@ final class AssetViewerInline implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/asset-viewer-inline.css';
+        yield 'resources/assets/css/asset-viewer-inline.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/asset-viewer-inline.mustache';
+        return 'resources/templates/asset-viewer-inline.mustache';
     }
 
     protected function getComposedViewModels() : Traversable

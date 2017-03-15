@@ -27,11 +27,11 @@ final class LeadPara implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/lead-para.css';
+        yield 'resources/assets/css/lead-para.css';
     }
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/lead-para.mustache';
+        return 'resources/templates/lead-para.mustache';
     }
 }

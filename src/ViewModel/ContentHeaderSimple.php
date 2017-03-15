@@ -28,11 +28,11 @@ final class ContentHeaderSimple implements ViewModel
 
     public function getTemplateName() : string
     {
-        return '/elife/patterns/templates/content-header-simple.mustache';
+        return 'resources/templates/content-header-simple.mustache';
     }
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield '/elife/patterns/assets/css/content-header-simple.css';
+        yield 'resources/assets/css/content-header-simple.css';
     }
 }
