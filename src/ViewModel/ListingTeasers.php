@@ -51,7 +51,7 @@ final class ListingTeasers implements ViewModel
         }
     }
 
-    public static function forHighlights(array $items, $heading, string $id) : ViewModel
+    public static function forHighlights(array $items, string $heading, string $id) : ViewModel
     {
         return new static($items, $id, $heading, null, null, true);
     }
