@@ -38,6 +38,10 @@ schema:
                             type: string
                         -
                             type: 'null'
+                carouselItem:
+                    type: boolean
+                    enum:
+                        - true
                 text:
                     type: string
                     minLength: 1
@@ -77,6 +81,8 @@ schema:
             dependencies:
                 url:
                     - text
+                carouselItem:
+                    - url
             anyOf:
                 -
                     required:
