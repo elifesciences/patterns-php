@@ -4,9 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingTeasers;
+use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\SeeMoreLink;
 use eLife\Patterns\ViewModel\Teaser;
+use eLife\Patterns\ViewModel\TeaserFooter;
 use InvalidArgumentException;
 
 final class ListingTeasersTest extends ViewModelTest
@@ -40,6 +42,52 @@ final class ListingTeasersTest extends ViewModelTest
                 return Teaser::basic($item['title'], $item['url']);
             }, $data['items'])
         );
+
+        $this->assertSameWithoutOrder($data, $listingTeaser->toArray());
+
+        $data = [
+            'items' => [
+                [
+                    'carouselItem' => true,
+                    'num' => 1,
+                    'title' => 'title',
+                    'rootClasses' => 'teaser--secondary teaser--highlights',
+                    'url' => 'url',
+                    'secondaryInfo' => 'Author et al',
+                    'footer' => [
+                        'meta' => [
+                            'url' => '#',
+                            'text' => 'meta',
+                        ],
+                    ],
+                ],
+                [
+                    'carouselItem' => true,
+                    'num' => 2,
+                    'title' => 'title',
+                    'rootClasses' => 'teaser--secondary teaser--highlights',
+                    'url' => 'url',
+                ],
+                [
+                    'carouselItem' => true,
+                    'num' => 3,
+                    'title' => 'title',
+                    'rootClasses' => 'teaser--secondary teaser--highlights',
+                    'url' => 'url',
+                ],
+            ],
+            'heading' => 'Highlights',
+            'id' => 'highlights',
+            'highlights' => true,
+        ];
+        $listingTeaser = ListingTeasers::forHighlights(
+            array_map(function (array $item) {
+                if (!empty($item['footer'])) {
+                    $footer = TeaserFooter::forNonArticle(Meta::withLink(new Link($item['footer']['meta']['text'], $item['footer']['meta']['url'])));
+                }
+
+                return Teaser::secondary($item['title'], $item['url'], $item['secondaryInfo'] ?? null, null, null, $footer ?? null);
+            }, $data['items']), $data['heading'], $data['id']);
 
         $this->assertSameWithoutOrder($data, $listingTeaser->toArray());
     }
@@ -101,6 +149,16 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
+                    'heading', 'id'
+                ),
+            ],
+            [
+                ListingTeasers::forHighlights(
+                    [
+                        Teaser::secondary('title', 'url'),
+                        Teaser::secondary('title', 'url'),
+                        Teaser::secondary('title', 'url'),
+                    ],
                     'heading', 'id'
                 ),
             ],

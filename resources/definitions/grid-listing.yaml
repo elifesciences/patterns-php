@@ -241,6 +241,12 @@ schema:
                                     title:
                                         type: string
                                         minLength: 1
+                                    num:
+                                        type: integer
+                                        minimum: 1
+                                    carouselItem:
+                                        type: boolean
+                                        default: false
                                     secondaryInfo:
                                         type: string
                                         minLength: 1
@@ -330,6 +336,10 @@ schema:
                                                                 type: string
                                                             -
                                                                 type: 'null'
+                                                    carouselItem:
+                                                        type: boolean
+                                                        enum:
+                                                            - true
                                                     text:
                                                         type: string
                                                         minLength: 1
@@ -369,6 +379,8 @@ schema:
                                                 dependencies:
                                                     url:
                                                         - text
+                                                    carouselItem:
+                                                        - url
                                                 anyOf:
                                                     -
                                                         required:
@@ -385,6 +397,11 @@ schema:
                                                     - vor
                                         required:
                                             - meta
+                                dependencies:
+                                    num:
+                                        - carouselItem
+                                    carouselItem:
+                                        - num
                                 required:
                                     - title
                         pagination:

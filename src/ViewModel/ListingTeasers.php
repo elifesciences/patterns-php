@@ -22,8 +22,9 @@ final class ListingTeasers implements ViewModel
     private $heading;
     private $pagination;
     private $seeMoreLink;
+    private $highlights;
 
-    private function __construct(array $items, string $id = null, string $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null)
+    private function __construct(array $items, string $id = null, string $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null, bool $highlights = false)
     {
         if (
             null !== $pagination &&
@@ -38,6 +39,21 @@ final class ListingTeasers implements ViewModel
         $this->heading = $heading;
         $this->pagination = $pagination;
         $this->seeMoreLink = $seeMoreLink;
+        $this->highlights = $highlights;
+        if ($highlights) {
+            Assertion::min(count($items), 3, 'Highlights must be at least 3 items', 'items');
+            $this->items = array_map(function (Teaser $teaser, int $num) {
+                return FlexibleViewModel::fromViewModel($teaser)
+                    ->withProperty('rootClasses', $teaser['rootClasses'].' teaser--highlights')
+                    ->withProperty('carouselItem', true)
+                    ->withProperty('num', $num);
+            }, $this->items, range(1, count($this->items)));
+        }
+    }
+
+    public static function forHighlights(array $items, string $heading, string $id) : ViewModel
+    {
+        return new static($items, $id, $heading, null, null, true);
     }
 
     public function getTemplateName() : string
