@@ -20,6 +20,7 @@ final class ListingTeasers implements ViewModel
     private $items;
     private $id;
     private $heading;
+    private $headingId;
     private $pagination;
     private $seeMoreLink;
     private $highlights;
@@ -53,7 +54,10 @@ final class ListingTeasers implements ViewModel
 
     public static function forHighlights(array $items, string $heading, string $id) : ViewModel
     {
-        return new static($items, $id, $heading, null, null, true);
+        $viewModel = new static($items, $id, $heading, null, null, true);
+        $viewModel->headingId = "$id-heading";
+
+        return $viewModel;
     }
 
     public function getTemplateName() : string
