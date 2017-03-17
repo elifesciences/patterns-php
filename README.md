@@ -32,7 +32,12 @@ For example:
 use eLife\Patterns\Mustache\PatternLabLoader;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 
-$helpers = ['assetsPath' => $puliUrlGenerator->generateUrl('/elife/patterns/assets')];
+$helpers = [
+    'assetsPath' => '/path/to/assets',
+    'assetRewrite' => function (string $path, Mustache_LambdaHelper $helper) : string {
+        return $helper->render($path).'?cache-buster';
+    },
+];
 
 $mustache = new Mustache_Engine([
     'helpers' => $helpers,
