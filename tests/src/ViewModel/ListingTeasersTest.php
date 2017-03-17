@@ -78,6 +78,7 @@ final class ListingTeasersTest extends ViewModelTest
             ],
             'heading' => 'Highlights',
             'id' => 'highlights',
+            'headingId' => 'highlights-heading',
             'highlights' => true,
         ];
         $listingTeaser = ListingTeasers::forHighlights(
