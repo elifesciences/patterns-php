@@ -484,10 +484,12 @@ JSON;
               "hasProfile": true,
               "profile": {
                 "name": "Prabhat Jha",
-                "link": "#",
-                "avatar": {
-                  "x1": "./assets/img/avatars/pjha1.png",
-                  "x2": "./assets/img/avatars/pjha2.png"
+                "url": "#",
+                "image": {
+                  "fallback": {
+                    "srcset": "https://unsplash.it/80/80 80w",
+                    "defaultPath": "https://unsplash.it/40/40"
+                  }
                 }
               },
               "hasCtaOrMeta": true,
