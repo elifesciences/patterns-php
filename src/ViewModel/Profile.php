@@ -12,31 +12,13 @@ final class Profile implements CastsToArray
     use ArrayFromProperties;
 
     private $name;
-    private $link;
-    private $avatar;
+    private $url;
+    private $image;
 
-    private function __construct(string $name, string $link = null, array $avatar = [])
+    public function __construct(Link $link, Picture $image = null)
     {
-        $this->name = $name;
-        $this->link = $link;
-        $this->avatar = $avatar;
-    }
-
-    public static function asLink(Link $link, array $avatar = [])
-    {
-        return new static(
-            $link['name'],
-            $link['url'],
-            $avatar
-        );
-    }
-
-    public static function asText($name, array $avatar = [])
-    {
-        return new static(
-            $name,
-            null,
-            $avatar
-        );
+        $this->name = $link['name'];
+        $this->url = $link['url'];
+        $this->image = $image;
     }
 }

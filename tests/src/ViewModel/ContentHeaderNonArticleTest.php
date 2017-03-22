@@ -6,8 +6,10 @@ use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ContentHeaderNonArticle;
 use eLife\Patterns\ViewModel\FormLabel;
+use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
+use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\Profile;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
@@ -127,7 +129,16 @@ final class ContentHeaderNonArticleTest extends ViewModelTest
             $data['strapline'],
             $this->buttonFromData($data['button']),
             $this->metaFromData($data['meta']),
-            Profile::asLink(new Link($data['profile']['name'], $data['profile']['link']), $data['profile']['avatar']),
+            new Profile(
+                new Link($data['profile']['name'], $data['profile']['url']),
+                new Picture(
+                    [],
+                    new Image(
+                        $data['profile']['image']['fallback']['defaultPath'],
+                        ['80' => 'https://unsplash.it/80/80']
+                    )
+                )
+            ),
             $this->backgroundImageFromData($data['backgroundImage'])
         );
 

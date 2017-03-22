@@ -68,7 +68,6 @@ ProcessBuilder::create()
 
 $filesystem->mirror($sourceDir.'/source/assets', $outputDir.'/assets', null,
     ['override' => true, 'delete' => true]);
-$filesystem->remove($outputDir.'/assets/img/fixtures/');
 
 $patternDir = $sourceDir.'/source/_patterns';
 
