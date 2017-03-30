@@ -15,41 +15,54 @@ final class AuthorDetailsTest extends ViewModelTest
         $data = [
             'authorId' => 'id',
             'name' => 'name',
-            'hasAffiliations' => true,
-            'affiliations' => ['affiliation'],
-            'hasPresentAddresses' => true,
-            'presentAddresses' => ['present address'],
-            'contributionStatement' => 'contribution statement',
-            'equalContributionStatement' => 'equal contributions statement',
-            'hasMeansOfCorrespondence' => true,
-            'meansOfCorrespondence' => [
+            'details' => [
                 [
-                    'isEmail' => true,
-                    'value' => 'email@example.com',
+                    'heading' => 'single detail',
+                    'value' => 'value',
                 ],
                 [
-                    'isEmail' => false,
-                    'value' => '+44 1223 855340',
+                    'heading' => 'many details',
+                    'values' => ['value 1', 'value 2'],
                 ],
             ],
-            'competingInterest' => 'competing interest',
             'orcid' => '0000-0002-1825-0097',
         ];
 
-        $authorDetails = new AuthorDetails('id', 'name', ['affiliation'], ['present address'], 'contribution statement', 'equal contributions statement', ['email@example.com'], ['+44 1223 855340'], 'competing interest', '0000-0002-1825-0097');
+        $authorDetails = AuthorDetails::forPerson($data['authorId'], $data['name'], [$data['details'][0]['heading'] => $data['details'][0]['value'], $data['details'][1]['heading'] => $data['details'][1]['values']], $data['orcid']);
 
         $this->assertSame($data['authorId'], $authorDetails['authorId']);
         $this->assertSame($data['name'], $authorDetails['name']);
-        $this->assertSame($data['hasAffiliations'], $authorDetails['hasAffiliations']);
-        $this->assertSame($data['affiliations'], $authorDetails['affiliations']);
-        $this->assertSame($data['hasPresentAddresses'], $authorDetails['hasPresentAddresses']);
-        $this->assertSame($data['presentAddresses'], $authorDetails['presentAddresses']);
-        $this->assertSame($data['contributionStatement'], $authorDetails['contributionStatement']);
-        $this->assertSame($data['equalContributionStatement'], $authorDetails['equalContributionStatement']);
-        $this->assertSame($data['hasMeansOfCorrespondence'], $authorDetails['hasMeansOfCorrespondence']);
-        $this->assertSame($data['meansOfCorrespondence'], $authorDetails['meansOfCorrespondence']);
-        $this->assertSame($data['competingInterest'], $authorDetails['competingInterest']);
+        $this->assertSame($data['details'], $authorDetails['details']);
         $this->assertSame($data['orcid'], $authorDetails['orcid']);
+        $this->assertSame($data, $authorDetails->toArray());
+
+        $data = [
+            'authorId' => 'id',
+            'name' => 'name',
+            'details' => [
+                [
+                    'heading' => 'single detail',
+                    'value' => 'value',
+                ],
+                [
+                    'heading' => 'many details',
+                    'values' => ['value 1', 'value 2'],
+                ],
+            ],
+            'groups' => [
+                [
+                    'groupName' => 'group',
+                    'items' => ['item'],
+                ],
+            ],
+        ];
+
+        $authorDetails = AuthorDetails::forGroup($data['authorId'], $data['name'], [$data['details'][0]['heading'] => $data['details'][0]['value'], $data['details'][1]['heading'] => $data['details'][1]['values']], [$data['groups'][0]['groupName'] => $data['groups'][0]['items']]);
+
+        $this->assertSame($data['authorId'], $authorDetails['authorId']);
+        $this->assertSame($data['name'], $authorDetails['name']);
+        $this->assertSame($data['details'], $authorDetails['details']);
+        $this->assertSame($data['groups'], $authorDetails['groups']);
         $this->assertSame($data, $authorDetails->toArray());
     }
 
@@ -60,7 +73,7 @@ final class AuthorDetailsTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new AuthorDetails('', 'name', [], [], null, null, [], [], 'competing interests');
+        AuthorDetails::forPerson('', 'name');
     }
 
     /**
@@ -70,54 +83,18 @@ final class AuthorDetailsTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new AuthorDetails('id', '', [], [], null, null, [], [], 'competing interests');
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_blank_affiliation()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new AuthorDetails('id', 'name', [''], [], null, null, [], [], 'competing interests');
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_blank_present_address()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new AuthorDetails('id', 'name', [], [''], null, null, [], [], 'competing interests');
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_blank_email_address()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new AuthorDetails('id', 'name', [], [], null, null, [''], [], 'competing interests');
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_blank_phone_number()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new AuthorDetails('id', 'name', [], [], null, null, [], [''], 'competing interests');
+        AuthorDetails::forPerson('id', '');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'maximum' => [new AuthorDetails('id', 'name', ['affiliation'], ['present address'], 'contribution statement', 'equal contributions statement', ['email@example.com'], ['+44 1223 855340'], 'competing interest', '0000-0002-1825-0097')],
-            'minimum' => [new AuthorDetails('id', 'name', [], [], null, null, [], [], 'competing interests')],
+            'minimum person' => [AuthorDetails::forPerson('id', 'name')],
+            'maximum person' => [AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value1', 'value2']], '0000-0002-1825-0097')],
+            'minimum group' => [AuthorDetails::forGroup('id', 'name')],
+            'maximum group' => [
+                AuthorDetails::forGroup('id', 'name', ['single detail' => 'value', 'many details' => ['value1', 'value2']], ['group' => ['item']]),
+            ],
         ];
     }
 

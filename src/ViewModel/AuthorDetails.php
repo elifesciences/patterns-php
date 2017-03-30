@@ -17,49 +17,45 @@ final class AuthorDetails implements ViewModel
 
     private $authorId;
     private $name;
-    private $hasAffiliations;
-    private $affiliations;
-    private $hasPresentAddresses;
-    private $presentAddresses;
-    private $contributionStatement;
-    private $equalContributionStatement;
-    private $hasMeansOfCorrespondence;
-    private $meansOfCorrespondence;
-    private $competingInterest;
+    private $details;
     private $orcid;
+    private $groups;
 
-    public function __construct(string $id, string $name, array $affiliations, array $presentAddresses, string $contributionStatement = null, string $equalContributionStatement = null, array $emailAddresses, array $phoneNumbers, string $competingInterest, string $orcid = null)
+    private function __construct(string $id, string $name, array $details = [], string $orcid = null, array $groups = [])
     {
         Assertion::notBlank($id);
         Assertion::notBlank($name);
-        Assertion::allNotBlank($affiliations);
-        Assertion::allNotBlank($presentAddresses);
-        Assertion::allNotBlank($emailAddresses);
-        Assertion::allNotBlank($phoneNumbers);
+        Assertion::allNotBlank($details);
 
         $this->authorId = $id;
         $this->name = $name;
-        $this->hasAffiliations = !empty($affiliations);
-        $this->affiliations = $affiliations;
-        $this->hasPresentAddresses = !empty($presentAddresses);
-        $this->presentAddresses = $presentAddresses;
-        $this->contributionStatement = $contributionStatement;
-        $this->equalContributionStatement = $equalContributionStatement;
-        $this->hasMeansOfCorrespondence = !empty($emailAddresses) || !empty($phoneNumbers);
-        $this->meansOfCorrespondence = array_map(function (string $emailAddress) {
-            return [
-                'isEmail' => true,
-                'value' => $emailAddress,
-            ];
-        }, $emailAddresses);
-        $this->meansOfCorrespondence = array_merge($this->meansOfCorrespondence, array_map(function (string $phoneNumber) {
-            return [
-                'isEmail' => false,
-                'value' => $phoneNumber,
-            ];
-        }, $phoneNumbers));
-        $this->competingInterest = $competingInterest;
+        $this->details = array_map(function (string $heading, $value) {
+            return array_filter([
+                'heading' => $heading,
+                'value' => is_string($value) ? $value : null,
+                'values' => is_array($value) ? $value : null,
+            ]);
+        }, array_keys($details), array_values($details));
         $this->orcid = $orcid;
+        $this->groups = array_map(function (string $name, array $items) {
+            Assertion::notEmpty($items);
+            Assertion::allString($items);
+
+            return array_filter([
+                'groupName' => $name,
+                'items' => $items,
+            ]);
+        }, array_keys($groups), array_values($groups));
+    }
+
+    public static function forPerson(string $id, string $name, array $details = [], string $orcid = null) : AuthorDetails
+    {
+        return new self($id, $name, $details, $orcid);
+    }
+
+    public static function forGroup(string $id, string $name, array $details = [], array $groups = []) : AuthorDetails
+    {
+        return new self($id, $name, $details, null, $groups);
     }
 
     public function getTemplateName() : string
