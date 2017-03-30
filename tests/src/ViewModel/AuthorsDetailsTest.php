@@ -17,40 +17,28 @@ final class AuthorsDetailsTest extends ViewModelTest
                 [
                     'authorId' => 'id',
                     'name' => 'name',
-                    'hasAffiliations' => true,
-                    'affiliations' => ['affiliation'],
-                    'hasPresentAddresses' => true,
-                    'presentAddresses' => ['present address'],
-                    'contributionStatement' => 'contribution statement',
-                    'equalContributionStatement' => 'equal contributions statement',
-                    'hasMeansOfCorrespondence' => true,
-                    'meansOfCorrespondence' => [
+                    'details' => [
                         [
-                            'isEmail' => true,
-                            'value' => 'email@example.com',
+                            'heading' => 'single detail',
+                            'value' => 'value',
                         ],
                         [
-                            'isEmail' => false,
-                            'value' => '+44 1223 855340',
+                            'heading' => 'many details',
+                            'values' => ['value 1', 'value 2'],
                         ],
                     ],
-                    'competingInterest' => 'competing interest',
                     'orcid' => '0000-0002-1825-0097',
                 ],
                 [
                     'authorId' => 'id',
                     'name' => 'name',
-                    'hasAffiliations' => false,
-                    'hasPresentAddresses' => false,
-                    'hasMeansOfCorrespondence' => false,
-                    'competingInterest' => 'competing interest',
                 ],
             ],
         ];
 
         $authorsDetails = new AuthorsDetails(
-            $maximum = new AuthorDetails('id', 'name', ['affiliation'], ['present address'], 'contribution statement', 'equal contributions statement', ['email@example.com'], ['+44 1223 855340'], 'competing interest', '0000-0002-1825-0097'),
-            $minimum = new AuthorDetails('id', 'name', [], [], null, null, [], [], 'competing interest')
+            $maximum = AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value 1', 'value 2']], '0000-0002-1825-0097'),
+            $minimum = AuthorDetails::forPerson('id', 'name')
         );
 
         $this->assertCount(2, $data['authorDetails']);
@@ -64,8 +52,8 @@ final class AuthorsDetailsTest extends ViewModelTest
         return [
             [
                 new AuthorsDetails(
-                    $maximum = new AuthorDetails('id', 'name', ['affiliation'], ['present address'], 'contribution statement', 'equal contributions statement', ['email@example.com'], ['+44 1223 855340'], 'competing interest', '0000-0002-1825-0097'),
-                    $minimum = new AuthorDetails('id', 'name', [], [], null, null, [], [], 'competing interests')
+                    $maximum = AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value 1', 'value 2']], '0000-0002-1825-0097'),
+                    $minimum = AuthorDetails::forPerson('id', 'name')
                 ),
             ],
         ];
