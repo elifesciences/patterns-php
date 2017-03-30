@@ -42,7 +42,7 @@ final class TextField implements ViewModel
         string $status = null
     ) {
         Assertion::notBlank($inputType);
-        Assertion::inArray($inputType, ['text', 'email']);
+        Assertion::inArray($inputType, ['email', 'password', 'search', 'tel', 'text', 'url']);
         Assertion::same($id, $label['for']);
         Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
 
@@ -60,6 +60,62 @@ final class TextField implements ViewModel
         }
     }
 
+    public static function emailInput(
+        FormLabel $label,
+        string $id,
+        string $name,
+        string $placeholder = null,
+        bool $required = null,
+        bool $disabled = null,
+        bool $autofocus = null,
+        string $value = null,
+        string $status = null
+    ) {
+        return new static('email', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
+    }
+
+    public static function passwordInput(
+        FormLabel $label,
+        string $id,
+        string $name,
+        string $placeholder = null,
+        bool $required = null,
+        bool $disabled = null,
+        bool $autofocus = null,
+        string $value = null,
+        string $status = null
+    ) {
+        return new static('password', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
+    }
+
+    public static function searchInput(
+        FormLabel $label,
+        string $id,
+        string $name,
+        string $placeholder = null,
+        bool $required = null,
+        bool $disabled = null,
+        bool $autofocus = null,
+        string $value = null,
+        string $status = null
+    ) {
+        return new static('search', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
+    }
+
+    public static function telInput(
+        FormLabel $label,
+        string $id,
+        string $name,
+        string $placeholder = null,
+        bool $required = null,
+        bool $disabled = null,
+        bool $autofocus = null,
+        string $value = null,
+        string $status = null
+    ) {
+        return new static('tel', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
+    }
+
     public static function textInput(
         FormLabel $label,
         string $id,
@@ -74,7 +130,7 @@ final class TextField implements ViewModel
         return new static('text', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
     }
 
-    public static function emailInput(
+    public static function urlInput(
         FormLabel $label,
         string $id,
         string $name,
@@ -85,7 +141,7 @@ final class TextField implements ViewModel
         string $value = null,
         string $status = null
     ) {
-        return new static('email', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
+        return new static('url', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $status);
     }
 
     public function getTemplateName() : string
