@@ -24,10 +24,12 @@ final class CompactForm implements ViewModel
     private $inputValue;
     private $inputPlaceholder;
     private $ctaText;
+    private $hiddenFields;
 
-    public function __construct(Form $form, Input $input, string $ctaText)
+    public function __construct(Form $form, Input $input, string $ctaText, array $hiddenFields = [])
     {
         Assertion::notBlank($ctaText);
+        Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
 
         $this->formAction = $form['action'];
         $this->formId = $form['id'];
@@ -38,6 +40,7 @@ final class CompactForm implements ViewModel
         $this->inputValue = $input['value'];
         $this->inputPlaceholder = $input['placeholder'];
         $this->ctaText = $ctaText;
+        $this->hiddenFields = $hiddenFields;
     }
 
     public function getTemplateName() : string
