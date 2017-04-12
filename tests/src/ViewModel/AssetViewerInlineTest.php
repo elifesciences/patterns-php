@@ -83,7 +83,6 @@ final class AssetViewerInlineTest extends ViewModelTest
                     'heading' => 'heading',
                 ],
                 'video' => [
-                    'posterFrame' => 'http://some.image.com/test.jpg',
                     'sources' => [
                         [
                             'src' => '/file.mp4',
@@ -98,8 +97,7 @@ final class AssetViewerInlineTest extends ViewModelTest
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
-            new CaptionedAsset(new Video('http://some.image.com/test.jpg',
-                [new MediaSource('/file.mp4', new MediaType('video/mp4'))]), new CaptionText('heading')));
+            new CaptionedAsset(new Video([new MediaSource('/file.mp4', new MediaType('video/mp4'))]), new CaptionText('heading')));
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);

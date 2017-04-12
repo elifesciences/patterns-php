@@ -148,8 +148,7 @@ final class CaptionedAssetTest extends ViewModelTest
             ],
             'Captioned video' => [
                 new CaptionedAsset(
-                    new Video('http://some.image.com/test.jpg',
-                        [new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
+                    new Video([new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
                     new CaptionText('heading'),
                     new Doi('10.7554/eLife.10181.001'),
                     new Link('filename', 'link')
