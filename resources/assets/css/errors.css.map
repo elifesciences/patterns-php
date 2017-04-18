@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,MAAO,CACL,UAAU,CAAE,MAAM,CAGpB,YAAa,CACX,SAAS,CAAE,IAAI,CCWb,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CDR7D,aAAc,CE0CZ,WAAW,CCvBI,gDAAmD,CDwBlE,WAAW,CAAE,GAAG,CD1ChB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CCmE9C,WAAW,CAAE,gBAAgB",
+"mappings": "AAEA,MAAO,CACL,UAAU,CAAE,MAAM,CAGpB,YAAa,CACX,SAAS,CAAE,IAAI,CCWb,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CDR7D,aAAc,CE0CZ,WAAW,CCvBI,gDAAmD,CDwBlE,WAAW,CAAE,GAAG,CD1ChB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CCoE9C,WAAW,CAAE,gBAAgB",
 "sources": ["../../../../../../assets/sass/patterns/atoms/errors.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss"],
 "names": [],
 "file": "errors.css"
