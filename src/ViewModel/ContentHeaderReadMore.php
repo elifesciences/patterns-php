@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ComposedAssets;
@@ -14,20 +15,10 @@ final class ContentHeaderReadMore implements ViewModel
     use ArrayFromProperties;
     use ComposedAssets;
 
-    const TITLE_LARGE = 'content-header__title--large';
-    const TITLE_MEDIUM = 'content-header__title--medium';
-    const TITLE_SMALL = 'content-header__title--small';
-    const TITLE_EXTRA_SMALL = 'content-header__title--extra-small';
-
-    const BEHAVIOUR_BASE = 'ContentHeaderArticle';
-
-    const FALLBACK_CLASSES = 'content-header__download_icon'; // @todo check if there are more icons for download.
-
-    private $behaviour;
     private $title;
+    private $longTitle;
     private $url;
-    private $titleClass;
-    private $strapline;
+    private $hasSubjects;
     private $subjects;
     private $authorLine;
     private $meta;
@@ -35,50 +26,38 @@ final class ContentHeaderReadMore implements ViewModel
     public function __construct(
         string $title,
         string $url,
-        string $strapline = null,
+        array $subjects = [],
         string $authorLine = null,
-        SubjectList $subjects = null,
         Meta $meta = null
     ) {
-        $this->behaviour = self::BEHAVIOUR_BASE;
+        Assertion::notBlank($title);
+        Assertion::notBlank($url);
+        Assertion::allIsInstanceOf($subjects, Link::class);
+
         $this->title = $title;
+        if (strlen(strip_tags($title)) >= 20) {
+            $this->longTitle = true;
+        }
         $this->url = $url;
-        $this->titleClass = $this->deriveTitleClass($title);
-        $this->strapline = $strapline;
-        $this->subjects = $subjects;
+        if ($subjects) {
+            $this->hasSubjects = true;
+            $this->subjects = $subjects;
+        }
         $this->authorLine = $authorLine;
         $this->meta = $meta;
     }
 
-    private function deriveTitleClass($title): string
-    {
-        $titleLength = strlen(strip_tags($title));
-
-        if ($titleLength >= 80) {
-            return self::TITLE_EXTRA_SMALL;
-        }
-        if ($titleLength >= 60) {
-            return self::TITLE_SMALL;
-        }
-        if ($titleLength >= 30) {
-            return self::TITLE_MEDIUM;
-        }
-
-        return self::TITLE_LARGE;
-    }
-
-    public function getTemplateName(): string
+    public function getTemplateName() : string
     {
         return 'resources/templates/content-header-read-more.mustache';
     }
 
-    protected function getLocalStyleSheets(): Traversable
+    protected function getLocalStyleSheets() : Traversable
     {
-        yield 'resources/assets/css/content-header-article-research.css';
-        yield 'resources/assets/css/content-header-article-magazine.css';
+        yield 'resources/assets/css/content-header.css';
     }
 
-    protected function getComposedViewModels(): Traversable
+    protected function getComposedViewModels() : Traversable
     {
         yield $this->meta;
     }

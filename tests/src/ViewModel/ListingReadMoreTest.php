@@ -20,27 +20,21 @@ final class ListingReadMoreTest extends ViewModelTest
             'items' => [
                 [
                     'item' => [
-                        'behaviour' => 'ContentHeaderArticle',
                         'title' => 'title a',
                         'url' => '#',
-                        'titleClass' => 'content-header__title--large',
                     ],
                     'content' => 'With extra content',
                 ],
                 [
                     'item' => [
-                        'behaviour' => 'ContentHeaderArticle',
                         'title' => 'title b',
                         'url' => '#',
-                        'titleClass' => 'content-header__title--large',
                     ],
                 ],
                 [
                     'item' => [
-                        'behaviour' => 'ContentHeaderArticle',
                         'title' => 'title c',
                         'url' => '#',
-                        'titleClass' => 'content-header__title--large',
                     ],
                 ],
             ],
@@ -55,7 +49,7 @@ final class ListingReadMoreTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $listingReadMore->toArray());
     }
 
-    public function viewModelProvider(): array
+    public function viewModelProvider() : array
     {
         return [
             [
@@ -108,7 +102,7 @@ final class ListingReadMoreTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate(): string
+    protected function expectedTemplate() : string
     {
         return 'resources/templates/listing-read-more.mustache';
     }
