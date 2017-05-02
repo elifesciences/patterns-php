@@ -2,12 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use DateTimeImmutable;
 use eLife\Patterns\ViewModel\ContentHeaderReadMore;
-use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
-use eLife\Patterns\ViewModel\SubjectList;
+use InvalidArgumentException;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
 
 class ContentHeaderReadMoreTest extends ViewModelTest
@@ -19,41 +17,91 @@ class ContentHeaderReadMoreTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $data = ContentHeaderFixtures::readMoreFixture();
-        $magazine = new ContentHeaderReadMore(
+        $data = [
+            'title' => 'title',
+            'url' => 'url',
+        ];
+
+        $contentHeader = new ContentHeaderReadMore($data['title'],
+            $data['url']);
+
+        $this->assertSame($data['title'], $contentHeader['title']);
+        $this->assertSame($data['url'], $contentHeader['url']);
+        $this->assertSame($data, $contentHeader->toArray());
+
+        $data = [
+            'title' => 'titletitletitletitle',
+            'longTitle' => true,
+            'url' => 'url',
+            'hasSubjects' => true,
+            'subjects' => [['name' => 'subject']],
+            'authorLine' => 'author line',
+            'meta' => [
+                'text' => 'Research article',
+            ],
+        ];
+
+        $contentHeader = new ContentHeaderReadMore(
             $data['title'],
             $data['url'],
-            $data['strapline'],
-            $data['authorLine'],
-            new SubjectList(...array_map(function ($item) {
+            array_map(function (array $item) {
                 return new Link($item['name']);
-            }, $data['subjects']['list'])),
-            $this->metaFromData($data['meta'])
+            }, $data['subjects']),
+            $data['authorLine'],
+            Meta::withText($data['meta']['text'])
         );
-        $this->assertSameWithoutOrder($data, $magazine->toArray());
+
+        $this->assertSame($data['title'], $contentHeader['title']);
+        $this->assertSame($data['longTitle'], $contentHeader['longTitle']);
+        $this->assertSame($data['url'], $contentHeader['url']);
+        $this->assertSame($data['hasSubjects'], $contentHeader['hasSubjects']);
+        $this->assertSameWithoutOrder($data['subjects'], $contentHeader['subjects']);
+        $this->assertSame($data['authorLine'], $contentHeader['authorLine']);
+        $this->assertSameWithoutOrder($data['meta'], $contentHeader['meta']);
+        $this->assertSame($data, $contentHeader->toArray());
     }
 
-    public function viewModelProvider(): array
+    /**
+     * @test
+     */
+    public function it_must_have_a_title()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ContentHeaderReadMore('', 'url');
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_url()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ContentHeaderReadMore('title', '');
+    }
+
+    /**
+     * @test
+     */
+    public function subjects_must_be_a_links()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ContentHeaderReadMore('title', 'url', ['foo']);
+    }
+
+    public function viewModelProvider() : array
     {
         return [
-            'content header read more with minimum' => [new ContentHeaderReadMore('some title', '#')],
-            'content header read more with full' => [
-                new ContentHeaderReadMore(
-                    'some title',
-                    '#',
-                    'strap line',
-                    'Someone',
-                    new SubjectList(new Link('biology')),
-                    Meta::withText(
-                        'Something meta',
-                        Date::simple(new DateTimeImmutable())
-                    )
-                ),
+            'minimum' => [new ContentHeaderReadMore('some title', 'url')],
+            'full' => [
+                new ContentHeaderReadMore('title', 'url', [new Link('subject')], 'author line', Meta::withText('meta')),
             ],
         ];
     }
 
-    protected function expectedTemplate(): string
+    protected function expectedTemplate() : string
     {
         return 'resources/templates/content-header-read-more.mustache';
     }

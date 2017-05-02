@@ -14,19 +14,18 @@ final class ReadMoreItemTest extends ViewModelTest
     {
         $data = [
             'item' => [
-                    'behaviour' => 'ContentHeaderArticle',
-                    'title' => 'some title',
-                    'titleClass' => 'content-header__title--large',
-                ],
+                'title' => 'some title',
+                'url' => '#',
+            ],
             'content' => '<p>Some content</p>',
         ];
 
-        $model = new ReadMoreItem(new ContentHeaderReadMore($data['item']['title'], '#'), $data['content']);
+        $model = new ReadMoreItem(new ContentHeaderReadMore($data['item']['title'], $data['item']['url']), $data['content']);
 
         $this->assertSameWithoutOrder($data, $model->toArray());
     }
 
-    public function viewModelProvider(): array
+    public function viewModelProvider() : array
     {
         return [
             'Read more item without content' => [
@@ -38,7 +37,7 @@ final class ReadMoreItemTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate(): string
+    protected function expectedTemplate() : string
     {
         return 'resources/templates/read-more-item.mustache';
     }

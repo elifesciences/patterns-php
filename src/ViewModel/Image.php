@@ -25,10 +25,12 @@ final class Image implements CastsToArray, IsCaptioned
 
         $this->defaultPath = $defaultPath;
         $this->srcset = [];
-        foreach ($srcset as $width => $src) {
-            $this->srcset[] = $src.' '.$width.'w';
+        if ($srcset) {
+            foreach ($srcset as $width => $src) {
+                $this->srcset[] = $src.' '.$width.'w';
+            }
+            $this->srcset = implode(', ', $this->srcset);
         }
-        $this->srcset = implode(', ', $this->srcset);
         $this->altText = $altText;
         $this->classes = $classes ? implode(' ', $classes) : null;
     }
