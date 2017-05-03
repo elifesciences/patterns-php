@@ -77,9 +77,11 @@ final class NavLinkedItem implements ViewModel
         $picture = FlexibleViewModel::fromViewModel($picture);
 
         $fallback = $picture['fallback'];
-        $fallback['classes'] = static::ICON_CLASSES[$iconName];
+        $fallback['classes'] = '';
 
-        return $picture->withProperty('fallback', $fallback);
+        return $picture
+            ->withProperty('fallback', $fallback)
+            ->withProperty('pictureClasses', static::ICON_CLASSES[$iconName]);
     }
 
     protected function getComposedViewModels() : Traversable
