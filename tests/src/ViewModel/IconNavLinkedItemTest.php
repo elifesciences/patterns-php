@@ -28,7 +28,7 @@ final class IconNavLinkedItemTest extends ViewModelTest
     public function classSetOnSearchIcon()
     {
         $linkNavLinkedItem = NavLinkedItem::asIcon(new Link('the text', 'the link path'), $this->picture, false, true, 'search');
-        $this->assertSame('nav-primary__search_icon', $linkNavLinkedItem['picture']->toArray()['fallback']['classes']);
+        $this->assertSame('nav-primary__search_icon', $linkNavLinkedItem['picture']->toArray()['pictureClasses']);
     }
 
     /**
@@ -37,7 +37,7 @@ final class IconNavLinkedItemTest extends ViewModelTest
     public function classSetOnMenuIcon()
     {
         $linkNavLinkedItem = NavLinkedItem::asIcon(new Link('the text', 'the link path'), $this->picture, true, false, 'menu');
-        $this->assertSame('nav-primary__menu_icon', $linkNavLinkedItem['picture']->toArray()['fallback']['classes']);
+        $this->assertSame('nav-primary__menu_icon', $linkNavLinkedItem['picture']->toArray()['pictureClasses']);
     }
 
     /**
