@@ -100,9 +100,11 @@ final class AssetViewerInline implements ViewModel
         string $parentId,
         string $label,
         CaptionedAsset $captionedAsset,
-        array $additionalAssets = []
+        array $additionalAssets = [],
+        Link $download = null,
+        string $open = null
     ) : AssetViewerInline {
-        return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets);
+        return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets, $download, $open);
     }
 
     public function getLocalStyleSheets() : Traversable
