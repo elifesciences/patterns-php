@@ -5,7 +5,7 @@ elifeLibrary {
         checkout scm
         commit = elifeGitRevision()
         branch = 'update_pattern_library_pull_request/' + params.pattern_library_branch
-        sh 'git checkout ${branch} && git reset --hard origin/master'
+        sh "git checkout -b ${branch} && git reset --hard origin/master"
     }
 
     stage "Update", {
