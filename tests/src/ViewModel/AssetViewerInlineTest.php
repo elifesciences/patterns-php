@@ -26,7 +26,9 @@ final class AssetViewerInlineTest extends ViewModelTest
             'id' => 'id',
             'variant' => 'figure',
             'label' => 'label',
-            'figuresPageFragLink' => '#id',
+            'supplementCount' => 2,
+            'hasMultipleSupplements' => true,
+            'seeAllLink' => 'foo',
             'captionedAsset' => [
                 'captionText' => [
                     'heading' => 'heading',
@@ -55,6 +57,11 @@ final class AssetViewerInlineTest extends ViewModelTest
                     ],
                 ],
             ],
+            'download' => [
+                'link' => 'http://www.example.com/download',
+                'filename' => 'filename',
+            ],
+            'open' => 'http://www.example.com/open',
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
@@ -62,22 +69,27 @@ final class AssetViewerInlineTest extends ViewModelTest
                 [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')),
             [
                 AdditionalAsset::withoutDoi('id', new CaptionText('Without doi'), DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name'), 'http://google.com/'),
-            ]);
+            ], new Link('filename', 'http://www.example.com/download'), 'http://www.example.com/open', 2, 'foo');
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
         $this->assertSame($data['label'], $viewer['label']);
-        $this->assertSame($data['figuresPageFragLink'], $viewer['figuresPageFragLink']);
+        $this->assertSame($data['seeAllLink'], $viewer['seeAllLink']);
+        $this->assertSame($data['supplementCount'], $viewer['supplementCount']);
+        $this->assertSame($data['hasMultipleSupplements'], $viewer['hasMultipleSupplements']);
         $this->assertSame($data['captionedAsset'], $viewer['captionedAsset']->toArray());
         $this->assertCount(1, $viewer['additionalAssets']);
         $this->assertSame($data['additionalAssets'][0], $viewer['additionalAssets'][0]->toArray());
+        $this->assertSame($data['download'], $viewer['download']);
+        $this->assertSame($data['open'], $viewer['open']);
         $this->assertSame($data, $viewer->toArray());
 
         $data = [
             'id' => 'id',
             'variant' => 'video',
             'label' => 'label',
-            'figuresPageFragLink' => '#id',
+            'supplementCount' => 1,
+            'hasMultipleSupplements' => false,
             'captionedAsset' => [
                 'captionText' => [
                     'heading' => 'heading',
@@ -97,12 +109,13 @@ final class AssetViewerInlineTest extends ViewModelTest
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
-            new CaptionedAsset(new Video([new MediaSource('/file.mp4', new MediaType('video/mp4'))]), new CaptionText('heading')));
+            new CaptionedAsset(new Video([new MediaSource('/file.mp4', new MediaType('video/mp4'))]), new CaptionText('heading')), [], null, null, 1);
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
         $this->assertSame($data['label'], $viewer['label']);
-        $this->assertSame($data['figuresPageFragLink'], $viewer['figuresPageFragLink']);
+        $this->assertSame($data['supplementCount'], $viewer['supplementCount']);
+        $this->assertSame($data['hasMultipleSupplements'], $viewer['hasMultipleSupplements']);
         $this->assertSame($data['captionedAsset'], $viewer['captionedAsset']->toArray());
         $this->assertSame($data, $viewer->toArray());
 
@@ -110,7 +123,6 @@ final class AssetViewerInlineTest extends ViewModelTest
             'id' => 'id',
             'variant' => 'table',
             'label' => 'label',
-            'figuresPageFragLink' => '#id',
             'captionedAsset' => [
                 'captionText' => [
                     'heading' => 'heading',
@@ -129,7 +141,6 @@ final class AssetViewerInlineTest extends ViewModelTest
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
         $this->assertSame($data['label'], $viewer['label']);
-        $this->assertSame($data['figuresPageFragLink'], $viewer['figuresPageFragLink']);
         $this->assertSame($data['captionedAsset'], $viewer['captionedAsset']->toArray());
         $this->assertSame($data, $viewer->toArray());
 
@@ -140,7 +151,6 @@ final class AssetViewerInlineTest extends ViewModelTest
             'supplementOrdinal' => 1,
             'parentId' => 'parentId',
             'label' => 'label',
-            'figuresPageFragLink' => '#id',
             'captionedAsset' => [
                 'captionText' => [
                     'heading' => 'heading',
@@ -151,11 +161,17 @@ final class AssetViewerInlineTest extends ViewModelTest
                     'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                 ],
             ],
+            'download' => [
+                'link' => 'http://www.example.com/download',
+                'filename' => 'filename',
+            ],
+            'open' => 'http://www.example.com/open',
         ];
 
         $viewer = AssetViewerInline::supplement('id', 1, 'parentId', 'label',
             new CaptionedAsset(new Image('/default/path',
-                [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')));
+                [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')),
+            [], new Link('filename', 'http://www.example.com/download'), 'http://www.example.com/open');
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
@@ -163,8 +179,9 @@ final class AssetViewerInlineTest extends ViewModelTest
         $this->assertSame($data['supplementOrdinal'], $viewer['supplementOrdinal']);
         $this->assertSame($data['parentId'], $viewer['parentId']);
         $this->assertSame($data['label'], $viewer['label']);
-        $this->assertSame($data['figuresPageFragLink'], $viewer['figuresPageFragLink']);
         $this->assertSame($data['captionedAsset'], $viewer['captionedAsset']->toArray());
+        $this->assertSame($data['download'], $viewer['download']);
+        $this->assertSame($data['open'], $viewer['open']);
         $this->assertSame($data, $viewer->toArray());
     }
 
@@ -174,7 +191,7 @@ final class AssetViewerInlineTest extends ViewModelTest
             'primary' => [
                 AssetViewerInline::primary('id', 'label',
                     new CaptionedAsset(new Image('/default/path',
-                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading'))),
+                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')), [], new Link('http://www.example.com/download', 'filename'), 'http://www.example.com/open', 2, 'foo'),
             ],
             'supplement' => [
                 AssetViewerInline::supplement('id', 1, 'parentId', 'label',

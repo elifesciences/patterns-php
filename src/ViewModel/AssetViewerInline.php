@@ -21,9 +21,13 @@ final class AssetViewerInline implements ViewModel
     private $supplementOrdinal;
     private $parentId;
     private $label;
-    private $figuresPageFragLink;
+    private $supplementCount;
+    private $hasMultipleSupplements;
+    private $seeAllLink;
     private $captionedAsset;
     private $additionalAssets;
+    private $download;
+    private $open;
 
     private function __construct(
         string $id,
@@ -31,7 +35,11 @@ final class AssetViewerInline implements ViewModel
         string $parentId = null,
         string $label,
         CaptionedAsset $captionedAsset,
-        array $additionalAssets = []
+        array $additionalAssets = [],
+        Link $download = null,
+        string $open = null,
+        int $supplementCount = 0,
+        string $seeAllLink = null
     ) {
         Assertion::notBlank($id);
         Assertion::nullOrMin($supplementOrdinal, 1);
@@ -53,22 +61,37 @@ final class AssetViewerInline implements ViewModel
         $this->supplementOrdinal = $supplementOrdinal;
         $this->parentId = $parentId;
         $this->label = $label;
-        $this->figuresPageFragLink = '#'.$id;
+        if ($supplementCount >= 1) {
+            $this->supplementCount = $supplementCount;
+            $this->hasMultipleSupplements = $supplementCount > 1;
+            $this->seeAllLink = $seeAllLink;
+        }
         $this->captionedAsset = $captionedAsset;
         if (!empty($additionalAssets)) {
             $this->additionalAssets = [new AdditionalAssets(null, $additionalAssets)];
         } else {
             $this->additionalAssets = [];
         }
+        if ($download) {
+            $this->download = [
+                'link' => $download['url'],
+                'filename' => $download['name'],
+            ];
+        }
+        $this->open = $open;
     }
 
     public static function primary(
         string $id,
         string $label,
         CaptionedAsset $captionedAsset,
-        array $additionalAssets = []
+        array $additionalAssets = [],
+        Link $download = null,
+        string $open = null,
+        int $supplementCount = 0,
+        string $seeAllLink = null
     ) : AssetViewerInline {
-        return new self($id, null, null, $label, $captionedAsset, $additionalAssets);
+        return new self($id, null, null, $label, $captionedAsset, $additionalAssets, $download, $open, $supplementCount, $seeAllLink);
     }
 
     public static function supplement(
@@ -77,9 +100,11 @@ final class AssetViewerInline implements ViewModel
         string $parentId,
         string $label,
         CaptionedAsset $captionedAsset,
-        array $additionalAssets = []
+        array $additionalAssets = [],
+        Link $download = null,
+        string $open = null
     ) : AssetViewerInline {
-        return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets);
+        return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets, $download, $open);
     }
 
     public function getLocalStyleSheets() : Traversable
