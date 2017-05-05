@@ -6,7 +6,6 @@ use eLife\Patterns\ViewModel\CaptionedAsset;
 use eLife\Patterns\ViewModel\CaptionText;
 use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\Image;
-use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Picture;
@@ -42,10 +41,6 @@ final class CaptionedAssetTest extends ViewModelTest
                 'doi' => '10.7554/eLife.10181.001',
                 'variant' => 'asset',
             ],
-            'download' => [
-                'link' => 'http://google.com/',
-                'filename' => 'filename',
-            ],
         ];
         $captionedImage = new CaptionedAsset(
             new Picture(
@@ -57,8 +52,7 @@ final class CaptionedAssetTest extends ViewModelTest
                 )
             ),
             new CaptionText($data['captionText']['heading']),
-            new Doi($data['doi']['doi']),
-            new Link($data['download']['filename'], $data['download']['link'])
+            new Doi($data['doi']['doi'])
         );
 
         $this->assertSameWithoutOrder($data, $captionedImage->toArray());
@@ -77,10 +71,6 @@ final class CaptionedAssetTest extends ViewModelTest
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
             ],
-            'download' => [
-                'link' => 'http://google.com/',
-                'filename' => 'filename',
-            ],
         ];
         $captionedImage = new CaptionedAsset(
             new Image(
@@ -89,8 +79,7 @@ final class CaptionedAssetTest extends ViewModelTest
                 $data['image']['altText']
             ),
             new CaptionText($data['captionText']['heading']),
-            new Doi($data['doi']['doi']),
-            new Link($data['download']['filename'], $data['download']['link'])
+            new Doi($data['doi']['doi'])
         );
 
         $this->assertSameWithoutOrder($data, $captionedImage);
@@ -106,17 +95,12 @@ final class CaptionedAssetTest extends ViewModelTest
                 'doi' => '10.7554/eLife.10181.001',
                 'variant' => 'asset',
             ],
-            'download' => [
-                'link' => 'http://google.com/',
-                'filename' => 'filename',
-            ],
         ];
 
         $figure = new CaptionedAsset(
             new Table($data['table']['tables']),
             new CaptionText($data['captionText']['heading']),
-            new Doi($data['doi']['doi']),
-            new Link($data['download']['filename'], $data['download']['link'])
+            new Doi($data['doi']['doi'])
         );
         $this->assertSameWithoutOrder($data, $figure->toArray());
     }
@@ -150,8 +134,7 @@ final class CaptionedAssetTest extends ViewModelTest
                 new CaptionedAsset(
                     new Video([new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
                     new CaptionText('heading'),
-                    new Doi('10.7554/eLife.10181.001'),
-                    new Link('filename', 'link')
+                    new Doi('10.7554/eLife.10181.001')
                 ),
             ],
         ];
