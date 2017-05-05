@@ -57,7 +57,7 @@ final class AssetViewerInline implements ViewModel
         $this->supplementOrdinal = $supplementOrdinal;
         $this->parentId = $parentId;
         $this->label = $label;
-        if($supplementCount >= 1) {
+        if ($supplementCount >= 1) {
             $this->supplementCount = $supplementCount;
             $this->hasMultipleSupplements = $supplementCount > 1;
             $this->seeAllLink = $seeAllLink;

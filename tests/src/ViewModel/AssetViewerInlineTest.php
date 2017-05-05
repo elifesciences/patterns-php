@@ -176,7 +176,7 @@ final class AssetViewerInlineTest extends ViewModelTest
             'primary' => [
                 AssetViewerInline::primary('id', 'label',
                     new CaptionedAsset(new Image('/default/path',
-                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading'))), 2, 'foo'
+                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')), 2, 'foo')
             ],
             'supplement' => [
                 AssetViewerInline::supplement('id', 1, 'parentId', 'label',
