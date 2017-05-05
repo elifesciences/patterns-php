@@ -21,25 +21,17 @@ final class CaptionedAsset implements ViewModel
     private $table;
     private $image;
     private $doi;
-    private $download;
 
     public function __construct(
         IsCaptioned $figure,
         CaptionText $captionText,
-        Doi $doi = null,
-        Link $download = null
+        Doi $doi = null
     ) {
         $this->captionText = $captionText;
         $this->setFigure($figure);
         if ($doi !== null) {
             $doi = FlexibleViewModel::fromViewModel($doi);
             $this->doi = $doi->withProperty('variant', Doi::ASSET);
-        }
-        if ($download) {
-            $this->download = [
-                'link' => $download['url'],
-                'filename' => $download['name'],
-            ];
         }
     }
 

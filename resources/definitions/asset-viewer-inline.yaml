@@ -50,18 +50,6 @@ schema:
             allOf:
                 -
                     properties:
-                        download:
-                            type: object
-                            properties:
-                                link:
-                                    type: string
-                                    minLength: 1
-                                filename:
-                                    type: string
-                                    minLength: 1
-                            required:
-                                - link
-                                - filename
                         captionText:
                             $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
@@ -354,6 +342,21 @@ schema:
                                                 - nonDoiLink
                 required:
                     - assets
+        download:
+            type: object
+            properties:
+                link:
+                    type: string
+                    minLength: 1
+                filename:
+                    type: string
+                    minLength: 1
+            required:
+                - link
+                - filename
+        open:
+            type: string
+            minLength: 1
     dependencies:
         parentId:
             - supplementOrdinal
