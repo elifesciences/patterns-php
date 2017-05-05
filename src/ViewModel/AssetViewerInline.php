@@ -26,6 +26,8 @@ final class AssetViewerInline implements ViewModel
     private $seeAllLink;
     private $captionedAsset;
     private $additionalAssets;
+    private $download;
+    private $open;
 
     private function __construct(
         string $id,
@@ -34,6 +36,8 @@ final class AssetViewerInline implements ViewModel
         string $label,
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
+        Link $download = null,
+        string $open = null,
         int $supplementCount = 0,
         string $seeAllLink = null
     ) {
@@ -68,6 +72,13 @@ final class AssetViewerInline implements ViewModel
         } else {
             $this->additionalAssets = [];
         }
+        if ($download) {
+            $this->download = [
+                'link' => $download['url'],
+                'filename' => $download['name'],
+            ];
+        }
+        $this->open = $open;
     }
 
     public static function primary(
@@ -75,10 +86,12 @@ final class AssetViewerInline implements ViewModel
         string $label,
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
+        Link $download = null,
+        string $open = null,
         int $supplementCount = 0,
         string $seeAllLink = null
     ) : AssetViewerInline {
-        return new self($id, null, null, $label, $captionedAsset, $additionalAssets, $supplementCount, $seeAllLink);
+        return new self($id, null, null, $label, $captionedAsset, $additionalAssets, $download, $open, $supplementCount, $seeAllLink);
     }
 
     public static function supplement(
