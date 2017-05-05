@@ -11,7 +11,7 @@ elifeLibrary {
     stage "Update", {
         sh "composer install"
 
-        sh "bin/update origin/${params.pattern_library_commit}"
+        sh "bin/update ${params.pattern_library_commit}"
         sh "git add --all ."
     }
 
