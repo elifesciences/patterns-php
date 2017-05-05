@@ -36,7 +36,12 @@ schema:
         label:
             type: string
             minLength: 1
-        figuresPageFragLink:
+        supplementCount:
+            type: integer
+            minimum: 1
+        hasMultipleSupplements:
+            type: boolean
+        seeAllLink:
             type: string
             minLength: 1
         captionedAsset:
@@ -354,9 +359,14 @@ schema:
             - supplementOrdinal
         supplementOrdinal:
             - parentId
+        supplementCount:
+            - hasMultipleSupplements
+        hasMultipleSupplements:
+            - supplementCount
+        seeAllLink:
+            - supplementCount
     required:
         - id
         - variant
         - label
-        - figuresPageFragLink
         - captionedAsset
