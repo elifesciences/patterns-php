@@ -4,7 +4,7 @@ elifeLibrary {
     stage 'Checkout and branch', {
         checkout scm
         commit = elifeGitRevision()
-        branch = elifeGitGenerateBranch 'update_pattern_library_'
+        branch = elifeGitGenerateBranch 'update_pattern_library/'
     }
 
     stage "Update", {
