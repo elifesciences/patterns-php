@@ -161,11 +161,17 @@ final class AssetViewerInlineTest extends ViewModelTest
                     'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                 ],
             ],
+            'download' => [
+                'link' => 'http://www.example.com/download',
+                'filename' => 'filename',
+            ],
+            'open' => 'http://www.example.com/open',
         ];
 
         $viewer = AssetViewerInline::supplement('id', 1, 'parentId', 'label',
             new CaptionedAsset(new Image('/default/path',
-                [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')));
+                [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')),
+            [], new Link('filename', 'http://www.example.com/download'), 'http://www.example.com/open');
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
@@ -174,6 +180,8 @@ final class AssetViewerInlineTest extends ViewModelTest
         $this->assertSame($data['parentId'], $viewer['parentId']);
         $this->assertSame($data['label'], $viewer['label']);
         $this->assertSame($data['captionedAsset'], $viewer['captionedAsset']->toArray());
+        $this->assertSame($data['download'], $viewer['download']);
+        $this->assertSame($data['open'], $viewer['open']);
         $this->assertSame($data, $viewer->toArray());
     }
 
