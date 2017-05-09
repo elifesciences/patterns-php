@@ -16,12 +16,10 @@ final class FooterTest extends ViewModelTest
         $data = [
             'year' => (int) date('Y'),
             'mainMenu' => true,
-            'links' => ['items' => [['name' => 'name1', 'url' => 'url1']]],
-            'button' => [
-                'classes' => 'button--small button--default button--full main_menu__quit',
-                'path' => '#siteHeader',
-                'text' => 'Back to top',
+            'listHeading' => [
+                'heading' => 'Menu',
             ],
+            'links' => ['items' => [['name' => 'name1', 'url' => 'url1']]],
             'footerMenuLinks' => [['name' => 'name2', 'url' => 'url2']],
         ];
 
@@ -35,7 +33,7 @@ final class FooterTest extends ViewModelTest
         $this->assertSame($data['year'], $footer['year']);
         $this->assertSame($data['mainMenu'], $footer['mainMenu']);
         $this->assertEquals($links, $footer['links']['items']);
-        $this->assertSame($data['button'], $footer['button']->toArray());
+        $this->assertSame($data['listHeading'], $footer['listHeading']->toArray());
         $this->assertEquals($footerMenuLinks, $footer['footerMenuLinks']);
         $this->assertSame($data, $footer->toArray());
     }
