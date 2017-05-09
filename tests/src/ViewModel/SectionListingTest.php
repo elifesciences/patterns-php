@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\SectionListing;
 use InvalidArgumentException;
 
@@ -25,6 +26,9 @@ final class SectionListingTest extends ViewModelTest
                     'url' => '#',
                 ],
             ],
+            'listHeading' => [
+                'heading' => 'heading',
+            ],
             'singleLine' => true,
             'labelledBy' => 'labelledBy',
         ];
@@ -35,6 +39,7 @@ final class SectionListingTest extends ViewModelTest
                 new Link($data['sections'][0]['name'], $data['sections'][0]['url']),
                 new Link($data['sections'][1]['name'], $data['sections'][1]['url']),
             ],
+            new ListHeading($data['listHeading']['heading']),
             $data['singleLine'],
             $data['labelledBy']
         );
@@ -49,14 +54,14 @@ final class SectionListingTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new SectionListing('', [new Link('subject', 'url')]);
+        new SectionListing('', [new Link('subject', 'url')], new ListHeading('heading'));
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new SectionListing('id', [new Link('subject', 'url')])],
-            'complete' => [new SectionListing('id', [new Link('subject', 'url')], true, 'labelledBy')],
+            'minimum' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'))],
+            'complete' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'), true, 'labelledBy')],
         ];
     }
 
