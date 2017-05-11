@@ -37,7 +37,7 @@ final class AssetViewerInline implements ViewModel
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
         Link $download = null,
-        string $open = null,
+        OpenLink $open = null,
         int $supplementCount = 0,
         string $seeAllLink = null
     ) {
@@ -87,7 +87,7 @@ final class AssetViewerInline implements ViewModel
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
         Link $download = null,
-        string $open = null,
+        OpenLink $open = null,
         int $supplementCount = 0,
         string $seeAllLink = null
     ) : AssetViewerInline {
@@ -102,7 +102,7 @@ final class AssetViewerInline implements ViewModel
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
         Link $download = null,
-        string $open = null
+        OpenLink $open = null
     ) : AssetViewerInline {
         return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets, $download, $open);
     }

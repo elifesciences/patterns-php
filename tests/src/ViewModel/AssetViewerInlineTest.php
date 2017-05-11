@@ -12,6 +12,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaType;
+use eLife\Patterns\ViewModel\OpenLink;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\Video;
 
@@ -61,7 +62,11 @@ final class AssetViewerInlineTest extends ViewModelTest
                 'link' => 'http://www.example.com/download',
                 'filename' => 'filename',
             ],
-            'open' => 'http://www.example.com/open',
+            'open' => [
+                'uri' => 'http://www.example.com/open',
+                'width' => 500,
+                'height' => 400,
+            ],
         ];
 
         $viewer = AssetViewerInline::primary('id', 'label',
@@ -69,7 +74,7 @@ final class AssetViewerInlineTest extends ViewModelTest
                 [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')),
             [
                 AdditionalAsset::withoutDoi('id', new CaptionText('Without doi'), DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name'), 'http://google.com/'),
-            ], new Link('filename', 'http://www.example.com/download'), 'http://www.example.com/open', 2, 'foo');
+            ], new Link('filename', 'http://www.example.com/download'), new OpenLink('http://www.example.com/open', 500, 400), 2, 'foo');
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
@@ -81,7 +86,7 @@ final class AssetViewerInlineTest extends ViewModelTest
         $this->assertCount(1, $viewer['additionalAssets']);
         $this->assertSame($data['additionalAssets'][0], $viewer['additionalAssets'][0]->toArray());
         $this->assertSame($data['download'], $viewer['download']);
-        $this->assertSame($data['open'], $viewer['open']);
+        $this->assertSame($data['open'], $viewer['open']->toArray());
         $this->assertSame($data, $viewer->toArray());
 
         $data = [
@@ -165,13 +170,17 @@ final class AssetViewerInlineTest extends ViewModelTest
                 'link' => 'http://www.example.com/download',
                 'filename' => 'filename',
             ],
-            'open' => 'http://www.example.com/open',
+            'open' => [
+                'uri' => 'http://www.example.com/open',
+                'width' => 500,
+                'height' => 400,
+            ],
         ];
 
         $viewer = AssetViewerInline::supplement('id', 1, 'parentId', 'label',
             new CaptionedAsset(new Image('/default/path',
                 [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')),
-            [], new Link('filename', 'http://www.example.com/download'), 'http://www.example.com/open');
+            [], new Link('filename', 'http://www.example.com/download'), new OpenLink('http://www.example.com/open', 500, 400));
 
         $this->assertSame($data['id'], $viewer['id']);
         $this->assertSame($data['variant'], $viewer['variant']);
@@ -181,7 +190,7 @@ final class AssetViewerInlineTest extends ViewModelTest
         $this->assertSame($data['label'], $viewer['label']);
         $this->assertSame($data['captionedAsset'], $viewer['captionedAsset']->toArray());
         $this->assertSame($data['download'], $viewer['download']);
-        $this->assertSame($data['open'], $viewer['open']);
+        $this->assertSame($data['open'], $viewer['open']->toArray());
         $this->assertSame($data, $viewer->toArray());
     }
 
@@ -191,7 +200,7 @@ final class AssetViewerInlineTest extends ViewModelTest
             'primary' => [
                 AssetViewerInline::primary('id', 'label',
                     new CaptionedAsset(new Image('/default/path',
-                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')), [], new Link('http://www.example.com/download', 'filename'), 'http://www.example.com/open', 2, 'foo'),
+                        [500 => '/path/to/image/500/wide', 250 => '/default/path']), new CaptionText('heading')), [], new Link('http://www.example.com/download', 'filename'), new OpenLink('http://www.example.com/open', 500, 400), 2, 'foo'),
             ],
             'supplement' => [
                 AssetViewerInline::supplement('id', 1, 'parentId', 'label',
