@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAEA,uEACqC,CCiKnC,WAAW,CCrIE,aAAc,CDsI3B,UAAU,CAAE,MAAM,CEzJlB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CF0J9C,WAAW,CAAE,gBAAgB,CErJ3B,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CHZ7D,oCAAqC,CACnC,KAAK,CEHS,OAAO,CFIrB,eAAe,CAAE,IAAI,CAGvB,sFAC4C,CAC1C,KAAK,CERc,OAAO",
-"sources": ["../../../../../../assets/sass/patterns/organisms/decision-letter-header.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
+"mappings": "AAEA,kCAAmC,CCuC/B,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CDpC5D,oCAAqC,CACnC,UAAU,CAAE,MAAM,CAClB,aAAa,CAAE,CAAC,CAGlB,oCAAsC,CACpC,cAAc,CAAE,IAAI,CAGtB,oCAAqC,CC6RnC,aAAa,CAAE,kBAAiB,CAChC,KAAK,CCpSM,OAAO,CDqSlB,eAAe,CAAE,IAAI,CAErB,0CAAQ,CACN,mBAAmB,CC5SP,OAAO,CD6SnB,KAAK,CC7SO,OAAO",
+"sources": ["../../../../../../assets/sass/patterns/organisms/decision-letter-header.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_variables.scss"],
 "names": [],
 "file": "decision-letter-header.css"
 }
