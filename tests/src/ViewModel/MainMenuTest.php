@@ -14,10 +14,8 @@ final class MainMenuTest extends ViewModelTest
     {
         $data = [
             'links' => ['items' => [['name' => 'name', 'url' => 'url']]],
-            'button' => [
-                'classes' => 'button--small button--default button--full main_menu__quit',
-                'path' => '#siteHeader',
-                'text' => 'Back to top',
+            'listHeading' => [
+                'heading' => 'Menu',
             ],
         ];
 
@@ -26,6 +24,7 @@ final class MainMenuTest extends ViewModelTest
         ]);
 
         $this->assertEquals($links, $mainMenu['links']['items']);
+        $this->assertSame($data['listHeading'], $mainMenu['listHeading']->toArray());
         $this->assertSame($data, $mainMenu->toArray());
     }
 
