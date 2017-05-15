@@ -59,6 +59,7 @@ final class ContentHeaderTest extends ViewModelTest
                 'list' => [
                     [
                         'name' => 'author',
+                        'isCorresponding' => true,
                     ],
                 ],
             ],
@@ -124,7 +125,7 @@ final class ContentHeaderTest extends ViewModelTest
             new Profile(new Link($data['header']['profile']['name'])),
             $data['authorLine'],
             array_map(function (array $item) {
-                return Author::asText($item['name']);
+                return Author::asText($item['name'], $item['isCorresponding'] ?? false);
             }, $data['authors']['list']),
             array_map(function (array $item) {
                 return new Institution($item['name']);

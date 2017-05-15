@@ -14,25 +14,30 @@ final class Author implements CastsToArray
 
     private $name;
     private $url;
+    private $isCorresponding;
 
-    private function __construct(string $name, string $url = null)
+    private function __construct(string $name, string $url = null, bool $isCorresponding = false)
     {
         Assertion::notBlank($name);
 
         $this->name = $name;
         $this->url = $url;
+        if ($isCorresponding) {
+            $this->isCorresponding = true;
+        }
     }
 
-    public static function asText(string $name)
+    public static function asText(string $name, bool $isCorresponding = false)
     {
-        return new static($name);
+        return new static($name, null, $isCorresponding);
     }
 
-    public static function asLink(Link $link)
+    public static function asLink(Link $link, bool $isCorresponding = false)
     {
         return new static(
             $link['name'],
-            $link['url']
+            $link['url'],
+            $isCorresponding
         );
     }
 }
