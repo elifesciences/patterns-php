@@ -4,13 +4,14 @@ elifeLibrary {
     stage 'Checkout and branch', {
         checkout scm
         commit = elifeGitRevision()
-        branch = elifeGitGenerateBranch 'update_pattern_library/'
+        branch = 'update_pattern_library/' + params.pattern_library_branch
+        sh "git checkout -B ${branch} && git reset --hard origin/master"
     }
 
     stage "Update", {
         sh "composer install"
 
-        sh "bin/update " + (params.commit ?: "")
+        sh "bin/update ${params.pattern_library_commit}"
         sh "git add --all ."
     }
 
@@ -25,9 +26,9 @@ elifeLibrary {
         }
     }
 
-    stage 'Push and pull-request', {
+    stage 'Push', {
         elifeOnlyIf differences, {
-            elifeGithubPullRequest branch, shortDescription, "I have run ${env.BUILD_URL} which resulted in this pull request.", "master"
+            sh "git push origin -f ${branch}"
         }
     }
 }
