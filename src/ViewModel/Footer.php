@@ -19,6 +19,7 @@ final class Footer implements ViewModel
 
     private $year;
     private $mainMenu;
+    private $listHeading;
     private $links;
     private $button;
     private $footerMenuLinks;
@@ -33,6 +34,7 @@ final class Footer implements ViewModel
         $this->year = (int) date('Y');
         $this->_mainMenu = $mainMenu;
         $this->mainMenu = true;
+        $this->listHeading = $mainMenu['listHeading'];
         $this->links = $mainMenu['links'];
         $this->button = $mainMenu['button'];
         $this->footerMenuLinks = $footerMenuLinks;
