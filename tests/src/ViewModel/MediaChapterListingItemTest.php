@@ -2,6 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\ContentSource;
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MediaChapterListingItem;
 use eLife\Patterns\ViewModel\Meta;
 use InvalidArgumentException;
@@ -21,19 +23,29 @@ final class MediaChapterListingItemTest extends ViewModelTest
             ],
             'chapterNumber' => 1,
             'content' => 'content',
-            'meta' => [
-                'text' => 'meta',
+            'hasContentSources' => true,
+            'contentSources' => [
+                [
+                    'contentType' => [
+                        'name' => 'content type',
+                        'url' => 'url',
+                    ],
+                    'text' => 'text',
+                ],
             ],
         ];
 
         $item = new MediaChapterListingItem($data['title'], $data['startTime']['forMachine'], $data['chapterNumber'],
-            $data['content'], Meta::withText($data['meta']['text']));
+            $data['content'], array_map(function (array $contentSource) {
+                return new ContentSource(new Link($contentSource['contentType']['name'], $contentSource['contentType']['url']), $contentSource['text']);
+            }, $data['contentSources']));
 
         $this->assertSame($data['title'], $item['title']);
         $this->assertSame($data['startTime'], $item['startTime']);
         $this->assertSame($data['chapterNumber'], $item['chapterNumber']);
         $this->assertSame($data['content'], $item['content']);
-        $this->assertEquals($data['meta'], $item['meta']->toArray());
+        $this->assertSame($data['hasContentSources'], $item['hasContentSources']);
+        $this->assertSameWithoutOrder($data['contentSources'], $item['contentSources']);
         $this->assertSame($data, $item->toArray());
     }
 
@@ -71,7 +83,7 @@ final class MediaChapterListingItemTest extends ViewModelTest
     {
         return [
             'minimum' => [new MediaChapterListingItem('title', 0, 1)],
-            'complete' => [new MediaChapterListingItem('title', 0, 1, 'foo', Meta::withText('bar'))],
+            'complete' => [new MediaChapterListingItem('title', 0, 1, 'foo', [new ContentSource(new Link('name', 'url'), 'text')])],
         ];
     }
 
