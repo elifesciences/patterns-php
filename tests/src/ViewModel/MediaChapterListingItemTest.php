@@ -5,7 +5,6 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\ContentSource;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MediaChapterListingItem;
-use eLife\Patterns\ViewModel\Meta;
 use InvalidArgumentException;
 
 final class MediaChapterListingItemTest extends ViewModelTest
