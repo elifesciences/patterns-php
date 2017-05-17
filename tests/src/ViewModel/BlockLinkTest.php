@@ -2,9 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\BlockLink;
+use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\Picture;
 
 final class BlockLinkTest extends ViewModelTest
 {
@@ -16,20 +17,19 @@ final class BlockLinkTest extends ViewModelTest
         $data = [
             'text' => 'text',
             'url' => 'url',
-            'behaviour' => 'BackgroundImage',
-            'backgroundImage' => [
-                'lowResImageSource' => 'lores.jpg',
-                'highResImageSource' => 'hires.jpg',
-                'thresholdWidth' => 100,
+            'image' => [
+                'fallback' => [
+                    'altText' => '',
+                    'defaultPath' => '/default/path',
+                ],
             ],
         ];
 
-        $blockLink = new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100));
+        $blockLink = new BlockLink(new Link('text', 'url'), new Picture([], new Image($data['image']['fallback']['defaultPath'])));
 
-        $this->assertSame($data['text'], $data['text']);
-        $this->assertSame($data['url'], $data['url']);
-        $this->assertSame($data['behaviour'], $data['behaviour']);
-        $this->assertSame($data['backgroundImage'], $data['backgroundImage']);
+        $this->assertSame($data['text'], $blockLink['text']);
+        $this->assertSame($data['url'], $blockLink['url']);
+        $this->assertSame($data['image'], $blockLink['image']->toArray());
         $this->assertSame($data, $blockLink->toArray());
     }
 
@@ -37,10 +37,7 @@ final class BlockLinkTest extends ViewModelTest
     {
         return [
             'without image' => [new BlockLink(new Link('text', 'url'))],
-            'with image' => [new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg'))],
-            'with image and threshold' => [
-                new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100)),
-            ],
+            'with image' => [new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path')))],
         ];
     }
 

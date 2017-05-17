@@ -52,7 +52,7 @@ final class GridListing implements ViewModel
         $blockLinks = array_map(function (BlockLink $blockLink) {
             $blockLink = FlexibleViewModel::fromViewModel($blockLink);
 
-            return $blockLink->withProperty('variant', 'grid-listing');
+            return $blockLink->withProperty('isGridListing', true);
         }, $blockLinks);
 
         return new self('grid-listing--block-link', $heading, $blockLinks);
