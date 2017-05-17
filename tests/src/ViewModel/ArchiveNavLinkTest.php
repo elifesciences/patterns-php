@@ -3,9 +3,10 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArchiveNavLink;
-use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\BlockLink;
+use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\Picture;
 
 final class ArchiveNavLinkTest extends ViewModelTest
 {
@@ -18,16 +19,16 @@ final class ArchiveNavLinkTest extends ViewModelTest
             'blockLink' => [
                 'text' => 'text',
                 'url' => 'url',
-                'behaviour' => 'BackgroundImage',
-                'backgroundImage' => [
-                    'lowResImageSource' => 'lores.jpg',
-                    'highResImageSource' => 'hires.jpg',
-                    'thresholdWidth' => 100,
+                'image' => [
+                    'fallback' => [
+                        'altText' => '',
+                        'defaultPath' => '/default/path',
+                    ],
                 ],
             ],
         ];
 
-        $archiveNavLink = ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100)));
+        $archiveNavLink = ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))));
 
         $this->assertSame($data['blockLink'], $data['blockLink']);
         $this->assertSame($data, $archiveNavLink->toArray());
@@ -36,11 +37,11 @@ final class ArchiveNavLinkTest extends ViewModelTest
             'blockLink' => [
                 'text' => 'text',
                 'url' => 'url',
-                'behaviour' => 'BackgroundImage',
-                'backgroundImage' => [
-                    'lowResImageSource' => 'lores.jpg',
-                    'highResImageSource' => 'hires.jpg',
-                    'thresholdWidth' => 100,
+                'image' => [
+                    'fallback' => [
+                        'altText' => '',
+                        'defaultPath' => '/default/path',
+                    ],
                 ],
             ],
             'label' => 'label',
@@ -53,7 +54,7 @@ final class ArchiveNavLinkTest extends ViewModelTest
         ];
 
         $archiveNavLink = ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
-            new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('name', 'url')]);
+            new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]);
 
         $this->assertSame($data['blockLink'], $data['blockLink']);
         $this->assertSame($data['label'], $data['label']);
@@ -65,11 +66,11 @@ final class ArchiveNavLinkTest extends ViewModelTest
     {
         return [
             'without links' => [
-                ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100))),
+                ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'))),
             ],
             'with links' => [
                 ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
-                    new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('name', 'url')]),
+                    new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
             ],
         ];
     }
