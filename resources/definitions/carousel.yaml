@@ -4,12 +4,18 @@ assets:
         - carousel-item.css
         - carousel.css
         - date.css
+        - list-heading.css
         - meta.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
     type: object
     properties:
+        heading:
+            type: string
+            minLength: 1
+        headingId:
+            type: string
         items:
             type: array
             items:
@@ -37,9 +43,11 @@ schema:
                                             - url
                             required:
                                 - list
-                        name:
+                        title:
                             type: string
                             minLength: 1
+                        longTitle:
+                            type: boolean
                         url:
                             type: string
                             minLength: 1
@@ -144,30 +152,58 @@ schema:
                                 -
                                     required:
                                         - text
-                        backgroundImage:
+                        image:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
                             properties:
-                                lowResImageSource:
+                                pictureClasses:
                                     type: string
                                     minLength: 1
-                                highResImageSource:
-                                    type: string
-                                    minLength: 1
-                                thresholdWidth:
-                                    type: number
-                                    minimum: 0
-                            dependencies:
-                                thresholdWidth:
-                                    - lowResImageSource
-                                    - highResImageSource
+                                sources:
+                                    type: array
+                                    uniqueItems: true
+                                    items:
+                                        type: object
+                                        properties:
+                                            srcset:
+                                                type: string
+                                                minLength: 1
+                                            media:
+                                                type: string
+                                                minLength: 1
+                                            type:
+                                                type: string
+                                                enum:
+                                                    - image/svg+xml
+                                                    - image/webp
+                                                    - image/png
+                                                    - image/jpeg
+                                        required:
+                                            - srcset
+                                fallback:
+                                    type: object
+                                    properties:
+                                        srcset:
+                                            type: string
+                                            pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                        defaultPath:
+                                            type: string
+                                            minLength: 1
+                                        altText:
+                                            type: string
+                                        classes:
+                                            type: string
+                                    required:
+                                        - defaultPath
+                                        - altText
                             required:
-                                - lowResImageSource
-                                - highResImageSource
+                                - fallback
                     required:
-                        - name
+                        - title
                         - url
                         - meta
-                        - backgroundImage
+                        - image
             minItems: 1
     required:
+        - heading
         - items
