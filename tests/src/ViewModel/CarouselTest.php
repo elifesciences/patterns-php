@@ -2,11 +2,12 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\Carousel;
 use eLife\Patterns\ViewModel\CarouselItem;
+use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
+use eLife\Patterns\ViewModel\Picture;
 use InvalidArgumentException;
 
 final class CarouselTest extends ViewModelTest
@@ -17,6 +18,8 @@ final class CarouselTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'heading' => 'heading',
+            'headingId' => 'id',
             'items' => [
                 [
                     'subjects' => [
@@ -27,26 +30,28 @@ final class CarouselTest extends ViewModelTest
                             ],
                         ],
                     ],
-                    'name' => 'carousel item',
+                    'title' => 'carousel item',
                     'url' => 'carousel-item-url',
                     'button' => [
-                        'classes' => 'button--default',
+                        'classes' => 'button--small button--outline',
                         'path' => 'carousel-item-url',
                         'text' => 'button',
                     ],
                     'meta' => [
                         'text' => 'meta',
                     ],
-                    'backgroundImage' => [
-                        'lowResImageSource' => 'lores.jpg',
-                        'highResImageSource' => 'hires.jpg',
+                    'image' => [
+                        'fallback' => [
+                            'altText' => '',
+                            'defaultPath' => '/default/path',
+                        ],
                     ],
                 ],
             ],
         ];
 
-        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new BackgroundImage('lores.jpg', 'hires.jpg'));
-        $carousel = new Carousel($carouselItem);
+        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new Picture([], new Image('/default/path')));
+        $carousel = new Carousel([$carouselItem], 'heading', 'id');
 
         $this->assertSame($data, $carousel->toArray());
     }
@@ -58,13 +63,23 @@ final class CarouselTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Carousel();
+        new Carousel([], 'heading');
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_heading()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Carousel([new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new Picture([], new Image('/default/path')))], '');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new Carousel(new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new BackgroundImage('lores.jpg', 'hires.jpg')))],
+            [new Carousel([new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new Picture([], new Image('/default/path')))], 'heading')],
         ];
     }
 

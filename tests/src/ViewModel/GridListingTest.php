@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\ArchiveNavLink;
-use eLife\Patterns\ViewModel\BackgroundImage;
 use eLife\Patterns\ViewModel\BlockLink;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\GridListing;
@@ -33,18 +32,18 @@ final class GridListingTest extends ViewModelTest
                 [
                     'text' => 'text',
                     'url' => 'url',
-                    'behaviour' => 'BackgroundImage',
-                    'backgroundImage' => [
-                        'lowResImageSource' => 'lores.jpg',
-                        'highResImageSource' => 'hires.jpg',
-                        'thresholdWidth' => 100,
+                    'image' => [
+                        'fallback' => [
+                            'altText' => '',
+                            'defaultPath' => '/default/path',
+                        ],
                     ],
-                    'variant' => 'grid-listing',
+                    'isGridListing' => true,
                 ],
             ],
         ];
         $blockLinks = GridListing::forBlockLinks([
-            new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100)),
+            new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))),
         ], 'heading');
 
         $this->assertSame($blockLinksData['classes'], $blockLinks['classes']);
@@ -60,11 +59,11 @@ final class GridListingTest extends ViewModelTest
                     'blockLink' => [
                         'text' => 'text',
                         'url' => 'url',
-                        'behaviour' => 'BackgroundImage',
-                        'backgroundImage' => [
-                            'lowResImageSource' => 'lores.jpg',
-                            'highResImageSource' => 'hires.jpg',
-                            'thresholdWidth' => 100,
+                        'image' => [
+                            'fallback' => [
+                                'altText' => '',
+                                'defaultPath' => '/default/path',
+                            ],
                         ],
                     ],
                     'label' => 'label',
@@ -79,7 +78,7 @@ final class GridListingTest extends ViewModelTest
         ];
         $archiveNavLinks = GridListing::forArchiveNavLinks([
             ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
-                new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('name', 'url')]),
+                new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
         ], 'heading');
 
         $this->assertSame($archiveNavLinksData['heading'], $archiveNavLinks['heading']);
@@ -200,7 +199,7 @@ final class GridListingTest extends ViewModelTest
                 GridListing::forBlockLinks(
                     [
                         new BlockLink(new Link('text', 'url')),
-                        new BlockLink(new Link('text', 'url'), new BackgroundImage('lores.jpg', 'hires.jpg', 100)),
+                        new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))),
                     ],
                     'heading'),
             ],
@@ -209,7 +208,7 @@ final class GridListingTest extends ViewModelTest
                     [
                         ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'))),
                         ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
-                            new BackgroundImage('lores.jpg', 'hires.jpg', 100)), 'label', [new Link('text', 'url')]),
+                            new Picture([], new Image('/default/path'))), 'label', [new Link('text', 'url')]),
                     ],
                     'heading'),
             ],

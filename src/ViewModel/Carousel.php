@@ -15,18 +15,24 @@ final class Carousel implements ViewModel
     use ArrayFromProperties;
     use ComposedAssets;
 
+    private $heading;
+    private $headingId;
     private $items;
 
-    public function __construct(CarouselItem ...$items)
+    public function __construct(array $items, string $heading, string $headingId = null)
     {
         Assertion::notEmpty($items);
+        Assertion::notBlank($heading);
 
+        $this->heading = $heading;
+        $this->headingId = $headingId;
         $this->items = $items;
     }
 
     public function getLocalStyleSheets() : Traversable
     {
         yield 'resources/assets/css/carousel.css';
+        yield 'resources/assets/css/list-heading.css';
     }
 
     public function getTemplateName() : string
