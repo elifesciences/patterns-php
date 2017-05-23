@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\ListingProfileSnippets;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 use eLife\Patterns\ViewModel\SeeMoreLink;
@@ -69,7 +70,7 @@ final class ListingProfileSnippetsTest extends ViewModelTest
                 ),
             ],
             [
-                ListingProfileSnippets::basic([self::getProfileSnippetFixture(), self::getProfileSnippetFixture(), self::getProfileSnippetFixture()], 'Some heading'),
+                ListingProfileSnippets::basic([self::getProfileSnippetFixture(), self::getProfileSnippetFixture(), self::getProfileSnippetFixture()], new ListHeading('Some heading')),
             ],
         ];
     }
