@@ -26,12 +26,14 @@ final class CaptionTextTest extends ViewModelTest
         $this->assertSame($data, $captionText->toArray());
 
         $data = [
+            'standfirst' => 'standfirst',
             'text' => 'text',
         ];
 
-        $captionText = CaptionText::withOutHeading(...array_values($data));
+        $captionText = CaptionText::withOutHeading($data['text'], $data['standfirst']);
 
         $this->assertSame($data['text'], $captionText['text']);
+        $this->assertSame($data['standfirst'], $captionText['standfirst']);
         $this->assertSame($data, $captionText->toArray());
     }
 
@@ -60,7 +62,8 @@ final class CaptionTextTest extends ViewModelTest
         return [
             'minimum with heading' => [CaptionText::withHeading('heading')],
             'complete with heading' => [CaptionText::withHeading('heading', 'stand first', 'text')],
-            'without heading' => [CaptionText::withOutHeading('text')],
+            'minimum without heading' => [CaptionText::withOutHeading('text')],
+            'complete without heading' => [CaptionText::withOutHeading('text', 'stand first')],
         ];
     }
 
