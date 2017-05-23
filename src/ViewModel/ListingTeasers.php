@@ -20,12 +20,11 @@ final class ListingTeasers implements ViewModel
     private $items;
     private $id;
     private $heading;
-    private $headingId;
     private $pagination;
     private $seeMoreLink;
     private $highlights;
 
-    private function __construct(array $items, string $id = null, string $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null, bool $highlights = false)
+    private function __construct(array $items, string $id = null, ListHeading $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null, bool $highlights = false)
     {
         if (
             null !== $pagination &&
@@ -52,10 +51,9 @@ final class ListingTeasers implements ViewModel
         }
     }
 
-    public static function forHighlights(array $items, string $heading, string $id) : ViewModel
+    public static function forHighlights(array $items, ListHeading $heading, string $id) : ViewModel
     {
         $viewModel = new static($items, $id, $heading, null, null, true);
-        $viewModel->headingId = "$id-heading";
 
         return $viewModel;
     }
@@ -74,5 +72,6 @@ final class ListingTeasers implements ViewModel
     {
         yield from $this->items;
         yield $this->pagination;
+        yield $this->heading;
     }
 }

@@ -15,7 +15,6 @@ final class AboutProfiles implements ViewModel
     use ArrayFromProperties;
     use ComposedAssets;
 
-    private $_heading;
     private $heading;
     private $compact;
     private $items;
@@ -25,10 +24,7 @@ final class AboutProfiles implements ViewModel
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, AboutProfile::class);
 
-        if ($heading) {
-            $this->_heading = $heading;
-            $this->heading = $heading['heading'];
-        }
+        $this->heading = $heading;
         if ($compact) {
             $this->compact = $compact;
         }
@@ -48,6 +44,6 @@ final class AboutProfiles implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->items;
-        yield $this->_heading;
+        yield $this->heading;
     }
 }

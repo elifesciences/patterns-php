@@ -6,6 +6,7 @@ assets:
         - date.css
         - grid-listing.css
         - image-link.css
+        - list-heading.css
         - meta.css
         - pager.css
         - teaser.css
@@ -20,8 +21,16 @@ schema:
                     type: string
                     minLength: 1
                 heading:
-                    type: string
-                    minLength: 1
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        heading:
+                            type: string
+                            minLength: 1
+                        headingId:
+                            type: string
+                    required:
+                        - heading
                 id:
                     type: string
                     minLength: 1

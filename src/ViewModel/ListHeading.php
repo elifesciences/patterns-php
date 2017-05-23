@@ -16,12 +16,14 @@ final class ListHeading implements ViewModel
     use SimplifyAssets;
 
     private $heading;
+    private $headingId;
 
-    public function __construct(string $heading)
+    public function __construct(string $heading, string $headingId = null)
     {
         Assertion::notBlank($heading);
 
         $this->heading = $heading;
+        $this->headingId = $headingId;
     }
 
     public function getStyleSheets() : Traversable
