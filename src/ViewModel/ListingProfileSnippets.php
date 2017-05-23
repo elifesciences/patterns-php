@@ -29,7 +29,7 @@ final class ListingProfileSnippets implements ViewModel
         $this->items = $items;
     }
 
-    public static function basic(array $items, $heading = null)
+    public static function basic(array $items, ListHeading $heading = null)
     {
         return new static ($items, $heading);
     }
