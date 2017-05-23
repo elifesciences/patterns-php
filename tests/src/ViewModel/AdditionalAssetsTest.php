@@ -39,7 +39,7 @@ final class AdditionalAssetsTest extends ViewModelTest
             [
                 AdditionalAsset::withoutDoi(
                     $data['assets'][0]['assetId'],
-                    new CaptionText($data['assets'][0]['captionText']['heading'], $data['assets'][0]['captionText']['standfirst'], $data['assets'][0]['captionText']['text']),
+                    CaptionText::withHeading($data['assets'][0]['captionText']['heading'], $data['assets'][0]['captionText']['standfirst'], $data['assets'][0]['captionText']['text']),
                     DownloadLink::fromLink(
                         new Link($data['assets'][0]['downloadLink']['name'], $data['assets'][0]['downloadLink']['url']),
                         $data['assets'][0]['downloadLink']['fileName']
@@ -61,11 +61,11 @@ final class AdditionalAssetsTest extends ViewModelTest
         return [
             [
                 new AdditionalAssets(null,
-                    [AdditionalAsset::withDoi('id', new CaptionText('heading'), $downloadLink, new Doi('10.7554/eLife.10181.001'))]),
+                    [AdditionalAsset::withDoi('id', CaptionText::withHeading('heading'), $downloadLink, new Doi('10.7554/eLife.10181.001'))]),
             ],
             [
                 new AdditionalAssets('Some title',
-                    [AdditionalAsset::withoutDoi('id', new CaptionText('heading'), $downloadLink, 'http://google.com/')]),
+                    [AdditionalAsset::withoutDoi('id', CaptionText::withHeading('heading'), $downloadLink, 'http://google.com/')]),
             ],
         ];
     }

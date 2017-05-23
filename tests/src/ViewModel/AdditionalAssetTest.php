@@ -32,7 +32,7 @@ final class AdditionalAssetTest extends ViewModelTest
             ];
         $additionalAsset = AdditionalAsset::withoutDoi(
             $data['assetId'],
-            new CaptionText($data['captionText']['heading'], $data['captionText']['standfirst'], $data['captionText']['text']),
+            CaptionText::withHeading($data['captionText']['heading'], $data['captionText']['standfirst'], $data['captionText']['text']),
             DownloadLink::fromLink(
                 new Link($data['downloadLink']['name'], $data['downloadLink']['url']), $data['downloadLink']['fileName']
             ),
@@ -57,7 +57,7 @@ final class AdditionalAssetTest extends ViewModelTest
         ];
         $additionalAsset = AdditionalAsset::withDoi(
             $data['assetId'],
-            new CaptionText($data['captionText']['heading']),
+            CaptionText::withHeading($data['captionText']['heading']),
             null,
             new Doi($data['doi']['doi'])
         );
@@ -73,10 +73,10 @@ final class AdditionalAssetTest extends ViewModelTest
         $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
 
         return [
-            'minimum DOI' => [AdditionalAsset::withDoi('id', new CaptionText('heading'), null, new Doi('10.7554/eLife.10181.001'))],
-            'complete DOI' => [AdditionalAsset::withDoi('id', new CaptionText('heading', 'stand first', 'text'), $downloadLink, new Doi('10.7554/eLife.10181.001'))],
-            'minimum without DOI' => [AdditionalAsset::withoutDoi('id', new CaptionText('heading'), null, 'http://google.com/')],
-            'complete without DOI' => [AdditionalAsset::withoutDoi('id', new CaptionText('heading', 'stand first', 'text'), $downloadLink, 'http://google.com/')],
+            'minimum DOI' => [AdditionalAsset::withDoi('id', CaptionText::withHeading('heading'), null, new Doi('10.7554/eLife.10181.001'))],
+            'complete DOI' => [AdditionalAsset::withDoi('id', CaptionText::withHeading('heading', 'stand first', 'text'), $downloadLink, new Doi('10.7554/eLife.10181.001'))],
+            'minimum without DOI' => [AdditionalAsset::withoutDoi('id', CaptionText::withHeading('heading'), null, 'http://google.com/')],
+            'complete without DOI' => [AdditionalAsset::withoutDoi('id', CaptionText::withHeading('heading', 'stand first', 'text'), $downloadLink, 'http://google.com/')],
         ];
     }
 
