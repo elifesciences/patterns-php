@@ -112,6 +112,15 @@ final class CaptionedAssetTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
+            'Captionless image' => [
+                new CaptionedAsset(
+                    new Picture(
+                        [['srcset' => '/path/to/svg']],
+                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            'the alt text')
+                    )
+                ),
+            ],
             'Captioned image' => [
                 new CaptionedAsset(
                     new Picture(
