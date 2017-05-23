@@ -51,7 +51,7 @@ final class CaptionedAssetTest extends ViewModelTest
                     $data['picture']['fallback']['altText']
                 )
             ),
-            new CaptionText($data['captionText']['heading']),
+            CaptionText::withHeading($data['captionText']['heading']),
             new Doi($data['doi']['doi'])
         );
 
@@ -78,7 +78,7 @@ final class CaptionedAssetTest extends ViewModelTest
                 [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
                 $data['image']['altText']
             ),
-            new CaptionText($data['captionText']['heading']),
+            CaptionText::withHeading($data['captionText']['heading']),
             new Doi($data['doi']['doi'])
         );
 
@@ -99,7 +99,7 @@ final class CaptionedAssetTest extends ViewModelTest
 
         $figure = new CaptionedAsset(
             new Table($data['table']['tables']),
-            new CaptionText($data['captionText']['heading']),
+            CaptionText::withHeading($data['captionText']['heading']),
             new Doi($data['doi']['doi'])
         );
         $this->assertSameWithoutOrder($data, $figure->toArray());
@@ -119,7 +119,7 @@ final class CaptionedAssetTest extends ViewModelTest
                         new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
                             'the alt text')
                     ),
-                    new CaptionText('heading')
+                    CaptionText::withHeading('heading')
                 ),
             ],
             'Captioned table' => [
@@ -127,13 +127,13 @@ final class CaptionedAssetTest extends ViewModelTest
                     new Table([
                         '<table><thead><tr><th>F(Dfn, Dfd)</th><th>Partial η<sup>2</sup></th><th>Original effect size <em>f</em></th><th>Replication total sample size</th><th>Detectable effect size <em>f</em></th></tr></thead><tbody><tr><td>F(24,39) = 0.8678 (interaction)</td><td>0.348120</td><td>0.7307699</td><td>169<a class="xref-table-fn" href="#tblfn2">*</a></td><td>0.3895070<a class="xref-table-fn" href="#tblfn3">†</a></td></tr><tr><td>F(2,39) = 0.8075 (treatments)</td><td>0.039766</td><td>0.2035014</td><td>169<a class="xref-table-fn" href="#tblfn2">*</a></td><td>0.2415459<a class="xref-table-fn" href="#tblfn3">†</a></td></tr><tr><td>F(12,39) = 187.6811 (hematology parameters)</td><td>0.982978</td><td>7.599178</td><td>169<a class="xref-table-fn" href="#tblfn2">*</a></td><td>0.3331365<a class="xref-table-fn" href="#tblfn4">‡</a></td></tr></tbody></table>',
                     ]),
-                    new CaptionText('heading')
+                    CaptionText::withHeading('heading')
                 ),
             ],
             'Captioned video' => [
                 new CaptionedAsset(
                     new Video([new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
-                    new CaptionText('heading'),
+                    CaptionText::withHeading('heading'),
                     new Doi('10.7554/eLife.10181.001')
                 ),
             ],

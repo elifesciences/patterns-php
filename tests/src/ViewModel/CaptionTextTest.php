@@ -18,10 +18,19 @@ final class CaptionTextTest extends ViewModelTest
             'text' => 'text',
         ];
 
-        $captionText = new CaptionText(...array_values($data));
+        $captionText = CaptionText::withHeading(...array_values($data));
 
         $this->assertSame($data['heading'], $captionText['heading']);
         $this->assertSame($data['standfirst'], $captionText['standfirst']);
+        $this->assertSame($data['text'], $captionText['text']);
+        $this->assertSame($data, $captionText->toArray());
+
+        $data = [
+            'text' => 'text',
+        ];
+
+        $captionText = CaptionText::withOutHeading(...array_values($data));
+
         $this->assertSame($data['text'], $captionText['text']);
         $this->assertSame($data, $captionText->toArray());
     }
@@ -33,14 +42,25 @@ final class CaptionTextTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new CaptionText('');
+        CaptionText::withHeading('');
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_text()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        CaptionText::withOutHeading('');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new CaptionText('heading')],
-            'complete' => [new CaptionText('heading', 'stand first', 'text')],
+            'minimum with heading' => [CaptionText::withHeading('heading')],
+            'complete with heading' => [CaptionText::withHeading('heading', 'stand first', 'text')],
+            'without heading' => [CaptionText::withOutHeading('text')],
         ];
     }
 
