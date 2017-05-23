@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\ListingTeasers;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Pager;
@@ -76,9 +77,11 @@ final class ListingTeasersTest extends ViewModelTest
                     'url' => 'url',
                 ],
             ],
-            'heading' => 'Highlights',
+            'heading' => [
+                'heading' => 'Highlights',
+                'headingId' => 'highlights-heading',
+            ],
             'id' => 'highlights',
-            'headingId' => 'highlights-heading',
             'highlights' => true,
         ];
         $listingTeaser = ListingTeasers::forHighlights(
@@ -88,7 +91,7 @@ final class ListingTeasersTest extends ViewModelTest
                 }
 
                 return Teaser::secondary($item['title'], $item['url'], $item['secondaryInfo'] ?? null, null, null, $footer ?? null);
-            }, $data['items']), $data['heading'], $data['id']);
+            }, $data['items']), new ListHeading($data['heading']['heading'], $data['heading']['headingId']), $data['id']);
 
         $this->assertSameWithoutOrder($data, $listingTeaser->toArray());
     }
@@ -118,7 +121,7 @@ final class ListingTeasersTest extends ViewModelTest
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
                     Teaser::basic('title', 'url'),
-                ], 'heading', 'id'),
+                ], new ListHeading('heading'), 'id'),
             ],
             [
                 ListingTeasers::withPagination(
@@ -128,7 +131,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     Pager::firstPage(new Link('testing', '#')),
-                    'heading', 'id'
+                    new ListHeading('heading'), 'id'
                 ),
             ],
             [
@@ -139,7 +142,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')),
-                    'heading'
+                    new ListHeading('heading')
                 ),
             ],
             [
@@ -150,7 +153,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
-                    'heading', 'id'
+                    new ListHeading('heading'), 'id'
                 ),
             ],
             [
@@ -160,7 +163,7 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::secondary('title', 'url'),
                         Teaser::secondary('title', 'url'),
                     ],
-                    'heading', 'id'
+                    new ListHeading('heading'), 'id'
                 ),
             ],
         ];

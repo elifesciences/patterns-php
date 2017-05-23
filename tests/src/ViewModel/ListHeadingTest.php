@@ -14,11 +14,13 @@ final class ListHeadingTest extends ViewModelTest
     {
         $data = [
             'heading' => 'some heading text',
+            'headingId' => 'id',
         ];
 
-        $heading = new ListHeading($data['heading']);
+        $heading = new ListHeading($data['heading'], $data['headingId']);
 
         $this->assertSame($heading['heading'], $data['heading'], 'List heading contains heading property');
+        $this->assertSame($heading['headingId'], $data['headingId']);
         $this->assertSame($heading->toArray(), $data);
     }
 
@@ -35,7 +37,10 @@ final class ListHeadingTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [
+            'complete' => [
+                new ListHeading('heading text', 'id'),
+            ],
+            'minimum' => [
                 new ListHeading('heading text'),
             ],
         ];

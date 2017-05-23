@@ -10,6 +10,7 @@ use eLife\Patterns\ViewModel\GridListing;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\ImageLink;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\Picture;
@@ -27,7 +28,9 @@ final class GridListingTest extends ViewModelTest
     {
         $blockLinksData = [
             'classes' => 'grid-listing--block-link',
-            'heading' => 'heading',
+            'heading' => [
+                'heading' => 'heading',
+            ],
             'blockLinks' => [
                 [
                     'text' => 'text',
@@ -44,16 +47,18 @@ final class GridListingTest extends ViewModelTest
         ];
         $blockLinks = GridListing::forBlockLinks([
             new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))),
-        ], 'heading');
+        ], new ListHeading('heading'));
 
         $this->assertSame($blockLinksData['classes'], $blockLinks['classes']);
-        $this->assertSame($blockLinksData['heading'], $blockLinks['heading']);
+        $this->assertSame($blockLinksData['heading'], $blockLinks['heading']->toArray());
         $this->assertCount(1, $blockLinksData['blockLinks']);
         $this->assertSame($blockLinksData['blockLinks'][0], $blockLinks['blockLinks'][0]->toArray());
         $this->assertSame($blockLinksData, $blockLinks->toArray());
 
         $archiveNavLinksData = [
-            'heading' => 'heading',
+            'heading' => [
+                'heading' => 'heading',
+            ],
             'archiveNavLinks' => [
                 [
                     'blockLink' => [
@@ -79,9 +84,9 @@ final class GridListingTest extends ViewModelTest
         $archiveNavLinks = GridListing::forArchiveNavLinks([
             ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
                 new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
-        ], 'heading');
+        ], new ListHeading('heading'));
 
-        $this->assertSame($archiveNavLinksData['heading'], $archiveNavLinks['heading']);
+        $this->assertSame($archiveNavLinksData['heading'], $archiveNavLinks['heading']->toArray());
         $this->assertCount(1, $archiveNavLinksData['archiveNavLinks']);
         $this->assertSame($archiveNavLinksData['archiveNavLinks'][0],
             $archiveNavLinks['archiveNavLinks'][0]->toArray());
@@ -91,7 +96,9 @@ final class GridListingTest extends ViewModelTest
 
         $imageLinksData = [
             'classes' => 'grid-listing--image-link',
-            'heading' => 'heading',
+            'heading' => [
+                'heading' => 'heading',
+            ],
             'imageLinks' => [
                 [
                     'url' => 'url',
@@ -110,16 +117,18 @@ final class GridListingTest extends ViewModelTest
         ];
         $imageLinks = GridListing::forImageLinks([
             new ImageLink('url', new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))),
-        ], 'heading');
+        ], new ListHeading('heading'));
 
         $this->assertSame($imageLinksData['classes'], $imageLinks['classes']);
-        $this->assertSame($imageLinksData['heading'], $imageLinks['heading']);
+        $this->assertSame($imageLinksData['heading'], $imageLinks['heading']->toArray());
         $this->assertCount(1, $imageLinksData['imageLinks']);
         $this->assertSame($imageLinksData['imageLinks'][0], $imageLinks['imageLinks'][0]->toArray());
         $this->assertSame($imageLinksData, $imageLinks->toArray());
 
         $teasersData = [
-            'heading' => 'heading',
+            'heading' => [
+                'heading' => 'heading',
+            ],
             'teasers' => [
                 [
                     'title' => 'title',
@@ -177,12 +186,12 @@ final class GridListingTest extends ViewModelTest
                     )
                 ),
             ],
-            'heading',
+            new ListHeading('heading'),
             null,
             'id'
         );
 
-        $this->assertSame($teasersData['heading'], $teasers['heading']);
+        $this->assertSame($teasersData['heading'], $teasers['heading']->toArray());
         $this->assertCount(1, $teasersData['teasers']);
         $this->assertSame($teasersData['teasers'][0], $teasers['teasers'][0]->toArray());
         $this->assertSame($teasersData['id'], $teasers['id']);
@@ -201,7 +210,7 @@ final class GridListingTest extends ViewModelTest
                         new BlockLink(new Link('text', 'url')),
                         new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))),
                     ],
-                    'heading'),
+                    new ListHeading('heading')),
             ],
             'archive nav links' => [
                 GridListing::forArchiveNavLinks(
@@ -210,7 +219,7 @@ final class GridListingTest extends ViewModelTest
                         ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
                             new Picture([], new Image('/default/path'))), 'label', [new Link('text', 'url')]),
                     ],
-                    'heading'),
+                    new ListHeading('heading')),
             ],
             'image links' => [
                 GridListing::forImageLinks(
@@ -243,7 +252,7 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    'heading'),
+                    new ListHeading('heading')),
             ],
             'teasers with load more' => [
                 GridListing::forTeasers(
@@ -269,7 +278,7 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    'heading', Pager::firstPage(new Link('testing', '#'))),
+                    new ListHeading('heading'), Pager::firstPage(new Link('testing', '#'))),
             ],
             'teasers with pager' => [
                 GridListing::forTeasers(
@@ -295,7 +304,7 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    'heading', Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
+                    new ListHeading('heading'), Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
                 'id',
             ],
         ];

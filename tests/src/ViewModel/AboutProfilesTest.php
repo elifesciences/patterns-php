@@ -15,7 +15,9 @@ final class AboutProfilesTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'heading' => 'heading',
+            'heading' => [
+                'heading' => 'heading',
+            ],
             'compact' => true,
             'items' => [
                 [
@@ -27,9 +29,9 @@ final class AboutProfilesTest extends ViewModelTest
         ];
         $profile = new AboutProfiles(array_map(function (array $item) {
             return new AboutProfile($item['name'], $item['role'], null, $item['profile']);
-        }, $data['items']), new ListHeading($data['heading']), $data['compact']);
+        }, $data['items']), new ListHeading($data['heading']['heading']), $data['compact']);
 
-        $this->assertSame($data['heading'], $profile['heading']);
+        $this->assertSame($data['heading'], $profile['heading']->toArray());
         $this->assertSame($data['compact'], $profile['compact']);
         $this->assertSameWithoutOrder($data['items'], $profile['items']);
         $this->assertSame($data, $profile->toArray());
