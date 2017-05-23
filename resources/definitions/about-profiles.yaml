@@ -9,8 +9,16 @@ schema:
     type: object
     properties:
         heading:
-            type: string
-            minLength: 1
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                heading:
+                    type: string
+                    minLength: 1
+                headingId:
+                    type: string
+            required:
+                - heading
         compact:
             type: boolean
             default: false

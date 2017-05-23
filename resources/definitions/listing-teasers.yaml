@@ -2,6 +2,7 @@ assets:
     css:
         - buttons.css
         - date.css
+        - list-heading.css
         - listing.css
         - meta.css
         - pager.css
@@ -13,8 +14,16 @@ schema:
     type: object
     properties:
         heading:
-            type: string
-            minLength: 1
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                heading:
+                    type: string
+                    minLength: 1
+                headingId:
+                    type: string
+            required:
+                - heading
         id:
             type: string
             pattern: '^[a-zA-Z0-9_$]+$'
