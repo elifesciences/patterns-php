@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,kCAAmC,CC0C/B,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CDvC5D,oCAAqC,CACnC,UAAU,CAAE,MAAM,CAClB,aAAa,CAAE,CAAC,CAGlB,oCAAsC,CACpC,cAAc,CAAE,IAAI,CAGtB,oCAAqC,CC8UnC,aAAa,CAAE,kBAAiB,CAChC,KAAK,CCrVM,OAAO,CDsVlB,eAAe,CAAE,IAAI,CAErB,0CAAQ,CACN,mBAAmB,CC7VP,OAAO,CD8VnB,KAAK,CC9VO,OAAO",
+"mappings": "AAEA,kCAAmC,CC0C/B,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CDvC5D,oCAAqC,CACnC,UAAU,CAAE,MAAM,CAClB,aAAa,CAAE,CAAC,CAGlB,oCAAsC,CACpC,cAAc,CAAE,IAAI,CAGtB,oCAAqC,CCkVnC,aAAa,CAAE,kBAAiB,CAChC,KAAK,CCzVM,OAAO,CD0VlB,eAAe,CAAE,IAAI,CAErB,0CAAQ,CACN,mBAAmB,CCjWP,OAAO,CDkWnB,KAAK,CClWO,OAAO",
 "sources": ["../../../../../../assets/sass/patterns/organisms/decision-letter-header.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_variables.scss"],
 "names": [],
 "file": "decision-letter-header.css"
