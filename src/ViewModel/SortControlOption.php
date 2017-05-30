@@ -19,7 +19,7 @@ final class SortControlOption implements CastsToArray
     private $url;
     private $sorting;
 
-    public function __construct(Link $link, string $sorting =null)
+    public function __construct(Link $link, string $sorting = null)
     {
         Assertion::nullOrInArray($sorting, [self::ASC, self::DESC]);
 
