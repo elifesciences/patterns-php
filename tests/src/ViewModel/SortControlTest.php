@@ -25,13 +25,12 @@ final class SortControlTest extends ViewModelTest
                     [
                         'option' => 'option 2',
                         'url' => '#',
-                        'sorting' => 'descending',
                     ],
                 ],
         ];
         $sortControl = new SortControl([
             new SortControlOption(new Link($data['options'][0]['option'], $data['options'][0]['url']), $data['options'][0]['sorting']),
-            new SortControlOption(new Link($data['options'][1]['option'], $data['options'][1]['url']), $data['options'][1]['sorting']),
+            new SortControlOption(new Link($data['options'][1]['option'], $data['options'][1]['url'])),
         ]);
 
         $this->assertSame($data, $sortControl->toArray());
@@ -49,7 +48,7 @@ final class SortControlTest extends ViewModelTest
             [
                 new SortControl([
                     new SortControlOption(new Link('alt option 1', '#'), 'descending'),
-                    new SortControlOption(new Link('alt option 2', '#'), 'ascending'),
+                    new SortControlOption(new Link('alt option 2', '#')),
                 ]),
             ],
         ];
