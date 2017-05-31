@@ -15,8 +15,9 @@ final class Link implements CastsToArray
     private $name;
     private $url = null;
     private $isCurrent;
+    private $attributes;
 
-    public function __construct(string $name, string $url = null, bool $isCurrent = false)
+    public function __construct(string $name, string $url = null, bool $isCurrent = false, array $attributes = [])
     {
         Assertion::notBlank($name);
 
@@ -25,5 +26,10 @@ final class Link implements CastsToArray
         if ($isCurrent) {
             $this->isCurrent = true;
         }
+        $this->attributes = array_reduce(array_keys($attributes), function (array $carry, string $key) use ($attributes) {
+            $carry[] = ['key' => $key, 'value' => $attributes[$key]];
+
+            return $carry;
+        }, []);
     }
 }
