@@ -23,13 +23,19 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                         [
                             'name' => 'name',
                             'url' => 'url',
+                            'attributes' => [
+                                [
+                                    'key' => 'key',
+                                    'value' => 'value',
+                                ],
+                            ],
                         ],
                     ],
                 ],
             ],
         ];
 
-        $downloadList = new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url')]]);
+        $downloadList = new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url', false, ['key' => 'value'])]]);
 
         $this->assertSame($data, $downloadList->toArray());
     }
@@ -87,7 +93,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url')]])],
+            [new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url', false, ['key' => 'value'])]])],
         ];
     }
 
