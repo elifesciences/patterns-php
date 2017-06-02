@@ -29,9 +29,12 @@ final class SelectTest extends ViewModelTest
             ],
             'label' => [
                 'labelText' => 'Label for form',
-                'for' => 'id',
                 'isVisuallyHidden' => true,
             ],
+            'name' => 'name',
+            'required' => true,
+            'disabled' => true,
+            'classNames' => 'select--error',
         ];
         $select = new Select($data['id'], [
             new SelectOption(
@@ -44,7 +47,9 @@ final class SelectTest extends ViewModelTest
                 $data['options'][1]['displayValue'],
                 $data['options'][1]['selected']
             ),
-        ], new FormLabel($data['label']['labelText'], $data['label']['for'], $data['label']['isVisuallyHidden']));
+        ], new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']),
+            $data['name'], $data['required'], $data['disabled'], Select::STATUS_ERROR
+        );
 
         $this->assertSame($data, $select->toArray());
     }
@@ -52,11 +57,18 @@ final class SelectTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'Select with label' => [
+            'minimum' => [
                 new Select('id', [
                     new SelectOption('choice-1', 'Choice 1', false),
                     new SelectOption('choice-2', 'Choice 2', true),
-                ], new FormLabel('Form label', 'id')),
+                ], new FormLabel('Form label', 'id'), 'name'),
+            ],
+            'complete' => [
+                new Select('id', [
+                    new SelectOption('choice-1', 'Choice 1', false),
+                    new SelectOption('choice-2', 'Choice 2', true),
+                ], new FormLabel('Form label', 'id'), 'name', true,
+                    true, Select::STATUS_ERROR),
             ],
         ];
     }

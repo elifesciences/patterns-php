@@ -18,36 +18,36 @@ final class SelectNavTest extends ViewModelTest
         $data = [
             'route' => '#',
             'select' => [
-                    'id' => 'id',
-                    'options' => [
-                            [
-                                'value' => 'value 1',
-                                'displayValue' => 'display value 1',
-                                'selected' => false,
-                            ],
-                            [
-                                'value' => 'value 2',
-                                'displayValue' => 'display value 2',
-                                'selected' => true,
-                            ],
-                            [
-                                'value' => 'value 3',
-                                'displayValue' => 'display value 3',
-                                'selected' => false,
-                            ],
-                        ],
-                    'label' => [
-                            'labelText' => 'label',
-                            'for' => 'id',
-                            'isVisuallyHidden' => false,
-                        ],
+                'id' => 'id',
+                'options' => [
+                    [
+                        'value' => 'value 1',
+                        'displayValue' => 'display value 1',
+                        'selected' => false,
+                    ],
+                    [
+                        'value' => 'value 2',
+                        'displayValue' => 'display value 2',
+                        'selected' => true,
+                    ],
+                    [
+                        'value' => 'value 3',
+                        'displayValue' => 'display value 3',
+                        'selected' => false,
+                    ],
                 ],
+                'label' => [
+                    'labelText' => 'label',
+                    'isVisuallyHidden' => false,
+                ],
+                'name' => 'name',
+            ],
             'button' => [
-                    'classes' => 'button--default',
-                    'text' => 'Search',
-                    'type' => 'submit',
-                    'name' => 'some name',
-                ],
+                'classes' => 'button--default',
+                'text' => 'Search',
+                'type' => 'submit',
+                'name' => 'some name',
+            ],
         ];
 
         $selectNav = new SelectNav(
@@ -59,9 +59,9 @@ final class SelectNavTest extends ViewModelTest
                 }, $data['select']['options']),
                 new FormLabel(
                     $data['select']['label']['labelText'],
-                    $data['select']['label']['for'],
                     $data['select']['label']['isVisuallyHidden']
-                )
+                ),
+                $data['select']['name']
             ),
             Button::form('Search', 'submit', 'some name')
         );
@@ -78,7 +78,7 @@ final class SelectNavTest extends ViewModelTest
             [
                 new SelectNav('id', new Select('id', [
                     new SelectOption('value', 'display value'),
-                ], new FormLabel('label', 'id', false)), Button::form('Search', 'submit', 'some name')),
+                ], new FormLabel('label', false), 'name'), Button::form('Search', 'submit', 'some name')),
             ],
         ];
     }

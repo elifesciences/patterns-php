@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\TextArea;
-use InvalidArgumentException;
 
 class TextAreaTest extends ViewModelTest
 {
@@ -16,7 +15,6 @@ class TextAreaTest extends ViewModelTest
         $data = [
             'label' => [
                 'labelText' => 'label text',
-                'for' => 'someid',
                 'isVisuallyHidden' => false,
             ],
             'name' => 'name',
@@ -32,7 +30,7 @@ class TextAreaTest extends ViewModelTest
             'classNames' => 'text-field--error',
         ];
         $textArea = new TextArea(
-            new FormLabel($data['label']['labelText'], $data['label']['for']),
+            new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
             $data['value'],
@@ -49,19 +47,10 @@ class TextAreaTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $textArea);
     }
 
-    /**
-     * @test
-     */
-    public function it_must_have_matching_ids_with_label()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        new TextArea(new FormLabel('label text', 'NOT THE SAME'), 'someid', 'name', 'default value');
-    }
-
     public function viewModelProvider() : array
     {
         return [
-            [new TextArea(new FormLabel('label text', 'someid'), 'someid', 'name', 'default value')],
+            [new TextArea(new FormLabel('label text'), 'someid', 'name', 'default value')],
             [
                 new TextArea(
                     new FormLabel('label text', 'someid'),

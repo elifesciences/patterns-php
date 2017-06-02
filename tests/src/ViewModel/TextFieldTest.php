@@ -16,7 +16,6 @@ final class TextFieldTest extends ViewModelTest
             'inputType' => 'email',
             'label' => [
                 'labelText' => 'label',
-                'for' => 'id',
                 'isVisuallyHidden' => false,
             ],
             'name' => 'someName',
@@ -29,7 +28,7 @@ final class TextFieldTest extends ViewModelTest
             'classNames' => 'text-field--error',
         ];
         $textField = TextField::emailInput(
-            new FormLabel($data['label']['labelText'], $data['label']['for']),
+            new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
             $data['placeholder'],
@@ -55,18 +54,18 @@ final class TextFieldTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'minimal email input' => [TextField::emailInput(new FormLabel('label', 'id'), 'id', 'some name')],
-            'complete email input' => [TextField::emailInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
-            'minimal password input' => [TextField::passwordInput(new FormLabel('label', 'id'), 'id', 'some name')],
-            'complete password input' => [TextField::passwordInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
-            'minimal search input' => [TextField::searchInput(new FormLabel('label', 'id'), 'id', 'some name')],
-            'complete search input' => [TextField::searchInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
-            'minimal tel input' => [TextField::telInput(new FormLabel('label', 'id'), 'id', 'some name')],
-            'complete tel input' => [TextField::telInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
-            'minimal text input' => [TextField::textInput(new FormLabel('label', 'id'), 'id', 'some name')],
-            'complete text input' => [TextField::textInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
-            'minimal url input' => [TextField::urlInput(new FormLabel('label', 'id'), 'id', 'some name')],
-            'complete url input' => [TextField::urlInput(new FormLabel('label', 'id'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
+            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],
+            'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'minimal search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name')],
+            'complete search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'minimal tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name')],
+            'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'minimal text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name')],
+            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'minimal url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name')],
+            'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
         ];
     }
 

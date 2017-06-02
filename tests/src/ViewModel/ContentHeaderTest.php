@@ -99,9 +99,9 @@ final class ContentHeaderTest extends ViewModelTest
                     ],
                     'label' => [
                         'labelText' => 'label',
-                        'for' => 'id',
                         'isVisuallyHidden' => false,
                     ],
+                    'name' => 'name',
                 ],
                 'button' => [
                     'classes' => 'button--default',
@@ -141,9 +141,9 @@ final class ContentHeaderTest extends ViewModelTest
                     }, $data['selectNav']['select']['options']),
                     new FormLabel(
                         $data['selectNav']['select']['label']['labelText'],
-                        $data['selectNav']['select']['label']['for'],
                         $data['selectNav']['select']['label']['isVisuallyHidden']
-                    )
+                    ),
+                    $data['selectNav']['select']['name']
                 ),
                 Button::form($data['selectNav']['button']['text'], $data['selectNav']['button']['type'])
             ),
