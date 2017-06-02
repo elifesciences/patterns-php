@@ -17,14 +17,14 @@ final class AudioPlayer implements ViewModel
 
     private $episodeNumber;
     private $title;
+    private $url;
     /** @var MediaSource[] */
     private $sources;
     private $metadata;
 
-    public function __construct(int $episodeNumber, string $title, array $sources, array $chapters)
+    public function __construct(int $episodeNumber, Link $title, array $sources, array $chapters)
     {
         Assertion::min($episodeNumber, 1);
-        Assertion::notBlank($title);
         Assertion::allIsInstanceOf($sources, MediaSource::class);
         Assertion::notEmpty($chapters);
         Assertion::allIsInstanceOf($chapters, MediaChapterListingItem::class);
@@ -33,7 +33,8 @@ final class AudioPlayer implements ViewModel
         }, $sources), 'All sources must be audio types.');
 
         $this->episodeNumber = $episodeNumber;
-        $this->title = $title;
+        $this->title = $title['name'];
+        $this->url = $title['url'];
         $this->sources = array_map(function (MediaSource $source) {
             if (empty($source['fallback'])) {
                 return $source;
