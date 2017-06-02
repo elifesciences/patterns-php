@@ -24,7 +24,7 @@ final class CaptionedAsset implements ViewModel
 
     public function __construct(
         IsCaptioned $figure,
-        CaptionText $captionText,
+        CaptionText $captionText = null,
         Doi $doi = null
     ) {
         $this->captionText = $captionText;

@@ -15,12 +15,14 @@ final class Carousel implements ViewModel
     use ArrayFromProperties;
     use ComposedAssets;
 
+    private $heading;
     private $items;
 
-    public function __construct(CarouselItem ...$items)
+    public function __construct(array $items, ListHeading $heading)
     {
         Assertion::notEmpty($items);
 
+        $this->heading = $heading;
         $this->items = $items;
     }
 
@@ -37,5 +39,6 @@ final class Carousel implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->items;
+        yield $this->heading;
     }
 }

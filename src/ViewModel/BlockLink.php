@@ -16,17 +16,13 @@ final class BlockLink implements ViewModel
 
     private $text;
     private $url;
-    private $behaviour;
-    private $backgroundImage;
+    private $image;
 
-    public function __construct(Link $link, BackgroundImage $backgroundImage = null)
+    public function __construct(Link $link, Picture $image = null)
     {
         $this->text = $link['name'];
         $this->url = $link['url'];
-        if ($backgroundImage) {
-            $this->behaviour = 'BackgroundImage';
-            $this->backgroundImage = $backgroundImage;
-        }
+        $this->image = $image;
     }
 
     public function getTemplateName() : string

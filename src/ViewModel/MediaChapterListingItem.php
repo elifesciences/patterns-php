@@ -5,7 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
+use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,24 +13,26 @@ final class MediaChapterListingItem implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
+    use SimplifyAssets;
 
     private $title;
     private $startTime;
     private $chapterNumber;
     private $content;
-    private $meta;
+    private $hasContentSources;
+    private $contentSources;
 
     public function __construct(
         string $title,
         int $startTime,
         int $chapterNumber,
         string $content = null,
-        Meta $meta = null
+        array $contentSources = []
     ) {
         Assertion::minLength($title, 1);
         Assertion::min($startTime, 0);
         Assertion::min($chapterNumber, 1);
+        Assertion::allIsInstanceOf($contentSources, ContentSource::class);
 
         $this->title = $title;
 
@@ -45,7 +47,10 @@ final class MediaChapterListingItem implements ViewModel
 
         $this->chapterNumber = $chapterNumber;
         $this->content = $content;
-        $this->meta = $meta;
+        if ($contentSources) {
+            $this->hasContentSources = true;
+            $this->contentSources = $contentSources;
+        }
     }
 
     public function getTemplateName() : string
@@ -53,14 +58,8 @@ final class MediaChapterListingItem implements ViewModel
         return 'resources/templates/media-chapter-listing-item.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
+    public function getStyleSheets() : Traversable
     {
         yield 'resources/assets/css/media-chapter-listing-item.css';
-        yield 'resources/assets/css/teaser.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->meta;
     }
 }
