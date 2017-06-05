@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\AudioPlayer;
+use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MediaChapterListingItem;
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaSourceFallback;
@@ -19,7 +20,7 @@ final class AudioPlayerTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
         new AudioPlayer(
             1,
-            'this will fail',
+            new Link('this will fail'),
             [
                 new MediaSource('/nope.jpg', new MediaType('image/jpeg')),
             ],
@@ -37,7 +38,7 @@ final class AudioPlayerTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
         new AudioPlayer(
             1,
-            'this will fail',
+            new Link('this will fail'),
             [
                 new MediaSource('/nope.jpg', new MediaType('video/mp4')),
             ],
@@ -55,7 +56,7 @@ final class AudioPlayerTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
         new AudioPlayer(
             0,
-            'this will fail',
+            new Link('this will fail'),
             [
                 new MediaSource('/nope.mp3', new MediaType('audio/mpeg')),
             ],
@@ -73,7 +74,7 @@ final class AudioPlayerTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
         new AudioPlayer(
             1,
-            'this will fail',
+            new Link('this will fail'),
             [
                 new MediaSource('/nope.mp3', new MediaType('audio/mpeg')),
             ],
@@ -93,6 +94,7 @@ final class AudioPlayerTest extends ViewModelTest
         $data = [
             'episodeNumber' => 1,
             'title' => 'title of player',
+            'url' => 'url',
             'sources' => [
                 [
                     'mediaType' => [
@@ -117,7 +119,7 @@ final class AudioPlayerTest extends ViewModelTest
             'metadata' => str_replace('"', '\'', json_encode(['number' => 1, 'chapters' => $chapters])),
         ];
 
-        $audioPlayer = new AudioPlayer($data['episodeNumber'], $data['title'],
+        $audioPlayer = new AudioPlayer($data['episodeNumber'], new Link($data['title'], $data['url']),
             [
                 new MediaSource($data['sources'][0]['src'],
                     new MediaType($data['sources'][0]['mediaType']['forMachine']),
@@ -135,6 +137,7 @@ final class AudioPlayerTest extends ViewModelTest
 
         $this->assertSame($data['episodeNumber'], $audioPlayer['episodeNumber']);
         $this->assertSame($data['title'], $audioPlayer['title']);
+        $this->assertSame($data['url'], $audioPlayer['url']);
         $this->assertSameWithoutOrder($data['sources'][0], $audioPlayer['sources'][0]);
         $this->assertSameWithoutOrder($data['sources'][0]['mediaType'], $audioPlayer['sources'][0]['mediaType']);
         $this->assertSame($data['sources'][0]['src'], $audioPlayer['sources'][0]['src']);
@@ -149,7 +152,7 @@ final class AudioPlayerTest extends ViewModelTest
     {
         return [
             [
-                new AudioPlayer(1, 'title of player',
+                new AudioPlayer(1, new Link('title of player', 'url'),
                     [
                         new MediaSource('/audio.mp3', new MediaType('audio/mpeg'),
                             new MediaSourceFallback('fallback', true)),
