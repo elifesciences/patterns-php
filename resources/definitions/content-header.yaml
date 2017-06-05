@@ -163,8 +163,20 @@ schema:
                 profile:
                     - hasProfile
         authorLine:
-            type: string
-            minLength: 1
+            type: object
+            properties:
+                text:
+                    type: string
+                    minLength: 1
+                url:
+                    type: string
+                    minLength: 1
+                hasEtAl:
+                    type: boolean
+                    enum:
+                        - true
+            required:
+                - text
         authors:
             type: object
             properties:
@@ -402,5 +414,7 @@ schema:
     dependencies:
         authorLine:
             - authors
+        authors:
+            - authorLine
         institutions:
             - authors
