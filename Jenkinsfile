@@ -1,6 +1,8 @@
 elifeLibrary {
+    def commit
     stage 'Checkout', {
         checkout scm
+        commit = elifeGitRevision()
     }
 
     elifeVariants(['lowest', 'default'], { dependencies ->
@@ -9,8 +11,8 @@ elifeLibrary {
 
     elifeMainlineOnly {
         stage 'Downstream', {
-            build job: 'dependencies-journal-update-patterns-php', wait: false
-            build job: 'dependencies-error-pages-update-patterns-php', wait: false
+            build job: 'dependencies-journal-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit)]
+            build job: 'dependencies-error-pages-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit)]
         }
     }
 }
