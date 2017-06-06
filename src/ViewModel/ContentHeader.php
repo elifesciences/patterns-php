@@ -27,6 +27,7 @@ final class ContentHeader implements ViewModel
     private $button;
     private $selectNav;
     private $meta;
+    private $licence;
 
     public function __construct(
         string $title,
@@ -42,7 +43,8 @@ final class ContentHeader implements ViewModel
         string $download = null,
         Button $button = null,
         SelectNav $selectNav = null,
-        Meta $meta = null
+        Meta $meta = null,
+        string $licence = null
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
@@ -83,6 +85,7 @@ final class ContentHeader implements ViewModel
         $this->button = $button;
         $this->selectNav = $selectNav;
         $this->meta = $meta;
+        $this->licence = $licence;
     }
 
     public function getTemplateName() : string

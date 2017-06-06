@@ -116,6 +116,7 @@ final class ContentHeaderTest extends ViewModelTest
             'meta' => [
                 'text' => 'Research article',
             ],
+            'licence' => 'https://creativecommons.org/licenses/by/4.0/',
         ];
 
         $contentHeader = new ContentHeader(
@@ -152,7 +153,8 @@ final class ContentHeaderTest extends ViewModelTest
                 ),
                 Button::form($data['selectNav']['button']['text'], $data['selectNav']['button']['type'])
             ),
-            Meta::withText($data['meta']['text'])
+            Meta::withText($data['meta']['text']),
+            $data['licence']
         );
 
         $this->assertSame($data['title'], $contentHeader['title']);
@@ -167,6 +169,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['button'], $contentHeader['button']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
         $this->assertSameWithoutOrder($data['meta'], $contentHeader['meta']);
+        $this->assertSame($data['licence'], $contentHeader['licence']);
         $this->assertSame($data, $contentHeader->toArray());
     }
 
