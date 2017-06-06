@@ -36,6 +36,7 @@ final class ContentHeader implements ViewModel
         array $subjects = [],
         Profile $profile = null,
         string $authorLine = null,
+        string $authorsUrl = null,
         array $authors = [],
         array $institutions = [],
         string $download = null,
@@ -65,13 +66,17 @@ final class ContentHeader implements ViewModel
                 $this->header['profile'] = $profile;
             }
         }
-        if ($authorLine) {
-            $this->authorLine = $authorLine;
-            if ($authors) {
-                $this->authors = ['list' => $authors];
-                if ($institutions) {
-                    $this->institutions = ['list' => $institutions];
-                }
+        if ($authors) {
+            Assertion::notBlank($authorLine);
+            preg_match('~^(.+?)( et al\.?)?$~', $authorLine, $matches);
+            $this->authorLine = array_filter([
+                'text' => trim($matches[1]),
+                'url' => $authorsUrl,
+                'hasEtAl' => !empty($matches[2]),
+            ]);
+            $this->authors = ['list' => $authors];
+            if ($institutions) {
+                $this->institutions = ['list' => $institutions];
             }
         }
         $this->download = $download;
