@@ -54,7 +54,11 @@ final class ContentHeaderTest extends ViewModelTest
                     'name' => 'profile',
                 ],
             ],
-            'authorLine' => 'author line',
+            'authorLine' => [
+                'text' => 'author line',
+                'url' => 'authors',
+                'hasEtAl' => true,
+            ],
             'authors' => [
                 'list' => [
                     [
@@ -123,7 +127,8 @@ final class ContentHeaderTest extends ViewModelTest
                 return new Link($item['name']);
             }, $data['header']['subjects']),
             new Profile(new Link($data['header']['profile']['name'])),
-            $data['authorLine'],
+            $data['authorLine']['text'].' et al.',
+            $data['authorLine']['url'],
             array_map(function (array $item) {
                 return Author::asText($item['name'], $item['isCorresponding'] ?? false);
             }, $data['authors']['list']),
@@ -192,7 +197,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, false, [], null, 'authors', ['foo']);
+        new ContentHeader('', null, null, false, [], null, 'authors', null, ['foo']);
     }
 
     /**
@@ -202,13 +207,20 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, false, [], null, 'authors', [Author::asText('author')], ['foo']);
+        new ContentHeader('', null, null, false, [], null, 'authors', null, [Author::asText('author')], ['foo']);
     }
 
     public function viewModelProvider() : array
     {
         return [
             'minimum' => [new ContentHeader('title')],
+            'complete' => [
+                new ContentHeader('title', new Picture([], new Image(
+                    '/default/path',
+                    [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                    'the alt text',
+                    ['class-1', 'class-2'])), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), ' author line', 'url', [Author::asText('author')], [new Institution('institution')], '#'),
+            ],
         ];
     }
 
