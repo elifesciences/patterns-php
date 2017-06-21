@@ -251,19 +251,25 @@ schema:
                         id:
                             type: string
                             minLength: 1
+                        name:
+                            type: string
+                            minLength: 1
+                        classNames:
+                            type: string
+                            minLength: 1
+                        required:
+                            type: boolean
+                        disabled:
+                            type: boolean
                         label:
                             type: object
                             properties:
                                 labelText:
                                     type: string
                                     minLength: 1
-                                for:
-                                    type: string
-                                    minLength: 1
                                 isVisuallyHidden:
                                     type: boolean
                             required:
-                                - for
                                 - labelText
                         options:
                             array: string
@@ -283,9 +289,10 @@ schema:
                                     - value
                                     - displayValue
                     required:
-                        - id
-                        - label
                         - options
+                    dependencies:
+                        label:
+                            - id
                 route:
                     type: string
                     minLength: 1
