@@ -54,11 +54,6 @@ final class ContentHeaderTest extends ViewModelTest
                     'name' => 'profile',
                 ],
             ],
-            'authorLine' => [
-                'text' => 'author line',
-                'url' => 'authors',
-                'hasEtAl' => true,
-            ],
             'authors' => [
                 'list' => [
                     [
@@ -128,8 +123,6 @@ final class ContentHeaderTest extends ViewModelTest
                 return new Link($item['name']);
             }, $data['header']['subjects']),
             new Profile(new Link($data['header']['profile']['name'])),
-            $data['authorLine']['text'].' et al.',
-            $data['authorLine']['url'],
             array_map(function (array $item) {
                 return Author::asText($item['name'], $item['isCorresponding'] ?? false);
             }, $data['authors']['list']),
@@ -162,7 +155,6 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['image'], $contentHeader['image']);
         $this->assertSame($data['impactStatement'], $contentHeader['impactStatement']);
         $this->assertSameWithoutOrder($data['header'], $contentHeader['header']);
-        $this->assertSame($data['authorLine'], $contentHeader['authorLine']);
         $this->assertSameWithoutOrder($data['authors'], $contentHeader['authors']);
         $this->assertSameWithoutOrder($data['institutions'], $contentHeader['institutions']);
         $this->assertSame($data['download'], $contentHeader['download']);
@@ -200,7 +192,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, false, [], null, 'authors', null, ['foo']);
+        new ContentHeader('', null, null, false, [], null, ['foo']);
     }
 
     /**
@@ -210,7 +202,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, false, [], null, 'authors', null, [Author::asText('author')], ['foo']);
+        new ContentHeader('', null, null, false, [], null, [Author::asText('author')], ['foo']);
     }
 
     public function viewModelProvider() : array
@@ -222,7 +214,7 @@ final class ContentHeaderTest extends ViewModelTest
                     '/default/path',
                     [500 => '/path/to/image/500/wide', 250 => '/default/path'],
                     'the alt text',
-                    ['class-1', 'class-2'])), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), ' author line', 'url', [Author::asText('author')], [new Institution('institution')], '#'),
+                    ['class-1', 'class-2'])), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
             ],
         ];
     }

@@ -20,7 +20,6 @@ final class ContentHeader implements ViewModel
     private $image;
     private $impactStatement;
     private $header;
-    private $authorLine;
     private $authors;
     private $institutions;
     private $download;
@@ -36,8 +35,6 @@ final class ContentHeader implements ViewModel
         bool $header = false,
         array $subjects = [],
         Profile $profile = null,
-        string $authorLine = null,
-        string $authorsUrl = null,
         array $authors = [],
         array $institutions = [],
         string $download = null,
@@ -69,13 +66,6 @@ final class ContentHeader implements ViewModel
             }
         }
         if ($authors) {
-            Assertion::notBlank($authorLine);
-            preg_match('~^(.+?)( et al\.?)?$~', $authorLine, $matches);
-            $this->authorLine = array_filter([
-                'text' => trim($matches[1]),
-                'url' => $authorsUrl,
-                'hasEtAl' => !empty($matches[2]),
-            ]);
             $this->authors = ['list' => $authors];
             if ($institutions) {
                 $this->institutions = ['list' => $institutions];
