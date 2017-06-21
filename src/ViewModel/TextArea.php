@@ -45,7 +45,6 @@ final class TextArea implements ViewModel
         string $form = null,
         string $status = null
     ) {
-        Assertion::same($id, $label['for']);
         Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
 
         $this->label = $label;
@@ -72,5 +71,6 @@ final class TextArea implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield 'resources/assets/css/text-fields.css';
+        yield 'resources/assets/css/form-label.css';
     }
 }
