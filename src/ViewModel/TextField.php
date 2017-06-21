@@ -43,7 +43,6 @@ final class TextField implements ViewModel
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['email', 'password', 'search', 'tel', 'text', 'url']);
-        Assertion::same($id, $label['for']);
         Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
 
         $this->inputType = $inputType;
@@ -152,5 +151,6 @@ final class TextField implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield 'resources/assets/css/text-fields.css';
+        yield 'resources/assets/css/form-label.css';
     }
 }
