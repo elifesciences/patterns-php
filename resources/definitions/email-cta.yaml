@@ -67,6 +67,53 @@ schema:
                                 value:
                                     type: string
                                     minLength: 1
+                    honeypot:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                minLength: 1
+                            name:
+                                type: string
+                                minLength: 1
+                            autofocus:
+                                type: boolean
+                            inputType:
+                                type: string
+                                enum:
+                                    - email
+                                    - password
+                                    - search
+                                    - tel
+                                    - text
+                                    - url
+                                minLength: 1
+                            classNames:
+                                type: string
+                                minLength: 1
+                            placeholder:
+                                type: string
+                                minLength: 1
+                            required:
+                                type: boolean
+                            disabled:
+                                type: boolean
+                            label:
+                                type: object
+                                properties:
+                                    labelText:
+                                        type: string
+                                        minLength: 1
+                                    isVisuallyHidden:
+                                        type: boolean
+                                required:
+                                    - labelText
+                        required:
+                            - inputType
+                        dependencies:
+                            label:
+                                - id
                 required:
                     - formId
                     - formAction
