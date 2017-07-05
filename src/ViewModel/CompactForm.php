@@ -25,8 +25,9 @@ final class CompactForm implements ViewModel
     private $inputPlaceholder;
     private $ctaText;
     private $hiddenFields;
+    private $honeypot;
 
-    public function __construct(Form $form, Input $input, string $ctaText, array $hiddenFields = [])
+    public function __construct(Form $form, Input $input, string $ctaText, array $hiddenFields = [], Honeypot $honeypot = null)
     {
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
@@ -41,6 +42,7 @@ final class CompactForm implements ViewModel
         $this->inputPlaceholder = $input['placeholder'];
         $this->ctaText = $ctaText;
         $this->hiddenFields = $hiddenFields;
+        $this->honeypot = $honeypot;
     }
 
     public function getTemplateName() : string
