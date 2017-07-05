@@ -4,8 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\CompactForm;
 use eLife\Patterns\ViewModel\Form;
+use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\HiddenField;
+use eLife\Patterns\ViewModel\Honeypot;
 use eLife\Patterns\ViewModel\Input;
+use eLife\Patterns\ViewModel\TextField;
 use InvalidArgumentException;
 
 final class CompactFormTest extends ViewModelTest
@@ -32,13 +35,39 @@ final class CompactFormTest extends ViewModelTest
                     'value' => 'hidden-value',
                 ],
             ],
+            'honeypot' => [
+                'inputType' => 'email',
+                'label' => [
+                    'labelText' => 'label',
+                    'isVisuallyHidden' => false,
+                ],
+                'name' => 'someName',
+                'id' => 'id',
+                'placeholder' => 'placeholder',
+                'required' => true,
+                'disabled' => true,
+                'autofocus' => true,
+                'value' => 'value',
+                'classNames' => 'text-field--error',
+            ],
         ];
 
         $form = new CompactForm(
             new Form($data['formAction'], $data['formId'], $data['formMethod']),
             new Input($data['label'], $data['inputType'], $data['inputName'], $data['inputValue'],
                 $data['inputPlaceholder']),
-            $data['ctaText'], [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])]
+            $data['ctaText'], [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
+            new Honeypot(TextField::emailInput(
+                new FormLabel($data['honeypot']['label']['labelText']),
+                $data['honeypot']['id'],
+                $data['honeypot']['name'],
+                $data['honeypot']['placeholder'],
+                $data['honeypot']['required'],
+                $data['honeypot']['disabled'],
+                $data['honeypot']['autofocus'],
+                $data['honeypot']['value'],
+                TextField::STATUS_ERROR
+            ))
         );
 
         $this->assertSame($data['formAction'], $form['formAction']);
@@ -50,6 +79,7 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSame($data['inputValue'], $form['inputValue']);
         $this->assertSame($data['inputPlaceholder'], $form['inputPlaceholder']);
         $this->assertSame($data['hiddenFields'][0], $form['hiddenFields'][0]->toArray());
+        $this->assertSame($data['honeypot'], $form['honeypot']->toArray());
         $this->assertSame($data, $form->toArray());
     }
 
@@ -95,7 +125,8 @@ final class CompactFormTest extends ViewModelTest
                 new CompactForm(
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder'),
-                    'cta', [new HiddenField('name', 'id', 'value')]
+                    'cta', [new HiddenField('name', 'id', 'value')],
+                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
                 ),
             ],
         ];
