@@ -35,6 +35,19 @@ final class ListingTest extends ViewModelTest
         $this->assertSame($data['isOrdered'], $listing['isOrdered']);
         $this->assertSame($data['items'], $listing['items']);
         $this->assertSame($data, $listing->toArray());
+
+        $data = [
+            'isOrdered' => false,
+            'prefix' => 'bullet',
+            'items' => ['foo', 'bar'],
+            'classes' => 'list--teaser',
+        ];
+
+        $listing = Listing::forTeaser(['foo', 'bar'], 'bullet');
+
+        $this->assertSame($data['isOrdered'], $listing['isOrdered']);
+        $this->assertSame($data['items'], $listing['items']);
+        $this->assertSame($data, $listing->toArray());
     }
 
     /**
@@ -73,6 +86,7 @@ final class ListingTest extends ViewModelTest
             'ordered' => [Listing::ordered(['foo', 'bar'], 'roman-upper')],
             'unordered' => [Listing::unordered(['foo', 'bar'], 'bullet')],
             'no prefix' => [Listing::unordered(['foo', 'bar'])],
+            'for teaser' => [Listing::forTeaser(['foo', 'bar'])],
         ];
     }
 
