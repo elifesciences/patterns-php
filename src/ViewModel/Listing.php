@@ -18,8 +18,9 @@ final class Listing implements ViewModel
     private $isOrdered;
     private $prefix;
     private $items;
+    private $classes;
 
-    private function __construct(bool $isOrdered, string $prefix = null, array $items)
+    private function __construct(bool $isOrdered, string $prefix = null, array $items, string $classes = null)
     {
         Assertion::nullOrChoice($prefix,
             ['alpha-lower', 'alpha-upper', 'bullet', 'number', 'roman-lower', 'roman-upper']);
@@ -29,6 +30,7 @@ final class Listing implements ViewModel
         $this->isOrdered = $isOrdered;
         $this->prefix = $prefix;
         $this->items = $items;
+        $this->classes = $classes;
     }
 
     public static function ordered(array $items, string $prefix = null) : Listing
@@ -39,6 +41,11 @@ final class Listing implements ViewModel
     public static function unordered(array $items, string $prefix = null) : Listing
     {
         return new self(false, $prefix, $items);
+    }
+
+    public static function forTeaser(array $items, string $prefix = 'bullet') : Listing
+    {
+        return new self(false, $prefix, $items, 'list--teaser');
     }
 
     public function getStyleSheets() : Traversable
