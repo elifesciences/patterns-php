@@ -24,7 +24,7 @@ final class ContentHeaderImage implements CastsToArray
         if ($credit) {
             $this->credit = [
                 'text' => $credit,
-                'elementId' => hash('crc32', uniqid('', true)),
+                'elementId' => hash('crc32', json_encode($picture->toArray()).$credit),
             ];
         }
     }
