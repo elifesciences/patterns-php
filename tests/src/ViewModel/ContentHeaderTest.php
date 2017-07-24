@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Author;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ContentHeader;
+use eLife\Patterns\ViewModel\ContentHeaderImage;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Institution;
@@ -40,6 +41,9 @@ final class ContentHeaderTest extends ViewModelTest
                 'fallback' => [
                     'altText' => '',
                     'defaultPath' => '/default/path',
+                ],
+                'credit' => [
+                    'text' => 'image credit',
                 ],
             ],
             'impactStatement' => 'impact statement',
@@ -116,7 +120,7 @@ final class ContentHeaderTest extends ViewModelTest
 
         $contentHeader = new ContentHeader(
             $data['title'],
-            new Picture([], new Image($data['image']['fallback']['defaultPath'])),
+            new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text']),
             $data['impactStatement'],
             true,
             array_map(function (array $item) {
@@ -149,6 +153,8 @@ final class ContentHeaderTest extends ViewModelTest
             Meta::withText($data['meta']['text']),
             $data['licence']
         );
+
+        $data['image']['credit']['elementId'] = $contentHeader['image']['credit']['elementId'];
 
         $this->assertSame($data['title'], $contentHeader['title']);
         $this->assertSame($data['longTitle'], $contentHeader['longTitle']);
@@ -210,11 +216,11 @@ final class ContentHeaderTest extends ViewModelTest
         return [
             'minimum' => [new ContentHeader('title')],
             'complete' => [
-                new ContentHeader('title', new Picture([], new Image(
+                new ContentHeader('title', new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     [500 => '/path/to/image/500/wide', 250 => '/default/path'],
                     'the alt text',
-                    ['class-1', 'class-2'])), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
+                    ['class-1', 'class-2'])), 'image credit'), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
             ],
         ];
     }

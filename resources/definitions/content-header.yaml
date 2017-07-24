@@ -1,5 +1,6 @@
 assets:
     css:
+        - audio-player.css
         - buttons.css
         - content-header.css
         - date.css
@@ -16,51 +17,67 @@ schema:
         longTitle:
             type: boolean
         image:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                pictureClasses:
-                    type: string
-                    minLength: 1
-                sources:
-                    type: array
-                    uniqueItems: true
-                    items:
-                        type: object
-                        properties:
-                            srcset:
-                                type: string
-                                minLength: 1
-                            media:
-                                type: string
-                                minLength: 1
-                            type:
-                                type: string
-                                enum:
-                                    - image/svg+xml
-                                    - image/webp
-                                    - image/png
-                                    - image/jpeg
-                        required:
-                            - srcset
-                fallback:
+            allOf:
+                -
+                    $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
-                        srcset:
-                            type: string
-                            pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
-                        defaultPath:
+                        pictureClasses:
                             type: string
                             minLength: 1
-                        altText:
-                            type: string
-                        classes:
-                            type: string
+                        sources:
+                            type: array
+                            uniqueItems: true
+                            items:
+                                type: object
+                                properties:
+                                    srcset:
+                                        type: string
+                                        minLength: 1
+                                    media:
+                                        type: string
+                                        minLength: 1
+                                    type:
+                                        type: string
+                                        enum:
+                                            - image/svg+xml
+                                            - image/webp
+                                            - image/png
+                                            - image/jpeg
+                                required:
+                                    - srcset
+                        fallback:
+                            type: object
+                            properties:
+                                srcset:
+                                    type: string
+                                    pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                defaultPath:
+                                    type: string
+                                    minLength: 1
+                                altText:
+                                    type: string
+                                classes:
+                                    type: string
+                            required:
+                                - defaultPath
+                                - altText
                     required:
-                        - defaultPath
-                        - altText
-            required:
-                - fallback
+                        - fallback
+                -
+                    properties:
+                        credit:
+                            type: object
+                            properties:
+                                text:
+                                    type: string
+                                    minLength: 1
+                                elementId:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - text
+                                - elementId
         impactStatement:
             type: string
             minLength: 1
@@ -401,6 +418,39 @@ schema:
                 -
                     required:
                         - text
+        audioPlayer:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                title:
+                    type: string
+                    minLength: 1
+                url:
+                    type: string
+                metadata:
+                    type: string
+                    minLength: 1
+                sources:
+                    type: array
+                    minItems: 1
+                    items:
+                        type: object
+                        properties:
+                            src:
+                                type: string
+                                minLength: 1
+                            mediaType:
+                                type: object
+                                properties:
+                                    forMachine:
+                                        type: string
+                                        pattern: '^(audio\/[a-zA-Z0-9!#$%^&\*_\-\+{}\|''.`~]+)(; *[a-zA-Z0-9!#$%^&\*_\-\+{}\|''.`~]+=(([a-zA-Z0-9\.\-]+)|(".+")))*$'
+                                    forHuman:
+                                        type: string
+                                        minLength: 1
+            required:
+                - title
+                - sources
     required:
         - title
     dependencies:
