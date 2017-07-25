@@ -30,6 +30,10 @@ final class AuthorDetails implements ViewModel
         $this->authorId = $id;
         $this->name = $name;
         $this->details = array_map(function (string $heading, $value) {
+            if (is_array($value) && 1 === count($value)) {
+                $value = reset($value);
+            }
+
             return array_filter([
                 'heading' => $heading,
                 'value' => is_string($value) ? $value : null,

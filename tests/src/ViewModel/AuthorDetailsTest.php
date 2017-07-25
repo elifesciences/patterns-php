@@ -24,11 +24,15 @@ final class AuthorDetailsTest extends ViewModelTest
                     'heading' => 'many details',
                     'values' => ['value 1', 'value 2'],
                 ],
+                [
+                    'heading' => 'many details 2',
+                    'value' => 'value 1',
+                ],
             ],
             'orcid' => '0000-0002-1825-0097',
         ];
 
-        $authorDetails = AuthorDetails::forPerson($data['authorId'], $data['name'], [$data['details'][0]['heading'] => $data['details'][0]['value'], $data['details'][1]['heading'] => $data['details'][1]['values']], $data['orcid']);
+        $authorDetails = AuthorDetails::forPerson($data['authorId'], $data['name'], [$data['details'][0]['heading'] => $data['details'][0]['value'], $data['details'][1]['heading'] => $data['details'][1]['values'], $data['details'][2]['heading'] => [$data['details'][2]['value']]], $data['orcid']);
 
         $this->assertSame($data['authorId'], $authorDetails['authorId']);
         $this->assertSame($data['name'], $authorDetails['name']);
