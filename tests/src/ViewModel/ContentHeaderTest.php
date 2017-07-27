@@ -44,6 +44,7 @@ final class ContentHeaderTest extends ViewModelTest
                 ],
                 'credit' => [
                     'text' => 'image credit',
+                    'overlay' => true,
                 ],
             ],
             'impactStatement' => 'impact statement',
@@ -120,7 +121,7 @@ final class ContentHeaderTest extends ViewModelTest
 
         $contentHeader = new ContentHeader(
             $data['title'],
-            new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text']),
+            new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['credit']['overlay']),
             $data['impactStatement'],
             true,
             array_map(function (array $item) {
@@ -220,7 +221,7 @@ final class ContentHeaderTest extends ViewModelTest
                     '/default/path',
                     [500 => '/path/to/image/500/wide', 250 => '/default/path'],
                     'the alt text',
-                    ['class-1', 'class-2'])), 'image credit'), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
+                    ['class-1', 'class-2'])), 'image credit', true), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
             ],
         ];
     }
