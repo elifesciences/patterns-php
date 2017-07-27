@@ -27,10 +27,11 @@ final class ContentHeader implements ViewModel
     private $selectNav;
     private $meta;
     private $licence;
+    private $audioPlayer;
 
     public function __construct(
         string $title,
-        Picture $image = null,
+        ContentHeaderImage $image = null,
         string $impactStatement = null,
         bool $header = false,
         array $subjects = [],
@@ -41,7 +42,8 @@ final class ContentHeader implements ViewModel
         Button $button = null,
         SelectNav $selectNav = null,
         Meta $meta = null,
-        string $licence = null
+        string $licence = null,
+        AudioPlayer $audioPlayer = null
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
@@ -76,6 +78,7 @@ final class ContentHeader implements ViewModel
         $this->selectNav = $selectNav;
         $this->meta = $meta;
         $this->licence = $licence;
+        $this->audioPlayer = $audioPlayer;
     }
 
     public function getTemplateName() : string
