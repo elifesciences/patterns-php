@@ -17,12 +17,10 @@ final class ImageLinkTest extends ViewModelTest
             'url' => 'url',
             'image' => [
                 'fallback' => [
-                    'classes' => 'image-link__img',
                     'altText' => 'the alt text',
                     'defaultPath' => '/default/path',
                     'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
                 ],
-                'pictureClasses' => 'image-link__picture',
             ],
         ];
 
