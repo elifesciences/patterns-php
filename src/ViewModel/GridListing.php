@@ -71,12 +71,6 @@ final class GridListing implements ViewModel
         Assertion::notEmpty($imageLinks);
         Assertion::allIsInstanceOf($imageLinks, ImageLink::class);
 
-        $imageLinks = array_map(function (ImageLink $imageLink) {
-            $imageLink = FlexibleViewModel::fromViewModel($imageLink);
-
-            return $imageLink->withProperty('variant', 'grid-listing');
-        }, $imageLinks);
-
         return new self('grid-listing--image-link', $heading, [], [], $imageLinks);
     }
 

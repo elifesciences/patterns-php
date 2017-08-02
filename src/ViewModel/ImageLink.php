@@ -20,8 +20,7 @@ final class ImageLink implements ViewModel
     public function __construct(string $url, Picture $image)
     {
         $this->url = $url;
-        $this->image = FlexibleViewModel::fromViewModel($image)->withProperty('pictureClasses', 'image-link__picture');
-        $this->image = $this->image->withProperty('fallback', ['classes' => 'image-link__img'] + $this->image['fallback']);
+        $this->image = $image;
     }
 
     public function getTemplateName() : string
