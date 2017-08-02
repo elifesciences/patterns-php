@@ -27,6 +27,7 @@ final class MediaType implements CastsToArray
     private function guessHumanType()
     {
         $parts = explode(';', $this->forMachine);
+        $parts = explode('+', $parts[0]);
 
         switch ($parts[0]) {
             case 'image/pjpeg':
