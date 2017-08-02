@@ -136,7 +136,7 @@ final class GridListingTest extends ViewModelTest
                     'image' => [
                         'defaultPath' => '250.jpg',
                         'altText' => 'alt',
-                        'srcset' => '500.jpg 500w, 250.jpg 250w',
+                        'srcset' => '500.jpg 2x',
                         'classes' => 'teaser__img--prominent',
                     ],
                     'footer' => [
@@ -169,11 +169,8 @@ final class GridListingTest extends ViewModelTest
                     'secondary info',
                     TeaserImage::prominent(
                         '250.jpg',
-                        'alt',
-                        [
-                            500 => '500.jpg',
-                            250 => '250.jpg',
-                        ]
+                        '500.jpg',
+                        'alt'
                     ),
                     TeaserFooter::forNonArticle(
                         Meta::withLink(
@@ -235,11 +232,8 @@ final class GridListingTest extends ViewModelTest
                             'secondary info',
                             TeaserImage::prominent(
                                 '250.jpg',
-                                'alt',
-                                [
-                                    500 => '500.jpg',
-                                    250 => '250.jpg',
-                                ]
+                                '500.jpg',
+                                'alt'
                             ),
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
@@ -261,11 +255,8 @@ final class GridListingTest extends ViewModelTest
                             'secondary info',
                             TeaserImage::prominent(
                                 '250.jpg',
-                                'alt',
-                                [
-                                    500 => '500.jpg',
-                                    250 => '250.jpg',
-                                ]
+                                '500.jpg',
+                                'alt'
                             ),
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
@@ -287,11 +278,8 @@ final class GridListingTest extends ViewModelTest
                             'secondary info',
                             TeaserImage::prominent(
                                 '250.jpg',
-                                'alt',
-                                [
-                                    500 => '500.jpg',
-                                    250 => '250.jpg',
-                                ]
+                                '500.jpg',
+                                'alt'
                             ),
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(

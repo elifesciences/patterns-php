@@ -22,16 +22,18 @@ final class TeaserImage implements CastsToArray
     const STYLE_SMALL = 'teaser__img--small';
 
     private function __construct(
-        string $defaultPath,
-        string $altText = null,
-        array $srcset = null,
+        string $path1x,
+        string $path2x = null,
+        string $altText = '',
         array $classes = null
     ) {
-        Assertion::notBlank($defaultPath);
+        Assertion::notBlank($path1x);
 
-        $this->defaultPath = $defaultPath;
+        $this->defaultPath = $path1x;
+        if ($path2x) {
+            $this->srcset = "{$path2x} 2x";
+        }
         $this->altText = $altText;
-        $this->srcset = $this->srcsetFromArray($srcset);
         if ($classes) {
             Assertion::allInArray($classes, [self::STYLE_PROMINENT, self::STYLE_BIG, self::STYLE_SMALL]);
             $this->classes = implode(' ', $classes);
@@ -39,54 +41,41 @@ final class TeaserImage implements CastsToArray
     }
 
     public static function prominent(
-        string $defaultPath,
-        string $altText,
-        array $srcset = null
+        string $path1x,
+        string $path2x = null,
+        string $altText = ''
     ) {
         return new static (
-            $defaultPath,
+            $path1x,
+            $path2x,
             $altText,
-            $srcset,
             [self::STYLE_PROMINENT]
         );
     }
 
     public static function big(
-        string $defaultPath,
-        string $altText,
-        array $srcset = null
+        string $path1x,
+        string $path2x = null,
+        string $altText = ''
     ) {
         return new static (
-            $defaultPath,
+            $path1x,
+            $path2x,
             $altText,
-            $srcset,
             [self::STYLE_BIG]
         );
     }
 
     public static function small(
-        string $defaultPath,
-        string $altText,
-        array $srcset = null
+        string $path1x,
+        string $path2x = null,
+        string $altText = ''
     ) {
         return new static (
-            $defaultPath,
+            $path1x,
+            $path2x,
             $altText,
-            $srcset,
             [self::STYLE_SMALL]
         );
-    }
-
-    private function srcsetFromArray(array $array = null) : string
-    {
-        if ($array === null) {
-            return '';
-        }
-        $srcsets = [];
-        foreach ($array as $width => $src) {
-            $srcsets[] = $src.' '.$width.'w';
-        }
-
-        return implode(', ', $srcsets);
     }
 }
