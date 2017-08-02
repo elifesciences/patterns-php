@@ -30,7 +30,7 @@ final class DecisionLetterHeaderTest extends ViewModelTest
     protected static function getProfileStub()
     {
         return new ProfileSnippet('Name McName', 'Title McTitle',
-            new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')
+            new Image('/default/path', '/path/to/image/500/wide', 'the alt text')
         );
     }
 

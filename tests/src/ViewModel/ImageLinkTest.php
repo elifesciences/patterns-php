@@ -19,12 +19,12 @@ final class ImageLinkTest extends ViewModelTest
                 'fallback' => [
                     'altText' => 'the alt text',
                     'defaultPath' => '/default/path',
-                    'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                    'srcset' => '/path/to/image/500/wide 2x',
                 ],
             ],
         ];
 
-        $imageLink = new ImageLink('url', new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')));
+        $imageLink = new ImageLink('url', new Picture([], new Image('/default/path', '/path/to/image/500/wide', 'the alt text')));
 
         $this->assertSame($data['url'], $data['url']);
         $this->assertSame($data['image'], $data['image']);
@@ -34,7 +34,7 @@ final class ImageLinkTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ImageLink('url', new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')))],
+            [new ImageLink('url', new Picture([], new Image('/default/path', '/path/to/image/500/wide', 'the alt text')))],
         ];
     }
 

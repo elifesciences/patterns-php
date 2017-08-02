@@ -6,6 +6,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
 
 final class PrimarySiteHeaderNavBarTest extends ViewModelTest
@@ -21,10 +22,8 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
     {
         parent::setUp();
         $this->picture = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [new PictureSource('/path/to/svg')],
+            new Image('/path/to/fallback/', '/path/in/srcset', 'alt text', [])
         );
         $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $this->picture, false);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), true);
@@ -79,10 +78,8 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         $img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [new PictureSource('/path/to/svg')],
+            new Image('/path/to/fallback/', '/path/in/srcset', 'alt text', [])
         );
 
         $navLinkItems = [

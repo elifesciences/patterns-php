@@ -10,6 +10,7 @@ use eLife\Patterns\ViewModel\Input;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 use eLife\Patterns\ViewModel\SearchBox;
 use eLife\Patterns\ViewModel\SiteHeader;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
@@ -28,10 +29,8 @@ final class SiteHeaderTest extends ViewModelTest
     {
         parent::setUp();
         $this->img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [new PictureSource('/path/to/svg')],
+            new Image('/path/to/fallback/', '/path/in/srcset', 'alt text', [])
         );
         $this->homePagePath = '/home/page/path';
         $this->primaryLinks = SiteHeaderNavBar::primary(
@@ -101,10 +100,8 @@ final class SiteHeaderTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         $img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [new PictureSource('/path/to/svg')],
+            new Image('/path/to/fallback/', '/path/in/srcset', 'alt text', [])
         );
 
         $primaryLinks = SiteHeaderNavBar::primary(

@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\AboutProfile;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 use InvalidArgumentException;
 
 final class AboutProfileTest extends ViewModelTest
@@ -21,7 +22,7 @@ final class AboutProfileTest extends ViewModelTest
                 'fallback' => [
                     'altText' => 'the alt text',
                     'defaultPath' => '/default/path',
-                    'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                    'srcset' => '/path/to/image/500/wide 2x',
                 ],
                 'sources' => [
                     [
@@ -39,10 +40,13 @@ final class AboutProfileTest extends ViewModelTest
             $data['name'],
             $data['role'],
             new Picture(
-                $data['image']['sources'],
+                [
+                    new PictureSource($data['image']['sources'][0]['srcset']),
+                    new PictureSource($data['image']['sources'][1]['srcset'], null, null, $data['image']['sources'][1]['media']),
+                ],
                 new Image(
                     $data['image']['fallback']['defaultPath'],
-                    [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                    '/path/to/image/500/wide',
                     $data['image']['fallback']['altText']
                 )
             ),
