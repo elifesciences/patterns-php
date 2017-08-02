@@ -48,6 +48,7 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
     public function humanNameProvider() : Traversable
     {
         $types = [
+            'application/epub+zip' => 'EPUB',
             'application/ogg' => 'Ogg',
             'audio/mp4' => 'MPEG-4',
             'audio/mpeg' => 'MPEG',
@@ -59,6 +60,7 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
             'image/jpeg' => 'JPEG',
             'image/pjpeg' => 'JPEG',
             'image/png' => 'PNG',
+            'image/svg+xml' => 'SVG',
             'image/tiff' => 'TIFF',
             'image/webp' => 'WebP',
             'video/mp4' => 'MPEG-4',
