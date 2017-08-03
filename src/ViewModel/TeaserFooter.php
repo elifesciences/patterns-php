@@ -16,25 +16,23 @@ final class TeaserFooter implements CastsToArray, HasAssets
     use ComposedAssets;
 
     private $meta;
-    private $publishState;
+    private $formats;
 
     private function __construct(
         Meta $meta,
-        bool $vor = null
+        bool $html = false,
+        bool $pdf = false
     ) {
         $this->meta = $meta;
-        if (null !== $vor) {
-            $this->publishState = [
-                'vor' => $vor,
-            ];
-        }
+        $this->formats = array_filter(compact('html', 'pdf'));
     }
 
     public static function forArticle(
         Meta $meta,
-        bool $vor
+        bool $html = false,
+        bool $pdf = false
     ) {
-        return new static($meta, $vor, null);
+        return new static($meta, $html, $pdf);
     }
 
     public static function forNonArticle(
