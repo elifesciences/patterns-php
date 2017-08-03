@@ -15,6 +15,7 @@ final class ContentHeaderImage implements CastsToArray
     private $sources;
     private $pictureClasses;
     private $credit;
+    private $creditOverlay;
 
     public function __construct(Picture $picture, string $credit = null, bool $creditOverlay = false)
     {
@@ -24,9 +25,9 @@ final class ContentHeaderImage implements CastsToArray
         if ($credit) {
             $this->credit = [
                 'text' => $credit,
-                'overlay' => $creditOverlay,
                 'elementId' => hash('crc32', json_encode($picture->toArray()).$credit),
             ];
         }
+        $this->creditOverlay = $creditOverlay;
     }
 }
