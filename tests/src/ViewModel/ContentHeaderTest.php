@@ -44,8 +44,8 @@ final class ContentHeaderTest extends ViewModelTest
                 ],
                 'credit' => [
                     'text' => 'image credit',
-                    'overlay' => true,
                 ],
+                'creditOverlay' => true,
             ],
             'impactStatement' => 'impact statement',
             'header' => [
@@ -121,7 +121,7 @@ final class ContentHeaderTest extends ViewModelTest
 
         $contentHeader = new ContentHeader(
             $data['title'],
-            new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['credit']['overlay']),
+            new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['creditOverlay']),
             $data['impactStatement'],
             true,
             array_map(function (array $item) {
