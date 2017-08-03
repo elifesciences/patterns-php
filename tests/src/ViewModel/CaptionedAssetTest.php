@@ -9,6 +9,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\Video;
 
@@ -19,8 +20,6 @@ final class CaptionedAssetTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $widthFirst = 500;
-        $widthSecond = 250;
         $data = [
             'captionText' => [
                 'heading' => 'heading',
@@ -29,7 +28,7 @@ final class CaptionedAssetTest extends ViewModelTest
                 'fallback' => [
                     'altText' => 'the alt text',
                     'defaultPath' => '/default/path',
-                    'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
+                    'srcset' => '/path/to/image/wide 2x',
                 ],
                 'sources' => [
                     [
@@ -44,10 +43,10 @@ final class CaptionedAssetTest extends ViewModelTest
         ];
         $captionedImage = new CaptionedAsset(
             new Picture(
-                [['srcset' => $data['picture']['sources'][0]['srcset']]],
+                [new PictureSource($data['picture']['sources'][0]['srcset'])],
                 new Image(
                     $data['picture']['fallback']['defaultPath'],
-                    [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
+                    '/path/to/image/wide',
                     $data['picture']['fallback']['altText']
                 )
             ),
@@ -57,8 +56,6 @@ final class CaptionedAssetTest extends ViewModelTest
 
         $this->assertSameWithoutOrder($data, $captionedImage->toArray());
 
-        $widthFirst = 500;
-        $widthSecond = 250;
         $data = [
             'captionText' => [
                 'heading' => 'heading',
@@ -66,7 +63,7 @@ final class CaptionedAssetTest extends ViewModelTest
             'image' => [
                 'altText' => 'the alt text',
                 'defaultPath' => '/default/path',
-                'srcset' => '/path/to/image/'.$widthFirst.'/wide '.$widthFirst.'w, /default/path '.$widthSecond.'w',
+                'srcset' => '/path/to/image/wide 2x',
             ],
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
@@ -75,7 +72,7 @@ final class CaptionedAssetTest extends ViewModelTest
         $captionedImage = new CaptionedAsset(
             new Image(
                 $data['image']['defaultPath'],
-                [$widthFirst => '/path/to/image/'.$widthFirst.'/wide', $widthSecond => '/default/path'],
+                '/path/to/image/wide',
                 $data['image']['altText']
             ),
             CaptionText::withHeading($data['captionText']['heading']),
@@ -115,8 +112,8 @@ final class CaptionedAssetTest extends ViewModelTest
             'Captionless image' => [
                 new CaptionedAsset(
                     new Picture(
-                        [['srcset' => '/path/to/svg']],
-                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                        [new PictureSource('/path/to/svg')],
+                        new Image('/default/path', '/path/to/image/500/wide',
                             'the alt text')
                     )
                 ),
@@ -124,8 +121,8 @@ final class CaptionedAssetTest extends ViewModelTest
             'Captioned image' => [
                 new CaptionedAsset(
                     new Picture(
-                        [['srcset' => '/path/to/svg']],
-                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                        [new PictureSource('/path/to/svg')],
+                        new Image('/default/path', '/path/to/image/500/wide',
                             'the alt text')
                     ),
                     CaptionText::withHeading('heading')

@@ -14,7 +14,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
      */
     public function it_casts_to_an_array()
     {
-        $image = new Image('/foo.png', [10 => '/bar.png']);
+        $image = new Image('/foo.png', '/bar.png');
 
         $this->assertInstanceOf(CastsToArray::class, $image);
     }
@@ -27,10 +27,10 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         $data = [
             'altText' => 'altText',
             'defaultPath' => '/foo.png',
-            'srcset' => '/bar.png 10w, /baz.png 20w',
+            'srcset' => '/bar.png 2x',
         ];
 
-        $image = new Image('/foo.png', [10 => '/bar.png', 20 => '/baz.png'], 'altText');
+        $image = new Image('/foo.png', '/bar.png', 'altText');
 
         $this->assertSame($data['defaultPath'], $image['defaultPath']);
         $this->assertSame($data['srcset'], $image['srcset']);
@@ -45,26 +45,6 @@ final class ImageTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Image('', [10 => '/bar.png', 20 => '/baz.png']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_blank_srcset_path()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new Image('/foo.png', [10 => '', 20 => '/baz.png']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_a_non_integer_srcset_key()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new Image('/foo.png', ['bar' => '/bar.png', 20 => '/baz.png']);
+        new Image('');
     }
 }

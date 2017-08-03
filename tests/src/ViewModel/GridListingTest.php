@@ -106,14 +106,14 @@ final class GridListingTest extends ViewModelTest
                         'fallback' => [
                             'altText' => 'the alt text',
                             'defaultPath' => '/default/path',
-                            'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                            'srcset' => '/path/to/image/500/wide 2x',
                         ],
                     ],
                 ],
             ],
         ];
         $imageLinks = GridListing::forImageLinks([
-            new ImageLink('url', new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))),
+            new ImageLink('url', new Picture([], new Image('/default/path', '/path/to/image/500/wide', 'the alt text'))),
         ], new ListHeading('heading'));
 
         $this->assertSame($imageLinksData['classes'], $imageLinks['classes']);
@@ -136,7 +136,7 @@ final class GridListingTest extends ViewModelTest
                     'image' => [
                         'defaultPath' => '250.jpg',
                         'altText' => 'alt',
-                        'srcset' => '500.jpg 500w, 250.jpg 250w',
+                        'srcset' => '500.jpg 2x',
                         'classes' => 'teaser__img--prominent',
                     ],
                     'footer' => [
@@ -169,11 +169,8 @@ final class GridListingTest extends ViewModelTest
                     'secondary info',
                     TeaserImage::prominent(
                         '250.jpg',
-                        'alt',
-                        [
-                            500 => '500.jpg',
-                            250 => '250.jpg',
-                        ]
+                        '500.jpg',
+                        'alt'
                     ),
                     TeaserFooter::forNonArticle(
                         Meta::withLink(
@@ -221,7 +218,7 @@ final class GridListingTest extends ViewModelTest
             'image links' => [
                 GridListing::forImageLinks(
                     [
-                        new ImageLink('url', new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))),
+                        new ImageLink('url', new Picture([], new Image('/default/path', '/path/to/image/500/wide', 'the alt text'))),
                     ]
                 ),
             ],
@@ -235,11 +232,8 @@ final class GridListingTest extends ViewModelTest
                             'secondary info',
                             TeaserImage::prominent(
                                 '250.jpg',
-                                'alt',
-                                [
-                                    500 => '500.jpg',
-                                    250 => '250.jpg',
-                                ]
+                                '500.jpg',
+                                'alt'
                             ),
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
@@ -261,11 +255,8 @@ final class GridListingTest extends ViewModelTest
                             'secondary info',
                             TeaserImage::prominent(
                                 '250.jpg',
-                                'alt',
-                                [
-                                    500 => '500.jpg',
-                                    250 => '250.jpg',
-                                ]
+                                '500.jpg',
+                                'alt'
                             ),
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(
@@ -287,11 +278,8 @@ final class GridListingTest extends ViewModelTest
                             'secondary info',
                             TeaserImage::prominent(
                                 '250.jpg',
-                                'alt',
-                                [
-                                    500 => '500.jpg',
-                                    250 => '250.jpg',
-                                ]
+                                '500.jpg',
+                                'alt'
                             ),
                             TeaserFooter::forNonArticle(
                                 Meta::withLink(

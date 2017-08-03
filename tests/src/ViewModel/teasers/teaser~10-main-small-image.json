@@ -14,7 +14,7 @@
 
   "image": {
     "defaultPath": "http://unsplash.it/70/70/",
-    "srcset": "http://unsplash.it/140/140/ 140w, http://unsplash.it/70/70/ 70w",
+    "srcset": "http://unsplash.it/140/140/ 2x",
     "altText": "Meaningful alt text here please.",
     "classes": "teaser__img--small"
   },

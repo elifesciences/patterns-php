@@ -12,10 +12,10 @@ trait TeaserImageFromData
     {
         $data = array_merge([
             'defaultPath' => null,
-            'altText' => null,
             'srcset' => null,
+            'altText' => null,
         ], $data);
-        $data['srcset'] = $this->srcsetToArray($data['srcset']);
+        $data['srcset'] = $this->srcsetToArray($data['srcset'])[2] ?? null;
         $params = array_values($data);
         switch ($size) {
             case TeaserImage::STYLE_BIG:

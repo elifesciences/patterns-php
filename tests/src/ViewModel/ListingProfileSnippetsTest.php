@@ -50,7 +50,7 @@ final class ListingProfileSnippetsTest extends ViewModelTest
             'Title McTitle',
             new Image(
                 '/default/path',
-                [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                '/path/to/image/500/wide',
                 'the alt text'
             )
         );

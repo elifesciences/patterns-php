@@ -7,6 +7,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
 
 final class SecondarySiteHeaderNavBarTest extends ViewModelTest
@@ -23,10 +24,8 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
     {
         parent::setUp();
         $this->picture = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [new PictureSource('/path/to/svg')],
+            new Image('/path/to/fallback/', '/path/in/srcset', 'alt text', [])
         );
 
         $this->button = Button::form('button text', 'button', 'name');
@@ -81,10 +80,8 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         $img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            [new PictureSource('/path/to/svg')],
+            new Image('/path/to/fallback/', '/path/in/srcset', 'alt text', [])
         );
 
         $button = Button::form('button text', 'button', 'name');

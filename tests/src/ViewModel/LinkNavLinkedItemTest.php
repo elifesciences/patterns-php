@@ -6,6 +6,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 
 final class LinkNavLinkedItemTest extends ViewModelTest
 {
@@ -16,10 +17,8 @@ final class LinkNavLinkedItemTest extends ViewModelTest
     {
         parent::setUp();
         $this->img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/default/image/path', [500 => '/image/path/in/srcset'], 'alt', ['image-class'])
+            [new PictureSource('/path/to/svg')],
+            new Image('/default/image/path', '/image/path/in/srcset', 'alt', ['image-class'])
         );
     }
 

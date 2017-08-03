@@ -3,7 +3,9 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Image;
+use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 
 final class PictureTest extends ViewModelTest
 {
@@ -13,7 +15,7 @@ final class PictureTest extends ViewModelTest
     {
         $this->imageFixture = new Image(
             '/default/path',
-            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+            '/path/to/image/500/wide',
             'the alt text',
             ['class-1', 'class-2']);
     }
@@ -27,7 +29,7 @@ final class PictureTest extends ViewModelTest
             'fallback' => [
                 'altText' => 'the alt text',
                 'defaultPath' => '/default/path',
-                'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                'srcset' => '/path/to/image/500/wide 2x',
                 'classes' => 'class-1 class-2',
             ],
             'sources' => [
@@ -42,48 +44,35 @@ final class PictureTest extends ViewModelTest
             'pictureClasses' => 'class-3',
         ];
 
-        $picture = new Picture($data['sources'], $this->imageFixture, explode(' ', $data['pictureClasses']));
+        $picture = new Picture([new PictureSource($data['sources'][0]['srcset']), new PictureSource($data['sources'][1]['srcset'], null, null, $data['sources'][1]['media'])],
+            $this->imageFixture, explode(' ', $data['pictureClasses']));
         $this->assertSame($data['fallback']['defaultPath'], $picture['fallback']['defaultPath']);
         $this->assertSame($data['fallback']['altText'], $picture['fallback']['altText']);
-        $this->assertSame($data['sources'], $picture['sources']);
+        $this->assertSameWithoutOrder($data['sources'], $picture['sources']);
         $this->assertSame($data['pictureClasses'], $picture['pictureClasses']);
         $this->assertSame($data, $picture->toArray());
     }
 
     public function viewModelProvider() : array
     {
-        $image = new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text');
+        $image = new Image('/default/path', '/path/to/image/500/wide', 'the alt text');
         $imageWithCssClasses = new Image(
             '/default/path',
-            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+            '/path/to/image/500/wide',
             'the alt text',
             ['class-1', 'class-2']
         );
 
         $sourcesBasic = [
-            [
-                'srcset' => '/path/to/svg',
-            ],
+            new PictureSource('/path/to/svg'),
         ];
         $sourcesWithMedia = [
-            [
-                'srcset' => '/path/to/svg',
-            ],
-            [
-                'srcset' => '/path/to/svg',
-                'media' => 'media statement',
-            ],
+            new PictureSource('/path/to/svg'),
+            new PictureSource('/path/to/svg', null, null, 'media statement'),
         ];
         $sourcesWithMediaAndType = [
-            [
-                'srcset' => '/path/to/svg',
-                'type' => 'image/svg+xml',
-            ],
-            [
-                'srcset' => '/path/to/webp',
-                'media' => 'media statement',
-                'type' => 'image/webp',
-            ],
+            new PictureSource('/path/to/svg', null, new MediaType('image/svg+xml')),
+            new PictureSource('/path/to/webp', null, new MediaType('image/webp'), 'media statement'),
         ];
 
         return [

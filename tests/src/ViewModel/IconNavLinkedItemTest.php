@@ -6,6 +6,7 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\PictureSource;
 
 final class IconNavLinkedItemTest extends ViewModelTest
 {
@@ -15,10 +16,8 @@ final class IconNavLinkedItemTest extends ViewModelTest
     {
         parent::setUp();
         $this->picture = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/default/image/path', [500 => '/image/path/in/srcset'], 'alt', ['image-class'])
+            [new PictureSource('/path/to/svg')],
+            new Image('/default/image/path', '/image/path/in/srcset', 'alt', ['image-class'])
         );
     }
 
@@ -99,10 +98,8 @@ final class IconNavLinkedItemTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         $img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/default/image/path', [500 => '/default/image/path'], 'alt', ['image-class'])
+            [new PictureSource('/path/to/svg')],
+            new Image('/default/image/path', '/width/image/path', 'alt', ['image-class'])
         );
 
         return [

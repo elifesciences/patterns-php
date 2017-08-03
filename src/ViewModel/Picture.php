@@ -20,7 +20,7 @@ final class Picture implements ViewModel, IsCaptioned
 
     public function __construct(array $sources, Image $fallback, array $classes = [])
     {
-        Assertion::allIsArray($sources);
+        Assertion::allIsInstanceOf($sources, PictureSource::class);
 
         $this->sources = $sources;
         $this->fallback = $fallback;

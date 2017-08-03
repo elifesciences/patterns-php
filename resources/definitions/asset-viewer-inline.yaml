@@ -119,7 +119,7 @@ schema:
                                             properties:
                                                 srcset:
                                                     type: string
-                                                    pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                                    pattern: '^((https)?[^ ]+ [1-9][0-9]*x)(, (https?)?[^ ]+ [1-9][0-9]*x)*$'
                                                 defaultPath:
                                                     type: string
                                                     minLength: 1
@@ -247,7 +247,7 @@ schema:
                                             minLength: 1
                                         srcset:
                                             type: string
-                                            pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                            pattern: '^((https)?[^ ]+ [1-9][0-9]*x)(, (https?)?[^ ]+ [1-9][0-9]*x)*$'
                                     required:
                                         - defaultPath
                                         - altText
