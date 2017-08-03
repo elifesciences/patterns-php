@@ -447,13 +447,14 @@ schema:
                                                     -
                                                         required:
                                                             - text
-                                            publishState:
+                                            formats:
                                                 type: object
+                                                minProperties: 1
                                                 properties:
-                                                    vor:
+                                                    html:
                                                         type: boolean
-                                                required:
-                                                    - vor
+                                                    pdf:
+                                                        type: boolean
                                         required:
                                             - meta
                                 dependencies:
