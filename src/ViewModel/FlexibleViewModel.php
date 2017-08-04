@@ -44,14 +44,6 @@ final class FlexibleViewModel implements ViewModel
         return $viewModel;
     }
 
-    public function withoutProperty(string $key) : FlexibleViewModel
-    {
-        $viewModel = self::fromViewModel($this);
-        unset($viewModel->properties[$key]);
-
-        return $viewModel;
-    }
-
     public function toArray() : array
     {
         return $this->properties;
