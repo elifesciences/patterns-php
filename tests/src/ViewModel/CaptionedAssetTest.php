@@ -41,6 +41,7 @@ final class CaptionedAssetTest extends ViewModelTest
                 'doi' => '10.7554/eLife.10181.001',
                 'variant' => 'asset',
             ],
+            'inline' => true,
         ];
         $captionedImage = new CaptionedAsset(
             new Picture(
@@ -52,7 +53,8 @@ final class CaptionedAssetTest extends ViewModelTest
                 )
             ),
             CaptionText::withHeading($data['captionText']['heading']),
-            new Doi($data['doi']['doi'])
+            new Doi($data['doi']['doi']),
+            $data['inline']
         );
 
         $this->assertSameWithoutOrder($data, $captionedImage->toArray());
@@ -119,6 +121,15 @@ final class CaptionedAssetTest extends ViewModelTest
                         new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
                             'the alt text')
                     )
+                ),
+            ],
+            'Inline image' => [
+                new CaptionedAsset(
+                    new Picture(
+                        [['srcset' => '/path/to/svg']],
+                        new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            'the alt text')
+                    ), null, null, true
                 ),
             ],
             'Captioned image' => [

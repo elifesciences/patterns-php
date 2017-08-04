@@ -15,6 +15,7 @@ use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\OpenLink;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\Video;
+use InvalidArgumentException;
 
 final class AssetViewerInlineTest extends ViewModelTest
 {
@@ -192,6 +193,18 @@ final class AssetViewerInlineTest extends ViewModelTest
         $this->assertSame($data['download'], $viewer['download']);
         $this->assertSame($data['open'], $viewer['open']->toArray());
         $this->assertSame($data, $viewer->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_cannot_have_an_inline_captioned_asset()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        AssetViewerInline::primary('id', 'label',
+            new CaptionedAsset(new Image('/default/path'), null, null, true)
+        );
     }
 
     public function viewModelProvider() : array

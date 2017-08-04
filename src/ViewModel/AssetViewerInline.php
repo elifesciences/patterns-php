@@ -46,6 +46,7 @@ final class AssetViewerInline implements ViewModel
         Assertion::nullOrNotBlank($parentId);
         Assertion::notBlank($label);
         Assertion::allIsInstanceOf($additionalAssets, AdditionalAsset::class);
+        Assertion::nullOrFalse($captionedAsset['inline'], 'The captioned asset cannot be inline');
 
         $this->id = $id;
         if ($supplementOrdinal) {
