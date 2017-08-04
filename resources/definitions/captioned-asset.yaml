@@ -44,6 +44,9 @@ schema:
                                 - false
                     required:
                         - doi
+                inline:
+                    type: boolean
+                    default: false
         -
             oneOf:
                 -

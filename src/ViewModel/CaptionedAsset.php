@@ -21,17 +21,22 @@ final class CaptionedAsset implements ViewModel
     private $table;
     private $image;
     private $doi;
+    private $inline;
 
     public function __construct(
         IsCaptioned $figure,
         CaptionText $captionText = null,
-        Doi $doi = null
+        Doi $doi = null,
+        bool $inline = false
     ) {
         $this->captionText = $captionText;
         $this->setFigure($figure);
         if ($doi !== null) {
             $doi = FlexibleViewModel::fromViewModel($doi);
             $this->doi = $doi->withProperty('variant', Doi::ASSET);
+        }
+        if ($inline) {
+            $this->inline = $inline;
         }
     }
 
