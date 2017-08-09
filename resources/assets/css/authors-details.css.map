@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,yBAA0B,CCwMtB,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CDvMZ,UAAU,CAAE,IAAI",
+"mappings": "AAEA,yBAA0B,CC0NtB,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CDzNZ,UAAU,CAAE,IAAI",
 "sources": ["../../../../../../assets/sass/patterns/molecules/authors-details.scss","../../../../../../assets/sass/_mixins.scss"],
 "names": [],
 "file": "authors-details.css"
