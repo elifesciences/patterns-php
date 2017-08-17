@@ -112,5 +112,9 @@ schema:
                     - hasSubjects
         content:
             type: string
+        isRelated:
+            type: boolean
+            emum:
+                - true
     required:
         - item
