@@ -16,13 +16,16 @@ final class ReadMoreItem implements ViewModel
 
     private $item;
     private $content;
+    private $isRelated;
 
     public function __construct(
         ContentHeaderReadMore $item,
-        string $content = null
+        string $content = null,
+        bool $isRelated = false
     ) {
         $this->item = $item;
         $this->content = $content;
+        $this->isRelated = $isRelated;
     }
 
     public function getStyleSheets() : Traversable
