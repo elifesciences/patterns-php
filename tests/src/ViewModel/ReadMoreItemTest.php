@@ -18,7 +18,7 @@ final class ReadMoreItemTest extends ViewModelTest
                 'url' => '#',
             ],
             'content' => '<p>Some content</p>',
-            'isRelated' => true
+            'isRelated' => true,
         ];
 
         $model = new ReadMoreItem(new ContentHeaderReadMore($data['item']['title'], $data['item']['url']), $data['content'], $data['isRelated']);
