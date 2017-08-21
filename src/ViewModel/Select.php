@@ -11,8 +11,8 @@ use Traversable;
 
 final class Select implements ViewModel
 {
-    const STATUS_ERROR = 'error';
-    const STATUS_VALID = 'valid';
+    const STATE_ERROR = 'error';
+    const STATE_VALID = 'valid';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -24,7 +24,7 @@ final class Select implements ViewModel
     private $name;
     private $required;
     private $disabled;
-    private $status;
+    private $state;
     private $message;
 
     public function __construct(
@@ -34,12 +34,12 @@ final class Select implements ViewModel
         string $name,
         bool $required = null,
         bool $disabled = null,
-        string $status = null,
+        string $state = null,
         string $message = null
     ) {
         Assertion::notEmpty($options);
         Assertion::allIsInstanceOf($options, SelectOption::class);
-        Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
+        Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
 
         $this->id = $id;
         $this->options = $options;
@@ -47,7 +47,7 @@ final class Select implements ViewModel
         $this->name = $name;
         $this->required = $required;
         $this->disabled = $disabled;
-        $this->status = $status;
+        $this->state = $state;
         $this->message = $message;
     }
 

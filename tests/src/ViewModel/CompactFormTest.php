@@ -48,7 +48,7 @@ final class CompactFormTest extends ViewModelTest
                 'disabled' => true,
                 'autofocus' => true,
                 'value' => 'value',
-                'status' => 'error',
+                'state' => 'error',
             ],
         ];
 
@@ -66,7 +66,7 @@ final class CompactFormTest extends ViewModelTest
                 $data['honeypot']['disabled'],
                 $data['honeypot']['autofocus'],
                 $data['honeypot']['value'],
-                TextField::STATUS_ERROR
+                TextField::STATE_ERROR
             ))
         );
 

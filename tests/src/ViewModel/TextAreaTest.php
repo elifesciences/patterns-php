@@ -27,7 +27,7 @@ class TextAreaTest extends ViewModelTest
             'cols' => 10,
             'rows' => 10,
             'form' => 'form',
-            'status' => 'error',
+            'state' => 'error',
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),
@@ -41,7 +41,7 @@ class TextAreaTest extends ViewModelTest
             $data['cols'],
             $data['rows'],
             $data['form'],
-            TextArea::STATUS_ERROR
+            TextArea::STATE_ERROR
         );
 
         $this->assertSameWithoutOrder($data, $textArea);
@@ -64,7 +64,7 @@ class TextAreaTest extends ViewModelTest
                     30, // cols
                     2, // rows
                     'some_form_id',
-                    TextArea::STATUS_ERROR
+                    TextArea::STATE_ERROR
                 ),
             ],
         ];

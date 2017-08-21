@@ -11,8 +11,8 @@ use Traversable;
 
 final class TextArea implements ViewModel
 {
-    const STATUS_ERROR = 'error';
-    const STATUS_VALID = 'valid';
+    const STATE_ERROR = 'error';
+    const STATE_VALID = 'valid';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -29,7 +29,7 @@ final class TextArea implements ViewModel
     private $cols;
     private $rows;
     private $form;
-    private $status;
+    private $state;
     private $message;
 
     public function __construct(
@@ -44,10 +44,10 @@ final class TextArea implements ViewModel
         int $cols = null,
         int $rows = null,
         string $form = null,
-        string $status = null,
+        string $state = null,
         string $message = null
     ) {
-        Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
+        Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
 
         $this->label = $label;
         $this->name = $name;
@@ -60,7 +60,7 @@ final class TextArea implements ViewModel
         $this->cols = $cols;
         $this->rows = $rows;
         $this->form = $form;
-        $this->status = $status;
+        $this->state = $state;
         $this->message = $message;
     }
 
