@@ -11,6 +11,9 @@ use Traversable;
 
 final class CompactForm implements ViewModel
 {
+    const STATE_ERROR = 'error';
+    const STATE_VALID = 'valid';
+
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
@@ -24,10 +27,12 @@ final class CompactForm implements ViewModel
     private $inputValue;
     private $inputPlaceholder;
     private $ctaText;
+    private $state;
+    private $message;
     private $hiddenFields;
     private $honeypot;
 
-    public function __construct(Form $form, Input $input, string $ctaText, array $hiddenFields = [], Honeypot $honeypot = null)
+    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, string $message = null, array $hiddenFields = [], Honeypot $honeypot = null)
     {
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
@@ -41,6 +46,8 @@ final class CompactForm implements ViewModel
         $this->inputValue = $input['value'];
         $this->inputPlaceholder = $input['placeholder'];
         $this->ctaText = $ctaText;
+        $this->state = $state;
+        $this->message = $message;
         $this->hiddenFields = $hiddenFields;
         $this->honeypot = $honeypot;
     }
