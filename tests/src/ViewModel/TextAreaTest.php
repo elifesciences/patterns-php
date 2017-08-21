@@ -27,7 +27,7 @@ class TextAreaTest extends ViewModelTest
             'cols' => 10,
             'rows' => 10,
             'form' => 'form',
-            'classNames' => 'text-field--error',
+            'status' => 'error',
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),

@@ -48,7 +48,7 @@ final class CompactFormTest extends ViewModelTest
                 'disabled' => true,
                 'autofocus' => true,
                 'value' => 'value',
-                'classNames' => 'text-field--error',
+                'status' => 'error',
             ],
         ];
 

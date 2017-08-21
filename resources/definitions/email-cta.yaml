@@ -29,6 +29,13 @@ schema:
                         enum:
                             - GET
                             - POST
+                    state:
+                        type: string
+                        enum:
+                            - valid
+                            - error
+                    message:
+                        type: string
                     label:
                         type: string
                         minLength: 1
@@ -77,6 +84,13 @@ schema:
                             name:
                                 type: string
                                 minLength: 1
+                            state:
+                                type: string
+                                enum:
+                                    - valid
+                                    - error
+                            message:
+                                type: string
                             autofocus:
                                 type: boolean
                             inputType:
@@ -88,9 +102,6 @@ schema:
                                     - tel
                                     - text
                                     - url
-                                minLength: 1
-                            classNames:
-                                type: string
                                 minLength: 1
                             placeholder:
                                 type: string

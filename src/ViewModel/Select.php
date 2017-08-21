@@ -7,6 +7,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use Traversable;
 
 final class Select implements ViewModel
 {
@@ -23,7 +24,8 @@ final class Select implements ViewModel
     private $name;
     private $required;
     private $disabled;
-    private $classNames;
+    private $status;
+    private $message;
 
     public function __construct(
         string $id,
@@ -32,7 +34,8 @@ final class Select implements ViewModel
         string $name,
         bool $required = null,
         bool $disabled = null,
-        string $status = null
+        string $status = null,
+        string $message = null
     ) {
         Assertion::notEmpty($options);
         Assertion::allIsInstanceOf($options, SelectOption::class);
@@ -44,13 +47,18 @@ final class Select implements ViewModel
         $this->name = $name;
         $this->required = $required;
         $this->disabled = $disabled;
-        if (!empty($status)) {
-            $this->classNames = "select--$status";
-        }
+        $this->status = $status;
+        $this->message = $message;
     }
 
     public function getTemplateName() : string
     {
         return 'resources/templates/select.mustache';
+    }
+
+    public function getStyleSheets() : Traversable
+    {
+        yield 'resources/assets/css/select.css';
+        yield 'resources/assets/css/form-item.css';
     }
 }

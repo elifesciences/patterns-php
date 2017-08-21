@@ -34,7 +34,7 @@ final class SelectTest extends ViewModelTest
             'name' => 'name',
             'required' => true,
             'disabled' => true,
-            'classNames' => 'select--error',
+            'status' => 'error',
         ];
         $select = new Select($data['id'], [
             new SelectOption(

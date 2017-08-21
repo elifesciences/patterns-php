@@ -25,7 +25,7 @@ final class TextFieldTest extends ViewModelTest
             'disabled' => true,
             'autofocus' => true,
             'value' => 'value',
-            'classNames' => 'text-field--error',
+            'status' => 'error',
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -47,7 +47,7 @@ final class TextFieldTest extends ViewModelTest
         $this->assertSame($data['disabled'], $textField['disabled']);
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
-        $this->assertSame($data['classNames'], $textField['classNames']);
+        $this->assertSame($data['status'], $textField['status']);
         $this->assertSame($data, $textField->toArray());
     }
 

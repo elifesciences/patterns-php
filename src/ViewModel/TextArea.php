@@ -29,7 +29,8 @@ final class TextArea implements ViewModel
     private $cols;
     private $rows;
     private $form;
-    private $classNames;
+    private $status;
+    private $message;
 
     public function __construct(
         FormLabel $label,
@@ -43,7 +44,8 @@ final class TextArea implements ViewModel
         int $cols = null,
         int $rows = null,
         string $form = null,
-        string $status = null
+        string $status = null,
+        string $message = null
     ) {
         Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
 
@@ -58,9 +60,8 @@ final class TextArea implements ViewModel
         $this->cols = $cols;
         $this->rows = $rows;
         $this->form = $form;
-        if (false === empty($status)) {
-            $this->classNames = 'text-field--'.$status;
-        }
+        $this->status = $status;
+        $this->message = $message;
     }
 
     public function getTemplateName() : string
@@ -71,6 +72,6 @@ final class TextArea implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield 'resources/assets/css/text-fields.css';
-        yield 'resources/assets/css/form-label.css';
+        yield 'resources/assets/css/form-item.css';
     }
 }
