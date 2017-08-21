@@ -26,6 +26,7 @@ final class CompactForm implements ViewModel
     private $inputName;
     private $inputValue;
     private $inputPlaceholder;
+    private $inputAutofocus;
     private $ctaText;
     private $state;
     private $message;
@@ -45,6 +46,7 @@ final class CompactForm implements ViewModel
         $this->inputName = $input['name'];
         $this->inputValue = $input['value'];
         $this->inputPlaceholder = $input['placeholder'];
+        $this->inputAutofocus = $input['autofocus'];
         $this->ctaText = $ctaText;
         $this->state = $state;
         $this->message = $message;

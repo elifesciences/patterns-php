@@ -27,6 +27,7 @@ final class CompactFormTest extends ViewModelTest
             'inputName' => 'input',
             'inputValue' => 'value',
             'inputPlaceholder' => 'placeholder',
+            'inputAutofocus' => true,
             'ctaText' => 'cta',
             'state' => 'error',
             'message' => 'message',
@@ -57,7 +58,7 @@ final class CompactFormTest extends ViewModelTest
         $form = new CompactForm(
             new Form($data['formAction'], $data['formId'], $data['formMethod']),
             new Input($data['label'], $data['inputType'], $data['inputName'], $data['inputValue'],
-                $data['inputPlaceholder']),
+                $data['inputPlaceholder'], true),
             $data['ctaText'], CompactForm::STATE_ERROR, $data['message'], [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
             new Honeypot(TextField::emailInput(
                 new FormLabel($data['honeypot']['label']['labelText']),
@@ -80,6 +81,7 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSame($data['inputName'], $form['inputName']);
         $this->assertSame($data['inputValue'], $form['inputValue']);
         $this->assertSame($data['inputPlaceholder'], $form['inputPlaceholder']);
+        $this->assertSame($data['inputAutofocus'], $form['inputAutofocus']);
         $this->assertSame($data['state'], $form['state']);
         $this->assertSame($data['message'], $form['message']);
         $this->assertSame($data['hiddenFields'][0], $form['hiddenFields'][0]->toArray());
@@ -128,7 +130,7 @@ final class CompactFormTest extends ViewModelTest
             'complete' => [
                 new CompactForm(
                     new Form('/foo', 'foo', 'GET'),
-                    new Input('label', 'text', 'input', 'value', 'placeholder'),
+                    new Input('label', 'text', 'input', 'value', 'placeholder', true),
                     'cta', CompactForm::STATE_ERROR, 'message', [new HiddenField('name', 'id', 'value')],
                     new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
                 ),
