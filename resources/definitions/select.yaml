@@ -1,6 +1,6 @@
 assets:
     css:
-        - form-label.css
+        - form-item.css
         - select.css
     js: []
 schema:
@@ -13,9 +13,13 @@ schema:
         name:
             type: string
             minLength: 1
-        classNames:
+        state:
             type: string
-            minLength: 1
+            enum:
+                - valid
+                - error
+        message:
+            type: string
         required:
             type: boolean
         disabled:
