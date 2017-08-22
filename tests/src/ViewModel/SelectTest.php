@@ -34,7 +34,7 @@ final class SelectTest extends ViewModelTest
             'name' => 'name',
             'required' => true,
             'disabled' => true,
-            'classNames' => 'select--error',
+            'state' => 'error',
         ];
         $select = new Select($data['id'], [
             new SelectOption(
@@ -48,7 +48,7 @@ final class SelectTest extends ViewModelTest
                 $data['options'][1]['selected']
             ),
         ], new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']),
-            $data['name'], $data['required'], $data['disabled'], Select::STATUS_ERROR
+            $data['name'], $data['required'], $data['disabled'], Select::STATE_ERROR
         );
 
         $this->assertSame($data, $select->toArray());
@@ -68,7 +68,7 @@ final class SelectTest extends ViewModelTest
                     new SelectOption('choice-1', 'Choice 1', false),
                     new SelectOption('choice-2', 'Choice 2', true),
                 ], new FormLabel('Form label', 'id'), 'name', true,
-                    true, Select::STATUS_ERROR),
+                    true, Select::STATE_ERROR),
             ],
         ];
     }

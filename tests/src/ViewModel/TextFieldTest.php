@@ -25,7 +25,7 @@ final class TextFieldTest extends ViewModelTest
             'disabled' => true,
             'autofocus' => true,
             'value' => 'value',
-            'classNames' => 'text-field--error',
+            'state' => 'error',
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -36,7 +36,7 @@ final class TextFieldTest extends ViewModelTest
             $data['disabled'],
             $data['autofocus'],
             $data['value'],
-            TextField::STATUS_ERROR
+            TextField::STATE_ERROR
         );
 
         $this->assertSame($data['name'], $textField['name']);
@@ -47,7 +47,7 @@ final class TextFieldTest extends ViewModelTest
         $this->assertSame($data['disabled'], $textField['disabled']);
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
-        $this->assertSame($data['classNames'], $textField['classNames']);
+        $this->assertSame($data['state'], $textField['state']);
         $this->assertSame($data, $textField->toArray());
     }
 
@@ -55,17 +55,17 @@ final class TextFieldTest extends ViewModelTest
     {
         return [
             'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
-            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR)],
             'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],
-            'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR)],
             'minimal search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name')],
-            'complete search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'complete search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR)],
             'minimal tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name')],
-            'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR)],
             'minimal text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name')],
-            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR)],
             'minimal url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name')],
-            'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATUS_ERROR)],
+            'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR)],
         ];
     }
 

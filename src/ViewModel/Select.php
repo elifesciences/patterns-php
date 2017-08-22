@@ -7,11 +7,12 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use Traversable;
 
 final class Select implements ViewModel
 {
-    const STATUS_ERROR = 'error';
-    const STATUS_VALID = 'valid';
+    const STATE_ERROR = 'error';
+    const STATE_VALID = 'valid';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -23,7 +24,8 @@ final class Select implements ViewModel
     private $name;
     private $required;
     private $disabled;
-    private $classNames;
+    private $state;
+    private $message;
 
     public function __construct(
         string $id,
@@ -32,11 +34,12 @@ final class Select implements ViewModel
         string $name,
         bool $required = null,
         bool $disabled = null,
-        string $status = null
+        string $state = null,
+        string $message = null
     ) {
         Assertion::notEmpty($options);
         Assertion::allIsInstanceOf($options, SelectOption::class);
-        Assertion::nullOrChoice($status, [self::STATUS_ERROR, self::STATUS_VALID]);
+        Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
 
         $this->id = $id;
         $this->options = $options;
@@ -44,13 +47,18 @@ final class Select implements ViewModel
         $this->name = $name;
         $this->required = $required;
         $this->disabled = $disabled;
-        if (!empty($status)) {
-            $this->classNames = "select--$status";
-        }
+        $this->state = $state;
+        $this->message = $message;
     }
 
     public function getTemplateName() : string
     {
         return 'resources/templates/select.mustache';
+    }
+
+    public function getStyleSheets() : Traversable
+    {
+        yield 'resources/assets/css/select.css';
+        yield 'resources/assets/css/form-item.css';
     }
 }

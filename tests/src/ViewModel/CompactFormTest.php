@@ -27,7 +27,10 @@ final class CompactFormTest extends ViewModelTest
             'inputName' => 'input',
             'inputValue' => 'value',
             'inputPlaceholder' => 'placeholder',
+            'inputAutofocus' => true,
             'ctaText' => 'cta',
+            'state' => 'error',
+            'message' => 'message',
             'hiddenFields' => [
                 [
                     'name' => 'hidden-name',
@@ -48,15 +51,15 @@ final class CompactFormTest extends ViewModelTest
                 'disabled' => true,
                 'autofocus' => true,
                 'value' => 'value',
-                'classNames' => 'text-field--error',
+                'state' => 'error',
             ],
         ];
 
         $form = new CompactForm(
             new Form($data['formAction'], $data['formId'], $data['formMethod']),
             new Input($data['label'], $data['inputType'], $data['inputName'], $data['inputValue'],
-                $data['inputPlaceholder']),
-            $data['ctaText'], [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
+                $data['inputPlaceholder'], true),
+            $data['ctaText'], CompactForm::STATE_ERROR, $data['message'], [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
             new Honeypot(TextField::emailInput(
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
@@ -66,7 +69,7 @@ final class CompactFormTest extends ViewModelTest
                 $data['honeypot']['disabled'],
                 $data['honeypot']['autofocus'],
                 $data['honeypot']['value'],
-                TextField::STATUS_ERROR
+                TextField::STATE_ERROR
             ))
         );
 
@@ -78,6 +81,9 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSame($data['inputName'], $form['inputName']);
         $this->assertSame($data['inputValue'], $form['inputValue']);
         $this->assertSame($data['inputPlaceholder'], $form['inputPlaceholder']);
+        $this->assertSame($data['inputAutofocus'], $form['inputAutofocus']);
+        $this->assertSame($data['state'], $form['state']);
+        $this->assertSame($data['message'], $form['message']);
         $this->assertSame($data['hiddenFields'][0], $form['hiddenFields'][0]->toArray());
         $this->assertSame($data['honeypot'], $form['honeypot']->toArray());
         $this->assertSame($data, $form->toArray());
@@ -107,7 +113,7 @@ final class CompactFormTest extends ViewModelTest
         new CompactForm(
             new Form('formAction', 'formId', 'GET'),
             new Input('label', 'text', 'name'),
-            'foo', [$this]
+            'foo', null, null, [$this]
         );
     }
 
@@ -124,8 +130,8 @@ final class CompactFormTest extends ViewModelTest
             'complete' => [
                 new CompactForm(
                     new Form('/foo', 'foo', 'GET'),
-                    new Input('label', 'text', 'input', 'value', 'placeholder'),
-                    'cta', [new HiddenField('name', 'id', 'value')],
+                    new Input('label', 'text', 'input', 'value', 'placeholder', true),
+                    'cta', CompactForm::STATE_ERROR, 'message', [new HiddenField('name', 'id', 'value')],
                     new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
                 ),
             ],

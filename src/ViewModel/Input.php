@@ -17,13 +17,15 @@ final class Input implements CastsToArray
     private $name;
     private $value;
     private $placeholder;
+    private $autofocus;
 
     public function __construct(
         string $label,
         string $type,
         string $name,
         string $value = null,
-        string $placeholder = null
+        string $placeholder = null,
+        bool $autofocus = false
     ) {
         Assertion::notBlank($label);
         Assertion::inArray($type, ['email', 'password', 'search', 'tel', 'text', 'url']);
@@ -34,5 +36,8 @@ final class Input implements CastsToArray
         $this->name = $name;
         $this->value = $value;
         $this->placeholder = $placeholder;
+        if ($autofocus) {
+            $this->autofocus = $autofocus;
+        }
     }
 }
