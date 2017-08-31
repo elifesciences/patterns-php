@@ -18,8 +18,15 @@ schema:
             enum:
                 - valid
                 - error
+        userInputInvalid:
+            type: boolean
+            enum:
+                - true
         message:
             type: string
+        messageId:
+            type: string
+            minLength: 1
         autofocus:
             type: boolean
         required:
@@ -53,3 +60,7 @@ schema:
     dependencies:
         label:
             - id
+        userInputInvalid:
+            - messageId
+        messageId:
+            - userInputInvalid
