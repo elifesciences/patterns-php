@@ -27,6 +27,9 @@ final class HoneypotTest extends ViewModelTest
             'autofocus' => true,
             'value' => 'value',
             'state' => 'error',
+            'message' => 'message',
+            'userInputInvalid' => true,
+            'messageId' => 'htmlIdOfMessageElement'
         ];
         $textField = new Honeypot(TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -37,7 +40,9 @@ final class HoneypotTest extends ViewModelTest
             $data['disabled'],
             $data['autofocus'],
             $data['value'],
-            TextField::STATE_ERROR
+            TextField::STATE_ERROR,
+            $data['message'],
+            $data['messageId']
         ));
 
         $this->assertSame($data['name'], $textField['name']);
@@ -49,6 +54,7 @@ final class HoneypotTest extends ViewModelTest
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
         $this->assertSame($data['state'], $textField['state']);
+        $this->assertSame($data['state'], $textField['state']);
         $this->assertSame($data, $textField->toArray());
     }
 
@@ -56,7 +62,7 @@ final class HoneypotTest extends ViewModelTest
     {
         return [
             'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))],
-            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR))],
+            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, 'message', 'messageId'))],
         ];
     }
 

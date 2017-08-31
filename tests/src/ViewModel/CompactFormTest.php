@@ -52,7 +52,12 @@ final class CompactFormTest extends ViewModelTest
                 'autofocus' => true,
                 'value' => 'value',
                 'state' => 'error',
+                'message' => 'message',
+                'userInputInvalid' => true,
+                'messageId' => 'htmlIdOfMessageElement2'
             ],
+            'userInputInvalid' => true,
+            'messageId' => 'htmlIdOfMessageElement1',
         ];
 
         $form = new CompactForm(
@@ -69,8 +74,12 @@ final class CompactFormTest extends ViewModelTest
                 $data['honeypot']['disabled'],
                 $data['honeypot']['autofocus'],
                 $data['honeypot']['value'],
-                TextField::STATE_ERROR
-            ))
+                TextField::STATE_ERROR,
+                $data['honeypot']['message'],
+                $data['honeypot']['messageId']
+
+            )),
+            $data['messageId']
         );
 
         $this->assertSame($data['formAction'], $form['formAction']);
@@ -86,6 +95,8 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSame($data['message'], $form['message']);
         $this->assertSame($data['hiddenFields'][0], $form['hiddenFields'][0]->toArray());
         $this->assertSame($data['honeypot'], $form['honeypot']->toArray());
+        $this->assertSame($data['userInputInvalid'], $form['userInputInvalid']);
+        $this->assertSame($data['messageId'], $form['messageId']);
         $this->assertSame($data, $form->toArray());
     }
 
@@ -132,7 +143,8 @@ final class CompactFormTest extends ViewModelTest
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder', true),
                     'cta', CompactForm::STATE_ERROR, 'message', [new HiddenField('name', 'id', 'value')],
-                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
+                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name')),
+                    'message id'
                 ),
             ],
         ];

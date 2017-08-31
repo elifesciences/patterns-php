@@ -28,6 +28,9 @@ class TextAreaTest extends ViewModelTest
             'rows' => 10,
             'form' => 'form',
             'state' => 'error',
+            'message' => 'The text field data is invalid',
+            'userInputInvalid' => true,
+            'messageId' => 'theHTMLIdOfTheMessageElement'
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),
@@ -41,7 +44,9 @@ class TextAreaTest extends ViewModelTest
             $data['cols'],
             $data['rows'],
             $data['form'],
-            TextArea::STATE_ERROR
+            TextArea::STATE_ERROR,
+            $data['message'],
+            $data['messageId']
         );
 
         $this->assertSameWithoutOrder($data, $textArea);
@@ -64,7 +69,10 @@ class TextAreaTest extends ViewModelTest
                     30, // cols
                     2, // rows
                     'some_form_id',
-                    TextArea::STATE_ERROR
+                    TextArea::STATE_ERROR,
+                    'message',
+                    'theHTMLIdOfTheMessageElement'
+
                 ),
             ],
         ];
