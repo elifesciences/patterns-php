@@ -30,7 +30,7 @@ class TextAreaTest extends ViewModelTest
             'state' => 'error',
             'message' => 'The text field data is invalid',
             'userInputInvalid' => true,
-            'messageId' => 'theHTMLIdOfTheMessageElement'
+            'messageId' => 'theHTMLIdOfTheMessageElement',
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),

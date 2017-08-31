@@ -54,7 +54,7 @@ final class CompactFormTest extends ViewModelTest
                 'state' => 'error',
                 'message' => 'message',
                 'userInputInvalid' => true,
-                'messageId' => 'htmlIdOfMessageElement2'
+                'messageId' => 'htmlIdOfMessageElement2',
             ],
             'userInputInvalid' => true,
             'messageId' => 'htmlIdOfMessageElement1',

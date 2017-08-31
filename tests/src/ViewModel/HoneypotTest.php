@@ -29,7 +29,7 @@ final class HoneypotTest extends ViewModelTest
             'state' => 'error',
             'message' => 'message',
             'userInputInvalid' => true,
-            'messageId' => 'htmlIdOfMessageElement'
+            'messageId' => 'htmlIdOfMessageElement',
         ];
         $textField = new Honeypot(TextField::emailInput(
             new FormLabel($data['label']['labelText']),

@@ -3,11 +3,11 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
-use InvalidArgumentException;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use InvalidArgumentException;
 use Traversable;
 
 final class CompactForm implements ViewModel
