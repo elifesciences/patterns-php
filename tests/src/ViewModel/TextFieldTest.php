@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
+use eLife\Patterns\ViewModel\Message;
 use eLife\Patterns\ViewModel\TextField;
 
 final class TextFieldTest extends ViewModelTest
@@ -26,9 +27,11 @@ final class TextFieldTest extends ViewModelTest
             'autofocus' => true,
             'value' => 'value',
             'state' => 'error',
-            'message' => 'The text field data is invalid',
+            'message' => [
+                'text' => 'The text field data is invalid',
+                'id' => 'theHTMLIdOfTheMessageElement'
+            ],
             'userInputInvalid' => true,
-            'messageId' => 'theHTMLIdOfTheMessageElement',
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -40,8 +43,8 @@ final class TextFieldTest extends ViewModelTest
             $data['autofocus'],
             $data['value'],
             TextField::STATE_ERROR,
-            $data['message'],
-            $data['messageId']
+            new Message($data['message']['text'], $data['message']['id'])
+
         );
 
         $this->assertSame($data['name'], $textField['name']);
@@ -53,47 +56,36 @@ final class TextFieldTest extends ViewModelTest
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
         $this->assertSame($data['state'], $textField['state']);
-        $this->assertSame($data['message'], $textField['message']);
         $this->assertSame($data['userInputInvalid'], $textField['userInputInvalid']);
-        $this->assertSame($data['messageId'], $textField['messageId']);
+        $this->assertSame($data['message'], $textField['message']->toArray());
         $this->assertSame($data, $textField->toArray());
     }
 
     /**
      * @test
      */
-    public function it_must_have_a_message_id_when_in_error_state()
+    public function it_must_have_a_message_when_in_error_state()
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, 'some message', null);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_not_have_a_message_id_when_in_valid_state()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_VALID, 'some message', 'messageIdThatShouldNotBeHere');
+        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, null);
     }
 
     public function viewModelProvider() : array
     {
         return [
             'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
-            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, 'some message', 'someHtmlIdForTheMessage')],
+            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
             'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],
-            'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, 'some message', 'someHtmlIdForTheMessage')],
+            'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
             'minimal search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name')],
-            'complete search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, 'some message', 'someHtmlIdForTheMessage')],
+            'complete search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
             'minimal tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name')],
-            'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, 'some message', 'someHtmlIdForTheMessage')],
+            'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
             'minimal text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name')],
-            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, 'some message', 'someHtmlIdForTheMessage')],
+            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
             'minimal url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name')],
-            'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, 'some message', 'someHtmlIdForTheMessage')],
+            'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
         ];
     }
 
