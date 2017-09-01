@@ -86,20 +86,28 @@ schema:
                             name:
                                 type: string
                                 minLength: 1
-                            state:
+                            variant:
                                 type: string
                                 enum:
                                     - valid
                                     - error
+                                    - info
                             userInputInvalid:
                                 type: boolean
                                 enum:
                                     - true
                             message:
-                                type: string
-                            messageId:
-                                type: string
-                                minLength: 1
+                                type: object
+                                properties:
+                                    text:
+                                        type: string
+                                        minLength: 1
+                                    id:
+                                        type: string
+                                        minLength: 1
+                                required:
+                                    - text
+                                    - id
                             autofocus:
                                 type: boolean
                             inputType:
@@ -135,9 +143,7 @@ schema:
                             label:
                                 - id
                             userInputInvalid:
-                                - messageId
-                            messageId:
-                                - userInputInvalid
+                                - message
                 required:
                     - formId
                     - formAction
