@@ -34,20 +34,15 @@ final class CompactForm implements ViewModel
     private $hiddenFields;
     private $honeypot;
     private $userInputInvalid;
-    private $messageId;
 
-    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, string $message = null, array $hiddenFields = [], Honeypot $honeypot = null, string $messageId = null)
+    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, Message $message = null, array $hiddenFields = [], Honeypot $honeypot = null)
     {
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
 
-        if ($state === self::STATE_VALID && $messageId) {
-            throw new InvalidArgumentException('There must not be a messageId if the state is valid.');
-        }
-
         if ($state === self::STATE_ERROR) {
-            if (!$messageId) {
-                throw new InvalidArgumentException('There must be a messageId if the state is error.');
+            if (!$message) {
+                throw new InvalidArgumentException('There must be a message if the state is error.');
             }
             $this->userInputInvalid = true;
         }
@@ -65,7 +60,6 @@ final class CompactForm implements ViewModel
         $this->message = $message;
         $this->hiddenFields = $hiddenFields;
         $this->honeypot = $honeypot;
-        $this->messageId = $messageId;
     }
 
     public function getTemplateName() : string

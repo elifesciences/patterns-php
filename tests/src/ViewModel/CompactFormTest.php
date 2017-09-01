@@ -8,6 +8,7 @@ use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\HiddenField;
 use eLife\Patterns\ViewModel\Honeypot;
 use eLife\Patterns\ViewModel\Input;
+use eLife\Patterns\ViewModel\Message;
 use eLife\Patterns\ViewModel\TextField;
 use InvalidArgumentException;
 
@@ -30,7 +31,10 @@ final class CompactFormTest extends ViewModelTest
             'inputAutofocus' => true,
             'ctaText' => 'cta',
             'state' => 'error',
-            'message' => 'message',
+            'message' => [
+                'text' => 'message text',
+                'id' => 'messageElementId'
+            ],
             'hiddenFields' => [
                 [
                     'name' => 'hidden-name',
@@ -52,19 +56,20 @@ final class CompactFormTest extends ViewModelTest
                 'autofocus' => true,
                 'value' => 'value',
                 'state' => 'error',
-                'message' => 'message',
+                'message' => [
+                    'text' => 'honeypot message text',
+                    'id' => 'honeypotMessageElementId'
+                ],
                 'userInputInvalid' => true,
-                'messageId' => 'htmlIdOfMessageElement2',
             ],
             'userInputInvalid' => true,
-            'messageId' => 'htmlIdOfMessageElement1',
         ];
 
         $form = new CompactForm(
             new Form($data['formAction'], $data['formId'], $data['formMethod']),
             new Input($data['label'], $data['inputType'], $data['inputName'], $data['inputValue'],
                 $data['inputPlaceholder'], true),
-            $data['ctaText'], CompactForm::STATE_ERROR, $data['message'], [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
+            $data['ctaText'], CompactForm::STATE_ERROR, new Message($data['message']['text'], $data['message']['id']), [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
             new Honeypot(TextField::emailInput(
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
@@ -75,11 +80,9 @@ final class CompactFormTest extends ViewModelTest
                 $data['honeypot']['autofocus'],
                 $data['honeypot']['value'],
                 TextField::STATE_ERROR,
-                $data['honeypot']['message'],
-                $data['honeypot']['messageId']
+                new Message($data['honeypot']['message']['text'], $data['honeypot']['message']['id'])
 
-            )),
-            $data['messageId']
+            ))
         );
 
         $this->assertSame($data['formAction'], $form['formAction']);
@@ -92,11 +95,10 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSame($data['inputPlaceholder'], $form['inputPlaceholder']);
         $this->assertSame($data['inputAutofocus'], $form['inputAutofocus']);
         $this->assertSame($data['state'], $form['state']);
-        $this->assertSame($data['message'], $form['message']);
+        $this->assertSame($data['message'], $form['message']->toArray());
         $this->assertSame($data['hiddenFields'][0], $form['hiddenFields'][0]->toArray());
         $this->assertSame($data['honeypot'], $form['honeypot']->toArray());
         $this->assertSame($data['userInputInvalid'], $form['userInputInvalid']);
-        $this->assertSame($data['messageId'], $form['messageId']);
         $this->assertSame($data, $form->toArray());
     }
 
@@ -142,9 +144,8 @@ final class CompactFormTest extends ViewModelTest
                 new CompactForm(
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder', true),
-                    'cta', CompactForm::STATE_ERROR, 'message', [new HiddenField('name', 'id', 'value')],
-                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name')),
-                    'message id'
+                    'cta', CompactForm::STATE_ERROR, new Message('message text', 'message id'), [new HiddenField('name', 'id', 'value')],
+                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
                 ),
             ],
         ];
