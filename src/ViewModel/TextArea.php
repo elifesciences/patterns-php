@@ -33,7 +33,6 @@ final class TextArea implements ViewModel
     private $state;
     private $message;
     private $userInputInvalid;
-    private $messageId;
 
     public function __construct(
         FormLabel $label,
@@ -48,17 +47,12 @@ final class TextArea implements ViewModel
         int $rows = null,
         string $form = null,
         string $state = null,
-        string $message = null,
-        string $messageId = null
+        Message $message = null
     ) {
         Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
 
-        if ($state === self::STATE_VALID && $messageId) {
-            throw new InvalidArgumentException('There must not be a messageId if the state is valid.');
-        }
-
         if ($state === self::STATE_ERROR) {
-            if (!$messageId) {
+            if (!$message) {
                 throw new InvalidArgumentException('There must be a messageId if the state is error.');
             }
             $this->userInputInvalid = true;
@@ -76,7 +70,6 @@ final class TextArea implements ViewModel
         $this->form = $form;
         $this->state = $state;
         $this->message = $message;
-        $this->messageId = $messageId;
     }
 
     public function getTemplateName() : string

@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
+use eLife\Patterns\ViewModel\Message;
 use eLife\Patterns\ViewModel\TextArea;
 
 class TextAreaTest extends ViewModelTest
@@ -28,9 +29,11 @@ class TextAreaTest extends ViewModelTest
             'rows' => 10,
             'form' => 'form',
             'state' => 'error',
-            'message' => 'The text field data is invalid',
+            'message' => [
+                'text' => 'The text field data is invalid',
+                'id' => 'theHTMLIdOfTheMessageElement'
+            ],
             'userInputInvalid' => true,
-            'messageId' => 'theHTMLIdOfTheMessageElement',
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),
@@ -45,8 +48,7 @@ class TextAreaTest extends ViewModelTest
             $data['rows'],
             $data['form'],
             TextArea::STATE_ERROR,
-            $data['message'],
-            $data['messageId']
+            new Message($data['message']['text'], $data['message']['id'])
         );
 
         $this->assertSameWithoutOrder($data, $textArea);
@@ -70,9 +72,7 @@ class TextAreaTest extends ViewModelTest
                     2, // rows
                     'some_form_id',
                     TextArea::STATE_ERROR,
-                    'message',
-                    'theHTMLIdOfTheMessageElement'
-
+                    new Message('message text', 'another id')
                 ),
             ],
         ];
