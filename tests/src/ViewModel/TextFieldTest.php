@@ -29,7 +29,7 @@ final class TextFieldTest extends ViewModelTest
             'state' => 'error',
             'message' => [
                 'text' => 'The text field data is invalid',
-                'id' => 'theHTMLIdOfTheMessageElement'
+                'id' => 'theHTMLIdOfTheMessageElement',
             ],
             'userInputInvalid' => true,
         ];

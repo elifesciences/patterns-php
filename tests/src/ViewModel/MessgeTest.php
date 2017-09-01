@@ -7,7 +7,7 @@ use eLife\Patterns\ViewModel\Message;
 use InvalidArgumentException;
 use PHPUnit_Framework_TestCase;
 
-final class MessageTest extends PHPUnit_Framework_TestCase
+final class MessgeTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -55,5 +55,4 @@ final class MessageTest extends PHPUnit_Framework_TestCase
 
         new Message('text', '');
     }
-
 }

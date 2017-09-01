@@ -30,7 +30,7 @@ final class HoneypotTest extends ViewModelTest
             'state' => 'error',
             'message' => [
                 'text' => 'message text',
-                'id' => 'message id'
+                'id' => 'message id',
             ],
             'userInputInvalid' => true,
         ];

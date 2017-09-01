@@ -33,7 +33,7 @@ final class CompactFormTest extends ViewModelTest
             'state' => 'error',
             'message' => [
                 'text' => 'message text',
-                'id' => 'messageElementId'
+                'id' => 'messageElementId',
             ],
             'hiddenFields' => [
                 [
@@ -58,7 +58,7 @@ final class CompactFormTest extends ViewModelTest
                 'state' => 'error',
                 'message' => [
                     'text' => 'honeypot message text',
-                    'id' => 'honeypotMessageElementId'
+                    'id' => 'honeypotMessageElementId',
                 ],
                 'userInputInvalid' => true,
             ],
