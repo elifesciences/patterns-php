@@ -5,7 +5,6 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Message;
 use eLife\Patterns\ViewModel\TextField;
-use Prophecy\Exception\Doubler\InterfaceNotFoundException;
 
 final class TextFieldTest extends ViewModelTest
 {
@@ -33,7 +32,7 @@ final class TextFieldTest extends ViewModelTest
                 'id' => 'theHTMLIdOfTheMessageElement',
             ],
             'userInputInvalid' => true,
-            'variant' => 'error'
+            'variant' => 'error',
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText']),

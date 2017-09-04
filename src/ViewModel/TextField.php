@@ -15,8 +15,8 @@ final class TextField implements ViewModel
     const STATE_ERROR = 'error';
     const STATE_VALID = 'valid';
 
-    const VARIANT_ERROR = TextField::STATE_ERROR;
-    const VARIANT_VALID = TextField::STATE_VALID;
+    const VARIANT_ERROR = self::STATE_ERROR;
+    const VARIANT_VALID = self::STATE_VALID;
     const VARIANT_INFO = 'info';
 
     use ArrayAccessFromProperties;
@@ -72,13 +72,11 @@ final class TextField implements ViewModel
         $this->state = $state;
         $this->message = $message;
         $this->variant = null;
-        if ($this->state)
-        {
+        if ($this->state) {
             $this->variant = $this->state;
         } elseif ($message) {
-            $this->variant = TextField::VARIANT_INFO;
+            $this->variant = self::VARIANT_INFO;
         }
-
     }
 
     public static function emailInput(

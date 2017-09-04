@@ -61,10 +61,10 @@ final class CompactFormTest extends ViewModelTest
                     'id' => 'honeypotMessageElementId',
                 ],
                 'userInputInvalid' => true,
-                'variant' => 'error'
+                'variant' => 'error',
             ],
             'userInputInvalid' => true,
-            'variant' => 'error'
+            'variant' => 'error',
         ];
 
         $form = new CompactForm(

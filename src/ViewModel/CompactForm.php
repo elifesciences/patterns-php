@@ -66,13 +66,11 @@ final class CompactForm implements ViewModel
         $this->hiddenFields = $hiddenFields;
         $this->honeypot = $honeypot;
         $this->variant = null;
-        if ($this->state)
-        {
+        if ($this->state) {
             $this->variant = $this->state;
         } elseif ($message) {
             $this->variant = TextField::VARIANT_INFO;
         }
-
     }
 
     public function getTemplateName() : string

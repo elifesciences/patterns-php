@@ -34,7 +34,7 @@ class TextAreaTest extends ViewModelTest
                 'id' => 'theHTMLIdOfTheMessageElement',
             ],
             'userInputInvalid' => true,
-            'variant' => 'error'
+            'variant' => 'error',
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),
@@ -54,8 +54,6 @@ class TextAreaTest extends ViewModelTest
 
         $this->assertSameWithoutOrder($data, $textArea);
     }
-
-
 
     /**
      * @test
@@ -87,7 +85,6 @@ class TextAreaTest extends ViewModelTest
         $this->assertNotTrue($textArea_1['userInputInvalid']);
 
         $textArea_2 = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', null, new Message('message text', 'messgeId'));
-
 
         $this->assertNotTrue($textArea_2['userInputInvalid']);
     }
@@ -131,8 +128,6 @@ class TextAreaTest extends ViewModelTest
 
         $this->assertNull($textArea['variant']);
     }
-
-
 
     public function viewModelProvider() : array
     {
