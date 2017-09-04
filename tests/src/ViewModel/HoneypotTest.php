@@ -33,6 +33,7 @@ final class HoneypotTest extends ViewModelTest
                 'id' => 'message id',
             ],
             'userInputInvalid' => true,
+            'variant' => 'error'
         ];
         $textField = new Honeypot(TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -55,6 +56,7 @@ final class HoneypotTest extends ViewModelTest
         $this->assertSame($data['disabled'], $textField['disabled']);
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
+        $this->assertSame($data['variant'], $textField['variant']);
         $this->assertSame($data['message'], $textField['message']->toArray());
         $this->assertSame($data, $textField->toArray());
     }

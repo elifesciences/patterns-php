@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Message;
 use eLife\Patterns\ViewModel\TextField;
+use Prophecy\Exception\Doubler\InterfaceNotFoundException;
 
 final class TextFieldTest extends ViewModelTest
 {
@@ -32,6 +33,7 @@ final class TextFieldTest extends ViewModelTest
                 'id' => 'theHTMLIdOfTheMessageElement',
             ],
             'userInputInvalid' => true,
+            'variant' => 'error'
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -57,6 +59,7 @@ final class TextFieldTest extends ViewModelTest
         $this->assertSame($data['value'], $textField['value']);
         $this->assertSame($data['state'], $textField['state']);
         $this->assertSame($data['userInputInvalid'], $textField['userInputInvalid']);
+        $this->assertSame($data['variant'], $textField['variant']);
         $this->assertSame($data['message'], $textField['message']->toArray());
         $this->assertSame($data, $textField->toArray());
     }
@@ -69,6 +72,70 @@ final class TextFieldTest extends ViewModelTest
         $this->expectException(\InvalidArgumentException::class);
 
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, null);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_set_userInputInvalid_when_in_error_state()
+    {
+        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, new Message('message text', 'messgeId'));
+
+        $this->assertTrue($textField['userInputInvalid']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_not_set_userInputInvalid_when_not_in_error_state()
+    {
+        $textField_1 = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_VALID, null);
+
+        $this->assertNotTrue($textField_1['userInputInvalid']);
+
+        $textField_2 = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, null);
+
+        $this->assertNotTrue($textField_2['userInputInvalid']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_variant_of_error_when_in_error_state()
+    {
+        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, new Message('message text', 'messgeId'));
+
+        $this->assertSame(TextField::VARIANT_ERROR, $textField['variant']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_variant_of_valid_when_in_valid_state()
+    {
+        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_VALID, null);
+
+        $this->assertSame(TextField::VARIANT_VALID, $textField['variant']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_variant_of_info_when_it_has_a_message_and_no_state()
+    {
+        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, new Message('an info message', 'messageId'));
+
+        $this->assertSame(TextField::VARIANT_INFO, $textField['variant']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_no_variant_when_it_has_no_message_and_no_state()
+    {
+        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, null);
+
+        $this->assertNull($textField['variant']);
     }
 
     public function viewModelProvider() : array
