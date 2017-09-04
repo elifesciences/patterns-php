@@ -72,8 +72,10 @@ final class TextField implements ViewModel
         $this->state = $state;
         $this->message = $message;
         $this->variant = null;
-        if ($this->state) {
-            $this->variant = $this->state;
+        if ($this->state === self::STATE_ERROR) {
+            $this->variant = self::VARIANT_ERROR;
+        } elseif ($this->state === self::STATE_VALID) {
+            $this->variant = self::VARIANT_VALID;
         } elseif ($message) {
             $this->variant = self::VARIANT_INFO;
         }

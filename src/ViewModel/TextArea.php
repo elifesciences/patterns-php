@@ -76,10 +76,13 @@ final class TextArea implements ViewModel
         $this->state = $state;
         $this->message = $message;
         $this->variant = null;
-        if ($this->state) {
-            $this->variant = $this->state;
+        $this->variant = null;
+        if ($this->state === TextField::STATE_ERROR) {
+            $this->variant = TextField::VARIANT_ERROR;
+        } elseif ($this->state === TextField::STATE_VALID) {
+            $this->variant = TextField::VARIANT_VALID;
         } elseif ($message) {
-            $this->variant = TextField::VARIANT_INFO;
+            $this->variant = self::VARIANT_INFO;
         }
     }
 
