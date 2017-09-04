@@ -61,8 +61,10 @@ final class CompactFormTest extends ViewModelTest
                     'id' => 'honeypotMessageElementId',
                 ],
                 'userInputInvalid' => true,
+                'variant' => 'error'
             ],
             'userInputInvalid' => true,
+            'variant' => 'error'
         ];
 
         $form = new CompactForm(
@@ -99,6 +101,7 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSame($data['hiddenFields'][0], $form['hiddenFields'][0]->toArray());
         $this->assertSame($data['honeypot'], $form['honeypot']->toArray());
         $this->assertSame($data['userInputInvalid'], $form['userInputInvalid']);
+        $this->assertSame($data['variant'], $form['variant']);
         $this->assertSame($data, $form->toArray());
     }
 
@@ -130,6 +133,110 @@ final class CompactFormTest extends ViewModelTest
         );
     }
 
+    /**
+     * @test
+     */
+    public function it_must_have_a_message_when_in_error_state()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', CompactForm::STATE_ERROR, null
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_set_userInputInvalid_when_in_error_state()
+    {
+        $compactForm = new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', CompactForm::STATE_ERROR, new Message('message text', 'messageId')
+        );
+
+        $this->assertTrue($compactForm['userInputInvalid']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_not_set_userInputInvalid_when_not_in_error_state()
+    {
+        $compactForm_1 = new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', CompactForm::STATE_VALID, null
+        );
+
+        $this->assertNotTrue($compactForm_1['userInputInvalid']);
+
+        $compactForm_2 = new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', null, new Message('message text', 'messageId')
+        );
+
+        $this->assertNotTrue($compactForm_2['userInputInvalid']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_variant_of_error_when_in_error_state()
+    {
+        $compactForm = new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', CompactForm::STATE_ERROR, new Message('message text', 'messageId')
+        );
+        $this->assertSame(TextField::VARIANT_ERROR, $compactForm['variant']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_variant_of_valid_when_in_valid_state()
+    {
+        $compactForm = new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', CompactForm::STATE_VALID, null
+        );
+
+        $this->assertSame(TextField::VARIANT_VALID, $compactForm['variant']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_variant_of_info_when_it_has_a_message_and_no_state()
+    {
+        $compactForm = new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', null, new Message('message text', 'messageId')
+        );
+
+        $this->assertSame(TextField::VARIANT_INFO, $compactForm['variant']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_no_variant_when_it_has_no_message_and_no_state()
+    {
+        $compactForm = new CompactForm(
+            new Form('formAction', 'formId', 'GET'),
+            new Input('label', 'text', 'name'),
+            'foo', null, null
+        );
+
+        $this->assertNull($compactForm['variant']);
+    }
     public function viewModelProvider() : array
     {
         return [

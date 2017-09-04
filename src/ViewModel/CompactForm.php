@@ -15,6 +15,10 @@ final class CompactForm implements ViewModel
     const STATE_ERROR = 'error';
     const STATE_VALID = 'valid';
 
+    const VARIANT_ERROR = TextField::STATE_ERROR;
+    const VARIANT_VALID = TextField::STATE_VALID;
+    const VARIANT_INFO = 'info';
+
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
@@ -34,6 +38,7 @@ final class CompactForm implements ViewModel
     private $hiddenFields;
     private $honeypot;
     private $userInputInvalid;
+    private $variant;
 
     public function __construct(Form $form, Input $input, string $ctaText, string $state = null, Message $message = null, array $hiddenFields = [], Honeypot $honeypot = null)
     {
@@ -60,6 +65,14 @@ final class CompactForm implements ViewModel
         $this->message = $message;
         $this->hiddenFields = $hiddenFields;
         $this->honeypot = $honeypot;
+        $this->variant = null;
+        if ($this->state)
+        {
+            $this->variant = $this->state;
+        } elseif ($message) {
+            $this->variant = TextField::VARIANT_INFO;
+        }
+
     }
 
     public function getTemplateName() : string
