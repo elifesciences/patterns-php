@@ -34,10 +34,10 @@ schema:
                 messageGroup:
                     type: object
                     properties:
-                        errorMessage:
+                        errorText:
                             type: string
                             minLength: 1
-                        infoMessage:
+                        infoText:
                             type: string
                             minLength: 1
                         id:
@@ -47,22 +47,22 @@ schema:
                         -
                             required:
                                 - id
-                                - errorMessage
+                                - errorText
                             not:
                                 required:
-                                    - infoMessage
+                                    - infoText
                         -
                             required:
                                 - id
-                                - infoMessage
+                                - infoText
                             not:
                                 required:
-                                    - errorMessage
+                                    - errorText
                         -
                             required:
                                 - id
-                                - errorMessage
-                                - infoMessage
+                                - errorText
+                                - infoText
                 label:
                     type: string
                     minLength: 1
@@ -125,10 +125,10 @@ schema:
                         messageGroup:
                             type: object
                             properties:
-                                errorMessage:
+                                errorText:
                                     type: string
                                     minLength: 1
-                                infoMessage:
+                                infoText:
                                     type: string
                                     minLength: 1
                                 id:
@@ -138,22 +138,22 @@ schema:
                                 -
                                     required:
                                         - id
-                                        - errorMessage
+                                        - errorText
                                     not:
                                         required:
-                                            - infoMessage
+                                            - infoText
                                 -
                                     required:
                                         - id
-                                        - infoMessage
+                                        - infoText
                                     not:
                                         required:
-                                            - errorMessage
+                                            - errorText
                                 -
                                     required:
                                         - id
-                                        - errorMessage
-                                        - infoMessage
+                                        - errorText
+                                        - infoText
                         autofocus:
                             type: boolean
                         inputType:

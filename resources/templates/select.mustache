@@ -24,14 +24,14 @@
   {{#messageGroup}}
     <div id="{{id}}">
 
-      {{#infoMessage}}
+      {{#infoText}}
         <div class="form-item__message form-item__message--info">{{{.}}}</div>
-      {{/infoMessage}}
+      {{/infoText}}
 
       {{#isInvalid}}
-        {{#errorMessage}}
+        {{#errorText}}
           <div class="form-item__message form-item__message--invalid">{{{.}}}</div>
-        {{/errorMessage}}
+        {{/errorText}}
       {{/isInvalid}}
 
     </div>
