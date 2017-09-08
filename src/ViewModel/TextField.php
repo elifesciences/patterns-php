@@ -12,12 +12,8 @@ use Traversable;
 
 final class TextField implements ViewModel
 {
-    const STATE_ERROR = 'error';
+    const STATE_INVALID = 'invalid';
     const STATE_VALID = 'valid';
-
-    const VARIANT_ERROR = self::STATE_ERROR;
-    const VARIANT_VALID = self::STATE_VALID;
-    const VARIANT_INFO = 'info';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -33,9 +29,8 @@ final class TextField implements ViewModel
     private $autofocus;
     private $value;
     private $state;
-    private $message;
-    private $userInputInvalid;
-    private $variant;
+    private $messageGroup;
+    private $isInvalid;
 
     protected function __construct(
         string $inputType,
@@ -48,17 +43,17 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['email', 'password', 'search', 'tel', 'text', 'url']);
-        Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
+        Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
 
-        if ($state === self::STATE_ERROR) {
-            if (!$message) {
-                throw new InvalidArgumentException('There must be a message if the state is error.');
+        if ($state === self::STATE_INVALID) {
+            if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
+                throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
             }
-            $this->userInputInvalid = true;
+            $this->isInvalid = true;
         }
         $this->inputType = $inputType;
         $this->label = $label;
@@ -70,15 +65,7 @@ final class TextField implements ViewModel
         $this->autofocus = $autofocus;
         $this->value = $value;
         $this->state = $state;
-        $this->message = $message;
-        $this->variant = null;
-        if ($this->state === self::STATE_ERROR) {
-            $this->variant = self::VARIANT_ERROR;
-        } elseif ($this->state === self::STATE_VALID) {
-            $this->variant = self::VARIANT_VALID;
-        } elseif ($message) {
-            $this->variant = self::VARIANT_INFO;
-        }
+        $this->messageGroup = $messageGroup;
     }
 
     public static function emailInput(
@@ -91,9 +78,9 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
-        return new static('email', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $message);
+        return new static('email', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup);
     }
 
     public static function passwordInput(
@@ -106,9 +93,9 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
-        return new static('password', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $message);
+        return new static('password', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup);
     }
 
     public static function searchInput(
@@ -121,9 +108,9 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
-        return new static('search', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $message);
+        return new static('search', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup);
     }
 
     public static function telInput(
@@ -136,9 +123,9 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
-        return new static('tel', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $message);
+        return new static('tel', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup);
     }
 
     public static function textInput(
@@ -151,9 +138,9 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
-        return new static('text', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $message);
+        return new static('text', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup);
     }
 
     public static function urlInput(
@@ -166,9 +153,9 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
-        return new static('url', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $message);
+        return new static('url', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup);
     }
 
     public function getTemplateName() : string

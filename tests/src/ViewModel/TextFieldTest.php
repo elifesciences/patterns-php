@@ -3,7 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
-use eLife\Patterns\ViewModel\Message;
+use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextField;
 
 final class TextFieldTest extends ViewModelTest
@@ -26,13 +26,13 @@ final class TextFieldTest extends ViewModelTest
             'disabled' => true,
             'autofocus' => true,
             'value' => 'value',
-            'state' => 'error',
-            'message' => [
-                'text' => 'The text field data is invalid',
-                'id' => 'theHTMLIdOfTheMessageElement',
+            'state' => 'invalid',
+            'messageGroup' => [
+                'id' => 'theHTMLIdOfTheMessageGroupElement',
+                'errorText' => 'error text',
+                'infoText' => 'info text',
             ],
-            'userInputInvalid' => true,
-            'variant' => 'error',
+            'isInvalid' => true,
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -43,8 +43,8 @@ final class TextFieldTest extends ViewModelTest
             $data['disabled'],
             $data['autofocus'],
             $data['value'],
-            TextField::STATE_ERROR,
-            new Message($data['message']['text'], $data['message']['id'])
+            TextField::STATE_INVALID,
+            new MessageGroup($data['messageGroup']['id'], $data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
 
         );
 
@@ -57,101 +57,70 @@ final class TextFieldTest extends ViewModelTest
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
         $this->assertSame($data['state'], $textField['state']);
-        $this->assertSame($data['userInputInvalid'], $textField['userInputInvalid']);
-        $this->assertSame($data['variant'], $textField['variant']);
-        $this->assertSame($data['message'], $textField['message']->toArray());
+        $this->assertSame($data['isInvalid'], $textField['isInvalid']);
+        $this->assertSame($data['messageGroup'], $textField['messageGroup']->toArray());
         $this->assertSame($data, $textField->toArray());
     }
 
     /**
      * @test
      */
-    public function it_must_have_a_message_when_in_error_state()
+    public function it_must_have_a_message_group_when_in_error_state()
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, null);
+        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, null);
     }
 
     /**
      * @test
      */
-    public function it_must_set_userInputInvalid_when_in_error_state()
+    public function its_message_group_must_have_an_error_message_when_in_error_state()
     {
-        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, new Message('message text', 'messgeId'));
+        $this->expectException(\InvalidArgumentException::class);
 
-        $this->assertTrue($textField['userInputInvalid']);
+        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, new MessageGroup('id', null, 'info text'));
     }
 
     /**
      * @test
      */
-    public function it_must_not_set_userInputInvalid_when_not_in_error_state()
+    public function it_must_set_isInvalid_when_in_error_state()
     {
-        $textField_1 = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_VALID, null);
+        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, new MessageGroup('messgeId', 'error text', null));
 
-        $this->assertNotTrue($textField_1['userInputInvalid']);
-
-        $textField_2 = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, null);
-
-        $this->assertNotTrue($textField_2['userInputInvalid']);
+        $this->assertTrue($textField['isInvalid']);
     }
 
     /**
      * @test
      */
-    public function it_must_have_a_variant_of_error_when_in_error_state()
+    public function it_must_not_set_isInvalid_when_not_in_error_state()
     {
-        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_ERROR, new Message('message text', 'messgeId'));
+        $textField_state_valid = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_VALID, null);
 
-        $this->assertSame(TextField::VARIANT_ERROR, $textField['variant']);
-    }
+        $this->assertNotTrue($textField_state_valid['isInvalid']);
 
-    /**
-     * @test
-     */
-    public function it_must_have_variant_of_valid_when_in_valid_state()
-    {
-        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_VALID, null);
+        $textField_state_null = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, null);
 
-        $this->assertSame(TextField::VARIANT_VALID, $textField['variant']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_have_variant_of_info_when_it_has_a_message_and_no_state()
-    {
-        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, new Message('an info message', 'messageId'));
-
-        $this->assertSame(TextField::VARIANT_INFO, $textField['variant']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_have_no_variant_when_it_has_no_message_and_no_state()
-    {
-        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, null);
-
-        $this->assertNull($textField['variant']);
+        $this->assertNotTrue($textField_state_null['isInvalid']);
     }
 
     public function viewModelProvider() : array
     {
         return [
             'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
-            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
+            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, new MessageGroup('someHtmlIdForTheMessageGroup', 'error message', null))],
             'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],
-            'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
+            'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, new MessageGroup('someHtmlIdForTheMessageGroup', 'error message', null))],
             'minimal search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name')],
-            'complete search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
+            'complete search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, new MessageGroup('someHtmlIdForTheMessageGroup', 'error message', null))],
             'minimal tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name')],
-            'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
+            'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, new MessageGroup('someHtmlIdForTheMessageGroup', 'error message', null))],
             'minimal text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name')],
-            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
+            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, new MessageGroup('someHtmlIdForTheMessageGroup', 'error message', null))],
             'minimal url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name')],
-            'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR, new Message('error message', 'someHtmlIdForTheMessage'))],
+            'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, new MessageGroup('someHtmlIdForTheMessageGroup', 'error message', null))],
         ];
     }
 

@@ -3,7 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
-use eLife\Patterns\ViewModel\Message;
+use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextArea;
 
 class TextAreaTest extends ViewModelTest
@@ -28,13 +28,13 @@ class TextAreaTest extends ViewModelTest
             'cols' => 10,
             'rows' => 10,
             'form' => 'form',
-            'state' => 'error',
-            'message' => [
-                'text' => 'The text field data is invalid',
-                'id' => 'theHTMLIdOfTheMessageElement',
+            'state' => 'invalid',
+            'messageGroup' => [
+                'id' => 'theHTMLIdOfTheMessageGroupElement',
+                'errorText' => 'error text',
+                'infoText' => 'info text',
             ],
-            'userInputInvalid' => true,
-            'variant' => 'error',
+            'isInvalid' => true,
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),
@@ -48,8 +48,8 @@ class TextAreaTest extends ViewModelTest
             $data['cols'],
             $data['rows'],
             $data['form'],
-            TextArea::STATE_ERROR,
-            new Message($data['message']['text'], $data['message']['id'])
+            TextArea::STATE_INVALID,
+            new MessageGroup($data['messageGroup']['id'], $data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
         );
 
         $this->assertSameWithoutOrder($data, $textArea);
@@ -58,75 +58,45 @@ class TextAreaTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_have_a_message_when_in_error_state()
+    public function it_must_have_a_message_group_when_in_error_state()
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', true, false, false, 'false', 10, 10, 'form', TextArea::STATE_ERROR, null);
+        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', true, false, false, 'false', 10, 10, 'form', TextArea::STATE_INVALID, null);
     }
 
     /**
      * @test
      */
-    public function it_must_set_userInputInvalid_when_in_error_state()
+    public function its_message_group_must_have_an_error_message_when_in_error_state()
     {
-        $textArea = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_ERROR, new Message('message text', 'messgeId'));
+        $this->expectException(\InvalidArgumentException::class);
 
-        $this->assertTrue($textArea['userInputInvalid']);
+        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, new MessageGroup('id', null, 'info text'));
     }
 
     /**
      * @test
      */
-    public function it_must_not_set_userInputInvalid_when_not_in_error_state()
+    public function it_must_set_isInvalid_when_in_error_state()
     {
-        $textArea_1 = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_VALID, new Message('message text', 'messgeId'));
+        $textArea = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_INVALID, new MessageGroup('id', 'error text', 'info text'));
 
-        $this->assertNotTrue($textArea_1['userInputInvalid']);
-
-        $textArea_2 = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', null, new Message('message text', 'messgeId'));
-
-        $this->assertNotTrue($textArea_2['userInputInvalid']);
+        $this->assertTrue($textArea['isInvalid']);
     }
 
     /**
      * @test
      */
-    public function it_must_have_a_variant_of_error_when_in_error_state()
+    public function it_must_not_set_isInvalid_when_not_in_error_state()
     {
-        $textArea = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_ERROR, new Message('message text', 'messgeId'));
+        $textArea_state_valid = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_VALID);
 
-        $this->assertSame(TextArea::VARIANT_ERROR, $textArea['variant']);
-    }
+        $this->assertNotTrue($textArea_state_valid['isInvalid']);
 
-    /**
-     * @test
-     */
-    public function it_must_have_variant_of_valid_when_in_valid_state()
-    {
-        $textArea = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_VALID, new Message('message text', 'messgeId'));
+        $textArea_state_null = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', null);
 
-        $this->assertSame(TextArea::VARIANT_VALID, $textArea['variant']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_have_variant_of_info_when_it_has_a_message_and_no_state()
-    {
-        $textArea = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', null, new Message('message text', 'messgeId'));
-
-        $this->assertSame(TextArea::VARIANT_INFO, $textArea['variant']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_have_no_variant_when_it_has_no_message_and_no_state()
-    {
-        $textArea = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', null, null);
-
-        $this->assertNull($textArea['variant']);
+        $this->assertNotTrue($textArea_state_null['isInvalid']);
     }
 
     public function viewModelProvider() : array
@@ -146,8 +116,8 @@ class TextAreaTest extends ViewModelTest
                     30, // cols
                     2, // rows
                     'some_form_id',
-                    TextArea::STATE_ERROR,
-                    new Message('message text', 'another id')
+                    TextArea::STATE_INVALID,
+                    new MessageGroup('id', 'error text', 'info text')
                 ),
             ],
         ];

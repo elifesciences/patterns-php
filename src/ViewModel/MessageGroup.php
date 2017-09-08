@@ -13,26 +13,23 @@ final class MessageGroup implements CastsToArray
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
+    private $id;
     private $errorText;
     private $infoText;
-    private $id;
 
     public function __construct(
-        string $errorText,
-        string $infoText,
-        string $id
+        string $id,
+        string $errorText = null,
+        string $infoText = null
     ) {
-        Assertion::string($errorText);
-        Assertion::string($infoText);
         Assertion::notBlank($id);
 
-        if($errorText === '' && $infoText === '')
-        {
+        if (empty($errorText) && empty($infoText)) {
             throw new InvalidArgumentException('A MessageGroup must contain at least one message.');
         }
 
+        $this->id = $id;
         $this->errorText = $errorText;
         $this->infoText = $infoText;
-        $this->id = $id;
     }
 }

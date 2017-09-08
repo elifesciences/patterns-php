@@ -12,12 +12,8 @@ use Traversable;
 
 final class CompactForm implements ViewModel
 {
-    const STATE_ERROR = 'error';
+    const STATE_INVALID = 'invalid';
     const STATE_VALID = 'valid';
-
-    const VARIANT_ERROR = TextField::STATE_ERROR;
-    const VARIANT_VALID = TextField::STATE_VALID;
-    const VARIANT_INFO = 'info';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -34,22 +30,21 @@ final class CompactForm implements ViewModel
     private $inputAutofocus;
     private $ctaText;
     private $state;
-    private $message;
+    private $messageGroup;
     private $hiddenFields;
     private $honeypot;
-    private $userInputInvalid;
-    private $variant;
+    private $isInvalid;
 
-    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, Message $message = null, array $hiddenFields = [], Honeypot $honeypot = null)
+    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, MessageGroup $messageGroup = null, array $hiddenFields = [], Honeypot $honeypot = null)
     {
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
 
-        if ($state === self::STATE_ERROR) {
-            if (!$message) {
-                throw new InvalidArgumentException('There must be a message if the state is error.');
+        if ($state === self::STATE_INVALID) {
+            if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
+                throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
             }
-            $this->userInputInvalid = true;
+            $this->isInvalid = true;
         }
         $this->formAction = $form['action'];
         $this->formId = $form['id'];
@@ -62,18 +57,9 @@ final class CompactForm implements ViewModel
         $this->inputAutofocus = $input['autofocus'];
         $this->ctaText = $ctaText;
         $this->state = $state;
-        $this->message = $message;
+        $this->messageGroup = $messageGroup;
         $this->hiddenFields = $hiddenFields;
         $this->honeypot = $honeypot;
-        $this->variant = null;
-        $this->variant = null;
-        if ($this->state === TextField::STATE_ERROR) {
-            $this->variant = TextField::VARIANT_ERROR;
-        } elseif ($this->state === TextField::STATE_VALID) {
-            $this->variant = TextField::VARIANT_VALID;
-        } elseif ($message) {
-            $this->variant = self::VARIANT_INFO;
-        }
     }
 
     public function getTemplateName() : string

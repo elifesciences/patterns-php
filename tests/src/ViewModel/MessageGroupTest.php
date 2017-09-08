@@ -14,7 +14,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
      */
     public function it_casts_to_an_array()
     {
-        $messageGroup = new MessageGroup('error messsage', 'info message', 'id');
+        $messageGroup = new MessageGroup('id', 'error messsage', 'info message');
 
         $this->assertInstanceOf(CastsToArray::class, $messageGroup);
     }
@@ -25,15 +25,15 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
     public function it_has_data()
     {
         $data = [
+            'id' => 'id',
             'errorText' => 'error messsage',
             'infoText' => 'info messsage',
-            'id' => 'id',
         ];
 
         $messageGroup = new MessageGroup(...array_values($data));
+        $this->assertSame($data['id'], $messageGroup['id']);
         $this->assertSame($data['errorText'], $messageGroup['errorText']);
         $this->assertSame($data['infoText'], $messageGroup['infoText']);
-        $this->assertSame($data['id'], $messageGroup['id']);
         $this->assertSame($data, $messageGroup->toArray());
     }
 
@@ -44,7 +44,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new MessageGroup('', '', 'id');
+        new MessageGroup('id');
     }
 
     /**
@@ -54,6 +54,6 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new MessageGroup('error message', 'info message', '');
+        new MessageGroup('', 'error message', 'info message');
     }
 }

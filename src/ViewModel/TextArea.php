@@ -12,12 +12,8 @@ use Traversable;
 
 final class TextArea implements ViewModel
 {
-    const STATE_ERROR = 'error';
+    const STATE_INVALID = 'invalid';
     const STATE_VALID = 'valid';
-
-    const VARIANT_ERROR = TextField::STATE_ERROR;
-    const VARIANT_VALID = TextField::STATE_VALID;
-    const VARIANT_INFO = 'info';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -35,9 +31,8 @@ final class TextArea implements ViewModel
     private $rows;
     private $form;
     private $state;
-    private $message;
-    private $userInputInvalid;
-    private $variant;
+    private $messageGroup;
+    private $isInvalid;
 
     public function __construct(
         FormLabel $label,
@@ -52,15 +47,15 @@ final class TextArea implements ViewModel
         int $rows = null,
         string $form = null,
         string $state = null,
-        Message $message = null
+        MessageGroup $messageGroup = null
     ) {
-        Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
+        Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
 
-        if ($state === self::STATE_ERROR) {
-            if (!$message) {
-                throw new InvalidArgumentException('There must be a messageId if the state is error.');
+        if ($state === self::STATE_INVALID) {
+            if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
+                throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
             }
-            $this->userInputInvalid = true;
+            $this->isInvalid = true;
         }
         $this->label = $label;
         $this->name = $name;
@@ -74,16 +69,7 @@ final class TextArea implements ViewModel
         $this->rows = $rows;
         $this->form = $form;
         $this->state = $state;
-        $this->message = $message;
-        $this->variant = null;
-        $this->variant = null;
-        if ($this->state === TextField::STATE_ERROR) {
-            $this->variant = TextField::VARIANT_ERROR;
-        } elseif ($this->state === TextField::STATE_VALID) {
-            $this->variant = TextField::VARIANT_VALID;
-        } elseif ($message) {
-            $this->variant = self::VARIANT_INFO;
-        }
+        $this->messageGroup = $messageGroup;
     }
 
     public function getTemplateName() : string
