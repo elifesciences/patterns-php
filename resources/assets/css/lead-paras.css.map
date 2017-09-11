@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,WAAY,CC4PV,WAAW,CC/NE,aAAc,CChB3B,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,IAAmC,CFgP9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,MAAM,CD9PlB,aAAa,CAAE,iBAA8B,CGiB3C,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CADzD,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,QAAkC",
+"mappings": "AAEA,WAAY,CCiQV,WAAW,CCpOE,aAAc,CChB3B,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,IAAmC,CFqP9C,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,MAAM,CDnQlB,aAAa,CAAE,iBAA8B,CGiB3C,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CADzD,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,QAAkC",
 "sources": ["../../../../../../assets/sass/patterns/atoms/lead-paras.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
 "names": [],
 "file": "lead-paras.css"

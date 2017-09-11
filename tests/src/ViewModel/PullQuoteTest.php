@@ -14,7 +14,6 @@ final class PullQuoteTest extends ViewModelTest
         $data = [
             'quote' => 'quote',
             'cite' => 'cite <a href="#">with link</a>',
-            'asPara' => true,
         ];
         $pullQuote = new PullQuote('quote', 'cite <a href="#">with link</a>');
 
@@ -29,7 +28,6 @@ final class PullQuoteTest extends ViewModelTest
             'with quote' => [new PullQuote('quote')],
             'with quote and cite' => [new PullQuote('quote', 'cite')],
             'with links in cite' => [new PullQuote('quote', 'cite <a href="#">with link</a>')],
-            'with links in cite not paragraph' => [new PullQuote('quote', 'cite <a href="#">with link</a>', false)],
         ];
     }
 

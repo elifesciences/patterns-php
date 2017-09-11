@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class PullQuote implements ViewModel
+final class Quote implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -30,11 +30,11 @@ final class PullQuote implements ViewModel
 
     public function getStyleSheets() : Traversable
     {
-        yield 'resources/assets/css/pull-quote.css';
+        yield 'resources/assets/css/quote.css';
     }
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/pull-quote.mustache';
+        return 'resources/templates/quote.mustache';
     }
 }
