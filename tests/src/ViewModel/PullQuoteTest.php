@@ -2,9 +2,9 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\PullQuote;
+use eLife\Patterns\ViewModel\Quote;
 
-final class PullQuoteTest extends ViewModelTest
+final class QuoteTest extends ViewModelTest
 {
     /**
      * @test
@@ -14,27 +14,25 @@ final class PullQuoteTest extends ViewModelTest
         $data = [
             'quote' => 'quote',
             'cite' => 'cite <a href="#">with link</a>',
-            'asPara' => true,
         ];
-        $pullQuote = new PullQuote('quote', 'cite <a href="#">with link</a>');
+        $quote = new Quote('quote', 'cite <a href="#">with link</a>');
 
-        $this->assertSame($data['quote'], $pullQuote['quote']);
-        $this->assertSame($data['cite'], $pullQuote['cite']);
-        $this->assertSame($data, $pullQuote->toArray());
+        $this->assertSame($data['quote'], $quote['quote']);
+        $this->assertSame($data['cite'], $quote['cite']);
+        $this->assertSame($data, $quote->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'with quote' => [new PullQuote('quote')],
-            'with quote and cite' => [new PullQuote('quote', 'cite')],
-            'with links in cite' => [new PullQuote('quote', 'cite <a href="#">with link</a>')],
-            'with links in cite not paragraph' => [new PullQuote('quote', 'cite <a href="#">with link</a>', false)],
+            'with quote' => [new Quote('quote')],
+            'with quote and cite' => [new Quote('quote', 'cite')],
+            'with links in cite' => [new Quote('quote', 'cite <a href="#">with link</a>')],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/pull-quote.mustache';
+        return 'resources/templates/quote.mustache';
     }
 }
