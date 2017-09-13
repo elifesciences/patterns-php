@@ -27,10 +27,6 @@ schema:
                     enum:
                         - valid
                         - invalid
-                isInvalid:
-                    type: boolean
-                    enum:
-                        - true
                 messageGroup:
                     type: object
                     properties:
@@ -43,26 +39,9 @@ schema:
                         id:
                             type: string
                             minLength: 1
-                    oneOf:
-                        -
-                            required:
-                                - id
-                                - errorText
-                            not:
-                                required:
-                                    - infoText
-                        -
-                            required:
-                                - id
-                                - infoText
-                            not:
-                                required:
-                                    - errorText
-                        -
-                            required:
-                                - id
-                                - errorText
-                                - infoText
+                    minProperties: 2
+                    required:
+                        - id
                 label:
                     type: string
                     minLength: 1
@@ -118,10 +97,6 @@ schema:
                             enum:
                                 - valid
                                 - invalid
-                        isInvalid:
-                            type: boolean
-                            enum:
-                                - true
                         messageGroup:
                             type: object
                             properties:
@@ -134,26 +109,9 @@ schema:
                                 id:
                                     type: string
                                     minLength: 1
-                            oneOf:
-                                -
-                                    required:
-                                        - id
-                                        - errorText
-                                    not:
-                                        required:
-                                            - infoText
-                                -
-                                    required:
-                                        - id
-                                        - infoText
-                                    not:
-                                        required:
-                                            - errorText
-                                -
-                                    required:
-                                        - id
-                                        - errorText
-                                        - infoText
+                            minProperties: 2
+                            required:
+                                - id
                         autofocus:
                             type: boolean
                         inputType:

@@ -276,15 +276,11 @@ schema:
                         name:
                             type: string
                             minLength: 1
-                        variant:
+                        state:
                             type: string
                             enum:
                                 - valid
                                 - invalid
-                        isInvalid:
-                            type: boolean
-                            enum:
-                                - true
                         messageGroup:
                             type: object
                             properties:
@@ -297,26 +293,9 @@ schema:
                                 id:
                                     type: string
                                     minLength: 1
-                            oneOf:
-                                -
-                                    required:
-                                        - id
-                                        - errorText
-                                    not:
-                                        required:
-                                            - infoText
-                                -
-                                    required:
-                                        - id
-                                        - infoText
-                                    not:
-                                        required:
-                                            - errorText
-                                -
-                                    required:
-                                        - id
-                                        - errorText
-                                        - infoText
+                            minProperties: 2
+                            required:
+                                - id
                         required:
                             type: boolean
                         disabled:
