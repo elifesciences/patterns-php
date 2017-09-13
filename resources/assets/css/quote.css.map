@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,MAAO,CACL,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,MAAM,CC2JlB,MAAM,CAAE,CAAC,CCnHP,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CFtC1D,QAAE,CACA,UAAU,CAAE,MAAM,CAItB,YAAa,CACX,KAAK,CGHgB,IAAI,CHIzB,OAAO,CAAE,KAAK,CC2Ld,WAAW,CE1KE,aAAc,CDhB3B,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CD2L9C,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,WAAW,CAAE,GAAG,CAEhB,cAAE,CACA,KAAK,CAAE,OAAO,CACd,WAAW,CAAE,OAAO,CACpB,eAAe,CAAE,OAAO",
+"sources": ["../../../../../../assets/sass/patterns/molecules/quote.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_variables.scss"],
+"names": [],
+"file": "quote.css"
+}
