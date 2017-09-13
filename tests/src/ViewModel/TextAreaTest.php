@@ -34,7 +34,6 @@ class TextAreaTest extends ViewModelTest
                 'errorText' => 'error text',
                 'infoText' => 'info text',
             ],
-            'isInvalid' => true,
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),
@@ -73,30 +72,6 @@ class TextAreaTest extends ViewModelTest
         $this->expectException(\InvalidArgumentException::class);
 
         new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, new MessageGroup('id', null, 'info text'));
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_set_isInvalid_when_in_error_state()
-    {
-        $textArea = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_INVALID, new MessageGroup('id', 'error text', 'info text'));
-
-        $this->assertTrue($textArea['isInvalid']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_not_set_isInvalid_when_not_in_error_state()
-    {
-        $textArea_state_valid = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', TextArea::STATE_VALID);
-
-        $this->assertNotTrue($textArea_state_valid['isInvalid']);
-
-        $textArea_state_null = new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', 'placeholder', true, false, false, 10, 10, 'form', null);
-
-        $this->assertNotTrue($textArea_state_null['isInvalid']);
     }
 
     public function viewModelProvider() : array

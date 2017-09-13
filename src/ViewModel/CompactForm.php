@@ -33,7 +33,6 @@ final class CompactForm implements ViewModel
     private $messageGroup;
     private $hiddenFields;
     private $honeypot;
-    private $isInvalid;
 
     public function __construct(Form $form, Input $input, string $ctaText, string $state = null, MessageGroup $messageGroup = null, array $hiddenFields = [], Honeypot $honeypot = null)
     {
@@ -44,7 +43,6 @@ final class CompactForm implements ViewModel
             if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
                 throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
             }
-            $this->isInvalid = true;
         }
         $this->formAction = $form['action'];
         $this->formId = $form['id'];

@@ -32,7 +32,6 @@ final class TextFieldTest extends ViewModelTest
                 'errorText' => 'error text',
                 'infoText' => 'info text',
             ],
-            'isInvalid' => true,
         ];
         $textField = TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -57,7 +56,6 @@ final class TextFieldTest extends ViewModelTest
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
         $this->assertSame($data['state'], $textField['state']);
-        $this->assertSame($data['isInvalid'], $textField['isInvalid']);
         $this->assertSame($data['messageGroup'], $textField['messageGroup']->toArray());
         $this->assertSame($data, $textField->toArray());
     }
@@ -80,30 +78,6 @@ final class TextFieldTest extends ViewModelTest
         $this->expectException(\InvalidArgumentException::class);
 
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, new MessageGroup('id', null, 'info text'));
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_set_isInvalid_when_in_error_state()
-    {
-        $textField = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, new MessageGroup('messgeId', 'error text', null));
-
-        $this->assertTrue($textField['isInvalid']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_not_set_isInvalid_when_not_in_error_state()
-    {
-        $textField_state_valid = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_VALID, null);
-
-        $this->assertNotTrue($textField_state_valid['isInvalid']);
-
-        $textField_state_null = TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', null, null);
-
-        $this->assertNotTrue($textField_state_null['isInvalid']);
     }
 
     public function viewModelProvider() : array

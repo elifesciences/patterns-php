@@ -32,7 +32,6 @@ final class TextArea implements ViewModel
     private $form;
     private $state;
     private $messageGroup;
-    private $isInvalid;
 
     public function __construct(
         FormLabel $label,

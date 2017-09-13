@@ -11,7 +11,7 @@ use Traversable;
 
 final class Select implements ViewModel
 {
-    const STATE_ERROR = 'error';
+    const STATE_INVALID = 'invalid';
     const STATE_VALID = 'valid';
 
     use ArrayAccessFromProperties;
@@ -39,7 +39,7 @@ final class Select implements ViewModel
     ) {
         Assertion::notEmpty($options);
         Assertion::allIsInstanceOf($options, SelectOption::class);
-        Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
+        Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
 
         $this->id = $id;
         $this->options = $options;

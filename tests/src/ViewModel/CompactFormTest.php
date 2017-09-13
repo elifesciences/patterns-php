@@ -62,9 +62,7 @@ final class CompactFormTest extends ViewModelTest
                     'errorText' => 'honeypot error text',
                     'infoText' => 'honeypot info text',
                 ],
-                'isInvalid' => true,
             ],
-            'isInvalid' => true,
         ];
 
         $form = new CompactForm(
@@ -100,7 +98,6 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSame($data['messageGroup'], $form['messageGroup']->toArray());
         $this->assertSame($data['hiddenFields'][0], $form['hiddenFields'][0]->toArray());
         $this->assertSame($data['honeypot'], $form['honeypot']->toArray());
-        $this->assertSame($data['isInvalid'], $form['isInvalid']);
         $this->assertSame($data, $form->toArray());
     }
 
@@ -158,42 +155,6 @@ final class CompactFormTest extends ViewModelTest
             new Input('label', 'text', 'name'),
             'foo', CompactForm::STATE_INVALID, new MessageGroup('id', null, 'info text')
         );
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_set_isInvalid_when_in_error_state()
-    {
-        $compactForm = new CompactForm(
-            new Form('formAction', 'formId', 'GET'),
-            new Input('label', 'text', 'name'),
-            'foo', CompactForm::STATE_INVALID, new MessageGroup('id', 'error text', 'info text')
-        );
-
-        $this->assertTrue($compactForm['isInvalid']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_not_set_isInvalid_when_not_in_error_state()
-    {
-        $compactForm_state_valid = new CompactForm(
-            new Form('formAction', 'formId', 'GET'),
-            new Input('label', 'text', 'name'),
-            'foo', CompactForm::STATE_VALID, null
-        );
-
-        $this->assertNotTrue($compactForm_state_valid['isInvalid']);
-
-        $compactForm_state_null = new CompactForm(
-            new Form('formAction', 'formId', 'GET'),
-            new Input('label', 'text', 'name'),
-            'foo', null, null
-        );
-
-        $this->assertNotTrue($compactForm_state_null['isInvalid']);
     }
 
     public function viewModelProvider() : array

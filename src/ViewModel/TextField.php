@@ -30,7 +30,6 @@ final class TextField implements ViewModel
     private $value;
     private $state;
     private $messageGroup;
-    private $isInvalid;
 
     protected function __construct(
         string $inputType,
@@ -53,7 +52,6 @@ final class TextField implements ViewModel
             if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
                 throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
             }
-            $this->isInvalid = true;
         }
         $this->inputType = $inputType;
         $this->label = $label;
