@@ -7,6 +7,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
+use InvalidArgumentException;
 use Traversable;
 
 final class Select implements ViewModel
@@ -25,7 +26,7 @@ final class Select implements ViewModel
     private $required;
     private $disabled;
     private $state;
-    private $message;
+    private $messageGroup;
 
     public function __construct(
         string $id,
@@ -35,11 +36,16 @@ final class Select implements ViewModel
         bool $required = null,
         bool $disabled = null,
         string $state = null,
-        string $message = null
+        MessageGroup $messageGroup = null
     ) {
         Assertion::notEmpty($options);
         Assertion::allIsInstanceOf($options, SelectOption::class);
         Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
+        if ($state === self::STATE_INVALID) {
+            if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
+                throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
+            }
+        }
 
         $this->id = $id;
         $this->options = $options;
@@ -48,7 +54,7 @@ final class Select implements ViewModel
         $this->required = $required;
         $this->disabled = $disabled;
         $this->state = $state;
-        $this->message = $message;
+        $this->messageGroup = $messageGroup;
     }
 
     public function getTemplateName() : string

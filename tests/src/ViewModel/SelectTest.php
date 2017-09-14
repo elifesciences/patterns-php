@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
+use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectOption;
 
@@ -35,6 +36,10 @@ final class SelectTest extends ViewModelTest
             'required' => true,
             'disabled' => true,
             'state' => 'invalid',
+            'messageGroup' => [
+                'errorText' => 'error text',
+                'infoText' => 'info text',
+            ],
         ];
         $select = new Select($data['id'], [
             new SelectOption(
@@ -48,10 +53,14 @@ final class SelectTest extends ViewModelTest
                 $data['options'][1]['selected']
             ),
         ], new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']),
-            $data['name'], $data['required'], $data['disabled'], Select::STATE_INVALID
+            $data['name'], $data['required'], $data['disabled'], Select::STATE_INVALID,
+                new MessageGroup($data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
         );
 
-        $this->assertSame($data, $select->toArray());
+        // id of messageGroup is unpredictable so must be ignored by the test
+        $selectAsArray = $select->toArray();
+        unset($selectAsArray['messageGroup']['id']);
+        $this->assertSame($data, $selectAsArray);
     }
 
     public function viewModelProvider() : array
@@ -68,7 +77,7 @@ final class SelectTest extends ViewModelTest
                     new SelectOption('choice-1', 'Choice 1', false),
                     new SelectOption('choice-2', 'Choice 2', true),
                 ], new FormLabel('Form label', 'id'), 'name', true,
-                    true, Select::STATE_INVALID),
+                    true, Select::STATE_INVALID, new MessageGroup('error text', 'info text')),
             ],
         ];
     }
