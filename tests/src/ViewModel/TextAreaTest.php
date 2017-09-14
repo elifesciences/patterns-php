@@ -30,7 +30,6 @@ class TextAreaTest extends ViewModelTest
             'form' => 'form',
             'state' => 'invalid',
             'messageGroup' => [
-                'id' => 'theHTMLIdOfTheMessageGroupElement',
                 'errorText' => 'error text',
                 'infoText' => 'info text',
             ],
@@ -48,10 +47,13 @@ class TextAreaTest extends ViewModelTest
             $data['rows'],
             $data['form'],
             TextArea::STATE_INVALID,
-            new MessageGroup($data['messageGroup']['id'], $data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
+            new MessageGroup($data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
         );
 
-        $this->assertSameWithoutOrder($data, $textArea);
+        // id of messageGroup is unpredictable so must be ignored by the test
+        $textAreaAsArray = $textArea->toArray();
+        unset($textAreaAsArray['messageGroup']['id']);
+        $this->assertSameWithoutOrder($data, $textAreaAsArray);
     }
 
     /**
@@ -71,7 +73,7 @@ class TextAreaTest extends ViewModelTest
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, new MessageGroup('id', null, 'info text'));
+        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, new MessageGroup(null, 'info text'));
     }
 
     public function viewModelProvider() : array
@@ -92,7 +94,7 @@ class TextAreaTest extends ViewModelTest
                     2, // rows
                     'some_form_id',
                     TextArea::STATE_INVALID,
-                    new MessageGroup('id', 'error text', 'info text')
+                    new MessageGroup('error text', 'info text')
                 ),
             ],
         ];

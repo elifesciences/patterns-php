@@ -29,7 +29,6 @@ final class HoneypotTest extends ViewModelTest
             'value' => 'value',
             'state' => 'invalid',
             'messageGroup' => [
-                'id' => 'message id',
                 'errorText' => 'error text',
                 'infoText' => 'info text',
             ],
@@ -44,7 +43,7 @@ final class HoneypotTest extends ViewModelTest
             $data['autofocus'],
             $data['value'],
             TextField::STATE_INVALID,
-            new MessageGroup($data['messageGroup']['id'], $data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
+            new MessageGroup($data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
         ));
 
         $this->assertSame($data['name'], $textField['name']);
@@ -55,8 +54,12 @@ final class HoneypotTest extends ViewModelTest
         $this->assertSame($data['disabled'], $textField['disabled']);
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
-        $this->assertSame($data['messageGroup'], $textField['messageGroup']->toArray());
-        $this->assertSame($data, $textField->toArray());
+
+        // id of messageGroup is unpredictable so must be ignored by the test
+        $textFieldAsArray = $textField->toArray();
+        unset($textFieldAsArray['messageGroup']['id']);
+        $this->assertSame($data['messageGroup'], $textFieldAsArray['messageGroup']);
+        $this->assertSame($data, $textFieldAsArray);
     }
 
     public function viewModelProvider() : array
