@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use InvalidArgumentException;
 use Traversable;
 
 final class CompactForm implements ViewModel
@@ -40,9 +39,8 @@ final class CompactForm implements ViewModel
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
 
         if ($state === self::STATE_INVALID) {
-            if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
-                throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
-            }
+            Assertion::notNull($messageGroup);
+            Assertion::notBlank($messageGroup['errorText']);
         }
         $this->formAction = $form['action'];
         $this->formId = $form['id'];

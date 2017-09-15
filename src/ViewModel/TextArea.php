@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use InvalidArgumentException;
 use Traversable;
 
 final class TextArea implements ViewModel
@@ -51,10 +50,8 @@ final class TextArea implements ViewModel
         Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
 
         if ($state === self::STATE_INVALID) {
-            if (is_null($messageGroup) || empty($messageGroup['errorText'])) {
-                throw new InvalidArgumentException('There must be a message group containing error text if the state is error.');
-            }
-            $this->isInvalid = true;
+            Assertion::notNull($messageGroup);
+            Assertion::notBlank($messageGroup['errorText']);
         }
         $this->label = $label;
         $this->name = $name;
