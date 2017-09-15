@@ -29,13 +29,13 @@ final class MessageGroup implements CastsToArray
     {
         Assertion::notBlank($infoText);
 
-        return new MessageGroup($errorText, $infoText);
+        return new self($errorText, $infoText);
     }
 
     public static function forErrorText(string $errorText) : MessageGroup
     {
         Assertion::notBlank($errorText);
 
-        return new MessageGroup($errorText);
+        return new self($errorText);
     }
 }
