@@ -3,7 +3,9 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
+use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextArea;
+use InvalidArgumentException;
 
 class TextAreaTest extends ViewModelTest
 {
@@ -27,7 +29,11 @@ class TextAreaTest extends ViewModelTest
             'cols' => 10,
             'rows' => 10,
             'form' => 'form',
-            'state' => 'error',
+            'state' => 'invalid',
+            'messageGroup' => [
+                'errorText' => 'error text',
+                'infoText' => 'info text',
+            ],
         ];
         $textArea = new TextArea(
             new FormLabel($data['label']['labelText']),
@@ -41,10 +47,34 @@ class TextAreaTest extends ViewModelTest
             $data['cols'],
             $data['rows'],
             $data['form'],
-            TextArea::STATE_ERROR
+            TextArea::STATE_INVALID,
+            MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         );
 
-        $this->assertSameWithoutOrder($data, $textArea);
+        // id of messageGroup is unpredictable so must be ignored by the test
+        $textAreaAsArray = $textArea->toArray();
+        unset($textAreaAsArray['messageGroup']['id']);
+        $this->assertSameWithoutOrder($data, $textAreaAsArray);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_message_group_when_in_error_state()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', true, false, false, 'false', 10, 10, 'form', TextArea::STATE_INVALID, null);
+    }
+
+    /**
+     * @test
+     */
+    public function its_message_group_must_have_an_error_message_when_in_error_state()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
 
     public function viewModelProvider() : array
@@ -64,7 +94,8 @@ class TextAreaTest extends ViewModelTest
                     30, // cols
                     2, // rows
                     'some_form_id',
-                    TextArea::STATE_ERROR
+                    TextArea::STATE_INVALID,
+                    MessageGroup::forInfoText('info text', 'error text')
                 ),
             ],
         ];

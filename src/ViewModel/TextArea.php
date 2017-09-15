@@ -11,7 +11,7 @@ use Traversable;
 
 final class TextArea implements ViewModel
 {
-    const STATE_ERROR = 'error';
+    const STATE_INVALID = 'invalid';
     const STATE_VALID = 'valid';
 
     use ArrayAccessFromProperties;
@@ -30,7 +30,7 @@ final class TextArea implements ViewModel
     private $rows;
     private $form;
     private $state;
-    private $message;
+    private $messageGroup;
 
     public function __construct(
         FormLabel $label,
@@ -45,10 +45,14 @@ final class TextArea implements ViewModel
         int $rows = null,
         string $form = null,
         string $state = null,
-        string $message = null
+        MessageGroup $messageGroup = null
     ) {
-        Assertion::nullOrChoice($state, [self::STATE_ERROR, self::STATE_VALID]);
+        Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
 
+        if ($state === self::STATE_INVALID) {
+            Assertion::notNull($messageGroup);
+            Assertion::notBlank($messageGroup['errorText']);
+        }
         $this->label = $label;
         $this->name = $name;
         $this->id = $id;
@@ -61,7 +65,7 @@ final class TextArea implements ViewModel
         $this->rows = $rows;
         $this->form = $form;
         $this->state = $state;
-        $this->message = $message;
+        $this->messageGroup = $messageGroup;
     }
 
     public function getTemplateName() : string

@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Honeypot;
+use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextField;
 
 final class HoneypotTest extends ViewModelTest
@@ -26,7 +27,11 @@ final class HoneypotTest extends ViewModelTest
             'disabled' => true,
             'autofocus' => true,
             'value' => 'value',
-            'state' => 'error',
+            'state' => 'invalid',
+            'messageGroup' => [
+                'errorText' => 'error text',
+                'infoText' => 'info text',
+            ],
         ];
         $textField = new Honeypot(TextField::emailInput(
             new FormLabel($data['label']['labelText']),
@@ -37,7 +42,8 @@ final class HoneypotTest extends ViewModelTest
             $data['disabled'],
             $data['autofocus'],
             $data['value'],
-            TextField::STATE_ERROR
+            TextField::STATE_INVALID,
+            MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         ));
 
         $this->assertSame($data['name'], $textField['name']);
@@ -48,15 +54,19 @@ final class HoneypotTest extends ViewModelTest
         $this->assertSame($data['disabled'], $textField['disabled']);
         $this->assertSame($data['autofocus'], $textField['autofocus']);
         $this->assertSame($data['value'], $textField['value']);
-        $this->assertSame($data['state'], $textField['state']);
-        $this->assertSame($data, $textField->toArray());
+
+        // id of messageGroup is unpredictable so must be ignored by the test
+        $textFieldAsArray = $textField->toArray();
+        unset($textFieldAsArray['messageGroup']['id']);
+        $this->assertSame($data['messageGroup'], $textFieldAsArray['messageGroup']);
+        $this->assertSame($data, $textFieldAsArray);
     }
 
     public function viewModelProvider() : array
     {
         return [
             'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))],
-            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_ERROR))],
+            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')))],
         ];
     }
 
