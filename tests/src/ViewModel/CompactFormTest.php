@@ -67,7 +67,7 @@ final class CompactFormTest extends ViewModelTest
             new Form($data['formAction'], $data['formId'], $data['formMethod']),
             new Input($data['label'], $data['inputType'], $data['inputName'], $data['inputValue'],
                 $data['inputPlaceholder'], true),
-            $data['ctaText'], CompactForm::STATE_INVALID, new MessageGroup($data['messageGroup']['errorText'], $data['messageGroup']['infoText']), [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
+            $data['ctaText'], CompactForm::STATE_INVALID, MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText']), [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
             new Honeypot(TextField::emailInput(
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
@@ -78,8 +78,7 @@ final class CompactFormTest extends ViewModelTest
                 $data['honeypot']['autofocus'],
                 $data['honeypot']['value'],
                 TextField::STATE_INVALID,
-                new MessageGroup($data['honeypot']['messageGroup']['errorText'], $data['honeypot']['messageGroup']['infoText'])
-
+                MessageGroup::forInfoText($data['honeypot']['messageGroup']['infoText'], $data['honeypot']['messageGroup']['errorText'])
             ))
         );
 
@@ -156,7 +155,7 @@ final class CompactFormTest extends ViewModelTest
         new CompactForm(
             new Form('formAction', 'formId', 'GET'),
             new Input('label', 'text', 'name'),
-            'foo', CompactForm::STATE_INVALID, new MessageGroup(null, 'info text')
+            'foo', CompactForm::STATE_INVALID, MessageGroup::forInfoText('info text')
         );
     }
 
@@ -174,7 +173,7 @@ final class CompactFormTest extends ViewModelTest
                 new CompactForm(
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder', true),
-                    'cta', CompactForm::STATE_INVALID, new MessageGroup('error text', 'info text'), [new HiddenField('name', 'id', 'value')],
+                    'cta', CompactForm::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text'), [new HiddenField('name', 'id', 'value')],
                     new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
                 ),
             ],

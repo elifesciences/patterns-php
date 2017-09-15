@@ -47,7 +47,7 @@ class TextAreaTest extends ViewModelTest
             $data['rows'],
             $data['form'],
             TextArea::STATE_INVALID,
-            new MessageGroup($data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
+            MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         );
 
         // id of messageGroup is unpredictable so must be ignored by the test
@@ -73,7 +73,7 @@ class TextAreaTest extends ViewModelTest
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, new MessageGroup(null, 'info text'));
+        new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
 
     public function viewModelProvider() : array
@@ -94,7 +94,7 @@ class TextAreaTest extends ViewModelTest
                     2, // rows
                     'some_form_id',
                     TextArea::STATE_INVALID,
-                    new MessageGroup('error text', 'info text')
+                    MessageGroup::forInfoText('info text', 'error text')
                 ),
             ],
         ];

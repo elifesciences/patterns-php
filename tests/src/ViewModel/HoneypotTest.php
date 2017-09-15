@@ -43,7 +43,7 @@ final class HoneypotTest extends ViewModelTest
             $data['autofocus'],
             $data['value'],
             TextField::STATE_INVALID,
-            new MessageGroup($data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
+            MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         ));
 
         $this->assertSame($data['name'], $textField['name']);
@@ -66,7 +66,7 @@ final class HoneypotTest extends ViewModelTest
     {
         return [
             'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))],
-            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, new MessageGroup('id', 'error text', 'info text')))],
+            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')))],
         ];
     }
 

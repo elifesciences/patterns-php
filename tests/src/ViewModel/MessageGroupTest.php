@@ -14,7 +14,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
      */
     public function it_casts_to_an_array()
     {
-        $messageGroup = new MessageGroup('error messsage', 'info message');
+        $messageGroup = MessageGroup::forInfoText('info message', 'error message');
 
         $this->assertInstanceOf(CastsToArray::class, $messageGroup);
     }
@@ -25,13 +25,25 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
     public function it_has_data()
     {
         $data = [
-            'errorText' => 'error messsage',
-            'infoText' => 'info messsage',
+            'errorText' => 'error message',
+            'infoText' => 'info message',
         ];
 
-        $messageGroup = new MessageGroup(...array_values($data));
+        $messageGroup = MessageGroup::forInfoText($data['infoText'], $data['errorText']);
         $this->assertSame($data['errorText'], $messageGroup['errorText']);
         $this->assertSame($data['infoText'], $messageGroup['infoText']);
+
+        // id is unpredictable so must be ignored by the test
+        $messageGroupAsArray = $messageGroup->toArray();
+        unset($messageGroupAsArray['id']);
+        $this->assertSame($data, $messageGroupAsArray);
+
+        $data = [
+            'errorText' => 'error message',
+        ];
+
+        $messageGroup = MessageGroup::forErrorText($data['errorText']);
+        $this->assertSame($data['errorText'], $messageGroup['errorText']);
 
         // id is unpredictable so must be ignored by the test
         $messageGroupAsArray = $messageGroup->toArray();
@@ -42,11 +54,21 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function it_must_have_at_least_one_message()
+    public function it_must_have_info_text()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new MessageGroup();
+        MessageGroup::forInfoText('');
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_error_text()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        MessageGroup::forErrorText('');
     }
 
     /**
@@ -54,7 +76,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_an_id_of_the_expected_format()
     {
-        $messageGroupId = (new MessageGroup('error message', 'info message'))['id'];
+        $messageGroupId = (MessageGroup::forInfoText('info message', 'error message'))['id'];
         $this->assertStringStartsWith('messages_', $messageGroupId);
         $numberPart = (int) substr($messageGroupId, strpos($messageGroupId, '_') + 1);
         $this->assertGreaterThanOrEqual(10e4, $numberPart);

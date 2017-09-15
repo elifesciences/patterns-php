@@ -54,7 +54,7 @@ final class SelectTest extends ViewModelTest
             ),
         ], new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']),
             $data['name'], $data['required'], $data['disabled'], Select::STATE_INVALID,
-                new MessageGroup($data['messageGroup']['errorText'], $data['messageGroup']['infoText'])
+                MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         );
 
         // id of messageGroup is unpredictable so must be ignored by the test
@@ -77,7 +77,7 @@ final class SelectTest extends ViewModelTest
                     new SelectOption('choice-1', 'Choice 1', false),
                     new SelectOption('choice-2', 'Choice 2', true),
                 ], new FormLabel('Form label', 'id'), 'name', true,
-                    true, Select::STATE_INVALID, new MessageGroup('error text', 'info text')),
+                    true, Select::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')),
             ],
         ];
     }
