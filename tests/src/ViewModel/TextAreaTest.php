@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextArea;
+use InvalidArgumentException;
 
 class TextAreaTest extends ViewModelTest
 {
@@ -61,7 +62,7 @@ class TextAreaTest extends ViewModelTest
      */
     public function it_must_have_a_message_group_when_in_error_state()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'value', true, false, false, 'false', 10, 10, 'form', TextArea::STATE_INVALID, null);
     }
@@ -71,7 +72,7 @@ class TextAreaTest extends ViewModelTest
      */
     public function its_message_group_must_have_an_error_message_when_in_error_state()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }

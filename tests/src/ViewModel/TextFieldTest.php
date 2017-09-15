@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextField;
+use InvalidArgumentException;
 
 final class TextFieldTest extends ViewModelTest
 {
@@ -68,7 +69,7 @@ final class TextFieldTest extends ViewModelTest
      */
     public function it_must_have_a_message_group_when_in_error_state()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, null);
     }
@@ -78,7 +79,7 @@ final class TextFieldTest extends ViewModelTest
      */
     public function its_message_group_must_have_an_error_message_when_in_error_state()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
