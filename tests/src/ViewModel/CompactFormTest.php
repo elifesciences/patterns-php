@@ -137,7 +137,7 @@ final class CompactFormTest extends ViewModelTest
      */
     public function it_must_have_a_message_group_when_in_error_state()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new CompactForm(
             new Form('formAction', 'formId', 'GET'),
@@ -151,7 +151,7 @@ final class CompactFormTest extends ViewModelTest
      */
     public function its_message_group_must_have_error_text_when_when_in_error_state()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new CompactForm(
             new Form('formAction', 'formId', 'GET'),
