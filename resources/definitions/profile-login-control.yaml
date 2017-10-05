@@ -1,0 +1,69 @@
+assets:
+    css:
+        - buttons.css
+        - profile-login-control.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        isLoggedIn:
+            type: boolean
+            enum:
+                - true
+        profileHomeLink:
+            type: string
+            minLength: 1
+        profileManageLink:
+            type: string
+            minLength: 1
+        logoutUri:
+            type: string
+            minLength: 1
+        displayName:
+            type: string
+            minLength: 1
+        button:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            allOf:
+                -
+                    properties:
+                        text:
+                            type: string
+                            minLength: 1
+                        classes:
+                            type: string
+                    required:
+                        - text
+                -
+                    oneOf:
+                        -
+                            properties:
+                                type:
+                                    type: string
+                                    enum:
+                                        - button
+                                        - reset
+                                        - submit
+                                id:
+                                    type: string
+                                    minLength: 1
+                                name:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - type
+                        -
+                            properties:
+                                path:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - path
+        dependencies:
+            isLoggedIn:
+                - profileHomeLink
+                - profileManageLink
+                - logoutUri
+                - displayName
