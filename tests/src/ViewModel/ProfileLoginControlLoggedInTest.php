@@ -7,6 +7,23 @@ use InvalidArgumentException;
 
 final class ProfileLoginControlLoggedInTest extends ViewModelTest
 {
+    private $linkFieldRoots = [
+        'input' => [
+            'profile-manage',
+            'logout',
+        ],
+        'expectedOutput' => 'profile-manage, logout'
+    ];
+    private $linkFieldData = [
+        'input' => [
+            'profile-manage-uri' => '/profileManageURI',
+            'profile-manage-text' => 'Manage my profile',
+            'logout-uri' => '/log-out',
+            'logout-text' => 'Log out',
+        ],
+        'expectedOutput' => 'data-profile-manage-uri="/profileManageURI" data-profile-manage-text="Manage my profile" data-logout-uri="/log-out" data-logout-text="Log out"',
+    ];
+
     /**
      * @test
      */
@@ -15,28 +32,31 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
         $data = [
             'displayName' => 'My name',
             'isLoggedIn' => true,
-            'logoutUri' => 'Logout uri',
-            'profileHomeLink' => 'Profile home link',
-            'profileManageLink' => 'Profile manage link',
+            'linkFieldData' => $this->linkFieldData,
+            'linkFieldRoots' => $this->linkFieldRoots['input'],
+            'profileHomeUri' => '/profileHomeUri',
         ];
 
-        $profileLoginControl = ProfileLoginControl::loggedIn($data['profileHomeLink'], $data['displayName'], $data['profileManageLink'], $data['logoutUri']);
+        $profileLoginControl = ProfileLoginControl::loggedIn($data['profileHomeUri'], $data['displayName'], $this->linkFieldRoots['input'], $this->linkFieldData['input']);
 
         $this->assertSame($data['isLoggedIn'], $profileLoginControl['isLoggedIn']);
-        $this->assertSame($data['profileHomeLink'], $profileLoginControl['profileHomeLink']);
-        $this->assertSame($data['displayName'], $profileLoginControl['displayName']);
-        $this->assertSame($data['profileManageLink'], $profileLoginControl['profileManageLink']);
-        $this->assertSame($data['logoutUri'], $profileLoginControl['logoutUri']);
+        $this->assertSame($data['profileHomeUri'], $profileLoginControl['profileHomeUri']);
+
+        $this->assertSame($this->linkFieldRoots['expectedOutput'], $profileLoginControl['linkFieldRoots']);
+        $this->assertSame($this->linkFieldData['expectedOutput'], $profileLoginControl['linkFieldData']);
+
+        $data['linkFieldRoots'] = $this->linkFieldRoots['expectedOutput'];
+        $data['linkFieldData'] = $this->linkFieldData['expectedOutput'];
         $this->assertSame($data, $profileLoginControl->toArray());
     }
 
     /**
      * @test
      */
-    public function it_must_indicate_its_logged_in()
+    public function it_must_indicate_it_is_logged_in()
     {
-        $profileLoginControl = ProfileLoginControl::notLoggedIn('some uri');
-        $this->assertNull($profileLoginControl['isLoggedIn']);
+        $profileLoginControl = ProfileLoginControl::LoggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
+        $this->assertTrue($profileLoginControl['isLoggedIn']);
     }
 
     /**
@@ -46,7 +66,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::loggedIn('', 'display name', 'manage profile link', 'logout uri');
+        ProfileLoginControl::LoggedIn('', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
     }
 
     /**
@@ -56,33 +76,126 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::loggedIn('profile home link', '', 'manage profile link', 'logout uri');
+        ProfileLoginControl::LoggedIn('/profileHomeUri', '', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
     }
 
     /**
      * @test
      */
-    public function it_must_be_given_a_profile_manage_link()
+    public function it_must_be_given_link_field_roots()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::loggedIn('profile home link', 'display name', '', 'logout uri');
+        ProfileLoginControl::LoggedIn('/profileHomeUri', 'Display Name', [], $this->linkFieldData['input']);
+
     }
 
     /**
      * @test
      */
-    public function it_must_be_given_a_logout_uri()
+    public function it_must_be_given_link_field_data()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::loggedIn('profile home link', 'display name', 'manage profile link', '');
+        ProfileLoginControl::LoggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], []);
     }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_text_data_attribute_for_each_data_attribute_root()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ProfileLoginControl::LoggedIn(
+            '/profileHomeUri',
+            'Display Name',
+            [
+                'root-name-1',
+                'root-name-2'
+            ],
+            [
+                'root-name-1-uri' => '/uriOne',
+                'root-name-1-text' => 'Text one',
+                'root-name-2-uri' => '/uriTwo',
+            ]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function its_text_data_attributes_for_each_data_attribute_root_must_not_be_empty()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ProfileLoginControl::LoggedIn(
+            '/profileHomeUri',
+            'Display Name',
+            [
+                'root-name-1',
+                'root-name-2'
+            ],
+            [
+                'root-name-1-uri' => '/uriOne',
+                'root-name-1-text' => 'Text one',
+                'root-name-2-uri' => '/uriTwo',
+                'root-name-2-text' => '',
+            ]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_uri_data_attribute_for_each_data_attribute_root()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ProfileLoginControl::LoggedIn(
+            '/profileHomeUri',
+            'Display Name',
+            [
+                'root-name-1',
+                'root-name-2'
+            ],
+            [
+                'root-name-1-uri' => '/uriOne',
+                'root-name-1-text' => 'Text one',
+                'root-name-2-text' => 'Text two',
+            ]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function its_uri_data_attributes_for_each_data_attribute_root_must_not_be_empty()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ProfileLoginControl::LoggedIn(
+            '/profileHomeUri',
+            'Display Name',
+            [
+                'root-name-1',
+                'root-name-2'
+            ],
+            [
+                'root-name-1-uri' => '/uriOne',
+                'root-name-1-text' => 'Text one',
+                'root-name-2-uri' => '',
+                'root-name-2-text' => 'Text two',
+            ]
+        );
+    }
+
 
     public function viewModelProvider() : array
     {
+
         return [
-            [ProfileLoginControl::loggedIn('#myProfileUri', 'My Name', '#manageMyProfileUri', '#logoutUri')],
+            [ProfileLoginControl::loggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input'])],
         ];
     }
 

@@ -138,16 +138,16 @@ schema:
                                                 type: boolean
                                                 enum:
                                                     - true
-                                            profileHomeLink:
-                                                type: string
-                                                minLength: 1
-                                            profileManageLink:
-                                                type: string
-                                                minLength: 1
-                                            logoutUri:
+                                            profileHomeUri:
                                                 type: string
                                                 minLength: 1
                                             displayName:
+                                                type: string
+                                                minLength: 1
+                                            linkFieldRoots:
+                                                type: string
+                                                pattern: '^[ \t]*[a-z][a-z-$_]*[^-,][ \t]*(,[ \t]*[a-z][a-z-$_]*[^-,][ \t]*)*$'
+                                            linkFieldData:
                                                 type: string
                                                 minLength: 1
                                             button:
@@ -188,12 +188,12 @@ schema:
                                                                         minLength: 1
                                                                 required:
                                                                     - path
-                                            dependencies:
-                                                isLoggedIn:
-                                                    - profileHomeLink
-                                                    - profileManageLink
-                                                    - logoutUri
-                                                    - displayName
+                                        dependencies:
+                                            isLoggedIn:
+                                                - profileHomeUri
+                                                - displayName
+                                            linkFieldRoots:
+                                                - linkFieldData
                                 required:
                                     - profileLoginControl
             minItems: 1

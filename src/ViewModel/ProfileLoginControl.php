@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assert;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
@@ -18,32 +19,42 @@ final class ProfileLoginControl implements ViewModel
     private $button;
     private $displayName;
     private $isLoggedIn;
-    private $logoutUri;
-    private $profileHomeLink;
-    private $profileManageLink;
+    private $linkFieldData;
+    private $linkFieldRoots;
+    private $profileHomeUri;
 
     private function __construct()
     {
     }
 
     public static function loggedIn (
-        string $profileHomeLink,
+        string $profileHomeUri,
         string $displayName,
-        string $profileManageLink,
-        string $logoutUri
+        array $linkFieldRootsRaw,
+        array $linkFieldDataRaw
     ) : ProfileLoginControl {
 
-        Assertion::notBlank($profileHomeLink);
+        Assertion::notBlank($profileHomeUri);
         Assertion::notBlank($displayName);
-        Assertion::notBlank($profileManageLink);
-        Assertion::notBlank($logoutUri);
+        Assertion::notBlank($linkFieldRootsRaw);
+        Assertion::notBlank($linkFieldDataRaw);
+
+        foreach ($linkFieldRootsRaw as $linkFieldRoot) {
+            $correspondingUriAttribute = $linkFieldRoot . '-uri';
+            Assertion::inArray($correspondingUriAttribute, array_keys($linkFieldDataRaw));
+            Assertion::notBlank($linkFieldDataRaw[$correspondingUriAttribute]);
+
+            $correspondingTextAttribute = $linkFieldRoot . '-text';
+            Assertion::inArray($correspondingTextAttribute, array_keys($linkFieldDataRaw));
+            Assertion::notBlank($linkFieldDataRaw[$correspondingTextAttribute]);
+        }
 
         $loggedInControl = new static();
         $loggedInControl->isLoggedIn = true;
         $loggedInControl->displayName = $displayName;
-        $loggedInControl->profileHomeLink = $profileHomeLink;
-        $loggedInControl->profileManageLink = $profileManageLink;
-        $loggedInControl->logoutUri = $logoutUri;
+        $loggedInControl->profileHomeUri = $profileHomeUri;
+        $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsDataAttributeValue($linkFieldRootsRaw);
+        $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFieldDataRaw);
 
         return $loggedInControl;
     }
@@ -57,6 +68,25 @@ final class ProfileLoginControl implements ViewModel
         $notLoggedInControl->button = Button::link('Log in / Register', $uri, Button::SIZE_EXTRA_SMALL, Button::STYLE_CONFIRM);
 
         return $notLoggedInControl;
+    }
+
+    public static function buildLinkFieldRootsDataAttributeValue(array $linkFieldRootsRaw) {
+        $dataAttribute = '';
+        foreach ($linkFieldRootsRaw as $i => $linkFieldRoot) {
+            $dataAttribute .= $linkFieldRoot . ', ';
+        }
+        $dataAttribute = substr($dataAttribute, 0, strripos($dataAttribute, ', '));
+
+        return $dataAttribute;
+    }
+
+    public static function buildLinkFieldsDataAttributeValues(array $linkFieldDataRaw) {
+        $dataAttributesString = '';
+        foreach ($linkFieldDataRaw as $fieldName => $fieldValue) {
+            $dataAttributesString .= ' data-' . $fieldName . '="' . $fieldValue . '"';
+        }
+
+        return trim($dataAttributesString);
     }
 
     public function getStyleSheets(): Traversable
