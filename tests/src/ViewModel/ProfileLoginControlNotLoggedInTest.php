@@ -24,7 +24,6 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
 
         $this->assertSame(null, $profileLoginControl['isLoggedIn']);
         $this->assertSame($data, $profileLoginControl->toArray());
-
     }
 
     /**

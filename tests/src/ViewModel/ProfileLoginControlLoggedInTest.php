@@ -12,7 +12,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
             'profile-manage',
             'logout',
         ],
-        'expectedOutput' => 'profile-manage, logout'
+        'expectedOutput' => 'profile-manage, logout',
     ];
     private $linkFieldData = [
         'input' => [
@@ -87,7 +87,6 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         ProfileLoginControl::LoggedIn('/profileHomeUri', 'Display Name', [], $this->linkFieldData['input']);
-
     }
 
     /**
@@ -112,7 +111,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
             'Display Name',
             [
                 'root-name-1',
-                'root-name-2'
+                'root-name-2',
             ],
             [
                 'root-name-1-uri' => '/uriOne',
@@ -134,7 +133,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
             'Display Name',
             [
                 'root-name-1',
-                'root-name-2'
+                'root-name-2',
             ],
             [
                 'root-name-1-uri' => '/uriOne',
@@ -157,7 +156,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
             'Display Name',
             [
                 'root-name-1',
-                'root-name-2'
+                'root-name-2',
             ],
             [
                 'root-name-1-uri' => '/uriOne',
@@ -179,7 +178,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
             'Display Name',
             [
                 'root-name-1',
-                'root-name-2'
+                'root-name-2',
             ],
             [
                 'root-name-1-uri' => '/uriOne',
@@ -190,10 +189,8 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
         );
     }
 
-
     public function viewModelProvider() : array
     {
-
         return [
             [ProfileLoginControl::loggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input'])],
         ];

@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use Assert\Assert;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
@@ -27,24 +26,23 @@ final class ProfileLoginControl implements ViewModel
     {
     }
 
-    public static function loggedIn (
+    public static function loggedIn(
         string $profileHomeUri,
         string $displayName,
         array $linkFieldRootsRaw,
         array $linkFieldDataRaw
     ) : ProfileLoginControl {
-
         Assertion::notBlank($profileHomeUri);
         Assertion::notBlank($displayName);
         Assertion::notBlank($linkFieldRootsRaw);
         Assertion::notBlank($linkFieldDataRaw);
 
         foreach ($linkFieldRootsRaw as $linkFieldRoot) {
-            $correspondingUriAttribute = $linkFieldRoot . '-uri';
+            $correspondingUriAttribute = $linkFieldRoot.'-uri';
             Assertion::inArray($correspondingUriAttribute, array_keys($linkFieldDataRaw));
             Assertion::notBlank($linkFieldDataRaw[$correspondingUriAttribute]);
 
-            $correspondingTextAttribute = $linkFieldRoot . '-text';
+            $correspondingTextAttribute = $linkFieldRoot.'-text';
             Assertion::inArray($correspondingTextAttribute, array_keys($linkFieldDataRaw));
             Assertion::notBlank($linkFieldDataRaw[$correspondingTextAttribute]);
         }
@@ -59,7 +57,7 @@ final class ProfileLoginControl implements ViewModel
         return $loggedInControl;
     }
 
-    public static function notLoggedIn (string $uri) : ProfileLoginControl
+    public static function notLoggedIn(string $uri) : ProfileLoginControl
     {
         Assertion::notBlank($uri);
 
@@ -70,20 +68,22 @@ final class ProfileLoginControl implements ViewModel
         return $notLoggedInControl;
     }
 
-    public static function buildLinkFieldRootsDataAttributeValue(array $linkFieldRootsRaw) {
+    public static function buildLinkFieldRootsDataAttributeValue(array $linkFieldRootsRaw)
+    {
         $dataAttribute = '';
         foreach ($linkFieldRootsRaw as $i => $linkFieldRoot) {
-            $dataAttribute .= $linkFieldRoot . ', ';
+            $dataAttribute .= $linkFieldRoot.', ';
         }
         $dataAttribute = substr($dataAttribute, 0, strripos($dataAttribute, ', '));
 
         return $dataAttribute;
     }
 
-    public static function buildLinkFieldsDataAttributeValues(array $linkFieldDataRaw) {
+    public static function buildLinkFieldsDataAttributeValues(array $linkFieldDataRaw)
+    {
         $dataAttributesString = '';
         foreach ($linkFieldDataRaw as $fieldName => $fieldValue) {
-            $dataAttributesString .= ' data-' . $fieldName . '="' . $fieldValue . '"';
+            $dataAttributesString .= ' data-'.$fieldName.'="'.$fieldValue.'"';
         }
 
         return trim($dataAttributesString);
