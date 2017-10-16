@@ -51,7 +51,7 @@ final class ProfileLoginControl implements ViewModel
         $loggedInControl->isLoggedIn = true;
         $loggedInControl->displayName = $displayName;
         $loggedInControl->profileHomeUri = $profileHomeUri;
-        $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsDataAttributeValue($linkFieldRootsRaw);
+        $loggedInControl->linkFieldRoots = implode(', ', $linkFieldRootsRaw);
         $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFieldDataRaw);
 
         return $loggedInControl;
@@ -66,17 +66,6 @@ final class ProfileLoginControl implements ViewModel
         $notLoggedInControl->button = Button::link('Log in / Register', $uri, Button::SIZE_EXTRA_SMALL, Button::STYLE_CONFIRM);
 
         return $notLoggedInControl;
-    }
-
-    private static function buildLinkFieldRootsDataAttributeValue(array $linkFieldRootsRaw)
-    {
-        $dataAttribute = '';
-        foreach ($linkFieldRootsRaw as $i => $linkFieldRoot) {
-            $dataAttribute .= $linkFieldRoot.', ';
-        }
-        $dataAttribute = substr($dataAttribute, 0, strripos($dataAttribute, ', '));
-
-        return $dataAttribute;
     }
 
     private static function buildLinkFieldsDataAttributeValues(array $linkFieldDataRaw)
