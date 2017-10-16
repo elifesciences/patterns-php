@@ -36,7 +36,6 @@ final class LoginControlLoggedInTest extends ViewModelTest
             'defaultUri' => '/defaultUri',
         ];
 
-
         $profileLoginControl = LoginControl::loggedIn($data['defaultUri'], $data['displayName'], $this->linkFields['input']);
 
         $this->assertSame($data['isLoggedIn'], $profileLoginControl['isLoggedIn']);
@@ -137,7 +136,6 @@ final class LoginControlLoggedInTest extends ViewModelTest
                 ],
             ]
         );
-
     }
 
     /**
@@ -200,7 +198,7 @@ final class LoginControlLoggedInTest extends ViewModelTest
                     'uri' => '/uriOne',
                     'text' => 'Text one',
                     'wrongKey' => 'should not be here',
-                ]
+                ],
             ]
         );
     }

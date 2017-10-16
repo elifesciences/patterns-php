@@ -67,10 +67,9 @@ final class LoginControl implements ViewModel
 
     private static function buildLinkFieldsDataAttributeValues(array $linkFields)
     {
-
         $dataAttributesString = '';
         foreach ($linkFields as $name => $values) {
-            $dataAttributesString .= ' data-'.$name.'-uri="'.$values['uri'].'"' .
+            $dataAttributesString .= ' data-'.$name.'-uri="'.$values['uri'].'"'.
                                      ' data-'.$name.'-text="'.$values['text'].'"';
         }
 
