@@ -29,30 +29,26 @@ final class ProfileLoginControl implements ViewModel
     public static function loggedIn(
         string $profileHomeUri,
         string $displayName,
-        array $linkFieldRootsRaw,
-        array $linkFieldDataRaw
+        array $linkFields
     ) : ProfileLoginControl {
         Assertion::notBlank($profileHomeUri);
         Assertion::notBlank($displayName);
-        Assertion::notBlank($linkFieldRootsRaw);
-        Assertion::notBlank($linkFieldDataRaw);
+        Assertion::notBlank($linkFields);
 
-        foreach ($linkFieldRootsRaw as $linkFieldRoot) {
-            $correspondingUriAttribute = $linkFieldRoot.'-uri';
-            Assertion::inArray($correspondingUriAttribute, array_keys($linkFieldDataRaw));
-            Assertion::notBlank($linkFieldDataRaw[$correspondingUriAttribute]);
-
-            $correspondingTextAttribute = $linkFieldRoot.'-text';
-            Assertion::inArray($correspondingTextAttribute, array_keys($linkFieldDataRaw));
-            Assertion::notBlank($linkFieldDataRaw[$correspondingTextAttribute]);
+        foreach ($linkFields as $name => $values) {
+            Assertion::count($values, 2);
+            Assertion::choice(array_keys($values)[0], ['uri', 'text']);
+            Assertion::choice(array_keys($values)[1], ['uri', 'text']);
+            Assertion::notBlank($values['uri']);
+            Assertion::notBlank($values['text']);
         }
 
         $loggedInControl = new static();
         $loggedInControl->isLoggedIn = true;
         $loggedInControl->displayName = $displayName;
         $loggedInControl->profileHomeUri = $profileHomeUri;
-        $loggedInControl->linkFieldRoots = implode(', ', $linkFieldRootsRaw);
-        $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFieldDataRaw);
+        $loggedInControl->linkFieldRoots = implode(', ', array_keys($linkFields));
+        $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFields);
 
         return $loggedInControl;
     }
@@ -68,11 +64,13 @@ final class ProfileLoginControl implements ViewModel
         return $notLoggedInControl;
     }
 
-    private static function buildLinkFieldsDataAttributeValues(array $linkFieldDataRaw)
+    private static function buildLinkFieldsDataAttributeValues(array $linkFields)
     {
+
         $dataAttributesString = '';
-        foreach ($linkFieldDataRaw as $fieldName => $fieldValue) {
-            $dataAttributesString .= ' data-'.$fieldName.'="'.$fieldValue.'"';
+        foreach ($linkFields as $name => $values) {
+            $dataAttributesString .= ' data-'.$name.'-uri="'.$values['uri'].'"' .
+                                     ' data-'.$name.'-text="'.$values['text'].'"';
         }
 
         return trim($dataAttributesString);
