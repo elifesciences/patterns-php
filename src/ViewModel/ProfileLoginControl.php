@@ -53,13 +53,14 @@ final class ProfileLoginControl implements ViewModel
         return $loggedInControl;
     }
 
-    public static function notLoggedIn(string $uri) : ProfileLoginControl
+    public static function notLoggedIn(string $text, string $uri) : ProfileLoginControl
     {
         Assertion::notBlank($uri);
+        Assertion::notBlank($text);
 
         $notLoggedInControl = new static();
         $notLoggedInControl->isLoggedIn = null;
-        $notLoggedInControl->button = Button::link('Log in / Register', $uri, Button::SIZE_EXTRA_SMALL, Button::STYLE_CONFIRM);
+        $notLoggedInControl->button = Button::link($text, $uri, Button::SIZE_EXTRA_SMALL, Button::STYLE_CONFIRM);
 
         return $notLoggedInControl;
     }

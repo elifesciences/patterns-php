@@ -20,7 +20,7 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
             ],
         ];
 
-        $profileLoginControl = ProfileLoginControl::notLoggedIn($data['button']['path']);
+        $profileLoginControl = ProfileLoginControl::notLoggedIn($data['button']['text'], $data['button']['path']);
 
         $this->assertSame(null, $profileLoginControl['isLoggedIn']);
         $this->assertSame($data, $profileLoginControl->toArray());
@@ -33,7 +33,17 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::notLoggedIn('');
+        ProfileLoginControl::notLoggedIn('text', '');
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_be_passed_text()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ProfileLoginControl::notLoggedIn('', '/log-in');
     }
 
     /**
@@ -41,14 +51,14 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
      */
     public function it_must_indicate_its_not_logged_in()
     {
-        $profileLoginControl = ProfileLoginControl::notLoggedIn('some uri');
+        $profileLoginControl = ProfileLoginControl::notLoggedIn('text', 'some uri');
         $this->assertNull($profileLoginControl['isLoggedIn']);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [ProfileLoginControl::notLoggedIn('#loginUri')],
+            [ProfileLoginControl::notLoggedIn('some text', '#loginUri')],
         ];
     }
 
