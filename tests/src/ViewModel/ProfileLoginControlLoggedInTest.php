@@ -55,7 +55,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
      */
     public function it_must_indicate_it_is_logged_in()
     {
-        $profileLoginControl = ProfileLoginControl::LoggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
+        $profileLoginControl = ProfileLoginControl::loggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
         $this->assertTrue($profileLoginControl['isLoggedIn']);
     }
 
@@ -66,7 +66,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn('', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
+        ProfileLoginControl::loggedIn('', 'Display Name', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
     }
 
     /**
@@ -76,7 +76,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn('/profileHomeUri', '', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
+        ProfileLoginControl::loggedIn('/profileHomeUri', '', $this->linkFieldRoots['input'], $this->linkFieldData['input']);
     }
 
     /**
@@ -86,7 +86,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn('/profileHomeUri', 'Display Name', [], $this->linkFieldData['input']);
+        ProfileLoginControl::loggedIn('/profileHomeUri', 'Display Name', [], $this->linkFieldData['input']);
     }
 
     /**
@@ -96,7 +96,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], []);
+        ProfileLoginControl::loggedIn('/profileHomeUri', 'Display Name', $this->linkFieldRoots['input'], []);
     }
 
     /**
@@ -106,7 +106,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn(
+        ProfileLoginControl::loggedIn(
             '/profileHomeUri',
             'Display Name',
             [
@@ -128,7 +128,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn(
+        ProfileLoginControl::loggedIn(
             '/profileHomeUri',
             'Display Name',
             [
@@ -151,7 +151,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn(
+        ProfileLoginControl::loggedIn(
             '/profileHomeUri',
             'Display Name',
             [
@@ -173,7 +173,7 @@ final class ProfileLoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::LoggedIn(
+        ProfileLoginControl::loggedIn(
             '/profileHomeUri',
             'Display Name',
             [
