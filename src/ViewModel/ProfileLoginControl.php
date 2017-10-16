@@ -68,7 +68,7 @@ final class ProfileLoginControl implements ViewModel
         return $notLoggedInControl;
     }
 
-    public static function buildLinkFieldRootsDataAttributeValue(array $linkFieldRootsRaw)
+    private static function buildLinkFieldRootsDataAttributeValue(array $linkFieldRootsRaw)
     {
         $dataAttribute = '';
         foreach ($linkFieldRootsRaw as $i => $linkFieldRoot) {
@@ -79,7 +79,7 @@ final class ProfileLoginControl implements ViewModel
         return $dataAttribute;
     }
 
-    public static function buildLinkFieldsDataAttributeValues(array $linkFieldDataRaw)
+    private static function buildLinkFieldsDataAttributeValues(array $linkFieldDataRaw)
     {
         $dataAttributesString = '';
         foreach ($linkFieldDataRaw as $fieldName => $fieldValue) {
