@@ -121,7 +121,7 @@ final class SiteHeaderTest extends ViewModelTest
             [
                 NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $img),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
-                NavLinkedItem::asLoginControl(LoginControl::notLoggedIn('Log in / Register', '/log-in')),
+                NavLinkedItem::asButton(Button::link('button text', '/button/path')),                NavLinkedItem::asLoginControl(LoginControl::notLoggedIn('Log in / Register', '/log-in')),
 
             ]
         );
