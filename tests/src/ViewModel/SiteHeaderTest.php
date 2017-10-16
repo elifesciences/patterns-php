@@ -8,6 +8,7 @@ use eLife\Patterns\ViewModel\Form;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Input;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\LoginControl;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SearchBox;
@@ -46,6 +47,7 @@ final class SiteHeaderTest extends ViewModelTest
             [
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asButton(Button::link('button text', '/button/path')),
+                NavLinkedItem::asLoginControl(LoginControl::notLoggedIn('Log in / Register', '/log-in')),
             ]
         );
 
@@ -119,7 +121,8 @@ final class SiteHeaderTest extends ViewModelTest
             [
                 NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $img),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
-                NavLinkedItem::asButton(Button::link('button text', '/button/path')),
+                NavLinkedItem::asLoginControl(LoginControl::notLoggedIn('Log in / Register', '/log-in')),
+
             ]
         );
 
