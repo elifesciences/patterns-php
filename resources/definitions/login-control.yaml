@@ -1,7 +1,7 @@
 assets:
     css:
         - buttons.css
-        - profile-login-control.css
+        - login-control.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -11,7 +11,7 @@ schema:
             type: boolean
             enum:
                 - true
-        profileHomeUri:
+        defaultUri:
             type: string
             minLength: 1
         displayName:
@@ -63,7 +63,7 @@ schema:
                                 - path
     dependencies:
         isLoggedIn:
-            - profileHomeUri
+            - defaultUri
             - displayName
         linkFieldRoots:
             - linkFieldData

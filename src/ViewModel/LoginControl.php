@@ -9,7 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class ProfileLoginControl implements ViewModel
+final class LoginControl implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -20,18 +20,18 @@ final class ProfileLoginControl implements ViewModel
     private $isLoggedIn;
     private $linkFieldData;
     private $linkFieldRoots;
-    private $profileHomeUri;
+    private $defaultUri;
 
     private function __construct()
     {
     }
 
     public static function loggedIn(
-        string $profileHomeUri,
+        string $defaultUri,
         string $displayName,
         array $linkFields
-    ) : ProfileLoginControl {
-        Assertion::notBlank($profileHomeUri);
+    ) : LoginControl {
+        Assertion::notBlank($defaultUri);
         Assertion::notBlank($displayName);
         Assertion::notBlank($linkFields);
 
@@ -46,14 +46,14 @@ final class ProfileLoginControl implements ViewModel
         $loggedInControl = new static();
         $loggedInControl->isLoggedIn = true;
         $loggedInControl->displayName = $displayName;
-        $loggedInControl->profileHomeUri = $profileHomeUri;
+        $loggedInControl->defaultUri = $defaultUri;
         $loggedInControl->linkFieldRoots = implode(', ', array_keys($linkFields));
         $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFields);
 
         return $loggedInControl;
     }
 
-    public static function notLoggedIn(string $text, string $uri) : ProfileLoginControl
+    public static function notLoggedIn(string $text, string $uri) : LoginControl
     {
         Assertion::notBlank($uri);
         Assertion::notBlank($text);
@@ -79,11 +79,11 @@ final class ProfileLoginControl implements ViewModel
 
     public function getStyleSheets(): Traversable
     {
-        yield 'resources/assets/css/profile-login-control.css';
+        yield 'resources/assets/css/login-control.css';
     }
 
     public function getTemplateName(): string
     {
-        return 'resources/templates/profile-login-control.mustache';
+        return 'resources/templates/login-control.mustache';
     }
 }

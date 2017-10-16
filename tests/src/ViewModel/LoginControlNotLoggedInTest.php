@@ -2,10 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\ProfileLoginControl;
+use eLife\Patterns\ViewModel\LoginControl;
 use InvalidArgumentException;
 
-final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
+final class LoginControlNotLoggedInTest extends ViewModelTest
 {
     /**
      * @test
@@ -20,10 +20,10 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
             ],
         ];
 
-        $profileLoginControl = ProfileLoginControl::notLoggedIn($data['button']['text'], $data['button']['path']);
+        $loginControl = LoginControl::notLoggedIn($data['button']['text'], $data['button']['path']);
 
-        $this->assertSame(null, $profileLoginControl['isLoggedIn']);
-        $this->assertSame($data, $profileLoginControl->toArray());
+        $this->assertSame(null, $loginControl['isLoggedIn']);
+        $this->assertSame($data, $loginControl->toArray());
     }
 
     /**
@@ -33,7 +33,7 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::notLoggedIn('text', '');
+        LoginControl::notLoggedIn('text', '');
     }
 
     /**
@@ -43,7 +43,7 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ProfileLoginControl::notLoggedIn('', '/log-in');
+        LoginControl::notLoggedIn('', '/log-in');
     }
 
     /**
@@ -51,19 +51,19 @@ final class ProfileLoginControlNotLoggedInTest extends ViewModelTest
      */
     public function it_must_indicate_its_not_logged_in()
     {
-        $profileLoginControl = ProfileLoginControl::notLoggedIn('text', 'some uri');
-        $this->assertNull($profileLoginControl['isLoggedIn']);
+        $loginControl = LoginControl::notLoggedIn('text', 'some uri');
+        $this->assertNull($loginControl['isLoggedIn']);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [ProfileLoginControl::notLoggedIn('some text', '#loginUri')],
+            [LoginControl::notLoggedIn('some text', '#loginUri')],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/profile-login-control.mustache';
+        return 'resources/templates/login-control.mustache';
     }
 }
