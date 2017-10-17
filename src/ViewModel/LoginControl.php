@@ -35,19 +35,16 @@ final class LoginControl implements ViewModel
         Assertion::notBlank($displayName);
         Assertion::notBlank($linkFields);
 
-        foreach ($linkFields as $name => $values) {
-            Assertion::count($values, 2);
-            Assertion::choice(array_keys($values)[0], ['uri', 'text']);
-            Assertion::choice(array_keys($values)[1], ['uri', 'text']);
-            Assertion::notBlank($values['uri']);
-            Assertion::notBlank($values['text']);
+        foreach ($linkFields as $text => $uri) {
+            Assertion::notBlank($text);
+            Assertion::notBlank($uri);
         }
 
         $loggedInControl = new static();
         $loggedInControl->isLoggedIn = true;
         $loggedInControl->displayName = $displayName;
         $loggedInControl->defaultUri = $defaultUri;
-        $loggedInControl->linkFieldRoots = implode(', ', array_keys($linkFields));
+        $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsAttributeValue($linkFields);
         $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFields);
 
         return $loggedInControl;
@@ -65,15 +62,23 @@ final class LoginControl implements ViewModel
         return $notLoggedInControl;
     }
 
-    private static function buildLinkFieldsDataAttributeValues(array $linkFields)
+    private static function buildLinkFieldRootsAttributeValue($linkFields)
     {
         $dataAttributesString = '';
-        foreach ($linkFields as $name => $values) {
-            $dataAttributesString .= ' data-'.$name.'-uri="'.$values['uri'].'"'.
-                                     ' data-'.$name.'-text="'.$values['text'].'"';
+        for ($i = 1; $i <= count($linkFields); $i += 1) {
+            $dataAttributesString .= "link{$i}, ";
         }
 
-        return trim($dataAttributesString);
+        return rtrim(trim($dataAttributesString), ',');
+    }
+
+    private static function buildLinkFieldsDataAttributeValues(array $linkFields)
+    {
+        $dataAttributes = array_map(function(string $text, string $uri, int $i) {
+            return "data-link{$i}-text=\"{$text}\" data-link{$i}-uri=\"{$uri}\"";
+        }, array_keys($linkFields), array_values($linkFields), range(1, count($linkFields)));
+
+        return implode(' ', $dataAttributes);
     }
 
     public function getStyleSheets(): Traversable

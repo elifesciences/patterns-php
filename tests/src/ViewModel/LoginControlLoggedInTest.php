@@ -9,18 +9,12 @@ final class LoginControlLoggedInTest extends ViewModelTest
 {
     private $linkFields = [
         'input' => [
-            'profile-manage' => [
-                'uri' => '/profileManageURI',
-                'text' => 'Manage my profile',
-            ],
-            'logout' => [
-                'uri' => '/log-out',
-                'text' => 'Log out',
-            ],
+            'Manage my profile' => '/profileManageURI',
+            'Log out' => '/log-out',
         ],
         'expectedOutput' => [
-            'linkFieldRoots' => 'profile-manage, logout',
-            'linkFieldData' => 'data-profile-manage-uri="/profileManageURI" data-profile-manage-text="Manage my profile" data-logout-uri="/log-out" data-logout-text="Log out"',
+            'linkFieldRoots' => 'link1, link2',
+            'linkFieldData' => 'data-link1-text="Manage my profile" data-link1-uri="/profileManageURI" data-link2-text="Log out" data-link2-uri="/log-out"',
         ],
     ];
 
@@ -44,14 +38,10 @@ final class LoginControlLoggedInTest extends ViewModelTest
         $this->assertSame($this->linkFields['expectedOutput']['linkFieldRoots'], $profileLoginControl['linkFieldRoots']);
         $this->assertSame($this->linkFields['expectedOutput']['linkFieldData'], $profileLoginControl['linkFieldData']);
 
-        // Ugly hack to get the properties in the correct order for the following assertSame :-(
         $data['linkFieldData'] = $this->linkFields['expectedOutput']['linkFieldData'];
         $data['linkFieldRoots'] = $this->linkFields['expectedOutput']['linkFieldRoots'];
         unset($data['linkFields']);
-        unset($data['defaultUri']);
-        $data['defaultUri'] = '/defaultUri';
-
-        $this->assertSame($data, $profileLoginControl->toArray());
+        $this->assertSameValuesWithoutOrder($data, $profileLoginControl->toArray());
     }
 
     /**
@@ -93,10 +83,11 @@ final class LoginControlLoggedInTest extends ViewModelTest
         LoginControl::loggedIn('/defaultUri', 'Display Name', []);
     }
 
+
     /**
      * @test
      */
-    public function it_must_have_a_text_data_attribute_for_each_data_attribute_root()
+    public function a_link_field_key_must_not_be_empty()
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -104,13 +95,8 @@ final class LoginControlLoggedInTest extends ViewModelTest
             '/defaultUri',
             'Display Name',
             [
-                'root-name-1' => [
-                    'uri' => '/uriOne',
-                    'text' => 'Text one',
-                ],
-                'root-name-2' => [
-                    'uri' => '/uriTwo',
-                ],
+                'Text one' => '/uriOne',
+                '' => '/uriTwo',
             ]
         );
     }
@@ -118,7 +104,7 @@ final class LoginControlLoggedInTest extends ViewModelTest
     /**
      * @test
      */
-    public function its_text_data_attributes_for_each_data_attribute_root_must_not_be_empty()
+    public function a_link_field_value_must_not_be_empty()
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -126,79 +112,8 @@ final class LoginControlLoggedInTest extends ViewModelTest
             '/defaultUri',
             'Display Name',
             [
-                'root-name-1' => [
-                    'uri' => '/uriOne',
-                    'text' => 'Text one',
-                ],
-                'root-name-2' => [
-                    'uri' => '/uriTwo',
-                    'text' => '',
-                ],
-            ]
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_have_a_uri_data_attribute_for_each_data_attribute_root()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        LoginControl::loggedIn(
-            '/defaultUri',
-            'Display Name',
-            [
-                'root-name-1' => [
-                    'uri' => '/uriOne',
-                    'text' => 'Text one',
-                ],
-                'root-name-2' => [
-                    'text' => 'Text two',
-                ],
-            ]
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function its_uri_data_attributes_for_each_data_attribute_root_must_not_be_empty()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        LoginControl::loggedIn(
-            '/defaultUri',
-            'Display Name',
-            [
-                'root-name-1' => [
-                    'uri' => '/uriOne',
-                    'text' => 'Text one',
-                ],
-                'root-name-2' => [
-                    'uri' => '',
-                    'text' => 'Text two',
-                ],
-            ]
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function each_data_attribute_root_must_have_only_have_keys_text_and_uri()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        LoginControl::loggedIn(
-            '/defaultUri',
-            'Display Name',
-            [
-                'root-name-1' => [
-                    'uri' => '/uriOne',
-                    'text' => 'Text one',
-                    'wrongKey' => 'should not be here',
-                ],
+                'Text one' => '/uriOne',
+                'Text two' => '',
             ]
         );
     }
