@@ -74,7 +74,7 @@ final class LoginControl implements ViewModel
 
     private static function buildLinkFieldsDataAttributeValues(array $linkFields)
     {
-        $dataAttributes = array_map(function(string $text, string $uri, int $i) {
+        $dataAttributes = array_map(function (string $text, string $uri, int $i) {
             return "data-link{$i}-text=\"{$text}\" data-link{$i}-uri=\"{$uri}\"";
         }, array_keys($linkFields), array_values($linkFields), range(1, count($linkFields)));
 

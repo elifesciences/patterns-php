@@ -83,7 +83,6 @@ final class LoginControlLoggedInTest extends ViewModelTest
         LoginControl::loggedIn('/defaultUri', 'Display Name', []);
     }
 
-
     /**
      * @test
      */
