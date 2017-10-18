@@ -15,9 +15,8 @@ final class Image implements CastsToArray, IsCaptioned
     private $altText;
     private $defaultPath;
     private $srcset;
-    private $classes;
 
-    public function __construct(string $defaultPath, array $srcset = [], string $altText = '', array $classes = null)
+    public function __construct(string $defaultPath, array $srcset = [], string $altText = '')
     {
         Assertion::notBlank($defaultPath);
         Assertion::allInteger(array_keys($srcset));
@@ -32,6 +31,5 @@ final class Image implements CastsToArray, IsCaptioned
             $this->srcset = implode(', ', $this->srcset);
         }
         $this->altText = $altText;
-        $this->classes = $classes ? implode(' ', $classes) : null;
     }
 }

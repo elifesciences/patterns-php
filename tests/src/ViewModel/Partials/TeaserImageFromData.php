@@ -2,6 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel\Partials;
 
+use eLife\Patterns\ViewModel\Image;
+use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\TeaserImage;
 
 trait TeaserImageFromData
@@ -10,20 +12,20 @@ trait TeaserImageFromData
 
     public function teaserImageFromData($data, $size = TeaserImage::STYLE_SMALL)
     {
-        $data = array_merge([
+        $image = array_merge([
             'defaultPath' => null,
-            'altText' => null,
             'srcset' => null,
-        ], $data);
-        $data['srcset'] = $this->srcsetToArray($data['srcset']);
-        $params = array_values($data);
+            'altText' => null,
+        ], $data['fallback']);
+        $image['srcset'] = $this->srcsetToArray($image['srcset']);
+        $picture = new Picture([], new Image(...array_values($image)));
         switch ($size) {
             case TeaserImage::STYLE_BIG:
-                return TeaserImage::big(...$params);
+                return TeaserImage::big($picture);
             case TeaserImage::STYLE_SMALL:
-                return TeaserImage::small(...$params);
+                return TeaserImage::small($picture);
             case TeaserImage::STYLE_PROMINENT:
-                return TeaserImage::prominent(...$params);
+                return TeaserImage::prominent($picture);
         }
     }
 }

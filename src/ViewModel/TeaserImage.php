@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
@@ -12,81 +11,35 @@ final class TeaserImage implements CastsToArray
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $defaultPath;
-    private $altText;
-    private $srcset;
-    private $classes;
+    private $fallback;
+    private $sources;
+    private $type;
 
-    const STYLE_PROMINENT = 'teaser__img--prominent';
-    const STYLE_BIG = 'teaser__img--big';
-    const STYLE_SMALL = 'teaser__img--small';
+    const STYLE_PROMINENT = 'prominent';
+    const STYLE_BIG = 'big';
+    const STYLE_SMALL = 'small';
 
     private function __construct(
-        string $defaultPath,
-        string $altText = null,
-        array $srcset = null,
-        array $classes = null
+        Picture $image,
+        string $type
     ) {
-        Assertion::notBlank($defaultPath);
-
-        $this->defaultPath = $defaultPath;
-        $this->altText = $altText;
-        $this->srcset = $this->srcsetFromArray($srcset);
-        if ($classes) {
-            Assertion::allInArray($classes, [self::STYLE_PROMINENT, self::STYLE_BIG, self::STYLE_SMALL]);
-            $this->classes = implode(' ', $classes);
-        }
+        $this->fallback = $image['fallback'];
+        $this->sources = $image['sources'];
+        $this->type = $type;
     }
 
-    public static function prominent(
-        string $defaultPath,
-        string $altText,
-        array $srcset = null
-    ) {
-        return new static (
-            $defaultPath,
-            $altText,
-            $srcset,
-            [self::STYLE_PROMINENT]
-        );
-    }
-
-    public static function big(
-        string $defaultPath,
-        string $altText,
-        array $srcset = null
-    ) {
-        return new static (
-            $defaultPath,
-            $altText,
-            $srcset,
-            [self::STYLE_BIG]
-        );
-    }
-
-    public static function small(
-        string $defaultPath,
-        string $altText,
-        array $srcset = null
-    ) {
-        return new static (
-            $defaultPath,
-            $altText,
-            $srcset,
-            [self::STYLE_SMALL]
-        );
-    }
-
-    private function srcsetFromArray(array $array = null) : string
+    public static function prominent(Picture $image)
     {
-        if ($array === null) {
-            return '';
-        }
-        $srcsets = [];
-        foreach ($array as $width => $src) {
-            $srcsets[] = $src.' '.$width.'w';
-        }
+        return new static($image, self::STYLE_PROMINENT);
+    }
 
-        return implode(', ', $srcsets);
+    public static function big(Picture $image)
+    {
+        return new static($image, self::STYLE_BIG);
+    }
+
+    public static function small(Picture $image)
+    {
+        return new static($image, self::STYLE_SMALL);
     }
 }

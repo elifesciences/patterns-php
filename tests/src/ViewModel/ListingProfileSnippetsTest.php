@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\ListingProfileSnippets;
@@ -47,12 +46,7 @@ final class ListingProfileSnippetsTest extends ViewModelTest
     {
         return new ProfileSnippet(
             'Name McName',
-            'Title McTitle',
-            new Image(
-                '/default/path',
-                [500 => '/path/to/image/500/wide', 250 => '/default/path'],
-                'the alt text'
-            )
+            'Title McTitle'
         );
     }
 

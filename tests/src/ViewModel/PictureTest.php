@@ -14,8 +14,7 @@ final class PictureTest extends ViewModelTest
         $this->imageFixture = new Image(
             '/default/path',
             [500 => '/path/to/image/500/wide', 250 => '/default/path'],
-            'the alt text',
-            ['class-1', 'class-2']);
+            'the alt text');
     }
 
     /**
@@ -28,7 +27,6 @@ final class PictureTest extends ViewModelTest
                 'altText' => 'the alt text',
                 'defaultPath' => '/default/path',
                 'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
-                'classes' => 'class-1 class-2',
             ],
             'sources' => [
                 [
@@ -39,26 +37,18 @@ final class PictureTest extends ViewModelTest
                     'media' => 'media statement',
                 ],
             ],
-            'pictureClasses' => 'class-3',
         ];
 
-        $picture = new Picture($data['sources'], $this->imageFixture, explode(' ', $data['pictureClasses']));
+        $picture = new Picture($data['sources'], $this->imageFixture);
         $this->assertSame($data['fallback']['defaultPath'], $picture['fallback']['defaultPath']);
         $this->assertSame($data['fallback']['altText'], $picture['fallback']['altText']);
         $this->assertSame($data['sources'], $picture['sources']);
-        $this->assertSame($data['pictureClasses'], $picture['pictureClasses']);
         $this->assertSame($data, $picture->toArray());
     }
 
     public function viewModelProvider() : array
     {
         $image = new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text');
-        $imageWithCssClasses = new Image(
-            '/default/path',
-            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
-            'the alt text',
-            ['class-1', 'class-2']
-        );
 
         $sourcesBasic = [
             [
@@ -89,10 +79,8 @@ final class PictureTest extends ViewModelTest
         return [
             'no sources' => [new Picture([], $image)],
             'basic' => [new Picture($sourcesBasic, $image)],
-            'has css classes' => [new Picture($sourcesBasic, $imageWithCssClasses, ['class', 'another class'])],
             'has media statement' => [new Picture($sourcesWithMedia, $image)],
             'has media statement and type' => [new Picture($sourcesWithMediaAndType, $image)],
-            'has css and media statement' => [new Picture($sourcesWithMedia, $imageWithCssClasses)],
         ];
     }
 

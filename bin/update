@@ -18,7 +18,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 if (!empty($argv[1])) {
     $reference = $argv[1];
 } else {
-    $reference = 'origin/master';
+    $reference = 'origin/img-picture';
 }
 
 $sourceDir = __DIR__.'/../pattern-library';
