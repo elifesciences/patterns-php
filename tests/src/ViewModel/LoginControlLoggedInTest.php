@@ -75,7 +75,6 @@ final class LoginControlLoggedInTest extends ViewModelTest
 
         $profileLoginControl = LoginControl::loggedIn('', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']);
         $this->assertTrue($profileLoginControl['isLoggedIn']);
-
     }
 
     /**
@@ -132,7 +131,7 @@ final class LoginControlLoggedInTest extends ViewModelTest
         return [
             'minimum' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')))],
 
-            'complete' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input'])
+            'complete' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']),
             ],
         ];
     }
