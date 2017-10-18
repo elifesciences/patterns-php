@@ -17,6 +17,7 @@ final class LoginControl implements ViewModel
 
     private $button;
     private $displayName;
+    private $icon;
     private $isLoggedIn;
     private $linkFieldData;
     private $linkFieldRoots;
@@ -29,11 +30,13 @@ final class LoginControl implements ViewModel
     public static function loggedIn(
         string $defaultUri,
         string $displayName,
-        array $linkFields
+        array $linkFields,
+        Picture $icon
     ) : LoginControl {
         Assertion::notBlank($defaultUri);
         Assertion::notBlank($displayName);
         Assertion::notBlank($linkFields);
+        Assertion::notBlank($icon);
 
         foreach ($linkFields as $text => $uri) {
             Assertion::notBlank($text);
@@ -46,6 +49,7 @@ final class LoginControl implements ViewModel
         $loggedInControl->defaultUri = $defaultUri;
         $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsAttributeValue($linkFields);
         $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFields);
+        $loggedInControl->icon = $icon;
 
         return $loggedInControl;
     }

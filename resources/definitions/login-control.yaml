@@ -17,6 +17,52 @@ schema:
         displayName:
             type: string
             minLength: 1
+        icon:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                pictureClasses:
+                    type: string
+                    minLength: 1
+                sources:
+                    type: array
+                    uniqueItems: true
+                    items:
+                        type: object
+                        properties:
+                            srcset:
+                                type: string
+                                minLength: 1
+                            media:
+                                type: string
+                                minLength: 1
+                            type:
+                                type: string
+                                enum:
+                                    - image/svg+xml
+                                    - image/webp
+                                    - image/png
+                                    - image/jpeg
+                        required:
+                            - srcset
+                fallback:
+                    type: object
+                    properties:
+                        srcset:
+                            type: string
+                            pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                        defaultPath:
+                            type: string
+                            minLength: 1
+                        altText:
+                            type: string
+                        classes:
+                            type: string
+                    required:
+                        - defaultPath
+                        - altText
+            required:
+                - fallback
         linkFieldRoots:
             type: string
             pattern: '^[ \t]*[a-z][a-z-$_]*[^-,][ \t]*(,[ \t]*[a-z][a-z-$_]*[^-,][ \t]*)*$'
@@ -65,5 +111,6 @@ schema:
         isLoggedIn:
             - defaultUri
             - displayName
+            - icon
         linkFieldRoots:
             - linkFieldData
