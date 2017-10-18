@@ -22,6 +22,7 @@ final class LoginControl implements ViewModel
     private $linkFieldData;
     private $linkFieldRoots;
     private $defaultUri;
+    private $subsidiaryText;
 
     private function __construct()
     {
@@ -30,26 +31,30 @@ final class LoginControl implements ViewModel
     public static function loggedIn(
         string $defaultUri,
         string $displayName,
-        array $linkFields,
-        Picture $icon
+        Picture $icon,
+        string $subsidiaryText = null,
+        array $linkFields = []
     ) : LoginControl {
         Assertion::notBlank($defaultUri);
         Assertion::notBlank($displayName);
-        Assertion::notBlank($linkFields);
         Assertion::notBlank($icon);
-
-        foreach ($linkFields as $text => $uri) {
-            Assertion::notBlank($text);
-            Assertion::notBlank($uri);
-        }
 
         $loggedInControl = new static();
         $loggedInControl->isLoggedIn = true;
         $loggedInControl->displayName = $displayName;
+        $loggedInControl->subsidiaryText = $subsidiaryText;
         $loggedInControl->defaultUri = $defaultUri;
-        $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsAttributeValue($linkFields);
-        $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFields);
         $loggedInControl->icon = $icon;
+
+        if (!empty($linkFields)) {
+            foreach ($linkFields as $text => $uri) {
+                Assertion::notBlank($text);
+                Assertion::notBlank($uri);
+            }
+
+            $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsAttributeValue($linkFields);
+            $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFields);
+        }
 
         return $loggedInControl;
     }

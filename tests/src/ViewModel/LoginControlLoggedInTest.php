@@ -31,6 +31,7 @@ final class LoginControlLoggedInTest extends ViewModelTest
             'isLoggedIn' => true,
             'linkFields' => $this->linkFields['input'],
             'defaultUri' => '/defaultUri',
+            'subsidiaryText' => 'View your profile page',
             'icon' => [
                 'fallback' => [
                     'altText' => '',
@@ -40,10 +41,11 @@ final class LoginControlLoggedInTest extends ViewModelTest
 
         ];
 
-        $profileLoginControl = LoginControl::loggedIn($data['defaultUri'], $data['displayName'], $this->linkFields['input'], new Picture([], new Image('/default/path')));
+        $profileLoginControl = LoginControl::loggedIn($data['defaultUri'], $data['displayName'], new Picture([], new Image('/default/path')), $data['subsidiaryText'], $this->linkFields['input']);
 
         $this->assertSame($data['isLoggedIn'], $profileLoginControl['isLoggedIn']);
         $this->assertSame($data['defaultUri'], $profileLoginControl['defaultUri']);
+        $this->assertSame($data['subsidiaryText'], $profileLoginControl['subsidiaryText']);
         $this->assertSame($data['icon'], $profileLoginControl['icon']->toArray());
 
         $this->assertSame($this->linkFields['expectedOutput']['linkFieldRoots'], $profileLoginControl['linkFieldRoots']);
@@ -60,18 +62,20 @@ final class LoginControlLoggedInTest extends ViewModelTest
      */
     public function it_must_indicate_it_is_logged_in()
     {
-        $profileLoginControl = LoginControl::loggedIn('/defaultUri', 'Display Name', $this->linkFields['input'], new Picture([], new Image('/default/path')));
+        $profileLoginControl = LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']);
         $this->assertTrue($profileLoginControl['isLoggedIn']);
     }
 
     /**
      * @test
      */
-    public function it_must_be_given_a_profile_home_link()
+    public function it_must_be_given_a_default_link()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        LoginControl::loggedIn('', 'Display Name', $this->linkFields['input'], new Picture([], new Image('/default/path')));
+        $profileLoginControl = LoginControl::loggedIn('', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']);
+        $this->assertTrue($profileLoginControl['isLoggedIn']);
+
     }
 
     /**
@@ -81,17 +85,8 @@ final class LoginControlLoggedInTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        LoginControl::loggedIn('/defaultUri', '', $this->linkFields['input'], new Picture([], new Image('/default/path')));
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_be_given_link_fields()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        LoginControl::loggedIn('/defaultUri', 'Display Name', [], new Picture([], new Image('/default/path')));
+        $profileLoginControl = LoginControl::loggedIn('/defaultUri', '', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']);
+        $this->assertTrue($profileLoginControl['isLoggedIn']);
     }
 
     /**
@@ -104,11 +99,12 @@ final class LoginControlLoggedInTest extends ViewModelTest
         LoginControl::loggedIn(
             '/defaultUri',
             'Display Name',
+            new Picture([], new Image('/default/path')),
+            'subsidiary text',
             [
                 'Text one' => '/uriOne',
                 '' => '/uriTwo',
-            ],
-            new Picture([], new Image('/default/path'))
+            ]
         );
     }
 
@@ -122,18 +118,22 @@ final class LoginControlLoggedInTest extends ViewModelTest
         LoginControl::loggedIn(
             '/defaultUri',
             'Display Name',
+            new Picture([], new Image('/default/path')),
+            'subsidiary text',
             [
                 'Text one' => '/uriOne',
                 'Text two' => '',
-            ],
-            new Picture([], new Image('/default/path'))
+            ]
         );
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [LoginControl::loggedIn('/defaultUri', 'Display Name', $this->linkFields['input'], new Picture([], new Image('/default/path')))],
+            'minimum' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')))],
+
+            'complete' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input'])
+            ],
         ];
     }
 
