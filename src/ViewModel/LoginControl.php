@@ -48,8 +48,7 @@ final class LoginControl implements ViewModel
 
         if (!empty($linkFields)) {
             foreach ($linkFields as $text => $uri) {
-                Assertion::notBlank($text);
-                Assertion::notBlank($uri);
+                Assertion::allNotBlank([$text, $uri]);
             }
 
             $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsAttributeValue($linkFields);
