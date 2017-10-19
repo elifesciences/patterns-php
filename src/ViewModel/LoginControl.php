@@ -47,9 +47,8 @@ final class LoginControl implements ViewModel
         $loggedInControl->icon = $icon;
 
         if (!empty($linkFields)) {
-            foreach ($linkFields as $text => $uri) {
-                Assertion::allNotBlank([$text, $uri]);
-            }
+            Assertion::allNotBlank(array_keys($linkFields));
+            Assertion::allNotBlank(array_values($linkFields));
 
             $loggedInControl->linkFieldRoots = $loggedInControl->buildLinkFieldRootsAttributeValue($linkFields);
             $loggedInControl->linkFieldData = $loggedInControl->buildLinkFieldsDataAttributeValues($linkFields);
@@ -72,29 +71,24 @@ final class LoginControl implements ViewModel
 
     private static function buildLinkFieldRootsAttributeValue($linkFields)
     {
-        $dataAttributesString = '';
-        for ($i = 1; $i <= count($linkFields); $i += 1) {
-            $dataAttributesString .= "link{$i}, ";
-        }
-
-        return rtrim(trim($dataAttributesString), ',');
+        return implode(', ', array_map(function (int $i) {
+            return "link{$i}";
+        }, range(1, count($linkFields))));
     }
 
     private static function buildLinkFieldsDataAttributeValues(array $linkFields)
     {
-        $dataAttributes = array_map(function (string $text, string $uri, int $i) {
+        return implode(' ', array_map(function (string $text, string $uri, int $i) {
             return "data-link{$i}-text=\"{$text}\" data-link{$i}-uri=\"{$uri}\"";
-        }, array_keys($linkFields), array_values($linkFields), range(1, count($linkFields)));
-
-        return implode(' ', $dataAttributes);
+        }, array_keys($linkFields), array_values($linkFields), range(1, count($linkFields))));
     }
 
-    public function getStyleSheets(): Traversable
+    public function getStyleSheets() : Traversable
     {
         yield 'resources/assets/css/login-control.css';
     }
 
-    public function getTemplateName(): string
+    public function getTemplateName() : string
     {
         return 'resources/templates/login-control.mustache';
     }

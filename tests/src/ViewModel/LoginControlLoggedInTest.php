@@ -17,7 +17,6 @@ final class LoginControlLoggedInTest extends ViewModelTest
         'expectedOutput' => [
             'linkFieldRoots' => 'link1, link2',
             'linkFieldData' => 'data-link1-text="Manage my profile" data-link1-uri="/profileManageURI" data-link2-text="Log out" data-link2-uri="/log-out"',
-
         ],
     ];
 
@@ -130,8 +129,8 @@ final class LoginControlLoggedInTest extends ViewModelTest
     {
         return [
             'minimum' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')))],
-
-            'complete' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']),
+            'complete' => [
+                LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']),
             ],
         ];
     }

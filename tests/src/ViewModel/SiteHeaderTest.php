@@ -123,7 +123,6 @@ final class SiteHeaderTest extends ViewModelTest
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asButton(Button::link('button text', '/button/path')),
                 NavLinkedItem::asLoginControl(LoginControl::notLoggedIn('Log in / Register', '/log-in')),
-
             ]
         );
 
