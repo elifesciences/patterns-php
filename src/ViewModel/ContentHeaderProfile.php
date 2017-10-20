@@ -20,17 +20,18 @@ final class ContentHeaderProfile implements ViewModel
     private $miscLinks;
     private $logoutLink;
 
-
     public function __construct(string $displayName, array $logoutLink, array $miscLinks = [], array $details = [])
     {
         Assertion::notEmpty($displayName);
         Assertion::notBlank($logoutLink);
-        Assertion::satisfy($details, function($item) {
+        Assertion::satisfy($details, function ($item) {
             $satisfied = true;
-            foreach (array_keys($item) as $key)
+            foreach (array_keys($item) as $key) {
                 if (!in_array($key, ['affiliations', 'emailAddress'])) {
                     $satisfied = false;
                 }
+            }
+
             return $satisfied;
         });
 
@@ -40,11 +41,11 @@ final class ContentHeaderProfile implements ViewModel
         $this->miscLinks = $this->createLinks($miscLinks);
     }
 
-    function createLinks(array $linkData)
+    public function createLinks(array $linkData)
     {
         $links = [];
 
-        foreach($linkData as $text => $uri) {
+        foreach ($linkData as $text => $uri) {
             array_push($links, ['text' => $text, 'uri' => $uri]);
         }
 

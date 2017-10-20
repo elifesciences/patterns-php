@@ -7,7 +7,6 @@ use InvalidArgumentException;
 
 final class ContentHeaderProfileTest extends ViewModelTest
 {
-
     private $linksData = [
 
         'miscLinks' => [
@@ -33,14 +32,14 @@ final class ContentHeaderProfileTest extends ViewModelTest
         'logoutLink' => [
 
             'input' => [
-                'log out link text' => 'log out link uri'
+                'log out link text' => 'log out link uri',
             ],
 
             'expectedOutput' => [
                 'text' => 'log out link text',
                 'uri' => 'log out link uri',
             ],
-        ]
+        ],
     ];
 
     /**
@@ -105,10 +104,9 @@ final class ContentHeaderProfileTest extends ViewModelTest
                     'affiliation 2',
                 ],
                 'emailAddress' => 'email@address.com',
-                'interloper' => 'should not be here'
+                'interloper' => 'should not be here',
             ]
         );
-
     }
 
     public function viewModelProvider() : array
@@ -119,19 +117,19 @@ final class ContentHeaderProfileTest extends ViewModelTest
                 new ContentHeaderProfile(
                     'Display name',
                     [
-                        'logout link text' => 'logout link url'
+                        'logout link text' => 'logout link url',
                     ],
                     [],
                     [
-                        'emailAddress' => 'email@address.com'
+                        'emailAddress' => 'email@address.com',
                     ]
-                )
+                ),
             ],
             'with affiliations detail' => [
                 new ContentHeaderProfile(
                     'Display name',
                     [
-                        'logout link text' => 'logout link url'
+                        'logout link text' => 'logout link url',
                     ],
                     [],
                     [
@@ -140,13 +138,13 @@ final class ContentHeaderProfileTest extends ViewModelTest
                             'affiliation 2',
                         ],
                     ]
-                )
+                ),
             ],
             'with affiliations and email address detail (aka full detail)' => [
                 new ContentHeaderProfile(
                     'Display name',
                     [
-                        'logout link text' => 'logout link url'
+                        'logout link text' => 'logout link url',
                     ],
                     [],
                     [
@@ -154,15 +152,15 @@ final class ContentHeaderProfileTest extends ViewModelTest
                             'affiliation 1',
                             'affiliation 2',
                         ],
-                        'emailAddress' => 'email@address.com'
+                        'emailAddress' => 'email@address.com',
                     ]
-                )
+                ),
             ],
             'with full detail and misc links' => [
                 new ContentHeaderProfile(
                     'Display name',
                     [
-                        'logout link text' => 'logout link url'
+                        'logout link text' => 'logout link url',
                     ],
                     [
                         'link 1 text' => '/link-1-uri',
@@ -173,9 +171,9 @@ final class ContentHeaderProfileTest extends ViewModelTest
                             'affiliation 1',
                             'affiliation 2',
                         ],
-                        'emailAddress' => 'email@address.com'
+                        'emailAddress' => 'email@address.com',
                     ]
-                )
+                ),
             ],
         ];
     }
