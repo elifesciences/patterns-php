@@ -24,16 +24,12 @@ final class ContentHeaderProfile implements ViewModel
     {
         Assertion::notEmpty($displayName);
         Assertion::notBlank($logoutLink);
-        Assertion::satisfy($details, function ($item) {
-            $satisfied = true;
-            foreach (array_keys($item) as $key) {
-                if (!in_array($key, ['affiliations', 'emailAddress'])) {
-                    $satisfied = false;
-                }
+        Assertion::true(count($details) < 3);
+        if (!empty($details)) {
+            foreach (array_keys($details) as $key) {
+                Assertion::choice($key, ['affiliations', 'emailAddress']);
             }
-
-            return $satisfied;
-        });
+        }
 
         $this->displayName = $displayName;
         $this->details = $details;
