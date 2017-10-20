@@ -1,0 +1,53 @@
+assets:
+    css:
+        - content-header.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        displayName:
+            type: string
+            minLength: 1
+        details:
+            type: object
+            properties:
+                affiliations:
+                    type: array
+                    items:
+                        type: string
+                        minLength: 1
+                    minItems: 1
+                emailAddress:
+                    type: string
+                    minLength: 1
+            minProperties: 1
+        micsLinks:
+            type: array
+            items:
+                type: object
+                properties:
+                    text:
+                        type: string
+                        minLength: 1
+                    uri:
+                        type: string
+                        minLength: 1
+                required:
+                    - text
+                    - uri
+        logoutLink:
+            type: object
+            properties:
+                text:
+                    type: string
+                    minLength: 1
+                uri:
+                    type: string
+                    minLength: 1
+            required:
+                - text
+                - uri
+    required:
+        - displayName
+        - logoutLink

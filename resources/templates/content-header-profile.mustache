@@ -1,0 +1,28 @@
+<header class="content-header-profile">
+
+  <h1 class="content-header-profile__displayName">{{{displayName}}}</h1>
+
+  {{#details}}
+  <div class="content-header-profile__details">
+
+    <div>
+      {{#affiliations}}<span class="content-header-profile__affiliation">{{{.}}}</span>{{/affiliations}}
+    </div>
+
+    {{#emailAddress}}
+    <div class="content-header-profile__email">{{{emailAddress}}}</div>
+    {{/emailAddress}}
+
+  </div>
+  {{/details}}
+
+  <nav class="content-header-profile__nav">
+    <ul class="content-header-profile__links">
+      {{#miscLinks}}
+        <li><a href="{{uri}}" class="content-header-profile__link" >{{text}}</a></li>
+      {{/miscLinks}}
+      <li><a href="{{logoutLink.uri}}" class="content-header-profile__link content-header-profile__link--logout" >{{logoutLink.text}}</a></li>
+    </ul>
+  </nav>
+
+</header>

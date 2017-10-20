@@ -49,7 +49,6 @@ final class ContentHeaderProfileTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'displayName' => 'Display name',
             'details' => [
                 'affiliations' => [
                     'affiliation 1',
@@ -57,6 +56,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
                 ],
                 'emailAddress' => 'email@address1.com',
             ],
+            'displayName' => 'Display name',
         ];
 
         $contentHeader = new ContentHeaderProfile($data['displayName'], $this->linksData['logoutLink']['input'], $this->linksData['miscLinks']['input'], $data['details']);
@@ -64,8 +64,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
         $this->assertSame($data['displayName'], $contentHeader['displayName']);
         $this->assertSame($data['details'], $contentHeader['details']);
         $this->assertSame($this->linksData['logoutLink']['expectedOutput'], $contentHeader['logoutLink']);
-        $this->assertSame($this->linksData['logoutLink']['expectedOutput'], $contentHeader['logoutLink']);
-        $this->assertSame($this->linksData['miscLinks']['expectedOutput'], $contentHeader['micsLinks']);
+        $this->assertSame($this->linksData['miscLinks']['expectedOutput'], $contentHeader['miscLinks']);
 
         $data['miscLinks'] = $this->linksData['miscLinks']['expectedOutput'];
         $data['logoutLink'] = $this->linksData['logoutLink']['expectedOutput'];
@@ -90,16 +89,6 @@ final class ContentHeaderProfileTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         new ContentHeaderProfile('Display Name', []);
-    }
-
-    /**
-     * @test
-     */
-    public function if_it_has_details_the_details_must_not_be_empty()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new ContentHeaderProfile('Display Name', ['log out link text' => 'log out link uri'], [], []);
     }
 
     /**
