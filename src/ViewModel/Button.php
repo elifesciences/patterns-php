@@ -15,6 +15,7 @@ final class Button implements ViewModel
     const SIZE_SMALL = 'small';
     const SIZE_EXTRA_SMALL = 'extra-small';
 
+    const STYLE_CONFIRM = 'confirm';
     const STYLE_DEFAULT = 'default';
     const STYLE_OUTLINE = 'outline';
 
@@ -37,7 +38,7 @@ final class Button implements ViewModel
     {
         Assertion::notBlank($text);
         Assertion::choice($size, [self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
-        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_OUTLINE]);
+        Assertion::choice($style, [self::STYLE_CONFIRM, self::STYLE_DEFAULT, self::STYLE_OUTLINE]);
 
         $classes = [];
 

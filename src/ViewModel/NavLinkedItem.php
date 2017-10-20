@@ -20,6 +20,7 @@ final class NavLinkedItem implements ViewModel
     ];
 
     private $button;
+    private $loginControl;
     private $picture;
     private $path;
     private $rel;
@@ -66,6 +67,14 @@ final class NavLinkedItem implements ViewModel
         $itemAsButton->button = $button;
 
         return $itemAsButton;
+    }
+
+    public static function asLoginControl(LoginControl $loginControl) : NavLinkedItem
+    {
+        $itemAsLoginControl = new static();
+        $itemAsLoginControl->loginControl = $loginControl;
+
+        return $itemAsLoginControl;
     }
 
     private function determinePicture(Picture $picture, string $iconName = null) : ViewModel
