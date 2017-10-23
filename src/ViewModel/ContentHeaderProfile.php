@@ -20,16 +20,15 @@ final class ContentHeaderProfile implements ViewModel
     private $secondaryLinks;
     private $logoutLink;
 
-    public function __construct(string $displayName, array $logoutLink, array $secondaryLinks = [], array $affiliations = [], string $emailAddress = '')
+    public function __construct(string $displayName, Link $logoutLink = null, array $secondaryLinks = [], array $affiliations = [], string $emailAddress = '')
     {
         Assertion::notEmpty($displayName);
-        Assertion::notBlank($logoutLink);
-
+        Assertion::allIsInstanceOf($secondaryLinks, Link::class);
 
         $this->displayName = $displayName;
         $this->details = $this->createDetails($affiliations, $emailAddress);
-        $this->logoutLink = $this->createLinks($logoutLink)[0];
-        $this->secondaryLinks = $this->createLinks($secondaryLinks);
+        $this->logoutLink = $logoutLink;
+        $this->secondaryLinks = $secondaryLinks;
     }
 
     private function createDetails(array $affiliations = [], string $emailAddress = '')
@@ -49,18 +48,6 @@ final class ContentHeaderProfile implements ViewModel
         }
 
         return null;
-
-    }
-
-    public function createLinks(array $linkData)
-    {
-        $links = [];
-
-        foreach ($linkData as $text => $uri) {
-            array_push($links, ['text' => $text, 'uri' => $uri]);
-        }
-
-        return $links;
     }
 
     public function getTemplateName() : string

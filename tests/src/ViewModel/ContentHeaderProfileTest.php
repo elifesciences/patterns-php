@@ -3,45 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContentHeaderProfile;
+use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
 
 final class ContentHeaderProfileTest extends ViewModelTest
 {
-    private $linksData = [
-
-        'secondaryLinks' => [
-
-            'input' => [
-                'link 1 text' => 'link 1 uri',
-                'link 2 text' => 'link 2 uri',
-            ],
-
-            'expectedOutput' => [
-                [
-                    'text' => 'link 1 text',
-                    'uri' => 'link 1 uri',
-                ],
-                [
-                    'text' => 'link 2 text',
-                    'uri' => 'link 2 uri',
-                ],
-            ],
-
-        ],
-
-        'logoutLink' => [
-
-            'input' => [
-                'log out link text' => 'log out link uri',
-            ],
-
-            'expectedOutput' => [
-                'text' => 'log out link text',
-                'uri' => 'log out link uri',
-            ],
-        ],
-    ];
-
     /**
      * @test
      */
@@ -54,19 +20,20 @@ final class ContentHeaderProfileTest extends ViewModelTest
             ],
             'displayName' => 'Display name',
             'emailAddress' => 'email@address1.com',
+            'logoutLink' => new Link('log out link text', '/log-out-link-uri'),
+            'secondaryLinks' => [
+                new Link('link 1 text', 'link 1 url'),
+                new Link('link 2 text', 'link 2 url'),
+            ],
         ];
 
-        $contentHeader = new ContentHeaderProfile($data['displayName'], $this->linksData['logoutLink']['input'], $this->linksData['secondaryLinks']['input'], $data['affiliations'], $data['emailAddress']);
-
+        $contentHeader = new ContentHeaderProfile($data['displayName'], $data['logoutLink'], $data['secondaryLinks'], $data['affiliations'], $data['emailAddress']);
 
         $this->assertSame($data['affiliations'], $contentHeader['details']['affiliations']);
         $this->assertSame($data['displayName'], $contentHeader['displayName']);
         $this->assertSame($data['emailAddress'], $contentHeader['details']['emailAddress']);
-        $this->assertSame($this->linksData['logoutLink']['expectedOutput'], $contentHeader['logoutLink']);
-        $this->assertSame($this->linksData['secondaryLinks']['expectedOutput'], $contentHeader['secondaryLinks']);
-
-        $data['secondaryLinks'] = $this->linksData['secondaryLinks']['expectedOutput'];
-        $data['logoutLink'] = $this->linksData['logoutLink']['expectedOutput'];
+        $this->assertSame($data['logoutLink'], $contentHeader['logoutLink']);
+        $this->assertSame($data['secondaryLinks'], $contentHeader['secondaryLinks']);
 
         // TODO: Refactor details/affiliations/email address data to have input and expectedOutput
         $data['details']['affiliations'] = $data['affiliations'];
@@ -83,7 +50,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeaderProfile('', ['log out link text' => 'log out link uri']);
+        new ContentHeaderProfile('', new Link('log out link text', '/log-out-link-uri'));
     }
 
     /**
@@ -91,20 +58,19 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function supplied_affiliations_is_set_as_a_property_of_details()
     {
-
         $contentHeaderProfile = new ContentHeaderProfile(
             'Display name',
-            ['log out link text' => 'log out link uri'],
+            new Link('log out link text', '/log-out-link-uri'),
             [],
             [
                 'affiliation 1',
-                'affiliation 2'
+                'affiliation 2',
             ]);
 
         $this->assertSame(
             [
                 'affiliation 1',
-                'affiliation 2'
+                'affiliation 2',
             ],
             $contentHeaderProfile['details']['affiliations']);
     }
@@ -114,10 +80,9 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function supplied_email_address_is_set_as_a_property_of_details()
     {
-
         $contentHeaderProfile = new ContentHeaderProfile(
             'Display name',
-            ['log out link text' => 'log out link uri'],
+            new Link('log out link text', '/log-out-link-uri'),
             [],
             [],
             'email@address.com');
@@ -130,8 +95,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function details_is_null_if_no_affiliations_nor_email_address_is_supplied()
     {
-
-        $contentHeaderProfile = new ContentHeaderProfile('Display name', ['log out link text' => 'log out link uri']);
+        $contentHeaderProfile = new ContentHeaderProfile('Display name', new Link('log out link text', '/log-out-link-uri'));
 
         $this->assertNull($contentHeaderProfile['details']);
     }
@@ -139,23 +103,54 @@ final class ContentHeaderProfileTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_have_a_log_out_link()
+    public function supplied_logout_link_becomes_logout_link_property()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $contentHeaderProfile = new ContentHeaderProfile(
+            'Display name',
+            new Link('log out link text', '/log-out-link-uri')
+        );
 
-        new ContentHeaderProfile('Display Name', []);
+        $this->assertSameWithoutOrder(
+            new Link('log out link text', '/log-out-link-uri'),
+            $contentHeaderProfile['logoutLink']);
+    }
+
+    /**
+     * @test
+     */
+    public function supplied_secondary_links_becomes_secondary_links_property()
+    {
+        $contentHeaderProfile = new ContentHeaderProfile(
+            'Display name',
+            new Link('log out link text', '/log-out-link-uri'),
+            [
+                new Link('link 1 text', 'link 1 url'),
+                new Link('link 2 text', 'link 2 url'),
+            ]
+        );
+
+        $this->assertSameWithoutOrder(
+            [
+                new Link('link 1 text', 'link 1 url'),
+                new Link('link 2 text', 'link 2 url'),
+            ],
+            $contentHeaderProfile['secondaryLinks']);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new ContentHeaderProfile('Display name', ['logout link text' => 'logout link url'])],
+            'minimum' => [new ContentHeaderProfile('Display name')],
+            'with log out link' => [
+                new ContentHeaderProfile(
+                    'Display name',
+                    new Link('log out link text', '/log-out-link-uri')
+                ),
+            ],
             'with email address' => [
                 new ContentHeaderProfile(
                     'Display name',
-                    [
-                        'logout link text' => 'logout link url',
-                    ],
+                    new Link('log out link text', '/log-out-link-uri'),
                     [],
                     [],
                     'email@address.com'
@@ -164,9 +159,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
             'with affiliations' => [
                 new ContentHeaderProfile(
                     'Display name',
-                    [
-                        'logout link text' => 'logout link url',
-                    ],
+                    new Link('log out link text', '/log-out-link-uri'),
                     [],
                     [
                         'affiliation 1',
@@ -177,9 +170,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
             'with affiliations and email address' => [
                 new ContentHeaderProfile(
                     'Display name',
-                    [
-                        'logout link text' => 'logout link url',
-                    ],
+                    new Link('log out link text', '/log-out-link-uri'),
                     [],
                     [
                         'affiliation 1',
@@ -188,15 +179,13 @@ final class ContentHeaderProfileTest extends ViewModelTest
                     'email@address.com'
                 ),
             ],
-            'with affiliations, email address and secondary links' => [
+            'with log out link, secondary links, affiliations and email address' => [
                 new ContentHeaderProfile(
                     'Display name',
+                    new Link('log out link text', '/log-out-link-uri'),
                     [
-                        'logout link text' => 'logout link url',
-                    ],
-                    [
-                        'link 1 text' => '/link-1-uri',
-                        'link 2 text' => '/link-2-uri',
+                        new Link('link 1 text', 'link 1 url'),
+                        new Link('link 2 text', 'link 2 url'),
                     ],
                     [
                             'affiliation 1',
