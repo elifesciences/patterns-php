@@ -191,8 +191,8 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
                         new Link('link 2 text', 'link 2 url'),
                     ],
                     [
-                            'affiliation 1',
-                            'affiliation 2',
+                        'affiliation 1',
+                        'affiliation 2',
                     ],
                     'email@address.com'
                 ),

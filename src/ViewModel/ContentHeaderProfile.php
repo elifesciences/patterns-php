@@ -34,31 +34,30 @@ final class ContentHeaderProfile implements ViewModel
         Assertion::notEmpty($displayName);
         Assertion::allIsInstanceOf($secondaryLinks, Link::class);
 
-        $loggedInContentHeaderProfile = new static();
-        $loggedInContentHeaderProfile->displayName = $displayName;
-        $loggedInContentHeaderProfile->details = $loggedInContentHeaderProfile->createDetails($affiliations, $emailAddress);
-        $loggedInContentHeaderProfile->logoutLink = $logoutLink;
-        $loggedInContentHeaderProfile->secondaryLinks = $secondaryLinks;
+        $contentHeader = new static();
+        $contentHeader->displayName = $displayName;
+        $contentHeader->details = $contentHeader->createDetails($affiliations, $emailAddress);
+        $contentHeader->logoutLink = $logoutLink;
+        $contentHeader->secondaryLinks = $secondaryLinks;
 
-        return $loggedInContentHeaderProfile;
+        return $contentHeader;
     }
 
     public static function notLoggedIn(
         string $displayName,
         array $affiliations = [],
         string $emailAddress = null
-
     ) : ContentHeaderProfile {
         Assertion::notEmpty($displayName);
 
-        $notLoggedInContentHeaderProfile = new static();
-        $notLoggedInContentHeaderProfile->displayName = $displayName;
-        $notLoggedInContentHeaderProfile->details = $notLoggedInContentHeaderProfile->createDetails($affiliations, $emailAddress);
+        $contentHeader = new static();
+        $contentHeader->displayName = $displayName;
+        $contentHeader->details = $contentHeader->createDetails($affiliations, $emailAddress);
 
-        return $notLoggedInContentHeaderProfile;
+        return $contentHeader;
     }
 
-    private static function createDetails(array $affiliations = [], string $emailAddress = null)
+    private function createDetails(array $affiliations = [], string $emailAddress = null)
     {
         $details = [];
 
