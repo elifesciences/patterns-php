@@ -13,13 +13,18 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $data = [
+        $details = [
             'affiliations' => [
                 'affiliation 1',
                 'affiliation 2',
             ],
-            'displayName' => 'Display name',
             'emailAddress' => 'email@address1.com',
+        ];
+
+        $data = [
+            'affiliations' => $details['affiliations'],
+            'emailAddress' => $details['emailAddress'],
+            'displayName' => 'Display name',
             'logoutLink' => new Link('log out link text', '/log-out-link-uri'),
             'secondaryLinks' => [
                 new Link('link 1 text', 'link 1 url'),
@@ -35,10 +40,8 @@ final class ContentHeaderProfileTest extends ViewModelTest
         $this->assertSame($data['logoutLink'], $contentHeader['logoutLink']);
         $this->assertSame($data['secondaryLinks'], $contentHeader['secondaryLinks']);
 
-        // TODO: Refactor details/affiliations/email address data to have input and expectedOutput
-        $data['details']['affiliations'] = $data['affiliations'];
+        $data['details'] = $details;
         unset($data['affiliations']);
-        $data['details']['emailAddress'] = $data['emailAddress'];
         unset($data['emailAddress']);
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
