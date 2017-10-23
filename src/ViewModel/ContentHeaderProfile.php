@@ -20,21 +20,36 @@ final class ContentHeaderProfile implements ViewModel
     private $secondaryLinks;
     private $logoutLink;
 
-    public function __construct(string $displayName, array $logoutLink, array $secondaryLinks = [], array $details = [])
+    public function __construct(string $displayName, array $logoutLink, array $secondaryLinks = [], array $affiliations = [], string $emailAddress = '')
     {
         Assertion::notEmpty($displayName);
         Assertion::notBlank($logoutLink);
-        Assertion::true(count($details) < 3);
-        if (!empty($details)) {
-            foreach (array_keys($details) as $key) {
-                Assertion::choice($key, ['affiliations', 'emailAddress']);
-            }
-        }
+
 
         $this->displayName = $displayName;
-        $this->details = $details;
+        $this->details = $this->createDetails($affiliations, $emailAddress);
         $this->logoutLink = $this->createLinks($logoutLink)[0];
         $this->secondaryLinks = $this->createLinks($secondaryLinks);
+    }
+
+    private function createDetails(array $affiliations = [], string $emailAddress = '')
+    {
+        $details = [];
+
+        if (!empty($affiliations)) {
+            $details['affiliations'] = $affiliations;
+        }
+
+        if (!empty($emailAddress)) {
+            $details['emailAddress'] = $emailAddress;
+        }
+
+        if (!empty($details)) {
+            return $details;
+        }
+
+        return null;
+
     }
 
     public function createLinks(array $linkData)
