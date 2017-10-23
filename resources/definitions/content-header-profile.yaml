@@ -20,11 +20,12 @@ schema:
                     minItems: 1
                 emailAddress:
                     type: string
-                    minLength: 1
+                    format: email
             minProperties: 1
-        micsLinks:
+        secondaryLinks:
             type: array
             items:
+                $schema: 'http://json-schema.org/draft-04/schema#'
                 type: object
                 properties:
                     text:
@@ -37,6 +38,7 @@ schema:
                     - text
                     - uri
         logoutLink:
+            $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
                 text:
@@ -50,4 +52,3 @@ schema:
                 - uri
     required:
         - displayName
-        - logoutLink
