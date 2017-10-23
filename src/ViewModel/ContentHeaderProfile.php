@@ -17,10 +17,10 @@ final class ContentHeaderProfile implements ViewModel
 
     private $details;
     private $displayName;
-    private $miscLinks;
+    private $secondaryLinks;
     private $logoutLink;
 
-    public function __construct(string $displayName, array $logoutLink, array $miscLinks = [], array $details = [])
+    public function __construct(string $displayName, array $logoutLink, array $secondaryLinks = [], array $details = [])
     {
         Assertion::notEmpty($displayName);
         Assertion::notBlank($logoutLink);
@@ -34,7 +34,7 @@ final class ContentHeaderProfile implements ViewModel
         $this->displayName = $displayName;
         $this->details = $details;
         $this->logoutLink = $this->createLinks($logoutLink)[0];
-        $this->miscLinks = $this->createLinks($miscLinks);
+        $this->secondaryLinks = $this->createLinks($secondaryLinks);
     }
 
     public function createLinks(array $linkData)

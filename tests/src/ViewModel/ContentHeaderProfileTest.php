@@ -9,7 +9,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
 {
     private $linksData = [
 
-        'miscLinks' => [
+        'secondaryLinks' => [
 
             'input' => [
                 'link 1 text' => 'link 1 uri',
@@ -58,14 +58,14 @@ final class ContentHeaderProfileTest extends ViewModelTest
             'displayName' => 'Display name',
         ];
 
-        $contentHeader = new ContentHeaderProfile($data['displayName'], $this->linksData['logoutLink']['input'], $this->linksData['miscLinks']['input'], $data['details']);
+        $contentHeader = new ContentHeaderProfile($data['displayName'], $this->linksData['logoutLink']['input'], $this->linksData['secondaryLinks']['input'], $data['details']);
 
         $this->assertSame($data['displayName'], $contentHeader['displayName']);
         $this->assertSame($data['details'], $contentHeader['details']);
         $this->assertSame($this->linksData['logoutLink']['expectedOutput'], $contentHeader['logoutLink']);
-        $this->assertSame($this->linksData['miscLinks']['expectedOutput'], $contentHeader['miscLinks']);
+        $this->assertSame($this->linksData['secondaryLinks']['expectedOutput'], $contentHeader['secondaryLinks']);
 
-        $data['miscLinks'] = $this->linksData['miscLinks']['expectedOutput'];
+        $data['secondaryLinks'] = $this->linksData['secondaryLinks']['expectedOutput'];
         $data['logoutLink'] = $this->linksData['logoutLink']['expectedOutput'];
         $this->assertSame($data, $contentHeader->toArray());
     }
