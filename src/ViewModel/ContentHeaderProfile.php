@@ -30,8 +30,7 @@ final class ContentHeaderProfile implements ViewModel
         array $secondaryLinks = [],
         array $affiliations = [],
         string $emailAddress = null
-    ) : ContentHeaderProfile
-    {
+    ) : ContentHeaderProfile {
         Assertion::notEmpty($displayName);
         Assertion::allIsInstanceOf($secondaryLinks, Link::class);
 
@@ -49,8 +48,7 @@ final class ContentHeaderProfile implements ViewModel
         array $affiliations = [],
         string $emailAddress = null
 
-    ) : ContentHeaderProfile
-    {
+    ) : ContentHeaderProfile {
         Assertion::notEmpty($displayName);
 
         $notLoggedInContentHeaderProfile = new static();
@@ -58,7 +56,6 @@ final class ContentHeaderProfile implements ViewModel
         $notLoggedInContentHeaderProfile->details = $notLoggedInContentHeaderProfile->createDetails($affiliations, $emailAddress);
 
         return $notLoggedInContentHeaderProfile;
-
     }
 
     private static function createDetails(array $affiliations = [], string $emailAddress = null)

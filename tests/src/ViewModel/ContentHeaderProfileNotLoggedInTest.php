@@ -3,7 +3,6 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContentHeaderProfile;
-use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
 
 final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
