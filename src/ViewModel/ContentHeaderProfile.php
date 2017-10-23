@@ -20,7 +20,7 @@ final class ContentHeaderProfile implements ViewModel
     private $secondaryLinks;
     private $logoutLink;
 
-    public function __construct(string $displayName, Link $logoutLink = null, array $secondaryLinks = [], array $affiliations = [], string $emailAddress = '')
+    public function __construct(string $displayName, Link $logoutLink = null, array $secondaryLinks = [], array $affiliations = [], string $emailAddress = null)
     {
         Assertion::notEmpty($displayName);
         Assertion::allIsInstanceOf($secondaryLinks, Link::class);
@@ -31,7 +31,7 @@ final class ContentHeaderProfile implements ViewModel
         $this->secondaryLinks = $secondaryLinks;
     }
 
-    private function createDetails(array $affiliations = [], string $emailAddress = '')
+    private function createDetails(array $affiliations = [], string $emailAddress = null)
     {
         $details = [];
 
@@ -39,7 +39,7 @@ final class ContentHeaderProfile implements ViewModel
             $details['affiliations'] = $affiliations;
         }
 
-        if (!empty($emailAddress)) {
+        if ($emailAddress) {
             $details['emailAddress'] = $emailAddress;
         }
 
