@@ -6,7 +6,7 @@ use eLife\Patterns\ViewModel\ContentHeaderProfile;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
 
-final class ContentHeaderProfileTest extends ViewModelTest
+final class ContentHeaderProfileLoggedInTest extends ViewModelTest
 {
     /**
      * @test
@@ -32,7 +32,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
             ],
         ];
 
-        $contentHeader = new ContentHeaderProfile($data['displayName'], $data['logoutLink'], $data['secondaryLinks'], $data['affiliations'], $data['emailAddress']);
+        $contentHeader = ContentHeaderProfile::loggedIn($data['displayName'], $data['logoutLink'], $data['secondaryLinks'], $data['affiliations'], $data['emailAddress']);
 
         $this->assertSame($data['affiliations'], $contentHeader['details']['affiliations']);
         $this->assertSame($data['displayName'], $contentHeader['displayName']);
@@ -53,7 +53,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeaderProfile('', new Link('log out link text', '/log-out-link-uri'));
+        ContentHeaderProfile::loggedIn('');
     }
 
     /**
@@ -61,7 +61,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function supplied_affiliations_is_set_as_a_property_of_details()
     {
-        $contentHeaderProfile = new ContentHeaderProfile(
+        $contentHeaderProfile = ContentHeaderProfile::loggedIn(
             'Display name',
             new Link('log out link text', '/log-out-link-uri'),
             [],
@@ -83,7 +83,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function supplied_email_address_is_set_as_a_property_of_details()
     {
-        $contentHeaderProfile = new ContentHeaderProfile(
+        $contentHeaderProfile = ContentHeaderProfile::loggedIn(
             'Display name',
             new Link('log out link text', '/log-out-link-uri'),
             [],
@@ -98,7 +98,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function details_is_null_if_no_affiliations_nor_email_address_is_supplied()
     {
-        $contentHeaderProfile = new ContentHeaderProfile('Display name', new Link('log out link text', '/log-out-link-uri'));
+        $contentHeaderProfile = ContentHeaderProfile::loggedIn('Display name', new Link('log out link text', '/log-out-link-uri'));
 
         $this->assertNull($contentHeaderProfile['details']);
     }
@@ -108,7 +108,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function supplied_logout_link_becomes_logout_link_property()
     {
-        $contentHeaderProfile = new ContentHeaderProfile(
+        $contentHeaderProfile = ContentHeaderProfile::loggedIn(
             'Display name',
             new Link('log out link text', '/log-out-link-uri')
         );
@@ -123,7 +123,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
      */
     public function supplied_secondary_links_becomes_secondary_links_property()
     {
-        $contentHeaderProfile = new ContentHeaderProfile(
+        $contentHeaderProfile = ContentHeaderProfile::loggedIn(
             'Display name',
             new Link('log out link text', '/log-out-link-uri'),
             [
@@ -143,15 +143,15 @@ final class ContentHeaderProfileTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new ContentHeaderProfile('Display name')],
+            'minimum' => [ContentHeaderProfile::loggedIn('Display name')],
             'with log out link' => [
-                new ContentHeaderProfile(
+                ContentHeaderProfile::loggedIn(
                     'Display name',
                     new Link('log out link text', '/log-out-link-uri')
                 ),
             ],
             'with email address' => [
-                new ContentHeaderProfile(
+                ContentHeaderProfile::loggedIn(
                     'Display name',
                     new Link('log out link text', '/log-out-link-uri'),
                     [],
@@ -160,7 +160,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
                 ),
             ],
             'with affiliations' => [
-                new ContentHeaderProfile(
+                ContentHeaderProfile::loggedIn(
                     'Display name',
                     new Link('log out link text', '/log-out-link-uri'),
                     [],
@@ -171,7 +171,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
                 ),
             ],
             'with affiliations and email address' => [
-                new ContentHeaderProfile(
+                ContentHeaderProfile::loggedIn(
                     'Display name',
                     new Link('log out link text', '/log-out-link-uri'),
                     [],
@@ -183,7 +183,7 @@ final class ContentHeaderProfileTest extends ViewModelTest
                 ),
             ],
             'with log out link, secondary links, affiliations and email address' => [
-                new ContentHeaderProfile(
+                ContentHeaderProfile::loggedIn(
                     'Display name',
                     new Link('log out link text', '/log-out-link-uri'),
                     [

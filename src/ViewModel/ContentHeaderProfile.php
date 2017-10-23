@@ -20,18 +20,48 @@ final class ContentHeaderProfile implements ViewModel
     private $secondaryLinks;
     private $logoutLink;
 
-    public function __construct(string $displayName, Link $logoutLink = null, array $secondaryLinks = [], array $affiliations = [], string $emailAddress = null)
+    private function __construct()
+    {
+    }
+
+    public static function loggedIn(
+        string $displayName,
+        Link $logoutLink = null,
+        array $secondaryLinks = [],
+        array $affiliations = [],
+        string $emailAddress = null
+    ) : ContentHeaderProfile
     {
         Assertion::notEmpty($displayName);
         Assertion::allIsInstanceOf($secondaryLinks, Link::class);
 
-        $this->displayName = $displayName;
-        $this->details = $this->createDetails($affiliations, $emailAddress);
-        $this->logoutLink = $logoutLink;
-        $this->secondaryLinks = $secondaryLinks;
+        $loggedInContentHeaderProfile = new static();
+        $loggedInContentHeaderProfile->displayName = $displayName;
+        $loggedInContentHeaderProfile->details = $loggedInContentHeaderProfile->createDetails($affiliations, $emailAddress);
+        $loggedInContentHeaderProfile->logoutLink = $logoutLink;
+        $loggedInContentHeaderProfile->secondaryLinks = $secondaryLinks;
+
+        return $loggedInContentHeaderProfile;
     }
 
-    private function createDetails(array $affiliations = [], string $emailAddress = null)
+    public static function notLoggedIn(
+        string $displayName,
+        array $affiliations = [],
+        string $emailAddress = null
+
+    ) : ContentHeaderProfile
+    {
+        Assertion::notEmpty($displayName);
+
+        $notLoggedInContentHeaderProfile = new static();
+        $notLoggedInContentHeaderProfile->displayName = $displayName;
+        $notLoggedInContentHeaderProfile->details = $notLoggedInContentHeaderProfile->createDetails($affiliations, $emailAddress);
+
+        return $notLoggedInContentHeaderProfile;
+
+    }
+
+    private static function createDetails(array $affiliations = [], string $emailAddress = null)
     {
         $details = [];
 
