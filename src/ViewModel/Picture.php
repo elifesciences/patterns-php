@@ -16,15 +16,13 @@ final class Picture implements ViewModel, IsCaptioned
 
     private $fallback;
     private $sources;
-    private $pictureClasses;
 
-    public function __construct(array $sources, Image $fallback, array $classes = [])
+    public function __construct(array $sources, Image $fallback)
     {
         Assertion::allIsArray($sources);
 
         $this->sources = $sources;
         $this->fallback = $fallback;
-        $this->pictureClasses = $classes ? implode(' ', $classes) : null;
     }
 
     public function getTemplateName() : string

@@ -3,7 +3,6 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\DecisionLetterHeader;
-use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 
 final class DecisionLetterHeaderTest extends ViewModelTest
@@ -29,9 +28,7 @@ final class DecisionLetterHeaderTest extends ViewModelTest
 
     protected static function getProfileStub()
     {
-        return new ProfileSnippet('Name McName', 'Title McTitle',
-            new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text')
-        );
+        return new ProfileSnippet('Name McName', 'Title McTitle');
     }
 
     public function viewModelProvider() : array

@@ -55,6 +55,7 @@ ProcessBuilder::create()
 ProcessBuilder::create()
     ->setArguments(['node_modules/.bin/gulp', '--environment', 'production'])
     ->setWorkingDirectory($sourceDir)
+    ->setTimeout(180)
     ->getProcess()
     ->enableOutput()
     ->mustRun(function ($type, $buffer) {

@@ -19,17 +19,14 @@ final class ProfileSnippet implements ViewModel
     private $title;
     private $name;
 
-    public function __construct(string $name, string $title, Image $image = null)
+    public function __construct(string $name, string $title, Picture $image = null)
     {
         Assertion::notBlank($name);
         Assertion::notBlank($title);
 
         $this->name = $name;
         $this->title = $title;
-        if ($image) {
-            $this->image = $image->toArray();
-            $this->image['classes'] = 'profile-snippet__image';
-        }
+        $this->image = $image;
     }
 
     public function getLocalStyleSheets() : Traversable
