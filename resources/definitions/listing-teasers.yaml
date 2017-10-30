@@ -121,30 +121,63 @@ schema:
                         required:
                             - name
                     image:
-                        type: object
-                        properties:
-                            url:
-                                type: string
-                                minLength: 1
-                            defaultPath:
-                                type: string
-                                minLength: 1
-                            altText:
-                                type: string
-                                minLength: 1
-                            srcset:
-                                type: string
-                                minLength: 1
-                            classes:
-                                type: string
-                                minLength: 1
-                                enum:
-                                    - teaser__img--prominent
-                                    - teaser__img--big
-                                    - teaser__img--small
-                        required:
-                            - defaultPath
-                            - altText
+                        allOf:
+                            -
+                                $schema: 'http://json-schema.org/draft-04/schema#'
+                                type: object
+                                properties:
+                                    pictureClasses:
+                                        type: string
+                                        minLength: 1
+                                    sources:
+                                        type: array
+                                        uniqueItems: true
+                                        items:
+                                            type: object
+                                            properties:
+                                                srcset:
+                                                    type: string
+                                                    minLength: 1
+                                                media:
+                                                    type: string
+                                                    minLength: 1
+                                                type:
+                                                    type: string
+                                                    enum:
+                                                        - image/svg+xml
+                                                        - image/webp
+                                                        - image/png
+                                                        - image/jpeg
+                                            required:
+                                                - srcset
+                                    fallback:
+                                        type: object
+                                        properties:
+                                            srcset:
+                                                type: string
+                                                pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                            defaultPath:
+                                                type: string
+                                                minLength: 1
+                                            altText:
+                                                type: string
+                                            classes:
+                                                type: string
+                                        required:
+                                            - defaultPath
+                                            - altText
+                                required:
+                                    - fallback
+                            -
+                                properties:
+                                    type:
+                                        type: string
+                                        enum:
+                                            - prominent
+                                            - big
+                                            - small
+                                required:
+                                    - type
                     footer:
                         type: object
                         properties:
