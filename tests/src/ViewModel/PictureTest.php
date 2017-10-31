@@ -13,7 +13,7 @@ final class PictureTest extends ViewModelTest
     {
         $this->imageFixture = new Image(
             '/default/path',
-            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+            ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
             'the alt text');
     }
 
@@ -26,7 +26,7 @@ final class PictureTest extends ViewModelTest
             'fallback' => [
                 'altText' => 'the alt text',
                 'defaultPath' => '/default/path',
-                'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                'srcset' => '/path/to/image/500/wide 2x, /default/path 1x',
             ],
             'sources' => [
                 [
@@ -48,7 +48,7 @@ final class PictureTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $image = new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text');
+        $image = new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text');
 
         $sourcesBasic = [
             [

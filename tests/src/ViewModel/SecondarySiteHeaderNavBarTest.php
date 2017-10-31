@@ -26,7 +26,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
             [
                 ['srcset' => '/path/to/svg'],
             ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text', [])
         );
 
         $this->button = Button::form('button text', 'button', 'name');
@@ -84,7 +84,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
             [
                 ['srcset' => '/path/to/svg'],
             ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text', [])
         );
 
         $button = Button::form('button text', 'button', 'name');

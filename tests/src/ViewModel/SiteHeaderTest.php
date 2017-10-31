@@ -32,7 +32,7 @@ final class SiteHeaderTest extends ViewModelTest
             [
                 ['srcset' => '/path/to/svg'],
             ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text', [])
         );
         $this->homePagePath = '/home/page/path';
         $this->primaryLinks = SiteHeaderNavBar::primary(
@@ -106,7 +106,7 @@ final class SiteHeaderTest extends ViewModelTest
             [
                 ['srcset' => '/path/to/svg'],
             ],
-            new Image('/path/to/fallback/', [500 => '/path/in/srcset'], 'alt text', [])
+            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text', [])
         );
 
         $primaryLinks = SiteHeaderNavBar::primary(

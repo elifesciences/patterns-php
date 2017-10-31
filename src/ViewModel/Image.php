@@ -19,14 +19,17 @@ final class Image implements CastsToArray, IsCaptioned
     public function __construct(string $defaultPath, array $srcset = [], string $altText = '')
     {
         Assertion::notBlank($defaultPath);
-        Assertion::allInteger(array_keys($srcset));
+        Assertion::allNumeric(array_keys($srcset));
+        if (!empty($srcset)) {
+            Assertion::inArray(1, array_keys($srcset));
+        }
         Assertion::allNotBlank($srcset);
 
         $this->defaultPath = $defaultPath;
         $this->srcset = [];
         if ($srcset) {
-            foreach ($srcset as $width => $src) {
-                $this->srcset[] = $src.' '.$width.'w';
+            foreach ($srcset as $dpiMultiple => $src) {
+                $this->srcset[] = $src.' '.$dpiMultiple.'x';
             }
             $this->srcset = implode(', ', $this->srcset);
         }
