@@ -64,7 +64,7 @@ final class LoginControl implements ViewModel
 
         $notLoggedInControl = new static();
         $notLoggedInControl->isLoggedIn = null;
-        $notLoggedInControl->button = Button::link($text, $uri, Button::SIZE_EXTRA_SMALL, Button::STYLE_CONFIRM);
+        $notLoggedInControl->button = Button::link($text, $uri, null, Button::STYLE_LOGIN);
 
         return $notLoggedInControl;
     }

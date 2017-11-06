@@ -15,8 +15,8 @@ final class Button implements ViewModel
     const SIZE_SMALL = 'small';
     const SIZE_EXTRA_SMALL = 'extra-small';
 
-    const STYLE_CONFIRM = 'confirm';
     const STYLE_DEFAULT = 'default';
+    const STYLE_LOGIN = 'login';
     const STYLE_OUTLINE = 'outline';
 
     const TYPE_BUTTON = 'button';
@@ -34,15 +34,18 @@ final class Button implements ViewModel
     private $id;
     private $name;
 
-    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
+    private function __construct(string $text, string $size = null, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
     {
         Assertion::notBlank($text);
-        Assertion::choice($size, [self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
-        Assertion::choice($style, [self::STYLE_CONFIRM, self::STYLE_DEFAULT, self::STYLE_OUTLINE]);
+        Assertion::nullOrChoice($size, [self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
+        if (!$size) {
+            Assertion::true($style === self::STYLE_LOGIN);
+        }
+        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE]);
 
         $classes = [];
 
-        if (self::SIZE_MEDIUM !== $size) {
+        if ($size && self::SIZE_MEDIUM !== $size) {
             $classes[] = 'button--'.$size;
         }
 
@@ -87,12 +90,16 @@ final class Button implements ViewModel
     public static function link(
         string $text,
         string $path,
-        string $size = self::SIZE_MEDIUM,
+        string $size = null,
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
         Assertion::notBlank($path);
+
+        if ($size === null) {
+            $style = self::STYLE_LOGIN;
+        }
 
         $button = new static($text, $size, $style, $isActive, null, null, $isFullWidth);
         $button->path = $path;

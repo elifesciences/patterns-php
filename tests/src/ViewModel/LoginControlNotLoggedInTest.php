@@ -14,9 +14,9 @@ final class LoginControlNotLoggedInTest extends ViewModelTest
     {
         $data = [
             'button' => [
-                'classes' => 'button--extra-small button--confirm',
+                'classes' => 'button--login',
                 'path' => 'The uri',
-                'text' => 'Log in / Register',
+                'text' => 'Log in / Register<span class="visuallyhidden"> (via Orcid)</span>',
             ],
         ];
 
