@@ -34,18 +34,18 @@ final class Button implements ViewModel
     private $id;
     private $name;
 
-    private function __construct(string $text, string $size = null, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
+    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
     {
         Assertion::notBlank($text);
-        Assertion::nullOrChoice($size, [self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
-        if (!$size) {
-            Assertion::true($style === self::STYLE_LOGIN);
-        }
+        Assertion::choice($size, [self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
         Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE]);
+        if ($style === self::STYLE_LOGIN) {
+            Assertion::true($size === self::SIZE_EXTRA_SMALL);
+        }
 
         $classes = [];
 
-        if ($size && self::SIZE_MEDIUM !== $size) {
+        if (self::SIZE_MEDIUM !== $size && $style !== self::STYLE_LOGIN) {
             $classes[] = 'button--'.$size;
         }
 
@@ -90,16 +90,12 @@ final class Button implements ViewModel
     public static function link(
         string $text,
         string $path,
-        string $size = null,
+        string $size = self::SIZE_MEDIUM,
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
         Assertion::notBlank($path);
-
-        if ($size === null) {
-            $style = self::STYLE_LOGIN;
-        }
 
         $button = new static($text, $size, $style, $isActive, null, null, $isFullWidth);
         $button->path = $path;
