@@ -11,6 +11,7 @@ use Traversable;
 
 final class Button implements ViewModel
 {
+    const SIZE_CUSTOM = 'custom';
     const SIZE_MEDIUM = 'medium';
     const SIZE_SMALL = 'small';
     const SIZE_EXTRA_SMALL = 'extra-small';
@@ -18,6 +19,7 @@ final class Button implements ViewModel
     const STYLE_DEFAULT = 'default';
     const STYLE_LOGIN = 'login';
     const STYLE_OUTLINE = 'outline';
+    const STYLE_SPEECH_BUBBLE = 'speech-bubble';
 
     const TYPE_BUTTON = 'button';
     const TYPE_SUBMIT = 'submit';
@@ -37,15 +39,15 @@ final class Button implements ViewModel
     private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
     {
         Assertion::notBlank($text);
-        Assertion::choice($size, [self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
-        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE]);
+        Assertion::choice($size, [self::SIZE_CUSTOM, self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
+        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE, self::STYLE_SPEECH_BUBBLE]);
         if ($style === self::STYLE_LOGIN) {
             Assertion::true($size === self::SIZE_EXTRA_SMALL);
         }
 
         $classes = [];
 
-        if (self::SIZE_MEDIUM !== $size && $style !== self::STYLE_LOGIN) {
+        if (self::SIZE_MEDIUM !== $size && $style !== self::STYLE_LOGIN && $size !== self::SIZE_CUSTOM) {
             $classes[] = 'button--'.$size;
         }
 
@@ -99,6 +101,18 @@ final class Button implements ViewModel
 
         $button = new static($text, $size, $style, $isActive, null, null, $isFullWidth);
         $button->path = $path;
+
+        return $button;
+    }
+
+    public static function speechBubble(
+        string $text,
+        string $name = null,
+        string $id = null,
+        bool $isActive = true
+    ) : Button {
+        $button = new static($text, self::SIZE_CUSTOM, self::STYLE_SPEECH_BUBBLE, $isActive, $name, $id, false);
+        $button->type = self::TYPE_BUTTON;
 
         return $button;
     }
