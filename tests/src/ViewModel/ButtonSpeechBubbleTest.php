@@ -12,16 +12,15 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'count' => 0,
+            'text' => '<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>',
             'type' => 'button',
             'name' => 'theName',
             'id' => 'theId',
-
-            'text' => '<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently &#8220; annotations on this page).</span>',
+            '$isPopulated' => true,
         ];
 
-        $buttonSpeechBubble = Button::speechBubble($data['count'], $data['name'], $data['id']);
-        unset($data['count']);
+        $buttonSpeechBubble = Button::speechBubble($data['text'], $data['$isPopulated'], $data['name'], $data['id']);
+        unset($data['$isPopulated']);
         $this->assertSameWithoutOrder($data, $buttonSpeechBubble->toArray());
     }
 
@@ -30,7 +29,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
      */
     public function it_is_a_button()
     {
-        $button = Button::speechBubble(1);
+        $button = Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently 0 annotations on this page).</span>');
         $this->assertEquals(Button::TYPE_BUTTON, $button['type']);
     }
 
@@ -39,7 +38,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
      */
     public function it_has_the_css_class_for_speech_bubble()
     {
-        $button = Button::speechBubble(0);
+        $button = Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently 0 annotations on this page).</span>');
         $this->assertStringMatchesFormat('button--speech-bubble', $button['classes']);
     }
 
@@ -53,7 +52,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
             Button::SIZE_SMALL,
             Button::SIZE_MEDIUM,
         ];
-        $buttonClasses = (Button::speechBubble(0))['classes'];
+        $buttonClasses = (Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently 0 annotations on this page).</span>'))['classes'];
         foreach ($prohibitedClasses as $prohibitedClass) {
             $this->assertStringNotMatchesFormat($prohibitedClass, $buttonClasses);
         }
@@ -62,28 +61,28 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_has_the_css_class_indicating_populated_when_there_is_a_count()
+    public function it_has_the_css_class_indicating_populated_when_it_is()
     {
         $expectedButtonClasses = 'button--speech-bubble button--speech-bubble-populated';
-        $observedButtonClasses = (Button::speechBubble(5))['classes'];
+        $observedButtonClasses = (Button::speechBubble('<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>', true, null, null, true))['classes'];
         $this->assertStringMatchesFormat($expectedButtonClasses, $observedButtonClasses);
     }
 
     /**
      * @test
      */
-    public function it_does_not_have_the_css_class_indicating_populated_when_there_is_no_count()
+    public function it_lacks_the_css_class_indicating_populated_when_it_is_not()
     {
         $expectedButtonClasses = 'button--speech-bubble';
-        $observedButtonClasses = (Button::speechBubble(0))['classes'];
+        $observedButtonClasses = (Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently no annotations on this page).</span>'))['classes'];
         $this->assertStringMatchesFormat($expectedButtonClasses, $observedButtonClasses);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'basic' => [Button::speechBubble(0)],
-            'full' => [Button::speechBubble(3, 'theName', 'theId', false)],
+            'basic' => [Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently no annotations on this page).</span>\'')],
+            'full' => [Button::speechBubble('<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>', 'theId', true, 'theName', true)],
         ];
     }
 

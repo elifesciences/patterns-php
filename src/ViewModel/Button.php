@@ -106,22 +106,14 @@ final class Button implements ViewModel
     }
 
     public static function speechBubble(
-        int $count,
+        string $text,
+        bool $isActive = true,
         string $name = null,
         string $id = null,
-        bool $isActive = true
+        bool $isPopulated = false
     ) : Button {
 
-        if (!$count) {
-            $text = '&#8220;';
-            $isPopulated = false;
-        } else {
-            $text = (string)$count;
-            $isPopulated = true;
-        }
-
-        $fulltext = "<span aria-hidden=\"true\">$text</span><span class=\"visuallyhidden\">Open annotations (there are currently $text annotations on this page).</span>";
-        $button = new static($fulltext, self::SIZE_CUSTOM, self::STYLE_SPEECH_BUBBLE, $isActive, $name, $id, false);
+        $button = new static($text, self::SIZE_CUSTOM, self::STYLE_SPEECH_BUBBLE, $isActive, $name, $id, false);
         $button->type = self::TYPE_BUTTON;
 
         if ($isPopulated) {
