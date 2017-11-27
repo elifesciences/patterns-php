@@ -112,7 +112,6 @@ final class Button implements ViewModel
         string $id = null,
         bool $isPopulated = false
     ) : Button {
-
         $button = new static($text, self::SIZE_CUSTOM, self::STYLE_SPEECH_BUBBLE, $isActive, $name, $id, false);
         $button->type = self::TYPE_BUTTON;
 
