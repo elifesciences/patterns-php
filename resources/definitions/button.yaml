@@ -31,6 +31,9 @@ schema:
                         name:
                             type: string
                             minLength: 1
+                        behaviour:
+                            type: string
+                            minLength: 1
                     required:
                         - type
                 -
