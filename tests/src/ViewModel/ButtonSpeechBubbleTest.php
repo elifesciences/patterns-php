@@ -12,15 +12,17 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'behaviour' => 'HypothesisOpenerAffordance',
             'text' => '<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>',
             'type' => 'button',
             'name' => 'theName',
             'id' => 'theId',
-            '$isPopulated' => true,
+            'isPopulated' => true,
+            'isActive' => true,
         ];
 
-        $buttonSpeechBubble = Button::speechBubble($data['text'], $data['$isPopulated'], $data['name'], $data['id']);
-        unset($data['$isPopulated']);
+        $buttonSpeechBubble = Button::speechBubble($data['text'], $data['isActive'], $data['name'], $data['id'], $data['isPopulated'], $data['behaviour']);
+        unset($data['isActive'], $data['isPopulated']);
         $this->assertSameWithoutOrder($data, $buttonSpeechBubble->toArray());
     }
 
@@ -82,7 +84,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     {
         return [
             'basic' => [Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently no annotations on this page).</span>\'')],
-            'full' => [Button::speechBubble('<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>', 'theId', true, 'theName', true)],
+            'full' => [Button::speechBubble('<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>', true, 'name', 'theId', true, 'HypothesisOpenerAffordance')],
         ];
     }
 

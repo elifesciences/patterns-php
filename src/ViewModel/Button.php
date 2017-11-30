@@ -29,6 +29,7 @@ final class Button implements ViewModel
     use ArrayFromProperties;
     use SimplifyAssets;
 
+    private $behaviour;
     private $classes;
     private $path;
     private $text;
@@ -110,7 +111,8 @@ final class Button implements ViewModel
         bool $isActive = true,
         string $name = null,
         string $id = null,
-        bool $isPopulated = false
+        bool $isPopulated = false,
+        string $behaviour = null
     ) : Button {
         $button = new static($text, self::SIZE_CUSTOM, self::STYLE_SPEECH_BUBBLE, $isActive, $name, $id, false);
         $button->type = self::TYPE_BUTTON;
@@ -118,6 +120,7 @@ final class Button implements ViewModel
         if ($isPopulated) {
             $button->classes .= ' button--speech-bubble-populated';
         }
+        $button->behaviour = $behaviour;
 
         return $button;
     }
