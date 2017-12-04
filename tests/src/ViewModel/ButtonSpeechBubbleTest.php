@@ -12,7 +12,6 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'behaviour' => 'HypothesisOpenerAffordance',
             'text' => '<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>',
             'type' => 'button',
             'name' => 'theName',
@@ -21,7 +20,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
             'isActive' => true,
         ];
 
-        $buttonSpeechBubble = Button::speechBubble($data['text'], $data['isActive'], $data['name'], $data['id'], $data['isPopulated'], $data['behaviour']);
+        $buttonSpeechBubble = Button::speechBubble($data['text'], $data['isActive'], $data['name'], $data['id'], $data['isPopulated']);
         unset($data['isActive'], $data['isPopulated']);
         $this->assertSameWithoutOrder($data, $buttonSpeechBubble->toArray());
     }
@@ -29,7 +28,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_is_a_button()
+    public function it_has_a_button()
     {
         $button = Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently 0 annotations on this page).</span>');
         $this->assertEquals(Button::TYPE_BUTTON, $button['type']);
@@ -83,8 +82,8 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'basic' => [Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently no annotations on this page).</span>\'')],
-            'full' => [Button::speechBubble('<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>', true, 'name', 'theId', true, 'HypothesisOpenerAffordance')],
+            'basic' => [Button::speechBubble('&#8220;')],
+            'full' => [Button::speechBubble('12', true, 'name', 'theId', true)],
         ];
     }
 
