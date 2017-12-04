@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\HypothesisOpener;
 
 final class HypothesisOpenerTest extends ViewModelTest
