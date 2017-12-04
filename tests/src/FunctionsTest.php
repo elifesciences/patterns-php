@@ -126,7 +126,7 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
             [
                 ['', 'hidden, accessible text', 'visible, inaccessible text'],
                 '<span class="visuallyhidden">hidden, accessible text </span><span aria-hidden="true"> visible, inaccessible text</span>',
-            ]
+            ],
         ];
     }
 }

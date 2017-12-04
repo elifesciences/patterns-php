@@ -15,8 +15,8 @@ final class HypothesisOpenerTest extends ViewModelTest
         $data = [
             'annotationCount' => 3,
             'button' => [
-                'text' => "<span aria-hidden=\"true\">3 </span><span class=\"visuallyhidden\">Open annotations (there are currently 3 annotations on this page). </span>",
-                'type' => 'button'
+                'text' => '<span aria-hidden="true">3 </span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page). </span>',
+                'type' => 'button',
             ],
         ];
 

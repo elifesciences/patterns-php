@@ -5,10 +5,10 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use function eLife\Patterns\mixed_accessibility_text;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
+use function eLife\Patterns\mixed_accessibility_text;
 
 final class HypothesisOpener implements ViewModel
 {
@@ -20,7 +20,6 @@ final class HypothesisOpener implements ViewModel
 
     public function __construct(int $annotationCount)
     {
-
         Assertion::greaterOrEqualThan($annotationCount, 0);
 
         $isPopulated = $annotationCount > 0;
