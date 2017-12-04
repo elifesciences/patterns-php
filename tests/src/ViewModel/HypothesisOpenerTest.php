@@ -13,26 +13,23 @@ final class HypothesisOpenerTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'annotationCount' => 3,
             'button' => [
-                'text' => '<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>',
-                'type' => 'button',
-                'name' => 'theName',
-                'id' => 'theId',
-                'isPopulated' => true,
-                'isActive' => true,
+                'text' => "<span aria-hidden=\"true\">3 </span><span class=\"visuallyhidden\">Open annotations (there are currently 3 annotations on this page). </span>",
+                'type' => 'button'
             ],
         ];
 
-        $hypothesisAffordance = new HypothesisOpener(Button::speechBubble($data['button']['text'], $data['button']['isActive'], $data['button']['name'], $data['button']['id'], $data['button']['isPopulated']));
-        unset($data['button']['isActive'], $data['button']['isPopulated']);
+        $hypothesisAffordance = new HypothesisOpener($data['annotationCount']);
+
+        unset($data['annotationCount']);
         $this->assertSameWithoutOrder($data, $hypothesisAffordance->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'basic' => [new HypothesisOpener(Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently no annotations on this page).</span>\''))],
-            'full' => [new HypothesisOpener(Button::speechBubble('<span aria-hidden="true">3</span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page).</span>', true, 'name', 'theId', true))],
+            [new HypothesisOpener(3)],
         ];
     }
 
