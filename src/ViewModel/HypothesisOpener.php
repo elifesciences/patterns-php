@@ -19,8 +19,8 @@ final class HypothesisOpener implements ViewModel
 
     public function __construct()
     {
-        $visibleAnnotationCount = '<span data-visible-annotation-count></span>';
-        $hiddenAccessibleText = 'Open annotations (there are currently <span data-hypothesis-annotation-count></span> annotations on this page).';
+        $visibleAnnotationCount = '<span data-visible-annotation-count>&#8220;</span>';
+        $hiddenAccessibleText = 'Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).';
         $text = mixed_accessibility_text($visibleAnnotationCount, $hiddenAccessibleText);
         $this->button = Button::speechBubble($text, true, null, null, false);
     }
