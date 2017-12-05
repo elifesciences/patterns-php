@@ -105,9 +105,6 @@ schema:
                                                 name:
                                                     type: string
                                                     minLength: 1
-                                                behaviour:
-                                                    type: string
-                                                    minLength: 1
                                             required:
                                                 - type
                                         -
@@ -154,9 +151,6 @@ schema:
                                                                     type: string
                                                                     minLength: 1
                                                                 name:
-                                                                    type: string
-                                                                    minLength: 1
-                                                                behaviour:
                                                                     type: string
                                                                     minLength: 1
                                                             required:
