@@ -12,23 +12,20 @@ final class HypothesisOpenerTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'annotationCount' => 3,
             'button' => [
-                'text' => '<span aria-hidden="true">3 </span><span class="visuallyhidden">Open annotations (there are currently 3 annotations on this page). </span>',
+                'text' => '<span aria-hidden="true"><span data-visible-annotation-count></span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count></span> annotations on this page). </span>',
                 'type' => 'button',
             ],
         ];
 
-        $hypothesisAffordance = new HypothesisOpener($data['annotationCount']);
-
-        unset($data['annotationCount']);
+        $hypothesisAffordance = new HypothesisOpener();
         $this->assertSameWithoutOrder($data, $hypothesisAffordance->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new HypothesisOpener(3)],
+            [new HypothesisOpener()],
         ];
     }
 
