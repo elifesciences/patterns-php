@@ -29,7 +29,6 @@ final class Button implements ViewModel
     use ArrayFromProperties;
     use SimplifyAssets;
 
-    private $behaviour;
     private $classes;
     private $path;
     private $text;
