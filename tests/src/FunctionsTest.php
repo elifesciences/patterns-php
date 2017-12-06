@@ -7,6 +7,7 @@ use PHPUnit_Framework_TestCase;
 use function eLife\Patterns\flatten;
 use function eLife\Patterns\is_iterable;
 use function eLife\Patterns\iterator_to_unique_array;
+use function eLife\Patterns\mixed_accessibility_text;
 use function eLife\Patterns\mixed_visibility_text;
 
 final class FunctionsTest extends PHPUnit_Framework_TestCase
@@ -102,6 +103,29 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
             [
                 ['hidden prefix', 'visible text', 'hidden suffix'],
                 '<span class="visuallyhidden">hidden prefix </span>visible text<span class="visuallyhidden"> hidden suffix</span>',
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider MixedAccessibilityTextProvider
+     */
+    public function mixed_accessibility_text(array $item, string $expected)
+    {
+        $this->assertSame($expected, mixed_accessibility_text($item[0], $item[1], $item[2]));
+    }
+
+    public function MixedAccessibilityTextProvider()
+    {
+        return [
+            [
+                ['visible, inaccessible text', 'hidden, accessible text', ''],
+                '<span aria-hidden="true">visible, inaccessible text </span><span class="visuallyhidden">hidden, accessible text </span>',
+            ],
+            [
+                ['', 'hidden, accessible text', 'visible, inaccessible text'],
+                '<span class="visuallyhidden">hidden, accessible text </span><span aria-hidden="true"> visible, inaccessible text</span>',
             ],
         ];
     }
