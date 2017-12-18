@@ -16,6 +16,7 @@ final class Footer implements ViewModel
     use ComposedAssets;
 
     private $_mainMenu;
+    private $_investorLogos;
 
     private $year;
     private $mainMenu;
@@ -23,10 +24,12 @@ final class Footer implements ViewModel
     private $links;
     private $button;
     private $footerMenuLinks;
+    private $logos;
 
     public function __construct(
         MainMenu $mainMenu,
-        array $footerMenuLinks
+        array $footerMenuLinks,
+        InvestorLogos $investorLogos
     ) {
         Assertion::notEmpty($footerMenuLinks);
         Assertion::allIsInstanceOf($footerMenuLinks, Link::class);
@@ -38,6 +41,7 @@ final class Footer implements ViewModel
         $this->links = $mainMenu['links'];
         $this->button = $mainMenu['button'];
         $this->footerMenuLinks = $footerMenuLinks;
+        $this->logos = $investorLogos['logos'];
     }
 
     public function getTemplateName() : string
@@ -53,5 +57,6 @@ final class Footer implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield $this->_mainMenu;
+        yield $this->_investorLogos;
     }
 }
