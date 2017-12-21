@@ -1,0 +1,34 @@
+<article class="annotation-teaser">
+
+  {{#document}}
+    <div class="annotation-teaser__context_label">
+      {{{.}}}
+    </div>
+  {{/document}}
+
+  {{#highlight}}
+    <blockquote class="annotation-teaser__highlight">
+      <a href="{{url}}">{{{.}}}</a>
+    </blockquote>
+  {{/highlight}}
+
+  {{#content}}
+    <div class="annotation-teaser__content">
+      <a href="{{url}}">{{{.}}}</a>
+    </div>
+    {{#isReply}}
+      <div class="annotation-teaser__reply">
+        This is a reply. <a href="{{url}}">View the full conversation &#187;</a>
+      </div>
+    {{/isReply}}
+  {{/content}}
+
+    <footer class="annotation-teaser__footer">
+
+      {{#meta}}
+        {{> molecules-meta}}
+      {{/meta}}
+
+    </footer>
+
+</article>
