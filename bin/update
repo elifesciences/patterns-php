@@ -103,7 +103,7 @@ foreach ($finder as $file) {
         }
     }
 
-    $contents = preg_replace('~{{>(\s*)(atoms|molecules|organisms)-~i', "{{>$1resources/templates/", $contents);
+    $contents = preg_replace('~{{>(\s*)(atoms|molecules|organisms)-~i', '{{>$1resources/templates/', $contents);
 
     $filesystem->dumpFile($outputDir.'/templates/'.$template->getFilename(), $contents);
     $resolvedTemplates[] = $template->getFilename();
