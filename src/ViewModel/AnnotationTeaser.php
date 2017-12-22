@@ -40,7 +40,10 @@ final class AnnotationTeaser implements ViewModel
 
         $this->document = $document;
         $this->url = $url;
-        $this->isReply = $isReply;
+
+        if ($isReply) {
+            $this->isReply = $isReply;
+        }
 
         if ($highlight) {
             $this->highlight = $highlight;
