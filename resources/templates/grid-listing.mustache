@@ -1,27 +1,27 @@
-{{#heading}}{{> atoms-list-heading}}{{/heading}}
+{{#heading}}{{> resources/templates/list-heading}}{{/heading}}
 <ol class="grid-listing clearfix{{#classes}} {{classes}}{{/classes}}"{{#id}} id="{{id}}"{{/id}}>
   {{#blockLinks}}
     <li class="grid-listing-item grid-listing-item--block-link">
-      {{> atoms-block-link}}
+      {{> resources/templates/block-link}}
     </li>
   {{/blockLinks}}
 
   {{#archiveNavLinks}}
     <li class="grid-listing-item">
-      {{> molecules-archive-nav-link}}
+      {{> resources/templates/archive-nav-link}}
     </li>
   {{/archiveNavLinks}}
 
   {{#imageLinks}}
     <li class="grid-listing-item grid-listing-item--image-link">
-      {{> atoms-image-link}}
+      {{> resources/templates/image-link}}
     </li>
   {{/imageLinks}}
 
   {{#teasers}}
     <li class="grid-listing-item">
       {{! grid style teasers only: labs or podcast }}
-      {{> molecules-teaser}}
+      {{> resources/templates/teaser}}
     </li>
   {{/teasers}}
 
@@ -29,6 +29,6 @@
 
 {{#pagination}}
   <div class="grid-listing__pagination">
-      {{> molecules-pager}}
+      {{> resources/templates/pager}}
   </div>
 {{/pagination}}

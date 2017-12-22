@@ -1,21 +1,21 @@
 <li class="{{classes}}">
 
   {{#loginControl}}
-    {{> molecules-login-control}}
+    {{> resources/templates/login-control}}
   {{/loginControl}}
 
   {{^loginControl}}
 
     {{#button.classes}}
       {{#button}}
-        {{> atoms-button }}
+        {{> resources/templates/button }}
       {{/button}}
     {{/button.classes}}
 
     {{^button.classes}}
       {{#path}}<a href="{{path}}"{{#rel}} rel="{{rel}}"{{/rel}}>{{/path}}
       {{#picture}}
-        {{> atoms-picture}}
+        {{> resources/templates/picture}}
       {{/picture}}
       {{#textClasses}}<span class="{{textClasses}}"> {{{text}}} </span>{{/textClasses}}
       {{^textClasses}} {{{text}}} {{/textClasses}}

@@ -1,18 +1,18 @@
 {{#heading}}
-  {{> atoms-list-heading}}
+  {{> resources/templates/list-heading}}
 {{/heading}}
 
 <ol class="listing-list">
 
   {{#items}}
       <li class="listing-list__item">
-        {{> molecules-profile-snippet }}
+        {{> resources/templates/profile-snippet }}
       </li>
   {{/items}}
 
   {{#seeMoreLink}}
     <li class="listing-list__item">
-      {{> atoms-see-more-link}}
+      {{> resources/templates/see-more-link}}
     </li>
   {{/seeMoreLink}}
 

@@ -1,14 +1,14 @@
 {{! To be valid HTML, this pattern must be included as a partial within a <dl> }}
 <dt class="additional-asset__text" id="{{assetId}}">
   {{#captionText}}
-    {{> atoms-caption-text}}
+    {{> resources/templates/caption-text}}
   {{/captionText}}
 </dt>
 
 <dd class="additional-asset__access">
 
   {{#doi}}
-    {{> atoms-doi}}
+    {{> resources/templates/doi}}
   {{/doi}}
 
   {{^doi}}

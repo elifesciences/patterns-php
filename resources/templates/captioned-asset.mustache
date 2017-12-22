@@ -37,17 +37,17 @@
   {{/image}}
 
   {{#video}}
-    {{> atoms-video}}
+    {{> resources/templates/video}}
   {{/video}}
 
 
   {{#captionText}}
     <figcaption class="captioned-asset__caption">
 
-      {{> atoms-caption-text}}
+      {{> resources/templates/caption-text}}
 
       {{#doi}}
-        {{> atoms-doi}}
+        {{> resources/templates/doi}}
       {{/doi}}
 
     </figcaption>
@@ -58,14 +58,14 @@
 
     {{#doi}}
       <figcaption class="captioned-asset__caption">
-        {{> atoms-doi}}
+        {{> resources/templates/doi}}
       </figcaption>
     {{/doi}}
 
   {{/captionText}}
 
   {{#table}}
-    {{> atoms-table }}
+    {{> resources/templates/table }}
   {{/table}}
 
 </figure>
