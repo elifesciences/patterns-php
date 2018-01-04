@@ -16,9 +16,8 @@ final class Paragraph implements ViewModel
 
     private $text;
 
-    public function __construct(
-        string $text
-    ) {
+    public function __construct(string $text)
+    {
         Assertion::notBlank($text);
 
         $this->text = $text;
