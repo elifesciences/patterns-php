@@ -54,3 +54,21 @@ function mixed_visibility_text(string $prefix, string $text, string $suffix = ''
 
     return $wrappedPrefix.$text.$wrappedSuffix;
 }
+
+function mixed_accessibility_text(
+    string $visibleInaccessiblePrefix,
+    string $hiddenAccessibleText,
+    string $visibleInaccessibleSuffix = '') : string
+{
+    $wrappedVisibleInaccessibleTextPrefix = '';
+    $wrappedVisibleInaccessibleTextSuffix = '';
+
+    if (false === empty($visibleInaccessiblePrefix)) {
+        $wrappedVisibleInaccessibleTextPrefix = '<span aria-hidden="true">'.$visibleInaccessiblePrefix.' </span>';
+    }
+    if (false === empty($visibleInaccessibleSuffix)) {
+        $wrappedVisibleInaccessibleTextSuffix = '<span aria-hidden="true"> '.$visibleInaccessibleSuffix.'</span>';
+    }
+
+    return $wrappedVisibleInaccessibleTextPrefix.mixed_visibility_text($hiddenAccessibleText, $wrappedVisibleInaccessibleTextSuffix);
+}
