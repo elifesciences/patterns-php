@@ -23,12 +23,12 @@ final class AnnotationTeaser implements ViewModel
     private $highlight;
     private $isReply;
     private $meta;
-    private $url;
+    private $inContextUri;
 
     private function __construct(
         string $document,
         Date $date,
-        string $url,
+        string $inContextUri,
         string $highlight = null,
         string $content = null,
         bool $isRestrictedAccess = false,
@@ -36,10 +36,10 @@ final class AnnotationTeaser implements ViewModel
     ) {
         Assertion::notEmpty($document);
         Assertion::notNull($date);
-        Assertion::notEmpty($url);
+        Assertion::notEmpty($inContextUri);
 
         $this->document = $document;
-        $this->url = $url;
+        $this->inContextUri = $inContextUri;
 
         if ($isReply) {
             $this->isReply = $isReply;
@@ -63,7 +63,7 @@ final class AnnotationTeaser implements ViewModel
     public static function full(
         string $document,
         Date $date = null,
-        string $url = '',
+        string $inContextUri = '',
         string $highlight = '',
         string $content = '',
         bool $isRestricted = false
@@ -74,7 +74,7 @@ final class AnnotationTeaser implements ViewModel
         return new static(
             $document,
             $date,
-            $url,
+            $inContextUri,
             $highlight,
             $content,
             $isRestricted
@@ -84,7 +84,7 @@ final class AnnotationTeaser implements ViewModel
     public static function highlight(
         string $document,
         Date $date,
-        string $url,
+        string $inContextUri,
         string $highlight,
         bool $isRestricted = false
 
@@ -94,7 +94,7 @@ final class AnnotationTeaser implements ViewModel
         return new static(
             $document,
             $date,
-            $url,
+            $inContextUri,
             $highlight,
             null,
             $isRestricted
@@ -104,7 +104,7 @@ final class AnnotationTeaser implements ViewModel
     public static function pageNote(
         string $document,
         Date $date,
-        string $url,
+        string $inContextUri,
         string $content,
         bool $isRestricted = false
     ) : AnnotationTeaser {
@@ -113,7 +113,7 @@ final class AnnotationTeaser implements ViewModel
         return new static(
             $document,
             $date,
-            $url,
+            $inContextUri,
             null,
             $content,
             $isRestricted
@@ -123,7 +123,7 @@ final class AnnotationTeaser implements ViewModel
     public static function reply(
         string $document,
         Date $date = null,
-        string $url,
+        string $inContextUri,
         string $content,
         bool $isRestricted = false
     ) : AnnotationTeaser {
@@ -132,7 +132,7 @@ final class AnnotationTeaser implements ViewModel
         return new static(
             $document,
             $date,
-            $url,
+            $inContextUri,
             null,
             $content,
             $isRestricted,
