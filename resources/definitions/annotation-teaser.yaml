@@ -74,7 +74,7 @@ schema:
                 -
                     required:
                         - text
-        url:
+        inContextUri:
             minLength: 1
             type: string
         highlight:
@@ -90,7 +90,7 @@ schema:
     required:
         - document
         - meta
-        - url
+        - inContextUri
     allOf:
         -
             anyOf:
