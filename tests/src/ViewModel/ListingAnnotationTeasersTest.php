@@ -78,7 +78,7 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
         ];
         $listingAnnotationTeasers = ListingAnnotationTeasers::basic(
             array_map(function ($item) {
-                return AnnotationTeaser::full(
+                return AnnotationTeaser::forAnnotation(
                     $item['document'],
                     Date::simple(new DateTimeImmutable('2017-12-21')),
                     $item['inContextUri'],

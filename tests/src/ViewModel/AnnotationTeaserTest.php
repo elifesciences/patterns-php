@@ -35,7 +35,7 @@ final class AnnotationTeaserTest extends ViewModelTest
             'isRestricted' => true,
         ];
 
-        $annotationTeaser = AnnotationTeaser::full(
+        $annotationTeaser = AnnotationTeaser::forAnnotation(
             $data['document'],
             Date::simple(new DateTimeImmutable('2017-12-21')),
             $data['inContextUri'],
@@ -59,7 +59,7 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::full(
+        AnnotationTeaser::forAnnotation(
             '',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             'the-uri',
@@ -75,7 +75,7 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::full(
+        AnnotationTeaser::forAnnotation(
             'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '',
@@ -91,7 +91,7 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::full(
+        AnnotationTeaser::forAnnotation(
             'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
@@ -107,7 +107,7 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::full('the document',
+        AnnotationTeaser::forAnnotation('the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
             'highlight',
@@ -195,10 +195,10 @@ final class AnnotationTeaserTest extends ViewModelTest
                 AnnotationTeaser::forReply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
             ],
             'full' => [
-                AnnotationTeaser::full('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content'),
+                AnnotationTeaser::forAnnotation('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content'),
             ],
             'restricted full' => [
-                AnnotationTeaser::full('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forAnnotation('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
             ],
         ];
     }

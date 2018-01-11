@@ -60,7 +60,7 @@ final class AnnotationTeaser implements ViewModel
         }
     }
 
-    public static function full(
+    public static function forAnnotation(
         string $document,
         Date $date,
         string $inContextUri,
