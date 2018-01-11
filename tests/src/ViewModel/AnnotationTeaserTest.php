@@ -55,34 +55,32 @@ final class AnnotationTeaserTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_have_a_document()
+    public function it_must_not_have_an_empty_document()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::full('');
+        AnnotationTeaser::full(
+            '',
+            Date::simple(new DateTimeImmutable('2017-12-21')),
+            'the-uri',
+            'the highlight',
+            'the content'
+        );
     }
 
     /**
      * @test
      */
-    public function it_must_have_a_date()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        AnnotationTeaser::full('the document', null);
-    }
-
-    /**
-     * @test
-     */
-    public function it_must_have_an_in_context_uri()
+    public function it_must_not_have_an_empty_in_context_uri()
     {
         $this->expectException(InvalidArgumentException::class);
 
         AnnotationTeaser::full(
             'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
-            ''
+            '',
+            'the highlight',
+            'the content'
         );
     }
 
@@ -97,7 +95,8 @@ final class AnnotationTeaserTest extends ViewModelTest
             'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
-            ''
+            '',
+            'the content'
         );
     }
 

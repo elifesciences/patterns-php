@@ -62,10 +62,10 @@ final class AnnotationTeaser implements ViewModel
 
     public static function full(
         string $document,
-        Date $date = null,
-        string $inContextUri = '',
-        string $highlight = '',
-        string $content = '',
+        Date $date,
+        string $inContextUri,
+        string $highlight,
+        string $content,
         bool $isRestricted = false
     ) : AnnotationTeaser {
         Assertion::notEmpty($highlight);
