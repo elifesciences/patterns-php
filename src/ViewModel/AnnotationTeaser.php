@@ -34,9 +34,9 @@ final class AnnotationTeaser implements ViewModel
         bool $isRestrictedAccess = false,
         bool $isReply = false
     ) {
-        Assertion::notEmpty($document);
+        Assertion::notBlank($document);
         Assertion::notNull($date);
-        Assertion::notEmpty($inContextUri);
+        Assertion::notBlank($inContextUri);
 
         $this->document = $document;
         $this->inContextUri = $inContextUri;
@@ -68,8 +68,8 @@ final class AnnotationTeaser implements ViewModel
         string $content,
         bool $isRestricted = false
     ) : AnnotationTeaser {
-        Assertion::notEmpty($highlight);
-        Assertion::notEmpty($content);
+        Assertion::notBlank($highlight);
+        Assertion::notBlank($content);
 
         return new static(
             $document,
