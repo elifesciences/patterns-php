@@ -107,17 +107,17 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
             [
                 ListingAnnotationTeasers::basic(
                     [
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
@@ -128,17 +128,17 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
             [
                 ListingAnnotationTeasers::withPagination(
                     [
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
@@ -151,17 +151,17 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
             [
                 ListingAnnotationTeasers::withPagination(
                     [
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::pageNote('the document',
+                        AnnotationTeaser::forPageNote('the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'

@@ -81,7 +81,7 @@ final class AnnotationTeaser implements ViewModel
         );
     }
 
-    public static function highlight(
+    public static function forHighlight(
         string $document,
         Date $date,
         string $inContextUri,
@@ -101,7 +101,7 @@ final class AnnotationTeaser implements ViewModel
         );
     }
 
-    public static function pageNote(
+    public static function forPageNote(
         string $document,
         Date $date,
         string $inContextUri,
@@ -120,7 +120,7 @@ final class AnnotationTeaser implements ViewModel
         );
     }
 
-    public static function reply(
+    public static function forReply(
         string $document,
         Date $date = null,
         string $inContextUri,

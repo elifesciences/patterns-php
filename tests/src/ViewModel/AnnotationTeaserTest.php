@@ -123,7 +123,7 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::highlight(
+        AnnotationTeaser::forHighlight(
             'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
@@ -138,7 +138,7 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::pageNote('the document',
+        AnnotationTeaser::forPageNote('the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
             ''
@@ -152,7 +152,7 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::reply(
+        AnnotationTeaser::forReply(
             'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
@@ -165,7 +165,7 @@ final class AnnotationTeaserTest extends ViewModelTest
      */
     public function a_reply_must_have_isReply_set_to_true()
     {
-        $annotationTeaser = AnnotationTeaser::reply(
+        $annotationTeaser = AnnotationTeaser::forReply(
             'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
@@ -178,22 +178,22 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         return [
             'highlight' => [
-                AnnotationTeaser::highlight('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight'),
+                AnnotationTeaser::forHighlight('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight'),
             ],
             'restricted highlight' => [
-                AnnotationTeaser::highlight('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forHighlight('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', AnnotationTeaser::RESTRICTED_ACCESS),
             ],
             'page note' => [
-                AnnotationTeaser::pageNote('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content'),
+                AnnotationTeaser::forPageNote('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content'),
             ],
             'restricted page note' => [
-                AnnotationTeaser::pageNote('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forPageNote('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
             ],
             'reply' => [
-                AnnotationTeaser::reply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content'),
+                AnnotationTeaser::forReply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content'),
             ],
             'restricted reply' => [
-                AnnotationTeaser::reply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forReply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
             ],
             'full' => [
                 AnnotationTeaser::full('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content'),
