@@ -45,13 +45,9 @@ final class AnnotationTeaser implements ViewModel
             $this->isReply = $isReply;
         }
 
-        if ($highlight) {
-            $this->highlight = $highlight;
-        }
+        $this->highlight = $highlight;
 
-        if ($content) {
-            $this->content = $content;
-        }
+        $this->content = $content;
 
         if ($isRestrictedAccess) {
             $this->meta = Meta::withText(self::RESTRICTED_ACCESS_TEXT, $date);
@@ -122,7 +118,7 @@ final class AnnotationTeaser implements ViewModel
 
     public static function forReply(
         string $document,
-        Date $date = null,
+        Date $date,
         string $inContextUri,
         string $content,
         bool $isRestricted = false
