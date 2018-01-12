@@ -35,7 +35,6 @@ final class AnnotationTeaser implements ViewModel
         bool $isReply = false
     ) {
         Assertion::notBlank($document);
-        Assertion::notNull($date);
         Assertion::notBlank($inContextUri);
 
         $this->document = $document;
