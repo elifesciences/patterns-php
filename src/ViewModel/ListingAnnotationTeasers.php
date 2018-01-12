@@ -25,6 +25,7 @@ final class ListingAnnotationTeasers implements ViewModel
     {
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, AnnotationTeaser::class);
+
         $this->items = $items;
         $this->id = $id;
         $this->heading = $heading;

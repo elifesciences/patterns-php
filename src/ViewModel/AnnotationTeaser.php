@@ -40,19 +40,17 @@ final class AnnotationTeaser implements ViewModel
 
         $this->document = $document;
         $this->inContextUri = $inContextUri;
-
-        if ($isReply) {
-            $this->isReply = $isReply;
-        }
-
         $this->highlight = $highlight;
-
         $this->content = $content;
 
         if ($isRestrictedAccess) {
             $this->meta = Meta::withText(self::RESTRICTED_ACCESS_TEXT, $date);
         } else {
             $this->meta = Meta::withDate($date);
+        }
+
+        if ($isReply) {
+            $this->isReply = $isReply;
         }
     }
 
