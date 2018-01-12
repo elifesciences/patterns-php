@@ -15,7 +15,6 @@ final class AnnotationTeaser implements ViewModel
     use ArrayFromProperties;
     use SimplifyAssets;
 
-    const RESTRICTED_ACCESS = true;
     const RESTRICTED_ACCESS_TEXT = 'Only me';
 
     private $content;

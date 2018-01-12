@@ -180,25 +180,25 @@ final class AnnotationTeaserTest extends ViewModelTest
                 AnnotationTeaser::forHighlight('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight'),
             ],
             'restricted highlight' => [
-                AnnotationTeaser::forHighlight('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forHighlight('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', true),
             ],
             'page note' => [
                 AnnotationTeaser::forPageNote('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content'),
             ],
             'restricted page note' => [
-                AnnotationTeaser::forPageNote('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forPageNote('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', true),
             ],
             'reply' => [
                 AnnotationTeaser::forReply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content'),
             ],
             'restricted reply' => [
-                AnnotationTeaser::forReply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forReply('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'content', true),
             ],
             'full' => [
                 AnnotationTeaser::forAnnotation('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content'),
             ],
             'restricted full' => [
-                AnnotationTeaser::forAnnotation('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content', AnnotationTeaser::RESTRICTED_ACCESS),
+                AnnotationTeaser::forAnnotation('document', Date::simple(new DateTimeImmutable('2017-12-21')), '#the-uri', 'highlight', 'content', true),
             ],
         ];
     }
