@@ -18,12 +18,13 @@ final class ContextualData implements ViewModel
     private $metricsData;
     private $citation;
 
-    private function __construct(array $metrics, string $citeAs = null, Doi $doi = null)
+    private function __construct(array $metrics, string $citeAs = null, Doi $doi = null, HypothesisOpener $hypothesisOpener = null)
     {
         Assertion::allIsInstanceOf($metrics, ContextualDataMetric::class);
 
         if ($metrics) {
             $this->metricsData = ['data' => $metrics];
+            $this->metricsData['hypothesisOpener'] = $hypothesisOpener;
         }
 
         if ($citeAs && $doi) {
@@ -35,11 +36,15 @@ final class ContextualData implements ViewModel
         }
     }
 
-    public static function withMetrics(array $metrics, string $citeAs = null, Doi $doi = null) : ContextualData
+    public static function withMetrics(
+        array $metrics,
+        string $citeAs = null,
+        Doi $doi = null,
+        HypothesisOpener $hypothesisOpener = null) : ContextualData
     {
         Assertion::notEmpty($metrics);
 
-        return new self($metrics, $citeAs, $doi);
+        return new self($metrics, $citeAs, $doi, $hypothesisOpener);
     }
 
     public static function withCitation(string $citeAs, Doi $doi, array $metrics = []) : ContextualData
