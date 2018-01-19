@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
@@ -11,7 +12,8 @@ use function eLife\Patterns\mixed_accessibility_text;
 
 final class HypothesisOpener implements ViewModel
 {
-    const DEFAULT_VISIBLE = '&#8220;';
+    const DOUBLE_QUOTE_ZERO_SIGNIFIER = '&#8220;';
+    const LITERAL_ZERO = '0';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -19,12 +21,24 @@ final class HypothesisOpener implements ViewModel
 
     private $button;
 
-    public function __construct()
+    public function __construct(string $zeroSignifier)
     {
-        $visibleAnnotationCount = '<span data-visible-annotation-count>'.self::DEFAULT_VISIBLE.'</span>';
+        Assertion::choice($zeroSignifier, [self::DOUBLE_QUOTE_ZERO_SIGNIFIER, self::LITERAL_ZERO]);
+
+        $visibleAnnotationCount = '<span data-visible-annotation-count>'.$zeroSignifier.'</span>';
         $hiddenAccessibleText = 'Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).';
         $text = mixed_accessibility_text($visibleAnnotationCount, $hiddenAccessibleText);
         $this->button = Button::speechBubble($text, true, null, null, false);
+    }
+
+    public static function forArticleBody() : HypothesisOpener
+    {
+        return new static(self::DOUBLE_QUOTE_ZERO_SIGNIFIER);
+    }
+
+    public static function forContextualData() : HypothesisOpener
+    {
+        return new static(self::LITERAL_ZERO);
     }
 
     public function getTemplateName() : string

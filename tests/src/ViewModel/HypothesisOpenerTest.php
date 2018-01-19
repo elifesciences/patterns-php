@@ -18,14 +18,47 @@ final class HypothesisOpenerTest extends ViewModelTest
             ],
         ];
 
-        $hypothesisAffordance = new HypothesisOpener();
+        $hypothesisAffordance = HypothesisOpener::forArticleBody();
         $this->assertSameWithoutOrder($data, $hypothesisAffordance->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function for_contextual_data_shows_zero_when_no_annotations()
+    {
+        $data = [
+            'button' => [
+                'text' => '<span aria-hidden="true"><span data-visible-annotation-count>0</span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>',
+                'type' => 'button',
+            ],
+        ];
+
+        $hypothesisOpener = HypothesisOpener::forContextualData();
+        $this->assertSameWithoutOrder($data, $hypothesisOpener->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function for_article_body_shows_double_quote_when_no_annotations()
+    {
+        $data = [
+            'button' => [
+                'text' => '<span aria-hidden="true"><span data-visible-annotation-count>&#8220;</span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>',
+                'type' => 'button',
+            ],
+        ];
+
+        $hypothesisOpener = HypothesisOpener::forArticleBody();
+        $this->assertSameWithoutOrder($data, $hypothesisOpener->toArray());
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new HypothesisOpener()],
+            'for article body' => [HypothesisOpener::forArticleBody()],
+            'for contextual data' => [HypothesisOpener::forContextualData()],
         ];
     }
 
