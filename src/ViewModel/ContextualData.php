@@ -28,9 +28,10 @@ final class ContextualData implements ViewModel
                     return compact('text');
                 }, $metrics),
             ];
-            if ($hypothesisOpener) {
-                $this->metricsData['hypothesisOpener'] = $hypothesisOpener;
-            }
+        }
+
+        if ($hypothesisOpener) {
+            $this->metricsData['hypothesisOpener'] = $hypothesisOpener;
         }
 
         if ($citeAs && $doi) {
@@ -40,6 +41,11 @@ final class ContextualData implements ViewModel
                 'doi' => $doi->withProperty('isTruncated', true),
             ];
         }
+    }
+
+    public static function hypothesisOnly(HypothesisOpener $hypothesisOpener)
+    {
+        return new self([], null, null, $hypothesisOpener);
     }
 
     public static function withMetrics(

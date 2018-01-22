@@ -60,6 +60,7 @@ final class ContextualDataTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
+            'hypothesis only' => [ContextualData::hypothesisOnly(HypothesisOpener::forContextualData())],
             'metrics minimum' => [ContextualData::withMetrics(['foo'])],
             'metrics complete' => [ContextualData::withMetrics(['foo'], 'bar', new Doi('10.7554/eLife.10181.001'), HypothesisOpener::forContextualData())],
             'cite minimum' => [ContextualData::withCitation('foo', new Doi('10.7554/eLife.10181.001'))],

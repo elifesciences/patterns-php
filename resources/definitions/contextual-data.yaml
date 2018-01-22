@@ -66,8 +66,7 @@ schema:
                                                 - path
                     required:
                         - button
-            required:
-                - data
+            minProperties: 1
         citation:
             type: object
             properties:
