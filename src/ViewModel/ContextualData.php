@@ -40,8 +40,8 @@ final class ContextualData implements ViewModel
         array $metrics,
         string $citeAs = null,
         Doi $doi = null,
-        HypothesisOpener $hypothesisOpener = null) : ContextualData
-    {
+        HypothesisOpener $hypothesisOpener = null
+    ) : ContextualData {
         Assertion::notEmpty($metrics);
 
         return new self($metrics, $citeAs, $doi, $hypothesisOpener);
