@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
@@ -21,11 +20,9 @@ final class HypothesisOpener implements ViewModel
 
     private $button;
 
-    public function __construct(string $zeroSignifier)
+    private function __construct(string $zeroSignifier)
     {
-        Assertion::choice($zeroSignifier, [self::DOUBLE_QUOTE_ZERO_SIGNIFIER, self::LITERAL_ZERO]);
-
-        $visibleAnnotationCount = '<span data-visible-annotation-count>'.$zeroSignifier.'</span>';
+        $visibleAnnotationCount = "<span data-visible-annotation-count>{$zeroSignifier}</span>";
         $hiddenAccessibleText = 'Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).';
         $text = mixed_accessibility_text($visibleAnnotationCount, $hiddenAccessibleText);
         $this->button = Button::speechBubble($text, true, null, null, false);
