@@ -3,7 +3,6 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContextualData;
-use eLife\Patterns\ViewModel\ContextualDataMetric;
 use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\HypothesisOpener;
 
@@ -18,9 +17,7 @@ final class ContextualDataTest extends ViewModelTest
             'metricsData' => [
                 'data' => [
                     [
-                        'name' => 'foo',
-                        'value' => 'bar',
-                        'elementId' => 'baz',
+                        'text' => 'foo',
                     ],
                 ],
                 'hypothesisOpener' => [
@@ -32,7 +29,7 @@ final class ContextualDataTest extends ViewModelTest
                 ],
             ],
             'citation' => [
-                'citeAs' => 'qux',
+                'citeAs' => 'bar',
                 'doi' => [
                     'doi' => '10.7554/eLife.10181.001',
                     'isTruncated' => true,
@@ -40,11 +37,11 @@ final class ContextualDataTest extends ViewModelTest
             ],
         ];
 
-        $contextualData = ContextualData::withMetrics([new ContextualDataMetric('foo', 'bar', 'baz')], 'qux',
+        $contextualData = ContextualData::withMetrics(['foo'], 'bar',
             new Doi('10.7554/eLife.10181.001'),
             HypothesisOpener::forContextualData());
 
-        $this->assertSame($data['metricsData']['data'][0], $contextualData['metricsData']['data'][0]->toArray());
+        $this->assertSame($data['metricsData']['data'], $contextualData['metricsData']['data']);
         $this->assertSame($data['metricsData']['hypothesisOpener'], $contextualData['metricsData']['hypothesisOpener']->toArray());
         $this->assertSame($data['citation']['citeAs'], $contextualData['citation']['citeAs']);
         $this->assertSame($data['citation']['doi'], $contextualData['citation']['doi']->toArray());
@@ -63,12 +60,9 @@ final class ContextualDataTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'metrics only' => [ContextualData::withMetrics([new ContextualDataMetric('foo', 'bar')])],
+            'metrics only' => [ContextualData::withMetrics(['foo'])],
             'cite as only' => [ContextualData::withCitation('foo', new Doi('10.7554/eLife.10181.001'))],
-            'both' => [
-                ContextualData::withMetrics([new ContextualDataMetric('foo', 'bar', 'baz')], 'qux',
-                    new Doi('10.7554/eLife.10181.001')),
-            ],
+            'both' => [ContextualData::withMetrics(['foo'], 'bar', new Doi('10.7554/eLife.10181.001'))],
         ];
     }
 

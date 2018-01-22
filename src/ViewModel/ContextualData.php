@@ -20,11 +20,17 @@ final class ContextualData implements ViewModel
 
     private function __construct(array $metrics, string $citeAs = null, Doi $doi = null, HypothesisOpener $hypothesisOpener = null)
     {
-        Assertion::allIsInstanceOf($metrics, ContextualDataMetric::class);
+        Assertion::allString($metrics);
 
         if ($metrics) {
-            $this->metricsData = ['data' => $metrics];
-            $this->metricsData['hypothesisOpener'] = $hypothesisOpener;
+            $this->metricsData = [
+                'data' => array_map(function (string $text) {
+                    return compact('text');
+                }, $metrics),
+            ];
+            if ($hypothesisOpener) {
+                $this->metricsData['hypothesisOpener'] = $hypothesisOpener;
+            }
         }
 
         if ($citeAs && $doi) {
