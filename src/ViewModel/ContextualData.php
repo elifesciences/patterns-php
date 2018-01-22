@@ -53,11 +53,15 @@ final class ContextualData implements ViewModel
         return new self($metrics, $citeAs, $doi, $hypothesisOpener);
     }
 
-    public static function withCitation(string $citeAs, Doi $doi, array $metrics = []) : ContextualData
-    {
+    public static function withCitation(
+        string $citeAs,
+        Doi $doi,
+        array $metrics = [],
+        HypothesisOpener $hypothesisOpener = null
+    ) : ContextualData {
         Assertion::notBlank($citeAs);
 
-        return new self($metrics, $citeAs, $doi);
+        return new self($metrics, $citeAs, $doi, $hypothesisOpener);
     }
 
     public function getTemplateName() : string
