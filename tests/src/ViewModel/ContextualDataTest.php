@@ -22,7 +22,7 @@ final class ContextualDataTest extends ViewModelTest
                 ],
                 'hypothesisOpener' => [
                     'button' => [
-                        'classes' => 'button--speech-bubble',
+                        'classes' => 'button--speech-bubble button--speech-bubble-small',
                         'text' => '<span aria-hidden="true"><span data-visible-annotation-count>0</span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>',
                         'type' => 'button',
                     ],

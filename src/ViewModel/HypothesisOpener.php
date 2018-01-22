@@ -20,12 +20,12 @@ final class HypothesisOpener implements ViewModel
 
     private $button;
 
-    private function __construct(string $zeroSignifier)
+    private function __construct(string $zeroSignifier, bool $isSmall = false)
     {
         $visibleAnnotationCount = "<span data-visible-annotation-count>{$zeroSignifier}</span>";
         $hiddenAccessibleText = 'Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).';
         $text = mixed_accessibility_text($visibleAnnotationCount, $hiddenAccessibleText);
-        $this->button = Button::speechBubble($text, true, null, null, false);
+        $this->button = Button::speechBubble($text, true, null, null, false, $isSmall);
     }
 
     public static function forArticleBody() : HypothesisOpener
@@ -35,7 +35,7 @@ final class HypothesisOpener implements ViewModel
 
     public static function forContextualData() : HypothesisOpener
     {
-        return new static(self::LITERAL_ZERO);
+        return new static(self::LITERAL_ZERO, true);
     }
 
     public function getTemplateName() : string

@@ -13,13 +13,14 @@ final class HypothesisOpenerTest extends ViewModelTest
     {
         $data = [
             'button' => [
+                'classes' => 'button--speech-bubble',
                 'text' => '<span aria-hidden="true"><span data-visible-annotation-count>&#8220;</span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>',
                 'type' => 'button',
             ],
         ];
 
-        $hypothesisAffordance = HypothesisOpener::forArticleBody();
-        $this->assertSameWithoutOrder($data, $hypothesisAffordance->toArray());
+        $hypothesisOpener = HypothesisOpener::forArticleBody();
+        $this->assertSame($data, $hypothesisOpener->toArray());
     }
 
     /**
@@ -29,13 +30,14 @@ final class HypothesisOpenerTest extends ViewModelTest
     {
         $data = [
             'button' => [
+                'classes' => 'button--speech-bubble button--speech-bubble-small',
                 'text' => '<span aria-hidden="true"><span data-visible-annotation-count>0</span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>',
                 'type' => 'button',
             ],
         ];
 
         $hypothesisOpener = HypothesisOpener::forContextualData();
-        $this->assertSameWithoutOrder($data, $hypothesisOpener->toArray());
+        $this->assertSame($data, $hypothesisOpener->toArray());
     }
 
     /**
