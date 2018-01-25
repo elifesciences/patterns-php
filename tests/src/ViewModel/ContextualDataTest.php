@@ -21,7 +21,7 @@ final class ContextualDataTest extends ViewModelTest
                     ],
                 ],
                 'annotationCount' => [
-                    'text' => '<span aria-hidden="true"><span data-visible-annotation-count>0</span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>',
+                    'text' => '<span aria-hidden="true"><span data-visible-annotation-count>0</span></span><span class="visuallyhidden"> Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).</span>',
                     'isSmall' => true,
                     'behaviour' => 'HypothesisOpener',
                 ],
