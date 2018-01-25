@@ -9,7 +9,7 @@ use eLife\Patterns\ViewModel;
 use Traversable;
 use function eLife\Patterns\mixed_accessibility_text;
 
-final class HypothesisOpener implements ViewModel
+final class SpeechBubble implements ViewModel
 {
     const DOUBLE_QUOTE_ZERO_SIGNIFIER = '&#8220;';
     const LITERAL_ZERO = '0';
@@ -18,33 +18,42 @@ final class HypothesisOpener implements ViewModel
     use ArrayFromProperties;
     use SimplifyAssets;
 
-    private $button;
+    private $text;
+    private $isSmall;
+    private $hasPlaceholder;
+    private $behaviour;
 
     private function __construct(string $zeroSignifier, bool $isSmall = false)
     {
         $visibleAnnotationCount = "<span data-visible-annotation-count>{$zeroSignifier}</span>";
         $hiddenAccessibleText = 'Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).';
-        $text = mixed_accessibility_text($visibleAnnotationCount, $hiddenAccessibleText);
-        $this->button = Button::speechBubble($text, true, null, null, false, $isSmall);
+        $this->text = mixed_accessibility_text($visibleAnnotationCount, $hiddenAccessibleText);
+        if ($isSmall) {
+            $this->isSmall = $isSmall;
+        }
+        if (self::DOUBLE_QUOTE_ZERO_SIGNIFIER === $zeroSignifier) {
+            $this->hasPlaceholder = true;
+        }
+        $this->behaviour = 'HypothesisOpener';
     }
 
-    public static function forArticleBody() : HypothesisOpener
+    public static function forArticleBody() : SpeechBubble
     {
         return new static(self::DOUBLE_QUOTE_ZERO_SIGNIFIER);
     }
 
-    public static function forContextualData() : HypothesisOpener
+    public static function forContextualData() : SpeechBubble
     {
         return new static(self::LITERAL_ZERO, true);
     }
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/hypothesis-opener.mustache';
+        return 'resources/templates/speech-bubble.mustache';
     }
 
     public function getStyleSheets() : Traversable
     {
-        yield 'resources/assets/css/hypothesis-opener.css';
+        yield 'resources/assets/css/speech-bubble.css';
     }
 }

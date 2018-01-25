@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,kBAAmB,CAEjB,OAAO,CAAE,IAAI,CAEb,6CAA+B,CAC7B,OAAO,CAAE,YAAY,CAGvB,mDAAqC,CAEnC,OAAO,CAAE,KAAK,CCSd,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,MAAkC,CAsBzD,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CD9BxD,WAAW,CAAE,iBAAmD,CAKhE,sCAAuD,CAFzD,uCAAuB,CAGnB,IAAI,CAAE,IAAI,CACV,UAAU,CAAE,KAA4B,CACxC,QAAQ,CAAE,QAAQ",
-"sources": ["../../../../../../assets/sass/patterns/molecules/hypothesis-opener.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "hypothesis-opener.css"
-}

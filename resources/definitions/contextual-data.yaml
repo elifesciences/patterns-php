@@ -1,8 +1,7 @@
 assets:
     css:
-        - buttons.css
         - contextual-data.css
-        - hypothesis-opener.css
+        - speech-bubble.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -22,50 +21,44 @@ schema:
                                 minLength: 1
                         required:
                             - text
-                hypothesisOpener:
+                annotationCount:
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
-                        button:
-                            $schema: 'http://json-schema.org/draft-04/schema#'
-                            type: object
-                            allOf:
-                                -
-                                    properties:
-                                        text:
-                                            type: string
-                                            minLength: 1
-                                        classes:
-                                            type: string
-                                    required:
-                                        - text
-                                -
-                                    oneOf:
-                                        -
-                                            properties:
-                                                type:
-                                                    type: string
-                                                    enum:
-                                                        - button
-                                                        - reset
-                                                        - submit
-                                                id:
-                                                    type: string
-                                                    minLength: 1
-                                                name:
-                                                    type: string
-                                                    minLength: 1
-                                            required:
-                                                - type
-                                        -
-                                            properties:
-                                                path:
-                                                    type: string
-                                                    minLength: 1
-                                            required:
-                                                - path
+                        text:
+                            type: string
+                            minLength: 1
+                        isSmall:
+                            type: boolean
+                            enum:
+                                - true
+                        hasPlaceholder:
+                            type: boolean
+                            enum:
+                                - true
+                        behaviour:
+                            type: string
+                            minLength: 1
                     required:
-                        - button
+                        - text
+                    anyOf:
+                        -
+                            required:
+                                - isSmall
+                            not:
+                                required:
+                                    - hasPlaceholder
+                        -
+                            required:
+                                - hasPlaceholder
+                            not:
+                                required:
+                                    - isSmall
+                        -
+                            not:
+                                required:
+                                    - isSmall
+                                    - hasPlaceholder
             minProperties: 1
         citation:
             type: object

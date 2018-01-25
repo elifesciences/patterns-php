@@ -18,7 +18,7 @@ final class ContextualData implements ViewModel
     private $metricsData;
     private $citation;
 
-    private function __construct(array $metrics, string $citeAs = null, Doi $doi = null, HypothesisOpener $hypothesisOpener = null)
+    private function __construct(array $metrics, string $citeAs = null, Doi $doi = null, SpeechBubble $annotationCount = null)
     {
         Assertion::allString($metrics);
 
@@ -30,8 +30,8 @@ final class ContextualData implements ViewModel
             ];
         }
 
-        if ($hypothesisOpener) {
-            $this->metricsData['hypothesisOpener'] = $hypothesisOpener;
+        if ($annotationCount) {
+            $this->metricsData['annotationCount'] = $annotationCount;
         }
 
         if ($citeAs && $doi) {
@@ -43,31 +43,31 @@ final class ContextualData implements ViewModel
         }
     }
 
-    public static function hypothesisOnly(HypothesisOpener $hypothesisOpener)
+    public static function annotationsOnly(SpeechBubble $annotationCount)
     {
-        return new self([], null, null, $hypothesisOpener);
+        return new self([], null, null, $annotationCount);
     }
 
     public static function withMetrics(
         array $metrics,
         string $citeAs = null,
         Doi $doi = null,
-        HypothesisOpener $hypothesisOpener = null
+        SpeechBubble $annotationCount = null
     ) : ContextualData {
         Assertion::notEmpty($metrics);
 
-        return new self($metrics, $citeAs, $doi, $hypothesisOpener);
+        return new self($metrics, $citeAs, $doi, $annotationCount);
     }
 
     public static function withCitation(
         string $citeAs,
         Doi $doi,
         array $metrics = [],
-        HypothesisOpener $hypothesisOpener = null
+        SpeechBubble $annotationCount = null
     ) : ContextualData {
         Assertion::notBlank($citeAs);
 
-        return new self($metrics, $citeAs, $doi, $hypothesisOpener);
+        return new self($metrics, $citeAs, $doi, $annotationCount);
     }
 
     public function getTemplateName() : string
