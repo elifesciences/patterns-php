@@ -18,12 +18,20 @@ final class ContextualData implements ViewModel
     private $metricsData;
     private $citation;
 
-    private function __construct(array $metrics, string $citeAs = null, Doi $doi = null)
+    private function __construct(array $metrics, string $citeAs = null, Doi $doi = null, SpeechBubble $annotationCount = null)
     {
-        Assertion::allIsInstanceOf($metrics, ContextualDataMetric::class);
+        Assertion::allString($metrics);
 
         if ($metrics) {
-            $this->metricsData = ['data' => $metrics];
+            $this->metricsData = [
+                'data' => array_map(function (string $text) {
+                    return compact('text');
+                }, $metrics),
+            ];
+        }
+
+        if ($annotationCount) {
+            $this->metricsData['annotationCount'] = $annotationCount;
         }
 
         if ($citeAs && $doi) {
@@ -35,18 +43,31 @@ final class ContextualData implements ViewModel
         }
     }
 
-    public static function withMetrics(array $metrics, string $citeAs = null, Doi $doi = null) : ContextualData
+    public static function annotationsOnly(SpeechBubble $annotationCount)
     {
-        Assertion::notEmpty($metrics);
-
-        return new self($metrics, $citeAs, $doi);
+        return new self([], null, null, $annotationCount);
     }
 
-    public static function withCitation(string $citeAs, Doi $doi, array $metrics = []) : ContextualData
-    {
+    public static function withMetrics(
+        array $metrics,
+        string $citeAs = null,
+        Doi $doi = null,
+        SpeechBubble $annotationCount = null
+    ) : ContextualData {
+        Assertion::notEmpty($metrics);
+
+        return new self($metrics, $citeAs, $doi, $annotationCount);
+    }
+
+    public static function withCitation(
+        string $citeAs,
+        Doi $doi,
+        array $metrics = [],
+        SpeechBubble $annotationCount = null
+    ) : ContextualData {
         Assertion::notBlank($citeAs);
 
-        return new self($metrics, $citeAs, $doi);
+        return new self($metrics, $citeAs, $doi, $annotationCount);
     }
 
     public function getTemplateName() : string
