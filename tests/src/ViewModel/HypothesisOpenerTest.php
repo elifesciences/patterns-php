@@ -13,7 +13,7 @@ final class HypothesisOpenerTest extends ViewModelTest
     {
         $data = [
             'button' => [
-                'text' => '<span aria-hidden="true"><span data-visible-annotation-count>&#8220;</span> </span><span class="visuallyhidden">Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>',
+                'text' => '<span aria-hidden="true"><span data-visible-annotation-count>&#8220;</span></span><span class="visuallyhidden"> Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).</span>',
                 'type' => 'button',
             ],
         ];
