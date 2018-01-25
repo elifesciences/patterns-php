@@ -58,17 +58,28 @@ function mixed_visibility_text(string $prefix, string $text, string $suffix = ''
 function mixed_accessibility_text(
     string $visibleInaccessiblePrefix,
     string $hiddenAccessibleText,
-    string $visibleInaccessibleSuffix = '') : string
-{
-    $wrappedVisibleInaccessibleTextPrefix = '';
-    $wrappedVisibleInaccessibleTextSuffix = '';
+    string $visibleInaccessibleSuffix = ''
+) : string {
+    $string = '';
 
     if (false === empty($visibleInaccessiblePrefix)) {
-        $wrappedVisibleInaccessibleTextPrefix = '<span aria-hidden="true">'.$visibleInaccessiblePrefix.' </span>';
-    }
-    if (false === empty($visibleInaccessibleSuffix)) {
-        $wrappedVisibleInaccessibleTextSuffix = '<span aria-hidden="true"> '.$visibleInaccessibleSuffix.'</span>';
+        $string .= '<span aria-hidden="true">'.$visibleInaccessiblePrefix.'</span><span class="visuallyhidden"> ';
+    } else {
+        $string .= '<span class="visuallyhidden">';
     }
 
-    return $wrappedVisibleInaccessibleTextPrefix.mixed_visibility_text($hiddenAccessibleText, $wrappedVisibleInaccessibleTextSuffix);
+    $string .= $hiddenAccessibleText;
+
+    if (false === empty($visibleInaccessibleSuffix)) {
+        if (false === empty($visibleInaccessiblePrefix)) {
+            $string .= '</span><span aria-hidden="true"> ';
+        } else {
+            $string .= ' </span><span aria-hidden="true">';
+        }
+        $string .= "{$visibleInaccessibleSuffix}</span>";
+    } else {
+        $string .= '</span>';
+    }
+
+    return $string;
 }
