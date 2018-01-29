@@ -6,12 +6,12 @@ use eLife\Patterns\PatternRenderer\CallbackPatternRenderer;
 use eLife\Patterns\Twig\PatternExtension;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
-use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_TestCase;
 use Twig_Environment;
 use Twig_ExtensionInterface;
 use Twig_Loader_Array;
 
-final class PatternExtensionTest extends TestCase
+final class PatternExtensionTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @test
