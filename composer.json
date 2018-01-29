@@ -31,5 +31,8 @@
         "symfony/finder": "^3.0",
         "symfony/process": "^3.0",
         "symfony/yaml": "^3.1"
+    },
+    "suggest": {
+        "twig/twig": "Add support for rendering patterns using a Twig extension function."
     }
 }
