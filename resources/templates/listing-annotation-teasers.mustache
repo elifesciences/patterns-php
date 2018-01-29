@@ -1,16 +1,16 @@
 <div>
   {{#heading}}
-    {{>atoms-list-heading}}
+    {{>resources/templates/list-heading}}
   {{/heading}}
 
   <ol class="listing-list" {{#id}} id="{{id}}"{{/id}}>
     {{#items}}{{!
-      }}<li class="listing-list__item">{{> molecules-annotation-teaser }}</li>
+      }}<li class="listing-list__item">{{> resources/templates/annotation-teaser }}</li>
     {{/items}}{{!
   }}</ol>
 
 
   {{#pagination}}
-    {{> molecules-pager}}
+    {{> resources/templates/pager}}
   {{/pagination}}
 </div>

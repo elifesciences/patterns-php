@@ -48,10 +48,10 @@
     {{#eventDate}}
       {{! For schema: url is dependent on date }}
       {{#url}}
-        <a href="{{url}}">{{>atoms-date}}</a>
+        <a href="{{url}}">{{>resources/templates/date}}</a>
       {{/url}}
       {{^url}}
-        <div>{{>atoms-date}}</div>
+        <div>{{>resources/templates/date}}</div>
       {{/url}}
     {{/eventDate}}
 
@@ -92,7 +92,7 @@
   <footer class="teaser__footer">
 
     {{#meta}}
-      {{> molecules-meta}}
+      {{> resources/templates/meta}}
     {{/meta}}
 
     {{#formats}}

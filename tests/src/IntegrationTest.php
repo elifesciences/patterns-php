@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns;
 
-use eLife\Patterns\Mustache\PatternLabLoader;
 use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 use eLife\Patterns\ViewModel;
@@ -46,7 +45,6 @@ final class IntegrationTest extends PHPUnit_Framework_TestCase
     {
         $mustache = new Mustache_Engine([
             'loader' => new Mustache_Loader_FilesystemLoader(__DIR__.'/../resources'),
-            'partials_loader' => new PatternLabLoader(__DIR__.'/../resources'),
         ]);
 
         return new MustachePatternRenderer($mustache);
