@@ -19,8 +19,7 @@
     "require": {
         "php": "^7.0",
         "beberlei/assert": "^2.0",
-        "mustache/mustache": "^2.5",
-        "twig/twig": "^2.4"
+        "mustache/mustache": "^2.5"
     },
     "require-dev": {
         "cpliakas/git-wrapper": "^1.0",
@@ -31,6 +30,10 @@
         "symfony/filesystem": "^3.0",
         "symfony/finder": "^3.0",
         "symfony/process": "^3.0",
-        "symfony/yaml": "^3.1"
+        "symfony/yaml": "^3.1",
+        "twig/twig": "^2.0"
+    },
+    "suggest": {
+        "twig/twig": "Add support for rendering patterns using a Twig extension function."
     }
 }
