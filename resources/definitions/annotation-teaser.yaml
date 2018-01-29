@@ -1,0 +1,131 @@
+assets:
+    css:
+        - annotation-teaser.css
+        - date.css
+        - meta.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        document:
+            type: string
+            minLength: 1
+        meta:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                url:
+                    oneOf:
+                        -
+                            minLength: 1
+                            type: string
+                        -
+                            type: 'null'
+                carouselItem:
+                    type: boolean
+                    enum:
+                        - true
+                text:
+                    type: string
+                    minLength: 1
+                date:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        forMachine:
+                            type: string
+                            pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
+                        forHuman:
+                            type: object
+                            properties:
+                                dayOfMonth:
+                                    type: integer
+                                    minimum: 1
+                                    maximum: 31
+                                month:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                year:
+                                    type: integer
+                            required:
+                                - dayOfMonth
+                                - month
+                                - year
+                        isUpdated:
+                            type: boolean
+                            default: false
+                        isExpanded:
+                            type: boolean
+                            default: false
+                    required:
+                        - forHuman
+                        - forMachine
+            dependencies:
+                url:
+                    - text
+                carouselItem:
+                    - url
+            anyOf:
+                -
+                    required:
+                        - date
+                -
+                    required:
+                        - text
+        inContextUri:
+            minLength: 1
+            type: string
+        highlight:
+            type: string
+            minLength: 1
+        isReply:
+            type: boolean
+            emum:
+                - true
+        content:
+            type: string
+            minLength: 1
+    required:
+        - document
+        - meta
+        - inContextUri
+    allOf:
+        -
+            anyOf:
+                -
+                    required:
+                        - highlight
+                    not:
+                        required:
+                            - isReply
+                -
+                    required:
+                        - isReply
+                    not:
+                        required:
+                            - highlight
+                -
+                    not:
+                        required:
+                            - isReply
+                            - highlight
+        -
+            anyOf:
+                -
+                    required:
+                        - highlight
+                    not:
+                        required:
+                            - content
+                -
+                    required:
+                        - content
+                    not:
+                        required:
+                            - highlight
+                -
+                    required:
+                        - content
+                        - highlight

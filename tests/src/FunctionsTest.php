@@ -120,12 +120,16 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
     {
         return [
             [
-                ['visible, inaccessible text', 'hidden, accessible text', ''],
-                '<span aria-hidden="true">visible, inaccessible text </span><span class="visuallyhidden">hidden, accessible text </span>',
+                ['visible, inaccessible prefix', 'hidden, accessible text', ''],
+                '<span aria-hidden="true">visible, inaccessible prefix</span><span class="visuallyhidden"> hidden, accessible text</span>',
             ],
             [
-                ['', 'hidden, accessible text', 'visible, inaccessible text'],
-                '<span class="visuallyhidden">hidden, accessible text </span><span aria-hidden="true"> visible, inaccessible text</span>',
+                ['', 'hidden, accessible text', 'visible, inaccessible suffix'],
+                '<span class="visuallyhidden">hidden, accessible text </span><span aria-hidden="true">visible, inaccessible suffix</span>',
+            ],
+            [
+                ['visible, inaccessible prefix', 'hidden, accessible text', 'visible, inaccessible suffix'],
+                '<span aria-hidden="true">visible, inaccessible prefix</span><span class="visuallyhidden"> hidden, accessible text</span><span aria-hidden="true"> visible, inaccessible suffix</span>',
             ],
         ];
     }
