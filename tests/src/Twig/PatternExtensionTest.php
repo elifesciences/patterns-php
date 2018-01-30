@@ -1,6 +1,6 @@
 <?php
 
-namespace test\eLife\Patterns\Twig;
+namespace tests\eLife\Patterns\Twig;
 
 use eLife\Patterns\PatternRenderer\CallbackPatternRenderer;
 use eLife\Patterns\Twig\PatternExtension;
