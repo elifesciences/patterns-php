@@ -18,9 +18,10 @@ final class PersonalisedCoverDownload implements ViewModel
     private $text;
     private $buttonCollection;
 
-    public function __construct(string $text, ButtonCollection $buttonCollection)
+    public function __construct(array $text, ButtonCollection $buttonCollection)
     {
-        Assertion::notBlank($text);
+        Assertion::notEmpty($text);
+        Assertion::allIsInstanceOf($text, Paragraph::class);
 
         if (!$buttonCollection['centered']) {
             $buttonCollection = FlexibleViewModel::fromViewModel($buttonCollection)
@@ -38,6 +39,7 @@ final class PersonalisedCoverDownload implements ViewModel
 
     protected function getComposedViewModels() : Traversable
     {
+        yield from $this->text;
         yield $this->buttonCollection;
     }
 

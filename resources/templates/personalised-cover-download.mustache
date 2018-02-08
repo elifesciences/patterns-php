@@ -10,7 +10,9 @@
            alt="" class="personalised-cover-download__icon">
     </picture>
 
-    {{{text}}}
+    {{#text}}
+      {{> resources/templates/paragraph }}
+    {{/text}}
 
     {{#buttonCollection}}
       {{> resources/templates/button-collection }}
