@@ -9,7 +9,7 @@ use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
-final class Download implements ViewModel
+final class PersonalisedCoverDownload implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -33,7 +33,7 @@ final class Download implements ViewModel
 
     protected function getLocalStyleSheets() : Traversable
     {
-        yield 'resources/assets/css/download.css';
+        yield 'resources/assets/css/personalised-cover-download.css';
     }
 
     protected function getComposedViewModels() : Traversable
@@ -43,6 +43,6 @@ final class Download implements ViewModel
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/download.mustache';
+        return 'resources/templates/personalised-cover-download.mustache';
     }
 }

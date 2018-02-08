@@ -2,7 +2,7 @@ assets:
     css:
         - button-collection.css
         - buttons.css
-        - download.css
+        - personalised-cover-download.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'

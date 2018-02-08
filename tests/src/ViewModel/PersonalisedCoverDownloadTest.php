@@ -4,9 +4,9 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ButtonCollection;
-use eLife\Patterns\ViewModel\Download;
+use eLife\Patterns\ViewModel\PersonalisedCoverDownload;
 
-final class DownloadTest extends ViewModelTest
+final class PersonalisedCoverDownloadTest extends ViewModelTest
 {
     /**
      * @test
@@ -27,7 +27,7 @@ final class DownloadTest extends ViewModelTest
             ],
         ];
 
-        $download = new Download($data['text'], new ButtonCollection([Button::link($data['buttonCollection']['buttons'][0]['text'], $data['buttonCollection']['buttons'][0]['path'])]));
+        $download = new PersonalisedCoverDownload($data['text'], new ButtonCollection([Button::link($data['buttonCollection']['buttons'][0]['text'], $data['buttonCollection']['buttons'][0]['path'])]));
 
         $this->assertSame($data['text'], $download['text']);
         $this->assertSame($data['buttonCollection'], $download['buttonCollection']->toArray());
@@ -41,18 +41,18 @@ final class DownloadTest extends ViewModelTest
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new Download('', new ButtonCollection([Button::link('text', 'path')]));
+        new PersonalisedCoverDownload('', new ButtonCollection([Button::link('text', 'path')]));
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new Download('foo', new ButtonCollection([Button::link('text', 'path')]))],
+            [new PersonalisedCoverDownload('foo', new ButtonCollection([Button::link('text', 'path')]))],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/download.mustache';
+        return 'resources/templates/personalised-cover-download.mustache';
     }
 }
