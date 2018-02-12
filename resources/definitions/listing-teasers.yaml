@@ -53,8 +53,14 @@ schema:
                                             type: string
                                             minLength: 1
                                         url:
-                                            type: string
-                                            minLength: 1
+                                            oneOf:
+                                                -
+                                                    type: string
+                                                    minLength: 1
+                                                -
+                                                    type: boolean
+                                                    enum:
+                                                        - false
                                     required:
                                         - name
                                         - url
@@ -116,10 +122,17 @@ schema:
                                 type: string
                                 minLength: 1
                             url:
-                                type: string
-                                minLength: 1
+                                oneOf:
+                                    -
+                                        type: string
+                                        minLength: 1
+                                    -
+                                        type: boolean
+                                        enum:
+                                            - false
                         required:
                             - name
+                            - url
                     image:
                         allOf:
                             -
@@ -188,10 +201,12 @@ schema:
                                     url:
                                         oneOf:
                                             -
-                                                minLength: 1
                                                 type: string
+                                                minLength: 1
                                             -
-                                                type: 'null'
+                                                type: boolean
+                                                enum:
+                                                    - false
                                     carouselItem:
                                         type: boolean
                                         enum:
