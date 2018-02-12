@@ -22,7 +22,7 @@ final class ReferenceTest extends ViewModelTest
             'authorLists' => [
                 [
                     'authors' => [
-                        ['name' => 'Person Foo'],
+                        ['name' => 'Person Foo', 'url' => false],
                         ['name' => 'Person Bar', 'url' => '/bar'],
                     ],
                     'suffix' => 'suffix',
@@ -63,7 +63,7 @@ final class ReferenceTest extends ViewModelTest
                 [
                     'authors' => [
                         ['name' => 'Person Foo', 'url' => '/foo'],
-                        ['name' => 'Person Bar'],
+                        ['name' => 'Person Bar', 'url' => false],
                     ],
                     'suffix' => 'suffix',
                 ],

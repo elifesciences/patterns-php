@@ -52,17 +52,19 @@ final class ContentHeaderTest extends ViewModelTest
                 'possible' => true,
                 'hasSubjects' => true,
                 'subjects' => [
-                    ['name' => 'subject'],
+                    ['name' => 'subject', 'url' => false],
                 ],
                 'hasProfile' => true,
                 'profile' => [
                     'name' => 'profile',
+                    'url' => false,
                 ],
             ],
             'authors' => [
                 'list' => [
                     [
                         'name' => 'author',
+                        'url' => false,
                         'isCorresponding' => true,
                     ],
                 ],

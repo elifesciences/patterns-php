@@ -102,10 +102,12 @@ schema:
                                 url:
                                     oneOf:
                                         -
-                                            minLength: 1
                                             type: string
+                                            minLength: 1
                                         -
-                                            type: 'null'
+                                            type: boolean
+                                            enum:
+                                                - false
                                 carouselItem:
                                     type: boolean
                                     enum:

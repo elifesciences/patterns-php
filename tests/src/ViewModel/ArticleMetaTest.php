@@ -19,7 +19,7 @@ final class ArticleMetaTest extends ViewModelTest
                     'title' => 'group',
                     'items' => [
                         ['name' => 'link', 'url' => 'url'],
-                        ['name' => 'non-link'],
+                        ['name' => 'non-link', 'url' => false],
                     ],
                 ],
             ],

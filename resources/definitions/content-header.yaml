@@ -123,8 +123,14 @@ schema:
                             type: string
                             minLength: 1
                         url:
-                            type: string
-                            minLength: 1
+                            oneOf:
+                                -
+                                    type: string
+                                    minLength: 1
+                                -
+                                    type: boolean
+                                    enum:
+                                        - false
                         image:
                             $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
@@ -173,6 +179,7 @@ schema:
                                 - fallback
                     required:
                         - name
+                        - url
             required:
                 - possible
             dependencies:
@@ -197,12 +204,19 @@ schema:
                                 type: string
                                 minLength: 1
                             url:
-                                type: string
-                                minLength: 1
+                                oneOf:
+                                    -
+                                        type: string
+                                        minLength: 1
+                                    -
+                                        type: boolean
+                                        enum:
+                                            - false
                             isCorresponding:
                                 type: boolean
                         required:
                             - name
+                            - url
             required:
                 - list
         institutions:
@@ -384,10 +398,12 @@ schema:
                 url:
                     oneOf:
                         -
-                            minLength: 1
                             type: string
+                            minLength: 1
                         -
-                            type: 'null'
+                            type: boolean
+                            enum:
+                                - false
                 carouselItem:
                     type: boolean
                     enum:
@@ -448,7 +464,14 @@ schema:
                     type: string
                     minLength: 1
                 url:
-                    type: string
+                    oneOf:
+                        -
+                            type: string
+                            minLength: 1
+                        -
+                            type: boolean
+                            enum:
+                                - false
                 metadata:
                     type: string
                     minLength: 1
@@ -472,6 +495,7 @@ schema:
                                         minLength: 1
             required:
                 - title
+                - url
                 - sources
     required:
         - title
