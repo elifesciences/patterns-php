@@ -21,7 +21,7 @@ final class Author implements CastsToArray
         Assertion::notBlank($name);
 
         $this->name = $name;
-        $this->url = $url;
+        $this->url = $url ?? false;
         if ($isCorresponding) {
             $this->isCorresponding = true;
         }

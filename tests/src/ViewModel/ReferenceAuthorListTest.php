@@ -25,7 +25,7 @@ final class ReferenceAuthorListTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_data()
     {
-        $data = ['authors' => [['name' => 'Author']], 'suffix' => 'suffix'];
+        $data = ['authors' => [['name' => 'Author', 'url' => false]], 'suffix' => 'suffix'];
 
         $list = new ReferenceAuthorList([Author::asText($data['authors'][0]['name'])], $data['suffix']);
 

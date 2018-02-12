@@ -48,7 +48,7 @@ final class Teaser implements ViewModel
 
         $this->title = $title;
         $this->rootClasses = implode(' ', $rootClasses);
-        $this->url = $url;
+        $this->url = $url ?? false;
         $this->content = $content;
         $this->secondaryInfo = $secondaryInfo;
         $this->contextLabel = $contextLabel;

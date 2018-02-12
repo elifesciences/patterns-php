@@ -22,7 +22,7 @@ final class Link implements CastsToArray
         Assertion::notBlank($name);
 
         $this->name = $name;
-        $this->url = $url;
+        $this->url = $url ?? false;
         if ($isCurrent) {
             $this->isCurrent = true;
         }

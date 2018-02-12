@@ -24,14 +24,26 @@ schema:
                                 type: string
                                 minLength: 1
                             url:
-                                type: string
-                                minLength: 1
+                                oneOf:
+                                    -
+                                        type: string
+                                        minLength: 1
+                                    -
+                                        type: boolean
+                                        enum:
+                                            - false
                         required:
                             - name
                             - url
         url:
-            minLength: 1
-            type: string
+            oneOf:
+                -
+                    type: string
+                    minLength: 1
+                -
+                    type: boolean
+                    enum:
+                        - false
         title:
             type: string
             minLength: 1
@@ -87,10 +99,17 @@ schema:
                     type: string
                     minLength: 1
                 url:
-                    type: string
-                    minLength: 1
+                    oneOf:
+                        -
+                            type: string
+                            minLength: 1
+                        -
+                            type: boolean
+                            enum:
+                                - false
             required:
                 - name
+                - url
         image:
             allOf:
                 -
@@ -159,10 +178,12 @@ schema:
                         url:
                             oneOf:
                                 -
-                                    minLength: 1
                                     type: string
+                                    minLength: 1
                                 -
-                                    type: 'null'
+                                    type: boolean
+                                    enum:
+                                        - false
                         carouselItem:
                             type: boolean
                             enum:
@@ -203,11 +224,6 @@ schema:
                             required:
                                 - forHuman
                                 - forMachine
-                    dependencies:
-                        url:
-                            - text
-                        carouselItem:
-                            - url
                     anyOf:
                         -
                             required:
@@ -232,3 +248,4 @@ schema:
             - num
     required:
         - title
+        - url
