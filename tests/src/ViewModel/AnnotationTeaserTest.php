@@ -19,6 +19,7 @@ final class AnnotationTeaserTest extends ViewModelTest
             'highlight' => 'this highlight',
             'content' => 'the content',
             'meta' => [
+                'url' => false,
                 'text' => 'Only me',
                 'date' => [
                     'isExpanded' => false,

@@ -37,6 +37,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
             'subjects' => [['name' => 'subject', 'url' => false]],
             'authorLine' => 'author line',
             'meta' => [
+                'url' => false,
                 'text' => 'Research article',
             ],
         ];

@@ -116,6 +116,7 @@ final class ContentHeaderTest extends ViewModelTest
                 ],
             ],
             'meta' => [
+                'url' => false,
                 'text' => 'Research article',
             ],
             'licence' => 'https://creativecommons.org/licenses/by/4.0/',

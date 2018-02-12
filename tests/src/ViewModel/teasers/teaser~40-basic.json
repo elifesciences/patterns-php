@@ -13,6 +13,7 @@
 
   "footer": {
     "meta" :{
+      "url": false,
       "date": {
         "forHuman": {
           "dayOfMonth": 16,

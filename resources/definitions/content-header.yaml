@@ -444,11 +444,6 @@ schema:
                     required:
                         - forHuman
                         - forMachine
-            dependencies:
-                url:
-                    - text
-                carouselItem:
-                    - url
             anyOf:
                 -
                     required:

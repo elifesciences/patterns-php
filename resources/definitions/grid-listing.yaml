@@ -301,8 +301,14 @@ schema:
                                                         - name
                                                         - url
                                     url:
-                                        minLength: 1
-                                        type: string
+                                        oneOf:
+                                            -
+                                                type: string
+                                                minLength: 1
+                                            -
+                                                type: boolean
+                                                enum:
+                                                    - false
                                     title:
                                         type: string
                                         minLength: 1
@@ -483,11 +489,6 @@ schema:
                                                         required:
                                                             - forHuman
                                                             - forMachine
-                                                dependencies:
-                                                    url:
-                                                        - text
-                                                    carouselItem:
-                                                        - url
                                                 anyOf:
                                                     -
                                                         required:
@@ -512,6 +513,7 @@ schema:
                                         - num
                                 required:
                                     - title
+                                    - url
                         pagination:
                             $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object

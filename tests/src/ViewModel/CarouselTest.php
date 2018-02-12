@@ -41,6 +41,7 @@ final class CarouselTest extends ViewModelTest
                         'text' => 'button',
                     ],
                     'meta' => [
+                        'url' => false,
                         'text' => 'meta',
                     ],
                     'image' => [
