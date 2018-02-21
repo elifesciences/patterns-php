@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\AuthorDetails;
+use eLife\Patterns\ViewModel\Orcid;
 use InvalidArgumentException;
 
 final class AuthorDetailsTest extends ViewModelTest
@@ -29,15 +30,17 @@ final class AuthorDetailsTest extends ViewModelTest
                     'value' => 'value 1',
                 ],
             ],
-            'orcid' => '0000-0002-1825-0097',
+            'orcid' => [
+                'id' => '0000-0002-1825-0097',
+            ],
         ];
 
-        $authorDetails = AuthorDetails::forPerson($data['authorId'], $data['name'], [$data['details'][0]['heading'] => $data['details'][0]['value'], $data['details'][1]['heading'] => $data['details'][1]['values'], $data['details'][2]['heading'] => [$data['details'][2]['value']]], $data['orcid']);
+        $authorDetails = AuthorDetails::forPerson($data['authorId'], $data['name'], [$data['details'][0]['heading'] => $data['details'][0]['value'], $data['details'][1]['heading'] => $data['details'][1]['values'], $data['details'][2]['heading'] => [$data['details'][2]['value']]], new Orcid($data['orcid']['id']));
 
         $this->assertSame($data['authorId'], $authorDetails['authorId']);
         $this->assertSame($data['name'], $authorDetails['name']);
         $this->assertSame($data['details'], $authorDetails['details']);
-        $this->assertSame($data['orcid'], $authorDetails['orcid']);
+        $this->assertSame($data['orcid'], $authorDetails['orcid']->toArray());
         $this->assertSame($data, $authorDetails->toArray());
 
         $data = [
@@ -94,7 +97,7 @@ final class AuthorDetailsTest extends ViewModelTest
     {
         return [
             'minimum person' => [AuthorDetails::forPerson('id', 'name')],
-            'maximum person' => [AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value1', 'value2']], '0000-0002-1825-0097')],
+            'maximum person' => [AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value1', 'value2']], new Orcid('0000-0002-1825-0097'))],
             'minimum group' => [AuthorDetails::forGroup('id', 'name')],
             'maximum group' => [
                 AuthorDetails::forGroup('id', 'name', ['single detail' => 'value', 'many details' => ['value1', 'value2']], ['group' => ['item']]),

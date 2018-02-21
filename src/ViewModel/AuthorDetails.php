@@ -5,7 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,7 +13,7 @@ final class AuthorDetails implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $authorId;
     private $name;
@@ -21,7 +21,7 @@ final class AuthorDetails implements ViewModel
     private $orcid;
     private $groups;
 
-    private function __construct(string $id, string $name, array $details = [], string $orcid = null, array $groups = [])
+    private function __construct(string $id, string $name, array $details = [], Orcid $orcid = null, array $groups = [])
     {
         Assertion::notBlank($id);
         Assertion::notBlank($name);
@@ -52,7 +52,7 @@ final class AuthorDetails implements ViewModel
         }, array_keys($groups), array_values($groups));
     }
 
-    public static function forPerson(string $id, string $name, array $details = [], string $orcid = null) : AuthorDetails
+    public static function forPerson(string $id, string $name, array $details = [], Orcid $orcid = null) : AuthorDetails
     {
         return new self($id, $name, $details, $orcid);
     }
@@ -67,8 +67,13 @@ final class AuthorDetails implements ViewModel
         return 'resources/templates/author-details.mustache';
     }
 
-    public function getStyleSheets() : Traversable
+    protected function getLocalStyleSheets() : Traversable
     {
         yield 'resources/assets/css/author-details.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->orcid;
     }
 }

@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContentHeaderProfile;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\Orcid;
 use InvalidArgumentException;
 
 final class ContentHeaderProfileLoggedInTest extends ViewModelTest
@@ -13,17 +14,17 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $details = [
-            'affiliations' => [
-                'affiliation 1',
-                'affiliation 2',
-            ],
-            'emailAddress' => 'email@address1.com',
-        ];
-
         $data = [
-            'affiliations' => $details['affiliations'],
-            'emailAddress' => $details['emailAddress'],
+            'details' => [
+                'affiliations' => [
+                    'affiliation 1',
+                    'affiliation 2',
+                ],
+                'emailAddress' => 'email@address1.com',
+                'orcid' => [
+                    'id' => '0000-0002-1825-0097',
+                ],
+            ],
             'displayName' => 'Display name',
             'logoutLink' => new Link('log out link text', '/log-out-link-uri'),
             'secondaryLinks' => [
@@ -32,17 +33,13 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             ],
         ];
 
-        $contentHeader = ContentHeaderProfile::loggedIn($data['displayName'], $data['logoutLink'], $data['secondaryLinks'], $data['affiliations'], $data['emailAddress']);
+        $contentHeader = ContentHeaderProfile::loggedIn($data['displayName'], $data['logoutLink'], $data['secondaryLinks'], $data['details']['affiliations'], $data['details']['emailAddress'], new Orcid($data['details']['orcid']['id']));
 
-        $this->assertSame($data['affiliations'], $contentHeader['details']['affiliations']);
+        $this->assertSameWithoutOrder($data['details'], $contentHeader['details']);
         $this->assertSame($data['displayName'], $contentHeader['displayName']);
-        $this->assertSame($data['emailAddress'], $contentHeader['details']['emailAddress']);
         $this->assertSame($data['logoutLink'], $contentHeader['logoutLink']);
         $this->assertSame($data['secondaryLinks'], $contentHeader['secondaryLinks']);
 
-        $data['details'] = $details;
-        unset($data['affiliations']);
-        unset($data['emailAddress']);
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
 
@@ -170,19 +167,17 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
                     ]
                 ),
             ],
-            'with affiliations and email address' => [
+            'with orcid' => [
                 ContentHeaderProfile::loggedIn(
                     'Display name',
                     new Link('log out link text', '/log-out-link-uri'),
                     [],
-                    [
-                        'affiliation 1',
-                        'affiliation 2',
-                    ],
-                    'email@address.com'
+                    [],
+                    null,
+                    new Orcid('0000-0002-1825-0097')
                 ),
             ],
-            'with log out link, secondary links, affiliations and email address' => [
+            'complete' => [
                 ContentHeaderProfile::loggedIn(
                     'Display name',
                     new Link('log out link text', '/log-out-link-uri'),
@@ -194,7 +189,8 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
                         'affiliation 1',
                         'affiliation 2',
                     ],
-                    'email@address.com'
+                    'email@address.com',
+                    new Orcid('0000-0002-1825-0097')
                 ),
             ],
         ];

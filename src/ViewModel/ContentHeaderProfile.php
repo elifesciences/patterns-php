@@ -5,7 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,8 +13,9 @@ final class ContentHeaderProfile implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
+    use ComposedAssets;
 
+    private $_orcid;
     private $details;
     private $displayName;
     private $secondaryLinks;
@@ -29,16 +30,18 @@ final class ContentHeaderProfile implements ViewModel
         Link $logoutLink = null,
         array $secondaryLinks = [],
         array $affiliations = [],
-        string $emailAddress = null
+        string $emailAddress = null,
+        Orcid $orcid = null
     ) : ContentHeaderProfile {
         Assertion::notEmpty($displayName);
         Assertion::allIsInstanceOf($secondaryLinks, Link::class);
 
         $contentHeader = new static();
         $contentHeader->displayName = $displayName;
-        $contentHeader->details = $contentHeader->createDetails($affiliations, $emailAddress);
+        $contentHeader->details = $contentHeader->createDetails($affiliations, $emailAddress, $orcid);
         $contentHeader->logoutLink = $logoutLink;
         $contentHeader->secondaryLinks = $secondaryLinks;
+        $contentHeader->_orcid = $orcid;
 
         return $contentHeader;
     }
@@ -46,18 +49,20 @@ final class ContentHeaderProfile implements ViewModel
     public static function notLoggedIn(
         string $displayName,
         array $affiliations = [],
-        string $emailAddress = null
+        string $emailAddress = null,
+        Orcid $orcid = null
     ) : ContentHeaderProfile {
         Assertion::notEmpty($displayName);
 
         $contentHeader = new static();
         $contentHeader->displayName = $displayName;
-        $contentHeader->details = $contentHeader->createDetails($affiliations, $emailAddress);
+        $contentHeader->details = $contentHeader->createDetails($affiliations, $emailAddress, $orcid);
+        $contentHeader->_orcid = $orcid;
 
         return $contentHeader;
     }
 
-    private function createDetails(array $affiliations = [], string $emailAddress = null)
+    private function createDetails(array $affiliations = [], string $emailAddress = null, Orcid $orcid = null)
     {
         $details = [];
 
@@ -67,6 +72,10 @@ final class ContentHeaderProfile implements ViewModel
 
         if ($emailAddress) {
             $details['emailAddress'] = $emailAddress;
+        }
+
+        if ($orcid) {
+            $details['orcid'] = $orcid;
         }
 
         if (!empty($details)) {
@@ -81,8 +90,13 @@ final class ContentHeaderProfile implements ViewModel
         return 'resources/templates/content-header-profile.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
+    protected function getLocalStyleSheets() : Traversable
     {
         yield 'resources/assets/css/content-header-profile.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->_orcid;
     }
 }
