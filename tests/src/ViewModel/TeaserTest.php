@@ -26,7 +26,7 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::BASIC);
         $actual = Teaser::basic(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forNonArticle($this->metaFromData($data['footer']['meta']))
         );
@@ -41,11 +41,11 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::MAIN);
         $actual = Teaser::main(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['content'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             null,
             TeaserFooter::forArticle(
@@ -65,11 +65,11 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_SMALL_IMAGE);
         $actual = Teaser::main(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['content'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forArticle(
@@ -89,11 +89,11 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_BIG_IMAGE);
         $actual = Teaser::main(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['content'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
             TeaserFooter::forArticle(
@@ -113,10 +113,10 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY);
         $actual = Teaser::secondary(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             null,
             TeaserFooter::forNonArticle(
@@ -134,10 +134,10 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_SMALL_IMAGE);
         $actual = Teaser::secondary(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forNonArticle(
@@ -155,10 +155,10 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_BIG_IMAGE);
         $actual = Teaser::secondary(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
             TeaserFooter::forNonArticle(
@@ -176,10 +176,10 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::RELATED_ITEM);
         $actual = Teaser::relatedItem(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             null,
             TeaserFooter::forNonArticle(
@@ -197,7 +197,7 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_EVENT);
         $actual = Teaser::event(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
             Date::simple(new DateTimeImmutable($data['eventDate']['forMachine']))
         );
@@ -212,7 +212,7 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_EVENT);
         $actual = Teaser::event(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
             Date::simple(new DateTimeImmutable($data['eventDate']['forMachine'])),
             true
@@ -228,10 +228,10 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::CHAPTER_LISTING_ITEM);
         $actual = Teaser::chapterListingItem(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['content'],
             new ContextLabel(...array_map(function ($item) {
-                return new Link($item['name'], $item['url']);
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
             }, $data['contextLabel']['list'])),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
@@ -248,7 +248,7 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::GRID_STYLE_LABS);
         $actual = Teaser::withGrid(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['content'],
             null,
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
@@ -267,7 +267,7 @@ final class TeaserTest extends ViewModelTest
         $data = TeaserFixtures::load(TeaserFixtures::GRID_STYLE_PODCAST);
         $actual = Teaser::withGrid(
             $data['title'],
-            $data['url'],
+            $data['url'] ? $data['url'] : null,
             $data['content'],
             $data['secondaryInfo'],
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),

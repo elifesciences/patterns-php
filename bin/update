@@ -110,13 +110,17 @@ foreach ($finder as $file) {
     $template = new SplFileInfo(substr($file->getRealPath(), 0, -4).'mustache');
     $foundTemplates[] = $template->getFilename();
 
-    foreach ($tokenizer->scan(file_get_contents($template->getRealPath())) as $token) {
+    $contents = file_get_contents($template->getRealPath());
+
+    foreach ($tokenizer->scan($contents) as $token) {
         if (Mustache_Tokenizer::T_PARTIAL === $token['type']) {
             $foundTemplates[] = explode('-', $token['name'], 2)[1].'.mustache';
         }
     }
 
-    $filesystem->copy($template->getRealPath(), $outputDir.'/templates/'.$template->getFilename(), true);
+    $contents = preg_replace('~{{>(\s*)(atoms|molecules|organisms)-~i', '{{>$1resources/templates/', $contents);
+
+    $filesystem->dumpFile($outputDir.'/templates/'.$template->getFilename(), $contents);
     $resolvedTemplates[] = $template->getFilename();
 }
 

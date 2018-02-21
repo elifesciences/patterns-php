@@ -29,7 +29,6 @@ Create `ViewModel`s and pass them to a `PatternRenderer`, which will return the 
 For example:
 
 ```php
-use eLife\Patterns\Mustache\PatternLabLoader;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 
 $helpers = [
@@ -41,10 +40,7 @@ $helpers = [
 
 $mustache = new Mustache_Engine([
     'helpers' => $helpers,
-    'loader' => $loader = new AbsolutePathLoader(),
-    'partials_loader' => new PatternLabLoader($loader),
-    'loader' => $loader = new Mustache_Loader_FilesystemLoader('/path/to/patterns-php'),
-    'partials_loader' => new PatternLabLoader('/path/to/patterns-php/resources/templates'),
+    'loader' => new Mustache_Loader_FilesystemLoader('/path/to/patterns-php'),
 ]);
 $patternRenderer = new MustachePatternRenderer($mustache);
 

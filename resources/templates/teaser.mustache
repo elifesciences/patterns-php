@@ -5,7 +5,7 @@
   {{#contextLabel}}
     <ol class="teaser__context_label_list">
       {{#list}}
-        <li class="teaser__context_label_list_item">
+        <li class="teaser__context_label_item">
           {{#url}}
             <a href="{{url}}"  {{#carouselItem}}tabindex="-1"{{/carouselItem}} class="teaser__context_label_link"><span class="teaser__context_label">{{{name}}}</span></a>
           {{/url}}
@@ -48,10 +48,10 @@
     {{#eventDate}}
       {{! For schema: url is dependent on date }}
       {{#url}}
-        <a href="{{url}}">{{>atoms-date}}</a>
+        <a href="{{url}}">{{>resources/templates/date}}</a>
       {{/url}}
       {{^url}}
-        <div>{{>atoms-date}}</div>
+        <div>{{>resources/templates/date}}</div>
       {{/url}}
     {{/eventDate}}
 
@@ -92,7 +92,7 @@
   <footer class="teaser__footer">
 
     {{#meta}}
-      {{> molecules-meta}}
+      {{> resources/templates/meta}}
     {{/meta}}
 
     {{#formats}}

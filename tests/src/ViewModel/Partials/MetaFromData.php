@@ -11,7 +11,7 @@ trait MetaFromData
 {
     final protected function metaFromData(array $data) : Meta
     {
-        if (isset($data['url']) && $data['url'] !== null) {
+        if ($data['url']) {
             if (isset($data['date']['forMachine'])) {
                 return Meta::withLink(
                     new Link($data['text'], $data['url']),

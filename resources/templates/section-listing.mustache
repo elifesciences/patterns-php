@@ -1,6 +1,6 @@
 <section class="section-listing-wrapper" id="{{id}}">
   {{#listHeading}}
-    {{> atoms-list-heading}}
+    {{> resources/templates/list-heading}}
   {{/listHeading}}
   <ol class="section-listing {{#singleLine}}section-listing--single-line{{/singleLine}}" {{#labelledBy}}aria-labelledby="{{labelledBy}}"{{/labelledBy}}>
     {{#sections}}
@@ -9,5 +9,5 @@
       </li>
     {{/sections}}
   </ol>
-  {{> atoms-to-top-link}}
+  {{> resources/templates/to-top-link}}
 </section>

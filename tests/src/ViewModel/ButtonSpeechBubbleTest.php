@@ -83,7 +83,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
     {
         return [
             'basic' => [Button::speechBubble('&#8220;')],
-            'full' => [Button::speechBubble('12', true, 'name', 'theId', true)],
+            'full' => [Button::speechBubble('12', true, 'name', 'theId', true, true)],
         ];
     }
 

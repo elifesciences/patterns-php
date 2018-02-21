@@ -1,6 +1,6 @@
 <div{{#highlights}} class="highlights"{{/highlights}}>
   {{#heading}}
-    {{>atoms-list-heading}}
+    {{>resources/templates/list-heading}}
   {{/heading}}
 
   {{#highlights}}
@@ -10,8 +10,8 @@
 
   <ol class="listing-list {{#highlights}}listing-list--highlights{{/highlights}}"{{#id}} id="{{id}}"{{/id}}>
     {{#items}}{{!
-      }}<li class="listing-list__item">{{> molecules-teaser }}</li>{{/items}}{{#seeMoreLink}}{{!
-   }}<li class="listing-list__item">{{> atoms-see-more-link}}</li>{{/seeMoreLink}}{{!
+      }}<li class="listing-list__item">{{> resources/templates/teaser }}</li>{{/items}}{{#seeMoreLink}}{{!
+   }}<li class="listing-list__item">{{> resources/templates/see-more-link}}</li>{{/seeMoreLink}}{{!
   }}</ol>
 
   {{#highlights}}
@@ -35,6 +35,6 @@
   {{/highlights}}
 
   {{#pagination}}
-    {{> molecules-pager}}
+    {{> resources/templates/pager}}
   {{/pagination}}
 </div>

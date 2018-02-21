@@ -25,7 +25,7 @@ final class Meta implements ViewModel
             Assertion::false($date['isExpanded']);
         }
 
-        $this->url = $url;
+        $this->url = $url ?? false;
         $this->text = $text;
         $this->date = $date;
     }

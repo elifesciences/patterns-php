@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\AuthorDetails;
 use eLife\Patterns\ViewModel\AuthorsDetails;
+use eLife\Patterns\ViewModel\Orcid;
 
 final class AuthorsDetailsTest extends ViewModelTest
 {
@@ -27,7 +28,9 @@ final class AuthorsDetailsTest extends ViewModelTest
                             'values' => ['value 1', 'value 2'],
                         ],
                     ],
-                    'orcid' => '0000-0002-1825-0097',
+                    'orcid' => [
+                        'id' => '0000-0002-1825-0097',
+                    ],
                 ],
                 [
                     'authorId' => 'id',
@@ -37,7 +40,7 @@ final class AuthorsDetailsTest extends ViewModelTest
         ];
 
         $authorsDetails = new AuthorsDetails(
-            $maximum = AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value 1', 'value 2']], '0000-0002-1825-0097'),
+            $maximum = AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value 1', 'value 2']], new Orcid('0000-0002-1825-0097')),
             $minimum = AuthorDetails::forPerson('id', 'name')
         );
 
@@ -52,7 +55,7 @@ final class AuthorsDetailsTest extends ViewModelTest
         return [
             [
                 new AuthorsDetails(
-                    $maximum = AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value 1', 'value 2']], '0000-0002-1825-0097'),
+                    $maximum = AuthorDetails::forPerson('id', 'name', ['single detail' => 'value', 'many details' => ['value 1', 'value 2']], new Orcid('0000-0002-1825-0097')),
                     $minimum = AuthorDetails::forPerson('id', 'name')
                 ),
             ],
