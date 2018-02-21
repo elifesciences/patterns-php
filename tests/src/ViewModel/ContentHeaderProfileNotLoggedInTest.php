@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContentHeaderProfile;
+use eLife\Patterns\ViewModel\Orcid;
 use InvalidArgumentException;
 
 final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
@@ -12,29 +13,25 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $details = [
-            'affiliations' => [
-                'affiliation 1',
-                'affiliation 2',
-            ],
-            'emailAddress' => 'email@address1.com',
-        ];
-
         $data = [
-            'affiliations' => $details['affiliations'],
-            'emailAddress' => $details['emailAddress'],
+            'details' => [
+                'affiliations' => [
+                    'affiliation 1',
+                    'affiliation 2',
+                ],
+                'emailAddress' => 'email@address1.com',
+                'orcid' => [
+                    'id' => '0000-0002-1825-0097',
+                ],
+            ],
             'displayName' => 'Display name',
         ];
 
-        $contentHeader = ContentHeaderProfile::notLoggedIn($data['displayName'], $data['affiliations'], $data['emailAddress']);
+        $contentHeader = ContentHeaderProfile::notLoggedIn($data['displayName'], $data['details']['affiliations'], $data['details']['emailAddress'], new Orcid($data['details']['orcid']['id']));
 
+        $this->assertSameWithoutOrder($data['details'], $contentHeader['details']);
         $this->assertSame($data['displayName'], $contentHeader['displayName']);
-        $this->assertSame($data['affiliations'], $contentHeader['details']['affiliations']);
-        $this->assertSame($data['emailAddress'], $contentHeader['details']['emailAddress']);
 
-        $data['details'] = $details;
-        unset($data['affiliations']);
-        unset($data['emailAddress']);
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
 
@@ -84,7 +81,22 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
     /**
      * @test
      */
-    public function details_is_null_if_no_affiliations_nor_email_address_is_supplied()
+    public function supplied_orcid_is_set_as_a_property_of_details()
+    {
+        $contentHeaderProfile = ContentHeaderProfile::notLoggedIn(
+            'Display name',
+            [],
+            null,
+            new Orcid('0000-0002-1825-0097')
+        );
+
+        $this->assertSame('0000-0002-1825-0097', $contentHeaderProfile['details']['orcid']['id']);
+    }
+
+    /**
+     * @test
+     */
+    public function details_is_null_if_no_details_are_supplied()
     {
         $contentHeaderProfile = ContentHeaderProfile::notLoggedIn('Display name');
 
@@ -111,14 +123,23 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
                     ]
                 ),
             ],
-            'with affiliations and email address' => [
+            'with orcid' => [
+                ContentHeaderProfile::notLoggedIn(
+                    'Display name',
+                    [],
+                    null,
+                    new Orcid('0000-0002-1825-0097')
+                ),
+            ],
+            'complete' => [
                 ContentHeaderProfile::notLoggedIn(
                     'Display name',
                     [
                         'affiliation 1',
                         'affiliation 2',
                     ],
-                    'email@address.com'
+                    'email@address.com',
+                    new Orcid('0000-0002-1825-0097')
                 ),
             ],
         ];
