@@ -18,14 +18,14 @@ final class ProfileSnippetTest extends ViewModelTest
                 'fallback' => [
                     'altText' => 'the alt text',
                     'defaultPath' => '/default/path',
-                    'srcset' => '/path/to/image/500/wide 500w, /default/path 250w',
+                    'srcset' => '/path/to/image/500/wide 2x, /default/path 1x',
                 ],
             ],
             'title' => 'Title McTitle',
             'name' => 'Name McName',
         ];
         $profileSnippet = new ProfileSnippet($data['name'], $data['title'],
-            new Picture([], new Image('/default/path', [500 => '/path/to/image/500/wide', 250 => '/default/path'], 'the alt text'))
+            new Picture([], new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text'))
         );
 
         $this->assertSame($data['name'], $profileSnippet['name']);
@@ -46,7 +46,7 @@ final class ProfileSnippetTest extends ViewModelTest
                         [],
                         new Image(
                             '/default/path',
-                            [500 => '/path/to/image/500/wide', 250 => '/default/path'],
+                            ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
                             'the alt text'
                         )
                     )
