@@ -71,11 +71,7 @@ final class HypothesisLoaderTest extends ViewModelTest
     {
         return [
             'logged-out' => [
-                HypothesisLoader::loggedOut('https://usernameUrl', 'https://hypothesisApiUrl', 'hypothesisAuthority', 'https://iconPath', 'loginPath', 'grantToken'),
-            ],
-
-            'no-grant-token' => [
-                HypothesisLoader::loggedOut('https://usernameUrl', 'https://hypothesisApiUrl', 'hypothesisAuthority', 'https://iconPath', 'loginPath', null),
+                HypothesisLoader::loggedOut('https://usernameUrl', 'https://hypothesisApiUrl', 'hypothesisAuthority', 'https://iconPath', 'loginPath'),
             ],
 
             'logged-in' => [
