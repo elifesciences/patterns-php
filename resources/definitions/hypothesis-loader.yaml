@@ -38,6 +38,7 @@ schema:
         -
             required:
                 - profilePath
+                - grantToken
                 - logoutPath
             not:
                 required:
@@ -48,4 +49,5 @@ schema:
             not:
                 required:
                     - profilePath
+                    - grantToken
                     - logoutPath

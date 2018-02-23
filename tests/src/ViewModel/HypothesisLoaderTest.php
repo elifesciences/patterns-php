@@ -17,12 +17,12 @@ final class HypothesisLoaderTest extends ViewModelTest
                 'hypothesisApiUrl' => 'https://example.com/h-api',
                 'hypothesisAuthority' => 'Cartman',
                 'iconPath' => 'https://example.com/icon',
-                'grantToken' => 'someGrantToken',
             ],
 
             'loggedIn' => [
                 'profilePath' => 'https://example.com/profile',
                 'logoutPath' => 'https://example.com/log-out',
+                'grantToken' => 'someGrantToken',
             ],
 
             'loggedOut' => [
@@ -37,7 +37,7 @@ final class HypothesisLoaderTest extends ViewModelTest
             $data['core']['iconPath'],
             $data['loggedIn']['profilePath'],
             $data['loggedIn']['logoutPath'],
-            $data['core']['grantToken']
+            $data['loggedIn']['grantToken']
         );
 
         $this->assertSame($data['core']['usernameUrl'], $loaderLoggedIn['usernameUrl']);
@@ -46,7 +46,7 @@ final class HypothesisLoaderTest extends ViewModelTest
         $this->assertSame($data['core']['iconPath'], $loaderLoggedIn['iconPath']);
         $this->assertSame($data['loggedIn']['profilePath'], $loaderLoggedIn['profilePath']);
         $this->assertSame($data['loggedIn']['logoutPath'], $loaderLoggedIn['logoutPath']);
-        $this->assertSame($data['core']['grantToken'], $loaderLoggedIn['grantToken']);
+        $this->assertSame($data['loggedIn']['grantToken'], $loaderLoggedIn['grantToken']);
 
         $this->assertSameWithoutOrder(array_merge($data['core'], $data['loggedIn']), $loaderLoggedIn->toArray());
 
@@ -55,8 +55,7 @@ final class HypothesisLoaderTest extends ViewModelTest
             $data['core']['hypothesisApiUrl'],
             $data['core']['hypothesisAuthority'],
             $data['core']['iconPath'],
-            $data['loggedOut']['loginPath'],
-            $data['core']['grantToken']
+            $data['loggedOut']['loginPath']
         );
 
         $this->assertSame($data['core']['usernameUrl'], $loaderLoggedOut['usernameUrl']);
@@ -64,7 +63,6 @@ final class HypothesisLoaderTest extends ViewModelTest
         $this->assertSame($data['core']['hypothesisAuthority'], $loaderLoggedOut['hypothesisAuthority']);
         $this->assertSame($data['core']['iconPath'], $loaderLoggedOut['iconPath']);
         $this->assertSame($data['loggedOut']['loginPath'], $loaderLoggedOut['loginPath']);
-        $this->assertSame($data['core']['grantToken'], $loaderLoggedOut['grantToken']);
 
         $this->assertSameWithoutOrder(array_merge($data['core'], $data['loggedOut']), $loaderLoggedOut->toArray());
     }

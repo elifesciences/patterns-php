@@ -68,10 +68,11 @@ final class HypothesisLoader implements ViewModel
         string $iconPath,
         string $profilePath,
         string $logoutPath,
-        string $grantToken = null
+        string $grantToken
     ) : HypothesisLoader {
         Assertion::notBlank($profilePath);
         Assertion::notBlank($logoutPath);
+        Assertion::notBlank($grantToken);
 
         return new static($usernameUrl, $hypothesisApiUrl, $hypothesisAuthority, $iconPath, null, $profilePath, $logoutPath, $grantToken);
     }
