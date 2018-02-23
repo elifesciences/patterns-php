@@ -17,7 +17,7 @@ final class HypothesisLoaderTest extends ViewModelTest
                 'hypothesisApiUrl' => 'https://example.com/h-api',
                 'hypothesisAuthority' => 'Cartman',
                 'iconPath' => 'https://example.com/icon',
-                'grantToken' => 'someGrantToken'
+                'grantToken' => 'someGrantToken',
             ],
 
             'loggedIn' => [
@@ -77,7 +77,7 @@ final class HypothesisLoaderTest extends ViewModelTest
             ],
 
             'no-grant-token' => [
-                HypothesisLoader::loggedOut('https://usernameUrl', 'https://hypothesisApiUrl', 'hypothesisAuthority', 'https://iconPath','loginPath', null),
+                HypothesisLoader::loggedOut('https://usernameUrl', 'https://hypothesisApiUrl', 'hypothesisAuthority', 'https://iconPath', 'loginPath', null),
             ],
 
             'logged-in' => [
