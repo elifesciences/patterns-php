@@ -18,10 +18,11 @@ final class SeeMoreLink implements ViewModel
 
     protected $url;
 
-    public function __construct(Link $link)
+    public function __construct(Link $link, bool $isInline = false)
     {
         $this->name = $link['name'];
         $this->url = $link['url'];
+        $this->isInline = $isInline;
     }
 
     public function getStyleSheets() : Traversable

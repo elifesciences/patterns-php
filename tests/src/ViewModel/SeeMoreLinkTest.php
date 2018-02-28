@@ -15,13 +15,15 @@ final class SeeMoreLinkTest extends ViewModelTest
         $data = [
             'name' => 'something',
             'url' => 'http://google.com',
+            'isInline' => true,
         ];
 
-        $link = new SeeMoreLink(new Link($data['name'], $data['url']));
+        $link = new SeeMoreLink(new Link($data['name'], $data['url']), $data['isInline']);
 
         $this->assertSame($data['name'], $link['name'], 'The names should match');
         $this->assertSame($data['url'], $link['url'], 'The URLs should match');
-        $this->assertSame($data, $link->toArray());
+        $this->assertSame($data['isInline'], $link['isInline'], 'The isInline property should be true');
+        $this->assertSame($data, array_merge($link->toArray(), ['isInline' => true]));
     }
 
     public function viewModelProvider() : array
