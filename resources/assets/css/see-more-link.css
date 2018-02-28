@@ -1,2 +1,2 @@
-.see-more-link{display:block;color:#212121;font-family:"Avenir Next Webfont",Arial,Helvetica,sans-serif;font-size:16px;font-size:1rem;line-height:1.5;text-decoration:none}.see-more-link:after{content:"\00a\00bb"}.see-more-link__highlight{color:#0288d1}.see-more-link:hover{color:#0277bd}
+.see-more-link{color:#212121;font-family:"Avenir Next Webfont",Arial,Helvetica,sans-serif;font-size:16px;font-size:1rem;line-height:1.5;text-decoration:none}.see-more-link:after{content:"\00a\00bb"}.see-more-link:not(.see-more-link--inline){display:block}.see-more-link__highlight{color:#0288d1}.see-more-link:hover{color:#0277bd}
 /*# sourceMappingURL=see-more-link.css.map */
