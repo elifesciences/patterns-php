@@ -240,6 +240,8 @@ schema:
                 name:
                     type: string
                     minLength: 1
+                isInline:
+                    type: boolean
             required:
                 - url
                 - name
