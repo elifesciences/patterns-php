@@ -38,12 +38,12 @@ final class ReadMoreItem implements ViewModel
         yield from $this->item->getJavaScripts();
     }
 
-    protected function getComposedViewModels(): Traversable
+    protected function getComposedViewModels() : Traversable
     {
         yield $this->item;
     }
 
-    public function getTemplateName(): string
+    public function getTemplateName() : string
     {
         return 'resources/templates/read-more-item.mustache';
     }

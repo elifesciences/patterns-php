@@ -78,7 +78,6 @@ final class AnnotationTeaser implements ViewModel
         string $inContextUri,
         string $highlight,
         bool $isRestricted = false
-
     ) : AnnotationTeaser {
         return new static(
             $document,

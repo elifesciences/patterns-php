@@ -31,7 +31,7 @@ final class CaptionedAsset implements ViewModel
     ) {
         $this->captionText = $captionText;
         $this->setFigure($figure);
-        if ($doi !== null) {
+        if (null !== $doi) {
             $doi = FlexibleViewModel::fromViewModel($doi);
             $this->doi = $doi->withProperty('variant', Doi::ASSET);
         }

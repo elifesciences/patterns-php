@@ -146,7 +146,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    final private function loadDefinition() : stdClass
+    private function loadDefinition() : stdClass
     {
         $templateName = $this->createViewModel()->getTemplateName();
         $yamlFile = __DIR__.'/../../../resources/definitions/'.basename($templateName, 'mustache').'yaml';
@@ -172,10 +172,10 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $reasons = [];
         foreach ($expected as $key => $expected_item) {
-            if ($expected_item === null && !isset($actual[$key])) {
+            if (null === $expected_item && !isset($actual[$key])) {
                 continue;
             }
-            if (!isset($actual[$key]) && $expected[$key] !== null) {
+            if (!isset($actual[$key]) && null !== $expected[$key]) {
                 array_push($reasons, 'Key missing in array: '.$prefix.'.'.$key.' with value '.json_encode($expected_item));
                 continue;
             }
@@ -183,7 +183,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
                 $this->assertSameWithoutOrder($expected_item, $actual[$key], $key);
                 continue;
             }
-            if ($key === 'behaviour' || $key === 'classes') {
+            if ('behaviour' === $key || 'classes' === $key) {
                 $this->assertSameValuesWithoutOrder(explode(' ', $expected_item), explode(' ', $actual[$key]));
                 continue;
             }
