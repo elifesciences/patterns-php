@@ -2,5 +2,6 @@
 /composer.lock
 /pattern-library-*-description.log
 /pattern-library/
+/.php_cs.cache
 /phpunit.xml
 /vendor/
