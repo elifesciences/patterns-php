@@ -47,7 +47,7 @@ final class TextField implements ViewModel
         Assertion::inArray($inputType, ['email', 'password', 'search', 'tel', 'text', 'url']);
         Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
 
-        if ($state === self::STATE_INVALID) {
+        if (self::STATE_INVALID === $state) {
             Assertion::notNull($messageGroup);
             Assertion::notBlank($messageGroup['errorText']);
         }

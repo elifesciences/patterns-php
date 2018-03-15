@@ -18,7 +18,6 @@ final class VideoTest extends ViewModelTest
         $data = [
             'posterFrame' => 'http://some.image.com/test.jpg',
             'sources' => [
-
                 [
                     'src' => '/file.mp4',
                     'mediaType' => [

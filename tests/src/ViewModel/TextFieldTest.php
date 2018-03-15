@@ -44,7 +44,6 @@ final class TextFieldTest extends ViewModelTest
             $data['value'],
             TextField::STATE_INVALID,
             MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
-
         );
 
         $this->assertSame($data['name'], $textField['name']);

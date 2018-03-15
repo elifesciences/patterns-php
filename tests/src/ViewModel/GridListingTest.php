@@ -155,7 +155,6 @@ final class GridListingTest extends ViewModelTest
                                 ],
                                 'forMachine' => $date->format('Y-m-d'),
                             ],
-
                         ],
                     ],
                 ],

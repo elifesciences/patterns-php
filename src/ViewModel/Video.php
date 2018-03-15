@@ -26,7 +26,7 @@ final class Video implements ViewModel, IsCaptioned
         Assertion::notEmpty($sources);
         Assertion::allIsInstanceOf($sources, MediaSource::class);
         Assertion::allTrue(array_map(function (MediaSource $mediaSource) {
-            return strpos($mediaSource['mediaType']['forMachine'], 'video') === 0;
+            return 0 === strpos($mediaSource['mediaType']['forMachine'], 'video');
         }, $sources), 'All sources must be video types.');
 
         $this->posterFrame = $posterFrame;

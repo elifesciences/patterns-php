@@ -37,7 +37,6 @@ final class LoginControlLoggedInTest extends ViewModelTest
                     'defaultPath' => '/default/path',
                 ],
             ],
-
         ];
 
         $profileLoginControl = LoginControl::loggedIn($data['defaultUri'], $data['displayName'], new Picture([], new Image('/default/path')), $data['subsidiaryText'], $this->linkFields['input']);

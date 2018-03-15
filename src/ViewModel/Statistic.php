@@ -37,12 +37,12 @@ final class Statistic implements ViewModel
         $this->value = $value;
     }
 
-    public function getStyleSheets(): Traversable
+    public function getStyleSheets() : Traversable
     {
         yield 'resources/assets/css/statistic.css';
     }
 
-    public function getTemplateName(): string
+    public function getTemplateName() : string
     {
         return 'resources/templates/statistic.mustache';
     }

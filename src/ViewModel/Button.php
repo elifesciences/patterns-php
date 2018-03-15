@@ -41,13 +41,13 @@ final class Button implements ViewModel
         Assertion::notBlank($text);
         Assertion::choice($size, [self::SIZE_CUSTOM, self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
         Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE, self::STYLE_SPEECH_BUBBLE]);
-        if ($style === self::STYLE_LOGIN) {
-            Assertion::true($size === self::SIZE_EXTRA_SMALL);
+        if (self::STYLE_LOGIN === $style) {
+            Assertion::true(self::SIZE_EXTRA_SMALL === $size);
         }
 
         $classes = [];
 
-        if (self::SIZE_MEDIUM !== $size && $style !== self::STYLE_LOGIN && $size !== self::SIZE_CUSTOM) {
+        if (self::SIZE_MEDIUM !== $size && self::STYLE_LOGIN !== $style && self::SIZE_CUSTOM !== $size) {
             $classes[] = 'button--'.$size;
         }
 

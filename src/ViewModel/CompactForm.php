@@ -38,7 +38,7 @@ final class CompactForm implements ViewModel
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
 
-        if ($state === self::STATE_INVALID) {
+        if (self::STATE_INVALID === $state) {
             Assertion::notNull($messageGroup);
             Assertion::notBlank($messageGroup['errorText']);
         }

@@ -43,7 +43,7 @@ class StatisticCollectionTest extends ViewModelTest
         new StatisticCollection();
     }
 
-    public function viewModelProvider(): array
+    public function viewModelProvider() : array
     {
         return [
           'minimum' => [
@@ -58,7 +58,7 @@ class StatisticCollectionTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate(): string
+    protected function expectedTemplate() : string
     {
         return 'resources/templates/statistic-collection.mustache';
     }

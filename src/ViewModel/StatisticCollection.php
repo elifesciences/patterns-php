@@ -24,17 +24,17 @@ final class StatisticCollection implements ViewModel
         $this->stats = $stats;
     }
 
-    protected function getLocalStyleSheets(): Traversable
+    protected function getLocalStyleSheets() : Traversable
     {
         yield 'resources/assets/css/statistic-collection.css';
     }
 
-    protected function getComposedViewModels(): Traversable
+    protected function getComposedViewModels() : Traversable
     {
         yield from $this->stats;
     }
 
-    public function getTemplateName(): string
+    public function getTemplateName() : string
     {
         return 'resources/templates/statistic-collection.mustache';
     }

@@ -40,19 +40,19 @@ final class ListingReadMore implements ViewModel
         $this->id = $id;
     }
 
-    protected function getComposedViewModels(): Traversable
+    protected function getComposedViewModels() : Traversable
     {
         yield from $this->items;
         yield $this->pagination;
         yield $this->heading;
     }
 
-    public function getTemplateName(): string
+    public function getTemplateName() : string
     {
         return 'resources/templates/listing-read-more.mustache';
     }
 
-    public function getLocalStyleSheets(): Traversable
+    public function getLocalStyleSheets() : Traversable
     {
         yield 'resources/assets/css/listing.css';
     }

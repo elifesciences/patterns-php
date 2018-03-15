@@ -15,7 +15,6 @@ final class SortControlTest extends ViewModelTest
     {
         $data = [
             'options' => [
-
                     [
                         'option' => 'option 1',
                         'url' => '#',
