@@ -26,7 +26,7 @@ final class SpeechBubble implements ViewModel
     private function __construct(string $emptinessSignifier, bool $isSmall = false)
     {
         $visibleAnnotationCount = "<span data-visible-annotation-count>{$emptinessSignifier}</span>";
-        $hiddenAccessibleText = 'Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).';
+        $hiddenAccessibleText = 'Open annotations. The current annotation count on this page is <span data-hypothesis-annotation-count>being calculated</span>.';
         $this->text = mixed_accessibility_text($visibleAnnotationCount, $hiddenAccessibleText);
         if ($isSmall) {
             $this->isSmall = $isSmall;
