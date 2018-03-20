@@ -24,7 +24,7 @@ final class SpeechBubbleTest extends ViewModelTest
         $this->assertSame($data, $hypothesisOpener->toArray());
 
         $data = [
-            'text' => '<span aria-hidden="true"><span data-visible-annotation-count>0</span></span><span class="visuallyhidden"> Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).</span>',
+            'text' => '<span aria-hidden="true"><span data-visible-annotation-count></span></span><span class="visuallyhidden"> Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page).</span>',
             'isSmall' => true,
             'behaviour' => 'HypothesisOpener',
         ];
