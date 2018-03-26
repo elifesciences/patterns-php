@@ -17,6 +17,7 @@ final class ListingReadMore implements ViewModel
     use ArrayFromProperties;
     use ComposedAssets;
 
+    private $allRelated;
     private $items;
     private $id;
     private $heading;
@@ -41,7 +42,7 @@ final class ListingReadMore implements ViewModel
         $this->allRelated = $this->areAllRelated($items);
     }
 
-    private function areAllRelated(array $items)
+    private function areAllRelated(array $items) : bool
     {
         foreach ($items as $item) {
             if (!$item['isRelated']) {

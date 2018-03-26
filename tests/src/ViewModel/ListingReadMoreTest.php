@@ -57,7 +57,7 @@ final class ListingReadMoreTest extends ViewModelTest
     /**
      * @test
      */
-    public function knows_if_all_items_are_related()
+    public function it_knows_if_all_items_are_related()
     {
         $data = [
             'items' => [
@@ -66,19 +66,11 @@ final class ListingReadMoreTest extends ViewModelTest
                         'title' => 'title a',
                         'url' => '#',
                     ],
-                    'content' => 'With extra content',
                     'isRelated' => true,
                 ],
                 [
                     'item' => [
                         'title' => 'title b',
-                        'url' => '#',
-                    ],
-                    'isRelated' => true,
-                ],
-                [
-                    'item' => [
-                        'title' => 'title c',
                         'url' => '#',
                     ],
                     'isRelated' => true,
@@ -100,7 +92,7 @@ final class ListingReadMoreTest extends ViewModelTest
     /**
      * @test
      */
-    public function knows_if_not_all_items_are_related()
+    public function it_knows_if_not_all_items_are_related()
     {
         $data = [
             'items' => [
@@ -109,18 +101,10 @@ final class ListingReadMoreTest extends ViewModelTest
                         'title' => 'title a',
                         'url' => '#',
                     ],
-                    'content' => 'With extra content',
                 ],
                 [
                     'item' => [
                         'title' => 'title b',
-                        'url' => '#',
-                    ],
-                    'isRelated' => true,
-                ],
-                [
-                    'item' => [
-                        'title' => 'title c',
                         'url' => '#',
                     ],
                     'isRelated' => true,
