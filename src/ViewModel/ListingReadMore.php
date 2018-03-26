@@ -38,6 +38,18 @@ final class ListingReadMore implements ViewModel
         $this->heading = $heading;
         $this->pagination = $pagination;
         $this->id = $id;
+        $this->allRelated = $this->areAllRelated($items);
+    }
+
+    private function areAllRelated(array $items)
+    {
+        foreach ($items as $item) {
+            if (!$item['isRelated']) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     protected function getComposedViewModels() : Traversable

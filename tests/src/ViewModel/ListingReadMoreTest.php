@@ -54,6 +54,91 @@ final class ListingReadMoreTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $listingReadMore->toArray());
     }
 
+    /**
+     * @test
+     */
+    public function knows_if_all_items_are_related()
+    {
+        $data = [
+            'items' => [
+                [
+                    'item' => [
+                        'title' => 'title a',
+                        'url' => '#',
+                    ],
+                    'content' => 'With extra content',
+                    'isRelated' => true,
+                ],
+                [
+                    'item' => [
+                        'title' => 'title b',
+                        'url' => '#',
+                    ],
+                    'isRelated' => true,
+                ],
+                [
+                    'item' => [
+                        'title' => 'title c',
+                        'url' => '#',
+                    ],
+                    'isRelated' => true,
+                ],
+            ],
+        ];
+
+        $list = array_map(function ($item) {
+            return new ReadMoreItem(
+                new ContentHeaderReadMore($item['item']['title'], $item['item']['url']),
+                $item['content'] ?? null,
+                $item['isRelated']);
+        }, $data['items']);
+
+        $listingReadMore = ListingReadMore::basic($list);
+        $this->assertTrue($listingReadMore['allRelated']);
+    }
+
+    /**
+     * @test
+     */
+    public function knows_if_not_all_items_are_related()
+    {
+        $data = [
+            'items' => [
+                [
+                    'item' => [
+                        'title' => 'title a',
+                        'url' => '#',
+                    ],
+                    'content' => 'With extra content',
+                ],
+                [
+                    'item' => [
+                        'title' => 'title b',
+                        'url' => '#',
+                    ],
+                    'isRelated' => true,
+                ],
+                [
+                    'item' => [
+                        'title' => 'title c',
+                        'url' => '#',
+                    ],
+                    'isRelated' => true,
+                ],
+            ],
+        ];
+
+        $list = array_map(function ($item) {
+            return new ReadMoreItem(
+                new ContentHeaderReadMore($item['item']['title'], $item['item']['url']),
+                $item['content'] ?? null,
+                $item['isRelated'] ?? false);
+        }, $data['items']);
+
+        $listingReadMore = ListingReadMore::basic($list);
+        $this->assertFalse($listingReadMore['allRelated']);
+    }
+
     public function viewModelProvider() : array
     {
         return [
