@@ -25,6 +25,7 @@ final class ListingReadMoreTest extends ViewModelTest
                         'url' => '#',
                     ],
                     'content' => 'With extra content',
+                    'isRelated' => true,
                 ],
                 [
                     'item' => [
@@ -42,7 +43,10 @@ final class ListingReadMoreTest extends ViewModelTest
         ];
 
         $list = array_map(function ($item) {
-            return new ReadMoreItem(new ContentHeaderReadMore($item['item']['title'], $item['item']['url']), $item['content'] ?? null);
+            return new ReadMoreItem(
+                new ContentHeaderReadMore($item['item']['title'], $item['item']['url']),
+                $item['content'] ?? null,
+                $item['isRelated'] ?? false);
         }, $data['items']);
 
         $listingReadMore = ListingReadMore::basic($list);
@@ -65,6 +69,14 @@ final class ListingReadMoreTest extends ViewModelTest
                     new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
                     new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
                     new ReadMoreItem(new ContentHeaderReadMore('title', '#'), 'some extra content'),
+                ], new ListHeading('heading'), 'id'),
+            ],
+            [
+                ListingReadMore::basic([
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#'), 'some extra content'),
+                    new ReadMoreItem(new ContentHeaderReadMore('title', '#'), 'some extra content', true),
                 ], new ListHeading('heading'), 'id'),
             ],
             [
