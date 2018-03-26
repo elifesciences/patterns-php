@@ -15,8 +15,6 @@ schema:
     properties:
         allRelated:
             type: boolean
-            emum:
-                - true
         heading:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
