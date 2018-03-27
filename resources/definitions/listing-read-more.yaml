@@ -13,6 +13,8 @@ schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
     type: object
     properties:
+        allRelated:
+            type: boolean
         heading:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
