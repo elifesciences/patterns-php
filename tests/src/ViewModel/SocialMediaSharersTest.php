@@ -14,14 +14,14 @@ final class SocialMediaSharersTest extends ViewModelTest
     {
         $data = [
             'raw' => [
-                'title'=> 'Some article title',
+                'title' => 'Some article title',
                 'url' => 'https://example.com/some-article-url',
             ],
             'encoded' => [
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title&amp;url=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'emailUrl' => 'mailto:?subject=Some+article+title&amp;body=https%3A%2F%2Fexample.com%2Fsome-article-url',
-                'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-article-url'
+                'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-article-url',
             ],
         ];
         $socialMediaSharers = new SocialMediaSharers($data['raw']['title'], $data['raw']['url']);
@@ -57,7 +57,7 @@ final class SocialMediaSharersTest extends ViewModelTest
     {
         return [
             [
-                new SocialMediaSharers('Some article title', 'https://example.com/some-article-url')
+                new SocialMediaSharers('Some article title', 'https://example.com/some-article-url'),
             ],
         ];
     }

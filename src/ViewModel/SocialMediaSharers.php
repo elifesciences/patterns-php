@@ -28,10 +28,10 @@ final class SocialMediaSharers implements ViewModel
         $encodedTitle = urlencode($title);
         $encodedUrl = urlencode($url);
 
-        $this->facebookUrl = 'https://facebook.com/sharer/sharer.php?u=' . $encodedUrl;
-        $this->twitterUrl = 'https://twitter.com/intent/tweet/?text='. $encodedTitle . '&amp;url=' . $encodedUrl;
-        $this->emailUrl = 'mailto:?subject='. $encodedTitle . '&amp;body=' . $encodedUrl;
-        $this->redditUrl = 'https://reddit.com/submit/?url='. $encodedUrl;
+        $this->facebookUrl = 'https://facebook.com/sharer/sharer.php?u='.$encodedUrl;
+        $this->twitterUrl = 'https://twitter.com/intent/tweet/?text='.$encodedTitle.'&amp;url='.$encodedUrl;
+        $this->emailUrl = 'mailto:?subject='.$encodedTitle.'&amp;body='.$encodedUrl;
+        $this->redditUrl = 'https://reddit.com/submit/?url='.$encodedUrl;
     }
 
     public function getTemplateName() : string
@@ -43,5 +43,4 @@ final class SocialMediaSharers implements ViewModel
     {
         yield 'resources/assets/css/social-media-sharers.css';
     }
-
 }
