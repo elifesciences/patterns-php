@@ -77,11 +77,6 @@ final class ContentHeaderTest extends ViewModelTest
                 ],
             ],
             'download' => 'download',
-            'button' => [
-                'classes' => 'button--default',
-                'path' => 'path',
-                'text' => 'text',
-            ],
             'selectNav' => [
                 'route' => '#',
                 'select' => [
@@ -138,7 +133,6 @@ final class ContentHeaderTest extends ViewModelTest
                 return new Institution($item['name']);
             }, $data['institutions']['list']),
             $data['download'],
-            Button::link($data['button']['text'], $data['button']['path']),
             new SelectNav(
                 $data['selectNav']['route'],
                 new Select(
@@ -168,7 +162,6 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['authors'], $contentHeader['authors']);
         $this->assertSameWithoutOrder($data['institutions'], $contentHeader['institutions']);
         $this->assertSame($data['download'], $contentHeader['download']);
-        $this->assertSameWithoutOrder($data['button'], $contentHeader['button']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
         $this->assertSameWithoutOrder($data['meta'], $contentHeader['meta']);
         $this->assertSame($data['licence'], $contentHeader['licence']);
