@@ -109,6 +109,7 @@
     {{#impactStatement}}
       <div class="content-header__impact-statement">{{{impactStatement}}}</div>
     {{/impactStatement}}
+
   </div>
 
   {{#authors}}
@@ -139,11 +140,9 @@
     </div>
   {{/authors}}
 
-  {{#button}}
-    <div class="content-header__cta">
-      {{>resources/templates/button}}
-    </div>
-  {{/button}}
+    {{#socialMediaSharers}}
+      {{> resources/templates/social-media-sharers}}
+    {{/socialMediaSharers}}
 
   {{#selectNav}}
     <div class="content-header__cta">

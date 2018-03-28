@@ -191,6 +191,27 @@ schema:
                     - profile
                 profile:
                     - hasProfile
+        socialMediaSharers:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                facebookUrl:
+                    type: string
+                    minLength: 1
+                twitterUrl:
+                    type: string
+                    minLength: 1
+                emailUrl:
+                    type: string
+                    minLength: 1
+                redditUrl:
+                    type: string
+                    minLength: 1
+            required:
+                - facebookUrl
+                - twitterUrl
+                - emailUrl
+                - redditUrl
         authors:
             type: object
             properties:
@@ -238,44 +259,6 @@ schema:
         download:
             type: string
             minLength: 1
-        button:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            allOf:
-                -
-                    properties:
-                        text:
-                            type: string
-                            minLength: 1
-                        classes:
-                            type: string
-                    required:
-                        - text
-                -
-                    oneOf:
-                        -
-                            properties:
-                                type:
-                                    type: string
-                                    enum:
-                                        - button
-                                        - reset
-                                        - submit
-                                id:
-                                    type: string
-                                    minLength: 1
-                                name:
-                                    type: string
-                                    minLength: 1
-                            required:
-                                - type
-                        -
-                            properties:
-                                path:
-                                    type: string
-                                    minLength: 1
-                            required:
-                                - path
         selectNav:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object

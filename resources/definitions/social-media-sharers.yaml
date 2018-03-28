@@ -1,0 +1,25 @@
+assets:
+    css:
+        - social-media-sharers.css
+    js: []
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        facebookUrl:
+            type: string
+            minLength: 1
+        twitterUrl:
+            type: string
+            minLength: 1
+        emailUrl:
+            type: string
+            minLength: 1
+        redditUrl:
+            type: string
+            minLength: 1
+    required:
+        - facebookUrl
+        - twitterUrl
+        - emailUrl
+        - redditUrl
