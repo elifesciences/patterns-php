@@ -16,6 +16,7 @@ use eLife\Patterns\ViewModel\Profile;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
+use eLife\Patterns\ViewModel\SocialMediaSharers;
 use InvalidArgumentException;
 
 final class ContentHeaderTest extends ViewModelTest
@@ -48,6 +49,12 @@ final class ContentHeaderTest extends ViewModelTest
                 'creditOverlay' => true,
             ],
             'impactStatement' => 'impact statement',
+            'socialMediaSharers' => [
+                'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title&amp;url=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'emailUrl' => 'mailto:?subject=Some+article+title&amp;body=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-article-url',
+            ],
             'header' => [
                 'possible' => true,
                 'hasSubjects' => true,
@@ -133,6 +140,7 @@ final class ContentHeaderTest extends ViewModelTest
                 return new Institution($item['name']);
             }, $data['institutions']['list']),
             $data['download'],
+            new SocialMediaSharers('Some article title', 'https://example.com/some-article-url'),
             new SelectNav(
                 $data['selectNav']['route'],
                 new Select(
@@ -162,10 +170,11 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['authors'], $contentHeader['authors']);
         $this->assertSameWithoutOrder($data['institutions'], $contentHeader['institutions']);
         $this->assertSame($data['download'], $contentHeader['download']);
+        $this->assertSameWithoutOrder($data['socialMediaSharers'], $contentHeader['socialMediaSharers']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
         $this->assertSameWithoutOrder($data['meta'], $contentHeader['meta']);
         $this->assertSame($data['licence'], $contentHeader['licence']);
-        $this->assertSame($data, $contentHeader->toArray());
+        $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
 
     /**

@@ -23,6 +23,7 @@ final class ContentHeader implements ViewModel
     private $authors;
     private $institutions;
     private $download;
+    private $socialMediaSharers;
     private $selectNav;
     private $meta;
     private $licence;
@@ -38,6 +39,7 @@ final class ContentHeader implements ViewModel
         array $authors = [],
         array $institutions = [],
         string $download = null,
+        SocialMediaSharers $socialMediaSharers = null,
         SelectNav $selectNav = null,
         Meta $meta = null,
         string $licence = null,
@@ -72,6 +74,7 @@ final class ContentHeader implements ViewModel
             }
         }
         $this->download = $download;
+        $this->socialMediaSharers = $socialMediaSharers;
         $this->selectNav = $selectNav;
         $this->meta = $meta;
         $this->licence = $licence;
