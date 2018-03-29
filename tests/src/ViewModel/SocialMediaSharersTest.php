@@ -61,26 +61,25 @@ final class SocialMediaSharersTest extends ViewModelTest
         ];
 
         foreach ($tweets as $tweet) {
-
             $url = $tweet['url'];
             $title = $tweet['title'];
 
             $twitterUrl = (new SocialMediaSharers($title, $url))['twitterUrl'];
 
-            preg_match('/url=([^&]+)/', $twitterUrl,$urlMatch);
+            preg_match('/url=([^&]+)/', $twitterUrl, $urlMatch);
             $decodedUrl = urldecode($urlMatch[1]);
             $this->assertEquals($url, $decodedUrl);
 
-            preg_match('/text=([^&]+)/', $twitterUrl,$textMatch);
+            preg_match('/text=([^&]+)/', $twitterUrl, $textMatch);
             $decodedText = urldecode($textMatch[1]);
             if ($title === $decodedText) {
-                $this->assertLessThanOrEqual($overallMaxLength, strlen($decodedText . $decodedUrl));
+                $this->assertLessThanOrEqual($overallMaxLength, strlen($decodedText.$decodedUrl));
             } else {
                 // The title has been truncated to stop the overall tweet being too long
                 $ellipsis = ' &#8230;';
                 // -1 to account for the display of the ellipsis
                 $charCountTruncatedTitle = $overallMaxLength - strlen($decodedUrl) - 1;
-                $this->assertEquals(substr($title, 0, $charCountTruncatedTitle) . $ellipsis, $decodedText);
+                $this->assertEquals(substr($title, 0, $charCountTruncatedTitle).$ellipsis, $decodedText);
                 $this->assertLessThanOrEqual($overallMaxLength + strlen($ellipsis) - 1, strlen($decodedText));
             }
         }

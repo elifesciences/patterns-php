@@ -41,14 +41,15 @@ final class SocialMediaSharers implements ViewModel
         $stem = 'https://twitter.com/intent/tweet/';
         $encodedUrl = urlencode($url);
 
-        if (strlen($title . $url) <= $maxLength) {
-            return $stem . '?text=' . urlencode($title) . '&amp;url=' . $encodedUrl;
+        if (strlen($title.$url) <= $maxLength) {
+            return $stem.'?text='.urlencode($title).'&amp;url='.$encodedUrl;
         }
 
         $ellipsis = ' &#8230;';
         // -1 to account for the display of the ellipsis
-        $truncatedTitle = substr($title,0, $maxLength - strlen($url) - 1) . $ellipsis;
-        return $stem . '?text=' . urlencode($truncatedTitle) . '&amp;url=' . $encodedUrl;
+        $truncatedTitle = substr($title, 0, $maxLength - strlen($url) - 1).$ellipsis;
+
+        return $stem.'?text='.urlencode($truncatedTitle).'&amp;url='.$encodedUrl;
     }
 
     public function getTemplateName() : string
