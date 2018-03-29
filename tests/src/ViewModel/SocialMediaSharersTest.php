@@ -33,46 +33,71 @@ final class SocialMediaSharersTest extends ViewModelTest
         $this->assertSame($data['encoded'], $socialMediaSharers->toArray());
     }
 
+
     /**
      * @test
      */
-    public function its_twitterUrl_parameter_values_are_correctly_formed()
+    public function its_facebookUrl_is_correctly_formed()
+    {
+        $url = 'https://elifesciences.org/articles/34901';
+        $facebookUrl = (new SocialMediaSharers('Retrotransposons: On the move', $url))['facebookUrl'];
+        $this->assertEquals('https://facebook.com/sharer/sharer.php?u='.urlencode($url), $facebookUrl);
+    }
+
+    /**
+     * @test
+     */
+    public function its_redditUrl_is_correctly_formed()
+    {
+        $url = 'https://elifesciences.org/articles/34901';
+        $redditUrl = (new SocialMediaSharers('Retrotransposons: On the move', $url))['redditUrl'];
+        $this->assertEquals('https://reddit.com/submit/?url='.urlencode($url), $redditUrl);
+    }
+
+    /**
+     * @test
+     */
+    public function its_emailUrl_is_correctly_formed()
+    {
+        $title = 'Retrotransposons: On the move';
+        $url = 'https://elifesciences.org/articles/34901';
+        $emailUrl = (new SocialMediaSharers($title, $url))['emailUrl'];
+        $this->assertEquals('mailto:?subject='.urlencode($title).'&amp;body='.urlencode($url), $emailUrl);
+    }
+
+    /**
+     * @test
+     */
+    public function its_twitterUrl_is_correctly_formed()
     {
         // One character shorter than theoretical max to account for space injected by Twitter between the text and url
         $overallMaxLength = 139;
 
         $tweets = [
             [
-                'url' => 'https://elifesciences.org/articles/34901',
                 'title' => 'Retrotransposons: On the move',
+                'url' => 'https://elifesciences.org/articles/34901',
             ],
             [
-                'url' => 'https://elifesciences.org/labs/0af6527f/building-a-pattern-library-for-scholarly-publishing',
-                'title' => 'Building a pattern library for scholarly publishing',
-            ],
-            [
-                'url' => 'https://elifesciences.org/labs/0a677ba3/prototyping-tools-to-improve-the-understanding-of-science',
-                'title' => 'Prototyping tools to improve the understanding of science',
-            ],
-            [
-                'url' => 'https://elifesciences.org/inside-elife/912b0679/early-career-advisory-group-elife-welcomes-150-ambassadors-of-good-practice-in-science',
                 'title' => 'Early-Career Advisory Group: eLife welcomes 150 Ambassadors of good practice in science',
+                'url' => 'https://elifesciences.org/inside-elife/912b0679/early-career-advisory-group-elife-welcomes-150-ambassadors-of-good-practice-in-science',
             ],
         ];
 
         foreach ($tweets as $tweet) {
-            $url = $tweet['url'];
             $title = $tweet['title'];
+            $url = $tweet['url'];
 
             $twitterUrl = (new SocialMediaSharers($title, $url))['twitterUrl'];
+            $this->assertStringStartsWith('https://twitter.com/intent/tweet/', $twitterUrl);
 
             preg_match('/url=([^&]+)/', $twitterUrl, $urlMatch);
+            $this->assertEquals(urlencode($url), $urlMatch[1]);
             $decodedUrl = urldecode($urlMatch[1]);
-            $this->assertEquals($url, $decodedUrl);
 
             preg_match('/text=([^&]+)/', $twitterUrl, $textMatch);
             $decodedText = urldecode($textMatch[1]);
-            if ($title === $decodedText) {
+            if (urlencode($title) === $textMatch[1]) {
                 $this->assertLessThanOrEqual($overallMaxLength, strlen($decodedText.$decodedUrl));
             } else {
                 // The title has been truncated to stop the overall tweet being too long
