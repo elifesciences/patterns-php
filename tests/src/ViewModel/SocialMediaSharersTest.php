@@ -33,7 +33,6 @@ final class SocialMediaSharersTest extends ViewModelTest
         $this->assertSame($data['encoded'], $socialMediaSharers->toArray());
     }
 
-
     /**
      * @test
      */
