@@ -25,11 +25,11 @@ final class SocialMediaSharers implements ViewModel
         Assertion::notBlank($title);
         Assertion::notBlank($url);
 
+        $this->twitterUrl = $this->buildTwitterUrl($title, $url);
+
         $encodedTitle = urlencode($title);
         $encodedUrl = urlencode($url);
-
         $this->facebookUrl = 'https://facebook.com/sharer/sharer.php?u='.$encodedUrl;
-        $this->twitterUrl = $this->buildTwitterUrl($title, $url);
         $this->emailUrl = 'mailto:?subject='.$encodedTitle.'&amp;body='.$encodedUrl;
         $this->redditUrl = 'https://reddit.com/submit/?url='.$encodedUrl;
     }
