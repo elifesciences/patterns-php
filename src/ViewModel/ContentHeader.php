@@ -75,7 +75,7 @@ final class ContentHeader implements ViewModel
         }
         $this->download = $download;
         $this->socialMediaSharers = $socialMediaSharers;
-        if ($this->socialMediaSharers === null) {
+        if (null === $this->socialMediaSharers) {
             $this->hasSocialMediaSharers = false;
         } else {
             $this->hasSocialMediaSharers = true;
