@@ -70,7 +70,7 @@ final class SocialMediaSharersTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new SocialMediaSharers('Some article title', '');
+        new SocialMediaSharers('Some article title', 'foo');
     }
 
     public function viewModelProvider() : array

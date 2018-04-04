@@ -23,7 +23,7 @@ final class SocialMediaSharers implements ViewModel
     public function __construct(string $title, string $url)
     {
         Assertion::notBlank($title);
-        Assertion::notBlank($url);
+        Assertion::url($url);
 
         $this->twitterUrl = $this->buildTwitterUrl($title, $url);
 
