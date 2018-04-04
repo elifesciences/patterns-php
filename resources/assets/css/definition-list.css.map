@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGE,uDACG,CACD,OAAO,CAAE,MAAM,CAIf,kCAAS,CACP,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,KAAK,CAEhB,iCAAQ,CACN,OAAO,CAAE,IAAI,CAKf,qCAAS,CACP,OAAO,CAAE,IAAI",
+"sources": ["../../../../../../assets/sass/patterns/atoms/definition-list.scss"],
+"names": [],
+"file": "definition-list.css"
+}
