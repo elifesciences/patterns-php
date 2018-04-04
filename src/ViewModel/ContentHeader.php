@@ -93,6 +93,7 @@ final class ContentHeader implements ViewModel
 
     protected function getComposedViewModels() : Traversable
     {
+        yield $this->socialMediaSharers;
         yield $this->selectNav;
         yield $this->meta;
     }
