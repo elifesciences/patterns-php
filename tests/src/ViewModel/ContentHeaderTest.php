@@ -28,6 +28,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $data = [
             'title' => 'title',
+            'hasSocialMediaSharers' => false,
         ];
 
         $contentHeader = new ContentHeader($data['title']);
@@ -49,6 +50,7 @@ final class ContentHeaderTest extends ViewModelTest
                 'creditOverlay' => true,
             ],
             'impactStatement' => 'impact statement',
+            'hasSocialMediaSharers' => true,
             'socialMediaSharers' => [
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
@@ -171,6 +173,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['institutions'], $contentHeader['institutions']);
         $this->assertSame($data['download'], $contentHeader['download']);
         $this->assertSameWithoutOrder($data['socialMediaSharers'], $contentHeader['socialMediaSharers']);
+        $this->assertSame($data['hasSocialMediaSharers'], $contentHeader['hasSocialMediaSharers']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
         $this->assertSameWithoutOrder($data['meta'], $contentHeader['meta']);
         $this->assertSame($data['licence'], $contentHeader['licence']);
@@ -215,6 +218,26 @@ final class ContentHeaderTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         new ContentHeader('', null, null, false, [], null, [Author::asText('author')], ['foo']);
+    }
+
+    /**
+     * @test
+     */
+    public function having_social_media_sharers_sets_hasSocialMediaSharers_true()
+    {
+        $header = new ContentHeader('title', null, null, false, [], null, [], [], null, new SocialMediaSharers('Some article', 'https://example.com/some-article-url'));
+
+        $this->assertTrue($header['hasSocialMediaSharers']);
+    }
+
+    /**
+     * @test
+     */
+    public function not_having_social_media_sharers_sets_hasSocialMediaSharers__false()
+    {
+        $header = new ContentHeader('title', null, null, false, [], null, [], [], null, null);
+
+        $this->assertFalse($header['hasSocialMediaSharers']);
     }
 
     public function viewModelProvider() : array

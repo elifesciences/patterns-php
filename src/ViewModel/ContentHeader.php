@@ -75,6 +75,12 @@ final class ContentHeader implements ViewModel
         }
         $this->download = $download;
         $this->socialMediaSharers = $socialMediaSharers;
+        if ($this->socialMediaSharers === null) {
+            $this->hasSocialMediaSharers = false;
+        } else {
+            $this->hasSocialMediaSharers = true;
+        }
+
         $this->selectNav = $selectNav;
         $this->meta = $meta;
         $this->licence = $licence;
