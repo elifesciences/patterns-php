@@ -192,6 +192,8 @@ schema:
                     - profile
                 profile:
                     - hasProfile
+        hasSocialMediaSharers:
+            type: boolean
         socialMediaSharers:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
