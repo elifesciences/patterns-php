@@ -19,8 +19,8 @@ final class SocialMediaSharersTest extends ViewModelTest
             ],
             'encoded' => [
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url',
-                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title&amp;url=https%3A%2F%2Fexample.com%2Fsome-article-url',
-                'emailUrl' => 'mailto:?subject=Some+article+title&amp;body=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'emailUrl' => 'mailto:?subject=Some+article+title&body=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-article-url',
             ],
         ];
@@ -39,8 +39,8 @@ final class SocialMediaSharersTest extends ViewModelTest
             ],
             'encoded' => [
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
-                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title+that+is+very+long+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4+%26%238230%3B&amp;url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
-                'emailUrl' => 'mailto:?subject=Some+article+title+that+is+very+long+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4+5+6+7+8+9&amp;body=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
+                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title+that+is+very+long+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4%E2%80%A6&url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
+                'emailUrl' => 'mailto:?subject=Some+article+title+that+is+very+long+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4+5+6+7+8+9&body=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
                 'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
             ],
         ];

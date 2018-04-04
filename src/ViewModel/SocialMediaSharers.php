@@ -8,9 +8,12 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
+use function eLife\Patterns\truncate;
 
 final class SocialMediaSharers implements ViewModel
 {
+    const TWITTER_LENGTH = 140 - 1;
+
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
@@ -25,31 +28,25 @@ final class SocialMediaSharers implements ViewModel
         Assertion::notBlank($title);
         Assertion::url($url);
 
+        $encodedTitle = urlencode($title);
+        $encodedUrl = urlencode($url);
+
+        $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         $this->twitterUrl = $this->buildTwitterUrl($title, $url);
+        $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
+        $this->redditUrl = "https://reddit.com/submit/?url={$encodedUrl}";
+    }
+
+    private function buildTwitterUrl(string $title, string $url) : string
+    {
+        if (strlen($title.$url) > self::TWITTER_LENGTH) {
+            $title = truncate($title, self::TWITTER_LENGTH - strlen($url));
+        }
 
         $encodedTitle = urlencode($title);
         $encodedUrl = urlencode($url);
-        $this->facebookUrl = 'https://facebook.com/sharer/sharer.php?u='.$encodedUrl;
-        $this->emailUrl = 'mailto:?subject='.$encodedTitle.'&amp;body='.$encodedUrl;
-        $this->redditUrl = 'https://reddit.com/submit/?url='.$encodedUrl;
-    }
 
-    private function buildTwitterUrl($title, $url)
-    {
-        // One character shorter than theoretical max to account for space injected by Twitter between the text and url
-        $maxLength = 139;
-        $stem = 'https://twitter.com/intent/tweet/';
-        $encodedUrl = urlencode($url);
-
-        if (strlen($title.$url) <= $maxLength) {
-            return $stem.'?text='.urlencode($title).'&amp;url='.$encodedUrl;
-        }
-
-        $ellipsis = ' &#8230;';
-        // -1 to account for the display of the ellipsis
-        $truncatedTitle = substr($title, 0, $maxLength - strlen($url) - 1).$ellipsis;
-
-        return $stem.'?text='.urlencode($truncatedTitle).'&amp;url='.$encodedUrl;
+        return "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
     }
 
     public function getTemplateName() : string
