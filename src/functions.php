@@ -3,6 +3,7 @@
 namespace eLife\Patterns;
 
 use Traversable;
+use function strlen;
 
 /**
  * Converts traversable type to unique array.
@@ -38,6 +39,18 @@ function flatten($item) : Traversable
 function is_iterable($item) : bool
 {
     return is_array($item) || $item instanceof Traversable;
+}
+
+/**
+ * @internal
+ */
+function truncate(string $text, int $length) : string
+{
+    if ($length >= strlen($text)) {
+        return $text;
+    }
+
+    return substr($text, 0, $length - 1).'…';
 }
 
 function mixed_visibility_text(string $prefix, string $text, string $suffix = '') : string
