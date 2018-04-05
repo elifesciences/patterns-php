@@ -39,11 +39,7 @@ final class SocialMediaSharers implements ViewModel
 
     private function buildTwitterUrl(string $title, string $url) : string
     {
-        if (strlen($title) > self::TWITTER_TITLE_LENGTH) {
-            $title = truncate($title, self::TWITTER_TITLE_LENGTH);
-        }
-
-        $encodedTitle = urlencode($title);
+        $encodedTitle = urlencode(truncate($title, self::TWITTER_TITLE_LENGTH));
         $encodedUrl = urlencode($url);
 
         return "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
