@@ -9,6 +9,7 @@ use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 use function eLife\Patterns\truncate;
+use function rawurlencode;
 
 final class SocialMediaSharers implements ViewModel
 {
@@ -28,8 +29,8 @@ final class SocialMediaSharers implements ViewModel
         Assertion::notBlank($title);
         Assertion::url($url);
 
-        $encodedTitle = urlencode($title);
-        $encodedUrl = urlencode($url);
+        $encodedTitle = rawurlencode($title);
+        $encodedUrl = rawurlencode($url);
 
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         $this->twitterUrl = $this->buildTwitterUrl($title, $url);
@@ -43,8 +44,8 @@ final class SocialMediaSharers implements ViewModel
             $title = truncate($title, self::TWITTER_LENGTH - strlen($url));
         }
 
-        $encodedTitle = urlencode($title);
-        $encodedUrl = urlencode($url);
+        $encodedTitle = rawurlencode($title);
+        $encodedUrl = rawurlencode($url);
 
         return "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
     }
