@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\SocialMediaSharers;
 use InvalidArgumentException;
+use function str_repeat;
 
 final class SocialMediaSharersTest extends ViewModelTest
 {
@@ -32,16 +33,18 @@ final class SocialMediaSharersTest extends ViewModelTest
         $this->assertSame($data['encoded']['redditUrl'], $socialMediaSharers['redditUrl']);
         $this->assertSame($data['encoded'], $socialMediaSharers->toArray());
 
+        $longString = str_repeat('0123456789', 10);
+
         $data = [
             'raw' => [
-                'title' => 'Some article title that is very long 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9',
-                'url' => 'https://example.com/some-long-article-url/012345678901234567890123456789',
+                'title' => "Some article title that is very long {$longString}",
+                'url' => "https://example.com/some-long-article-url/{$longString}",
             ],
             'encoded' => [
-                'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
-                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title+that+is+very+long+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4%E2%80%A6&url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
-                'emailUrl' => 'mailto:?subject=Some+article+title+that+is+very+long+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4+5+6+7+8+9+0+1+2+3+4+5+6+7+8+9&body=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
-                'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
+                'facebookUrl' => "https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F{$longString}",
+                'twitterUrl' => "https://twitter.com/intent/tweet/?text=Some+article+title+that+is+very+long+012345678901234567890123456789012345678901234567890123456789012345678901234567%E2%80%A6&url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F{$longString}",
+                'emailUrl' => "mailto:?subject=Some+article+title+that+is+very+long+{$longString}&body=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F{$longString}",
+                'redditUrl' => "https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F{$longString}",
             ],
         ];
         $socialMediaSharers = new SocialMediaSharers($data['raw']['title'], $data['raw']['url']);

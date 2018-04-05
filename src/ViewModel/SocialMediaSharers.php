@@ -13,6 +13,7 @@ use function eLife\Patterns\truncate;
 final class SocialMediaSharers implements ViewModel
 {
     const TWITTER_LENGTH = 140 - 1;
+    const TWITTER_URL_LENGTH = 23;
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -39,8 +40,8 @@ final class SocialMediaSharers implements ViewModel
 
     private function buildTwitterUrl(string $title, string $url) : string
     {
-        if (strlen($title.$url) > self::TWITTER_LENGTH) {
-            $title = truncate($title, self::TWITTER_LENGTH - strlen($url));
+        if (strlen($title) + self::TWITTER_URL_LENGTH > self::TWITTER_LENGTH) {
+            $title = truncate($title, self::TWITTER_LENGTH - self::TWITTER_URL_LENGTH);
         }
 
         $encodedTitle = urlencode($title);
