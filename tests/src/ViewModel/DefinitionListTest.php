@@ -79,6 +79,16 @@ final class DefinitionListTest extends ViewModelTest
         new DefinitionList(['foo' => []]);
     }
 
+    /**
+     * @test
+     */
+    public function it_may_contain_single_items()
+    {
+        $list = new DefinitionList(['foo' => 'bar']);
+
+        $this->assertSame(['bar'], $list['items'][0]['descriptors']);
+    }
+
     public function viewModelProvider() : array
     {
         return [

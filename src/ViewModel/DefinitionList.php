@@ -22,10 +22,13 @@ final class DefinitionList implements ViewModel
     public function __construct(array $items, bool $inline = false)
     {
         Assertion::notEmpty($items);
-        Assertion::allIsArray($items);
         Assertion::allNotEmpty($items);
 
-        $this->items = array_map(function (string $term, array $descriptors) {
+        $this->items = array_map(function (string $term, $descriptors) {
+            $descriptors = (array) $descriptors;
+
+            Assertion::allString($descriptors);
+
             return [
                 'term' => $term,
                 'descriptors' => $descriptors,
