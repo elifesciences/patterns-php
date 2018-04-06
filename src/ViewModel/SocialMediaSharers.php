@@ -8,6 +8,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
+use function rawurlencode;
 
 final class SocialMediaSharers implements ViewModel
 {
@@ -25,8 +26,8 @@ final class SocialMediaSharers implements ViewModel
         Assertion::notBlank($title);
         Assertion::url($url);
 
-        $encodedTitle = urlencode($title);
-        $encodedUrl = urlencode($url);
+        $encodedTitle = rawurlencode($title);
+        $encodedUrl = rawurlencode($url);
 
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
