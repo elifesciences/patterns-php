@@ -51,8 +51,8 @@ final class ContentHeaderTest extends ViewModelTest
             'impactStatement' => 'impact statement',
             'socialMediaSharers' => [
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url',
-                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some+article+title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
-                'emailUrl' => 'mailto:?subject=Some+article+title&body=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'emailUrl' => 'mailto:?subject=Some%20article%20title&body=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-article-url',
             ],
             'header' => [
