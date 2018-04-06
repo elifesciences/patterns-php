@@ -9,7 +9,6 @@ use function eLife\Patterns\is_iterable;
 use function eLife\Patterns\iterator_to_unique_array;
 use function eLife\Patterns\mixed_accessibility_text;
 use function eLife\Patterns\mixed_visibility_text;
-use function eLife\Patterns\truncate;
 
 final class FunctionsTest extends PHPUnit_Framework_TestCase
 {
@@ -78,24 +77,6 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
             [1, false],
             [[], true],
             [new ArrayObject(), true],
-        ];
-    }
-
-    /**
-     * @test
-     * @dataProvider TruncateProvider
-     */
-    public function truncate(string $text, int $length, string $expected)
-    {
-        $this->assertSame($expected, truncate($text, $length));
-    }
-
-    public function TruncateProvider()
-    {
-        return [
-            ['foo', 3, 'foo'],
-            ['foo', 2, 'f…'],
-            ['foo', 1, '…'],
         ];
     }
 
