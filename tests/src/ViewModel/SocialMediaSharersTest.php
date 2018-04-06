@@ -21,7 +21,7 @@ final class SocialMediaSharersTest extends ViewModelTest
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'emailUrl' => 'mailto:?subject=Some%20article%20title&body=https%3A%2F%2Fexample.com%2Fsome-article-url',
-                'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'redditUrl' => 'https://reddit.com/submit/?title=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
             ],
         ];
         $socialMediaSharers = new SocialMediaSharers($data['raw']['title'], $data['raw']['url']);
@@ -41,7 +41,7 @@ final class SocialMediaSharersTest extends ViewModelTest
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
                 'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some%20article%20title%20that%20is%20very%20long%200%201%202%203%204%205%206%207%208%209%200%201%202%203%204%E2%80%A6&url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
                 'emailUrl' => 'mailto:?subject=Some%20article%20title%20that%20is%20very%20long%200%201%202%203%204%205%206%207%208%209%200%201%202%203%204%205%206%207%208%209%200%201%202%203%204%205%206%207%208%209&body=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
-                'redditUrl' => 'https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
+                'redditUrl' => 'https://reddit.com/submit/?title=Some%20article%20title%20that%20is%20very%20long%200%201%202%203%204%205%206%207%208%209%200%201%202%203%204%205%206%207%208%209%200%201%202%203%204%205%206%207%208%209&url=https%3A%2F%2Fexample.com%2Fsome-long-article-url%2F012345678901234567890123456789',
             ],
         ];
         $socialMediaSharers = new SocialMediaSharers($data['raw']['title'], $data['raw']['url']);

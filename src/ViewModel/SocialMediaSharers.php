@@ -35,7 +35,7 @@ final class SocialMediaSharers implements ViewModel
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         $this->twitterUrl = $this->buildTwitterUrl($title, $url);
         $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
-        $this->redditUrl = "https://reddit.com/submit/?url={$encodedUrl}";
+        $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
     }
 
     private function buildTwitterUrl(string $title, string $url) : string
