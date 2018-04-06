@@ -8,12 +8,9 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
-use function eLife\Patterns\truncate;
 
 final class SocialMediaSharers implements ViewModel
 {
-    const TWITTER_TITLE_LENGTH = 140 - 1 - 23; // Max - space - URL length
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
     use SimplifyAssets;
@@ -32,17 +29,9 @@ final class SocialMediaSharers implements ViewModel
         $encodedUrl = urlencode($url);
 
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
-        $this->twitterUrl = $this->buildTwitterUrl($title, $url);
+        $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
         $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
         $this->redditUrl = "https://reddit.com/submit/?url={$encodedUrl}";
-    }
-
-    private function buildTwitterUrl(string $title, string $url) : string
-    {
-        $encodedTitle = urlencode(truncate($title, self::TWITTER_TITLE_LENGTH));
-        $encodedUrl = urlencode($url);
-
-        return "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
     }
 
     public function getTemplateName() : string
