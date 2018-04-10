@@ -18,72 +18,36 @@ require_once __DIR__.'/../vendor/autoload.php';
 if (!empty($argv[1])) {
     $reference = $argv[1];
 } else {
-    $reference = 'origin/master';
+    $reference = 'latest';
 }
 
 $sourceDir = __DIR__.'/../pattern-library';
 $outputDir = __DIR__.'/../resources';
 $filesystem = new Filesystem();
-$wrapper = new GitWrapper();
-$wrapper->addOutputListener(new GitOutputStreamListener());
 $tokenizer = new Mustache_Tokenizer();
 
-if (false === is_dir($sourceDir)) {
-    $repo = $wrapper->cloneRepository('git@github.com:elifesciences/pattern-library.git', $sourceDir);
-} else {
-    $repo = new GitWorkingCopy($wrapper, $sourceDir);
-    $repo->fetch();
-}
+$execute = function(array $command) {
+    ProcessBuilder::create()
+        ->setArguments($command)
+        ->getProcess()
+        ->enableOutput()
+        ->run()
+    ;
+};
+$executeAndCheck = function(array $command) {
+    ProcessBuilder::create()
+        ->setArguments($command)
+        ->getProcess()
+        ->enableOutput()
+        ->mustRun()
+    ;
+};
 
-$repo->reset($reference, ['hard' => true]);
-
-ProcessBuilder::create()
-    ->setArguments(['npm', 'install'])
-    ->setWorkingDirectory($sourceDir)
-    ->setTimeout(180)
-    ->getProcess()
-    ->enableOutput()
-    ->mustRun(function ($type, $buffer) {
-        if (Process::ERR === $type) {
-            echo 'ERR > '.$buffer;
-        } else {
-            echo 'OUT > '.$buffer;
-        }
-    })
-;
-
-ProcessBuilder::create()
-    ->setArguments(['node_modules/.bin/gulp', 'img:clean', '--environment', 'production'])
-    ->setWorkingDirectory($sourceDir)
-    ->setTimeout(180)
-    ->getProcess()
-    ->enableOutput()
-    ->mustRun(function ($type, $buffer) {
-        if (Process::ERR === $type) {
-            echo 'ERR > '.$buffer;
-        } else {
-            echo 'OUT > '.$buffer;
-        }
-    })
-;
-
-ProcessBuilder::create()
-    ->setArguments(['node_modules/.bin/gulp', '--environment', 'production'])
-    ->setWorkingDirectory($sourceDir)
-    ->setTimeout(180)
-    ->getProcess()
-    ->enableOutput()
-    ->mustRun(function ($type, $buffer) {
-        if (Process::ERR === $type) {
-            echo 'ERR > '.$buffer;
-        } else {
-            echo 'OUT > '.$buffer;
-        }
-    })
-;
-
-$filesystem->mirror($sourceDir.'/source/assets', $outputDir.'/assets', null,
-    ['override' => true, 'delete' => true]);
+$executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:$reference"]);
+$execute(['docker', 'rm', 'pattern-library-assets-reference']);
+$executeAndCheck(['docker', 'run', '--name', 'pattern-library-assets-reference', "elifesciences/pattern-library_assets:$reference"]);
+$executeAndCheck(['rm', '-rf', "$outputDir/assets/*"]);
+$executeAndCheck(['docker', 'cp', 'pattern-library-assets-reference:/srv/pattern-library/source/assets/.', "$outputDir/assets"]);
 
 $patternDir = $sourceDir.'/source/_patterns';
 
