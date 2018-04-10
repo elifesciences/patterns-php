@@ -24,7 +24,8 @@ schema:
                 text:
                     type: string
                     minLength: 1
-            minProperties: 1
+            required:
+                - heading
         doi:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object

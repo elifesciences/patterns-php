@@ -1,8 +1,6 @@
+
 <div class="main-menu" id="mainMenu" data-behaviour="MainMenu">
   <nav class="main-menu__container" role="navigation">
-    {{#listHeading}}
-      {{> resources/templates/list-heading}}
-    {{/listHeading}}
     {{#links}}
       <ul class="main-menu__list">
         {{#items}}
@@ -12,6 +10,8 @@
         {{/items}}
       </ul>
     {{/links}}
-    {{> resources/templates/to-top-link}}
   </nav>
+  {{#button}}
+    {{> resources/templates/button}}
+  {{/button}}
 </div>

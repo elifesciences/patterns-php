@@ -1,9 +1,7 @@
 assets:
     css:
         - buttons.css
-        - form-item.css
         - select-nav.css
-        - select.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -16,42 +14,19 @@ schema:
                 id:
                     type: string
                     minLength: 1
-                name:
-                    type: string
-                    minLength: 1
-                state:
-                    type: string
-                    enum:
-                        - valid
-                        - invalid
-                messageGroup:
-                    type: object
-                    properties:
-                        errorText:
-                            type: string
-                            minLength: 1
-                        infoText:
-                            type: string
-                            minLength: 1
-                        id:
-                            type: string
-                            minLength: 1
-                    minProperties: 2
-                    required:
-                        - id
-                required:
-                    type: boolean
-                disabled:
-                    type: boolean
                 label:
                     type: object
                     properties:
                         labelText:
                             type: string
                             minLength: 1
+                        for:
+                            type: string
+                            minLength: 1
                         isVisuallyHidden:
                             type: boolean
                     required:
+                        - for
                         - labelText
                 options:
                     array: string
@@ -71,10 +46,9 @@ schema:
                             - value
                             - displayValue
             required:
+                - id
+                - label
                 - options
-            dependencies:
-                label:
-                    - id
         route:
             type: string
             minLength: 1

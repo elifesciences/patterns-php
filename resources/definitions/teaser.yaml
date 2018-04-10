@@ -24,26 +24,14 @@ schema:
                                 type: string
                                 minLength: 1
                             url:
-                                oneOf:
-                                    -
-                                        type: string
-                                        minLength: 1
-                                    -
-                                        type: boolean
-                                        enum:
-                                            - false
+                                type: string
+                                minLength: 1
                         required:
                             - name
                             - url
         url:
-            oneOf:
-                -
-                    type: string
-                    minLength: 1
-                -
-                    type: boolean
-                    enum:
-                        - false
+            minLength: 1
+            type: string
         title:
             type: string
             minLength: 1
@@ -99,75 +87,35 @@ schema:
                     type: string
                     minLength: 1
                 url:
-                    oneOf:
-                        -
-                            type: string
-                            minLength: 1
-                        -
-                            type: boolean
-                            enum:
-                                - false
+                    type: string
+                    minLength: 1
             required:
                 - name
-                - url
         image:
-            allOf:
-                -
-                    $schema: 'http://json-schema.org/draft-04/schema#'
-                    type: object
-                    properties:
-                        pictureClasses:
-                            type: string
-                            minLength: 1
-                        sources:
-                            type: array
-                            uniqueItems: true
-                            items:
-                                type: object
-                                properties:
-                                    srcset:
-                                        type: string
-                                        minLength: 1
-                                    media:
-                                        type: string
-                                        minLength: 1
-                                    type:
-                                        type: string
-                                        enum:
-                                            - image/svg+xml
-                                            - image/webp
-                                            - image/png
-                                            - image/jpeg
-                                required:
-                                    - srcset
-                        fallback:
-                            type: object
-                            properties:
-                                srcset:
-                                    type: string
-                                    pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
-                                defaultPath:
-                                    type: string
-                                    minLength: 1
-                                altText:
-                                    type: string
-                                classes:
-                                    type: string
-                            required:
-                                - defaultPath
-                                - altText
-                    required:
-                        - fallback
-                -
-                    properties:
-                        type:
-                            type: string
-                            enum:
-                                - prominent
-                                - big
-                                - small
-                    required:
-                        - type
+            type: object
+            properties:
+                url:
+                    type: string
+                    minLength: 1
+                defaultPath:
+                    type: string
+                    minLength: 1
+                altText:
+                    type: string
+                    minLength: 1
+                srcset:
+                    type: string
+                    minLength: 1
+                classes:
+                    type: string
+                    minLength: 1
+                    enum:
+                        - teaser__img--prominent
+                        - teaser__img--big
+                        - teaser__img--small
+            required:
+                - defaultPath
+                - altText
         footer:
             type: object
             properties:
@@ -178,12 +126,10 @@ schema:
                         url:
                             oneOf:
                                 -
-                                    type: string
                                     minLength: 1
+                                    type: string
                                 -
-                                    type: boolean
-                                    enum:
-                                        - false
+                                    type: 'null'
                         carouselItem:
                             type: boolean
                             enum:
@@ -224,6 +170,11 @@ schema:
                             required:
                                 - forHuman
                                 - forMachine
+                    dependencies:
+                        url:
+                            - text
+                        carouselItem:
+                            - url
                     anyOf:
                         -
                             required:
@@ -231,14 +182,13 @@ schema:
                         -
                             required:
                                 - text
-                formats:
+                publishState:
                     type: object
-                    minProperties: 1
                     properties:
-                        html:
+                        vor:
                             type: boolean
-                        pdf:
-                            type: boolean
+                    required:
+                        - vor
             required:
                 - meta
     dependencies:
@@ -248,4 +198,3 @@ schema:
             - num
     required:
         - title
-        - url

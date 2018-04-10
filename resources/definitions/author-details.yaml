@@ -1,7 +1,6 @@
 assets:
     css:
         - author-details.css
-        - orcid.css
     js: []
 schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
@@ -43,14 +42,8 @@ schema:
                             required:
                                 - value
         orcid:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                id:
-                    type: string
-                    pattern: '^([0-9]{4}-){3}[0-9]{3}[0-9X]$'
-            required:
-                - id
+            type: string
+            pattern: '^([0-9]{4}-){3}[0-9]{3}[0-9X]$'
         groups:
             type: array
             items:

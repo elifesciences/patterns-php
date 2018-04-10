@@ -46,12 +46,10 @@ schema:
                         url:
                             oneOf:
                                 -
-                                    type: string
                                     minLength: 1
+                                    type: string
                                 -
-                                    type: boolean
-                                    enum:
-                                        - false
+                                    type: 'null'
                         carouselItem:
                             type: boolean
                             enum:
@@ -92,6 +90,11 @@ schema:
                             required:
                                 - forHuman
                                 - forMachine
+                    dependencies:
+                        url:
+                            - text
+                        carouselItem:
+                            - url
                     anyOf:
                         -
                             required:
@@ -109,9 +112,5 @@ schema:
                     - hasSubjects
         content:
             type: string
-        isRelated:
-            type: boolean
-            emum:
-                - true
     required:
         - item

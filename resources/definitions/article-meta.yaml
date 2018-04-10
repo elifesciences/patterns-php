@@ -22,19 +22,12 @@ schema:
                             type: object
                             properties:
                                 url:
-                                    oneOf:
-                                        -
-                                            type: string
-                                            minLength: 1
-                                        -
-                                            type: boolean
-                                            enum:
-                                                - false
+                                    type: string
+                                    minLength: 1
                                 name:
                                     type: string
                                     minLength: 1
                             required:
                                 - name
-                                - url
     required:
         - groups

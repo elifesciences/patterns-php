@@ -1,6 +1,5 @@
 assets:
     css:
-        - list-heading.css
         - main-menu.css
     js: []
 schema:
@@ -25,17 +24,44 @@ schema:
                     minItems: 1
             required:
                 - items
-        listHeading:
+        button:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
-            properties:
-                heading:
-                    type: string
-                    minLength: 1
-                headingId:
-                    type: string
-            required:
-                - heading
+            allOf:
+                -
+                    properties:
+                        text:
+                            type: string
+                            minLength: 1
+                        classes:
+                            type: string
+                    required:
+                        - text
+                -
+                    oneOf:
+                        -
+                            properties:
+                                type:
+                                    type: string
+                                    enum:
+                                        - button
+                                        - reset
+                                        - submit
+                                id:
+                                    type: string
+                                    minLength: 1
+                                name:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - type
+                        -
+                            properties:
+                                path:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - path
     required:
         - links
-        - listHeading
+        - button

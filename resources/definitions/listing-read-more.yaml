@@ -3,7 +3,6 @@ assets:
         - buttons.css
         - content-header.css
         - date.css
-        - list-heading.css
         - listing.css
         - meta.css
         - pager.css
@@ -13,19 +12,9 @@ schema:
     $schema: 'http://json-schema.org/draft-04/schema#'
     type: object
     properties:
-        allRelated:
-            type: boolean
         heading:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                heading:
-                    type: string
-                    minLength: 1
-                headingId:
-                    type: string
-            required:
-                - heading
+            type: string
+            minLength: 1
         id:
             type: string
             pattern: '^[a-zA-Z0-9_$]+$'
@@ -73,12 +62,10 @@ schema:
                                     url:
                                         oneOf:
                                             -
-                                                type: string
                                                 minLength: 1
+                                                type: string
                                             -
-                                                type: boolean
-                                                enum:
-                                                    - false
+                                                type: 'null'
                                     carouselItem:
                                         type: boolean
                                         enum:
@@ -119,6 +106,11 @@ schema:
                                         required:
                                             - forHuman
                                             - forMachine
+                                dependencies:
+                                    url:
+                                        - text
+                                    carouselItem:
+                                        - url
                                 anyOf:
                                     -
                                         required:
@@ -136,10 +128,6 @@ schema:
                                 - hasSubjects
                     content:
                         type: string
-                    isRelated:
-                        type: boolean
-                        emum:
-                            - true
                 required:
                     - item
         pagination:
@@ -242,8 +230,6 @@ schema:
                 name:
                     type: string
                     minLength: 1
-                isInline:
-                    type: boolean
             required:
                 - url
                 - name

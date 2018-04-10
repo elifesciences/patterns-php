@@ -1,26 +1,22 @@
-<div class="table">
+{{#tables}}
 
-  {{#tables}}
+  <div class="table-wrap">
 
-    <div class="table__table">
+    {{{.}}}
 
-      {{{.}}}
+  </div>
 
-    </div>
+{{/tables}}
 
-  {{/tables}}
+{{#hasFootnotes}}
 
-  {{#hasFootnotes}}
+  <ol class="list">
+    {{#footnotes}}
+      <li class="table-footnote" {{#footnoteId}} id="{{footnoteId}}"{{/footnoteId}}>
+        {{#footnoteLabel}}<div class="table-footnote__label">{{footnoteLabel}}</div>{{/footnoteLabel}}
+        <div class="table-footnote__text">{{{text}}}</div>
+      </li>
+    {{/footnotes}}
+  </ol>
 
-    <ol class="list">
-      {{#footnotes}}
-        <li class="table-footnote" {{#footnoteId}} id="{{footnoteId}}"{{/footnoteId}}>
-          {{#footnoteLabel}}<div class="table-footnote__label">{{footnoteLabel}}</div>{{/footnoteLabel}}
-          <div class="table-footnote__text">{{{text}}}</div>
-        </li>
-      {{/footnotes}}
-    </ol>
-
-  {{/hasFootnotes}}
-
-</div>
+{{/hasFootnotes}}

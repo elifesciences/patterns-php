@@ -1,6 +1,5 @@
 assets:
     css:
-        - form-item.css
         - text-fields.css
     js: []
 schema:
@@ -13,26 +12,6 @@ schema:
         name:
             type: string
             minLength: 1
-        state:
-            type: string
-            enum:
-                - valid
-                - invalid
-        messageGroup:
-            type: object
-            properties:
-                errorText:
-                    type: string
-                    minLength: 1
-                infoText:
-                    type: string
-                    minLength: 1
-                id:
-                    type: string
-                    minLength: 1
-            minProperties: 2
-            required:
-                - id
         autofocus:
             type: boolean
         inputType:
@@ -44,6 +23,9 @@ schema:
                 - tel
                 - text
                 - url
+            minLength: 1
+        classNames:
+            type: string
             minLength: 1
         placeholder:
             type: string
@@ -58,12 +40,13 @@ schema:
                 labelText:
                     type: string
                     minLength: 1
+                for:
+                    type: string
+                    minLength: 1
                 isVisuallyHidden:
                     type: boolean
             required:
                 - labelText
+                - for
     required:
         - inputType
-    dependencies:
-        label:
-            - id

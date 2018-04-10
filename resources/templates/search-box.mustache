@@ -9,9 +9,11 @@
 
     {{! Only applies when on an article belonging to a subject: }}
     {{#subjectFilter}}
-      <label class="search-box__search_option_label">
-        <input type="checkbox" name="{{subjectFilter.name}}" value="{{subjectFilter.value}}" form="{{compactForm.formId}}">Limit my search to {{{subjectFilter.text}}}
-      </label>
+      <div class="search-box__search_option">
+        <label class="search-box__search_option_label">
+          <input type="checkbox" name="{{subjectFilter.name}}" value="{{subjectFilter.value}}" form="{{compactForm.formId}}"> Limit my search to <strong>{{{subjectFilter.text}}}</strong>
+        </label>
+      </div>
     {{/subjectFilter}}
 
   </div>

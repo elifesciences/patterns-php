@@ -1,5 +1,5 @@
 {{! Added author-details__section-- BEM variants for use with js behaviour, will delete if too fine-grained. }}
-<div class="author-details" data-popup-contents="{{authorId}}" id="{{authorId}}">
+<div class="author-details" id="{{authorId}}">
 
   <h4 class="author-details__name">{{{name}}}</h4>
 
@@ -12,7 +12,7 @@
         <span class="author-details__text">{{{value}}}</span>
       {{/value}}
       {{^value}}
-        <ol class="author-details__list list list--bullet">
+        <ol class="author-details__list">
           {{#values}}
             <li class="author-details__text">{{{.}}}</li>
           {{/values}}
@@ -22,8 +22,14 @@
   {{/details}}
 
   {{#orcid}}
-  <section class="author-details__section">
-    {{>resources/templates/orcid}}
+  <section class="author-details__section author-details__section--orcid">
+    <a href="https://orcid.org/" target="_blank" class="author-details__link author-details__link--orcid">
+      <picture>
+        <source srcset="{{#assetRewrite}}{{assetsPath}}/img/icons/orcid.svg{{/assetRewrite}}" type="image/svg+xml">
+        <img src="{{#assetRewrite}}{{assetsPath}}/img/icons/orcid.png{{/assetRewrite}}" alt="ORCID icon" class="author-details__linked-image--orcid"/>
+      </picture>
+    </a>
+    <a href="https://orcid.org/{{orcid}}" target="_blank" class="author-details__text author-details__link author-details__link--orcid">{{orcid}}</a>
   </section>
   {{/orcid}}
 

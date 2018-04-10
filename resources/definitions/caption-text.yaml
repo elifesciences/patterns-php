@@ -15,4 +15,5 @@ schema:
         text:
             type: string
             minLength: 1
-    minProperties: 1
+    required:
+        - heading
