@@ -26,20 +26,28 @@ $outputDir = __DIR__.'/../resources';
 $filesystem = new Filesystem();
 $tokenizer = new Mustache_Tokenizer();
 
-$execute = function(array $command) {
+$output = function ($type, $buffer) {
+    if (Process::ERR === $type) {
+        echo 'ERR > '.$buffer;
+    } else {
+        echo 'OUT > '.$buffer;
+    }
+};
+
+$execute = function(array $command) use ($output) {
     ProcessBuilder::create()
         ->setArguments($command)
         ->getProcess()
         ->enableOutput()
-        ->run()
+        ->run($output)
     ;
 };
-$executeAndCheck = function(array $command) {
+$executeAndCheck = function(array $command) use ($output) {
     ProcessBuilder::create()
         ->setArguments($command)
         ->getProcess()
         ->enableOutput()
-        ->mustRun()
+        ->mustRun($output)
     ;
 };
 
