@@ -71,5 +71,5 @@ Updating the library
 --------------------
 
 1. Install [Docker](https://www.docker.com/).
-2. Execute `bin/update` to update the `resources` folder from Pattern Lab (you can pass a commit if needed, eg `bin/update baa62f0`).
+2. Execute `bin/update` to update the `resources` folder from Pattern Lab (you can pass a commit or pull request if needed, eg `bin/update 4303c0199112724bd5725537c7192828099018fb` or `bin/update pr-850`).
 3. Make changes to the view models accordingly.
