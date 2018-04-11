@@ -12,18 +12,6 @@ schema:
     allOf:
         -
             properties:
-                download:
-                    type: object
-                    properties:
-                        link:
-                            type: string
-                            minLength: 1
-                        filename:
-                            type: string
-                            minLength: 1
-                    required:
-                        - link
-                        - filename
                 captionText:
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
@@ -37,8 +25,7 @@ schema:
                         text:
                             type: string
                             minLength: 1
-                    required:
-                        - heading
+                    minProperties: 1
                 doi:
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
@@ -57,8 +44,9 @@ schema:
                                 - false
                     required:
                         - doi
-            required:
-                - captionText
+                inline:
+                    type: boolean
+                    default: false
         -
             oneOf:
                 -
@@ -96,7 +84,7 @@ schema:
                                     properties:
                                         srcset:
                                             type: string
-                                            pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                            pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
                                         defaultPath:
                                             type: string
                                             minLength: 1
@@ -224,7 +212,7 @@ schema:
                                     minLength: 1
                                 srcset:
                                     type: string
-                                    pattern: '^((https)?[^ ]+ [1-9][0-9]*w)(, (https?)?[^ ]+ [1-9][0-9]*w)*$'
+                                    pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
                             required:
                                 - defaultPath
                                 - altText

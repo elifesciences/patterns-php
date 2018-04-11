@@ -1,34 +1,51 @@
-<li class="carousel-item">
-  <div class="carousel-item__inner" data-behaviour="BackgroundImage" {{#backgroundImage}}
-  {{#thresholdWidth}}data-threshold-width="{{thresholdWidth}}"{{/thresholdWidth}}
-     data-low-res-image-source="{{lowResImageSource}}"
-       data-high-res-image-source="{{highResImageSource}}"
-{{/backgroundImage}}>
+<li class="carousel-item" data-image="
 
+  {{#image}}
+    &lt;picture class='carousel-item__picture'&gt;
+      {{#sources}}
+        &lt;source srcset='{{srcset}}'
+                {{#type}}type='{{type}}'{{/type}}
+          {{#media}}media='{{media}}'{{/media}}&gt;
+      {{/sources}}
+      {{#fallback}}
+        &lt;img src='{{defaultPath}}'
+             {{#srcset}}srcset='{{srcset}}'{{/srcset}}
+             alt='{{altText}}'
+             class='carousel-item__image'
+        &gt;
+      {{/fallback}}
+    &lt;/picture&gt;
+  {{/image}}
 
-{{#subjects}}
+">
+
+  {{#subjects}}
     <ol class="carousel-item__subject_list">
       {{#subjects.list}}
         <li class="carousel-item__subject_list_item">
-          <a href="{{url}}" class="carousel-item__subject_link"><span class="carousel-item__subject">{{name}}</span></a>
+          <a href="{{url}}" class="carousel-item__subject_link"><span
+              class="carousel-item__subject">{{{name}}}</span></a>
         </li>
       {{/subjects.list}}
     </ol>
   {{/subjects}}
 
-  <h4 class="carousel-item__title"><a href="{{url}}" class="carousel-item__title_link">{{{name}}}</a></h4>
-
-  <div class="carousel-item__cta">
-    {{#button.text}}
-      {{#button}}
-        {{>resources/templates/button}}
-      {{/button}}
-    {{/button.text}}
+  <div class="carousel-item__body">
+    <h4 class="carousel-item__title {{#longTitle}}carousel-item__title--long{{/longTitle}}">
+      <a href="{{url}}" class="carousel-item__title_link">{{{title}}}</a>
+    </h4>
   </div>
+
+  {{#button}}
+    <div class="carousel-item__cta">
+      {{>resources/templates/button}}
+    </div>
+  {{/button}}
 
   {{#meta}}
-    {{> resources/templates/meta}}
+    <div class="carousel-item__meta">
+      {{> resources/templates/meta}}
+    </div>
   {{/meta}}
 
-  </div>
 </li>

@@ -1,5 +1,7 @@
-<div class="listing-column-container listing-column-main highlights">
-  {{>resources/templates/list-heading}}
+<div{{#highlights}} class="highlights"{{/highlights}}>
+  {{#heading}}
+    {{>resources/templates/list-heading}}
+  {{/heading}}
 
   {{#highlights}}
   <div class="highlights__content" data-behaviour="Highlights" role="region" aria-labelledby="{{headingId}}">
