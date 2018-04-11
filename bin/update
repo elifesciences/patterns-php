@@ -21,7 +21,7 @@ if (!empty($argv[1])) {
     $reference = 'latest';
 }
 
-$sourceDir = __DIR__.'/../pattern-library';
+$sourceDir = __DIR__.'/../build/source';
 $outputDir = __DIR__.'/../resources';
 $filesystem = new Filesystem();
 $tokenizer = new Mustache_Tokenizer();
@@ -54,10 +54,13 @@ $executeAndCheck = function(array $command) use ($output) {
 $executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:$reference"]);
 $execute(['docker', 'rm', 'pattern-library-assets-reference']);
 $executeAndCheck(['docker', 'run', '--name', 'pattern-library-assets-reference', "elifesciences/pattern-library_assets:$reference"]);
-$executeAndCheck(['rm', '-rf', "$outputDir/assets/*"]);
-$executeAndCheck(['docker', 'cp', 'pattern-library-assets-reference:/srv/pattern-library/source/assets/.', "$outputDir/assets"]);
+$filesystem->remove($sourceDir);
+$executeAndCheck(['docker', 'cp', 'pattern-library-assets-reference:/srv/pattern-library/source/.', $sourceDir]);
 
-$patternDir = $sourceDir.'/source/_patterns';
+$filesystem->mirror($sourceDir.'/assets', $outputDir.'/assets', null,
+    ['override' => true, 'delete' => true]);
+
+$patternDir = "{$sourceDir}/_patterns";
 
 $finder = (new Finder())->files()->in($patternDir)->name('*.yaml');
 
