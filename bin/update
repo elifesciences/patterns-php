@@ -13,9 +13,9 @@ use function eLife\Patterns\iterator_to_unique_array;
 require_once __DIR__.'/../vendor/autoload.php';
 
 if (!empty($argv[1])) {
-    $reference = $argv[1];
+    $tag = $argv[1];
 } else {
-    $reference = 'latest';
+    $tag = 'latest';
 }
 
 $sourceDir = __DIR__.'/../build/source';
@@ -50,9 +50,9 @@ $executeAndCheck = function(array $command, $timeout = 60) use ($output) {
     ;
 };
 
-$executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:$reference"], null);
+$executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:$tag"], null);
 $execute(['docker', 'rm', 'pattern-library-assets-reference']);
-$executeAndCheck(['docker', 'run', '--name', 'pattern-library-assets-reference', "elifesciences/pattern-library_assets:$reference"]);
+$executeAndCheck(['docker', 'run', '--name', 'pattern-library-assets-reference', "elifesciences/pattern-library_assets:$tag"]);
 $filesystem->remove($sourceDir);
 $executeAndCheck(['docker', 'cp', 'pattern-library-assets-reference:/srv/pattern-library/source/.', $sourceDir]);
 
