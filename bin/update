@@ -31,24 +31,26 @@ $output = function ($type, $buffer) {
     }
 };
 
-$execute = function(array $command) use ($output) {
+$execute = function(array $command, $timeout = 60) use ($output) {
     ProcessBuilder::create()
         ->setArguments($command)
         ->getProcess()
+        ->setTimeout($timeout)
         ->enableOutput()
         ->run($output)
     ;
 };
-$executeAndCheck = function(array $command) use ($output) {
+$executeAndCheck = function(array $command, $timeout = 60) use ($output) {
     ProcessBuilder::create()
         ->setArguments($command)
         ->getProcess()
+        ->setTimeout($timeout)
         ->enableOutput()
         ->mustRun($output)
     ;
 };
 
-$executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:$reference"]);
+$executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:$reference"], null);
 $execute(['docker', 'rm', 'pattern-library-assets-reference']);
 $executeAndCheck(['docker', 'run', '--name', 'pattern-library-assets-reference', "elifesciences/pattern-library_assets:$reference"]);
 $filesystem->remove($sourceDir);
