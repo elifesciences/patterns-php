@@ -70,6 +70,6 @@ var_dump($patternRenderer->getStyleSheets());
 Updating the library
 --------------------
 
-1. Install [Compass](http://compass-style.org/).
+1. Install [Docker](https://www.docker.com/).
 2. Execute `bin/update` to update the `resources` folder from Pattern Lab (you can pass a commit if needed, eg `bin/update baa62f0`).
 3. Make changes to the view models accordingly.

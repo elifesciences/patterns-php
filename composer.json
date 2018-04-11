@@ -22,7 +22,6 @@
         "mustache/mustache": "^2.5"
     },
     "require-dev": {
-        "cpliakas/git-wrapper": "^1.0",
         "justinrainbow/json-schema": "^5.0",
         "php-jsonpointer/php-jsonpointer": "^1.0",
         "phpunit/phpunit": "^5.2",
