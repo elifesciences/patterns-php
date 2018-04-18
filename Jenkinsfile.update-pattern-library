@@ -19,8 +19,7 @@ elifeLibrary {
     stage 'Commit', {
         differences = elifeGitDifferences()
         elifeOnlyIf differences, {
-            def subrepositorySummary = elifeGitSubrepositorySummary 'pattern-library'
-            shortDescription = "Updated pattern-library to ${subrepositorySummary}"
+            shortDescription = "Updated pattern-library" + (params.commit ? " to ${params.commit}" : "")
             elifeGitCommit shortDescription
         }
     }
