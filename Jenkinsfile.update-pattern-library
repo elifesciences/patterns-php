@@ -20,7 +20,7 @@ elifeLibrary {
     stage 'Commit', {
         differences = elifeGitDifferences()
         elifeOnlyIf differences, {
-            def subrepositorySummary = patternLibraryTag
+            def subrepositorySummary = dockerReadLabel "elifesciences/pattern-library:${patternLibraryTag}", 'description'
             shortDescription = "Updated pattern-library to ${subrepositorySummary}"
             elifeGitCommit shortDescription
         }
