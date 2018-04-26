@@ -51,6 +51,7 @@ $executeAndCheck = function(array $command, $timeout = 60, $attempts = 1) use ($
                 ->enableOutput()
                 ->mustRun($output)
             ;
+            return;
         } catch (ProcessFailedException $e) {
             if (strstr($e->getMessage(), "i/o timeout")) {
                 echo "Retrying: {$e->getMessage()}\n";
