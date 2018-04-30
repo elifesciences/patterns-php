@@ -4,6 +4,7 @@
 use Rs\Json\Pointer;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Yaml\Yaml;
@@ -40,17 +41,28 @@ $execute = function(array $command, $timeout = 60) use ($output) {
         ->run($output)
     ;
 };
-$executeAndCheck = function(array $command, $timeout = 60) use ($output) {
-    ProcessBuilder::create()
-        ->setArguments($command)
-        ->getProcess()
-        ->setTimeout($timeout)
-        ->enableOutput()
-        ->mustRun($output)
-    ;
+$executeAndCheck = function(array $command, $timeout = 60, $attempts = 1) use ($output) {
+    for ($i = 1; $i <= $attempts; $i++) {
+        try {
+            ProcessBuilder::create()
+                ->setArguments($command)
+                ->getProcess()
+                ->setTimeout($timeout)
+                ->enableOutput()
+                ->mustRun($output)
+            ;
+            return;
+        } catch (ProcessFailedException $e) {
+            if (strstr($e->getMessage(), "i/o timeout")) {
+                echo "Retrying: {$e->getMessage()}\n";
+                continue;
+            }
+            throw $e;
+        }
+    }
 };
 
-$executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:{$tag}"], null);
+$executeAndCheck(['docker', 'pull', "elifesciences/pattern-library_assets:{$tag}"], $timeout = null, $attempts = 2);
 $execute(['docker', 'rm', 'pattern-library-assets-reference']);
 $executeAndCheck(['docker', 'run', '--name', 'pattern-library-assets-reference', "elifesciences/pattern-library_assets:{$tag}"]);
 $filesystem->remove($sourceDir);
