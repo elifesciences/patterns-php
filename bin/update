@@ -73,15 +73,21 @@ $filesystem->mirror($sourceDir.'/assets', $outputDir.'/assets', null,
 
 $patternDir = "{$sourceDir}/_patterns";
 
-$finder = (new Finder())->files()->in($patternDir)->name('*.yaml');
+$yamlFinder = (new Finder())->files()->in($patternDir)->name('*.yaml');
 
 $filesystem->remove($outputDir.'/definitions/');
 $filesystem->remove($outputDir.'/templates/');
 
+$nonPatternTemplatesDir = "{$sourceDir}/non-pattern-templates";
+$nonPatternTemplatesFinder = (new Finder())->files()->in($nonPatternTemplatesDir)->name('*.mustache');
+foreach ($nonPatternTemplatesFinder as $file) {
+    $filesystem->dumpFile($outputDir.'/templates/non-pattern-'.$file->getFilename(), $file->getContents());
+}
+
 $foundTemplates = [];
 $resolvedTemplates = [];
 
-foreach ($finder as $file) {
+foreach ($yamlFinder as $file) {
     $yaml = Yaml::parse($file->getContents());
     $yaml = resolveJsonReferences($yaml, $file);
     $yaml['assets']['css'] = iterator_to_unique_array(flatten($yaml['assets']['css']));
@@ -111,14 +117,14 @@ foreach ($finder as $file) {
 }
 
 foreach (array_diff($foundTemplates, $resolvedTemplates) as $missingTemplate) {
-    $finder = (new Finder())->files()->in($patternDir)->name($missingTemplate);
-    if (0 === count($finder)) {
+    $yamlFinder = (new Finder())->files()->in($patternDir)->name($missingTemplate);
+    if (0 === count($yamlFinder)) {
         throw new Exception('Can\'t find template '.$missingTemplate);
-    } elseif (count($finder) > 1) {
+    } elseif (count($yamlFinder) > 1) {
         throw new Exception('Found more than one template for '.$missingTemplate);
     }
 
-    foreach ($finder as $template) {
+    foreach ($yamlFinder as $template) {
         $filesystem->copy($template->getRealPath(), $outputDir.'/templates/'.$template->getFilename(), true);
     }
 }
