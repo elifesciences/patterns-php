@@ -42,7 +42,7 @@ final class TextFieldTest extends ViewModelTest
             new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
-            FormFieldInfoLink::alignedRight($data['formFieldInfoLink']['text'],$data['formFieldInfoLink']['url']),
+            FormFieldInfoLink::alignedRight($data['formFieldInfoLink']['text'], $data['formFieldInfoLink']['url']),
             $data['placeholder'],
             $data['required'],
             $data['disabled'],

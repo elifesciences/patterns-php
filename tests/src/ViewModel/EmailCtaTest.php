@@ -33,7 +33,7 @@ final class EmailCtaTest extends ViewModelTest
             'formFieldInfoLink' => [
                 'text' => 'some text',
                 'url' => 'http://example.com',
-                'alignLeft' => true
+                'alignLeft' => true,
             ],
         ];
         $form = new EmailCta($data['headerText'], $data['subHeader'], new CompactForm(
@@ -84,7 +84,7 @@ final class EmailCtaTest extends ViewModelTest
                 new Form('/foo', 'foo', 'GET'),
                 new Input('label', 'text', 'input', 'value', 'placeholder'),
                 'cta'
-            ), FormFieldInfoLink::alignedRight('some text','/some-url')
+            ), FormFieldInfoLink::alignedRight('some text', '/some-url')
         );
     }
 
@@ -97,7 +97,7 @@ final class EmailCtaTest extends ViewModelTest
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder'),
                     'cta'
-                ), FormFieldInfoLink::alignedLeft('some text','/some-url')
+                ), FormFieldInfoLink::alignedLeft('some text', '/some-url')
 ),
             ],
         ];

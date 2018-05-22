@@ -25,7 +25,8 @@ final class FormFieldInfoLinkTest extends ViewModelTest
         $this->assertSame($data, $formFieldInfoLink->toArray());
     }
 
-    public function it_can_be_aligned_right() {
+    public function it_can_be_aligned_right()
+    {
         $formFieldInfoLink = FormFieldInfoLink::alignedRight('text', 'https://url');
         $this->assertFalse($formFieldInfoLink['alignLeft']);
     }

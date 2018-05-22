@@ -53,7 +53,7 @@ final class CompactFormTest extends ViewModelTest
                 'id' => 'id',
                 'formFieldInfoLink' => [
                     'text' => 'some text',
-                    'url' => 'http://example.com'
+                    'url' => 'http://example.com',
                 ],
                 'placeholder' => 'placeholder',
                 'required' => true,
@@ -77,7 +77,7 @@ final class CompactFormTest extends ViewModelTest
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
                 $data['honeypot']['name'],
-                FormFieldInfoLink::alignedRight($data['honeypot']['formFieldInfoLink']['text'],$data['honeypot']['formFieldInfoLink']['url']),
+                FormFieldInfoLink::alignedRight($data['honeypot']['formFieldInfoLink']['text'], $data['honeypot']['formFieldInfoLink']['url']),
                 $data['honeypot']['placeholder'],
                 $data['honeypot']['required'],
                 $data['honeypot']['disabled'],
