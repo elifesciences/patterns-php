@@ -18,23 +18,28 @@ final class EmailCta implements ViewModel
     private $headerText;
     private $subHeader;
     private $compactForm;
+    private $formFieldInfoLink;
 
     public function __construct(
         string $headerText,
         string $subHeader,
-        CompactForm $compactForm
+        CompactForm $compactForm,
+        FormFieldInfoLink $formFieldInfoLink
     ) {
         Assertion::notBlank($headerText);
         Assertion::notBlank($subHeader);
+        Assertion::true($formFieldInfoLink['alignLeft']);
 
         $this->headerText = $headerText;
         $this->subHeader = $subHeader;
         $this->compactForm = $compactForm;
+        $this->formFieldInfoLink = $formFieldInfoLink;
     }
 
     public function getLocalStyleSheets() : Traversable
     {
         yield 'resources/assets/css/email-cta.css';
+        yield 'resources/assets/css/form-field-info-link';
     }
 
     public function getTemplateName() : string
@@ -45,5 +50,6 @@ final class EmailCta implements ViewModel
     protected function getComposedViewModels() : Traversable
     {
         yield $this->compactForm;
+        yield $this->formFieldInfoLink;
     }
 }
