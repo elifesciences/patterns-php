@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\CompactForm;
 use eLife\Patterns\ViewModel\Form;
+use eLife\Patterns\ViewModel\FormFieldInfoLink;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\HiddenField;
 use eLife\Patterns\ViewModel\Honeypot;
@@ -50,6 +51,10 @@ final class CompactFormTest extends ViewModelTest
                 ],
                 'name' => 'someName',
                 'id' => 'id',
+                'formFieldInfoLink' => [
+                    'text' => 'some text',
+                    'url' => 'http://example.com'
+                ],
                 'placeholder' => 'placeholder',
                 'required' => true,
                 'disabled' => true,
@@ -72,6 +77,7 @@ final class CompactFormTest extends ViewModelTest
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
                 $data['honeypot']['name'],
+                FormFieldInfoLink::alignedRight($data['honeypot']['formFieldInfoLink']['text'],$data['honeypot']['formFieldInfoLink']['url']),
                 $data['honeypot']['placeholder'],
                 $data['honeypot']['required'],
                 $data['honeypot']['disabled'],
@@ -99,8 +105,8 @@ final class CompactFormTest extends ViewModelTest
         unset($formAsArray['messageGroup']['id']);
         unset($formAsArray['honeypot']['messageGroup']['id']);
         $this->assertSame($data['messageGroup'], $formAsArray['messageGroup']);
-        $this->assertSame($data['honeypot'], $formAsArray['honeypot']);
-        $this->assertSame($data, $formAsArray);
+        $this->assertSameWithoutOrder($data['honeypot'], $formAsArray['honeypot']);
+        $this->assertSameWithoutOrder($data, $formAsArray);
     }
 
     /**
@@ -174,7 +180,7 @@ final class CompactFormTest extends ViewModelTest
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder', true),
                     'cta', CompactForm::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text'), [new HiddenField('name', 'id', 'value')],
-                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
+                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', FormFieldInfoLink::alignedRight('text', '/url')))
                 ),
             ],
         ];
