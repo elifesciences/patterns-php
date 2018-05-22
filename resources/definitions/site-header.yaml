@@ -660,6 +660,23 @@ schema:
                                             type: boolean
                                     required:
                                         - labelText
+                                formFieldInfoLink:
+                                    $schema: 'http://json-schema.org/draft-04/schema#'
+                                    type: object
+                                    properties:
+                                        text:
+                                            type: string
+                                            minLength: 1
+                                        url:
+                                            type: string
+                                            minLength: 1
+                                        alignLeft:
+                                            type: boolean
+                                            enum:
+                                                - true
+                                    required:
+                                        - text
+                                        - url
                             required:
                                 - inputType
                             dependencies:
