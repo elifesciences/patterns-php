@@ -51,10 +51,6 @@ final class CompactFormTest extends ViewModelTest
                 ],
                 'name' => 'someName',
                 'id' => 'id',
-                'formFieldInfoLink' => [
-                    'text' => 'some text',
-                    'url' => 'http://example.com',
-                ],
                 'placeholder' => 'placeholder',
                 'required' => true,
                 'disabled' => true,
@@ -77,7 +73,7 @@ final class CompactFormTest extends ViewModelTest
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
                 $data['honeypot']['name'],
-                FormFieldInfoLink::alignedRight($data['honeypot']['formFieldInfoLink']['text'], $data['honeypot']['formFieldInfoLink']['url']),
+                null,
                 $data['honeypot']['placeholder'],
                 $data['honeypot']['required'],
                 $data['honeypot']['disabled'],
@@ -180,7 +176,7 @@ final class CompactFormTest extends ViewModelTest
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder', true),
                     'cta', CompactForm::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text'), [new HiddenField('name', 'id', 'value')],
-                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', FormFieldInfoLink::alignedRight('text', '/url')))
+                    new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
                 ),
             ],
         ];
