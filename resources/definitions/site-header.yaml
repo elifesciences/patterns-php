@@ -664,7 +664,7 @@ schema:
                                     $schema: 'http://json-schema.org/draft-04/schema#'
                                     type: object
                                     properties:
-                                        text:
+                                        name:
                                             type: string
                                             minLength: 1
                                         url:
@@ -675,7 +675,7 @@ schema:
                                             enum:
                                                 - true
                                     required:
-                                        - text
+                                        - name
                                         - url
                             required:
                                 - inputType
