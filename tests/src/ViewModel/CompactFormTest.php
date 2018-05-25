@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\CompactForm;
 use eLife\Patterns\ViewModel\Form;
-use eLife\Patterns\ViewModel\FormFieldInfoLink;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\HiddenField;
 use eLife\Patterns\ViewModel\Honeypot;

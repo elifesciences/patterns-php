@@ -7,7 +7,6 @@ use eLife\Patterns\ViewModel\EmailCta;
 use eLife\Patterns\ViewModel\Form;
 use eLife\Patterns\ViewModel\FormFieldInfoLink;
 use eLife\Patterns\ViewModel\Input;
-use InvalidArgumentException;
 
 final class EmailCtaTest extends ViewModelTest
 {

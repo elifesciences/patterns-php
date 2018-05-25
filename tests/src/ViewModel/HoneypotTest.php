@@ -2,7 +2,6 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\FormFieldInfoLink;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Honeypot;
 use eLife\Patterns\ViewModel\MessageGroup;
