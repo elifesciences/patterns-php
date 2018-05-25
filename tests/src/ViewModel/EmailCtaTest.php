@@ -31,7 +31,7 @@ final class EmailCtaTest extends ViewModelTest
                 'ctaText' => 'cta',
             ],
             'formFieldInfoLink' => [
-                'text' => 'some text',
+                'name' => 'some text',
                 'url' => 'http://example.com',
                 'alignLeft' => true,
             ],
@@ -51,7 +51,7 @@ final class EmailCtaTest extends ViewModelTest
             ),
             $data['compactForm']['ctaText']
         ), FormFieldInfoLink::alignedLeft(
-            $data['formFieldInfoLink']['text'],
+            $data['formFieldInfoLink']['name'],
             $data['formFieldInfoLink']['url']
         ));
 
@@ -66,7 +66,7 @@ final class EmailCtaTest extends ViewModelTest
         $this->assertSame($data['compactForm']['inputName'], $form['compactForm']['inputName']);
         $this->assertSame($data['compactForm']['inputValue'], $form['compactForm']['inputValue']);
         $this->assertSame($data['compactForm']['inputPlaceholder'], $form['compactForm']['inputPlaceholder']);
-        $this->assertSame($data['formFieldInfoLink']['text'], $form['formFieldInfoLink']['text']);
+        $this->assertSame($data['formFieldInfoLink']['name'], $form['formFieldInfoLink']['name']);
         $this->assertSame($data['formFieldInfoLink']['url'], $form['formFieldInfoLink']['url']);
         $this->assertSame($data['formFieldInfoLink']['alignLeft'], $form['formFieldInfoLink']['alignLeft']);
         $this->assertSame($data, $form->toArray());
@@ -81,7 +81,7 @@ final class EmailCtaTest extends ViewModelTest
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder'),
                     'cta'
-                ), FormFieldInfoLink::alignedLeft('some text', '/some-url')
+                ), FormFieldInfoLink::alignedLeft('name', '/some-url')
 ),
             ],
         ];

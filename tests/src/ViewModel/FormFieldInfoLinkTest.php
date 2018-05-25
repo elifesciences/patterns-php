@@ -12,13 +12,13 @@ final class FormFieldInfoLinkTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'text' => 'some text',
+            'name' => 'some text',
             'url' => 'http://example.com',
             'alignLeft' => true,
         ];
-        $formFieldInfoLink = FormFieldInfoLink::alignedLeft($data['text'], $data['url']);
+        $formFieldInfoLink = FormFieldInfoLink::alignedLeft($data['name'], $data['url']);
 
-        $this->assertSame($data['text'], $formFieldInfoLink['text']);
+        $this->assertSame($data['name'], $formFieldInfoLink['name']);
         $this->assertSame($data['url'], $formFieldInfoLink['url']);
         $this->assertSame($data['alignLeft'], $formFieldInfoLink['alignLeft']);
 
@@ -27,15 +27,15 @@ final class FormFieldInfoLinkTest extends ViewModelTest
 
     public function it_can_be_aligned_right()
     {
-        $formFieldInfoLink = FormFieldInfoLink::alignedRight('text', 'https://url');
+        $formFieldInfoLink = FormFieldInfoLink::alignedRight('name', 'https://url');
         $this->assertFalse($formFieldInfoLink['alignLeft']);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'alignedLeft' => [FormFieldInfoLink::alignedLeft('text', 'https://url')],
-            'alignedRight' => [FormFieldInfoLink::alignedRight('text', 'https://url')],
+            'alignedLeft' => [FormFieldInfoLink::alignedLeft('name', 'https://url')],
+            'alignedRight' => [FormFieldInfoLink::alignedRight('name', 'https://url')],
         ];
     }
 

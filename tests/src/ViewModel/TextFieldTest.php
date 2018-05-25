@@ -24,7 +24,7 @@ final class TextFieldTest extends ViewModelTest
             'name' => 'someName',
             'id' => 'id',
             'formFieldInfoLink' => [
-                'text' => 'some text',
+                'name' => 'some text',
                 'url' => 'http://example.com',
             ],
             'placeholder' => 'placeholder',
@@ -42,7 +42,7 @@ final class TextFieldTest extends ViewModelTest
             new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
-            FormFieldInfoLink::alignedRight($data['formFieldInfoLink']['text'], $data['formFieldInfoLink']['url']),
+            FormFieldInfoLink::alignedRight($data['formFieldInfoLink']['name'], $data['formFieldInfoLink']['url']),
             $data['placeholder'],
             $data['required'],
             $data['disabled'],
@@ -67,7 +67,7 @@ final class TextFieldTest extends ViewModelTest
         unset($textFieldAsArray['messageGroup']['id']);
         $this->assertSame($data['messageGroup'], $textFieldAsArray['messageGroup']);
 
-        $this->assertSame($data['formFieldInfoLink']['text'], $textFieldAsArray['formFieldInfoLink']['text']);
+        $this->assertSame($data['formFieldInfoLink']['name'], $textFieldAsArray['formFieldInfoLink']['name']);
         $this->assertSame($data['formFieldInfoLink']['url'], $textFieldAsArray['formFieldInfoLink']['url']);
 
         $this->assertSameWithoutOrder($data, $textFieldAsArray);

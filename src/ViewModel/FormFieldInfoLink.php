@@ -15,28 +15,28 @@ final class FormFieldInfoLink implements ViewModel
     use ArrayFromProperties;
     use SimplifyAssets;
 
-    private $text;
+    private $name;
     private $url;
     private $alignLeft;
 
     private function __construct(
-        string $text,
+        string $name,
         string $url,
         bool $alignLeft = false
     ) {
-        Assertion::notBlank($text);
+        Assertion::notBlank($name);
         Assertion::notBlank($url);
 
-        $this->text = $text;
+        $this->name = $name;
         $this->url = $url;
         if ($alignLeft) {
             $this->alignLeft = $alignLeft;
         }
     }
 
-    public static function alignedLeft(string $text, string $url) : FormFieldInfoLink
+    public static function alignedLeft(string $name, string $url) : FormFieldInfoLink
     {
-        return new static($text, $url, true);
+        return new static($name, $url, true);
     }
 
     public static function alignedRight(string $text, string $url) : FormFieldInfoLink
