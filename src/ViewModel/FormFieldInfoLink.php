@@ -34,12 +34,12 @@ final class FormFieldInfoLink implements ViewModel
         }
     }
 
-    public static function alignedLeft(string $text, string $url)
+    public static function alignedLeft(string $text, string $url) : FormFieldInfoLink
     {
         return new static($text, $url, true);
     }
 
-    public static function alignedRight(string $text, string $url)
+    public static function alignedRight(string $text, string $url) : FormFieldInfoLink
     {
         return new static($text, $url);
     }
