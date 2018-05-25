@@ -23,10 +23,6 @@ final class HoneypotTest extends ViewModelTest
             ],
             'name' => 'someName',
             'id' => 'id',
-            'formFieldInfoLink' => [
-                'text' => 'some text',
-                'url' => 'http://example.com',
-            ],
             'placeholder' => 'placeholder',
             'required' => true,
             'disabled' => true,
@@ -42,7 +38,7 @@ final class HoneypotTest extends ViewModelTest
             new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
-            FormFieldInfoLink::alignedRight($data['formFieldInfoLink']['text'], $data['formFieldInfoLink']['url']),
+            null,
             $data['placeholder'],
             $data['required'],
             $data['disabled'],
@@ -65,15 +61,14 @@ final class HoneypotTest extends ViewModelTest
         $textFieldAsArray = $textField->toArray();
         unset($textFieldAsArray['messageGroup']['id']);
         $this->assertSame($data['messageGroup'], $textFieldAsArray['messageGroup']);
-        $this->assertSame($data['formFieldInfoLink'], $textFieldAsArray['formFieldInfoLink']);
         $this->assertSameWithoutOrder($data, $textFieldAsArray);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', FormFieldInfoLink::alignedRight('text', '/url')))],
-            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', FormFieldInfoLink::alignedRight('text', '/url'), 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')))],
+            'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))],
+            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', null, 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')))],
         ];
     }
 
