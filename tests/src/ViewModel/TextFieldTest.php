@@ -93,20 +93,10 @@ final class TextFieldTest extends ViewModelTest
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
 
-    /**
-     * @test
-     */
-    public function email_input_must_have_an_info_link_aligned_right()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        TextField::emailInput(new FormLabel('label'), 'id', 'some name', FormFieldInfoLink::alignedLeft('info link text', '/info-link-url'), 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'));
-    }
-
     public function viewModelProvider() : array
     {
         return [
-            'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', FormFieldInfoLink::alignedRight('info link text', '/info-link-url'))],
+            'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
             'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name',
                 FormFieldInfoLink::alignedRight('info link text', '/info-link-url'), 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],

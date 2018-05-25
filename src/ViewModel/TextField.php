@@ -71,7 +71,7 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        FormFieldInfoLink $formFieldInfoLink,
+        FormFieldInfoLink $formFieldInfoLink = null,
         string $placeholder = null,
         bool $required = null,
         bool $disabled = null,
