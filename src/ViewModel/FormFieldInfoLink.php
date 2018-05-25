@@ -46,7 +46,7 @@ final class FormFieldInfoLink implements ViewModel
 
     public function getLocalStyleSheets() : Traversable
     {
-        yield 'resources/assets/css/form-field-info-link.scss';
+        yield 'resources/assets/css/form-field-info-link.css';
     }
 
     public function getTemplateName() : string
