@@ -72,22 +72,6 @@ final class EmailCtaTest extends ViewModelTest
         $this->assertSame($data, $form->toArray());
     }
 
-    /**
-     * @test
-     */
-    public function it_must_have_an_info_link_aligned_left()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new EmailCta('header text', 'sub header text',
-            new CompactForm(
-                new Form('/foo', 'foo', 'GET'),
-                new Input('label', 'text', 'input', 'value', 'placeholder'),
-                'cta'
-            ), FormFieldInfoLink::alignedRight('some text', '/some-url')
-        );
-    }
-
     public function viewModelProvider() : array
     {
         return [

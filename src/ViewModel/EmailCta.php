@@ -24,11 +24,10 @@ final class EmailCta implements ViewModel
         string $headerText,
         string $subHeader,
         CompactForm $compactForm,
-        FormFieldInfoLink $formFieldInfoLink
+        FormFieldInfoLink $formFieldInfoLink = null
     ) {
         Assertion::notBlank($headerText);
         Assertion::notBlank($subHeader);
-        Assertion::true($formFieldInfoLink['alignLeft']);
 
         $this->headerText = $headerText;
         $this->subHeader = $subHeader;
