@@ -38,7 +38,6 @@ final class EmailCta implements ViewModel
     public function getLocalStyleSheets() : Traversable
     {
         yield 'resources/assets/css/email-cta.css';
-        yield 'resources/assets/css/form-field-info-link.css';
     }
 
     public function getTemplateName() : string
