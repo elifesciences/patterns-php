@@ -5,7 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -16,7 +16,7 @@ final class TextField implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $inputType;
     private $label;
@@ -168,7 +168,11 @@ final class TextField implements ViewModel
     public function getStyleSheets() : Traversable
     {
         yield 'resources/assets/css/text-fields.css';
-        yield 'resources/assets/css/form-field-info-link.css';
         yield 'resources/assets/css/form-item.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->formFieldInfoLink;
     }
 }
