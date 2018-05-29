@@ -32,7 +32,7 @@ $output = function (string $type, string $buffer) {
     }
 };
 
-$execute = function (array $command, $timeout = 60) use ($output) {
+$execute = function(array $command, $timeout = 60) use ($output) {
     ProcessBuilder::create()
         ->setArguments($command)
         ->getProcess()
@@ -41,8 +41,8 @@ $execute = function (array $command, $timeout = 60) use ($output) {
         ->run($output)
     ;
 };
-$executeAndCheck = function (array $command, $timeout = 60, $attempts = 1) use ($output) {
-    for ($i = 1; $i <= $attempts; ++$i) {
+$executeAndCheck = function(array $command, $timeout = 60, $attempts = 1) use ($output) {
+    for ($i = 1; $i <= $attempts; $i++) {
         try {
             ProcessBuilder::create()
                 ->setArguments($command)
@@ -51,10 +51,9 @@ $executeAndCheck = function (array $command, $timeout = 60, $attempts = 1) use (
                 ->enableOutput()
                 ->mustRun($output)
             ;
-
             return;
         } catch (ProcessFailedException $e) {
-            if (strstr($e->getMessage(), 'i/o timeout')) {
+            if (strstr($e->getMessage(), "i/o timeout")) {
                 echo "Retrying: {$e->getMessage()}\n";
                 continue;
             }
