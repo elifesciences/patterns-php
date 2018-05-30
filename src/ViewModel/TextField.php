@@ -5,7 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
+use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -16,7 +16,7 @@ final class TextField implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
+    use ComposedAssets;
 
     private $inputType;
     private $label;
@@ -29,6 +29,7 @@ final class TextField implements ViewModel
     private $value;
     private $state;
     private $messageGroup;
+    private $formFieldInfoLink;
 
     protected function __construct(
         string $inputType,
@@ -41,7 +42,8 @@ final class TextField implements ViewModel
         bool $autofocus = null,
         string $value = null,
         string $state = null,
-        MessageGroup $messageGroup = null
+        MessageGroup $messageGroup = null,
+        FormFieldInfoLink $formFieldInfoLink = null
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['email', 'password', 'search', 'tel', 'text', 'url']);
@@ -62,12 +64,14 @@ final class TextField implements ViewModel
         $this->value = $value;
         $this->state = $state;
         $this->messageGroup = $messageGroup;
+        $this->formFieldInfoLink = $formFieldInfoLink;
     }
 
     public static function emailInput(
         FormLabel $label,
         string $id,
         string $name,
+        FormFieldInfoLink $formFieldInfoLink = null,
         string $placeholder = null,
         bool $required = null,
         bool $disabled = null,
@@ -76,7 +80,9 @@ final class TextField implements ViewModel
         string $state = null,
         MessageGroup $messageGroup = null
     ) {
-        return new static('email', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup);
+        Assertion::eq(null, $formFieldInfoLink['alignLeft']);
+
+        return new static('email', $label, $id, $name, $placeholder, $required, $disabled, $autofocus, $value, $state, $messageGroup, $formFieldInfoLink);
     }
 
     public static function passwordInput(
@@ -163,5 +169,10 @@ final class TextField implements ViewModel
     {
         yield 'resources/assets/css/text-fields.css';
         yield 'resources/assets/css/form-item.css';
+    }
+
+    protected function getComposedViewModels() : Traversable
+    {
+        yield $this->formFieldInfoLink;
     }
 }

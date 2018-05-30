@@ -72,6 +72,7 @@ final class CompactFormTest extends ViewModelTest
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
                 $data['honeypot']['name'],
+                null,
                 $data['honeypot']['placeholder'],
                 $data['honeypot']['required'],
                 $data['honeypot']['disabled'],
@@ -99,8 +100,8 @@ final class CompactFormTest extends ViewModelTest
         unset($formAsArray['messageGroup']['id']);
         unset($formAsArray['honeypot']['messageGroup']['id']);
         $this->assertSame($data['messageGroup'], $formAsArray['messageGroup']);
-        $this->assertSame($data['honeypot'], $formAsArray['honeypot']);
-        $this->assertSame($data, $formAsArray);
+        $this->assertSameWithoutOrder($data['honeypot'], $formAsArray['honeypot']);
+        $this->assertSameWithoutOrder($data, $formAsArray);
     }
 
     /**
