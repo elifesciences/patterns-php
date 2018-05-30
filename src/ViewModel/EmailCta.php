@@ -29,6 +29,10 @@ final class EmailCta implements ViewModel
         Assertion::notBlank($headerText);
         Assertion::notBlank($subHeader);
 
+        if ($formFieldInfoLink) {
+            $formFieldInfoLink = FlexibleViewModel::fromViewModel($formFieldInfoLink)->withProperty('alignLeft', true);
+        }
+
         $this->headerText = $headerText;
         $this->subHeader = $subHeader;
         $this->compactForm = $compactForm;

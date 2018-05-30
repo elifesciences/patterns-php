@@ -17,31 +17,16 @@ final class FormFieldInfoLink implements ViewModel
 
     private $name;
     private $url;
-    private $alignLeft;
 
-    private function __construct(
+    public function __construct(
         string $name,
-        string $url,
-        bool $alignLeft = false
+        string $url
     ) {
         Assertion::notBlank($name);
         Assertion::notBlank($url);
 
         $this->name = $name;
         $this->url = $url;
-        if ($alignLeft) {
-            $this->alignLeft = $alignLeft;
-        }
-    }
-
-    public static function alignedLeft(string $name, string $url) : FormFieldInfoLink
-    {
-        return new static($name, $url, true);
-    }
-
-    public static function alignedRight(string $text, string $url) : FormFieldInfoLink
-    {
-        return new static($text, $url);
     }
 
     public function getLocalStyleSheets() : Traversable

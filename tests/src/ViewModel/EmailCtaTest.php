@@ -49,7 +49,7 @@ final class EmailCtaTest extends ViewModelTest
                 $data['compactForm']['inputPlaceholder']
             ),
             $data['compactForm']['ctaText']
-        ), FormFieldInfoLink::alignedLeft(
+        ), new FormFieldInfoLink(
             $data['formFieldInfoLink']['name'],
             $data['formFieldInfoLink']['url']
         ));
@@ -77,11 +77,11 @@ final class EmailCtaTest extends ViewModelTest
             [
                 new EmailCta('header text', 'sub header text',
                     new CompactForm(
-                    new Form('/foo', 'foo', 'GET'),
-                    new Input('label', 'text', 'input', 'value', 'placeholder'),
-                    'cta'
-                ), FormFieldInfoLink::alignedLeft('name', '/some-url')
-),
+                        new Form('/foo', 'foo', 'GET'),
+                        new Input('label', 'text', 'input', 'value', 'placeholder'),
+                        'cta'
+                    ), new FormFieldInfoLink('name', '/some-url')
+                ),
             ],
         ];
     }

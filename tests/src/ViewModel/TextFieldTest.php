@@ -42,7 +42,7 @@ final class TextFieldTest extends ViewModelTest
             new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
-            FormFieldInfoLink::alignedRight($data['formFieldInfoLink']['name'], $data['formFieldInfoLink']['url']),
+            new FormFieldInfoLink($data['formFieldInfoLink']['name'], $data['formFieldInfoLink']['url']),
             $data['placeholder'],
             $data['required'],
             $data['disabled'],
@@ -98,7 +98,7 @@ final class TextFieldTest extends ViewModelTest
         return [
             'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
             'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name',
-                FormFieldInfoLink::alignedRight('info link text', '/info-link-url'), 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
+                new FormFieldInfoLink('info link text', '/info-link-url'), 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],
             'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name')],
