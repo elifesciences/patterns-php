@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\FormFieldInfoLink;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextField;
@@ -22,6 +23,10 @@ final class TextFieldTest extends ViewModelTest
             ],
             'name' => 'someName',
             'id' => 'id',
+            'formFieldInfoLink' => [
+                'name' => 'some text',
+                'url' => 'http://example.com',
+            ],
             'placeholder' => 'placeholder',
             'required' => true,
             'disabled' => true,
@@ -37,6 +42,7 @@ final class TextFieldTest extends ViewModelTest
             new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
+            new FormFieldInfoLink($data['formFieldInfoLink']['name'], $data['formFieldInfoLink']['url']),
             $data['placeholder'],
             $data['required'],
             $data['disabled'],
@@ -60,7 +66,11 @@ final class TextFieldTest extends ViewModelTest
         $textFieldAsArray = $textField->toArray();
         unset($textFieldAsArray['messageGroup']['id']);
         $this->assertSame($data['messageGroup'], $textFieldAsArray['messageGroup']);
-        $this->assertSame($data, $textFieldAsArray);
+
+        $this->assertSame($data['formFieldInfoLink']['name'], $textFieldAsArray['formFieldInfoLink']['name']);
+        $this->assertSame($data['formFieldInfoLink']['url'], $textFieldAsArray['formFieldInfoLink']['url']);
+
+        $this->assertSameWithoutOrder($data, $textFieldAsArray);
     }
 
     /**
@@ -87,7 +97,8 @@ final class TextFieldTest extends ViewModelTest
     {
         return [
             'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
-            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
+            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name',
+                new FormFieldInfoLink('info link text', '/info-link-url'), 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],
             'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name')],

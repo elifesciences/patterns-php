@@ -37,6 +37,7 @@ final class HoneypotTest extends ViewModelTest
             new FormLabel($data['label']['labelText']),
             $data['id'],
             $data['name'],
+            null,
             $data['placeholder'],
             $data['required'],
             $data['disabled'],
@@ -59,14 +60,14 @@ final class HoneypotTest extends ViewModelTest
         $textFieldAsArray = $textField->toArray();
         unset($textFieldAsArray['messageGroup']['id']);
         $this->assertSame($data['messageGroup'], $textFieldAsArray['messageGroup']);
-        $this->assertSame($data, $textFieldAsArray);
+        $this->assertSameWithoutOrder($data, $textFieldAsArray);
     }
 
     public function viewModelProvider() : array
     {
         return [
             'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))],
-            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')))],
+            'complete input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name', null, 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')))],
         ];
     }
 

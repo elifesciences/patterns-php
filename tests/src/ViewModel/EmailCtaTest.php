@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\CompactForm;
 use eLife\Patterns\ViewModel\EmailCta;
 use eLife\Patterns\ViewModel\Form;
+use eLife\Patterns\ViewModel\FormFieldInfoLink;
 use eLife\Patterns\ViewModel\Input;
 
 final class EmailCtaTest extends ViewModelTest
@@ -28,6 +29,11 @@ final class EmailCtaTest extends ViewModelTest
                 'inputPlaceholder' => 'placeholder',
                 'ctaText' => 'cta',
             ],
+            'formFieldInfoLink' => [
+                'name' => 'some text',
+                'url' => 'http://example.com',
+                'alignLeft' => true,
+            ],
         ];
         $form = new EmailCta($data['headerText'], $data['subHeader'], new CompactForm(
             new Form(
@@ -43,6 +49,9 @@ final class EmailCtaTest extends ViewModelTest
                 $data['compactForm']['inputPlaceholder']
             ),
             $data['compactForm']['ctaText']
+        ), new FormFieldInfoLink(
+            $data['formFieldInfoLink']['name'],
+            $data['formFieldInfoLink']['url']
         ));
 
         $this->assertSame($data['headerText'], $form['headerText']);
@@ -56,6 +65,9 @@ final class EmailCtaTest extends ViewModelTest
         $this->assertSame($data['compactForm']['inputName'], $form['compactForm']['inputName']);
         $this->assertSame($data['compactForm']['inputValue'], $form['compactForm']['inputValue']);
         $this->assertSame($data['compactForm']['inputPlaceholder'], $form['compactForm']['inputPlaceholder']);
+        $this->assertSame($data['formFieldInfoLink']['name'], $form['formFieldInfoLink']['name']);
+        $this->assertSame($data['formFieldInfoLink']['url'], $form['formFieldInfoLink']['url']);
+        $this->assertSame($data['formFieldInfoLink']['alignLeft'], $form['formFieldInfoLink']['alignLeft']);
         $this->assertSame($data, $form->toArray());
     }
 
@@ -63,11 +75,13 @@ final class EmailCtaTest extends ViewModelTest
     {
         return [
             [
-                new EmailCta('header text', 'sub header text', new CompactForm(
-                    new Form('/foo', 'foo', 'GET'),
-                    new Input('label', 'text', 'input', 'value', 'placeholder'),
-                    'cta'
-                )),
+                new EmailCta('header text', 'sub header text',
+                    new CompactForm(
+                        new Form('/foo', 'foo', 'GET'),
+                        new Input('label', 'text', 'input', 'value', 'placeholder'),
+                        'cta'
+                    ), new FormFieldInfoLink('name', '/some-url')
+                ),
             ],
         ];
     }

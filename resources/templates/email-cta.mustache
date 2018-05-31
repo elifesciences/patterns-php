@@ -7,6 +7,11 @@
       </header>
 
       <h3 class="email-cta__sub_header">{{{ subHeader }}}</h3>
+
+    {{#formFieldInfoLink}}
+      {{> resources/templates/form-field-info-link}}
+    {{/formFieldInfoLink}}
+
       {{#compactForm}}
         {{> resources/templates/compact-form }}
       {{/compactForm}}
