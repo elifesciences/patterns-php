@@ -63,9 +63,4 @@ final class AudioPlayer implements ViewModel
     {
         return 'resources/templates/audio-player.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/audio-player.css';
-    }
 }

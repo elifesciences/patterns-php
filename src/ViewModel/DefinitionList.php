@@ -39,11 +39,6 @@ final class DefinitionList implements ViewModel
         }
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/definition-list.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/definition-list.mustache';

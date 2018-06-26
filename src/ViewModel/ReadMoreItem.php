@@ -28,11 +28,6 @@ final class ReadMoreItem implements ViewModel
         $this->isRelated = $isRelated;
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield from $this->item->getStyleSheets();
-    }
-
     public function getJavaScripts() : Traversable
     {
         yield from $this->item->getJavaScripts();

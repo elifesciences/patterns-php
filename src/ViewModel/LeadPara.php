@@ -25,11 +25,6 @@ final class LeadPara implements ViewModel
         $this->id = $id;
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/lead-para.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/lead-para.mustache';

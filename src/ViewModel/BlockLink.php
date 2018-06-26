@@ -29,9 +29,4 @@ final class BlockLink implements ViewModel
     {
         return 'resources/templates/block-link.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/block-link.css';
-    }
 }

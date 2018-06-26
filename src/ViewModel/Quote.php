@@ -28,11 +28,6 @@ final class Quote implements ViewModel
         $this->cite = $cite;
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/quote.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/quote.mustache';

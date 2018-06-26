@@ -57,9 +57,4 @@ final class MediaChapterListingItem implements ViewModel
     {
         return 'resources/templates/media-chapter-listing-item.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/media-chapter-listing-item.css';
-    }
 }

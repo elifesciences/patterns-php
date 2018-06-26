@@ -27,9 +27,4 @@ final class ImageLink implements ViewModel
     {
         return 'resources/templates/image-link.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/image-link.css';
-    }
 }

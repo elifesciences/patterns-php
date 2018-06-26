@@ -28,9 +28,4 @@ final class MessageBar implements ViewModel
     {
         return 'resources/templates/message-bar.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/message-bar.css';
-    }
 }

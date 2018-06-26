@@ -29,9 +29,4 @@ final class SortControl implements ViewModel
     {
         return 'resources/templates/sort-control.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/sort-control.css';
-    }
 }

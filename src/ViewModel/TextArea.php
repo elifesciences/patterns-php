@@ -72,10 +72,4 @@ final class TextArea implements ViewModel
     {
         return 'resources/templates/text-area.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/text-fields.css';
-        yield 'resources/assets/css/form-item.css';
-    }
 }

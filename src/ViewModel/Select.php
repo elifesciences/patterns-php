@@ -59,10 +59,4 @@ final class Select implements ViewModel
     {
         return 'resources/templates/select.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/select.css';
-        yield 'resources/assets/css/form-item.css';
-    }
 }

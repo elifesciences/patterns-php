@@ -30,9 +30,4 @@ final class InlineProfile implements ViewModel
     {
         return 'resources/templates/inline-profile.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/inline-profile.css';
-    }
 }

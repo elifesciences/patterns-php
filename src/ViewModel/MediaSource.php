@@ -32,9 +32,4 @@ final class MediaSource implements ViewModel
     {
         return 'resources/templates/media-source.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/media-source.css';
-    }
 }

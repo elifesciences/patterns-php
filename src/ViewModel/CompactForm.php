@@ -62,9 +62,4 @@ final class CompactForm implements ViewModel
     {
         return 'resources/templates/compact-form.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/compact-form.css';
-    }
 }

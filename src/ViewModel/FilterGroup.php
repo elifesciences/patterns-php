@@ -31,9 +31,4 @@ final class FilterGroup implements ViewModel
     {
         return 'resources/templates/filter-group.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/filter-group.css';
-    }
 }

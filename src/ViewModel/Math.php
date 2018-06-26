@@ -32,9 +32,4 @@ final class Math implements ViewModel
     {
         return 'resources/templates/math.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/math.css';
-    }
 }

@@ -37,9 +37,4 @@ final class ArticleMeta implements ViewModel
     {
         return 'resources/templates/article-meta.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/article-meta.css';
-    }
 }

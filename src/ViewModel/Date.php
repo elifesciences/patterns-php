@@ -42,11 +42,6 @@ final class Date implements ViewModel
         return new self($date, true);
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/date.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/date.mustache';

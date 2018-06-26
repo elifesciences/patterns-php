@@ -83,11 +83,6 @@ final class LoginControl implements ViewModel
         }, array_keys($linkFields), array_values($linkFields), range(1, count($linkFields))));
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/login-control.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/login-control.mustache';

@@ -28,9 +28,4 @@ final class Code implements ViewModel
     {
         return 'resources/templates/code.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/code.css';
-    }
 }

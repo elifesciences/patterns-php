@@ -43,9 +43,4 @@ final class InfoBar implements ViewModel
     {
         return 'resources/templates/info-bar.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/info-bars.css';
-    }
 }

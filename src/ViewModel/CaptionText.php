@@ -51,9 +51,4 @@ final class CaptionText implements ViewModel
     {
         return 'resources/templates/caption-text.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/caption-text.css';
-    }
 }

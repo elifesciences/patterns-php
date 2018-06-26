@@ -51,9 +51,4 @@ final class SpeechBubble implements ViewModel
     {
         return 'resources/templates/speech-bubble.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/speech-bubble.css';
-    }
 }

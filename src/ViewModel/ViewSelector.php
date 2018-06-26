@@ -49,9 +49,4 @@ final class ViewSelector implements ViewModel
     {
         return 'resources/templates/view-selector.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/view-selector.css';
-    }
 }

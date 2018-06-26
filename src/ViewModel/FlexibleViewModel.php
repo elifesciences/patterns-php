@@ -74,11 +74,6 @@ final class FlexibleViewModel implements ViewModel
         return $this->templateName;
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        return $this->styleSheets;
-    }
-
     public function getJavaScripts() : Traversable
     {
         return $this->javaScripts;

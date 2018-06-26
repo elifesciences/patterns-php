@@ -128,9 +128,4 @@ final class AnnotationTeaser implements ViewModel
     {
         return 'resources/templates/annotation-teaser.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/annotation-teaser.css';
-    }
 }

@@ -48,11 +48,6 @@ final class Listing implements ViewModel
         return new self(false, $prefix, $items, 'list--teaser');
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/list.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/list.mustache';

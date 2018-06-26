@@ -39,9 +39,4 @@ final class Table implements ViewModel, IsCaptioned
     {
         return 'resources/templates/table.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/table.css';
-    }
 }

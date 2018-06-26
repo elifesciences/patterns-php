@@ -43,9 +43,4 @@ final class ArticleDownloadLinksList implements ViewModel
     {
         return 'resources/templates/article-download-links-list.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/article-download-links-list.css';
-    }
 }

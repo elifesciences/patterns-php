@@ -28,9 +28,4 @@ final class Orcid implements ViewModel
     {
         return 'resources/templates/orcid.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/orcid.css';
-    }
 }

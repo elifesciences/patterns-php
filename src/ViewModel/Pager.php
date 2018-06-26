@@ -44,11 +44,6 @@ final class Pager implements ViewModel
         return 'resources/templates/pager.mustache';
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/pager.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->previousPage;

@@ -26,11 +26,6 @@ final class ListHeading implements ViewModel
         $this->headingId = $headingId;
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/list-heading.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/list-heading.mustache';

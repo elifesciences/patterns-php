@@ -54,13 +54,4 @@ final class BarChart implements ViewModel
     {
         return 'resources/templates/bar-chart.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/button-collection.css';
-        yield 'resources/assets/css/buttons.css';
-        yield 'resources/assets/css/chart.css';
-        yield 'resources/assets/css/tooltip.css';
-        yield 'resources/assets/css/triggers.css';
-    }
 }

@@ -34,9 +34,4 @@ final class AboutProfile implements ViewModel
     {
         return 'resources/templates/about-profile.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/about-profile.css';
-    }
 }

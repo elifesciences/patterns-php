@@ -31,9 +31,4 @@ final class SectionListingLink implements ViewModel
     {
         return 'resources/templates/section-listing-link.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/section-listing-link.css';
-    }
 }

@@ -30,9 +30,4 @@ final class Doi implements ViewModel
     {
         return 'resources/templates/doi.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/doi.css';
-    }
 }

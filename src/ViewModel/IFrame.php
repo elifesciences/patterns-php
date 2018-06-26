@@ -34,9 +34,4 @@ final class IFrame implements ViewModel
     {
         return 'resources/templates/iframe.mustache';
     }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/iframe.css';
-    }
 }
