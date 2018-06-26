@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns;
 
-use ArrayObject;
 use Traversable;
 
 trait ComposedAssets

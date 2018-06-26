@@ -2,10 +2,8 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use ArrayObject;
 use BadMethodCallException;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class FlexibleViewModel implements ViewModel
 {

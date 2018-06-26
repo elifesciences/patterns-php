@@ -2,12 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use ArrayObject;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
 use PHPUnit_Framework_TestCase;
-use function eLife\Patterns\iterator_to_unique_array;
 
 final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
 {
