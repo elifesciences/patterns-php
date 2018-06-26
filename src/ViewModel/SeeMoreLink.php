@@ -4,14 +4,12 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class SeeMoreLink implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     protected $name;
 

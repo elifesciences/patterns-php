@@ -5,14 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use DateTimeImmutable;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class Date implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $isExpanded;
     private $isUpdated;

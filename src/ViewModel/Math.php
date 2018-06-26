@@ -5,14 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class Math implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $math;
     private $id;

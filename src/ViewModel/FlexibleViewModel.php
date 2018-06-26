@@ -11,24 +11,20 @@ final class FlexibleViewModel implements ViewModel
 {
     private $templateName;
     private $properties;
-    private $javaScripts;
 
     public function __construct(
         string $templateName,
-        array $properties,
-        Traversable $javaScripts = null
+        array $properties
     ) {
         $this->templateName = $templateName;
         $this->properties = $properties;
-        $this->javaScripts = $javaScripts ?? new ArrayObject();
     }
 
     public static function fromViewModel(ViewModel $viewModel) : FlexibleViewModel
     {
         return new self(
             $viewModel->getTemplateName(),
-            $viewModel->toArray(),
-            $viewModel->getJavaScripts()
+            $viewModel->toArray()
         );
     }
 
@@ -72,10 +68,5 @@ final class FlexibleViewModel implements ViewModel
     public function getTemplateName() : string
     {
         return $this->templateName;
-    }
-
-    public function getJavaScripts() : Traversable
-    {
-        return $this->javaScripts;
     }
 }

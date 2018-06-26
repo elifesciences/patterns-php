@@ -88,26 +88,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($validator->isValid(), $message);
     }
 
-    /**
-     * @test
-     * @depends it_has_a_definition
-     */
-    final public function it_has_assets()
-    {
-        $viewModel = $this->createViewModel();
-
-        $possibleJavaScripts = iterator_to_unique_array($this->possibleJavaScripts());
-        $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
-
-        foreach ($actualJavaScripts as $javaScript) {
-            $this->assertContains($javaScript, $possibleJavaScripts, 'JavaScript not in definition');
-        }
-
-        foreach ($this->possibleJavaScripts() as $javaScript) {
-            $this->assertFileExists(__DIR__.'/../../../'.$javaScript);
-        }
-    }
-
     abstract public function viewModelProvider() : array;
 
     final protected function createViewModel() : ViewModel
@@ -116,15 +96,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     }
 
     abstract protected function expectedTemplate() : string;
-
-    private function possibleJavaScripts() : Traversable
-    {
-        $definition = $this->loadDefinition();
-
-        foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
-            yield 'resources/assets/js/'.$javaScript;
-        }
-    }
 
     private function loadDefinition() : stdClass
     {

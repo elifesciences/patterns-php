@@ -5,14 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class AnnotationTeaser implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     const RESTRICTED_ACCESS_TEXT = 'Only me';
 

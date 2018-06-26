@@ -47,23 +47,6 @@ $patternRenderer = new MustachePatternRenderer($mustache);
 var_dump($patternRenderer->render($viewModel));
 ```
 
-Asset handling
---------------
-Use the `AssetRecordingPatternRenderer` to record which assets are used and include them on the page as necessary.
-
-For example:
-
-```php
-use eLife\Patterns\PatternRenderer\AssetRecordingPatternRenderer;
-use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
-
-$patternRenderer = new AssetRecordingPatternRenderer(new MustachePatternRenderer($mustache));
-
-$patternRenderer->render($viewModel);
-
-var_dump($patternRenderer->getJavaScripts());
-```
-
 Updating the library
 --------------------
 

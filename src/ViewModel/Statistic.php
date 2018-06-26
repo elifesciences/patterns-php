@@ -5,14 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class Statistic implements ViewModel
 {
     use ArrayFromProperties;
     use ArrayAccessFromProperties;
-    use SimplifyAssets;
 
     private $label;
     private $value;

@@ -4,14 +4,12 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class BlockLink implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $text;
     private $url;

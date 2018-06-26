@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use function array_values;
 
@@ -13,7 +12,6 @@ final class DefinitionList implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $items;
     private $inline;

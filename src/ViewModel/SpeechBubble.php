@@ -4,7 +4,6 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 use function eLife\Patterns\mixed_accessibility_text;
 
@@ -15,7 +14,6 @@ final class SpeechBubble implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $text;
     private $isSmall;

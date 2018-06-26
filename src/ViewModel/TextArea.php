@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
 
 final class TextArea implements ViewModel
@@ -15,7 +14,6 @@ final class TextArea implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $label;
     private $name;
