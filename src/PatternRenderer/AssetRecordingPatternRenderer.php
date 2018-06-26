@@ -11,26 +11,17 @@ use Traversable;
 final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
 {
     private $patternRenderer;
-    private $styleSheets;
     private $javaScripts;
 
     public function __construct(PatternRenderer $patternRenderer)
     {
         $this->patternRenderer = $patternRenderer;
-        $this->styleSheets = new ArrayObject();
         $this->javaScripts = new ArrayObject();
     }
 
     public function render(ViewModel ...$viewModels) : string
     {
         foreach ($viewModels as $viewModel) {
-            foreach ($viewModel->getStyleSheets() as $styleSheet) {
-                if (false !== $this->contains($this->styleSheets, $styleSheet)) {
-                    continue;
-                }
-                $this->styleSheets[] = $styleSheet;
-            }
-
             foreach ($viewModel->getJavaScripts() as $javaScript) {
                 if (false !== $this->contains($this->javaScripts, $javaScript)) {
                     continue;
@@ -40,11 +31,6 @@ final class AssetRecordingPatternRenderer implements PatternRenderer, HasAssets
         }
 
         return $this->patternRenderer->render(...$viewModels);
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        return $this->styleSheets;
     }
 
     public function getJavaScripts() : Traversable
