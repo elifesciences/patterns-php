@@ -5,14 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ComposedAssets;
 use Traversable;
 
 final class TeaserFooter implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $meta;
     private $formats;

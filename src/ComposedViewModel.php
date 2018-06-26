@@ -6,7 +6,6 @@ use Traversable;
 
 trait ComposedViewModel
 {
-    use ComposedAssets;
     use ReadOnlyArrayAccess;
 
     public function toArray() : array

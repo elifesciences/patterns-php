@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use Traversable;
 
@@ -13,7 +12,6 @@ final class Teaser implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     const STYLE_SECONDARY = 'teaser--secondary';
     const STYLE_RELATED = 'teaser--related';

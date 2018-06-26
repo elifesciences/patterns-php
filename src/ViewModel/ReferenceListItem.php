@@ -6,14 +6,12 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ComposedAssets;
 use Traversable;
 
 final class ReferenceListItem implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $bibId;
     private $reference;
