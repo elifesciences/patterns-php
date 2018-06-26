@@ -96,17 +96,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $viewModel = $this->createViewModel();
 
-        $possibleStylesheets = iterator_to_unique_array($this->possibleStyleSheets());
-        $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
-
-        foreach ($actualStyleSheets as $styleSheet) {
-            $this->assertContains($styleSheet, $possibleStylesheets, 'StyleSheet not in definition');
-        }
-
-        foreach ($this->possibleStyleSheets() as $stylesheet) {
-            $this->assertFileExists(__DIR__.'/../../../'.$stylesheet);
-        }
-
         $possibleJavaScripts = iterator_to_unique_array($this->possibleJavaScripts());
         $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
 
@@ -127,15 +116,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     }
 
     abstract protected function expectedTemplate() : string;
-
-    private function possibleStyleSheets() : Traversable
-    {
-        $definition = $this->loadDefinition();
-
-        foreach (array_unique(iterator_to_array(flatten($definition->assets->css))) as $stylesheet) {
-            yield 'resources/assets/css/'.$stylesheet;
-        }
-    }
 
     private function possibleJavaScripts() : Traversable
     {
