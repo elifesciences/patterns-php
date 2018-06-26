@@ -7,10 +7,9 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ComposedAssets;
-use eLife\Patterns\HasAssets;
 use Traversable;
 
-final class ReferenceListItem implements CastsToArray, HasAssets
+final class ReferenceListItem implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;

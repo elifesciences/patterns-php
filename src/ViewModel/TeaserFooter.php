@@ -6,10 +6,9 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ComposedAssets;
-use eLife\Patterns\HasAssets;
 use Traversable;
 
-final class TeaserFooter implements CastsToArray, HasAssets
+final class TeaserFooter implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
