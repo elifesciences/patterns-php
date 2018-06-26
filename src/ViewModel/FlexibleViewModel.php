@@ -11,18 +11,15 @@ final class FlexibleViewModel implements ViewModel
 {
     private $templateName;
     private $properties;
-    private $styleSheets;
     private $javaScripts;
 
     public function __construct(
         string $templateName,
         array $properties,
-        Traversable $styleSheets = null,
         Traversable $javaScripts = null
     ) {
         $this->templateName = $templateName;
         $this->properties = $properties;
-        $this->styleSheets = $styleSheets ?? new ArrayObject();
         $this->javaScripts = $javaScripts ?? new ArrayObject();
     }
 
@@ -31,7 +28,6 @@ final class FlexibleViewModel implements ViewModel
         return new self(
             $viewModel->getTemplateName(),
             $viewModel->toArray(),
-            $viewModel->getStyleSheets(),
             $viewModel->getJavaScripts()
         );
     }
