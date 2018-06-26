@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Button implements ViewModel
 {
@@ -131,5 +130,4 @@ final class Button implements ViewModel
     {
         return 'resources/templates/button.mustache';
     }
-
 }

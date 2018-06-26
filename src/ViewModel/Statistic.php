@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Statistic implements ViewModel
 {
@@ -36,6 +35,7 @@ final class Statistic implements ViewModel
         $this->label = $label;
         $this->value = $value;
     }
+
     public function getTemplateName() : string
     {
         return 'resources/templates/statistic.mustache';

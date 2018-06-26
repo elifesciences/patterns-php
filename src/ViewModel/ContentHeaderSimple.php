@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ContentHeaderSimple implements ViewModel
 {
@@ -30,5 +29,4 @@ final class ContentHeaderSimple implements ViewModel
     {
         return 'resources/templates/content-header-simple.mustache';
     }
-
 }

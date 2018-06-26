@@ -60,5 +60,4 @@ final class AssetRecordingPatternRendererTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(new ArrayObject(['foo', 'bar']), $patternRenderer->getJavaScripts());
     }
-
 }

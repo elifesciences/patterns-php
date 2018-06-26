@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 use function rawurlencode;
 
 final class SocialMediaSharers implements ViewModel
@@ -39,5 +38,4 @@ final class SocialMediaSharers implements ViewModel
     {
         return 'resources/templates/social-media-sharers.mustache';
     }
-
 }

@@ -64,5 +64,4 @@ final class ListingReadMore implements ViewModel
     {
         return 'resources/templates/listing-read-more.mustache';
     }
-
 }
