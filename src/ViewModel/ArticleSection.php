@@ -87,11 +87,6 @@ final class ArticleSection implements ViewModel
         return 'resources/templates/article-section.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/article-section.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->doi;

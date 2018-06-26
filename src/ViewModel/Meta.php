@@ -52,11 +52,6 @@ final class Meta implements ViewModel
         return 'resources/templates/meta.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/meta.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->date;

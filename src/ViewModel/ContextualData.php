@@ -75,11 +75,6 @@ final class ContextualData implements ViewModel
         return 'resources/templates/contextual-data.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/contextual-data.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         if ($this->citation) {

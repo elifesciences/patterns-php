@@ -232,11 +232,6 @@ final class Teaser implements ViewModel
         return 'resources/templates/teaser.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/teaser.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->footer;

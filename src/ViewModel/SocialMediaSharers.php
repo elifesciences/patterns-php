@@ -40,8 +40,4 @@ final class SocialMediaSharers implements ViewModel
         return 'resources/templates/social-media-sharers.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/social-media-sharers.css';
-    }
 }

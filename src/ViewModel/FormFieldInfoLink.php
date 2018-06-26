@@ -29,11 +29,6 @@ final class FormFieldInfoLink implements ViewModel
         $this->url = $url;
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/form-field-info-link.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/form-field-info-link.mustache';

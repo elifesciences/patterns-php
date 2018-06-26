@@ -28,11 +28,6 @@ final class LeadParas implements ViewModel
         $this->paras = $leadParas;
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/lead-paras.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/lead-paras.mustache';

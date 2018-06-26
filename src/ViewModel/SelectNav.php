@@ -33,11 +33,6 @@ final class SelectNav implements ViewModel
         return 'resources/templates/select-nav.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/select-nav.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->select;

@@ -66,11 +66,6 @@ final class Reference implements ViewModel
         return new self($title['name'], $origin, $title['url'], null, $authorLists, $abstracts);
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/reference.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->doi;

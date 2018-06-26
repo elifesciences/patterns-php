@@ -132,8 +132,4 @@ final class Button implements ViewModel
         return 'resources/templates/button.mustache';
     }
 
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/buttons.css';
-    }
 }

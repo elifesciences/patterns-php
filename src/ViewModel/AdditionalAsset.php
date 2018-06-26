@@ -65,11 +65,6 @@ final class AdditionalAsset implements ViewModel
         return 'resources/templates/additional-asset.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/additional-asset.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->captionText;

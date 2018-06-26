@@ -32,11 +32,6 @@ final class SiteHeader implements ViewModel
         }
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/site-header.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->primaryLinks;

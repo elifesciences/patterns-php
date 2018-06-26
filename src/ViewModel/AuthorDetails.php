@@ -67,11 +67,6 @@ final class AuthorDetails implements ViewModel
         return 'resources/templates/author-details.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/author-details.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->orcid;

@@ -39,11 +39,6 @@ final class EmailCta implements ViewModel
         $this->formFieldInfoLink = $formFieldInfoLink;
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/email-cta.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/email-cta.mustache';

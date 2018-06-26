@@ -47,11 +47,6 @@ final class ArchiveNavLink implements ViewModel
         return 'resources/templates/archive-nav-link.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/archive-nav-link.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->blockLink;

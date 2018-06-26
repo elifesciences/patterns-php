@@ -32,11 +32,6 @@ final class MainMenu implements ViewModel
         return 'resources/templates/main-menu.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/main-menu.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->listHeading;

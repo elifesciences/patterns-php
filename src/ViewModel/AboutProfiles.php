@@ -36,11 +36,6 @@ final class AboutProfiles implements ViewModel
         return 'resources/templates/about-profiles.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/about-profiles.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->items;

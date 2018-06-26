@@ -38,11 +38,6 @@ final class FilterPanel implements ViewModel
         return 'resources/templates/filter-panel.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/filter-panel.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->filterGroups;

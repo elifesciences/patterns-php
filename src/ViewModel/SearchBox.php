@@ -28,11 +28,6 @@ final class SearchBox implements ViewModel
         return 'resources/templates/search-box.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/search-box.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->compactForm;

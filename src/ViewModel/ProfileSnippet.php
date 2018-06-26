@@ -29,11 +29,6 @@ final class ProfileSnippet implements ViewModel
         $this->image = $image;
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/profile-snippet.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/profile-snippet.mustache';

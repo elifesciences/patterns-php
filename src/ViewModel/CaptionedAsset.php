@@ -65,11 +65,6 @@ final class CaptionedAsset implements ViewModel
         }
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/captioned-asset.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/captioned-asset.mustache';

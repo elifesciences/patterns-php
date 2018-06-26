@@ -21,11 +21,6 @@ final class ServerError implements ViewModel
         $this->button = $button;
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/errors.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->button;

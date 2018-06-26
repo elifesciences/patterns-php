@@ -29,11 +29,6 @@ final class AuthorsDetails implements ViewModel
         return 'resources/templates/authors-details.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/authors-details.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->authorDetails;

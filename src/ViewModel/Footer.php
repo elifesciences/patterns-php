@@ -49,11 +49,6 @@ final class Footer implements ViewModel
         return 'resources/templates/footer.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/site-footer.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->_mainMenu;

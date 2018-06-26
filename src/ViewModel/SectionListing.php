@@ -34,11 +34,6 @@ final class SectionListing implements ViewModel
         $this->labelledBy = $labelledBy;
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/section-listing.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->listHeading;

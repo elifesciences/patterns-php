@@ -29,11 +29,6 @@ final class ReferenceList implements ViewModel
         return 'resources/templates/reference-list.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/reference-list.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->references;

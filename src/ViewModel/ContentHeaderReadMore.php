@@ -52,11 +52,6 @@ final class ContentHeaderReadMore implements ViewModel
         return 'resources/templates/content-header-read-more.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/content-header.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->meta;

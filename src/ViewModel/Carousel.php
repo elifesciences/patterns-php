@@ -26,11 +26,6 @@ final class Carousel implements ViewModel
         $this->items = $items;
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/carousel.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/carousel.mustache';

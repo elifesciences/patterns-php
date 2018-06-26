@@ -32,11 +32,6 @@ final class PersonalisedCoverDownload implements ViewModel
         $this->buttonCollection = $buttonCollection;
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/personalised-cover-download.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->text;

@@ -65,8 +65,4 @@ final class ListingReadMore implements ViewModel
         return 'resources/templates/listing-read-more.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/listing.css';
-    }
 }

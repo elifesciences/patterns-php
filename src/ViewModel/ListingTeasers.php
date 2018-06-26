@@ -63,11 +63,6 @@ final class ListingTeasers implements ViewModel
         return 'resources/templates/listing-teasers.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/listing.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->items;

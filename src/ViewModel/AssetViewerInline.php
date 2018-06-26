@@ -108,11 +108,6 @@ final class AssetViewerInline implements ViewModel
         return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets, $download, $open);
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/asset-viewer-inline.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/asset-viewer-inline.mustache';

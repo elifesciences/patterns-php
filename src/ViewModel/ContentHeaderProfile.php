@@ -90,11 +90,6 @@ final class ContentHeaderProfile implements ViewModel
         return 'resources/templates/content-header-profile.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/content-header-profile.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->_orcid;

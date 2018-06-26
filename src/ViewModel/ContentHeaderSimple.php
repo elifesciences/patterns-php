@@ -31,8 +31,4 @@ final class ContentHeaderSimple implements ViewModel
         return 'resources/templates/content-header-simple.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/content-header-simple.css';
-    }
 }

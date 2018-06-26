@@ -31,11 +31,6 @@ final class MiniSection implements ViewModel
         return 'resources/templates/mini-section.mustache';
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/mini-section.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->listHeading;

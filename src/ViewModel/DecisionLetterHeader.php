@@ -30,12 +30,6 @@ final class DecisionLetterHeader implements ViewModel
         $this->mainText = $mainText;
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/decision-letter-header.css';
-        yield 'resources/assets/css/listing.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/decision-letter-header.mustache';

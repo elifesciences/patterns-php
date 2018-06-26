@@ -41,11 +41,6 @@ final class Box implements ViewModel
         return 'resources/templates/box.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/box.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->doi;

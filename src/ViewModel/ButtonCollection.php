@@ -33,11 +33,6 @@ final class ButtonCollection implements ViewModel
         }
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/button-collection.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->buttons;

@@ -86,11 +86,6 @@ final class ContentHeader implements ViewModel
         return 'resources/templates/content-header.mustache';
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/content-header.css';
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield $this->socialMediaSharers;

@@ -67,15 +67,6 @@ final class SiteHeaderNavBar implements ViewModel
         return new static($linkedItems, 'secondary');
     }
 
-    protected function getLocalStyleSheets() : Traversable
-    {
-        if ('nav-primary' === $this->classesOuter) {
-            yield 'resources/assets/css/site-header-nav-bar-primary.css';
-        } else {
-            yield 'resources/assets/css/site-header-nav-bar-secondary.css';
-        }
-    }
-
     protected function getComposedViewModels() : Traversable
     {
         yield from $this->linkedItems;
