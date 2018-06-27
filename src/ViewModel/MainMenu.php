@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class MainMenu implements ViewModel
 {
@@ -28,10 +27,5 @@ final class MainMenu implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/main-menu.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->listHeading;
     }
 }

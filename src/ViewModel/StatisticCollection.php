@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class StatisticCollection implements ViewModel
 {
@@ -20,11 +19,6 @@ final class StatisticCollection implements ViewModel
         Assertion::notEmpty($stats);
 
         $this->stats = $stats;
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->stats;
     }
 
     public function getTemplateName() : string

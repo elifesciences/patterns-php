@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class SelectNav implements ViewModel
 {
@@ -29,11 +28,5 @@ final class SelectNav implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/select-nav.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->select;
-        yield $this->button;
     }
 }

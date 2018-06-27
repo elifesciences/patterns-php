@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class AuthorDetails implements ViewModel
 {
@@ -63,10 +62,5 @@ final class AuthorDetails implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/author-details.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->orcid;
     }
 }

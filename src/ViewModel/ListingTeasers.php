@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
-use Traversable;
 
 final class ListingTeasers implements ViewModel
 {
@@ -59,12 +58,5 @@ final class ListingTeasers implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/listing-teasers.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->items;
-        yield $this->pagination;
-        yield $this->heading;
     }
 }

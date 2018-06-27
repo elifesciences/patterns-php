@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class SiteHeaderNavBar implements ViewModel
 {
@@ -63,11 +62,6 @@ final class SiteHeaderNavBar implements ViewModel
     public static function secondary(array $linkedItems) : SiteHeaderNavBar
     {
         return new static($linkedItems, 'secondary');
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->linkedItems;
     }
 
     public function getTemplateName() : string

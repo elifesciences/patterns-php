@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class TextField implements ViewModel
 {
@@ -161,10 +160,5 @@ final class TextField implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/text-field.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->formFieldInfoLink;
     }
 }

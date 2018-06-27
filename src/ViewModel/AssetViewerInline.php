@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class AssetViewerInline implements ViewModel
 {
@@ -109,11 +108,5 @@ final class AssetViewerInline implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/asset-viewer-inline.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->captionedAsset;
-        yield from $this->additionalAssets;
     }
 }

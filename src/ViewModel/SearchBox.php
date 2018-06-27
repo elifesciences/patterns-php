@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class SearchBox implements ViewModel
 {
@@ -24,10 +23,5 @@ final class SearchBox implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/search-box.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->compactForm;
     }
 }

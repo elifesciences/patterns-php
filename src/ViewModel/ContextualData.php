@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ContextualData implements ViewModel
 {
@@ -71,12 +70,5 @@ final class ContextualData implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/contextual-data.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        if ($this->citation) {
-            yield $this->citation['doi'];
-        }
     }
 }

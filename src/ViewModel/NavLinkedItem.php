@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class NavLinkedItem implements ViewModel
 {
@@ -89,12 +88,6 @@ final class NavLinkedItem implements ViewModel
         return $picture
             ->withProperty('fallback', $fallback)
             ->withProperty('pictureClasses', static::ICON_CLASSES[$iconName]);
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->button;
-        yield $this->picture;
     }
 
     public function getTemplateName() : string

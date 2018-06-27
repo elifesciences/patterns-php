@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Teaser implements ViewModel
 {
@@ -228,10 +227,5 @@ final class Teaser implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/teaser.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->footer;
     }
 }

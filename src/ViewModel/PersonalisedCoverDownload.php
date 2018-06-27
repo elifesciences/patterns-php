@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class PersonalisedCoverDownload implements ViewModel
 {
@@ -28,12 +27,6 @@ final class PersonalisedCoverDownload implements ViewModel
 
         $this->text = $text;
         $this->buttonCollection = $buttonCollection;
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->text;
-        yield $this->buttonCollection;
     }
 
     public function getTemplateName() : string

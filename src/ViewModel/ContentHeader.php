@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ContentHeader implements ViewModel
 {
@@ -82,12 +81,5 @@ final class ContentHeader implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/content-header.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->socialMediaSharers;
-        yield $this->selectNav;
-        yield $this->meta;
     }
 }

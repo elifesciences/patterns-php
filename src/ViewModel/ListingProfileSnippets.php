@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ListingProfileSnippets implements ViewModel
 {
@@ -40,12 +39,5 @@ final class ListingProfileSnippets implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/listing-profile-snippets.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->items;
-        yield $this->seeMoreLink;
-        yield $this->heading;
     }
 }

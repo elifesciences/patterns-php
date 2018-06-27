@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use Traversable;
 
 final class TeaserFooter implements CastsToArray
 {
@@ -36,10 +35,5 @@ final class TeaserFooter implements CastsToArray
         Meta $meta
     ) {
         return new static($meta);
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->meta;
     }
 }

@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
-use Traversable;
 
 final class ArticleSection implements ViewModel
 {
@@ -83,10 +82,5 @@ final class ArticleSection implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/article-section.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->doi;
     }
 }

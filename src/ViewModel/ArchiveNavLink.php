@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ArchiveNavLink implements ViewModel
 {
@@ -43,10 +42,5 @@ final class ArchiveNavLink implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/archive-nav-link.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->blockLink;
     }
 }

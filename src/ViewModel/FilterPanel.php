@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class FilterPanel implements ViewModel
 {
@@ -34,10 +33,5 @@ final class FilterPanel implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/filter-panel.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->filterGroups;
     }
 }

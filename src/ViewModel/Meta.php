@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Meta implements ViewModel
 {
@@ -48,10 +47,5 @@ final class Meta implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/meta.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->date;
     }
 }

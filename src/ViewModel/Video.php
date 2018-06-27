@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Video implements ViewModel, IsCaptioned
 {
@@ -40,10 +39,5 @@ final class Video implements ViewModel, IsCaptioned
     public function getTemplateName() : string
     {
         return 'resources/templates/video.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->sources;
     }
 }

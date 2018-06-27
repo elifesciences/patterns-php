@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ButtonCollection implements ViewModel
 {
@@ -29,11 +28,6 @@ final class ButtonCollection implements ViewModel
         if ($compact) {
             $this->compact = $compact;
         }
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->buttons;
     }
 
     public function getTemplateName() : string

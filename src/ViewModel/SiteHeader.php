@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class SiteHeader implements ViewModel
 {
@@ -28,13 +27,6 @@ final class SiteHeader implements ViewModel
         if ($searchBox) {
             $this->searchBox = FlexibleViewModel::fromViewModel($searchBox)->withProperty('inContentHeader', true);
         }
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->primaryLinks;
-        yield $this->secondaryLinks;
-        yield $this->searchBox;
     }
 
     public function getTemplateName() : string

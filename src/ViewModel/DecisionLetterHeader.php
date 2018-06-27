@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class DecisionLetterHeader implements ViewModel
 {
@@ -31,10 +30,5 @@ final class DecisionLetterHeader implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/decision-letter-header.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->profiles;
     }
 }

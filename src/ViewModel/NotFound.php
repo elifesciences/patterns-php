@@ -5,7 +5,6 @@ namespace eLife\Patterns\ViewModel;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class NotFound implements ViewModel
 {
@@ -17,11 +16,6 @@ final class NotFound implements ViewModel
     public function __construct(Button $button = null)
     {
         $this->button = $button;
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->button;
     }
 
     public function getTemplateName() : string

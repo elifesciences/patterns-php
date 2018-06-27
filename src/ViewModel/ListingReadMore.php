@@ -7,7 +7,6 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
-use Traversable;
 
 final class ListingReadMore implements ViewModel
 {
@@ -49,13 +48,6 @@ final class ListingReadMore implements ViewModel
         }
 
         return true;
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->items;
-        yield $this->pagination;
-        yield $this->heading;
     }
 
     public function getTemplateName() : string

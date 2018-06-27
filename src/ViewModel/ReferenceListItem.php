@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use Traversable;
 
 final class ReferenceListItem implements CastsToArray
 {
@@ -26,10 +25,5 @@ final class ReferenceListItem implements CastsToArray
             'ordinal' => $ordinal,
         ];
         $this->reference = $reference;
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->reference;
     }
 }

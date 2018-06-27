@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class AdditionalAsset implements ViewModel
 {
@@ -61,11 +60,5 @@ final class AdditionalAsset implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/additional-asset.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->captionText;
-        yield $this->doi;
     }
 }

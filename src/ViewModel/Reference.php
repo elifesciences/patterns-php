@@ -6,7 +6,6 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Reference implements ViewModel
 {
@@ -62,11 +61,6 @@ final class Reference implements ViewModel
         array $abstracts = []
     ) : Reference {
         return new self($title['name'], $origin, $title['url'], null, $authorLists, $abstracts);
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->doi;
     }
 
     public function getTemplateName() : string
