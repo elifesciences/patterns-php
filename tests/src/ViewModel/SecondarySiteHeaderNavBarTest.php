@@ -59,7 +59,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame($this->linkItem2['picture'], $siteHeaderNavItems[1]['picture']);
 
         $this->assertSame($this->linkItem3['button']->toArray(), $siteHeaderNavItems[2]['button']);
-        $this->assertSame('nav-secondary__item nav-secondary__item--last', $siteHeaderNavItems[2]['classes']);
+        $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[2]['classes']);
     }
 
     /**
