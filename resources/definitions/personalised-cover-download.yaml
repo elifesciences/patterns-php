@@ -1,69 +1,79 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
-type: object
-properties:
-    text:
-        type: array
-        items:
+assets:
+    css:
+        - personalised-cover-download.css
+        - {  }
+        -
+            - button-collection.css
+            -
+                - buttons.css
+    js: {  }
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        text:
+            type: array
+            items:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    text:
+                        type: string
+                        minLength: 1
+                required:
+                    - text
+            minItems: 1
+        buttonCollection:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
-                text:
-                    type: string
-                    minLength: 1
+                compact:
+                    type: boolean
+                centered:
+                    type: boolean
+                buttons:
+                    type: array
+                    minItems: 1
+                    items:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        allOf:
+                            -
+                                properties:
+                                    text:
+                                        type: string
+                                        minLength: 1
+                                    classes:
+                                        type: string
+                                required:
+                                    - text
+                            -
+                                oneOf:
+                                    -
+                                        properties:
+                                            type:
+                                                type: string
+                                                enum:
+                                                    - button
+                                                    - reset
+                                                    - submit
+                                            id:
+                                                type: string
+                                                minLength: 1
+                                            name:
+                                                type: string
+                                                minLength: 1
+                                        required:
+                                            - type
+                                    -
+                                        properties:
+                                            path:
+                                                type: string
+                                                minLength: 1
+                                        required:
+                                            - path
             required:
-                - text
-        minItems: 1
-    buttonCollection:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            compact:
-                type: boolean
-            centered:
-                type: boolean
-            buttons:
-                type: array
-                minItems: 1
-                items:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
-                    type: object
-                    allOf:
-                        -
-                            properties:
-                                text:
-                                    type: string
-                                    minLength: 1
-                                classes:
-                                    type: string
-                            required:
-                                - text
-                        -
-                            oneOf:
-                                -
-                                    properties:
-                                        type:
-                                            type: string
-                                            enum:
-                                                - button
-                                                - reset
-                                                - submit
-                                        id:
-                                            type: string
-                                            minLength: 1
-                                        name:
-                                            type: string
-                                            minLength: 1
-                                    required:
-                                        - type
-                                -
-                                    properties:
-                                        path:
-                                            type: string
-                                            minLength: 1
-                                    required:
-                                        - path
-        required:
-            - buttons
-required:
-    - text
-    - buttonCollection
+                - buttons
+    required:
+        - text
+        - buttonCollection

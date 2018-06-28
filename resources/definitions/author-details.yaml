@@ -1,84 +1,91 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
-type: object
-properties:
-    authorId:
-        type: string
-        minLength: 1
-    name:
-        type: string
-        minLength: 1
-    details:
-        type: array
-        items:
-            type: object
-            properties:
-                heading:
-                    type: string
-                value:
-                    type: string
-                    minLength: 1
-                values:
-                    type: array
-                    items:
+assets:
+    css:
+        - author-details.css
+        -
+            - orcid.css
+    js: {  }
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        authorId:
+            type: string
+            minLength: 1
+        name:
+            type: string
+            minLength: 1
+        details:
+            type: array
+            items:
+                type: object
+                properties:
+                    heading:
+                        type: string
+                    value:
                         type: string
                         minLength: 1
-                    minItems: 1
-            oneOf:
-                -
-                    required:
-                        - value
-                    not:
-                        required:
-                            - values
-                -
-                    required:
-                        - values
-                    not:
+                    values:
+                        type: array
+                        items:
+                            type: string
+                            minLength: 1
+                        minItems: 1
+                oneOf:
+                    -
                         required:
                             - value
-    orcid:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            id:
-                type: string
-                pattern: '^([0-9]{4}-){3}[0-9]{3}[0-9X]$'
-        required:
-            - id
-    groups:
-        type: array
-        items:
+                        not:
+                            required:
+                                - values
+                    -
+                        required:
+                            - values
+                        not:
+                            required:
+                                - value
+        orcid:
+            $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
-                groupName:
+                id:
                     type: string
-                items:
-                    type: array
-                    items:
+                    pattern: '^([0-9]{4}-){3}[0-9]{3}[0-9X]$'
+            required:
+                - id
+        groups:
+            type: array
+            items:
+                type: object
+                properties:
+                    groupName:
                         type: string
-                        minLength: 1
-                    minItems: 1
-            required:
-                - items
-        minItems: 1
-required:
-    - authorId
-    - name
-anyOf:
-    -
-        not:
-            required:
-                - orcid
-                - groups
-    -
-        required:
-            - orcid
-        not:
-            required:
-                - groups
-    -
-        required:
-            - groups
-        not:
+                    items:
+                        type: array
+                        items:
+                            type: string
+                            minLength: 1
+                        minItems: 1
+                required:
+                    - items
+            minItems: 1
+    required:
+        - authorId
+        - name
+    anyOf:
+        -
+            not:
+                required:
+                    - orcid
+                    - groups
+        -
             required:
                 - orcid
+            not:
+                required:
+                    - groups
+        -
+            required:
+                - groups
+            not:
+                required:
+                    - orcid

@@ -1,239 +1,260 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
-type: object
-properties:
-    allRelated:
-        type: boolean
-    heading:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            heading:
-                type: string
-                minLength: 1
-            headingId:
-                type: string
-        required:
-            - heading
-    id:
-        type: string
-        pattern: '^[a-zA-Z0-9_$]+$'
-    items:
-        type: array
-        minItems: 1
-        items:
+assets:
+    css:
+        - listing.css
+        -
+            - list-heading.css
+        -
+            - listing.css
+            -
+                - content-header.css
+                -
+                    - meta.css
+                    -
+                        - date.css
+        -
+            - pager.css
+            -
+                - buttons.css
+        -
+            - see-more-link.css
+    js: {  }
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        allRelated:
+            type: boolean
+        heading:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
-                item:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
-                    type: object
-                    properties:
-                        title:
-                            type: string
-                            minLength: 1
-                        longTitle:
-                            type: boolean
-                        url:
-                            type: string
-                            minLength: 1
-                        hasSubjects:
-                            type: boolean
-                            enum:
-                                - true
-                        subjects:
-                            type: array
-                            minItems: 1
-                            items:
-                                type: object
-                                properties:
-                                    name:
-                                        type: string
-                                        minLength: 1
-                                required:
-                                    - name
-                        authorLine:
-                            type: string
-                            minLength: 1
-                        meta:
-                            $schema: 'http://json-schema.org/draft-04/schema#'
-                            type: object
-                            properties:
-                                url:
-                                    oneOf:
-                                        -
+                heading:
+                    type: string
+                    minLength: 1
+                headingId:
+                    type: string
+            required:
+                - heading
+        id:
+            type: string
+            pattern: '^[a-zA-Z0-9_$]+$'
+        items:
+            type: array
+            minItems: 1
+            items:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    item:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            title:
+                                type: string
+                                minLength: 1
+                            longTitle:
+                                type: boolean
+                            url:
+                                type: string
+                                minLength: 1
+                            hasSubjects:
+                                type: boolean
+                                enum:
+                                    - true
+                            subjects:
+                                type: array
+                                minItems: 1
+                                items:
+                                    type: object
+                                    properties:
+                                        name:
                                             type: string
                                             minLength: 1
-                                        -
-                                            type: boolean
-                                            enum:
-                                                - false
-                                carouselItem:
-                                    type: boolean
-                                    enum:
-                                        - true
+                                    required:
+                                        - name
+                            authorLine:
+                                type: string
+                                minLength: 1
+                            meta:
+                                $schema: 'http://json-schema.org/draft-04/schema#'
+                                type: object
+                                properties:
+                                    url:
+                                        oneOf:
+                                            -
+                                                type: string
+                                                minLength: 1
+                                            -
+                                                type: boolean
+                                                enum:
+                                                    - false
+                                    carouselItem:
+                                        type: boolean
+                                        enum:
+                                            - true
+                                    text:
+                                        type: string
+                                        minLength: 1
+                                    date:
+                                        $schema: 'http://json-schema.org/draft-04/schema#'
+                                        type: object
+                                        properties:
+                                            forMachine:
+                                                type: string
+                                                pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
+                                            forHuman:
+                                                type: object
+                                                properties:
+                                                    dayOfMonth:
+                                                        type: integer
+                                                        minimum: 1
+                                                        maximum: 31
+                                                    month:
+                                                        type: string
+                                                        minLength: 3
+                                                        maxLength: 3
+                                                    year:
+                                                        type: integer
+                                                required:
+                                                    - dayOfMonth
+                                                    - month
+                                                    - year
+                                            isUpdated:
+                                                type: boolean
+                                                default: false
+                                            isExpanded:
+                                                type: boolean
+                                                default: false
+                                        required:
+                                            - forHuman
+                                            - forMachine
+                                anyOf:
+                                    -
+                                        required:
+                                            - date
+                                    -
+                                        required:
+                                            - text
+                        required:
+                            - title
+                            - url
+                        dependencies:
+                            hasSubjects:
+                                - subjects
+                            subjects:
+                                - hasSubjects
+                    content:
+                        type: string
+                    isRelated:
+                        type: boolean
+                        emum:
+                            - true
+                required:
+                    - item
+        pagination:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                previousPage:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    allOf:
+                        -
+                            properties:
                                 text:
                                     type: string
                                     minLength: 1
-                                date:
-                                    $schema: 'http://json-schema.org/draft-04/schema#'
-                                    type: object
+                                classes:
+                                    type: string
+                            required:
+                                - text
+                        -
+                            oneOf:
+                                -
                                     properties:
-                                        forMachine:
+                                        type:
                                             type: string
-                                            pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
-                                        forHuman:
-                                            type: object
-                                            properties:
-                                                dayOfMonth:
-                                                    type: integer
-                                                    minimum: 1
-                                                    maximum: 31
-                                                month:
-                                                    type: string
-                                                    minLength: 3
-                                                    maxLength: 3
-                                                year:
-                                                    type: integer
-                                            required:
-                                                - dayOfMonth
-                                                - month
-                                                - year
-                                        isUpdated:
-                                            type: boolean
-                                            default: false
-                                        isExpanded:
-                                            type: boolean
-                                            default: false
+                                            enum:
+                                                - button
+                                                - reset
+                                                - submit
+                                        id:
+                                            type: string
+                                            minLength: 1
+                                        name:
+                                            type: string
+                                            minLength: 1
                                     required:
-                                        - forHuman
-                                        - forMachine
-                            anyOf:
+                                        - type
                                 -
+                                    properties:
+                                        path:
+                                            type: string
+                                            minLength: 1
                                     required:
-                                        - date
+                                        - path
+                nextPage:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    allOf:
+                        -
+                            properties:
+                                text:
+                                    type: string
+                                    minLength: 1
+                                classes:
+                                    type: string
+                            required:
+                                - text
+                        -
+                            oneOf:
                                 -
+                                    properties:
+                                        type:
+                                            type: string
+                                            enum:
+                                                - button
+                                                - reset
+                                                - submit
+                                        id:
+                                            type: string
+                                            minLength: 1
+                                        name:
+                                            type: string
+                                            minLength: 1
                                     required:
-                                        - text
-                    required:
-                        - title
-                        - url
-                    dependencies:
-                        hasSubjects:
-                            - subjects
-                        subjects:
-                            - hasSubjects
-                content:
+                                        - type
+                                -
+                                    properties:
+                                        path:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - path
+                targetId:
                     type: string
-                isRelated:
+                    minLength: 1
+            anyOf:
+                -
+                    required:
+                        - nextPage
+                -
+                    required:
+                        - previousPage
+        seeMoreLink:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                url:
+                    type: string
+                    minLength: 1
+                name:
+                    type: string
+                    minLength: 1
+                isInline:
                     type: boolean
-                    emum:
-                        - true
             required:
-                - item
-    pagination:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            previousPage:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                allOf:
-                    -
-                        properties:
-                            text:
-                                type: string
-                                minLength: 1
-                            classes:
-                                type: string
-                        required:
-                            - text
-                    -
-                        oneOf:
-                            -
-                                properties:
-                                    type:
-                                        type: string
-                                        enum:
-                                            - button
-                                            - reset
-                                            - submit
-                                    id:
-                                        type: string
-                                        minLength: 1
-                                    name:
-                                        type: string
-                                        minLength: 1
-                                required:
-                                    - type
-                            -
-                                properties:
-                                    path:
-                                        type: string
-                                        minLength: 1
-                                required:
-                                    - path
-            nextPage:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                allOf:
-                    -
-                        properties:
-                            text:
-                                type: string
-                                minLength: 1
-                            classes:
-                                type: string
-                        required:
-                            - text
-                    -
-                        oneOf:
-                            -
-                                properties:
-                                    type:
-                                        type: string
-                                        enum:
-                                            - button
-                                            - reset
-                                            - submit
-                                    id:
-                                        type: string
-                                        minLength: 1
-                                    name:
-                                        type: string
-                                        minLength: 1
-                                required:
-                                    - type
-                            -
-                                properties:
-                                    path:
-                                        type: string
-                                        minLength: 1
-                                required:
-                                    - path
-            targetId:
-                type: string
-                minLength: 1
-        anyOf:
-            -
-                required:
-                    - nextPage
-            -
-                required:
-                    - previousPage
-    seeMoreLink:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            url:
-                type: string
-                minLength: 1
-            name:
-                type: string
-                minLength: 1
-            isInline:
-                type: boolean
-        required:
-            - url
-            - name
-required:
-    - items
+                - url
+                - name
+    required:
+        - items

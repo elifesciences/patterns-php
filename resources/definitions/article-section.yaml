@@ -1,51 +1,58 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
-type: object
-properties:
-    id:
-        type: string
-        minLength: 1
-    title:
-        type: string
-        minLength: 1
-    headingLevel:
-        type: integer
-        minimum: 2
-        maximum: 6
-    hasBehaviour:
-        type: boolean
-        default: false
-    isInitiallyClosed:
-        type: boolean
-    body:
-        type: string
-        minLength: 1
-    doi:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            doi:
-                type: string
-                minLength: 1
-            variant:
-                type: string
-                enum:
-                    - article-section
-                    - asset
-            isTruncated:
-                type: boolean
-                default:
-                    - false
-        required:
-            - doi
-    isFirst:
-        type: boolean
-        default: false
-dependencies:
-    isInitiallyClosed:
-        - hasBehaviour
-    doi:
-        - id
-required:
-    - title
-    - headingLevel
-    - body
+assets:
+    css:
+        - article-section.css
+        -
+            - doi.css
+    js: {  }
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        id:
+            type: string
+            minLength: 1
+        title:
+            type: string
+            minLength: 1
+        headingLevel:
+            type: integer
+            minimum: 2
+            maximum: 6
+        hasBehaviour:
+            type: boolean
+            default: false
+        isInitiallyClosed:
+            type: boolean
+        body:
+            type: string
+            minLength: 1
+        doi:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                doi:
+                    type: string
+                    minLength: 1
+                variant:
+                    type: string
+                    enum:
+                        - article-section
+                        - asset
+                isTruncated:
+                    type: boolean
+                    default:
+                        - false
+            required:
+                - doi
+        isFirst:
+            type: boolean
+            default: false
+    dependencies:
+        isInitiallyClosed:
+            - hasBehaviour
+        doi:
+            - id
+    required:
+        - title
+        - headingLevel
+        - body

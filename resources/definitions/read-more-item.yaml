@@ -1,109 +1,120 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
-type: object
-properties:
-    item:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            title:
-                type: string
-                minLength: 1
-            longTitle:
-                type: boolean
-            url:
-                type: string
-                minLength: 1
-            hasSubjects:
-                type: boolean
-                enum:
-                    - true
-            subjects:
-                type: array
-                minItems: 1
-                items:
-                    type: object
-                    properties:
-                        name:
-                            type: string
-                            minLength: 1
-                    required:
-                        - name
-            authorLine:
-                type: string
-                minLength: 1
-            meta:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                properties:
-                    url:
-                        oneOf:
-                            -
-                                type: string
-                                minLength: 1
-                            -
-                                type: boolean
-                                enum:
-                                    - false
-                    carouselItem:
-                        type: boolean
-                        enum:
-                            - true
-                    text:
-                        type: string
-                        minLength: 1
-                    date:
-                        $schema: 'http://json-schema.org/draft-04/schema#'
+assets:
+    css:
+        - listing.css
+        -
+            - content-header.css
+            -
+                - meta.css
+                -
+                    - date.css
+    js: {  }
+schema:
+    $schema: 'http://json-schema.org/draft-04/schema#'
+    type: object
+    properties:
+        item:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                title:
+                    type: string
+                    minLength: 1
+                longTitle:
+                    type: boolean
+                url:
+                    type: string
+                    minLength: 1
+                hasSubjects:
+                    type: boolean
+                    enum:
+                        - true
+                subjects:
+                    type: array
+                    minItems: 1
+                    items:
                         type: object
                         properties:
-                            forMachine:
+                            name:
                                 type: string
-                                pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
-                            forHuman:
-                                type: object
-                                properties:
-                                    dayOfMonth:
-                                        type: integer
-                                        minimum: 1
-                                        maximum: 31
-                                    month:
-                                        type: string
-                                        minLength: 3
-                                        maxLength: 3
-                                    year:
-                                        type: integer
-                                required:
-                                    - dayOfMonth
-                                    - month
-                                    - year
-                            isUpdated:
-                                type: boolean
-                                default: false
-                            isExpanded:
-                                type: boolean
-                                default: false
+                                minLength: 1
                         required:
-                            - forHuman
-                            - forMachine
-                anyOf:
-                    -
-                        required:
-                            - date
-                    -
-                        required:
-                            - text
-        required:
-            - title
-            - url
-        dependencies:
-            hasSubjects:
-                - subjects
-            subjects:
-                - hasSubjects
-    content:
-        type: string
-    isRelated:
-        type: boolean
-        emum:
-            - true
-required:
-    - item
+                            - name
+                authorLine:
+                    type: string
+                    minLength: 1
+                meta:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        url:
+                            oneOf:
+                                -
+                                    type: string
+                                    minLength: 1
+                                -
+                                    type: boolean
+                                    enum:
+                                        - false
+                        carouselItem:
+                            type: boolean
+                            enum:
+                                - true
+                        text:
+                            type: string
+                            minLength: 1
+                        date:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                forMachine:
+                                    type: string
+                                    pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
+                                forHuman:
+                                    type: object
+                                    properties:
+                                        dayOfMonth:
+                                            type: integer
+                                            minimum: 1
+                                            maximum: 31
+                                        month:
+                                            type: string
+                                            minLength: 3
+                                            maxLength: 3
+                                        year:
+                                            type: integer
+                                    required:
+                                        - dayOfMonth
+                                        - month
+                                        - year
+                                isUpdated:
+                                    type: boolean
+                                    default: false
+                                isExpanded:
+                                    type: boolean
+                                    default: false
+                            required:
+                                - forHuman
+                                - forMachine
+                    anyOf:
+                        -
+                            required:
+                                - date
+                        -
+                            required:
+                                - text
+            required:
+                - title
+                - url
+            dependencies:
+                hasSubjects:
+                    - subjects
+                subjects:
+                    - hasSubjects
+        content:
+            type: string
+        isRelated:
+            type: boolean
+            emum:
+                - true
+    required:
+        - item
