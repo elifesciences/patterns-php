@@ -1,25 +1,19 @@
-assets:
-    css:
-        - list-heading.css
-        - mini-section.css
-    js: []
-schema:
-    $schema: 'http://json-schema.org/draft-04/schema#'
-    type: object
-    properties:
-        listHeading:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                heading:
-                    type: string
-                    minLength: 1
-                headingId:
-                    type: string
-            required:
-                - heading
-        body:
-            type: string
-            minLength: 1
-    required:
-        - body
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    listHeading:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            heading:
+                type: string
+                minLength: 1
+            headingId:
+                type: string
+        required:
+            - heading
+    body:
+        type: string
+        minLength: 1
+required:
+    - body

@@ -5,17 +5,14 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
-use Traversable;
 
 final class ListingReadMore implements ViewModel
 {
     use ListingConstructors;
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $allRelated;
     private $items;
@@ -53,20 +50,8 @@ final class ListingReadMore implements ViewModel
         return true;
     }
 
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->items;
-        yield $this->pagination;
-        yield $this->heading;
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/listing-read-more.mustache';
-    }
-
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/listing.css';
     }
 }

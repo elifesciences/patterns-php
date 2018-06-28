@@ -1,95 +1,89 @@
-assets:
-    css:
-        - archive-nav-link.css
-        - block-link.css
-    js: []
-schema:
-    $schema: 'http://json-schema.org/draft-04/schema#'
-    type: object
-    properties:
-        blockLink:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                isGridListing:
-                    type: boolean
-                image:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
-                    type: object
-                    properties:
-                        pictureClasses:
-                            type: string
-                            minLength: 1
-                        sources:
-                            type: array
-                            uniqueItems: true
-                            items:
-                                type: object
-                                properties:
-                                    srcset:
-                                        type: string
-                                        minLength: 1
-                                    media:
-                                        type: string
-                                        minLength: 1
-                                    type:
-                                        type: string
-                                        enum:
-                                            - image/svg+xml
-                                            - image/webp
-                                            - image/png
-                                            - image/jpeg
-                                required:
-                                    - srcset
-                        fallback:
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    blockLink:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            isGridListing:
+                type: boolean
+            image:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    pictureClasses:
+                        type: string
+                        minLength: 1
+                    sources:
+                        type: array
+                        uniqueItems: true
+                        items:
                             type: object
                             properties:
                                 srcset:
                                     type: string
-                                    pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
-                                defaultPath:
+                                    minLength: 1
+                                media:
                                     type: string
                                     minLength: 1
-                                altText:
+                                type:
                                     type: string
-                                classes:
-                                    type: string
+                                    enum:
+                                        - image/svg+xml
+                                        - image/webp
+                                        - image/png
+                                        - image/jpeg
                             required:
-                                - defaultPath
-                                - altText
-                    required:
-                        - fallback
-                text:
+                                - srcset
+                    fallback:
+                        type: object
+                        properties:
+                            srcset:
+                                type: string
+                                pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                            defaultPath:
+                                type: string
+                                minLength: 1
+                            altText:
+                                type: string
+                            classes:
+                                type: string
+                        required:
+                            - defaultPath
+                            - altText
+                required:
+                    - fallback
+            text:
+                type: string
+                minLength: 1
+            url:
+                type: string
+                minLength: 1
+        required:
+            - text
+            - url
+    label:
+        type: string
+        minLength: 1
+    links:
+        type: array
+        minItems: 1
+        items:
+            type: object
+            properties:
+                name:
                     type: string
                     minLength: 1
                 url:
                     type: string
                     minLength: 1
             required:
-                - text
+                - name
                 - url
-        label:
-            type: string
-            minLength: 1
-        links:
-            type: array
-            minItems: 1
-            items:
-                type: object
-                properties:
-                    name:
-                        type: string
-                        minLength: 1
-                    url:
-                        type: string
-                        minLength: 1
-                required:
-                    - name
-                    - url
-    required:
-        - blockLink
-    dependencies:
-        label:
-            - links
-        links:
-            - label
+required:
+    - blockLink
+dependencies:
+    label:
+        - links
+    links:
+        - label

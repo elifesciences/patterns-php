@@ -4,16 +4,13 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
 use InvalidArgumentException;
-use Traversable;
 
 final class CaptionedAsset implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $captionText;
     private $picture;
@@ -65,22 +62,8 @@ final class CaptionedAsset implements ViewModel
         }
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/captioned-asset.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/captioned-asset.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->captionText;
-        yield $this->picture;
-        yield $this->doi;
-        yield $this->video;
-        yield $this->table;
     }
 }

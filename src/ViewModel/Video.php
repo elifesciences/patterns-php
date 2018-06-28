@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Video implements ViewModel, IsCaptioned
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $posterFrame;
     /** @var MediaSource[] */
@@ -42,10 +39,5 @@ final class Video implements ViewModel, IsCaptioned
     public function getTemplateName() : string
     {
         return 'resources/templates/video.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->sources;
     }
 }

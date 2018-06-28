@@ -5,17 +5,13 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ContentHeaderProfile implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
-    private $_orcid;
     private $details;
     private $displayName;
     private $secondaryLinks;
@@ -41,7 +37,6 @@ final class ContentHeaderProfile implements ViewModel
         $contentHeader->details = $contentHeader->createDetails($affiliations, $emailAddress, $orcid);
         $contentHeader->logoutLink = $logoutLink;
         $contentHeader->secondaryLinks = $secondaryLinks;
-        $contentHeader->_orcid = $orcid;
 
         return $contentHeader;
     }
@@ -88,15 +83,5 @@ final class ContentHeaderProfile implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/content-header-profile.mustache';
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/content-header-profile.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->_orcid;
     }
 }

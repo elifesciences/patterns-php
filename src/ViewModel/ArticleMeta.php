@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ArticleMeta implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $groups;
 
@@ -36,10 +33,5 @@ final class ArticleMeta implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/article-meta.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/article-meta.css';
     }
 }

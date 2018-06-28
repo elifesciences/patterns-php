@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,KAAM,CCmYJ,WAAW,CCnWI,oCAAsC,CCnBrD,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CAuQ9C,WAAW,CAAE,GAA8C,CA3OzD,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CAxBxD,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,MAAkC,CADzD,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CADzD,YAAqB,CAAE,IAAgB,CACvC,YAAqB,CAAE,MAAkC,CADzD,aAAqB,CAAE,IAAgB,CACvC,aAAqB,CAAE,MAAkC,CHb3D,gBAAgB,CEMG,OAAO,CFL1B,MAAM,CAAE,iBAA8B,CACtC,aAAa,CAAE,GAAmB,CAClC,KAAK,CEHM,OAAO,CFIlB,UAAU,CAAE,MAAM,CAGpB,UAAW,CACT,WAAW,CAAE,QAAQ",
-"sources": ["../../../../../../assets/sass/patterns/atoms/code.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "code.css"
-}

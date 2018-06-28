@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,UAAW,CC0CP,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC",
-"sources": ["../../../../../../assets/sass/patterns/molecules/load-more.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "load-more.css"
-}

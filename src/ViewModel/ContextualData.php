@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ContextualData implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $metricsData;
     private $citation;
@@ -73,17 +70,5 @@ final class ContextualData implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/contextual-data.mustache';
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/contextual-data.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        if ($this->citation) {
-            yield $this->citation['doi'];
-        }
     }
 }

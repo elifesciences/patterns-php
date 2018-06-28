@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class SectionListing implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $id;
     private $sections;
@@ -32,16 +29,6 @@ final class SectionListing implements ViewModel
         $this->singleLine = $singleLine;
         $this->listHeading = $listHeading;
         $this->labelledBy = $labelledBy;
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/section-listing.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->listHeading;
     }
 
     public function getTemplateName() : string

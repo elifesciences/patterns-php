@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class AnnotationTeaser implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     const RESTRICTED_ACCESS_TEXT = 'Only me';
 
@@ -127,10 +124,5 @@ final class AnnotationTeaser implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/annotation-teaser.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/annotation-teaser.css';
     }
 }

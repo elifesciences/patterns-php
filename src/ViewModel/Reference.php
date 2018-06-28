@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Reference implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $abstracts;
     private $authorLists;
@@ -64,16 +61,6 @@ final class Reference implements ViewModel
         array $abstracts = []
     ) : Reference {
         return new self($title['name'], $origin, $title['url'], null, $authorLists, $abstracts);
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/reference.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->doi;
     }
 
     public function getTemplateName() : string

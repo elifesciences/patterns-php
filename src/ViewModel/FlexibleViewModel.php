@@ -2,37 +2,27 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use ArrayObject;
 use BadMethodCallException;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class FlexibleViewModel implements ViewModel
 {
     private $templateName;
     private $properties;
-    private $styleSheets;
-    private $javaScripts;
 
     public function __construct(
         string $templateName,
-        array $properties,
-        Traversable $styleSheets = null,
-        Traversable $javaScripts = null
+        array $properties
     ) {
         $this->templateName = $templateName;
         $this->properties = $properties;
-        $this->styleSheets = $styleSheets ?? new ArrayObject();
-        $this->javaScripts = $javaScripts ?? new ArrayObject();
     }
 
     public static function fromViewModel(ViewModel $viewModel) : FlexibleViewModel
     {
         return new self(
             $viewModel->getTemplateName(),
-            $viewModel->toArray(),
-            $viewModel->getStyleSheets(),
-            $viewModel->getJavaScripts()
+            $viewModel->toArray()
         );
     }
 
@@ -76,15 +66,5 @@ final class FlexibleViewModel implements ViewModel
     public function getTemplateName() : string
     {
         return $this->templateName;
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        return $this->styleSheets;
-    }
-
-    public function getJavaScripts() : Traversable
-    {
-        return $this->javaScripts;
     }
 }

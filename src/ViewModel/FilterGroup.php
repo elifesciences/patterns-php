@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class FilterGroup implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $title;
     private $filters;
@@ -30,10 +27,5 @@ final class FilterGroup implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/filter-group.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/filter-group.css';
     }
 }

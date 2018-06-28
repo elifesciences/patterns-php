@@ -4,15 +4,12 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Pager implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $previousPage;
     private $nextPage;
@@ -42,16 +39,5 @@ final class Pager implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/pager.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/pager.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->previousPage;
-        yield $this->nextPage;
     }
 }

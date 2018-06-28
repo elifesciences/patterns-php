@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ListHeading implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $heading;
     private $headingId;
@@ -24,11 +21,6 @@ final class ListHeading implements ViewModel
 
         $this->heading = $heading;
         $this->headingId = $headingId;
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/list-heading.css';
     }
 
     public function getTemplateName() : string

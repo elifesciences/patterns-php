@@ -5,16 +5,13 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 use function array_values;
 
 final class DefinitionList implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $items;
     private $inline;
@@ -37,11 +34,6 @@ final class DefinitionList implements ViewModel
         if ($inline) {
             $this->inline = $inline;
         }
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/definition-list.css';
     }
 
     public function getTemplateName() : string

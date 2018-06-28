@@ -8,8 +8,6 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Yaml\Yaml;
-use function eLife\Patterns\flatten;
-use function eLife\Patterns\iterator_to_unique_array;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -32,7 +30,7 @@ $output = function (string $type, string $buffer) {
     }
 };
 
-$execute = function(array $command, $timeout = 60) use ($output) {
+$execute = function (array $command, $timeout = 60) use ($output) {
     ProcessBuilder::create()
         ->setArguments($command)
         ->getProcess()
@@ -41,8 +39,8 @@ $execute = function(array $command, $timeout = 60) use ($output) {
         ->run($output)
     ;
 };
-$executeAndCheck = function(array $command, $timeout = 60, $attempts = 1) use ($output) {
-    for ($i = 1; $i <= $attempts; $i++) {
+$executeAndCheck = function (array $command, $timeout = 60, $attempts = 1) use ($output) {
+    for ($i = 1; $i <= $attempts; ++$i) {
         try {
             ProcessBuilder::create()
                 ->setArguments($command)
@@ -51,9 +49,10 @@ $executeAndCheck = function(array $command, $timeout = 60, $attempts = 1) use ($
                 ->enableOutput()
                 ->mustRun($output)
             ;
+
             return;
         } catch (ProcessFailedException $e) {
-            if (strstr($e->getMessage(), "i/o timeout")) {
+            if (strstr($e->getMessage(), 'i/o timeout')) {
                 echo "Retrying: {$e->getMessage()}\n";
                 continue;
             }
@@ -84,12 +83,7 @@ $resolvedTemplates = [];
 foreach ($finder as $file) {
     $yaml = Yaml::parse($file->getContents());
     $yaml = resolveJsonReferences($yaml, $file);
-    $yaml['assets']['css'] = iterator_to_unique_array(flatten($yaml['assets']['css']));
-    sort($yaml['assets']['css']);
-    $yaml['assets']['js'] = iterator_to_unique_array(flatten($yaml['assets']['js']));
-    sort($yaml['assets']['js']);
     $yaml = Yaml::dump($yaml, 100);
-    $yaml = str_replace(' {  }', ' []', $yaml);
 
     $filesystem->dumpFile($outputDir.'/definitions/'.$file->getFilename(), $yaml);
 
@@ -147,9 +141,11 @@ function resolveJsonReferences(array $json, SplFileInfo $file) : array
                 $json = Yaml::parse(file_get_contents($referenced->getRealPath()));
             }
 
-            $pointer = new Pointer(json_encode($json));
+            if (!empty($parts[1])) {
+                $json = (new Pointer(json_encode($json)))->get($parts[1]);
+            }
 
-            return resolveJsonReferences($pointer->get($parts[1]), $referenced);
+            return resolveJsonReferences($json, $referenced);
         }
     }
 
