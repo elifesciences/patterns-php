@@ -2,4 +2,5 @@
 /bin export-ignore
 /build export-ignore
 /Jenkinsfile* export-ignore
+/resources/definitions export-ignore
 /tests export-ignore
