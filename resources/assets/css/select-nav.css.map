@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,uBAAwB,CACtB,aAAa,CAAE,CAAC,CAIlB,qCAAsC,CCuHpC,MAAM,CAAE,CAAC,CACT,IAAI,CAAE,aAAa,CACnB,MAAM,CAAE,GAAG,CACX,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,MAAM,CAChB,OAAO,CAAE,CAAC,CACV,QAAQ,CAAE,QAAQ,CAClB,KAAK,CAAE,GAAG",
-"sources": ["../../../../../../assets/sass/patterns/molecules/select-nav.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "select-nav.css"
-}
