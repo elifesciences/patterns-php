@@ -1,27 +1,37 @@
-assets:
-    css:
-        - site-footer.css
-        -
-            - main-menu.css
-            -
-                - list-heading.css
-        -
-            - investor-logos.css
-    js:
-        - {  }
-        - {  }
-schema:
-    $schema: 'http://json-schema.org/draft-04/schema#'
-    type: object
-    allOf:
-        -
-            properties:
-                year:
-                    type: integer
-                footerMenuLinks:
-                    type: array
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+allOf:
+    -
+        properties:
+            year:
+                type: integer
+            footerMenuLinks:
+                type: array
+                items:
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                            minLength: 1
+                        url:
+                            type: string
+                            minLength: 1
+                    required:
+                        - name
+                        - url
+                minItems: 1
+        required:
+            - year
+            - footerMenuLinks
+    -
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            links:
+                type: object
+                properties:
                     items:
-                        type: object
+                        type: array
                         properties:
                             name:
                                 type: string
@@ -32,98 +42,75 @@ schema:
                         required:
                             - name
                             - url
-                    minItems: 1
-            required:
-                - year
-                - footerMenuLinks
-        -
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                links:
-                    type: object
-                    properties:
-                        items:
-                            type: array
-                            properties:
-                                name:
-                                    type: string
-                                    minLength: 1
-                                url:
-                                    type: string
-                                    minLength: 1
-                            required:
-                                - name
-                                - url
-                            minItems: 1
-                    required:
-                        - items
-                listHeading:
+                        minItems: 1
+                required:
+                    - items
+            listHeading:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    heading:
+                        type: string
+                        minLength: 1
+                    headingId:
+                        type: string
+                required:
+                    - heading
+        required:
+            - links
+            - listHeading
+    -
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            logos:
+                type: array
+                minItems: 1
+                items:
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
-                        heading:
+                        pictureClasses:
                             type: string
                             minLength: 1
-                        headingId:
-                            type: string
-                    required:
-                        - heading
-            required:
-                - links
-                - listHeading
-        -
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                logos:
-                    type: array
-                    minItems: 1
-                    items:
-                        $schema: 'http://json-schema.org/draft-04/schema#'
-                        type: object
-                        properties:
-                            pictureClasses:
-                                type: string
-                                minLength: 1
-                            sources:
-                                type: array
-                                uniqueItems: true
-                                items:
-                                    type: object
-                                    properties:
-                                        srcset:
-                                            type: string
-                                            minLength: 1
-                                        media:
-                                            type: string
-                                            minLength: 1
-                                        type:
-                                            type: string
-                                            enum:
-                                                - image/svg+xml
-                                                - image/webp
-                                                - image/png
-                                                - image/jpeg
-                                    required:
-                                        - srcset
-                            fallback:
+                        sources:
+                            type: array
+                            uniqueItems: true
+                            items:
                                 type: object
                                 properties:
                                     srcset:
                                         type: string
-                                        pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
-                                    defaultPath:
+                                        minLength: 1
+                                    media:
                                         type: string
                                         minLength: 1
-                                    altText:
+                                    type:
                                         type: string
-                                    classes:
-                                        type: string
+                                        enum:
+                                            - image/svg+xml
+                                            - image/webp
+                                            - image/png
+                                            - image/jpeg
                                 required:
-                                    - defaultPath
-                                    - altText
-                        required:
-                            - fallback
-            required:
-                - logos
+                                    - srcset
+                        fallback:
+                            type: object
+                            properties:
+                                srcset:
+                                    type: string
+                                    pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                                defaultPath:
+                                    type: string
+                                    minLength: 1
+                                altText:
+                                    type: string
+                                classes:
+                                    type: string
+                            required:
+                                - defaultPath
+                                - altText
+                    required:
+                        - fallback
+        required:
+            - logos

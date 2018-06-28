@@ -1,90 +1,69 @@
-assets:
-    css:
-        - search-box.css
-        -
-            - compact-form.css
-    js:
-        - {  }
-schema:
-    $schema: 'http://json-schema.org/draft-04/schema#'
-    type: object
-    properties:
-        compactForm:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                formAction:
-                    type: string
-                    minLength: 1
-                formId:
-                    type: string
-                    minLength: 1
-                formMethod:
-                    type: string
-                    enum:
-                        - GET
-                        - POST
-                state:
-                    type: string
-                    enum:
-                        - valid
-                        - invalid
-                messageGroup:
-                    type: object
-                    properties:
-                        errorText:
-                            type: string
-                            minLength: 1
-                        infoText:
-                            type: string
-                            minLength: 1
-                        id:
-                            type: string
-                            minLength: 1
-                    minProperties: 2
-                    required:
-                        - id
-                label:
-                    type: string
-                    minLength: 1
-                inputType:
-                    type: string
-                    enum:
-                        - email
-                        - password
-                        - search
-                        - tel
-                        - text
-                        - url
-                inputName:
-                    type: string
-                    minLength: 1
-                inputValue:
-                    type: string
-                inputPlaceholder:
-                    type: string
-                    minLength: 1
-                inputAutofocus:
-                    type: boolean
-                ctaText:
-                    type: string
-                    minLength: 1
-                hiddenFields:
-                    type: array
-                    items:
-                        $schema: 'http://json-schema.org/draft-04/schema#'
-                        type: object
-                        properties:
-                            id:
-                                type: string
-                                minLength: 1
-                            name:
-                                type: string
-                                minLength: 1
-                            value:
-                                type: string
-                                minLength: 1
-                honeypot:
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    compactForm:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            formAction:
+                type: string
+                minLength: 1
+            formId:
+                type: string
+                minLength: 1
+            formMethod:
+                type: string
+                enum:
+                    - GET
+                    - POST
+            state:
+                type: string
+                enum:
+                    - valid
+                    - invalid
+            messageGroup:
+                type: object
+                properties:
+                    errorText:
+                        type: string
+                        minLength: 1
+                    infoText:
+                        type: string
+                        minLength: 1
+                    id:
+                        type: string
+                        minLength: 1
+                minProperties: 2
+                required:
+                    - id
+            label:
+                type: string
+                minLength: 1
+            inputType:
+                type: string
+                enum:
+                    - email
+                    - password
+                    - search
+                    - tel
+                    - text
+                    - url
+            inputName:
+                type: string
+                minLength: 1
+            inputValue:
+                type: string
+            inputPlaceholder:
+                type: string
+                minLength: 1
+            inputAutofocus:
+                type: boolean
+            ctaText:
+                type: string
+                minLength: 1
+            hiddenFields:
+                type: array
+                items:
                     $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
@@ -94,102 +73,115 @@ schema:
                         name:
                             type: string
                             minLength: 1
-                        state:
-                            type: string
-                            enum:
-                                - valid
-                                - invalid
-                        messageGroup:
-                            type: object
-                            properties:
-                                errorText:
-                                    type: string
-                                    minLength: 1
-                                infoText:
-                                    type: string
-                                    minLength: 1
-                                id:
-                                    type: string
-                                    minLength: 1
-                            minProperties: 2
-                            required:
-                                - id
-                        autofocus:
-                            type: boolean
-                        inputType:
-                            type: string
-                            enum:
-                                - email
-                                - password
-                                - search
-                                - tel
-                                - text
-                                - url
-                            minLength: 1
-                        placeholder:
+                        value:
                             type: string
                             minLength: 1
+            honeypot:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    id:
+                        type: string
+                        minLength: 1
+                    name:
+                        type: string
+                        minLength: 1
+                    state:
+                        type: string
+                        enum:
+                            - valid
+                            - invalid
+                    messageGroup:
+                        type: object
+                        properties:
+                            errorText:
+                                type: string
+                                minLength: 1
+                            infoText:
+                                type: string
+                                minLength: 1
+                            id:
+                                type: string
+                                minLength: 1
+                        minProperties: 2
                         required:
-                            type: boolean
-                        disabled:
-                            type: boolean
-                        label:
-                            type: object
-                            properties:
-                                labelText:
-                                    type: string
-                                    minLength: 1
-                                isVisuallyHidden:
-                                    type: boolean
-                            required:
-                                - labelText
-                        formFieldInfoLink:
-                            $schema: 'http://json-schema.org/draft-04/schema#'
-                            type: object
-                            properties:
-                                name:
-                                    type: string
-                                    minLength: 1
-                                url:
-                                    type: string
-                                    minLength: 1
-                                alignLeft:
-                                    type: boolean
-                                    enum:
-                                        - true
-                            required:
-                                - name
-                                - url
-                    required:
-                        - inputType
-                    dependencies:
-                        label:
                             - id
-            required:
-                - formId
-                - formAction
-                - formMethod
-                - label
-                - inputName
-                - inputPlaceholder
-                - ctaText
-        subjectFilter:
-            type: object
-            properties:
-                name:
-                    type: string
-                    minLength: 1
-                value:
-                    type: string
-                    minLength: 1
-                text:
-                    type: string
-                    minLength: 1
-            required:
-                - name
-                - value
-                - text
-        inContentHeader:
-            type: boolean
-    required:
-        - compactForm
+                    autofocus:
+                        type: boolean
+                    inputType:
+                        type: string
+                        enum:
+                            - email
+                            - password
+                            - search
+                            - tel
+                            - text
+                            - url
+                        minLength: 1
+                    placeholder:
+                        type: string
+                        minLength: 1
+                    required:
+                        type: boolean
+                    disabled:
+                        type: boolean
+                    label:
+                        type: object
+                        properties:
+                            labelText:
+                                type: string
+                                minLength: 1
+                            isVisuallyHidden:
+                                type: boolean
+                        required:
+                            - labelText
+                    formFieldInfoLink:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                minLength: 1
+                            url:
+                                type: string
+                                minLength: 1
+                            alignLeft:
+                                type: boolean
+                                enum:
+                                    - true
+                        required:
+                            - name
+                            - url
+                required:
+                    - inputType
+                dependencies:
+                    label:
+                        - id
+        required:
+            - formId
+            - formAction
+            - formMethod
+            - label
+            - inputName
+            - inputPlaceholder
+            - ctaText
+    subjectFilter:
+        type: object
+        properties:
+            name:
+                type: string
+                minLength: 1
+            value:
+                type: string
+                minLength: 1
+            text:
+                type: string
+                minLength: 1
+        required:
+            - name
+            - value
+            - text
+    inContentHeader:
+        type: boolean
+required:
+    - compactForm
