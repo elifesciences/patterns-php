@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ButtonCollection implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $buttons;
     private $centered;
@@ -31,16 +28,6 @@ final class ButtonCollection implements ViewModel
         if ($compact) {
             $this->compact = $compact;
         }
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/button-collection.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->buttons;
     }
 
     public function getTemplateName() : string

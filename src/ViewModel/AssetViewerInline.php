@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class AssetViewerInline implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $id;
     private $variant;
@@ -108,19 +105,8 @@ final class AssetViewerInline implements ViewModel
         return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets, $download, $open);
     }
 
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/asset-viewer-inline.css';
-    }
-
     public function getTemplateName() : string
     {
         return 'resources/templates/asset-viewer-inline.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->captionedAsset;
-        yield from $this->additionalAssets;
     }
 }

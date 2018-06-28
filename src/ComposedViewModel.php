@@ -2,11 +2,8 @@
 
 namespace eLife\Patterns;
 
-use Traversable;
-
 trait ComposedViewModel
 {
-    use ComposedAssets;
     use ReadOnlyArrayAccess;
 
     public function toArray() : array
@@ -22,11 +19,6 @@ trait ComposedViewModel
     public function offsetGet($offset)
     {
         return $this->getViewModel()->offsetGet($offset);
-    }
-
-    final protected function getComposedViewModels() : Traversable
-    {
-        yield $this->getViewModel();
     }
 
     abstract protected function getViewModel() : ViewModel;

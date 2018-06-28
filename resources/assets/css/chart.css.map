@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,OAAQ,CACN,QAAQ,CAAE,QAAQ,CAGpB,gBAAiB,CACf,cAAc,CAAE,IAAI,CACpB,OAAO,CAAE,GAAG",
-"sources": ["../../../../../../assets/sass/patterns/molecules/chart.scss"],
-"names": [],
-"file": "chart.css"
-}

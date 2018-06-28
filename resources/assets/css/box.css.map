@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,IAAK,CACH,aAAa,CAAE,iBAA8B,CCkB3C,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,SAAkC,CAsBzD,UAAoB,CAAE,IAAgB,CACtC,UAAoB,CAAE,IAAkC,CADxD,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,IAAkC,CDpC5D,WAAY,CACV,aAAa,CAAE,iBAA8B,CEsM7C,WAAW,CC/KI,sCAAyC,CFlBxD,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CAuQ9C,WAAW,CAAE,OAA8C,CCrE3D,WAAW,CAAE,IAAI,CD7Lf,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,QAAkC,CAsBzD,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC,CD7B5D,qBAAsB,CCkDpB,MAAM,CAAE,IAAgB,CACxB,MAAM,CAAE,MAAkC",
-"sources": ["../../../../../../assets/sass/patterns/organisms/box.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss"],
-"names": [],
-"file": "box.css"
-}

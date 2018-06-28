@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class MediaChapterListingItem implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $title;
     private $startTime;
@@ -56,10 +53,5 @@ final class MediaChapterListingItem implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/media-chapter-listing-item.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/media-chapter-listing-item.css';
     }
 }

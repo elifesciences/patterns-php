@@ -4,15 +4,12 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ImageLink implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $url;
     private $image;
@@ -26,10 +23,5 @@ final class ImageLink implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/image-link.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/image-link.css';
     }
 }

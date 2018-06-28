@@ -1,209 +1,45 @@
-assets:
-    css:
-        - buttons.css
-        - date.css
-        - list-heading.css
-        - listing.css
-        - meta.css
-        - pager.css
-        - see-more-link.css
-        - teaser.css
-    js: []
-schema:
-    $schema: 'http://json-schema.org/draft-04/schema#'
-    type: object
-    properties:
-        heading:
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    heading:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            heading:
+                type: string
+                minLength: 1
+            headingId:
+                type: string
+        required:
+            - heading
+    id:
+        type: string
+        pattern: '^[a-zA-Z0-9_$]+$'
+    highlights:
+        type: boolean
+        default: false
+    items:
+        type: array
+        minItems: 1
+        items:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
-                heading:
+                rootClasses:
                     type: string
                     minLength: 1
-                headingId:
-                    type: string
-            required:
-                - heading
-        id:
-            type: string
-            pattern: '^[a-zA-Z0-9_$]+$'
-        highlights:
-            type: boolean
-            default: false
-        items:
-            type: array
-            minItems: 1
-            items:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                properties:
-                    rootClasses:
-                        type: string
-                        minLength: 1
-                    contextLabel:
-                        type: object
-                        properties:
-                            list:
-                                type: array
-                                minItems: 1
-                                item:
-                                    type: object
-                                    properties:
-                                        name:
-                                            type: string
-                                            minLength: 1
-                                        url:
-                                            oneOf:
-                                                -
-                                                    type: string
-                                                    minLength: 1
-                                                -
-                                                    type: boolean
-                                                    enum:
-                                                        - false
-                                    required:
-                                        - name
-                                        - url
-                    url:
-                        oneOf:
-                            -
-                                type: string
-                                minLength: 1
-                            -
-                                type: boolean
-                                enum:
-                                    - false
-                    title:
-                        type: string
-                        minLength: 1
-                    num:
-                        type: integer
-                        minimum: 1
-                    carouselItem:
-                        type: boolean
-                        default: false
-                    secondaryInfo:
-                        type: string
-                        minLength: 1
-                    eventDate:
-                        $schema: 'http://json-schema.org/draft-04/schema#'
-                        type: object
-                        properties:
-                            forMachine:
-                                type: string
-                                pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
-                            forHuman:
+                contextLabel:
+                    type: object
+                    properties:
+                        list:
+                            type: array
+                            minItems: 1
+                            item:
                                 type: object
                                 properties:
-                                    dayOfMonth:
-                                        type: integer
-                                        minimum: 1
-                                        maximum: 31
-                                    month:
-                                        type: string
-                                        minLength: 3
-                                        maxLength: 3
-                                    year:
-                                        type: integer
-                                required:
-                                    - dayOfMonth
-                                    - month
-                                    - year
-                            isUpdated:
-                                type: boolean
-                                default: false
-                            isExpanded:
-                                type: boolean
-                                default: false
-                        required:
-                            - forHuman
-                            - forMachine
-                    content:
-                        type: string
-                        minLength: 1
-                    category:
-                        type: object
-                        properties:
-                            name:
-                                type: string
-                                minLength: 1
-                            url:
-                                oneOf:
-                                    -
+                                    name:
                                         type: string
                                         minLength: 1
-                                    -
-                                        type: boolean
-                                        enum:
-                                            - false
-                        required:
-                            - name
-                            - url
-                    image:
-                        allOf:
-                            -
-                                $schema: 'http://json-schema.org/draft-04/schema#'
-                                type: object
-                                properties:
-                                    pictureClasses:
-                                        type: string
-                                        minLength: 1
-                                    sources:
-                                        type: array
-                                        uniqueItems: true
-                                        items:
-                                            type: object
-                                            properties:
-                                                srcset:
-                                                    type: string
-                                                    minLength: 1
-                                                media:
-                                                    type: string
-                                                    minLength: 1
-                                                type:
-                                                    type: string
-                                                    enum:
-                                                        - image/svg+xml
-                                                        - image/webp
-                                                        - image/png
-                                                        - image/jpeg
-                                            required:
-                                                - srcset
-                                    fallback:
-                                        type: object
-                                        properties:
-                                            srcset:
-                                                type: string
-                                                pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
-                                            defaultPath:
-                                                type: string
-                                                minLength: 1
-                                            altText:
-                                                type: string
-                                            classes:
-                                                type: string
-                                        required:
-                                            - defaultPath
-                                            - altText
-                                required:
-                                    - fallback
-                            -
-                                properties:
-                                    type:
-                                        type: string
-                                        enum:
-                                            - prominent
-                                            - big
-                                            - small
-                                required:
-                                    - type
-                    footer:
-                        type: object
-                        properties:
-                            meta:
-                                $schema: 'http://json-schema.org/draft-04/schema#'
-                                type: object
-                                properties:
                                     url:
                                         oneOf:
                                             -
@@ -213,175 +49,327 @@ schema:
                                                 type: boolean
                                                 enum:
                                                     - false
-                                    carouselItem:
-                                        type: boolean
-                                        enum:
-                                            - true
-                                    text:
-                                        type: string
-                                        minLength: 1
-                                    date:
-                                        $schema: 'http://json-schema.org/draft-04/schema#'
+                                required:
+                                    - name
+                                    - url
+                url:
+                    oneOf:
+                        -
+                            type: string
+                            minLength: 1
+                        -
+                            type: boolean
+                            enum:
+                                - false
+                title:
+                    type: string
+                    minLength: 1
+                num:
+                    type: integer
+                    minimum: 1
+                carouselItem:
+                    type: boolean
+                    default: false
+                secondaryInfo:
+                    type: string
+                    minLength: 1
+                eventDate:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        forMachine:
+                            type: string
+                            pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
+                        forHuman:
+                            type: object
+                            properties:
+                                dayOfMonth:
+                                    type: integer
+                                    minimum: 1
+                                    maximum: 31
+                                month:
+                                    type: string
+                                    minLength: 3
+                                    maxLength: 3
+                                year:
+                                    type: integer
+                            required:
+                                - dayOfMonth
+                                - month
+                                - year
+                        isUpdated:
+                            type: boolean
+                            default: false
+                        isExpanded:
+                            type: boolean
+                            default: false
+                    required:
+                        - forHuman
+                        - forMachine
+                content:
+                    type: string
+                    minLength: 1
+                category:
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                            minLength: 1
+                        url:
+                            oneOf:
+                                -
+                                    type: string
+                                    minLength: 1
+                                -
+                                    type: boolean
+                                    enum:
+                                        - false
+                    required:
+                        - name
+                        - url
+                image:
+                    allOf:
+                        -
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                pictureClasses:
+                                    type: string
+                                    minLength: 1
+                                sources:
+                                    type: array
+                                    uniqueItems: true
+                                    items:
                                         type: object
                                         properties:
-                                            forMachine:
+                                            srcset:
                                                 type: string
-                                                pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
-                                            forHuman:
-                                                type: object
-                                                properties:
-                                                    dayOfMonth:
-                                                        type: integer
-                                                        minimum: 1
-                                                        maximum: 31
-                                                    month:
-                                                        type: string
-                                                        minLength: 3
-                                                        maxLength: 3
-                                                    year:
-                                                        type: integer
-                                                required:
-                                                    - dayOfMonth
-                                                    - month
-                                                    - year
-                                            isUpdated:
-                                                type: boolean
-                                                default: false
-                                            isExpanded:
-                                                type: boolean
-                                                default: false
+                                                minLength: 1
+                                            media:
+                                                type: string
+                                                minLength: 1
+                                            type:
+                                                type: string
+                                                enum:
+                                                    - image/svg+xml
+                                                    - image/webp
+                                                    - image/png
+                                                    - image/jpeg
                                         required:
-                                            - forHuman
-                                            - forMachine
-                                anyOf:
-                                    -
-                                        required:
-                                            - date
-                                    -
-                                        required:
-                                            - text
-                            formats:
-                                type: object
-                                minProperties: 1
-                                properties:
-                                    html:
-                                        type: boolean
-                                    pdf:
-                                        type: boolean
-                        required:
-                            - meta
-                dependencies:
-                    num:
-                        - carouselItem
-                    carouselItem:
-                        - num
-                required:
-                    - title
-                    - url
-        pagination:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                previousPage:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
-                    type: object
-                    allOf:
+                                            - srcset
+                                fallback:
+                                    type: object
+                                    properties:
+                                        srcset:
+                                            type: string
+                                            pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                                        defaultPath:
+                                            type: string
+                                            minLength: 1
+                                        altText:
+                                            type: string
+                                        classes:
+                                            type: string
+                                    required:
+                                        - defaultPath
+                                        - altText
+                            required:
+                                - fallback
                         -
                             properties:
+                                type:
+                                    type: string
+                                    enum:
+                                        - prominent
+                                        - big
+                                        - small
+                            required:
+                                - type
+                footer:
+                    type: object
+                    properties:
+                        meta:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                url:
+                                    oneOf:
+                                        -
+                                            type: string
+                                            minLength: 1
+                                        -
+                                            type: boolean
+                                            enum:
+                                                - false
+                                carouselItem:
+                                    type: boolean
+                                    enum:
+                                        - true
                                 text:
                                     type: string
                                     minLength: 1
-                                classes:
-                                    type: string
-                            required:
-                                - text
-                        -
-                            oneOf:
-                                -
+                                date:
+                                    $schema: 'http://json-schema.org/draft-04/schema#'
+                                    type: object
                                     properties:
-                                        type:
+                                        forMachine:
                                             type: string
-                                            enum:
-                                                - button
-                                                - reset
-                                                - submit
-                                        id:
-                                            type: string
-                                            minLength: 1
-                                        name:
-                                            type: string
-                                            minLength: 1
+                                            pattern: '^([12][0-9]{3})-([0-9]{2})-([0-9]{2})$'
+                                        forHuman:
+                                            type: object
+                                            properties:
+                                                dayOfMonth:
+                                                    type: integer
+                                                    minimum: 1
+                                                    maximum: 31
+                                                month:
+                                                    type: string
+                                                    minLength: 3
+                                                    maxLength: 3
+                                                year:
+                                                    type: integer
+                                            required:
+                                                - dayOfMonth
+                                                - month
+                                                - year
+                                        isUpdated:
+                                            type: boolean
+                                            default: false
+                                        isExpanded:
+                                            type: boolean
+                                            default: false
                                     required:
-                                        - type
+                                        - forHuman
+                                        - forMachine
+                            anyOf:
                                 -
-                                    properties:
-                                        path:
-                                            type: string
-                                            minLength: 1
                                     required:
-                                        - path
-                nextPage:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
-                    type: object
-                    allOf:
-                        -
+                                        - date
+                                -
+                                    required:
+                                        - text
+                        formats:
+                            type: object
+                            minProperties: 1
                             properties:
-                                text:
-                                    type: string
-                                    minLength: 1
-                                classes:
-                                    type: string
-                            required:
-                                - text
-                        -
-                            oneOf:
-                                -
-                                    properties:
-                                        type:
-                                            type: string
-                                            enum:
-                                                - button
-                                                - reset
-                                                - submit
-                                        id:
-                                            type: string
-                                            minLength: 1
-                                        name:
-                                            type: string
-                                            minLength: 1
-                                    required:
-                                        - type
-                                -
-                                    properties:
-                                        path:
-                                            type: string
-                                            minLength: 1
-                                    required:
-                                        - path
-                targetId:
-                    type: string
-                    minLength: 1
-            anyOf:
-                -
+                                html:
+                                    type: boolean
+                                pdf:
+                                    type: boolean
                     required:
-                        - nextPage
-                -
-                    required:
-                        - previousPage
-        seeMoreLink:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                url:
-                    type: string
-                    minLength: 1
-                name:
-                    type: string
-                    minLength: 1
-                isInline:
-                    type: boolean
+                        - meta
+            dependencies:
+                num:
+                    - carouselItem
+                carouselItem:
+                    - num
             required:
+                - title
                 - url
-                - name
-    required:
-        - items
+    pagination:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            previousPage:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                allOf:
+                    -
+                        properties:
+                            text:
+                                type: string
+                                minLength: 1
+                            classes:
+                                type: string
+                        required:
+                            - text
+                    -
+                        oneOf:
+                            -
+                                properties:
+                                    type:
+                                        type: string
+                                        enum:
+                                            - button
+                                            - reset
+                                            - submit
+                                    id:
+                                        type: string
+                                        minLength: 1
+                                    name:
+                                        type: string
+                                        minLength: 1
+                                required:
+                                    - type
+                            -
+                                properties:
+                                    path:
+                                        type: string
+                                        minLength: 1
+                                required:
+                                    - path
+            nextPage:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                allOf:
+                    -
+                        properties:
+                            text:
+                                type: string
+                                minLength: 1
+                            classes:
+                                type: string
+                        required:
+                            - text
+                    -
+                        oneOf:
+                            -
+                                properties:
+                                    type:
+                                        type: string
+                                        enum:
+                                            - button
+                                            - reset
+                                            - submit
+                                    id:
+                                        type: string
+                                        minLength: 1
+                                    name:
+                                        type: string
+                                        minLength: 1
+                                required:
+                                    - type
+                            -
+                                properties:
+                                    path:
+                                        type: string
+                                        minLength: 1
+                                required:
+                                    - path
+            targetId:
+                type: string
+                minLength: 1
+        anyOf:
+            -
+                required:
+                    - nextPage
+            -
+                required:
+                    - previousPage
+    seeMoreLink:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            url:
+                type: string
+                minLength: 1
+            name:
+                type: string
+                minLength: 1
+            isInline:
+                type: boolean
+        required:
+            - url
+            - name
+required:
+    - items

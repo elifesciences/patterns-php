@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,qBAAsB,CACpB,aAAa,CAAE,iBAA8B,CAC7C,KAAK,CCKM,OAAO,CDJlB,OAAO,CAAE,KAAK,CACd,WAAW,CC2BI,sCAAyC,CClBxD,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,IAAmC,CAuQ9C,WAAW,CAAE,GAA8C,CAlQzD,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,QAAkC,CFb3D,aAAa,CAAE,CAAC,CEYd,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CFX3D,YAAY,CAAE,CAAC,CACf,UAAU,CAAE,MAAM,CAClB,eAAe,CAAE,IAAI,CACrB,KAAK,CAAE,IAAI,CAEX,2BAAQ,CACN,OAAO,CAAE,WAAW,CAItB,4BAAS,CEiGT,OAAO,CAAE,IAAI,CF5Ff,wDAC6B,CAC3B,KAAK,CCvBS,OAAO",
-"sources": ["../../../../../../assets/sass/patterns/atoms/section-listing-link.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "section-listing-link.css"
-}

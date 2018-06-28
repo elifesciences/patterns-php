@@ -5,9 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 /**
  * @SuppressWarnings(ForbiddenAbleSuffix)
@@ -16,7 +14,6 @@ final class Table implements ViewModel, IsCaptioned
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $tables;
     private $hasFootnotes;
@@ -38,10 +35,5 @@ final class Table implements ViewModel, IsCaptioned
     public function getTemplateName() : string
     {
         return 'resources/templates/table.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/table.css';
     }
 }

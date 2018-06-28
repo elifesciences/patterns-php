@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use DateTimeImmutable;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Date implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $isExpanded;
     private $isUpdated;
@@ -40,11 +37,6 @@ final class Date implements ViewModel
     public static function expanded(DateTimeImmutable $date) : Date
     {
         return new self($date, true);
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/date.css';
     }
 
     public function getTemplateName() : string

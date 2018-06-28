@@ -47,26 +47,6 @@ $patternRenderer = new MustachePatternRenderer($mustache);
 var_dump($patternRenderer->render($viewModel));
 ```
 
-Asset handling
---------------
-
-As well as providing complete CSS/JavaScript files (eg `resources/assets/css/all.css`), the patterns also state which individual assets they require. They can also provide inline CSS and JavaScript.
-
-Use the `AssetRecordingPatternRenderer` to record which assets are used and include them on the page as necessary.
-
-For example:
-
-```php
-use eLife\Patterns\PatternRenderer\AssetRecordingPatternRenderer;
-use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
-
-$patternRenderer = new AssetRecordingPatternRenderer(new MustachePatternRenderer($mustache));
-
-$patternRenderer->render($viewModel);
-
-var_dump($patternRenderer->getStyleSheets());
-```
-
 Updating the library
 --------------------
 

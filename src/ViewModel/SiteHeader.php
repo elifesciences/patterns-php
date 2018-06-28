@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class SiteHeader implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $homePagePath;
     private $primaryLinks;
@@ -30,18 +27,6 @@ final class SiteHeader implements ViewModel
         if ($searchBox) {
             $this->searchBox = FlexibleViewModel::fromViewModel($searchBox)->withProperty('inContentHeader', true);
         }
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/site-header.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->primaryLinks;
-        yield $this->secondaryLinks;
-        yield $this->searchBox;
     }
 
     public function getTemplateName() : string

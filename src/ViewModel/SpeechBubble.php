@@ -4,9 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 use function eLife\Patterns\mixed_accessibility_text;
 
 final class SpeechBubble implements ViewModel
@@ -16,7 +14,6 @@ final class SpeechBubble implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $text;
     private $isSmall;
@@ -50,10 +47,5 @@ final class SpeechBubble implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/speech-bubble.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/speech-bubble.css';
     }
 }

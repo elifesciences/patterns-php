@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class LoginControl implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $button;
     private $displayName;
@@ -81,11 +78,6 @@ final class LoginControl implements ViewModel
         return implode(' ', array_map(function (string $text, string $uri, int $i) {
             return "data-link{$i}-text=\"{$text}\" data-link{$i}-uri=\"{$uri}\"";
         }, array_keys($linkFields), array_values($linkFields), range(1, count($linkFields))));
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/login-control.css';
     }
 
     public function getTemplateName() : string

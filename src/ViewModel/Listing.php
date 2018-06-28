@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Listing implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $isOrdered;
     private $prefix;
@@ -46,11 +43,6 @@ final class Listing implements ViewModel
     public static function forTeaser(array $items, string $prefix = 'bullet') : Listing
     {
         return new self(false, $prefix, $items, 'list--teaser');
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/list.css';
     }
 
     public function getTemplateName() : string

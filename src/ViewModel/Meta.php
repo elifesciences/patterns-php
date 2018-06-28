@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Meta implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $url;
     private $text;
@@ -50,15 +47,5 @@ final class Meta implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/meta.mustache';
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/meta.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->date;
     }
 }

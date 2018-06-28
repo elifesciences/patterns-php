@@ -5,9 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class BarChart implements ViewModel
 {
@@ -18,7 +16,6 @@ final class BarChart implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $id;
     private $type;
@@ -53,14 +50,5 @@ final class BarChart implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/bar-chart.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/button-collection.css';
-        yield 'resources/assets/css/buttons.css';
-        yield 'resources/assets/css/chart.css';
-        yield 'resources/assets/css/tooltip.css';
-        yield 'resources/assets/css/triggers.css';
     }
 }

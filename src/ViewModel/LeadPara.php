@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class LeadPara implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     protected $text;
 
@@ -23,11 +20,6 @@ final class LeadPara implements ViewModel
 
         $this->text = $text;
         $this->id = $id;
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/lead-para.css';
     }
 
     public function getTemplateName() : string

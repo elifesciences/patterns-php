@@ -2,7 +2,7 @@
 
 namespace eLife\Patterns;
 
-interface ViewModel extends CastsToArray, HasAssets
+interface ViewModel extends CastsToArray
 {
     public function getTemplateName() : string;
 }
