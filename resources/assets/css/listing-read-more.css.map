@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAIE,wCAAwE,CAF1E,+BAAgC,CAG5B,OAAO,CAAE,IAAI",
-"sources": ["../../../../../../assets/sass/patterns/organisms/listing-read-more.scss"],
-"names": [],
-"file": "listing-read-more.css"
-}

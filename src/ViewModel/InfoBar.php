@@ -5,9 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class InfoBar implements ViewModel
 {
@@ -19,7 +17,6 @@ final class InfoBar implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $text;
     private $type;
@@ -42,10 +39,5 @@ final class InfoBar implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/info-bar.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/info-bars.css';
     }
 }

@@ -6,15 +6,11 @@ use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
-use eLife\Patterns\ComposedAssets;
-use eLife\Patterns\HasAssets;
-use Traversable;
 
-final class ReferenceListItem implements CastsToArray, HasAssets
+final class ReferenceListItem implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $bibId;
     private $reference;
@@ -29,10 +25,5 @@ final class ReferenceListItem implements CastsToArray, HasAssets
             'ordinal' => $ordinal,
         ];
         $this->reference = $reference;
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->reference;
     }
 }

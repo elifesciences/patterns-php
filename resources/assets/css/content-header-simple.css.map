@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,sBAAuB,CCiCnB,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,MAAkC,CADzD,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,MAAkC,CDhC3D,YAAY,CAAE,EAAE,CAChB,aAAa,CAAE,EAAE,CACjB,UAAU,CAAE,MAAM,CCmgBlB,yCAA0E,CDvgB5E,sBAAuB,CCiCnB,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,IAAkC,EA+e3D,yCAA0E,CDjhB5E,sBAAuB,CCiCnB,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,IAAkC,ED3B7D,6BAA8B,CE4C5B,WAAW,CCpBI,sCAAyC,CDqBxD,WAAW,CAAE,IAAI,CDzBjB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,QAAmC,CAuQ9C,WAAW,CAAE,OAA8C,CD1R3D,KAAK,CGFM,OAAO,CFoBlB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CAuQ9C,WAAW,CAAE,GAA8C,CA1CzD,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CD5Od,iCAAkC,CAChC,KAAK,CGRM,OAAO,CDuIlB,WAAW,CChHE,kBAAmB,CFHhC,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,IAAmC,CAuQ9C,WAAW,CAAE,GAA8C,CCnJ3D,WAAW,CAAE,MAAM,CDyGjB,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC",
-"sources": ["../../../../../../assets/sass/patterns/organisms/content-header-simple.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss"],
-"names": [],
-"file": "content-header-simple.css"
-}

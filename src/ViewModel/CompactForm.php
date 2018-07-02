@@ -5,9 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class CompactForm implements ViewModel
 {
@@ -16,7 +14,6 @@ final class CompactForm implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $formAction;
     private $formId;
@@ -61,10 +58,5 @@ final class CompactForm implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/compact-form.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/compact-form.css';
     }
 }

@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class GridListing implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $classes;
     private $heading;
@@ -85,13 +82,5 @@ final class GridListing implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/grid-listing.mustache';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->blockLinks;
-        yield from $this->archiveNavLinks;
-        yield from $this->teasers;
-        yield $this->pagination;
     }
 }

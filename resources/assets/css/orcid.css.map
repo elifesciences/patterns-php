@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,YAAa,CC4bX,aAAa,CAAE,KAAK,CACpB,UAAU,CAAE,GAAG,CACf,cAAc,CAAE,MAAM",
-"sources": ["../../../../../../assets/sass/patterns/atoms/orcid.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "orcid.css"
-}

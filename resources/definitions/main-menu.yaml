@@ -1,41 +1,35 @@
-assets:
-    css:
-        - list-heading.css
-        - main-menu.css
-    js: []
-schema:
-    $schema: 'http://json-schema.org/draft-04/schema#'
-    type: object
-    properties:
-        links:
-            type: object
-            properties:
-                items:
-                    type: array
-                    properties:
-                        name:
-                            type: string
-                            minLength: 1
-                        url:
-                            type: string
-                            minLength: 1
-                    required:
-                        - name
-                        - url
-                    minItems: 1
-            required:
-                - items
-        listHeading:
-            $schema: 'http://json-schema.org/draft-04/schema#'
-            type: object
-            properties:
-                heading:
-                    type: string
-                    minLength: 1
-                headingId:
-                    type: string
-            required:
-                - heading
-    required:
-        - links
-        - listHeading
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    links:
+        type: object
+        properties:
+            items:
+                type: array
+                properties:
+                    name:
+                        type: string
+                        minLength: 1
+                    url:
+                        type: string
+                        minLength: 1
+                required:
+                    - name
+                    - url
+                minItems: 1
+        required:
+            - items
+    listHeading:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            heading:
+                type: string
+                minLength: 1
+            headingId:
+                type: string
+        required:
+            - heading
+required:
+    - links
+    - listHeading

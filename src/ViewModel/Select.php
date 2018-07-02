@@ -5,9 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Select implements ViewModel
 {
@@ -16,7 +14,6 @@ final class Select implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $id;
     private $options;
@@ -58,11 +55,5 @@ final class Select implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/select.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/select.css';
-        yield 'resources/assets/css/form-item.css';
     }
 }

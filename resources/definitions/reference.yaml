@@ -1,99 +1,93 @@
-assets:
-    css:
-        - doi.css
-        - reference.css
-    js: []
-schema:
-    $schema: 'http://json-schema.org/draft-04/schema#'
-    type: object
-    properties:
-        titleLink:
-            type: string
-            minLength: 1
-        doi:
-            $schema: 'http://json-schema.org/draft-04/schema#'
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    titleLink:
+        type: string
+        minLength: 1
+    doi:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            doi:
+                type: string
+                minLength: 1
+            variant:
+                type: string
+                enum:
+                    - article-section
+                    - asset
+            isTruncated:
+                type: boolean
+                default:
+                    - false
+        required:
+            - doi
+    title:
+        type: string
+        minLength: 1
+    hasAuthors:
+        type: boolean
+    authorLists:
+        type: array
+        minItems: 1
+        items:
             type: object
             properties:
-                doi:
+                authors:
+                    type: array
+                    minItems: 1
+                    items:
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                minLength: 1
+                            url:
+                                oneOf:
+                                    -
+                                        type: string
+                                        minLength: 1
+                                    -
+                                        type: boolean
+                                        enum:
+                                            - false
+                        required:
+                            - name
+                            - url
+                suffix:
                     type: string
                     minLength: 1
-                variant:
+            required:
+                - authors
+                - suffix
+    origin:
+        type: string
+        minLength: 1
+    hasAbstracts:
+        type: boolean
+    abstracts:
+        type: array
+        minItems: 1
+        items:
+            type: object
+            properties:
+                name:
                     type: string
-                    enum:
-                        - article-section
-                        - asset
-                isTruncated:
-                    type: boolean
-                    default:
-                        - false
+                    minLength: 1
+                url:
+                    type: string
+                    minLength: 1
+            required:
+                - name
+                - url
+allOf:
+    -
+        required:
+            - title
+            - hasAuthors
+            - hasAbstracts
+    -
+        not:
             required:
                 - doi
-        title:
-            type: string
-            minLength: 1
-        hasAuthors:
-            type: boolean
-        authorLists:
-            type: array
-            minItems: 1
-            items:
-                type: object
-                properties:
-                    authors:
-                        type: array
-                        minItems: 1
-                        items:
-                            type: object
-                            properties:
-                                name:
-                                    type: string
-                                    minLength: 1
-                                url:
-                                    oneOf:
-                                        -
-                                            type: string
-                                            minLength: 1
-                                        -
-                                            type: boolean
-                                            enum:
-                                                - false
-                            required:
-                                - name
-                                - url
-                    suffix:
-                        type: string
-                        minLength: 1
-                required:
-                    - authors
-                    - suffix
-        origin:
-            type: string
-            minLength: 1
-        hasAbstracts:
-            type: boolean
-        abstracts:
-            type: array
-            minItems: 1
-            items:
-                type: object
-                properties:
-                    name:
-                        type: string
-                        minLength: 1
-                    url:
-                        type: string
-                        minLength: 1
-                required:
-                    - name
-                    - url
-    allOf:
-        -
-            required:
-                - title
-                - hasAuthors
-                - hasAbstracts
-        -
-            not:
-                required:
-                    - doi
-                    - titleLink
+                - titleLink

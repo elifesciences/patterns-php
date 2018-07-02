@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,YAAa,CACX,gBAAgB,CCYG,OAAO,CDX1B,MAAM,CAAE,iBAA8B,CACtC,aAAa,CAAE,GAAmB,CEwBlC,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CAuQ9C,WAAW,CAAE,OAA8C,CAlQzD,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,QAAkC,CADzD,aAAqB,CAAE,IAAgB,CACvC,aAAqB,CAAE,MAAkC,CADzD,cAAqB,CAAE,IAAgB,CACvC,cAAqB,CAAE,QAAkC,CADzD,YAAqB,CAAE,IAAgB,CACvC,YAAqB,CAAE,MAAkC,CAsBzD,aAAoB,CAAE,IAAgB,CACtC,aAAoB,CAAE,MAAkC",
-"sources": ["../../../../../../assets/sass/patterns/atoms/message-bar.scss","../../../../../../assets/sass/_variables.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "message-bar.css"
-}

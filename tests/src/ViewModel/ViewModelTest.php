@@ -8,9 +8,6 @@ use JsonSchema\Validator;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 use Symfony\Component\Yaml\Yaml;
-use Traversable;
-use function eLife\Patterns\flatten;
-use function eLife\Patterns\iterator_to_unique_array;
 
 abstract class ViewModelTest extends PHPUnit_Framework_TestCase
 {
@@ -78,7 +75,7 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
             $json = '{}';
         }
 
-        $validator->check(json_decode($json), $this->loadDefinition()->schema);
+        $validator->check(json_decode($json), $this->loadDefinition());
 
         $message = '';
         foreach ($validator->getErrors() as $error) {
@@ -86,37 +83,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertTrue($validator->isValid(), $message);
-    }
-
-    /**
-     * @test
-     * @depends it_has_a_definition
-     */
-    final public function it_has_assets()
-    {
-        $viewModel = $this->createViewModel();
-
-        $possibleStylesheets = iterator_to_unique_array($this->possibleStyleSheets());
-        $actualStyleSheets = iterator_to_unique_array($viewModel->getStyleSheets());
-
-        foreach ($actualStyleSheets as $styleSheet) {
-            $this->assertContains($styleSheet, $possibleStylesheets, 'StyleSheet not in definition');
-        }
-
-        foreach ($this->possibleStyleSheets() as $stylesheet) {
-            $this->assertFileExists(__DIR__.'/../../../'.$stylesheet);
-        }
-
-        $possibleJavaScripts = iterator_to_unique_array($this->possibleJavaScripts());
-        $actualJavaScripts = iterator_to_unique_array($viewModel->getJavaScripts());
-
-        foreach ($actualJavaScripts as $javaScript) {
-            $this->assertContains($javaScript, $possibleJavaScripts, 'JavaScript not in definition');
-        }
-
-        foreach ($this->possibleJavaScripts() as $javaScript) {
-            $this->assertFileExists(__DIR__.'/../../../'.$javaScript);
-        }
     }
 
     abstract public function viewModelProvider() : array;
@@ -127,24 +93,6 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     }
 
     abstract protected function expectedTemplate() : string;
-
-    private function possibleStyleSheets() : Traversable
-    {
-        $definition = $this->loadDefinition();
-
-        foreach (array_unique(iterator_to_array(flatten($definition->assets->css))) as $stylesheet) {
-            yield 'resources/assets/css/'.$stylesheet;
-        }
-    }
-
-    private function possibleJavaScripts() : Traversable
-    {
-        $definition = $this->loadDefinition();
-
-        foreach (array_unique(iterator_to_array(flatten($definition->assets->js))) as $javaScript) {
-            yield 'resources/assets/js/'.$javaScript;
-        }
-    }
 
     private function loadDefinition() : stdClass
     {

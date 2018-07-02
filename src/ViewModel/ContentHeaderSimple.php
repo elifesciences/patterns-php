@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class ContentHeaderSimple implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $title;
     private $strapline;
@@ -29,10 +26,5 @@ final class ContentHeaderSimple implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/content-header-simple.mustache';
-    }
-
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/content-header-simple.css';
     }
 }

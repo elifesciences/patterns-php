@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,aAAc,CACZ,UAAU,CAAE,iBAA8B,CCgCxC,WAAqB,CAAE,IAAgB,CACvC,WAAqB,CAAE,MAAkC",
-"sources": ["../../../../../../assets/sass/patterns/molecules/mini-section.scss","../../../../../../assets/sass/_mixins.scss"],
-"names": [],
-"file": "mini-section.css"
-}

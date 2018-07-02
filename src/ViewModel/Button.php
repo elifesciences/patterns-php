@@ -5,9 +5,7 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Button implements ViewModel
 {
@@ -27,7 +25,6 @@ final class Button implements ViewModel
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $classes;
     private $path;
@@ -130,10 +127,5 @@ final class Button implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/button.mustache';
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/buttons.css';
     }
 }

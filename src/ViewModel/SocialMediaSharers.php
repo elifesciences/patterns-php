@@ -5,16 +5,13 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 use function rawurlencode;
 
 final class SocialMediaSharers implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use SimplifyAssets;
 
     private $facebookUrl;
     private $twitterUrl;
@@ -38,10 +35,5 @@ final class SocialMediaSharers implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/social-media-sharers.mustache';
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/social-media-sharers.css';
     }
 }

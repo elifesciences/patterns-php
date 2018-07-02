@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class AdditionalAsset implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $assetId;
     private $captionText;
@@ -63,16 +60,5 @@ final class AdditionalAsset implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/additional-asset.mustache';
-    }
-
-    public function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/additional-asset.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->captionText;
-        yield $this->doi;
     }
 }

@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class SiteHeaderNavBar implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $classesInner;
     private $classesOuter;
@@ -69,20 +66,6 @@ final class SiteHeaderNavBar implements ViewModel
     public static function secondary(array $linkedItems) : SiteHeaderNavBar
     {
         return new static($linkedItems, 'secondary');
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        if ('nav-primary' === $this->classesOuter) {
-            yield 'resources/assets/css/site-header-nav-bar-primary.css';
-        } else {
-            yield 'resources/assets/css/site-header-nav-bar-secondary.css';
-        }
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield from $this->linkedItems;
     }
 
     public function getTemplateName() : string

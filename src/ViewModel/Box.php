@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\ComposedAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Box implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use ComposedAssets;
 
     private $id;
     private $label;
@@ -39,15 +36,5 @@ final class Box implements ViewModel
     public function getTemplateName() : string
     {
         return 'resources/templates/box.mustache';
-    }
-
-    protected function getLocalStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/box.css';
-    }
-
-    protected function getComposedViewModels() : Traversable
-    {
-        yield $this->doi;
     }
 }

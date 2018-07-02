@@ -5,15 +5,12 @@ namespace eLife\Patterns\ViewModel;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\SimplifyAssets;
 use eLife\Patterns\ViewModel;
-use Traversable;
 
 final class Statistic implements ViewModel
 {
     use ArrayFromProperties;
     use ArrayAccessFromProperties;
-    use SimplifyAssets;
 
     private $label;
     private $value;
@@ -35,11 +32,6 @@ final class Statistic implements ViewModel
 
         $this->label = $label;
         $this->value = $value;
-    }
-
-    public function getStyleSheets() : Traversable
-    {
-        yield 'resources/assets/css/statistic.css';
     }
 
     public function getTemplateName() : string

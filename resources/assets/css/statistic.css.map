@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,UAAW,CCoEP,MAAM,CALO,QAAsC,CAMnD,MAAM,CAHQ,YAAyD,CDhEzE,OAAO,CAAE,WAAW,CACpB,cAAc,CAAE,MAAM,CACtB,SAAS,CAAE,CAAC,CACZ,KAAK,CAAE,IAAI,CAEX,qBAAa,CC6DX,MAAM,CALO,gBAAsC,CAMnD,MAAM,CAHQ,uBAAyD,CDtD3E,iBAAkB,CAChB,MAAM,CAAE,CAAC,CACT,UAAU,CAAE,MAAM,CAClB,cAAc,CAAE,SAAS,CEoCzB,WAAW,CCpBI,sCAAyC,CDqBxD,WAAW,CAAE,IAAI,CDzBjB,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CAuQ9C,WAAW,CAAE,OAA8C,CAxQ3D,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CDThD,iBAAkB,CEyOhB,WAAW,CC7NI,sCAAyC,CFJxD,SAAS,CAAE,IAAgB,CAC3B,SAAS,CAAE,OAAmC,CAuQ9C,WAAW,CAAE,OAA8C,CCrC3D,WAAW,CAAE,IAAI,CFzOjB,MAAM,CAAE,CAAC,CACT,UAAU,CAAE,MAAM,CAClB,cAAc,CAAE,SAAS",
-"sources": ["../../../../../../assets/sass/patterns/molecules/statistic.scss","../../../../../../assets/sass/_mixins.scss","../../../../../../assets/sass/_typographic-hierarchy.scss","../../../../../../assets/sass/_variables.scss"],
-"names": [],
-"file": "statistic.css"
-}
