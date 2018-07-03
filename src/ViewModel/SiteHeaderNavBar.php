@@ -37,6 +37,10 @@ final class SiteHeaderNavBar implements ViewModel
                 $classes[] = $classes[0].'--search';
             }
 
+            if (isset($linkedItems[$i]['button'])) {
+                $classes[] = 'nav-secondary__item--hide-narrow';
+            }
+
             $newLinkedItem = FlexibleViewModel::fromViewModel($linkedItems[$i])
                 ->withProperty('classes', implode(' ', $classes));
 
