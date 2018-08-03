@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\CaptionedAsset;
 use eLife\Patterns\ViewModel\CaptionText;
 use eLife\Patterns\ViewModel\Doi;
+use eLife\Patterns\ViewModel\IFrame;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaType;
@@ -151,6 +152,12 @@ final class CaptionedAssetTest extends ViewModelTest
                     new Video([new MediaSource('/file.mp4', new MediaType('video/mp4'))]),
                     CaptionText::withHeading('heading'),
                     new Doi('10.7554/eLife.10181.001')
+                ),
+            ],
+            'Captioned iframe' => [
+                new CaptionedAsset(
+                    new IFrame('http://www.example.com/', 100, 100),
+                    CaptionText::withHeading('heading')
                 ),
             ],
         ];
