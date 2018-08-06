@@ -143,6 +143,26 @@ allOf:
                     - video
             -
                 properties:
+                    iframe:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            src:
+                                type: string
+                                minLength: 1
+                            allowFullScreen:
+                                type: boolean
+                                default: false
+                            paddingBottom:
+                                type: number
+                                minimum: 1
+                        required:
+                            - src
+                            - paddingBottom
+                required:
+                    - iframe
+            -
+                properties:
                     table:
                         $schema: 'http://json-schema.org/draft-04/schema#'
                         type: object

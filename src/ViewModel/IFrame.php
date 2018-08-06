@@ -7,7 +7,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
 
-final class IFrame implements ViewModel
+final class IFrame implements ViewModel, IsCaptioned
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;

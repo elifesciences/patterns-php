@@ -17,6 +17,7 @@ final class CaptionedAsset implements ViewModel
     private $video;
     private $table;
     private $image;
+    private $iframe;
     private $doi;
     private $inline;
 
@@ -55,6 +56,10 @@ final class CaptionedAsset implements ViewModel
 
             case $figure instanceof Table:
                 $this->table = $figure;
+                break;
+
+            case $figure instanceof IFrame:
+                $this->iframe = $figure;
                 break;
 
             default:
