@@ -3,7 +3,6 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\AdditionalAsset;
-use eLife\Patterns\ViewModel\AdditionalAssets;
 use eLife\Patterns\ViewModel\AssetViewerInline;
 use eLife\Patterns\ViewModel\CaptionedAsset;
 use eLife\Patterns\ViewModel\CaptionText;
