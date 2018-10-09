@@ -26,13 +26,16 @@ final class ContentHeader implements ViewModel
     private $licence;
     private $audioPlayer;
 
-    const XX_SHORT = 'xx-short';
-    const X_SHORT = 'x-short';
-    const SHORT = 'short';
-    const MEDIUM = 'medium';
-    const LONG = 'long';
-    const X_LONG = 'x-long';
-    const XX_LONG = 'xx-long';
+    const LENGTH_LIMITS = [
+        19 => 'xx-short',
+        38 => 'x-short',
+        46 => 'short',
+        57 => 'medium',
+        118 => 'long',
+        155 => 'x-long',
+    ];
+
+    const MAX_LENGTH = 'xx-long';
 
     public function __construct(
         string $title,
@@ -88,26 +91,14 @@ final class ContentHeader implements ViewModel
     private static function designateTitleLength($title) : string
     {
         $charCount = mb_strlen(strip_tags($title));
-        if ($charCount < 20) {
-            return self::XX_SHORT;
-        }
-        if ($charCount <= 38) {
-            return self::X_SHORT;
-        }
-        if ($charCount <= 46) {
-            return self::SHORT;
-        }
-        if ($charCount <= 57) {
-            return self::MEDIUM;
-        }
-        if ($charCount <= 118) {
-            return self::LONG;
-        }
-        if ($charCount <= 155) {
-            return self::X_LONG;
+
+        foreach (self::LENGTH_LIMITS as $maxLength => $value) {
+            if ($charCount <= $maxLength) {
+                return $value;
+            }
         }
 
-        return self::XX_LONG;
+        return self::MAX_LENGTH;
     }
 
     public function getTemplateName() : string
