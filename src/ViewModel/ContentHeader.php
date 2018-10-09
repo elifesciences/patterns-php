@@ -56,7 +56,7 @@ final class ContentHeader implements ViewModel
         Assertion::allIsInstanceOf($institutions, Institution::class);
 
         $this->title = $title;
-        $this->titleLength = $this->designateTitleLength();
+        $this->titleLength = ContentHeader::designateTitleLength($this->$title);
 
         $this->image = $image;
         $this->impactStatement = $impactStatement;
@@ -85,9 +85,9 @@ final class ContentHeader implements ViewModel
         $this->audioPlayer = $audioPlayer;
     }
 
-    private function designateTitleLength() : string
+    private static function designateTitleLength($title) : string
     {
-        $charCount = mb_strlen(strip_tags($this->title));
+        $charCount = mb_strlen(strip_tags($title));
         if ($charCount < 20) {
             return self::XX_SHORT;
         }
