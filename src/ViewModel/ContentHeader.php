@@ -56,7 +56,7 @@ final class ContentHeader implements ViewModel
         Assertion::allIsInstanceOf($institutions, Institution::class);
 
         $this->title = $title;
-        $this->titleLength = ContentHeader::designateTitleLength($this->$title);
+        $this->titleLength = ContentHeader::designateTitleLength($this->title);
 
         $this->image = $image;
         $this->impactStatement = $impactStatement;
