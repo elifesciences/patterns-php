@@ -354,10 +354,9 @@ final class ContentHeaderTest extends ViewModelTest
     public function xx_long_title_provider() : array
     {
         return [
-
             ['Glutathione de novo synthesis but not recycling process coordinates with glutamine catabolism to control redox homeostasis and directs murine T cell differentiation'],
 
-            ['í é adaptive immune system, which until now was thought to be mediated mainly by B cell antigen receptors. Here we report that small molecules, such as cyanine 3 (Cy3), a synthetic fluorescent molecule, and 4-hydroxy-3-nitrophenylacetyl (NP), one of the most noted haptens, are γδ T cell antigens, recognized directly by specific γδ TCRs. Immunization with Cy3 conjugates induces a rapid Cy3-specific γδ T cell IL-17 response. These results expand the role of small molecules and chemical modifications in immunity and']
+            ['í é adaptive immune system, which until now was thought to be mediated mainly by B cell antigen receptors. Here we report that small molecules, such as cyanine 3 (Cy3), a synthetic fluorescent molecule, and 4-hydroxy-3-nitrophenylacetyl (NP), one of the most noted haptens, are γδ T cell antigens, recognized directly by specific γδ TCRs. Immunization with Cy3 conjugates induces a rapid Cy3-specific γδ T cell IL-17 response. These results expand the role of small molecules and chemical modifications in immunity and'],
         ];
     }
 
