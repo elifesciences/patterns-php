@@ -87,7 +87,7 @@ final class ContentHeader implements ViewModel
 
     public function designateTitleLength() : string
     {
-        $charCount = strlen(strip_tags($this->title));
+        $charCount = mb_strlen(strip_tags($this->title));
         if ($charCount < 20) {
             return self::XX_SHORT;
         }
