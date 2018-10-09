@@ -85,7 +85,8 @@ final class ContentHeader implements ViewModel
         $this->audioPlayer = $audioPlayer;
     }
 
-    public function designateTitleLength() :string {
+    public function designateTitleLength() : string
+    {
         $charCount = strlen(strip_tags($this->title));
         if ($charCount < 20) {
             return self::XX_SHORT;
@@ -105,6 +106,7 @@ final class ContentHeader implements ViewModel
         if ($charCount <= 155) {
             return self::X_LONG;
         }
+
         return self::XX_LONG;
     }
 
@@ -112,5 +114,4 @@ final class ContentHeader implements ViewModel
     {
         return 'resources/templates/content-header.mustache';
     }
-
 }

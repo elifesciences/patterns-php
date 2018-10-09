@@ -289,7 +289,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $titles = [
             'Mechanistic Microbiome Studies: A Special Issue',
-            'The motor thalamus supports striatum-driven reinforcement'
+            'The motor thalamus supports striatum-driven reinforcement',
         ];
 
         foreach ($titles as $title) {
@@ -338,6 +338,7 @@ final class ContentHeaderTest extends ViewModelTest
             $this->assertSame('x-long', $contentHeader['titleLength']);
         }
     }
+
     /**
      * @test
      */
