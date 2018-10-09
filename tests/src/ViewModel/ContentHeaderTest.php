@@ -21,6 +21,20 @@ use InvalidArgumentException;
 
 final class ContentHeaderTest extends ViewModelTest
 {
+    public static function buildFixtureForCollection(string $title)
+    {
+        return new ContentHeader(
+            $title,
+            new ContentHeaderImage(new Picture([], new Image('/default/path'))),
+            null, true, [],
+            new Profile(new Link('Dr Curator')),
+            [], [], null,
+            new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
+            null,
+            Meta::withLink(new Link('Collection'))
+        );
+    }
+
     /**
      * @test
      */
@@ -28,16 +42,18 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $data = [
             'title' => 'title',
+            'titleLength' => 'xx-short',
         ];
 
         $contentHeader = new ContentHeader($data['title']);
 
         $this->assertSame($data['title'], $contentHeader['title']);
+        $this->assertSame($data['titleLength'], $contentHeader['titleLength']);
         $this->assertSame($data, $contentHeader->toArray());
 
         $data = [
-            'title' => 'titletitletitletitle',
-            'longTitle' => true,
+            'title' => 'title',
+            'titleLength' => 'xx-short',
             'image' => [
                 'fallback' => [
                     'altText' => '',
@@ -163,7 +179,7 @@ final class ContentHeaderTest extends ViewModelTest
         $data['image']['credit']['elementId'] = $contentHeader['image']['credit']['elementId'];
 
         $this->assertSame($data['title'], $contentHeader['title']);
-        $this->assertSame($data['longTitle'], $contentHeader['longTitle']);
+        $this->assertSame($data['titleLength'], $contentHeader['titleLength']);
         $this->assertSameWithoutOrder($data['image'], $contentHeader['image']);
         $this->assertSame($data['impactStatement'], $contentHeader['impactStatement']);
         $this->assertSameWithoutOrder($data['header'], $contentHeader['header']);
@@ -215,6 +231,123 @@ final class ContentHeaderTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         new ContentHeader('', null, null, false, [], null, [Author::asText('author')], ['foo']);
+    }
+
+    /**
+     * @test
+     */
+    public function a_title_shorter_than_20_characters_is_xx_short()
+    {
+        $title = 'Deoxyribosylthymine';
+        $this->assertLessThan(20, strlen($title));
+
+        $contentHeader = self::buildFixtureForCollection($title);
+        $this->assertSame('xx-short', $contentHeader['titleLength']);
+    }
+
+    /**
+     * @test
+     */
+    public function a_title_between_20_and_38_characters_long_is_x_short()
+    {
+        $titles = [
+            'Scientist and Parent',
+            'Acetylcholinesterase wins synapse wars',
+        ];
+        foreach ($titles as $title) {
+            $this->assertGreaterThanOrEqual(20, strlen($title));
+            $this->assertLessThanOrEqual(38, strlen($title));
+
+            $contentHeader = self::buildFixtureForCollection($title);
+            $this->assertSame('x-short', $contentHeader['titleLength']);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function a_title_between_39_and_46_characters_long_is_short()
+    {
+        $titles = [
+            'Reproducibility Project: Cancer Biology',
+            'Personality links with lifespan in chimpanzees',
+        ];
+
+        foreach ($titles as $title) {
+            $this->assertGreaterThanOrEqual(39, strlen($title));
+            $this->assertLessThanOrEqual(46, strlen($title));
+
+            $contentHeader = self::buildFixtureForCollection($title);
+            $this->assertSame('short', $contentHeader['titleLength']);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function a_title_between_47_and_57_characters_long_is_medium()
+    {
+        $titles = [
+            'Mechanistic Microbiome Studies: A Special Issue',
+            'The motor thalamus supports striatum-driven reinforcement'
+        ];
+
+        foreach ($titles as $title) {
+            $this->assertGreaterThanOrEqual(47, strlen($title));
+            $this->assertLessThanOrEqual(57, strlen($title));
+
+            $contentHeader = self::buildFixtureForCollection($title);
+            $this->assertSame('medium', $contentHeader['titleLength']);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function a_title_between_58_and_118_characters_long_is_long()
+    {
+        $titles = [
+            'eLife\'s Multi-format Plain-language Summaries of Research.',
+            'Dopamine neuron glutamate cotransmission evokes a delayed excitation lateral dorsal striatal cholinergic interneurons.',
+        ];
+
+        foreach ($titles as $title) {
+            $this->assertGreaterThanOrEqual(58, strlen($title));
+            $this->assertLessThanOrEqual(118, strlen($title));
+
+            $contentHeader = self::buildFixtureForCollection($title);
+            $this->assertSame('long', $contentHeader['titleLength']);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function a_title_between_119_and_155_characters_long_is_x_long()
+    {
+        $titles = [
+            'Ezrin enrichment on curved membranes requires a specific conformation or interaction with a curvature-sensitive partner',
+            'Kasugamycin potentiates rifampicin and limits emergence of resistance in Mycobacterium tuberculosis by specifically decreasing mycobacterial mistranslation',
+        ];
+
+        foreach ($titles as $title) {
+            $this->assertGreaterThanOrEqual(119, strlen($title));
+            $this->assertLessThanOrEqual(155, strlen($title));
+
+            $contentHeader = self::buildFixtureForCollection($title);
+            $this->assertSame('x-long', $contentHeader['titleLength']);
+        }
+    }
+    /**
+     * @test
+     */
+    public function a_title_longer_than_155_characters_is_xx_long()
+    {
+        $title = 'Glutathione de novo synthesis but not recycling process coordinates with glutamine catabolism to control redox homeostasis and directs murine T cell differentiation';
+        $this->assertGreaterThan(155, strlen($title));
+
+        $contentHeader = self::buildFixtureForCollection($title);
+        $this->assertSame('xx-long', $contentHeader['titleLength']);
     }
 
     public function viewModelProvider() : array

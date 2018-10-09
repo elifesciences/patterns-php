@@ -13,7 +13,7 @@ final class ContentHeader implements ViewModel
     use ArrayFromProperties;
 
     private $title;
-    private $longTitle;
+    private $titleLength;
     private $image;
     private $impactStatement;
     private $header;
@@ -25,6 +25,14 @@ final class ContentHeader implements ViewModel
     private $meta;
     private $licence;
     private $audioPlayer;
+
+    const XX_SHORT = 'xx-short';
+    const X_SHORT = 'x-short';
+    const SHORT = 'short';
+    const MEDIUM = 'medium';
+    const LONG = 'long';
+    const X_LONG = 'x-long';
+    const XX_LONG = 'xx-long';
 
     public function __construct(
         string $title,
@@ -48,9 +56,8 @@ final class ContentHeader implements ViewModel
         Assertion::allIsInstanceOf($institutions, Institution::class);
 
         $this->title = $title;
-        if (strlen(strip_tags($title)) >= 20) {
-            $this->longTitle = true;
-        }
+        $this->titleLength = $this->designateTitleLength();
+
         $this->image = $image;
         $this->impactStatement = $impactStatement;
         if ($header) {
@@ -78,8 +85,32 @@ final class ContentHeader implements ViewModel
         $this->audioPlayer = $audioPlayer;
     }
 
+    public function designateTitleLength() :string {
+        $charCount = strlen(strip_tags($this->title));
+        if ($charCount < 20) {
+            return self::XX_SHORT;
+        }
+        if ($charCount <= 38) {
+            return self::X_SHORT;
+        }
+        if ($charCount <= 46) {
+            return self::SHORT;
+        }
+        if ($charCount <= 57) {
+            return self::MEDIUM;
+        }
+        if ($charCount <= 118) {
+            return self::LONG;
+        }
+        if ($charCount <= 155) {
+            return self::X_LONG;
+        }
+        return self::XX_LONG;
+    }
+
     public function getTemplateName() : string
     {
         return 'resources/templates/content-header.mustache';
     }
+
 }
