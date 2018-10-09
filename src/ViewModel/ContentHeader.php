@@ -85,7 +85,7 @@ final class ContentHeader implements ViewModel
         $this->audioPlayer = $audioPlayer;
     }
 
-    public function designateTitleLength() : string
+    private function designateTitleLength() : string
     {
         $charCount = mb_strlen(strip_tags($this->title));
         if ($charCount < 20) {
