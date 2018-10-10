@@ -266,15 +266,15 @@ final class ContentHeaderTest extends ViewModelTest
     /**
      * @test
      */
-    public function a_title_between_39_and_46_characters_long_is_short()
+    public function a_title_between_36_and_46_characters_long_is_short()
     {
         $titles = [
-            'Reproducibility Project: Cancer Biology',
+            'Reproducibility Project: Cancer Biol',
             'Personality links with lifespan in chimpanzees',
         ];
 
         foreach ($titles as $title) {
-            $this->assertGreaterThanOrEqual(39, strlen($title));
+            $this->assertGreaterThanOrEqual(36, strlen($title));
             $this->assertLessThanOrEqual(46, strlen($title));
 
             $contentHeader = self::buildFixtureForCollection($title);
