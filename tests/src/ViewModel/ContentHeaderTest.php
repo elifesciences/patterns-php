@@ -235,128 +235,33 @@ final class ContentHeaderTest extends ViewModelTest
 
     /**
      * @test
+     * @dataProvider title_designation_provider
      */
-    public function a_title_shorter_than_20_characters_is_xx_short()
+    public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
     {
-        $title = 'Deoxyribosylthymine';
-        $this->assertLessThan(20, strlen($title));
+        $title = str_repeat('é', $length);
 
         $contentHeader = self::buildFixtureForCollection($title);
-        $this->assertSame('xx-short', $contentHeader['titleLength']);
+        $this->assertSame($expected, $contentHeader['titleLength']);
     }
 
-    /**
-     * @test
-     */
-    public function a_title_between_20_and_35_characters_long_is_x_short()
-    {
-        $titles = [
-            'Scientist and Parent',
-            'Acetylcholinesterase wins synapse w',
-        ];
-        foreach ($titles as $title) {
-            $this->assertGreaterThanOrEqual(20, strlen($title));
-            $this->assertLessThanOrEqual(35, strlen($title));
-
-            $contentHeader = self::buildFixtureForCollection($title);
-            $this->assertSame('x-short', $contentHeader['titleLength']);
-        }
-    }
-
-    /**
-     * @test
-     */
-    public function a_title_between_36_and_46_characters_long_is_short()
-    {
-        $titles = [
-            'Reproducibility Project: Cancer Biol',
-            'Personality links with lifespan in chimpanzees',
-        ];
-
-        foreach ($titles as $title) {
-            $this->assertGreaterThanOrEqual(36, strlen($title));
-            $this->assertLessThanOrEqual(46, strlen($title));
-
-            $contentHeader = self::buildFixtureForCollection($title);
-            $this->assertSame('short', $contentHeader['titleLength']);
-        }
-    }
-
-    /**
-     * @test
-     */
-    public function a_title_between_47_and_57_characters_long_is_medium()
-    {
-        $titles = [
-            'Mechanistic Microbiome Studies: A Special Issue',
-            'The motor thalamus supports striatum-driven reinforcement',
-        ];
-
-        foreach ($titles as $title) {
-            $this->assertGreaterThanOrEqual(47, strlen($title));
-            $this->assertLessThanOrEqual(57, strlen($title));
-
-            $contentHeader = self::buildFixtureForCollection($title);
-            $this->assertSame('medium', $contentHeader['titleLength']);
-        }
-    }
-
-    /**
-     * @test
-     */
-    public function a_title_between_58_and_118_characters_long_is_long()
-    {
-        $titles = [
-            'eLife\'s Multi-format Plain-language Summaries of Research.',
-            'Dopamine neuron glutamate cotransmission evokes a delayed excitation lateral dorsal striatal cholinergic interneurons.',
-        ];
-
-        foreach ($titles as $title) {
-            $this->assertGreaterThanOrEqual(58, strlen($title));
-            $this->assertLessThanOrEqual(118, strlen($title));
-
-            $contentHeader = self::buildFixtureForCollection($title);
-            $this->assertSame('long', $contentHeader['titleLength']);
-        }
-    }
-
-    /**
-     * @test
-     */
-    public function a_title_between_119_and_155_characters_long_is_x_long()
-    {
-        $titles = [
-            'Ezrin enrichment on curved membranes requires a specific conformation or interaction with a curvature-sensitive partner',
-            'Kasugamycin potentiates rifampicin and limits emergence of resistance in Mycobacterium tuberculosis by specifically decreasing mycobacterial mistranslation',
-        ];
-
-        foreach ($titles as $title) {
-            $this->assertGreaterThanOrEqual(119, strlen($title));
-            $this->assertLessThanOrEqual(155, strlen($title));
-
-            $contentHeader = self::buildFixtureForCollection($title);
-            $this->assertSame('x-long', $contentHeader['titleLength']);
-        }
-    }
-
-    /**
-     * @test
-     * @dataProvider xx_long_title_provider
-     */
-    public function a_title_longer_than_155_characters_is_xx_long(string $title)
-    {
-        $this->assertGreaterThan(155, strlen($title));
-
-        $contentHeader = self::buildFixtureForCollection($title);
-        $this->assertSame('xx-long', $contentHeader['titleLength']);
-    }
-
-    public function xx_long_title_provider() : array
+    public function title_designation_provider() : array
     {
         return [
-            ['Glutathione de novo synthesis but not recycling process coordinates with glutamine catabolism to control redox homeostasis and directs murine T cell differentiation'],
-
-            ['í é adaptive immune system, which until now was thought to be mediated mainly by B cell antigen receptors. Here we report that small molecules, such as cyanine 3 (Cy3), a synthetic fluorescent molecule, and 4-hydroxy-3-nitrophenylacetyl (NP), one of the most noted haptens, are γδ T cell antigens, recognized directly by specific γδ TCRs. Immunization with Cy3 conjugates induces a rapid Cy3-specific γδ T cell IL-17 response. These results expand the role of small molecules and chemical modifications in immunity and'],
+            [3,   'xx-short'],
+            [19,  'xx-short'],
+            [20,  'x-short'],
+            [35,  'x-short'],
+            [36,  'short'],
+            [46,  'short'],
+            [47,  'medium'],
+            [57,  'medium'],
+            [58,  'long'],
+            [118, 'long'],
+            [119, 'x-long'],
+            [155, 'x-long'],
+            [156, 'xx-long'],
+            [500, 'xx-long'],
         ];
     }
 
