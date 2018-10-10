@@ -28,7 +28,7 @@ final class ContentHeader implements ViewModel
 
     const LENGTH_LIMITS = [
         19 => 'xx-short',
-        38 => 'x-short',
+        35 => 'x-short',
         46 => 'short',
         57 => 'medium',
         118 => 'long',

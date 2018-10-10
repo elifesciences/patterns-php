@@ -248,7 +248,7 @@ final class ContentHeaderTest extends ViewModelTest
     /**
      * @test
      */
-    public function a_title_between_20_and_38_characters_long_is_x_short()
+    public function a_title_between_20_and_35_characters_long_is_x_short()
     {
         $titles = [
             'Scientist and Parent',
@@ -256,7 +256,7 @@ final class ContentHeaderTest extends ViewModelTest
         ];
         foreach ($titles as $title) {
             $this->assertGreaterThanOrEqual(20, strlen($title));
-            $this->assertLessThanOrEqual(38, strlen($title));
+            $this->assertLessThanOrEqual(35, strlen($title));
 
             $contentHeader = self::buildFixtureForCollection($title);
             $this->assertSame('x-short', $contentHeader['titleLength']);
