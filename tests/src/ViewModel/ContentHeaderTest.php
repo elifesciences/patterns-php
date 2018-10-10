@@ -252,7 +252,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $titles = [
             'Scientist and Parent',
-            'Acetylcholinesterase wins synapse wars',
+            'Acetylcholinesterase wins synapse w',
         ];
         foreach ($titles as $title) {
             $this->assertGreaterThanOrEqual(20, strlen($title));
