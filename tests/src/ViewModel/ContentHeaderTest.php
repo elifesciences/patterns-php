@@ -257,10 +257,10 @@ final class ContentHeaderTest extends ViewModelTest
             [47,  'medium'],
             [57,  'medium'],
             [58,  'long'],
-            [118, 'long'],
-            [119, 'x-long'],
-            [155, 'x-long'],
-            [156, 'xx-long'],
+            [80, 'long'],
+            [81, 'x-long'],
+            [120, 'x-long'],
+            [121, 'xx-long'],
             [500, 'xx-long'],
         ];
     }

@@ -31,8 +31,8 @@ final class ContentHeader implements ViewModel
         35 => 'x-short',
         46 => 'short',
         57 => 'medium',
-        118 => 'long',
-        155 => 'x-long',
+        80 => 'long',
+        120 => 'x-long',
     ];
 
     const MAX_LENGTH = 'xx-long';
