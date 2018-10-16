@@ -16,12 +16,14 @@ final class LinkButtonTest extends ViewModelTest
             'classes' => 'button--small button--outline button--full',
             'path' => 'path',
             'text' => 'text',
+            'id' => 'someId',
         ];
 
-        $button = Button::link('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true);
+        $button = Button::link('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true, 'someId');
 
         $this->assertSame($data['text'], $button['text']);
         $this->assertSame($data['path'], $button['path']);
+        $this->assertSame($data['id'], $button['id']);
         $this->assertSame($data['classes'], $button['classes']);
         $this->assertSame($data, $button->toArray());
     }
