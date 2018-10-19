@@ -11,6 +11,7 @@ final class ContentHeader implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    use TitleLength;
 
     private $title;
     private $titleLength;
@@ -25,17 +26,6 @@ final class ContentHeader implements ViewModel
     private $meta;
     private $licence;
     private $audioPlayer;
-
-    const LENGTH_LIMITS = [
-        19 => 'xx-short',
-        35 => 'x-short',
-        46 => 'short',
-        57 => 'medium',
-        80 => 'long',
-        120 => 'x-long',
-    ];
-
-    const MAX_LENGTH = 'xx-long';
 
     public function __construct(
         string $title,
@@ -59,7 +49,7 @@ final class ContentHeader implements ViewModel
         Assertion::allIsInstanceOf($institutions, Institution::class);
 
         $this->title = $title;
-        $this->titleLength = ContentHeader::designateTitleLength($this->title);
+        $this->titleLength = $this->designateTitleLength($this->title);
 
         $this->image = $image;
         $this->impactStatement = $impactStatement;
@@ -86,19 +76,6 @@ final class ContentHeader implements ViewModel
         $this->meta = $meta;
         $this->licence = $licence;
         $this->audioPlayer = $audioPlayer;
-    }
-
-    private static function designateTitleLength($title) : string
-    {
-        $charCount = mb_strlen(strip_tags($title));
-
-        foreach (self::LENGTH_LIMITS as $maxLength => $value) {
-            if ($charCount <= $maxLength) {
-                return $value;
-            }
-        }
-
-        return self::MAX_LENGTH;
     }
 
     public function getTemplateName() : string
