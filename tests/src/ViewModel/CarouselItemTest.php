@@ -25,7 +25,7 @@ final class CarouselItemTest extends ViewModelTest
                 ],
             ],
             'title' => 'carousel item with a long title',
-            'longTitle' => true,
+            'titleLength' => 'x-short',
             'url' => 'carousel-item-url',
             'button' => [
                 'classes' => 'button--small button--outline',
@@ -48,7 +48,7 @@ final class CarouselItemTest extends ViewModelTest
 
         $this->assertSame($data['subjects']['list'][0], $carouselItem['subjects']['list'][0]->toArray());
         $this->assertSame($data['title'], $carouselItem['title']);
-        $this->assertSame($data['longTitle'], $carouselItem['longTitle']);
+        $this->assertSame($data['titleLength'], $carouselItem['titleLength']);
         $this->assertSame($data['url'], $carouselItem['url']);
         $this->assertSame($data['button'], $carouselItem['button']->toArray());
         $this->assertSame($data['meta'], $carouselItem['meta']->toArray());

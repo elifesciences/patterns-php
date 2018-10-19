@@ -11,10 +11,11 @@ final class CarouselItem implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    use TitleLength;
 
     private $subjects;
     private $title;
-    private $longTitle;
+    private $titleLength;
     private $url;
     private $button;
     private $meta;
@@ -28,9 +29,7 @@ final class CarouselItem implements ViewModel
             $this->subjects = ['list' => $subjects];
         }
         $this->title = $title['name'];
-        if (strlen(strip_tags($this->title)) >= 20) {
-            $this->longTitle = true;
-        }
+        $this->titleLength = $this->designateTitleLength($this->title);
         $this->url = $title['url'];
         if ($buttonText) {
             $this->button = Button::link($buttonText, $this->url, Button::SIZE_SMALL, Button::STYLE_OUTLINE);
