@@ -92,11 +92,12 @@ final class Button implements ViewModel
         string $size = self::SIZE_MEDIUM,
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
-        bool $isFullWidth = false
+        bool $isFullWidth = false,
+        string $id = null
     ) : Button {
         Assertion::notBlank($path);
 
-        $button = new static($text, $size, $style, $isActive, null, null, $isFullWidth);
+        $button = new static($text, $size, $style, $isActive, null, $id, $isFullWidth);
         $button->path = $path;
 
         return $button;
