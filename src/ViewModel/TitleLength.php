@@ -17,7 +17,6 @@ trait TitleLength
 
         static $max_length = 'xx-long';
 
-
         $charCount = mb_strlen(strip_tags($title));
 
         foreach ($length_limits as $maxLength => $value) {
@@ -28,6 +27,4 @@ trait TitleLength
 
         return $max_length;
     }
-
-
 }
