@@ -235,7 +235,7 @@ final class ContentHeaderTest extends ViewModelTest
 
     /**
      * @test
-     * @dataProvider title_designation_provider
+     * @dataProvider titleLengthProvider
      */
     public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
     {
@@ -245,7 +245,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSame($expected, $contentHeader['titleLength']);
     }
 
-    public function title_designation_provider() : array
+    public function titleLengthProvider() : array
     {
         return [
             [3,   'xx-short'],

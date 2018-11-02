@@ -11,7 +11,7 @@ final class ContentHeader implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use TitleLength;
+    use HasTitleLength;
 
     private $title;
     private $titleLength;
@@ -49,7 +49,7 @@ final class ContentHeader implements ViewModel
         Assertion::allIsInstanceOf($institutions, Institution::class);
 
         $this->title = $title;
-        $this->titleLength = $this->designateTitleLength($this->title);
+        $this->titleLength = $this->determineTitleLength($this->title);
 
         $this->image = $image;
         $this->impactStatement = $impactStatement;
