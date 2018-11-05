@@ -41,7 +41,7 @@ final class SiteHeaderNavBar implements ViewModel
                 $classes[] = 'nav-secondary__item--hide-narrow';
             }
 
-            if (isset($linkedItems[$i]['loginControl']) && !!$linkedItems[$i]['loginControl']['isLoggedIn']) {
+            if (isset($linkedItems[$i]['loginControl']) && (bool) $linkedItems[$i]['loginControl']['isLoggedIn']) {
                 $classes[] = 'nav-secondary__item--logged-in';
             }
 
