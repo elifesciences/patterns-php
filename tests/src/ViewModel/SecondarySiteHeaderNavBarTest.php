@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\LoginControl;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
@@ -16,7 +17,9 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
     private $linkItem1;
     private $linkItem2;
     private $linkItem3;
+    private $linkItem4;
     private $linkItems;
+    private $loginControl;
     private $siteHeaderNavBar;
 
     public function setUp()
@@ -30,11 +33,13 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         );
 
         $this->button = Button::form('button text', 'button', 'name');
+        $this->loginControl = LoginControl::loggedIn('/some-uri', 'log in', $this->picture);
 
         $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $this->picture, true);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false);
-        $this->linkItem3 = NavLinkedItem::asButton($this->button);
-        $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3];
+        $this->linkItem3 = NavLinkedItem::asLoginControl($this->loginControl);
+        $this->linkItem4 = NavLinkedItem::asButton($this->button);
+        $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3, $this->linkItem4];
         $this->siteHeaderNavBar = SiteHeaderNavBar::secondary($this->linkItems);
     }
 
@@ -58,8 +63,11 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame($this->linkItem2['rel'], $siteHeaderNavItems[1]['rel']);
         $this->assertSame($this->linkItem2['picture'], $siteHeaderNavItems[1]['picture']);
 
-        $this->assertSame($this->linkItem3['button']->toArray(), $siteHeaderNavItems[2]['button']);
-        $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[2]['classes']);
+        $this->assertSame($this->linkItem3['loginControl']->toArray(), $siteHeaderNavItems[2]['loginControl']);
+        $this->assertSame('nav-secondary__item nav-secondary__item--logged-in', $siteHeaderNavItems[2]['classes']);
+
+        $this->assertSame($this->linkItem4['button']->toArray(), $siteHeaderNavItems[3]['button']);
+        $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[3]['classes']);
     }
 
     /**
@@ -92,6 +100,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $navLinkItems = [
             NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $img, false),
             NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
+            NavLinkedItem::asLoginControl(LoginControl::loggedIn('/some-uri', 'log in', $img)),
             NavLinkedItem::asButton($button),
         ];
 
