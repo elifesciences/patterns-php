@@ -21,6 +21,20 @@ use InvalidArgumentException;
 
 final class ContentHeaderTest extends ViewModelTest
 {
+    public static function buildFixtureForCollection(string $title)
+    {
+        return new ContentHeader(
+            $title,
+            new ContentHeaderImage(new Picture([], new Image('/default/path'))),
+            null, true, [],
+            new Profile(new Link('Dr Curator')),
+            [], [], null,
+            new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
+            null,
+            Meta::withLink(new Link('Collection'))
+        );
+    }
+
     /**
      * @test
      */
@@ -28,16 +42,18 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $data = [
             'title' => 'title',
+            'titleLength' => 'xx-short',
         ];
 
         $contentHeader = new ContentHeader($data['title']);
 
         $this->assertSame($data['title'], $contentHeader['title']);
+        $this->assertSame($data['titleLength'], $contentHeader['titleLength']);
         $this->assertSame($data, $contentHeader->toArray());
 
         $data = [
-            'title' => 'titletitletitletitle',
-            'longTitle' => true,
+            'title' => 'title',
+            'titleLength' => 'xx-short',
             'image' => [
                 'fallback' => [
                     'altText' => '',
@@ -163,7 +179,7 @@ final class ContentHeaderTest extends ViewModelTest
         $data['image']['credit']['elementId'] = $contentHeader['image']['credit']['elementId'];
 
         $this->assertSame($data['title'], $contentHeader['title']);
-        $this->assertSame($data['longTitle'], $contentHeader['longTitle']);
+        $this->assertSame($data['titleLength'], $contentHeader['titleLength']);
         $this->assertSameWithoutOrder($data['image'], $contentHeader['image']);
         $this->assertSame($data['impactStatement'], $contentHeader['impactStatement']);
         $this->assertSameWithoutOrder($data['header'], $contentHeader['header']);
@@ -215,6 +231,38 @@ final class ContentHeaderTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         new ContentHeader('', null, null, false, [], null, [Author::asText('author')], ['foo']);
+    }
+
+    /**
+     * @test
+     * @dataProvider titleLengthProvider
+     */
+    public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
+    {
+        $title = str_repeat('é', $length);
+
+        $contentHeader = self::buildFixtureForCollection($title);
+        $this->assertSame($expected, $contentHeader['titleLength']);
+    }
+
+    public function titleLengthProvider() : array
+    {
+        return [
+            [3,   'xx-short'],
+            [19,  'xx-short'],
+            [20,  'x-short'],
+            [35,  'x-short'],
+            [36,  'short'],
+            [46,  'short'],
+            [47,  'medium'],
+            [57,  'medium'],
+            [58,  'long'],
+            [80, 'long'],
+            [81, 'x-long'],
+            [120, 'x-long'],
+            [121, 'xx-long'],
+            [500, 'xx-long'],
+        ];
     }
 
     public function viewModelProvider() : array

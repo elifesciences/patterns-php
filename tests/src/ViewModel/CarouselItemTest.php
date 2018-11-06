@@ -25,7 +25,7 @@ final class CarouselItemTest extends ViewModelTest
                 ],
             ],
             'title' => 'carousel item with a long title',
-            'longTitle' => true,
+            'titleLength' => 'x-short',
             'url' => 'carousel-item-url',
             'button' => [
                 'classes' => 'button--small button--outline',
@@ -48,12 +48,51 @@ final class CarouselItemTest extends ViewModelTest
 
         $this->assertSame($data['subjects']['list'][0], $carouselItem['subjects']['list'][0]->toArray());
         $this->assertSame($data['title'], $carouselItem['title']);
-        $this->assertSame($data['longTitle'], $carouselItem['longTitle']);
+        $this->assertSame($data['titleLength'], $carouselItem['titleLength']);
         $this->assertSame($data['url'], $carouselItem['url']);
         $this->assertSame($data['button'], $carouselItem['button']->toArray());
         $this->assertSame($data['meta'], $carouselItem['meta']->toArray());
         $this->assertSame($data['image'], $carouselItem['image']->toArray());
         $this->assertSame($data, $carouselItem->toArray());
+    }
+
+    /**
+     * @test
+     * @dataProvider titleLengthProvider
+     */
+    public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
+    {
+        $title = str_repeat('é', $length);
+
+        $carouselItem = new CarouselItem(
+            [],
+            new Link($title, 'carousel-item-url'),
+            'button',
+            Meta::withText('meta'),
+            new Picture([], new Image('/default/path'))
+        );
+
+        $this->assertSame($expected, $carouselItem['titleLength']);
+    }
+
+    public function titleLengthProvider() : array
+    {
+        return [
+            [3, 'xx-short'],
+            [19, 'xx-short'],
+            [20, 'x-short'],
+            [35, 'x-short'],
+            [36, 'short'],
+            [46, 'short'],
+            [47, 'medium'],
+            [57, 'medium'],
+            [58, 'long'],
+            [80, 'long'],
+            [81, 'x-long'],
+            [120, 'x-long'],
+            [121, 'xx-long'],
+            [500, 'xx-long'],
+        ];
     }
 
     public function viewModelProvider() : array

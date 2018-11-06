@@ -34,6 +34,7 @@ final class CarouselTest extends ViewModelTest
                         ],
                     ],
                     'title' => 'carousel item',
+                    'titleLength' => 'xx-short',
                     'url' => 'carousel-item-url',
                     'button' => [
                         'classes' => 'button--small button--outline',
