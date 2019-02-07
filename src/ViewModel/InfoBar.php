@@ -14,6 +14,7 @@ final class InfoBar implements ViewModel
     const TYPE_SUCCESS = 'success';
     const TYPE_CORRECTION = 'correction';
     const TYPE_MULTIPLE_VERSIONS = 'multiple-versions';
+    const TYPE_WARNING = 'warning';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -30,6 +31,7 @@ final class InfoBar implements ViewModel
             self::TYPE_SUCCESS,
             self::TYPE_CORRECTION,
             self::TYPE_MULTIPLE_VERSIONS,
+            self::TYPE_WARNING,
         ]);
 
         $this->text = $text;
