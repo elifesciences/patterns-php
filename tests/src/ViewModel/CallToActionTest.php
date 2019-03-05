@@ -59,7 +59,9 @@ final class CallToActionTest extends ViewModelTest
             Button::link('the button text', '/the/button/path')
         );
 
-        //$this->assertSame($data['doi'], $doi['doi']);
+        $this->assertSame($data['image'], $callToAction['image']->toArray());
+        $this->assertSame($data['text'], $callToAction['text']);
+        $this->assertSame($data['button'], $callToAction['button']->toArray());
         $this->assertSame($data, $callToAction->toArray());
     }
 
