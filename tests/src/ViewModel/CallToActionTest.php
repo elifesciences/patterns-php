@@ -16,7 +16,7 @@ final class CallToActionTest extends ViewModelTest
     {
         $data = [
             'button' => [
-                'classes' => 'button--default',
+                'classes' => 'button--default call-to-action__button',
                 'path' => '/the/button/path',
                 'text' => 'the button text',
             ],

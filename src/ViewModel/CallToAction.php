@@ -25,7 +25,8 @@ final class CallToAction implements ViewModel
         $this->id = $id;
         $this->image = $image;
         $this->text = $text;
-        $this->button = $button;
+        $this->button = FlexibleViewModel::fromViewModel($button)
+            ->withProperty('classes', "{$button['classes']} call-to-action__button");
     }
 
     public function getTemplateName() : string
