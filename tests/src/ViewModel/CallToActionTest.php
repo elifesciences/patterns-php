@@ -20,6 +20,7 @@ final class CallToActionTest extends ViewModelTest
                 'path' => '/the/button/path',
                 'text' => 'the button text',
             ],
+            'id' => 'some-id',
             'image' => [
                 'fallback' => [
                     'altText' => 'the alt text',
@@ -39,6 +40,7 @@ final class CallToActionTest extends ViewModelTest
             'text' => 'text',
         ];
         $callToAction = new CallToAction(
+            'some-id',
             new Picture(
                 [
                     [
@@ -59,6 +61,7 @@ final class CallToActionTest extends ViewModelTest
             Button::link('the button text', '/the/button/path')
         );
 
+        $this->assertSame($data['id'], $callToAction['id']);
         $this->assertSame($data['image'], $callToAction['image']->toArray());
         $this->assertSame($data['text'], $callToAction['text']);
         $this->assertSame($data['button'], $callToAction['button']->toArray());
@@ -70,6 +73,7 @@ final class CallToActionTest extends ViewModelTest
         return [
             [
                 new CallToAction(
+                    'some-id',
                     new Picture([], new Image('/default/path', ['1' => '/default/path'], 'the alt text')),
                     'text',
                     Button::link('the button text', '/the/button/path')

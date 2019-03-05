@@ -13,13 +13,16 @@ final class CallToAction implements ViewModel
     use ArrayFromProperties;
 
     private $button;
+    private $id;
     private $image;
     private $text;
 
-    public function __construct(Picture $image, string $text, Button $button)
+    public function __construct(string $id, Picture $image, string $text, Button $button)
     {
+        Assertion::notBlank($id);
         Assertion::notBlank($text);
 
+        $this->id = $id;
         $this->image = $image;
         $this->text = $text;
         $this->button = $button;
