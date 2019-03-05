@@ -2,11 +2,11 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use function array_values;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use function array_values;
 
 final class DefinitionList implements ViewModel
 {
