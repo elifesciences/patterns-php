@@ -83,6 +83,7 @@ final class ImageTest extends TestCase
      */
     public function it_may_have_a_non_integer_srcset_key()
     {
-        new Image('/foo.png', ['1' => '/bar.png', '1.5' => '/baz.png']);
+        $image = new Image('/foo.png', $srcset = ['1' => '/bar.png', '1.5' => '/baz.png']);
+        $this->assertSame('/bar.png 1x, /baz.png 1.5x', $image['srcset']);
     }
 }

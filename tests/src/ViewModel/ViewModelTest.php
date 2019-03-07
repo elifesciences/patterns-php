@@ -54,10 +54,14 @@ abstract class ViewModelTest extends TestCase
         $viewModel = $this->createViewModel();
         $data = $viewModel->toArray();
 
-        foreach ($data as $key => $value) {
-            $actual = $this->handleValue($viewModel[$key]);
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $actual = $this->handleValue($viewModel[$key]);
 
-            $this->assertSame($value, $actual);
+                $this->assertSame($value, $actual);
+            }
+        } else {
+            $this->assertSame([], $data);
         }
     }
 
