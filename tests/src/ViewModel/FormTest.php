@@ -5,9 +5,9 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Form;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class FormTest extends PHPUnit_Framework_TestCase
+final class FormTest extends TestCase
 {
     /**
      * @test

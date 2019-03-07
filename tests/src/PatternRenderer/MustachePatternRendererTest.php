@@ -6,9 +6,9 @@ use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 use eLife\Patterns\ViewModel;
 use Mustache_Engine;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class MustachePatternRendererTest extends PHPUnit_Framework_TestCase
+final class MustachePatternRendererTest extends TestCase
 {
     /**
      * @test

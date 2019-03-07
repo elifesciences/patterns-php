@@ -5,9 +5,9 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Input;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class InputTest extends PHPUnit_Framework_TestCase
+final class InputTest extends TestCase
 {
     /**
      * @test

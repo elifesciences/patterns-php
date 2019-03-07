@@ -5,11 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Yaml\Yaml;
 
-abstract class ViewModelTest extends PHPUnit_Framework_TestCase
+abstract class ViewModelTest extends TestCase
 {
     /**
      * @test

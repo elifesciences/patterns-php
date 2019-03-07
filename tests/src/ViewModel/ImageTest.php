@@ -5,9 +5,9 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Image;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class ImageTest extends PHPUnit_Framework_TestCase
+final class ImageTest extends TestCase
 {
     /**
      * @test

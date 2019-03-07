@@ -5,10 +5,10 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\MediaType;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Traversable;
 
-final class MediaTypeTest extends PHPUnit_Framework_TestCase
+final class MediaTypeTest extends TestCase
 {
     /**
      * @test

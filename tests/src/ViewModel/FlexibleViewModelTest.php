@@ -5,9 +5,9 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
+final class FlexibleViewModelTest extends TestCase
 {
     /**
      * @test

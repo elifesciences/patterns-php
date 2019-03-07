@@ -5,9 +5,9 @@ namespace tests\eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer\CallbackPatternRenderer;
 use eLife\Patterns\ViewModel;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class CallbackPatternRendererTest extends PHPUnit_Framework_TestCase
+final class CallbackPatternRendererTest extends TestCase
 {
     /**
      * @test
