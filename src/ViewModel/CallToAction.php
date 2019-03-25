@@ -18,7 +18,7 @@ final class CallToAction implements ViewModel
     private $text;
     private $needsJs;
 
-    public function __construct(string $id, Picture $image, string $text, Button $button, bool $needsJs)
+    public function __construct(string $id, Picture $image, string $text, Button $button, bool $needsJs = false)
     {
         Assertion::notBlank($id);
         Assertion::notBlank($text);
