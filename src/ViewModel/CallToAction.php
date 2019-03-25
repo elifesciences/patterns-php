@@ -16,13 +16,15 @@ final class CallToAction implements ViewModel
     private $id;
     private $image;
     private $text;
+    private $needsJs;
 
-    public function __construct(string $id, Picture $image, string $text, Button $button)
+    public function __construct(string $id, Picture $image, string $text, Button $button, bool $needsJs)
     {
         Assertion::notBlank($id);
         Assertion::notBlank($text);
 
         $this->id = $id;
+        $this->needsJs = $needsJs;
         $this->image = $image;
         $this->text = $text;
         $this->button = FlexibleViewModel::fromViewModel($button)
