@@ -7,6 +7,10 @@ properties:
     text:
         type: string
         minLength: 1
+    needsJs:
+        type: boolean
+        enum:
+            - true
     button:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
