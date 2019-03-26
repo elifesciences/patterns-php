@@ -15,7 +15,7 @@ final class CallToActionTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'needsJs'=> true,
+            'needsJs' => true,
             'button' => [
                 'classes' => 'button--default call-to-action__button',
                 'path' => '/the/button/path',
@@ -70,7 +70,6 @@ final class CallToActionTest extends ViewModelTest
         $this->assertSame($data['button'], $callToAction['button']->toArray());
         $this->assertSameWithoutOrder($data, $callToAction->toArray());
     }
-
 
     public function viewModelProvider() : array
     {
