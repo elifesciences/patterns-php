@@ -74,7 +74,15 @@ final class CallToActionTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [
+            'minimum' => [
+                new CallToAction(
+                    'some-id',
+                    new Picture([], new Image('/default/path', ['1' => '/default/path'], 'the alt text')),
+                    'text',
+                    Button::link('the button text', '/the/button/path')
+                ),
+            ],
+            'complete' => [
                 new CallToAction(
                     'some-id',
                     new Picture([], new Image('/default/path', ['1' => '/default/path'], 'the alt text')),

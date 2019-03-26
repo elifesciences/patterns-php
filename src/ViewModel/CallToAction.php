@@ -24,7 +24,9 @@ final class CallToAction implements ViewModel
         Assertion::notBlank($text);
 
         $this->id = $id;
-        $this->needsJs = $needsJs;
+        if ($needsJs) {
+            $this->needsJs = $needsJs;
+        }
         $this->image = $image;
         $this->text = $text;
         $this->button = FlexibleViewModel::fromViewModel($button)
