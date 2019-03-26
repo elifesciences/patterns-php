@@ -15,8 +15,8 @@ final class CallToAction implements ViewModel
     private $button;
     private $id;
     private $image;
-    private $text;
     private $needsJs;
+    private $text;
 
     public function __construct(string $id, Picture $image, string $text, Button $button, bool $needsJs = false)
     {

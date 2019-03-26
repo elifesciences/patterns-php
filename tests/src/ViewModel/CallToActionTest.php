@@ -15,7 +15,6 @@ final class CallToActionTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'needsJs' => true,
             'button' => [
                 'classes' => 'button--default call-to-action__button',
                 'path' => '/the/button/path',
@@ -38,6 +37,7 @@ final class CallToActionTest extends ViewModelTest
                     ],
                 ],
             ],
+            'needsJs' => true,
             'text' => 'text',
         ];
         $callToAction = new CallToAction(
@@ -64,10 +64,10 @@ final class CallToActionTest extends ViewModelTest
         );
 
         $this->assertSame($data['id'], $callToAction['id']);
-        $this->assertSame($data['needsJs'], $callToAction['needsJs']);
         $this->assertSame($data['image'], $callToAction['image']->toArray());
         $this->assertSame($data['text'], $callToAction['text']);
         $this->assertSame($data['button'], $callToAction['button']->toArray());
+        $this->assertSame($data['needsJs'], $callToAction['needsJs']);
         $this->assertSameWithoutOrder($data, $callToAction->toArray());
     }
 
