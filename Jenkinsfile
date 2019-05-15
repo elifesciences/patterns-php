@@ -13,7 +13,7 @@ elifeLibrary {
 
     elifeMainlineOnly {
         stage 'Downstream', {
-            build job: '/dependencies/dependencies-journal-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit), string(name: 'message, value: message)]
+            build job: '/dependencies/dependencies-journal-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit), string(name: 'message', value: message)]
             build job: '/dependencies/dependencies-error-pages-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit)]
         }
     }
