@@ -1,8 +1,10 @@
 elifeLibrary {
     def commit
+    def message
     stage 'Checkout', {
         checkout scm
         commit = elifeGitRevision()
+        message = sh script: "git log -1 --pretty=%B | head -n 1", returnStdout: true
     }
 
     elifeVariants(['lowest', 'default'], { dependencies ->
@@ -11,7 +13,7 @@ elifeLibrary {
 
     elifeMainlineOnly {
         stage 'Downstream', {
-            build job: '/dependencies/dependencies-journal-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit)]
+            build job: '/dependencies/dependencies-journal-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit), string(name: 'message', value: message)]
             build job: '/dependencies/dependencies-error-pages-update-patterns-php', wait: false, parameters: [string(name: 'revision', value: commit)]
         }
     }
