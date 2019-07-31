@@ -21,10 +21,12 @@ final class ArticleSection implements ViewModel
     private $isInitiallyClosed;
     private $body;
     private $isFirst;
+    private $headerLink;
 
     private function __construct(
         string $id = null,
         Doi $doi = null,
+        Link $headerLink = null,
         string $title,
         int $headingLevel,
         string $body,
@@ -48,6 +50,7 @@ final class ArticleSection implements ViewModel
 
         $this->id = $id;
         $this->doi = $doi;
+        $this->headerLink = $headerLink;
         $this->title = $title;
         $this->headingLevel = $headingLevel;
         $this->hasBehaviour = $hasBehaviour;
@@ -62,9 +65,10 @@ final class ArticleSection implements ViewModel
         string $body,
         $id = null,
         Doi $doi = null,
-        bool $isFirst = false
+        bool $isFirst = false,
+        Link $headerLink = null
     ) : ArticleSection {
-        return new self($id, $doi, $title, $headingLevel, $body, $isFirst);
+        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $isFirst);
     }
 
     public static function collapsible(
@@ -74,9 +78,10 @@ final class ArticleSection implements ViewModel
         string $body,
         bool $isInitiallyClosed = false,
         bool $isFirst = false,
-        Doi $doi = null
+        Doi $doi = null,
+        Link $headerLink = null
     ) : ArticleSection {
-        return new self($id, $doi, $title, $headingLevel, $body, $isFirst, true, $isInitiallyClosed);
+        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $isFirst, true, $isInitiallyClosed);
     }
 
     public function getTemplateName() : string
