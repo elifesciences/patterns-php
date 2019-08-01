@@ -55,11 +55,10 @@ final class ArticleSectionTest extends ViewModelTest
             'isInitiallyClosed' => true,
             'body' => '<p>body</p>',
             'isFirst' => true,
-            'headerLink' => new Link('It could happen', '#'),
         ];
 
         $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true,
-            new Doi('10.7554/eLife.10181.001'), $collapsibleData['headerLink']);
+            new Doi('10.7554/eLife.10181.001'));
 
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
         $this->assertSameWithoutOrder($collapsibleData['doi'], $collapsibleArticleSection['doi']);
@@ -69,7 +68,6 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($collapsibleData['isInitiallyClosed'], $collapsibleArticleSection['isInitiallyClosed']);
         $this->assertSame($collapsibleData['body'], $collapsibleArticleSection['body']);
         $this->assertSame($collapsibleData['isFirst'], $collapsibleArticleSection['isFirst']);
-        $this->assertSame($collapsibleData['headerLink'], $collapsibleArticleSection['headerLink']);
         $this->assertSameWithoutOrder($collapsibleData, $collapsibleArticleSection);
     }
 
@@ -93,7 +91,7 @@ final class ArticleSectionTest extends ViewModelTest
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
                 ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true,
-                    new Doi('10.7554/eLife.10181.001'), new Link('It could happen', '#')),
+                    new Doi('10.7554/eLife.10181.001')),
             ],
         ];
     }

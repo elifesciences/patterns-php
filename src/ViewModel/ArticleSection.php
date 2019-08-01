@@ -78,10 +78,9 @@ final class ArticleSection implements ViewModel
         string $body,
         bool $isInitiallyClosed = false,
         bool $isFirst = false,
-        Doi $doi = null,
-        Link $headerLink = null
+        Doi $doi = null
     ) : ArticleSection {
-        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $isFirst, true, $isInitiallyClosed);
+        return new self($id, $doi, null, $title, $headingLevel, $body, $isFirst, true, $isInitiallyClosed);
     }
 
     public function getTemplateName() : string
