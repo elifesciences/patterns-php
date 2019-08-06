@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArticleSection;
 use eLife\Patterns\ViewModel\Doi;
+use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
 
 final class ArticleSectionTest extends ViewModelTest
@@ -25,10 +26,11 @@ final class ArticleSectionTest extends ViewModelTest
             'isInitiallyClosed' => false,
             'body' => '<p>body</p>',
             'isFirst' => true,
+            'headerLink' => new Link('Request a detailed protocol', '#'),
         ];
 
         $basicArticleSection = ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
-            new Doi('10.7554/eLife.10181.001'), true);
+            new Doi('10.7554/eLife.10181.001'), true, $basicData['headerLink']);
 
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
         $this->assertSameWithoutOrder($basicData['doi'], $basicArticleSection['doi']);
@@ -38,6 +40,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($basicData['isInitiallyClosed'], $basicArticleSection['isInitiallyClosed']);
         $this->assertSame($basicData['body'], $basicArticleSection['body']);
         $this->assertSame($basicData['isFirst'], $basicArticleSection['isFirst']);
+        $this->assertSame($basicData['headerLink'], $basicArticleSection['headerLink']);
         $this->assertSameWithoutOrder($basicData, $basicArticleSection);
 
         $collapsibleData = [
@@ -83,7 +86,7 @@ final class ArticleSectionTest extends ViewModelTest
         return [
             'basic minimum' => [ArticleSection::basic('some title', 2, '<p>body</p>')],
             'basic complete' => [
-                ArticleSection::basic('some title', 2, '<p>body</p>', 'id', new Doi('10.7554/eLife.10181.001'), true),
+                ArticleSection::basic('some title', 2, '<p>body</p>', 'id', new Doi('10.7554/eLife.10181.001'), true, new Link('Request a detailed protocol', '#')),
             ],
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
