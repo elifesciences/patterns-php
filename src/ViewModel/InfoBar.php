@@ -10,6 +10,7 @@ use eLife\Patterns\ViewModel;
 final class InfoBar implements ViewModel
 {
     const TYPE_ATTENTION = 'attention';
+    const TYPE_DISMISSIBLE = 'dismissible';
     const TYPE_INFO = 'info';
     const TYPE_SUCCESS = 'success';
     const TYPE_CORRECTION = 'correction';
@@ -27,6 +28,7 @@ final class InfoBar implements ViewModel
         Assertion::notBlank($text);
         Assertion::choice($type, [
             self::TYPE_ATTENTION,
+            self::TYPE_DISMISSIBLE,
             self::TYPE_INFO,
             self::TYPE_SUCCESS,
             self::TYPE_CORRECTION,

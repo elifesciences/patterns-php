@@ -34,20 +34,11 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('', InfoBar::TYPE_INFO);
     }
 
-    /**
-     * @test
-     */
-    public function it_cannot_have_an_invalid_type()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new InfoBar('text', 'foo');
-    }
-
     public function viewModelProvider() : array
     {
         return [
             'attention' => [new InfoBar('text', InfoBar::TYPE_ATTENTION)],
+            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE)],
             'info' => [new InfoBar('text', InfoBar::TYPE_INFO)],
             'success' => [new InfoBar('text', InfoBar::TYPE_SUCCESS)],
             'correction' => [new InfoBar('text', InfoBar::TYPE_CORRECTION)],
