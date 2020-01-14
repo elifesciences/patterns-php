@@ -15,13 +15,18 @@ final class InfoBarTest extends ViewModelTest
     {
         $data = [
             'text' => 'text',
-            'type' => InfoBar::TYPE_INFO,
+            'type' => InfoBar::TYPE_DISMISSIBLE,
+            'dismissible' => [
+                'cookieDuration' => 3,
+                'cookieExpires' => null,
+            ],
         ];
 
-        $infoBar = new InfoBar($data['text'], $data['type']);
+        $infoBar = new InfoBar($data['text'], $data['type'], $data['dismissible']['cookieDuration']);
 
         $this->assertSame($data['text'], $infoBar['text']);
         $this->assertSame($data['type'], $infoBar['type']);
+        $this->assertSame($data['dismissible'], $infoBar['dismissible']);
         $this->assertSame($data, $infoBar->toArray());
     }
 
