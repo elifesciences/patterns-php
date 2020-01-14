@@ -11,6 +11,22 @@ properties:
         type: boolean
         enum:
             - true
+    dismissible:
+        oneOf:
+            -
+                properties:
+                    cookieDuration:
+                        type: integer
+                        minimum: 1
+                required:
+                    - cookieDuration
+            -
+                properties:
+                    cookieExpires:
+                        type: string
+                        minLength: 1
+                required:
+                    - cookieExpires
     button:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
@@ -100,3 +116,6 @@ required:
     - text
     - button
     - image
+dependencies:
+    dismiss:
+        - needsJs

@@ -1,4 +1,16 @@
-<div class="call-to-action-wrapper{{#needsJs}} call-to-action-wrapper--needs-js{{/needsJs}}" id="{{id}}" data-behaviour="CallToAction">
+{{! Either cookieDuration, or cookie expiry date, not both }}
+<div class="call-to-action-wrapper{{#needsJs}} call-to-action-wrapper--needs-js{{/needsJs}}"
+      id="{{id}}"
+
+      {{#needsJs}}
+        data-behaviour="CallToAction"
+      {{/needsJs}}
+
+      {{#dismissible}}
+        data-cookie-name-root="callToAction_"
+        {{#cookieDuration}} data-cookie-duration="{{cookieDuration}}"{{/cookieDuration}}
+        {{#cookieExpires}} data-cookie-expires="{{cookieExpires}}"{{/cookieExpires}}
+      {{/dismissible}}>
 
   <div class="call-to-action">
 

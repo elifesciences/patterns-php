@@ -8,11 +8,28 @@ properties:
         type: string
         enum:
             - attention
+            - dismissible
             - info
             - multiple-versions
             - correction
             - success
             - warning
+    dismissible:
+        oneOf:
+            -
+                properties:
+                    cookieDuration:
+                        type: integer
+                        minimum: 1
+                required:
+                    - cookieDuration
+            -
+                properties:
+                    cookieExpires:
+                        type: string
+                        minLength: 1
+                required:
+                    - cookieExpires
 required:
     - text
     - type
