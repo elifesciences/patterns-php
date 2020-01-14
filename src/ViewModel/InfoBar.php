@@ -3,9 +3,11 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
+use DateTimeImmutable;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
+use InvalidArgumentException;
 
 final class InfoBar implements ViewModel
 {
@@ -20,10 +22,16 @@ final class InfoBar implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
+    private $cookieDuration;
+    private $cookieExpires;
     private $text;
     private $type;
 
-    public function __construct(string $text, string $type = self::TYPE_INFO)
+    public function __construct(
+        string $text,
+        string $type = self::TYPE_INFO,
+        int $cookieDuration = null,
+        DateTimeImmutable $cookieExpires = null)
     {
         Assertion::notBlank($text);
         Assertion::choice($type, [
@@ -36,6 +44,14 @@ final class InfoBar implements ViewModel
             self::TYPE_WARNING,
         ]);
 
+        if ($type === self::TYPE_DISMISSIBLE) {
+            if ($cookieDuration === null && $cookieExpires === null) {
+                throw new InvalidArgumentException('Dismissible type must have one of $cookieDuration or $cookieDuration set');
+            }
+        }
+
+        $this->cookieDuration = $cookieDuration;
+        $this->cookieExpires = $cookieExpires;
         $this->text = $text;
         $this->type = $type;
     }

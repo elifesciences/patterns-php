@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use DateTimeImmutable;
 use eLife\Patterns\ViewModel\InfoBar;
 use InvalidArgumentException;
 
@@ -34,11 +35,20 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('', InfoBar::TYPE_INFO);
     }
 
+    /**
+     * @test
+     */
+    public function dismissible_must_have_cookie_expires_or_cookie_duration() {
+        $this->expectException(InvalidArgumentException::class);
+
+        new InfoBar('some text', InfoBar::TYPE_DISMISSIBLE);
+    }
+
     public function viewModelProvider() : array
     {
         return [
             'attention' => [new InfoBar('text', InfoBar::TYPE_ATTENTION)],
-            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE)],
+            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, 3)],
             'info' => [new InfoBar('text', InfoBar::TYPE_INFO)],
             'success' => [new InfoBar('text', InfoBar::TYPE_SUCCESS)],
             'correction' => [new InfoBar('text', InfoBar::TYPE_CORRECTION)],
