@@ -48,6 +48,9 @@ final class InfoBar implements ViewModel
             if ($cookieDuration === null && $cookieExpires === null) {
                 throw new InvalidArgumentException('Dismissible type must have one of $cookieDuration or $cookieDuration set');
             }
+            if ($cookieDuration !== null && $cookieExpires !== null) {
+                throw new InvalidArgumentException('Dismissible type must not have both $cookieDuration and $cookieDuration set');
+            }
         }
 
         $this->cookieDuration = $cookieDuration;

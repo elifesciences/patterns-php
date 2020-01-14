@@ -44,6 +44,15 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('some text', InfoBar::TYPE_DISMISSIBLE);
     }
 
+    /**
+     * @test
+     */
+    public function dismissible_must_not_have_both_cookie_expires_and_cookie_duration() {
+        $this->expectException(InvalidArgumentException::class);
+
+        new InfoBar('some text', InfoBar::TYPE_DISMISSIBLE, 3, new DateTimeImmutable('now'));
+    }
+
     public function viewModelProvider() : array
     {
         return [
