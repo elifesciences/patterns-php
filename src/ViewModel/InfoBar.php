@@ -22,7 +22,7 @@ final class InfoBar implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $cookieDuration;
+    private $dismiss;
     private $cookieExpires;
     private $text;
     private $type;
@@ -44,6 +44,7 @@ final class InfoBar implements ViewModel
             self::TYPE_WARNING,
         ]);
 
+        $this->dismiss = null;
         if ($type === self::TYPE_DISMISSIBLE) {
             if ($cookieDuration === null && $cookieExpires === null) {
                 throw new InvalidArgumentException('Dismissible type must have one of $cookieDuration or $cookieDuration set');
@@ -51,10 +52,13 @@ final class InfoBar implements ViewModel
             if ($cookieDuration !== null && $cookieExpires !== null) {
                 throw new InvalidArgumentException('Dismissible type must not have both $cookieDuration and $cookieDuration set');
             }
+
+            $this->dismiss = [
+                'cookieDuration' => $cookieDuration,
+                'cookieExpires' => $cookieExpires,
+            ];
         }
 
-        $this->cookieDuration = $cookieDuration;
-        $this->cookieExpires = $cookieExpires;
         $this->text = $text;
         $this->type = $type;
     }
