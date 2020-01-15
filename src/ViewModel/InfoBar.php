@@ -22,16 +22,17 @@ final class InfoBar implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $dismiss;
+    private $dismissible;
     private $cookieExpires;
+    private $id;
     private $text;
     private $type;
 
     public function __construct(
         string $text,
         string $type = self::TYPE_INFO,
-        int $cookieDuration = null,
-        DateTimeImmutable $cookieExpires = null)
+        DateTimeImmutable $cookieExpires = null,
+        string $id = null)
     {
         Assertion::notBlank($text);
         Assertion::choice($type, [
@@ -44,21 +45,15 @@ final class InfoBar implements ViewModel
             self::TYPE_WARNING,
         ]);
 
-        $this->dismiss = null;
-        if ($type === self::TYPE_DISMISSIBLE) {
-            if ($cookieDuration === null && $cookieExpires === null) {
-                throw new InvalidArgumentException('Dismissible type must have one of $cookieDuration or $cookieDuration set');
-            }
-            if ($cookieDuration !== null && $cookieExpires !== null) {
-                throw new InvalidArgumentException('Dismissible type must not have both $cookieDuration and $cookieDuration set');
-            }
-
-            $this->dismiss = [
-                'cookieDuration' => $cookieDuration,
-                'cookieExpires' => $cookieExpires,
+        $this->dismissible = null;
+        if ($type === self::TYPE_DISMISSIBLE && $cookieExpires !== null) {
+            $this->dismissible = [
+                'cookieExpires' => $cookieExpires->format(DATE_COOKIE),
             ];
+
         }
 
+        $this->id = $id;
         $this->text = $text;
         $this->type = $type;
     }

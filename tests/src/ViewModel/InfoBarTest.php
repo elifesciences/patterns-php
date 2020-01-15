@@ -10,24 +10,29 @@ final class InfoBarTest extends ViewModelTest
 {
     /**
      * @test
+     * @throws \Exception
      */
     public function it_has_data()
     {
+        $dateAsString = 'Wednesday, 15-Jan-2020 15:12:24 UTC';
+        $date = new DateTimeImmutable($dateAsString);
+
         $data = [
             'text' => 'text',
+            'id' => 'id',
             'type' => InfoBar::TYPE_DISMISSIBLE,
             'dismissible' => [
-                'cookieDuration' => 3,
-                'cookieExpires' => null,
+                'cookieExpires' => $dateAsString,
             ],
         ];
 
-        $infoBar = new InfoBar($data['text'], $data['type'], $data['dismissible']['cookieDuration']);
+        $infoBar = new InfoBar($data['text'], $data['type'], $date, $data['id']);
 
         $this->assertSame($data['text'], $infoBar['text']);
         $this->assertSame($data['type'], $infoBar['type']);
-        $this->assertSame($data['dismissible'], $infoBar['dismissible']);
-        $this->assertSame($data, $infoBar->toArray());
+        $this->assertSame($dateAsString, $infoBar['dismissible']['cookieExpires']);
+        $this->assertSame($data['id'], $infoBar['id']);
+        $this->assertSameWithoutOrder($data, $infoBar->toArray());
     }
 
     /**
@@ -40,29 +45,11 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('', InfoBar::TYPE_INFO);
     }
 
-    /**
-     * @test
-     */
-    public function dismissible_must_have_cookie_expires_or_cookie_duration() {
-        $this->expectException(InvalidArgumentException::class);
-
-        new InfoBar('some text', InfoBar::TYPE_DISMISSIBLE);
-    }
-
-    /**
-     * @test
-     */
-    public function dismissible_must_not_have_both_cookie_expires_and_cookie_duration() {
-        $this->expectException(InvalidArgumentException::class);
-
-        new InfoBar('some text', InfoBar::TYPE_DISMISSIBLE, 3, new DateTimeImmutable('now'));
-    }
-
     public function viewModelProvider() : array
     {
         return [
             'attention' => [new InfoBar('text', InfoBar::TYPE_ATTENTION)],
-            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, 3)],
+            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, new DateTimeImmutable('now'), 'id')],
             'info' => [new InfoBar('text', InfoBar::TYPE_INFO)],
             'success' => [new InfoBar('text', InfoBar::TYPE_SUCCESS)],
             'correction' => [new InfoBar('text', InfoBar::TYPE_CORRECTION)],
