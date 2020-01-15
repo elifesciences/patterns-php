@@ -31,8 +31,8 @@ final class InfoBar implements ViewModel
     public function __construct(
         string $text,
         string $type = self::TYPE_INFO,
-        DateTimeImmutable $cookieExpires = null,
-        string $id = null)
+        string $id = null,
+        DateTimeImmutable $cookieExpires = null)
     {
         Assertion::notBlank($text);
         Assertion::choice($type, [

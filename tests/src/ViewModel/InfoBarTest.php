@@ -26,7 +26,7 @@ final class InfoBarTest extends ViewModelTest
             ],
         ];
 
-        $infoBar = new InfoBar($data['text'], $data['type'], $date, $data['id']);
+        $infoBar = new InfoBar($data['text'], $data['type'], $data['id'], $date);
 
         $this->assertSame($data['text'], $infoBar['text']);
         $this->assertSame($data['type'], $infoBar['type']);
@@ -52,14 +52,14 @@ final class InfoBarTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, new DateTimeImmutable('now'));
+        new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, null, new DateTimeImmutable('now'));
     }
 
     public function viewModelProvider() : array
     {
         return [
             'attention' => [new InfoBar('text', InfoBar::TYPE_ATTENTION)],
-            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, new DateTimeImmutable('now'), 'id')],
+            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, 'id', new DateTimeImmutable('now'))],
             'info' => [new InfoBar('text', InfoBar::TYPE_INFO)],
             'success' => [new InfoBar('text', InfoBar::TYPE_SUCCESS)],
             'correction' => [new InfoBar('text', InfoBar::TYPE_CORRECTION)],
