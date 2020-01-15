@@ -45,6 +45,16 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('', InfoBar::TYPE_INFO);
     }
 
+    /**
+     * @test
+     */
+    public function dismissible_type_must_have_id()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, new DateTimeImmutable('now'));
+    }
+
     public function viewModelProvider() : array
     {
         return [

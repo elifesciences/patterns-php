@@ -46,11 +46,13 @@ final class InfoBar implements ViewModel
         ]);
 
         $this->dismissible = null;
-        if ($type === self::TYPE_DISMISSIBLE && $cookieExpires !== null) {
-            $this->dismissible = [
-                'cookieExpires' => $cookieExpires->format(DATE_COOKIE),
-            ];
-
+        if ($type === self::TYPE_DISMISSIBLE) {
+            Assertion::notBlank($id);
+            if ($cookieExpires !== null) {
+                    $this->dismissible = [
+                        'cookieExpires' => $cookieExpires->format(DATE_COOKIE),
+                    ];
+            }
         }
 
         $this->id = $id;
