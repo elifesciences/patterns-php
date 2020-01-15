@@ -7,7 +7,6 @@ use DateTimeImmutable;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
-use InvalidArgumentException;
 
 final class InfoBar implements ViewModel
 {

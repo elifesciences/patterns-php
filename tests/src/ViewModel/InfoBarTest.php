@@ -4,13 +4,14 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\InfoBar;
+use Exception;
 use InvalidArgumentException;
 
 final class InfoBarTest extends ViewModelTest
 {
     /**
      * @test
-     * @throws \Exception
+     * @throws Exception
      */
     public function it_has_data()
     {
