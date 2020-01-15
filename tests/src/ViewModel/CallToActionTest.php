@@ -2,6 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use DateTimeImmutable;
+use Exception;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\CallToAction;
 use eLife\Patterns\ViewModel\Image;
@@ -11,9 +13,13 @@ final class CallToActionTest extends ViewModelTest
 {
     /**
      * @test
+     * @throws Exception
      */
     public function it_has_data()
     {
+        $dateAsString = 'Wednesday, 15-Jan-2020 15:12:24 UTC';
+        $date = new DateTimeImmutable($dateAsString);
+
         $data = [
             'button' => [
                 'classes' => 'button--default call-to-action__button',
@@ -39,6 +45,9 @@ final class CallToActionTest extends ViewModelTest
             ],
             'needsJs' => true,
             'text' => 'text',
+            'dismissible' => [
+                'cookieExpires' => $dateAsString,
+            ],
         ];
         $callToAction = new CallToAction(
             'some-id',
@@ -60,7 +69,7 @@ final class CallToActionTest extends ViewModelTest
             ),
             'text',
             Button::link('the button text', '/the/button/path'),
-            $data['needsJs']
+            $data['needsJs'], $date
         );
 
         $this->assertSame($data['id'], $callToAction['id']);
@@ -68,6 +77,7 @@ final class CallToActionTest extends ViewModelTest
         $this->assertSame($data['text'], $callToAction['text']);
         $this->assertSame($data['button'], $callToAction['button']->toArray());
         $this->assertSame($data['needsJs'], $callToAction['needsJs']);
+        $this->assertSame($dateAsString, $callToAction['dismissible']['cookieExpires']);
         $this->assertSameWithoutOrder($data, $callToAction->toArray());
     }
 
@@ -88,7 +98,8 @@ final class CallToActionTest extends ViewModelTest
                     new Picture([], new Image('/default/path', ['1' => '/default/path'], 'the alt text')),
                     'text',
                     Button::link('the button text', '/the/button/path'),
-                    true
+                    true,
+                    new DateTimeImmutable('now')
                 ),
             ],
         ];
