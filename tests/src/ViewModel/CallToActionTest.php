@@ -3,16 +3,17 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use DateTimeImmutable;
-use Exception;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\CallToAction;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
+use Exception;
 
 final class CallToActionTest extends ViewModelTest
 {
     /**
      * @test
+     *
      * @throws Exception
      */
     public function it_has_data()

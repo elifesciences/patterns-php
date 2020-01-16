@@ -11,6 +11,7 @@ final class InfoBarTest extends ViewModelTest
 {
     /**
      * @test
+     *
      * @throws Exception
      */
     public function it_has_data()
