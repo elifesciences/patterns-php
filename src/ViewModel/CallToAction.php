@@ -27,8 +27,7 @@ final class CallToAction implements ViewModel
         Button $button,
         bool $needsJs = false,
         DateTimeImmutable $cookieExpires = null
-    )
-    {
+    ) {
         Assertion::notBlank($id);
         Assertion::notBlank($text);
 
@@ -36,13 +35,11 @@ final class CallToAction implements ViewModel
         if ($needsJs) {
             $this->needsJs = $needsJs;
 
-            if ($cookieExpires !== null) {
+            if (null !== $cookieExpires) {
                 $this->dismissible = [
                     'cookieExpires' => $cookieExpires->format(DATE_COOKIE),
                 ];
-
             }
-
         }
         $this->image = $image;
         $this->text = $text;

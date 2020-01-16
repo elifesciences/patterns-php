@@ -44,10 +44,10 @@ final class InfoBar implements ViewModel
             self::TYPE_WARNING,
         ]);
 
-        if ($type === self::TYPE_DISMISSIBLE) {
+        if (self::TYPE_DISMISSIBLE === $type) {
             Assertion::notBlank($id);
-            if ($cookieExpires !== null) {
-                    $this->dismissible = [
+            if (null !== $cookieExpires) {
+                $this->dismissible = [
                         'cookieExpires' => $cookieExpires->format(DATE_COOKIE),
                     ];
             }
