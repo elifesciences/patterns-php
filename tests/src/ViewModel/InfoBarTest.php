@@ -40,6 +40,16 @@ final class InfoBarTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_cannot_have_an_invalid_type()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new InfoBar('text', 'foo');
+    }
+
+    /**
+     * @test
+     */
     public function it_cannot_have_blank_text()
     {
         $this->expectException(InvalidArgumentException::class);
