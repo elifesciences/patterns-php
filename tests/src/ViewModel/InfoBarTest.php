@@ -64,14 +64,14 @@ final class InfoBarTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, null, new DateTimeImmutable('now'));
+        new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, null, new DateTimeImmutable('2020-01-15'));
     }
 
     public function viewModelProvider() : array
     {
         return [
             'attention' => [new InfoBar('text', InfoBar::TYPE_ATTENTION)],
-            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, 'id', new DateTimeImmutable('now'))],
+            'dismissible' => [new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, 'id', new DateTimeImmutable('2020-01-15'))],
             'info' => [new InfoBar('text', InfoBar::TYPE_INFO)],
             'success' => [new InfoBar('text', InfoBar::TYPE_SUCCESS)],
             'correction' => [new InfoBar('text', InfoBar::TYPE_CORRECTION)],
