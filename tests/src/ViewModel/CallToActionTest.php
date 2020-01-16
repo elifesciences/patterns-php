@@ -70,7 +70,8 @@ final class CallToActionTest extends ViewModelTest
             ),
             'text',
             Button::link('the button text', '/the/button/path'),
-            $data['needsJs'], $date
+            $data['needsJs'],
+            $date
         );
 
         $this->assertSame($data['id'], $callToAction['id']);
