@@ -22,7 +22,6 @@ final class InfoBar implements ViewModel
     use ArrayFromProperties;
 
     private $dismissible;
-    private $cookieExpires;
     private $id;
     private $text;
     private $type;
