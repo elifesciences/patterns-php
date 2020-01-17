@@ -47,8 +47,8 @@ final class InfoBar implements ViewModel
             Assertion::notBlank($id);
             if (null !== $cookieExpires) {
                 $this->dismissible = [
-                        'cookieExpires' => $cookieExpires->format(DATE_COOKIE),
-                    ];
+                    'cookieExpires' => $cookieExpires->format(DATE_COOKIE),
+                ];
             }
         }
 
