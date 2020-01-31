@@ -34,9 +34,6 @@ final class ArticleDownloadLinksList implements ViewModel
                 'items' => $items,
             ];
         }, array_keys($groups), array_values($groups));
-
-
-
     }
 
     public function getTemplateName() : string

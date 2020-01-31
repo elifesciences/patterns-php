@@ -51,7 +51,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                         new Link('primary name', 'primary url', false, ['key' => 'value']),
                         new Link('secondary name', 'secondary url')
                     ),
-                ]
+                ],
             ]
         );
 
@@ -70,8 +70,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'description',
             [
                 'group title' => [
-                    'primary' => new Link('name', 'url')
-                ]
+                    'primary' => new Link('name', 'url'),
+                ],
             ]
         );
     }
@@ -88,8 +88,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             '',
             [
                 'group title' => [
-                    'primary'=> new Link('name', 'url')
-                ]
+                    'primary' => new Link('name', 'url'),
+                ],
             ]
         );
     }
@@ -125,10 +125,10 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                         'group title' => [
                             new ArticleDownloadLink(
                                 new Link('name', 'url', false, ['key' => 'value'])
-                            )
-                        ]
+                            ),
+                        ],
                     ]
-                )
+                ),
             ],
             [
                 new ArticleDownloadLinksList(
@@ -139,8 +139,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                             new ArticleDownloadLink(
                                 new Link('name', 'url', false, ['key' => 'value']),
                                 new Link('name', 'url', false, ['key' => 'value'])
-                            )
-                        ]
+                            ),
+                        ],
                     ]
                 ),
             ],
