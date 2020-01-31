@@ -18,7 +18,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'description' => 'description',
             'groups' => [
                 [
-                    'title' => 'group',
+                    'title' => 'group title',
                     'items' => [
                         [
                             'primary' => [
@@ -45,7 +45,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'id',
             'description',
             [
-                'group' => [
+                'group title' => [
                     'primary' => new Link('primary name', 'primary url', false, ['key' => 'value']),
                     'secondary' => new Link('secondary name', 'secondary url'),
                 ]
@@ -66,8 +66,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             '',
             'description',
             [
-                'group' => [
-                    'primary'=> new Link('name', 'url')
+                'group title' => [
+                    'primary' => new Link('name', 'url')
                 ]
             ]
         );
@@ -84,7 +84,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'id',
             '',
             [
-                'group' => [
+                'group title' => [
                     'primary'=> new Link('name', 'url')
                 ]
             ]
@@ -108,7 +108,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('id', 'description', ['group' => []]);
+        new ArticleDownloadLinksList('id', 'description', ['group title' => []]);
     }
 
     /**
@@ -118,7 +118,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('id', 'description', ['group' => ['foo']]);
+        new ArticleDownloadLinksList('id', 'description', ['group title' => ['foo']]);
     }
 
     /**
@@ -130,7 +130,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
 
         new ArticleDownloadLinksList('id', 'description',
             [
-                'group' => ['primary', 'secondary', 'foo']
+                'group title' => ['primary', 'secondary', 'foo']
             ]
         );
     }
@@ -143,7 +143,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
 
         new ArticleDownloadLinksList('id', 'description',
             [
-                'group' => ['primary', 'secondary']
+                'group title' => ['primary', 'secondary']
             ]
         );
     }
@@ -157,10 +157,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                     'id',
                     'description',
                     [
-                        [
-                            [
-                                'primary' => new Link('name', 'url', false, ['key' => 'value']),
-                            ]
+                        'group title' => [
+                            'primary' => new Link('name', 'url', false, ['key' => 'value']),
                         ],
                     ]
                 )
@@ -170,11 +168,9 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                     'id',
                     'description',
                     [
-                        [
-                            [
-                                'primary' => new Link('name', 'url', false, ['key' => 'value']),
-                                'secondary' => new Link('name', 'url', false, ['key' => 'value'])
-                            ]
+                        'group title' => [
+                            'primary' => new Link('name', 'url', false, ['key' => 'value']),
+                            'secondary' => new Link('name', 'url', false, ['key' => 'value'])
                         ],
                     ]
                 ),
