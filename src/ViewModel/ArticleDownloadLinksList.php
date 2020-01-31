@@ -27,13 +27,17 @@ final class ArticleDownloadLinksList implements ViewModel
         $this->groups = array_map(function (string $title, array $items) {
             Assertion::notBlank($title);
             Assertion::notEmpty($items);
-            Assertion::allIsInstanceOf($items, Link::class);
+            Assertion::allKeyIsset($items, 'primary');
+            Assertion::allChoice(array_keys($items), ['primary', 'secondary']);
 
             return [
                 'title' => $title,
                 'items' => $items,
             ];
         }, array_keys($groups), array_values($groups));
+
+
+
     }
 
     public function getTemplateName() : string
