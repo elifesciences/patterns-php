@@ -26,10 +26,10 @@ final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
     {
         $data = [
             'primary' => [
-                'name' => 'primary name', 'url' => 'primary url', 'isCurrent' => false, 'attributes' => []
+                'name' => 'primary name', 'url' => 'primary url'
             ],
             'secondary' => [
-                'name' => 'secondary name', 'url' => 'secondary url', 'isCurrent' => false, 'attributes' => []
+                'name' => 'secondary name', 'url' => 'secondary url'
             ]
         ];
 
@@ -38,8 +38,8 @@ final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
             new Link('secondary name', 'secondary url')
         );
 
-        $this->assertSame($data['primary'], $articleDownloadLink['primary']);
-        $this->assertSame($data['secondary'], $articleDownloadLink['secondary']);
+        $this->assertSame($data['primary'], $articleDownloadLink['primary']->toArray());
+        $this->assertSame($data['secondary'], $articleDownloadLink['secondary']->toArray());
         $this->assertSame($data, $articleDownloadLink->toArray());
     }
 
