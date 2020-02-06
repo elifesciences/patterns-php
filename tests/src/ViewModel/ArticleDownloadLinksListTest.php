@@ -70,7 +70,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'description',
             [
                 'group title' => [
-                    'primary' => new Link('name', 'url'),
+                    new ArticleDownloadLink(new Link('name', 'url')),
                 ],
             ]
         );
@@ -88,7 +88,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             '',
             [
                 'group title' => [
-                    'primary' => new Link('name', 'url'),
+                    new ArticleDownloadLink(new Link('name', 'url')),
                 ],
             ]
         );
