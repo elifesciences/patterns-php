@@ -132,6 +132,7 @@ final class CaptionedAssetTest extends ViewModelTest
 
     public function test_it_works_with_latest_json()
     {
+        $this->markTestIncomplete();
     }
 
     public function viewModelProvider() : array

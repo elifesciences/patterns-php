@@ -7,9 +7,9 @@ use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 use eLife\Patterns\ViewModel;
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class IntegrationTest extends PHPUnit_Framework_TestCase
+final class IntegrationTest extends TestCase
 {
     /**
      * @test

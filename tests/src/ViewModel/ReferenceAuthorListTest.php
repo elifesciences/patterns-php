@@ -6,9 +6,9 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Author;
 use eLife\Patterns\ViewModel\ReferenceAuthorList;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class ReferenceAuthorListTest extends PHPUnit_Framework_TestCase
+final class ReferenceAuthorListTest extends TestCase
 {
     /**
      * @test

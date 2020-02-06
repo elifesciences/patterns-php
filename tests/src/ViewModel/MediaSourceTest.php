@@ -30,7 +30,7 @@ final class MediaSourceTest extends ViewModelTest
             new MediaSourceFallback($data['fallback']['content'], $data['fallback']['isExternal'])
         );
 
-        $this->assertSameValuesWithoutOrder($mediaSource, $data);
+        $this->assertSameValuesWithoutOrder($mediaSource->toArray(), $data);
     }
 
     public function viewModelProvider() : array

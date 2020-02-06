@@ -5,9 +5,9 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Image;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-final class ImageTest extends PHPUnit_Framework_TestCase
+final class ImageTest extends TestCase
 {
     /**
      * @test
@@ -83,6 +83,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
      */
     public function it_may_have_a_non_integer_srcset_key()
     {
-        new Image('/foo.png', ['1' => '/bar.png', '1.5' => '/baz.png']);
+        $image = new Image('/foo.png', $srcset = ['1' => '/bar.png', '1.5' => '/baz.png']);
+        $this->assertSame('/bar.png 1x, /baz.png 1.5x', $image['srcset']);
     }
 }

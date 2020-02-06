@@ -5,11 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Yaml\Yaml;
 
-abstract class ViewModelTest extends PHPUnit_Framework_TestCase
+abstract class ViewModelTest extends TestCase
 {
     /**
      * @test
@@ -54,10 +54,14 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $viewModel = $this->createViewModel();
         $data = $viewModel->toArray();
 
-        foreach ($data as $key => $value) {
-            $actual = $this->handleValue($viewModel[$key]);
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $actual = $this->handleValue($viewModel[$key]);
 
-            $this->assertSame($value, $actual);
+                $this->assertSame($value, $actual);
+            }
+        } else {
+            $this->assertSame([], $data);
         }
     }
 

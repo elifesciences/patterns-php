@@ -110,7 +110,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             new Link('log out link text', '/log-out-link-uri')
         );
 
-        $this->assertSameWithoutOrder(
+        $this->assertEquals(
             new Link('log out link text', '/log-out-link-uri'),
             $contentHeaderProfile['logoutLink']);
     }
@@ -129,7 +129,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             ]
         );
 
-        $this->assertSameWithoutOrder(
+        $this->assertEquals(
             [
                 new Link('link 1 text', 'link 1 url'),
                 new Link('link 2 text', 'link 2 url'),
