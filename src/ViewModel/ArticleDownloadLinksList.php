@@ -27,7 +27,7 @@ final class ArticleDownloadLinksList implements ViewModel
         $this->groups = array_map(function (string $title, array $items) {
             Assertion::notBlank($title);
             Assertion::notEmpty($items);
-            Assertion::allIsInstanceOf($items, Link::class);
+            Assertion::allIsInstanceOf($items, ArticleDownloadLink::class);
 
             return [
                 'title' => $title,

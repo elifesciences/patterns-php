@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\ArticleDownloadLink;
 use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
@@ -18,16 +19,22 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'description' => 'description',
             'groups' => [
                 [
-                    'title' => 'group',
+                    'title' => 'group title',
                     'items' => [
                         [
-                            'name' => 'name',
-                            'url' => 'url',
-                            'attributes' => [
-                                [
-                                    'key' => 'key',
-                                    'value' => 'value',
+                            'primary' => [
+                                'name' => 'primary name',
+                                'url' => 'primary url',
+                                'attributes' => [
+                                    [
+                                        'key' => 'key',
+                                        'value' => 'value',
+                                    ],
                                 ],
+                            ],
+                            'secondary' => [
+                                'name' => 'secondary name',
+                                'url' => 'secondary url',
                             ],
                         ],
                     ],
@@ -35,7 +42,18 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             ],
         ];
 
-        $downloadList = new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url', false, ['key' => 'value'])]]);
+        $downloadList = new ArticleDownloadLinksList(
+            'id',
+            'description',
+            [
+                'group title' => [
+                    new ArticleDownloadLink(
+                        new Link('primary name', 'primary url', false, ['key' => 'value']),
+                        new Link('secondary name', 'secondary url')
+                    ),
+                ],
+            ]
+        );
 
         $this->assertSame($data, $downloadList->toArray());
     }
@@ -47,7 +65,15 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('', 'description', ['group' => [new Link('name', 'url')]]);
+        new ArticleDownloadLinksList(
+            '',
+            'description',
+            [
+                'group title' => [
+                    new ArticleDownloadLink(new Link('name', 'url')),
+                ],
+            ]
+        );
     }
 
     /**
@@ -57,7 +83,15 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('id', '', ['group' => [new Link('name', 'url')]]);
+        new ArticleDownloadLinksList(
+            'id',
+            '',
+            [
+                'group title' => [
+                    new ArticleDownloadLink(new Link('name', 'url')),
+                ],
+            ]
+        );
     }
 
     /**
@@ -73,27 +107,43 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     /**
      * @test
      */
-    public function groups_must_have_at_least_1_link()
+    public function groups_must_have_at_least_1_item()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('id', 'description', ['group' => []]);
-    }
-
-    /**
-     * @test
-     */
-    public function groups_must_have_a_link()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new ArticleDownloadLinksList('id', 'description', ['group' => ['foo']]);
+        new ArticleDownloadLinksList('id', 'description', ['group title' => []]);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleDownloadLinksList('id', 'description', ['group' => [new Link('name', 'url', false, ['key' => 'value'])]])],
+            [
+                new ArticleDownloadLinksList(
+                    'id',
+                    'description',
+                    [
+                        'group title' => [
+                            new ArticleDownloadLink(
+                                new Link('name', 'url', false, ['key' => 'value'])
+                            ),
+                        ],
+                    ]
+                ),
+            ],
+            [
+                new ArticleDownloadLinksList(
+                    'id',
+                    'description',
+                    [
+                        'group title' => [
+                            new ArticleDownloadLink(
+                                new Link('name', 'url', false, ['key' => 'value']),
+                                new Link('name', 'url', false, ['key' => 'value'])
+                            ),
+                        ],
+                    ]
+                ),
+            ],
         ];
     }
 
