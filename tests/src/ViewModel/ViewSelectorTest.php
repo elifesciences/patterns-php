@@ -35,8 +35,8 @@ final class ViewSelectorTest extends ViewModelTest
                 [
                     'name' => 'link 3',
                     'url' => 'link3',
-                ]
-            ]
+                ],
+            ],
         ];
 
         $viewSelector = new ViewSelector($data['articleUrl'], $jumpLinks = array_map(function ($link) {
@@ -44,7 +44,7 @@ final class ViewSelectorTest extends ViewModelTest
         }, $data['jumpLinks']['links']), $data['figureUrl'], $data['figureIsActive'], $data['sideBySideUrl'],
         $otherLinks = array_map(function ($link) {
             return new Link($link['name'], $link['url']);
-        }));
+        }, $data['otherLinks']));
 
         $this->assertSame($data['articleUrl'], $viewSelector['articleUrl']);
         $this->assertEquals($jumpLinks, $viewSelector['jumpLinks']['links']);
