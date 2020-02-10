@@ -25,7 +25,7 @@
         "justinrainbow/json-schema": "^5.0",
         "php-jsonpointer/php-jsonpointer": "^1.0",
         "phpunit/phpunit": "^5.2",
-        "phpspec/prophecy": "^1.6",
+        "phpspec/prophecy": "^1.10",
         "symfony/filesystem": "^3.0",
         "symfony/finder": "^3.0",
         "symfony/process": "^3.0",
