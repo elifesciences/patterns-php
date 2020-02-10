@@ -51,7 +51,7 @@ final class ViewSelectorTest extends ViewModelTest
         $this->assertSame($data['figureUrl'], $viewSelector['figureUrl']);
         $this->assertSame($data['figureIsActive'], $viewSelector['figureIsActive']);
         $this->assertSame($data['sideBySideUrl'], $viewSelector['sideBySideUrl']);
-        $this->assertSame($data['otherLinks'], $viewSelector['otherLinks']);
+        $this->assertEquals($otherLinks, $viewSelector['otherLinks']);
         $this->assertSameWithoutOrder($data, $viewSelector);
     }
 
