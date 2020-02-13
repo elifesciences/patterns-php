@@ -50,8 +50,7 @@ final class TeaserTest extends ViewModelTest
             null,
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
-                $data['footer']['formats']['html'],
-                $data['footer']['formats']['pdf']
+                $data['footer']['formats']['list']
             )
         );
         $this->assertSameWithoutOrder($data, $actual);
@@ -74,8 +73,7 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
-                $data['footer']['formats']['html'],
-                $data['footer']['formats']['pdf']
+                $data['footer']['formats']['list']
             )
         );
         $this->assertSameWithoutOrder($data, $actual);
@@ -98,8 +96,7 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
-                $data['footer']['formats']['html'],
-                $data['footer']['formats']['pdf']
+                $data['footer']['formats']['list']
             )
         );
         $this->assertSameWithoutOrder($data, $actual);
