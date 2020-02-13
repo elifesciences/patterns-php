@@ -250,12 +250,14 @@ properties:
                                         - text
                         formats:
                             type: object
-                            minProperties: 1
                             properties:
-                                html:
-                                    type: boolean
-                                pdf:
-                                    type: boolean
+                                list:
+                                    type: array
+                                    minItems: 1
+                                    item:
+                                        type: string
+                            required:
+                                - list
                     required:
                         - meta
             dependencies:
