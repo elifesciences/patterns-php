@@ -2,6 +2,7 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
@@ -16,19 +17,21 @@ final class TeaserFooter implements CastsToArray
 
     private function __construct(
         Meta $meta,
-        bool $html = false,
-        bool $pdf = false
+        array $formats = []
     ) {
+        Assertion::allString($formats);
+
         $this->meta = $meta;
-        $this->formats = array_filter(compact('html', 'pdf'));
+        if ($formats) {
+            $this->formats = ['list' => $formats];
+        }
     }
 
     public static function forArticle(
         Meta $meta,
-        bool $html = false,
-        bool $pdf = false
+        array $formats = []
     ) {
-        return new static($meta, $html, $pdf);
+        return new static($meta, $formats);
     }
 
     public static function forNonArticle(
