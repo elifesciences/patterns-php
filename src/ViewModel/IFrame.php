@@ -13,16 +13,18 @@ final class IFrame implements ViewModel, IsCaptioned
     use ArrayFromProperties;
 
     private $src;
+    private $title;
     private $allowFullScreen;
     private $paddingBottom;
 
-    public function __construct(string $src, int $width, int $height, bool $allowFullScreen = true)
+    public function __construct(string $src, int $width, int $height, string $title = null, bool $allowFullScreen = true)
     {
         Assertion::notBlank($src);
         Assertion::min($width, 1);
         Assertion::min($height, 1);
 
         $this->src = $src;
+        $this->title = $title;
         $this->paddingBottom = ($height / $width) * 100;
         $this->allowFullScreen = $allowFullScreen;
     }
