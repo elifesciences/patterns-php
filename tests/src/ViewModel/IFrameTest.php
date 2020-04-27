@@ -19,7 +19,7 @@ final class IFrameTest extends ViewModelTest
             'paddingBottom' => 100,
         ];
 
-        $iFrame = new IFrame($data['src'], 100, 100, 'Title', $data['allowFullScreen']);
+        $iFrame = new IFrame($data['src'], 100, 100, $data['title'], $data['allowFullScreen']);
 
         $this->assertSame($iFrame['src'], $data['src']);
         $this->assertSame($iFrame['title'], $data['title']);
