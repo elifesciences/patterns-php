@@ -17,10 +17,10 @@ final class Tweet implements ViewModel
     private $accountLabel;
     private $text;
     private $date;
-    private $hideConversaion;
+    private $hideConversation;
     private $hideCards;
 
-    public function __construct(string $url, string $accountId, string $accountLabel, array $text, Date $date, bool $hideConversaion = false, bool $hideCards = false)
+    public function __construct(string $url, string $accountId, string $accountLabel, array $text, Date $date, bool $hideConversation = true, bool $hideCards = true)
     {
         Assertion::notBlank($url);
         Assertion::notBlank($accountId);
@@ -36,7 +36,7 @@ final class Tweet implements ViewModel
         $this->accountLabel = $accountLabel;
         $this->text = $text;
         $this->date = $date;
-        $this->hideConversaion = $hideConversaion;
+        $this->hideConversation = $hideConversation;
         $this->hideCards = $hideCards;
     }
 

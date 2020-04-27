@@ -226,10 +226,10 @@ allOf:
                                     - forMachine
                             hideConversation:
                                 type: boolean
-                                default: false
+                                default: true
                             hideCards:
                                 type: boolean
-                                default: false
+                                default: true
                         required:
                             - url
                             - accountId
