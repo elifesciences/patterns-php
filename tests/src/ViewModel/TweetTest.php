@@ -4,7 +4,6 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Date;
-use eLife\Patterns\ViewModel\Paragraph;
 use eLife\Patterns\ViewModel\Tweet;
 
 final class TweetTest extends ViewModelTest
