@@ -18,17 +18,17 @@ final class TweetTest extends ViewModelTest
             'url' => 'http://www.example.com/',
             'accountId' => 'accountId',
             'accountLabel' => 'accountLabel',
-            'text' => [(new Paragraph('tweet'))->toArray()],
+            'text' => 'tweet',
             'date' => Date::simple(new DateTimeImmutable('2000-01-01'))->toArray(),
             'hideConversation' => false,
             'hideCards' => false,
         ];
-        $tweet = new Tweet('http://www.example.com/', 'accountId', 'accountLabel', [new Paragraph('tweet')], Date::simple(new DateTimeImmutable('2000-01-01')), false, false);
+        $tweet = new Tweet('http://www.example.com/', 'accountId', 'accountLabel', 'tweet', Date::simple(new DateTimeImmutable('2000-01-01')), false, false);
 
         $this->assertSame($data['url'], $tweet['url']);
         $this->assertSame($data['accountId'], $tweet['accountId']);
         $this->assertSame($data['accountLabel'], $tweet['accountLabel']);
-        $this->assertSame($data['text'][0], $tweet['text'][0]->toArray());
+        $this->assertSame($data['text'], $tweet['text']);
         $this->assertSame($data['date'], $tweet['date']->toArray());
         $this->assertSame($data['hideConversation'], $tweet['hideConversation']);
         $this->assertSame($data['hideCards'], $tweet['hideCards']);
@@ -38,8 +38,8 @@ final class TweetTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new Tweet('http://www.example.com/', 'accountId', 'accountLabel', [new Paragraph('tweet')], Date::simple(new DateTimeImmutable('2000-01-01')))],
-            'complete' => [new Tweet('http://www.example.com/', 'accountId', 'accountLabel', [new Paragraph('tweet')], Date::simple(new DateTimeImmutable('2000-01-01')), false, false)],
+            'minimum' => [new Tweet('http://www.example.com/', 'accountId', 'accountLabel', 'tweet', Date::simple(new DateTimeImmutable('2000-01-01')))],
+            'complete' => [new Tweet('http://www.example.com/', 'accountId', 'accountLabel', 'tweet', Date::simple(new DateTimeImmutable('2000-01-01')), false, false)],
         ];
     }
 

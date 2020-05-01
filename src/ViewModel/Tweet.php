@@ -20,13 +20,12 @@ final class Tweet implements ViewModel
     private $hideConversation;
     private $hideCards;
 
-    public function __construct(string $url, string $accountId, string $accountLabel, array $text, Date $date, bool $hideConversation = true, bool $hideCards = true)
+    public function __construct(string $url, string $accountId, string $accountLabel, string $text, Date $date, bool $hideConversation = true, bool $hideCards = true)
     {
         Assertion::notBlank($url);
         Assertion::notBlank($accountId);
         Assertion::notBlank($accountLabel);
-        Assertion::notEmpty($text);
-        Assertion::allIsInstanceOf($text, Paragraph::class);
+        Assertion::notBlank($text);
         if ($date instanceof Date) {
             Assertion::false($date['isExpanded']);
         }
