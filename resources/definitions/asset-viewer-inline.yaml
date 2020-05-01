@@ -218,17 +218,8 @@ properties:
                                                 type: string
                                                 minLength: 1
                                             text:
-                                                type: array
-                                                items:
-                                                    $schema: 'http://json-schema.org/draft-04/schema#'
-                                                    type: object
-                                                    properties:
-                                                        text:
-                                                            type: string
-                                                            minLength: 1
-                                                    required:
-                                                        - text
-                                                minItems: 1
+                                                type: string
+                                                minLength: 1
                                             date:
                                                 $schema: 'http://json-schema.org/draft-04/schema#'
                                                 type: object
