@@ -14,13 +14,15 @@ final class IFrameTest extends ViewModelTest
     {
         $data = [
             'src' => 'http://www.example.com/',
+            'title' => 'Title',
             'allowFullScreen' => true,
             'paddingBottom' => 100,
         ];
 
-        $iFrame = new IFrame($data['src'], 100, 100, $data['allowFullScreen']);
+        $iFrame = new IFrame($data['src'], 100, 100, $data['title'], $data['allowFullScreen']);
 
         $this->assertSame($iFrame['src'], $data['src']);
+        $this->assertSame($iFrame['title'], $data['title']);
         $this->assertSame($iFrame['allowFullScreen'], $data['allowFullScreen']);
         $this->assertSame($iFrame['paddingBottom'], $data['paddingBottom']);
         $this->assertSame($iFrame->toArray(), $data);
@@ -31,8 +33,10 @@ final class IFrameTest extends ViewModelTest
         return [
             'square' => [new IFrame('http://www.example.com/', 100, 100)],
             'tall' => [new IFrame('http://www.example.com/', 100, 200)],
-            'allow full screen' => [new IFrame('http://www.example.com/', 100, 100, true)],
-            'don\'t allow full screen' => [new IFrame('http://www.example.com/', 100, 100, false)],
+            'with title' => [new IFrame('http://www.example.com/', 100, 200, 'Title')],
+            'without title' => [new IFrame('http://www.example.com/', 100, 200)],
+            'allow full screen' => [new IFrame('http://www.example.com/', 100, 100, null, true)],
+            'don\'t allow full screen' => [new IFrame('http://www.example.com/', 100, 100, null, false)],
         ];
     }
 
