@@ -24,7 +24,7 @@ final class OrcidVisibilitySettingErrorTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new OrcidVisibilitySettingError('/contact')],
+            [new OrcidVisibilitySettingError('/contact')],
         ];
     }
 
