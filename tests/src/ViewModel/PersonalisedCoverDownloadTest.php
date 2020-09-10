@@ -4,8 +4,10 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ButtonCollection;
+use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Paragraph;
 use eLife\Patterns\ViewModel\PersonalisedCoverDownload;
+use eLife\Patterns\ViewModel\Picture;
 use InvalidArgumentException;
 
 final class PersonalisedCoverDownloadTest extends ViewModelTest
@@ -24,20 +26,33 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
             'buttonCollection' => [
                 'buttons' => [
                     [
-                        'classes' => 'button--default',
+                        'classes' => 'button--variation',
                         'path' => 'path',
                         'text' => 'text',
+                        'size' => 'custom',
+                        'style' => 'variation',
                     ],
                 ],
                 'centered' => true,
+            ],
+            'uncheckedValue' => 'A4',
+            'checkedValue' => 'US Letter',
+            'image' => [
+                'fallback' => [
+                    'altText' => '',
+                    'defaultPath' => '/default/path',
+                ],
             ],
         ];
 
         $download = new PersonalisedCoverDownload(array_map(function (array $paragraph) {
             return new Paragraph($paragraph['text']);
-        }, $data['text']), new ButtonCollection([Button::link($data['buttonCollection']['buttons'][0]['text'], $data['buttonCollection']['buttons'][0]['path'])]));
+        }, $data['text']), new ButtonCollection([Button::link($data['buttonCollection']['buttons'][0]['text'], $data['buttonCollection']['buttons'][0]['path'], $data['buttonCollection']['buttons'][0]['size'], $data['buttonCollection']['buttons'][0]['style'])]), $data['uncheckedValue'], $data['checkedValue'], new Picture([], new Image($data['image']['fallback']['defaultPath'])));
 
         $this->assertSameWithoutOrder($data['text'], $download['text']);
+        // remove certain data before comparing, where button attributes are not set
+        unset($data['buttonCollection']['buttons'][0]['size']);
+        unset($data['buttonCollection']['buttons'][0]['style']);
         $this->assertSame($data['buttonCollection'], $download['buttonCollection']->toArray());
         $this->assertSame($data, $download->toArray());
     }
@@ -49,7 +64,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new PersonalisedCoverDownload([], new ButtonCollection([Button::link('text', 'path')]));
+        new PersonalisedCoverDownload([], new ButtonCollection([Button::link('text', 'path')]), '', '', null);
     }
 
     /**
@@ -59,13 +74,13 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new PersonalisedCoverDownload(['foo'], new ButtonCollection([Button::link('text', 'path')]));
+        new PersonalisedCoverDownload(['foo'], new ButtonCollection([Button::link('text', 'path')]), '', '', null);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new PersonalisedCoverDownload([new Paragraph('foo')], new ButtonCollection([Button::link('text', 'path')]))],
+            [new PersonalisedCoverDownload([new Paragraph('foo')], new ButtonCollection([Button::link('text', 'path')]), '', '', null)],
         ];
     }
 

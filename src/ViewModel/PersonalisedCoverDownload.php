@@ -14,8 +14,11 @@ final class PersonalisedCoverDownload implements ViewModel
 
     private $text;
     private $buttonCollection;
+    private $uncheckedValue;
+    private $checkedValue;
+    private $image;
 
-    public function __construct(array $text, ButtonCollection $buttonCollection)
+    public function __construct(array $text, ButtonCollection $buttonCollection, string $uncheckedValue, string $checkedValue, Picture $image = null)
     {
         Assertion::notEmpty($text);
         Assertion::allIsInstanceOf($text, Paragraph::class);
@@ -27,6 +30,9 @@ final class PersonalisedCoverDownload implements ViewModel
 
         $this->text = $text;
         $this->buttonCollection = $buttonCollection;
+        $this->uncheckedValue = $uncheckedValue;
+        $this->checkedValue = $checkedValue;
+        $this->image = $image;
     }
 
     public function getTemplateName() : string
