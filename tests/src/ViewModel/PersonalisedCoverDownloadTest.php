@@ -26,11 +26,9 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
             'buttonCollection' => [
                 'buttons' => [
                     [
-                        'classes' => 'button--variation',
+                        'classes' => 'button--default personalised__button button__gtm-download-pdf',
                         'path' => 'path',
                         'text' => 'text',
-                        'size' => 'custom',
-                        'style' => 'variation',
                     ],
                 ],
                 'centered' => true,
@@ -47,7 +45,19 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
 
         $download = new PersonalisedCoverDownload(array_map(function (array $paragraph) {
             return new Paragraph($paragraph['text']);
-        }, $data['text']), new ButtonCollection([Button::link($data['buttonCollection']['buttons'][0]['text'], $data['buttonCollection']['buttons'][0]['path'], $data['buttonCollection']['buttons'][0]['size'], $data['buttonCollection']['buttons'][0]['style'])]), $data['uncheckedValue'], $data['checkedValue'], new Picture([], new Image($data['image']['fallback']['defaultPath'])));
+        }, $data['text']), new ButtonCollection([
+                Button::link(
+                    $data['buttonCollection']['buttons'][0]['text'],
+                    $data['buttonCollection']['buttons'][0]['path'],
+                    Button::SIZE_MEDIUM,
+                    Button::STYLE_DEFAULT,
+                    true,
+                    false,
+                    null,
+                    $data['buttonCollection']['buttons'][0]['classes']
+                ),
+            ]),
+            $data['uncheckedValue'], $data['checkedValue'], new Picture([], new Image($data['image']['fallback']['defaultPath'])));
 
         $this->assertSameWithoutOrder($data['text'], $download['text']);
         // remove certain data before comparing, where button attributes are not set

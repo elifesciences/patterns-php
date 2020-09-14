@@ -18,7 +18,6 @@ final class Button implements ViewModel
     const STYLE_LOGIN = 'login';
     const STYLE_OUTLINE = 'outline';
     const STYLE_SPEECH_BUBBLE = 'speech-bubble';
-    const STYLE_VARIATION = 'variation';
 
     const TYPE_BUTTON = 'button';
     const TYPE_SUBMIT = 'submit';
@@ -34,11 +33,11 @@ final class Button implements ViewModel
     private $id;
     private $name;
 
-    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
+    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true, string $class = null)
     {
         Assertion::notBlank($text);
         Assertion::choice($size, [self::SIZE_CUSTOM, self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
-        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE, self::STYLE_SPEECH_BUBBLE, self::STYLE_VARIATION]);
+        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE, self::STYLE_SPEECH_BUBBLE]);
         if (self::STYLE_LOGIN === $style) {
             Assertion::true(self::SIZE_EXTRA_SMALL === $size);
         }
@@ -61,6 +60,14 @@ final class Button implements ViewModel
 
         if (true === $isFullWidth) {
             $classes[] = 'button--full';
+        }
+
+        if ($class !== null) {
+            foreach (explode(' ', $class) as $className) {
+                if (trim($className) !== '' && !(in_array($className, $classes))) {
+                    $classes[] = trim($className);
+                }
+            }
         }
 
         $this->text = $text;
@@ -94,11 +101,12 @@ final class Button implements ViewModel
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
         bool $isFullWidth = false,
-        string $id = null
+        string $id = null,
+        string $class = null
     ) : Button {
         Assertion::notBlank($path);
 
-        $button = new static($text, $size, $style, $isActive, null, $id, $isFullWidth);
+        $button = new static($text, $size, $style, $isActive, null, $id, $isFullWidth, $class);
         $button->path = $path;
 
         return $button;
