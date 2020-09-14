@@ -62,9 +62,9 @@ final class Button implements ViewModel
             $classes[] = 'button--full';
         }
 
-        if ($class !== null) {
+        if (null !== $class) {
             foreach (explode(' ', $class) as $className) {
-                if (trim($className) !== '' && !(in_array($className, $classes))) {
+                if ('' !== trim($className) && !(in_array($className, $classes))) {
                     $classes[] = trim($className);
                 }
             }
