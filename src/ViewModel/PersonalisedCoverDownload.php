@@ -23,11 +23,6 @@ final class PersonalisedCoverDownload implements ViewModel
         Assertion::notEmpty($text);
         Assertion::allIsInstanceOf($text, Paragraph::class);
 
-        if (!$buttonCollection['centered']) {
-            $buttonCollection = FlexibleViewModel::fromViewModel($buttonCollection)
-                ->withProperty('centered', true);
-        }
-
         $this->text = $text;
         $this->buttonCollection = $buttonCollection;
         $this->uncheckedValue = $uncheckedValue;

@@ -31,7 +31,6 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
                         'text' => 'text',
                     ],
                 ],
-                'centered' => true,
             ],
             'uncheckedValue' => 'A4',
             'checkedValue' => 'US Letter',
