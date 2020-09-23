@@ -25,7 +25,7 @@ properties:
             required:
                 - text
         minItems: 1
-    image:
+    picture:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
@@ -59,6 +59,8 @@ properties:
                     srcset:
                         type: string
                         pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                    sizes:
+                        type: string
                     defaultPath:
                         type: string
                         minLength: 1
@@ -71,7 +73,80 @@ properties:
                     - altText
         required:
             - fallback
-    buttonCollection:
+    a4ListHeading:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            heading:
+                type: string
+                minLength: 1
+            headingId:
+                type: string
+        required:
+            - heading
+    a4ButtonCollection:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            compact:
+                type: boolean
+            centered:
+                type: boolean
+            buttons:
+                type: array
+                minItems: 1
+                items:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    allOf:
+                        -
+                            properties:
+                                text:
+                                    type: string
+                                    minLength: 1
+                                classes:
+                                    type: string
+                            required:
+                                - text
+                        -
+                            oneOf:
+                                -
+                                    properties:
+                                        type:
+                                            type: string
+                                            enum:
+                                                - button
+                                                - reset
+                                                - submit
+                                        id:
+                                            type: string
+                                            minLength: 1
+                                        name:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - type
+                                -
+                                    properties:
+                                        path:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - path
+        required:
+            - buttons
+    letterListHeading:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            heading:
+                type: string
+                minLength: 1
+            headingId:
+                type: string
+        required:
+            - heading
+    letterButtonCollection:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
@@ -124,5 +199,8 @@ properties:
             - buttons
 required:
     - text
-    - image
-    - buttonCollection
+    - picture
+    - a4ListHeading
+    - a4ButtonCollection
+    - letterListHeading
+    - letterButtonCollection
