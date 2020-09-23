@@ -13,20 +13,33 @@ final class PersonalisedCoverDownload implements ViewModel
     use ArrayFromProperties;
 
     private $text;
-    private $buttonCollection;
+    private $picture;
+    private $a4ListHeading;
+    private $a4ButtonCollection;
+    private $letterListHeading;
+    private $letterButtonCollection;
 
-    public function __construct(array $text, ButtonCollection $buttonCollection)
+    public function __construct(array $text, Picture $picture, ListHeading $a4ListHeading, ButtonCollection $a4ButtonCollection, ListHeading $letterListHeading, ButtonCollection $letterButtonCollection)
     {
         Assertion::notEmpty($text);
         Assertion::allIsInstanceOf($text, Paragraph::class);
 
-        if (!$buttonCollection['centered']) {
-            $buttonCollection = FlexibleViewModel::fromViewModel($buttonCollection)
+        if (!$a4ButtonCollection['centered']) {
+            $a4ButtonCollection = FlexibleViewModel::fromViewModel($a4ButtonCollection)
+                ->withProperty('centered', true);
+        }
+
+        if (!$letterButtonCollection['centered']) {
+            $letterButtonCollection = FlexibleViewModel::fromViewModel($letterButtonCollection)
                 ->withProperty('centered', true);
         }
 
         $this->text = $text;
-        $this->buttonCollection = $buttonCollection;
+        $this->picture = $picture;
+        $this->a4ListHeading = $a4ListHeading;
+        $this->a4ButtonCollection = $a4ButtonCollection;
+        $this->letterListHeading = $letterListHeading;
+        $this->letterButtonCollection = $letterButtonCollection;
     }
 
     public function getTemplateName() : string
