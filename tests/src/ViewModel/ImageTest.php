@@ -28,13 +28,15 @@ final class ImageTest extends PHPUnit_Framework_TestCase
             'altText' => 'altText',
             'defaultPath' => '/foo.png',
             'srcset' => '/baz.png 2x, /bar.png 1x',
+            'sizes' => '10px',
         ];
 
-        $image = new Image('/foo.png', ['2' => '/baz.png', '1' => '/bar.png'], 'altText');
+        $image = new Image('/foo.png', ['2' => '/baz.png', '1' => '/bar.png'], 'altText', '10px');
 
         $this->assertSame($data['defaultPath'], $image['defaultPath']);
         $this->assertSame($data['srcset'], $image['srcset']);
         $this->assertSame($data['altText'], $image['altText']);
+        $this->assertSame($data['sizes'], $image['sizes']);
         $this->assertSame($data, $image->toArray());
     }
 

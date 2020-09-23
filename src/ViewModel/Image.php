@@ -15,8 +15,9 @@ final class Image implements CastsToArray, IsCaptioned
     private $altText;
     private $defaultPath;
     private $srcset;
+    private $sizes;
 
-    public function __construct(string $defaultPath, array $srcset = [], string $altText = '')
+    public function __construct(string $defaultPath, array $srcset = [], string $altText = '', string $sizes = '')
     {
         Assertion::notBlank($defaultPath);
         Assertion::allNumeric(array_keys($srcset));
@@ -34,5 +35,6 @@ final class Image implements CastsToArray, IsCaptioned
             $this->srcset = implode(', ', $this->srcset);
         }
         $this->altText = $altText;
+        $this->sizes = $sizes;
     }
 }
