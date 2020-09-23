@@ -273,8 +273,7 @@ final class ContentHeaderTest extends ViewModelTest
                 new ContentHeader('title', new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-                    'the alt text',
-                    ['class-1', 'class-2'])), 'image credit', true), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
+                    'the alt text')), 'image credit', true), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
             ],
         ];
     }
