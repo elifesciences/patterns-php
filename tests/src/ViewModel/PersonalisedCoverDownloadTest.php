@@ -62,7 +62,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
 
         $download = new PersonalisedCoverDownload(array_map(function (array $paragraph) {
             return new Paragraph($paragraph['text']);
-        }, $data['text']), new Picture([], new Image($data['image']['fallback']['defaultPath'])), new ListHeading($data['a4ListHeading']['heading'], $data['a4ListHeading']['headingId']), new ButtonCollection([Button::link($data['a4ButtonCollection']['buttons'][0]['text'], $data['a4ButtonCollection']['buttons'][0]['path'])]), new ListHeading($data['letterListHeading']['heading'], $data['letterListHeading']['headingId']), new ButtonCollection([Button::link($data['letterButtonCollection']['buttons'][0]['text'], $data['letterButtonCollection']['buttons'][0]['path'])]));
+        }, $data['text']), new Picture([], new Image($data['picture']['fallback']['defaultPath'])), new ListHeading($data['a4ListHeading']['heading'], $data['a4ListHeading']['headingId']), new ButtonCollection([Button::link($data['a4ButtonCollection']['buttons'][0]['text'], $data['a4ButtonCollection']['buttons'][0]['path'])]), new ListHeading($data['letterListHeading']['heading'], $data['letterListHeading']['headingId']), new ButtonCollection([Button::link($data['letterButtonCollection']['buttons'][0]['text'], $data['letterButtonCollection']['buttons'][0]['path'])]));
 
         $this->assertSameWithoutOrder($data['text'], $download['text']);
         $this->assertSame($data['a4ListHeading'], $download['a4ListHeading']->toArray());
