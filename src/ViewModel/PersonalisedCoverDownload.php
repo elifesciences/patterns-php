@@ -34,6 +34,12 @@ final class PersonalisedCoverDownload implements ViewModel
                 ->withProperty('centered', true);
         }
 
+        $a4ButtonCollection = FlexibleViewModel::fromViewModel($a4ButtonCollection)
+            ->withProperty('classes', 'button-collection--a4');
+
+        $letterButtonCollection = FlexibleViewModel::fromViewModel($letterButtonCollection)
+            ->withProperty('classes', 'button-collection--latter');
+
         $this->text = $text;
         $this->picture = $picture;
         $this->a4ListHeading = $a4ListHeading;
