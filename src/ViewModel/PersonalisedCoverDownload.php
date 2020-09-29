@@ -38,7 +38,7 @@ final class PersonalisedCoverDownload implements ViewModel
             ->withProperty('classes', 'button-collection--a4');
 
         $letterButtonCollection = FlexibleViewModel::fromViewModel($letterButtonCollection)
-            ->withProperty('classes', 'button-collection--latter');
+            ->withProperty('classes', 'button-collection--letter');
 
         $this->text = $text;
         $this->picture = $picture;
