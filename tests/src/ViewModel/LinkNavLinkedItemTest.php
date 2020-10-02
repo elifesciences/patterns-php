@@ -19,7 +19,7 @@ final class LinkNavLinkedItemTest extends ViewModelTest
             [
                 ['srcset' => '/path/to/svg'],
             ],
-            new Image('/default/image/path', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt', ['image-class'])
+            new Image('/default/image/path', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt')
         );
     }
 
