@@ -42,7 +42,6 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
                         'text' => 'text',
                     ],
                 ],
-                'centered' => true,
                 'classes' => 'button-collection--a4',
             ],
             'letterListHeading' => [
@@ -57,7 +56,6 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
                         'text' => 'text',
                     ],
                 ],
-                'centered' => true,
                 'classes' => 'button-collection--letter',
             ],
         ];
