@@ -55,6 +55,8 @@ allOf:
                                     srcset:
                                         type: string
                                         pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                                    sizes:
+                                        type: string
                                     defaultPath:
                                         type: string
                                         minLength: 1
@@ -208,6 +210,8 @@ allOf:
                                                     srcset:
                                                         type: string
                                                         pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                                                    sizes:
+                                                        type: string
                                                     defaultPath:
                                                         type: string
                                                         minLength: 1
