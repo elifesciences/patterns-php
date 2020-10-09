@@ -19,6 +19,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
+            'title' => 'title',
             'text' => [
                 [
                     'text' => 'foo',
@@ -60,10 +61,19 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
             ],
         ];
 
-        $download = new PersonalisedCoverDownload(array_map(function (array $paragraph) {
-            return new Paragraph($paragraph['text']);
-        }, $data['text']), new Picture([], new Image($data['picture']['fallback']['defaultPath'])), new ListHeading($data['a4ListHeading']['heading'], $data['a4ListHeading']['headingId']), new ButtonCollection([Button::link($data['a4ButtonCollection']['buttons'][0]['text'], $data['a4ButtonCollection']['buttons'][0]['path'])]), new ListHeading($data['letterListHeading']['heading'], $data['letterListHeading']['headingId']), new ButtonCollection([Button::link($data['letterButtonCollection']['buttons'][0]['text'], $data['letterButtonCollection']['buttons'][0]['path'])]));
+        $download = new PersonalisedCoverDownload(
+            $data['title'],
+            array_map(function (array $paragraph) {
+                return new Paragraph($paragraph['text']);
+            }, $data['text']),
+            new Picture([], new Image($data['picture']['fallback']['defaultPath'])),
+            new ListHeading($data['a4ListHeading']['heading'], $data['a4ListHeading']['headingId']),
+            new ButtonCollection([Button::link($data['a4ButtonCollection']['buttons'][0]['text'], $data['a4ButtonCollection']['buttons'][0]['path'])]),
+            new ListHeading($data['letterListHeading']['heading'], $data['letterListHeading']['headingId']),
+            new ButtonCollection([Button::link($data['letterButtonCollection']['buttons'][0]['text'], $data['letterButtonCollection']['buttons'][0]['path'])])
+        );
 
+        $this->assertSame($data['title'], $download['title']);
         $this->assertSameWithoutOrder($data['text'], $download['text']);
         $this->assertSame($data['a4ListHeading'], $download['a4ListHeading']->toArray());
         $this->assertSame($data['a4ButtonCollection'], $download['a4ButtonCollection']->toArray());
@@ -79,7 +89,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new PersonalisedCoverDownload([], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
+        new PersonalisedCoverDownload('title', [], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
     }
 
     /**
@@ -89,13 +99,13 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new PersonalisedCoverDownload(['foo'], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
+        new PersonalisedCoverDownload('title', ['foo'], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new PersonalisedCoverDownload([new Paragraph('foo')], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]))],
+            [new PersonalisedCoverDownload('title', [new Paragraph('foo')], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]))],
         ];
     }
 
