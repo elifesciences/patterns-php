@@ -4,15 +4,6 @@ properties:
     title:
         type: string
         minLength: 1
-    headingLevel:
-        type: integer
-        minimum: 2
-        maximum: 6
-    hasBehaviour:
-        type: boolean
-        default: false
-    isInitiallyClosed:
-        type: boolean
     text:
         type: array
         items:
@@ -202,6 +193,7 @@ properties:
         required:
             - buttons
 required:
+    - title
     - text
     - picture
     - a4ListHeading
