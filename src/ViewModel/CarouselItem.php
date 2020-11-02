@@ -23,7 +23,7 @@ final class CarouselItem implements ViewModel
     private $credit;
     private $creditOverlay;
 
-    public function __construct(array $subjects, Link $title, string $buttonText = null, Meta $meta, ContentHeaderImage $image)
+    public function __construct(array $subjects, Link $title, string $buttonText = null, Meta $meta, CarouselItemImage $image)
     {
         Assertion::allIsInstanceOf($subjects, Link::class);
 

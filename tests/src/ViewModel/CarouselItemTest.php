@@ -3,7 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\CarouselItem;
-use eLife\Patterns\ViewModel\ContentHeaderImage;
+use eLife\Patterns\ViewModel\CarouselItemImage;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
@@ -44,12 +44,11 @@ final class CarouselItemTest extends ViewModelTest
                 ],
                 'credit' => [
                     'text' => 'image credit',
-                ],
-                'creditOverlay' => true,
+                ]
             ],
         ];
 
-        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item with a long title', 'carousel-item-url'), 'button', Meta::withText('meta'), new ContentHeaderImage(new Picture([], new Image('/default/path')), 'image credit', true));
+        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item with a long title', 'carousel-item-url'), 'button', Meta::withText('meta'), new CarouselItemImage(new Picture([], new Image('/default/path')), 'image credit'));
 
         $data['image']['credit']['elementId'] = $carouselItem['image']['credit']['elementId'];
 
@@ -76,7 +75,7 @@ final class CarouselItemTest extends ViewModelTest
             new Link($title, 'carousel-item-url'),
             'button',
             Meta::withText('meta'),
-            new ContentHeaderImage(new Picture([], new Image('/default/path')))
+            new CarouselItemImage(new Picture([], new Image('/default/path')))
         );
 
         $this->assertSame($expected, $carouselItem['titleLength']);
@@ -105,7 +104,7 @@ final class CarouselItemTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new ContentHeaderImage(new Picture([], new Image('/default/path')), 'image credit', true))],
+            [new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new CarouselItemImage(new Picture([], new Image('/default/path')), 'image credit'))],
         ];
     }
 
