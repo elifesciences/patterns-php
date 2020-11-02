@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\CarouselItem;
+use eLife\Patterns\ViewModel\ContentHeaderImage;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
@@ -41,10 +42,16 @@ final class CarouselItemTest extends ViewModelTest
                     'altText' => '',
                     'defaultPath' => '/default/path',
                 ],
+                'credit' => [
+                    'text' => 'image credit',
+                ],
+                'creditOverlay' => true,
             ],
         ];
 
-        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item with a long title', 'carousel-item-url'), 'button', Meta::withText('meta'), new Picture([], new Image('/default/path')));
+        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item with a long title', 'carousel-item-url'), 'button', Meta::withText('meta'), new ContentHeaderImage(new Picture([], new Image('/default/path')), 'image credit', true));
+
+        $data['image']['credit']['elementId'] = $carouselItem['image']['credit']['elementId'];
 
         $this->assertSame($data['subjects']['list'][0], $carouselItem['subjects']['list'][0]->toArray());
         $this->assertSame($data['title'], $carouselItem['title']);
@@ -52,7 +59,7 @@ final class CarouselItemTest extends ViewModelTest
         $this->assertSame($data['url'], $carouselItem['url']);
         $this->assertSame($data['button'], $carouselItem['button']->toArray());
         $this->assertSame($data['meta'], $carouselItem['meta']->toArray());
-        $this->assertSame($data['image'], $carouselItem['image']->toArray());
+        $this->assertSameWithoutOrder($data['image'], $carouselItem['image']);
         $this->assertSame($data, $carouselItem->toArray());
     }
 
@@ -69,7 +76,7 @@ final class CarouselItemTest extends ViewModelTest
             new Link($title, 'carousel-item-url'),
             'button',
             Meta::withText('meta'),
-            new Picture([], new Image('/default/path'))
+            new ContentHeaderImage(new Picture([], new Image('/default/path')))
         );
 
         $this->assertSame($expected, $carouselItem['titleLength']);
@@ -98,7 +105,7 @@ final class CarouselItemTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new Picture([], new Image('/default/path')))],
+            [new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new ContentHeaderImage(new Picture([], new Image('/default/path')), 'image credit', true))],
         ];
     }
 

@@ -153,53 +153,72 @@ properties:
                                 required:
                                     - text
                     image:
-                        $schema: 'http://json-schema.org/draft-04/schema#'
-                        type: object
-                        properties:
-                            pictureClasses:
-                                type: string
-                                minLength: 1
-                            sources:
-                                type: array
-                                uniqueItems: true
-                                items:
-                                    type: object
-                                    properties:
-                                        srcset:
-                                            type: string
-                                            minLength: 1
-                                        media:
-                                            type: string
-                                            minLength: 1
-                                        type:
-                                            type: string
-                                            enum:
-                                                - image/svg+xml
-                                                - image/webp
-                                                - image/png
-                                                - image/jpeg
-                                    required:
-                                        - srcset
-                            fallback:
+                        allOf:
+                            -
+                                $schema: 'http://json-schema.org/draft-04/schema#'
                                 type: object
                                 properties:
-                                    srcset:
-                                        type: string
-                                        pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
-                                    sizes:
-                                        type: string
-                                    defaultPath:
+                                    pictureClasses:
                                         type: string
                                         minLength: 1
-                                    altText:
-                                        type: string
-                                    classes:
-                                        type: string
+                                    sources:
+                                        type: array
+                                        uniqueItems: true
+                                        items:
+                                            type: object
+                                            properties:
+                                                srcset:
+                                                    type: string
+                                                    minLength: 1
+                                                media:
+                                                    type: string
+                                                    minLength: 1
+                                                type:
+                                                    type: string
+                                                    enum:
+                                                        - image/svg+xml
+                                                        - image/webp
+                                                        - image/png
+                                                        - image/jpeg
+                                            required:
+                                                - srcset
+                                    fallback:
+                                        type: object
+                                        properties:
+                                            srcset:
+                                                type: string
+                                                pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                                            sizes:
+                                                type: string
+                                            defaultPath:
+                                                type: string
+                                                minLength: 1
+                                            altText:
+                                                type: string
+                                            classes:
+                                                type: string
+                                        required:
+                                            - defaultPath
+                                            - altText
                                 required:
-                                    - defaultPath
-                                    - altText
-                        required:
-                            - fallback
+                                    - fallback
+                            -
+                                properties:
+                                    credit:
+                                        type: object
+                                        properties:
+                                            text:
+                                                type: string
+                                                minLength: 1
+                                            elementId:
+                                                type: string
+                                                minLength: 1
+                                        required:
+                                            - text
+                                            - elementId
+                                    creditOverlay:
+                                        type: boolean
+                                        default: false
                 required:
                     - title
                     - url
