@@ -6,7 +6,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 
-class ContentHeaderImage implements CastsToArray
+final class CarouselItemImage implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -15,9 +15,8 @@ class ContentHeaderImage implements CastsToArray
     private $sources;
     private $pictureClasses;
     private $credit;
-    private $creditOverlay;
 
-    public function __construct(Picture $picture, string $credit = null, bool $creditOverlay = false)
+    public function __construct(Picture $picture, string $credit = null)
     {
         $this->fallback = $picture['fallback'];
         $this->sources = $picture['sources'];
@@ -28,6 +27,5 @@ class ContentHeaderImage implements CastsToArray
                 'elementId' => hash('crc32', json_encode($picture->toArray()).$credit),
             ];
         }
-        $this->creditOverlay = $creditOverlay;
     }
 }
