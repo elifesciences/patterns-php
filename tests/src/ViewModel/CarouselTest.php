@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Carousel;
 use eLife\Patterns\ViewModel\CarouselItem;
+use eLife\Patterns\ViewModel\CarouselItemImage;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListHeading;
@@ -50,13 +51,18 @@ final class CarouselTest extends ViewModelTest
                             'altText' => '',
                             'defaultPath' => '/default/path',
                         ],
+                        'credit' => [
+                            'text' => 'image credit',
+                        ],
                     ],
                 ],
             ],
         ];
 
-        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new Picture([], new Image('/default/path')));
-        $carousel = new Carousel([$carouselItem], new ListHeading('heading', 'headingId'), 'id');
+        $carouselItem = new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new CarouselItemImage(new Picture([], new Image('/default/path')), 'image credit'));
+        $carousel = new Carousel([$carouselItem], new ListHeading('heading', 'headingId'));
+
+        $data['items'][0]['image']['credit']['elementId'] = $carouselItem['image']['credit']['elementId'];
 
         $this->assertSame($data, $carousel->toArray());
     }
@@ -74,7 +80,7 @@ final class CarouselTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Carousel([new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new Picture([], new Image('/default/path')))], new ListHeading('heading'))],
+            [new Carousel([new CarouselItem([new Link('subject', 'subject-url')], new Link('carousel item', 'carousel-item-url'), 'button', Meta::withText('meta'), new CarouselItemImage(new Picture([], new Image('/default/path'))))], new ListHeading('heading'))],
         ];
     }
 

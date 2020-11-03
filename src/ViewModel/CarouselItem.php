@@ -21,7 +21,7 @@ final class CarouselItem implements ViewModel
     private $meta;
     private $image;
 
-    public function __construct(array $subjects, Link $title, string $buttonText = null, Meta $meta, Picture $image)
+    public function __construct(array $subjects, Link $title, string $buttonText = null, Meta $meta, CarouselItemImage $image)
     {
         Assertion::allIsInstanceOf($subjects, Link::class);
 
