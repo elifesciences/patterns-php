@@ -21,7 +21,13 @@ properties:
                 properties:
                     text:
                         type: string
+                    prefix:
+                        type: string
                     isSmall:
+                        type: boolean
+                        enum:
+                            - true
+                    isWrapped:
                         type: boolean
                         enum:
                             - true
