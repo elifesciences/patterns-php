@@ -62,8 +62,8 @@ final class AssetViewerInline implements ViewModel
         if ($supplementCount >= 1) {
             $this->supplementCount = $supplementCount;
             $this->hasMultipleSupplements = $supplementCount > 1;
-            $this->seeAllLink = $seeAllLink;
         }
+        $this->seeAllLink = $seeAllLink;
         $this->captionedAsset = $captionedAsset;
         if (!empty($additionalAssets)) {
             $this->additionalAssets = [new AdditionalAssets(null, $additionalAssets)];
