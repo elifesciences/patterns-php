@@ -55,6 +55,10 @@ properties:
                     - altText
         required:
             - fallback
+    hasPlaceholderImage:
+        type: boolean
+        enum:
+            - true
     profile:
         type: string
         minLength: 1
