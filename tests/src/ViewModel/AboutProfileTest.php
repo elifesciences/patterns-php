@@ -46,6 +46,7 @@ final class AboutProfileTest extends ViewModelTest
                     $data['image']['fallback']['altText']
                 )
             ),
+            false,
             'profile'
         );
 
@@ -64,6 +65,20 @@ final class AboutProfileTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         new AboutProfile('');
+    }
+
+    /**
+     * @test
+     */
+    public function it_may_have_a_placeholder_image()
+    {
+        $with = new AboutProfile('name', null, null, true);
+        $without = new AboutProfile('name');
+
+        $this->assertArrayHasKey('hasPlaceholderImage', $with->toArray());
+        $this->assertTrue($with->toArray()['hasPlaceholderImage']);
+
+        $this->assertArrayNotHasKey('hasPlaceholderImage', $without->toArray());
     }
 
     public function viewModelProvider() : array
