@@ -15,15 +15,19 @@ final class AboutProfile implements ViewModel
     private $name;
     private $role;
     private $image;
+    private $hasPlaceholderImage;
     private $profile;
 
-    public function __construct(string $name, string $role = null, Picture $image = null, string $profile = null)
+    public function __construct(string $name, string $role = null, Picture $image = null, bool $hasPlaceholderImage = false, string $profile = null)
     {
         Assertion::notBlank($name);
 
         $this->name = $name;
         $this->role = $role;
         $this->image = $image;
+        if ($hasPlaceholderImage) {
+            $this->hasPlaceholderImage = $hasPlaceholderImage;
+        }
         $this->profile = $profile;
     }
 

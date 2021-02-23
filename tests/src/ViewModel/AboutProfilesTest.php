@@ -28,7 +28,7 @@ final class AboutProfilesTest extends ViewModelTest
             ],
         ];
         $profile = new AboutProfiles(array_map(function (array $item) {
-            return new AboutProfile($item['name'], $item['role'], null, $item['profile']);
+            return new AboutProfile($item['name'], $item['role'], null, false, $item['profile']);
         }, $data['items']), new ListHeading($data['heading']['heading']), $data['compact']);
 
         $this->assertSame($data['heading'], $profile['heading']->toArray());
