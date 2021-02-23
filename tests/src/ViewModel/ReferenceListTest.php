@@ -8,7 +8,6 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Reference;
 use eLife\Patterns\ViewModel\ReferenceAuthorList;
 use eLife\Patterns\ViewModel\ReferenceList;
-use eLife\Patterns\ViewModel\ReferenceListItem;
 
 final class ReferenceListTest extends ViewModelTest
 {
