@@ -14,7 +14,7 @@ final class ReferenceList implements ViewModel
 
     private $references;
 
-    public function __construct(ReferenceListItem ...$references)
+    public function __construct(Reference ...$references)
     {
         Assertion::notEmpty($references);
 
