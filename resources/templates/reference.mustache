@@ -1,4 +1,4 @@
-<div class="reference"{{#bibId}} data-popup-label="See in references" data-popup-contents="{{bibId.full}}" id="{{bibId.full}}"{{/bibId}}>
+<div class="reference"{{#bibId}} data-popup-label="See in references" data-popup-contents="{{bibId}}" id="{{bibId}}"{{/bibId}}>
 
   {{#hasAuthors}}
     {{#authorLists}}
@@ -42,9 +42,9 @@
   {{#hasAbstracts}}
     <ul class="reference__abstracts">
   {{/hasAbstracts}}
-    {{#abstracts}}
-      <li class="reference__abstract"><a href="{{url}}" class="reference__abstract_link">{{{name}}}</a></li>
-    {{/abstracts}}
+  {{#abstracts}}
+    <li class="reference__abstract"><a href="{{url}}" class="reference__abstract_link">{{{name}}}</a></li>
+  {{/abstracts}}
 
   {{#hasAbstracts}}
     </ul>
