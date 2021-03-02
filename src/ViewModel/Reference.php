@@ -12,6 +12,7 @@ final class Reference implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
+    private $bibId;
     private $abstracts;
     private $authorLists;
     private $origin;
@@ -24,6 +25,7 @@ final class Reference implements ViewModel
     private function __construct(
         string $title,
         array $origin,
+        string $id = null,
         string $titleLink = null,
         Doi $doi = null,
         array $authorLists = [],
@@ -34,6 +36,7 @@ final class Reference implements ViewModel
         Assertion::allIsInstanceOf($authorLists, ReferenceAuthorList::class);
         Assertion::allIsInstanceOf($abstracts, Link::class);
 
+        $this->bibId = $id;
         $this->titleLink = $titleLink;
         $this->title = $title;
         $this->doi = $doi;
@@ -47,20 +50,22 @@ final class Reference implements ViewModel
     public static function withDoi(
         string $title,
         Doi $doi,
+        string $id = null,
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []
     ) : Reference {
-        return new self($title, $origin, null, $doi, $authorLists, $abstracts);
+        return new self($title, $origin, $id, null, $doi, $authorLists, $abstracts);
     }
 
     public static function withOutDoi(
         Link $title,
+        string $id = null,
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []
     ) : Reference {
-        return new self($title['name'], $origin, $title['url'], null, $authorLists, $abstracts);
+        return new self($title['name'], $origin, $id, $title['url'], null, $authorLists, $abstracts);
     }
 
     public function getTemplateName() : string
