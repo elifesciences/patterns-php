@@ -17,7 +17,6 @@ final class ReferenceTest extends ViewModelTest
     {
         $data = [
             'bibId' => 'full id 1',
-            'referenceLabel' => 'reference label',
             'abstracts' => [
                 ['name' => 'Download', 'url' => '/download'],
             ],
@@ -31,6 +30,7 @@ final class ReferenceTest extends ViewModelTest
                 ],
             ],
             'origin' => 'origin 1. origin 2.',
+            'referenceLabel' => 'reference label',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
             ],
@@ -60,7 +60,6 @@ final class ReferenceTest extends ViewModelTest
 
         $data = [
             'bibId' => 'full id 1',
-            'referenceLabel' => 'reference label',
             'abstracts' => [
                 ['name' => 'Download', 'url' => '/download'],
             ],
@@ -74,6 +73,7 @@ final class ReferenceTest extends ViewModelTest
                 ],
             ],
             'origin' => 'origin 1. origin 2.',
+            'referenceLabel' => 'reference label',
             'title' => 'title of reference',
             'titleLink' => 'link',
             'hasAuthors' => true,
