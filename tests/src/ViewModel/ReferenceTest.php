@@ -17,6 +17,7 @@ final class ReferenceTest extends ViewModelTest
     {
         $data = [
             'bibId' => 'full id 1',
+            'referenceLabel' => 'reference label',
             'abstracts' => [
                 ['name' => 'Download', 'url' => '/download'],
             ],
@@ -38,7 +39,7 @@ final class ReferenceTest extends ViewModelTest
             'hasAbstracts' => true,
         ];
 
-        $reference = Reference::withDoi($data['title'], new Doi($data['doi']['doi']), $data['bibId'], ['origin 1', 'origin 2'], [
+        $reference = Reference::withDoi($data['title'], new Doi($data['doi']['doi']), $data['bibId'], $data['referenceLabel'], ['origin 1', 'origin 2'], [
             new ReferenceAuthorList([
                 Author::asText($data['authorLists'][0]['authors'][0]['name']),
                 Author::asLink(new Link($data['authorLists'][0]['authors'][1]['name'], $data['authorLists'][0]['authors'][1]['url'])),
@@ -49,6 +50,7 @@ final class ReferenceTest extends ViewModelTest
         $this->assertSame($data['abstracts'][0], $reference['abstracts'][0]->toArray());
         $this->assertCount(1, $reference['authorLists']);
         $this->assertSame($data['authorLists'][0], $reference['authorLists'][0]->toArray());
+        $this->assertSame($data['referenceLabel'], $reference['referenceLabel']);
         $this->assertSame($data['origin'], $reference['origin']);
         $this->assertSame($data['doi'], $reference['doi']->toArray());
         $this->assertSame($data['title'], $reference['title']);
@@ -58,6 +60,7 @@ final class ReferenceTest extends ViewModelTest
 
         $data = [
             'bibId' => 'full id 1',
+            'referenceLabel' => 'reference label',
             'abstracts' => [
                 ['name' => 'Download', 'url' => '/download'],
             ],
@@ -77,7 +80,7 @@ final class ReferenceTest extends ViewModelTest
             'hasAbstracts' => true,
         ];
 
-        $reference = Reference::withOutDoi(new Link($data['title'], $data['titleLink']), $data['bibId'], ['origin 1', 'origin 2'], [
+        $reference = Reference::withOutDoi(new Link($data['title'], $data['titleLink']), $data['bibId'], $data['referenceLabel'], ['origin 1', 'origin 2'], [
             new ReferenceAuthorList([
                 Author::asLink(new Link($data['authorLists'][0]['authors'][0]['name'], $data['authorLists'][0]['authors'][0]['url'])),
                 Author::asText($data['authorLists'][0]['authors'][1]['name']),
@@ -88,6 +91,7 @@ final class ReferenceTest extends ViewModelTest
         $this->assertSame($data['abstracts'][0], $reference['abstracts'][0]->toArray());
         $this->assertCount(1, $reference['authorLists']);
         $this->assertSame($data['authorLists'][0], $reference['authorLists'][0]->toArray());
+        $this->assertSame($data['referenceLabel'], $reference['referenceLabel']);
         $this->assertSame($data['origin'], $reference['origin']);
         $this->assertSame($data['bibId'], $reference['bibId']);
         $this->assertSame($data['title'], $reference['title']);
@@ -101,9 +105,9 @@ final class ReferenceTest extends ViewModelTest
     {
         return [
             'minimum with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'))],
-            'complete with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), 'id', ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
+            'complete with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), 'id', 'referenceLabel', ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
             'minimum without DOI' => [Reference::withOutDoi(new Link('title', 'title-link'))],
-            'complete without DOI' => [Reference::withOutDoi(new Link('title', 'title-link'), 'id', ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
+            'complete without DOI' => [Reference::withOutDoi(new Link('title', 'title-link'), 'id', 'referenceLabel', ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')])],
         ];
     }
 
