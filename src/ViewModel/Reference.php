@@ -16,7 +16,7 @@ final class Reference implements ViewModel
     private $abstracts;
     private $authorLists;
     private $origin;
-    private $referenceLabel;
+    private $label;
     private $doi;
     private $title;
     private $titleLink;
@@ -26,7 +26,7 @@ final class Reference implements ViewModel
     private function __construct(
         string $title,
         array $origin,
-        string $referenceLabel = null,
+        string $label = null,
         string $id = null,
         string $titleLink = null,
         Doi $doi = null,
@@ -43,7 +43,7 @@ final class Reference implements ViewModel
         $this->title = $title;
         $this->doi = $doi;
         $this->origin = empty($origin) ? null : implode('. ', $origin).'.';
-        $this->referenceLabel = $referenceLabel;
+        $this->label = $label;
         $this->authorLists = $authorLists;
         $this->hasAuthors = !empty($authorLists);
         $this->abstracts = $abstracts;
@@ -54,23 +54,23 @@ final class Reference implements ViewModel
         string $title,
         Doi $doi,
         string $id = null,
-        string $referenceLabel = null,
+        string $label = null,
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []
     ) : Reference {
-        return new self($title, $origin, $referenceLabel, $id, null, $doi, $authorLists, $abstracts);
+        return new self($title, $origin, $label, $id, null, $doi, $authorLists, $abstracts);
     }
 
     public static function withOutDoi(
         Link $title,
         string $id = null,
-        string $referenceLabel = null,
+        string $label = null,
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []
     ) : Reference {
-        return new self($title['name'], $origin, $referenceLabel, $id, $title['url'], null, $authorLists, $abstracts);
+        return new self($title['name'], $origin, $label, $id, $title['url'], null, $authorLists, $abstracts);
     }
 
     public function getTemplateName() : string
