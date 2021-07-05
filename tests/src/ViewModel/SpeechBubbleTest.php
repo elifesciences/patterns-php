@@ -14,7 +14,7 @@ final class SpeechBubbleTest extends ViewModelTest
         $data = [
             'text' => '<span aria-hidden="true"><span data-visible-annotation-count>+</span></span><span class="visuallyhidden"> Open annotations. The current annotation count on this page is <span data-hypothesis-annotation-count>being calculated</span>.</span>',
             'isWrapped' => true,
-            'prefix' => 'Share your feedback',
+            'prefix' => 'Add a comment',
             'hasPlaceholder' => true,
             'behaviour' => 'HypothesisOpener',
         ];

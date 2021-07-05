@@ -44,7 +44,7 @@ final class SpeechBubble implements ViewModel
 
     public static function forArticleBody() : SpeechBubble
     {
-        return new static(self::ELABORATELY_EMPTY, false, true, 'Share your feedback');
+        return new static(self::ELABORATELY_EMPTY, false, true, 'Add a comment');
     }
 
     public static function forContextualData() : SpeechBubble
