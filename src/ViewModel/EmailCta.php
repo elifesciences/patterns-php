@@ -13,27 +13,25 @@ final class EmailCta implements ViewModel
     use ArrayFromProperties;
 
     private $headerText;
-    private $subHeader;
-    private $compactForm;
-    private $formFieldInfoLink;
+    private $button;
+    private $privacyUrl;
+    private $privacyLabel;
 
     public function __construct(
         string $headerText,
-        string $subHeader,
-        CompactForm $compactForm,
-        FormFieldInfoLink $formFieldInfoLink = null
+        Button $button,
+        string $privacyUrl,
+        string $privacyLabel
     ) {
         Assertion::notBlank($headerText);
-        Assertion::notBlank($subHeader);
-
-        if ($formFieldInfoLink) {
-            $formFieldInfoLink = FlexibleViewModel::fromViewModel($formFieldInfoLink)->withProperty('alignLeft', true);
-        }
+        Assertion::notBlank($privacyUrl);
+        Assertion::notBlank($privacyLabel);
 
         $this->headerText = $headerText;
-        $this->subHeader = $subHeader;
-        $this->compactForm = $compactForm;
-        $this->formFieldInfoLink = $formFieldInfoLink;
+        $this->button = FlexibleViewModel::fromViewModel($button)
+            ->withProperty('classes', "{$button['classes']} email-cta__button");
+        $this->privacyUrl = $privacyUrl;
+        $this->privacyLabel = $privacyLabel;
     }
 
     public function getTemplateName() : string
