@@ -15,6 +15,7 @@ final class ArticleSectionTest extends ViewModelTest
     public function it_has_data()
     {
         $basicData = [
+            'classes' => 'article-section--default',
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
@@ -27,11 +28,16 @@ final class ArticleSectionTest extends ViewModelTest
             'body' => '<p>body</p>',
             'isFirst' => true,
             'headerLink' => new Link('Request a detailed protocol', '#'),
+            'relatedLinks' => [
+                new Link('Related link 1', '#'),
+                new Link('Related link 2', '#'),
+            ],
         ];
 
-        $basicArticleSection = ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
-            new Doi('10.7554/eLife.10181.001'), true, $basicData['headerLink']);
+        $basicArticleSection = ArticleSection::basic(ArticleSection::STYLE_DEFAULT, 'some title', 2, '<p>body</p>', 'id',
+            new Doi('10.7554/eLife.10181.001'), true, $basicData['headerLink'], $basicData['relatedLinks']);
 
+        $this->assertSame($basicData['classes'], $basicArticleSection['classes']);
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
         $this->assertSameWithoutOrder($basicData['doi'], $basicArticleSection['doi']);
         $this->assertSame($basicData['title'], $basicArticleSection['title']);
@@ -41,9 +47,11 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($basicData['body'], $basicArticleSection['body']);
         $this->assertSame($basicData['isFirst'], $basicArticleSection['isFirst']);
         $this->assertSame($basicData['headerLink'], $basicArticleSection['headerLink']);
+        $this->assertSame($basicData['relatedLinks'], $basicArticleSection['relatedLinks']);
         $this->assertSameWithoutOrder($basicData, $basicArticleSection);
 
         $collapsibleData = [
+            'classes' => 'article-section--enclosed',
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
@@ -55,11 +63,16 @@ final class ArticleSectionTest extends ViewModelTest
             'isInitiallyClosed' => true,
             'body' => '<p>body</p>',
             'isFirst' => true,
+            'relatedLinks' => [
+                new Link('Related link 1', '#'),
+                new Link('Related link 2', '#'),
+            ],
         ];
 
-        $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true,
-            new Doi('10.7554/eLife.10181.001'));
+        $collapsibleArticleSection = ArticleSection::collapsible(ArticleSection::STYLE_ENCLOSED, 'id', 'some title', 2, '<p>body</p>',
+            true, true, new Doi('10.7554/eLife.10181.001'), $collapsibleData['relatedLinks']);
 
+        $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
         $this->assertSameWithoutOrder($collapsibleData['doi'], $collapsibleArticleSection['doi']);
         $this->assertSame($collapsibleData['title'], $collapsibleArticleSection['title']);
@@ -68,6 +81,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($collapsibleData['isInitiallyClosed'], $collapsibleArticleSection['isInitiallyClosed']);
         $this->assertSame($collapsibleData['body'], $collapsibleArticleSection['body']);
         $this->assertSame($collapsibleData['isFirst'], $collapsibleArticleSection['isFirst']);
+        $this->assertSame($collapsibleData['relatedLinks'], $collapsibleArticleSection['relatedLinks']);
         $this->assertSameWithoutOrder($collapsibleData, $collapsibleArticleSection);
     }
 
