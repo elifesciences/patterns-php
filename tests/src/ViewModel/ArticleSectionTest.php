@@ -29,8 +29,10 @@ final class ArticleSectionTest extends ViewModelTest
             'isFirst' => true,
             'headerLink' => new Link('Request a detailed protocol', '#'),
             'relatedLinks' => [
-                new Link('Related link 1', '#'),
-                new Link('Related link 2', '#'),
+                'items' => [
+                    new Link('Related link 1', '#'),
+                    new Link('Related link 2', '#'),
+                ],
             ],
         ];
 
@@ -64,8 +66,10 @@ final class ArticleSectionTest extends ViewModelTest
             'body' => '<p>body</p>',
             'isFirst' => true,
             'relatedLinks' => [
-                new Link('Related link 1', '#'),
-                new Link('Related link 2', '#'),
+                'items' => [
+                    new Link('Related link 1', '#'),
+                    new Link('Related link 2', '#'),
+                ],
             ],
         ];
 
@@ -92,20 +96,20 @@ final class ArticleSectionTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ArticleSection::basic('some title', 2, '<p>body</p>', null, new Doi('10.7554/eLife.10181.001'));
+        ArticleSection::basic(null, 'some title', 2, '<p>body</p>', null, new Doi('10.7554/eLife.10181.001'));
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'basic minimum' => [ArticleSection::basic('some title', 2, '<p>body</p>')],
+            'basic minimum' => [ArticleSection::basic(null, 'some title', 2, '<p>body</p>')],
             'basic complete' => [
-                ArticleSection::basic('some title', 2, '<p>body</p>', 'id', new Doi('10.7554/eLife.10181.001'), true, new Link('Request a detailed protocol', '#')),
+                ArticleSection::basic(ArticleSection::STYLE_DEFAULT, 'some title', 2, '<p>body</p>', 'id', new Doi('10.7554/eLife.10181.001'), true, new Link('Request a detailed protocol', '#'), ['items' => [new Link('Related link', '#')]]),
             ],
-            'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
+            'collapsible minimum' => [ArticleSection::collapsible(null, 'id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
-                ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>', true, true,
-                    new Doi('10.7554/eLife.10181.001')),
+                ArticleSection::collapsible(ArticleSection::STYLE_ENCLOSED, 'id', 'some title', 2, '<p>body</p>', true, true,
+                    new Doi('10.7554/eLife.10181.001'), ['items' => [new Link('Related link', '#')]]),
             ],
         ];
     }
