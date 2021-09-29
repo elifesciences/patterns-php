@@ -36,8 +36,9 @@ final class ArticleSectionTest extends ViewModelTest
             ],
         ];
 
-        $basicArticleSection = ArticleSection::basic(ArticleSection::STYLE_DEFAULT, 'some title', 2, '<p>body</p>', 'id',
-            new Doi('10.7554/eLife.10181.001'), true, $basicData['headerLink'], $basicData['relatedLinks']);
+        $basicArticleSection = ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
+            new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
+            true, $basicData['headerLink']);
 
         $this->assertSame($basicData['classes'], $basicArticleSection['classes']);
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
@@ -73,8 +74,9 @@ final class ArticleSectionTest extends ViewModelTest
             ],
         ];
 
-        $collapsibleArticleSection = ArticleSection::collapsible(ArticleSection::STYLE_ENCLOSED, 'id', 'some title', 2, '<p>body</p>',
-            true, true, new Doi('10.7554/eLife.10181.001'), $collapsibleData['relatedLinks']);
+        $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
+            $collapsibleData['relatedLinks'], ArticleSection::STYLE_ENCLOSED, true, true,
+            new Doi('10.7554/eLife.10181.001'));
 
         $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
@@ -96,20 +98,23 @@ final class ArticleSectionTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ArticleSection::basic(null, 'some title', 2, '<p>body</p>', null, new Doi('10.7554/eLife.10181.001'));
+        ArticleSection::basic('some title', 2, '<p>body</p>', null, new Doi('10.7554/eLife.10181.001'));
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'basic minimum' => [ArticleSection::basic(null, 'some title', 2, '<p>body</p>')],
+            'basic minimum' => [ArticleSection::basic('some title', 2, '<p>body</p>')],
             'basic complete' => [
-                ArticleSection::basic(ArticleSection::STYLE_DEFAULT, 'some title', 2, '<p>body</p>', 'id', new Doi('10.7554/eLife.10181.001'), true, new Link('Request a detailed protocol', '#'), ['items' => [new Link('Related link', '#')]]),
+                ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
+                    new Doi('10.7554/eLife.10181.001'), ['items' => [new Link('Related link', '#')]],
+                    ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#')),
             ],
-            'collapsible minimum' => [ArticleSection::collapsible(null, 'id', 'some title', 2, '<p>body</p>')],
+            'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
-                ArticleSection::collapsible(ArticleSection::STYLE_ENCLOSED, 'id', 'some title', 2, '<p>body</p>', true, true,
-                    new Doi('10.7554/eLife.10181.001'), ['items' => [new Link('Related link', '#')]]),
+                ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
+                    ['items' => [new Link('Related link', '#')]], ArticleSection::STYLE_DEFAULT, true, true,
+                    new Doi('10.7554/eLife.10181.001'))
             ],
         ];
     }
