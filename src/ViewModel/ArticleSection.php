@@ -11,7 +11,7 @@ use InvalidArgumentException;
 final class ArticleSection implements ViewModel
 {
     const STYLE_DEFAULT = 'default';
-    const STYLE_ENCLOSED = 'enclosed';
+    const STYLE_HIGHLIGHTED = 'highlighted';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -49,7 +49,7 @@ final class ArticleSection implements ViewModel
         if (null != $relatedLinks) {
             Assertion::allIsInstanceOf($relatedLinks['items'], Link::class);
         }
-        Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_ENCLOSED]);
+        Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED]);
 
         if (null === $id && $doi) {
             throw new InvalidArgumentException('DOI requires an ID');

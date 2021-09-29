@@ -54,7 +54,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSameWithoutOrder($basicData, $basicArticleSection);
 
         $collapsibleData = [
-            'classes' => 'article-section--enclosed',
+            'classes' => 'article-section--highlighted',
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
@@ -75,7 +75,7 @@ final class ArticleSectionTest extends ViewModelTest
         ];
 
         $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
-            $collapsibleData['relatedLinks'], ArticleSection::STYLE_ENCLOSED, true, true,
+            $collapsibleData['relatedLinks'], ArticleSection::STYLE_HIGHLIGHTED, true, true,
             new Doi('10.7554/eLife.10181.001'));
 
         $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
