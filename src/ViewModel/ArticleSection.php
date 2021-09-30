@@ -47,7 +47,7 @@ final class ArticleSection implements ViewModel
         Assertion::notBlank($body);
         Assertion::nullOrNotEmpty($relatedLinks);
         if (null != $relatedLinks) {
-            Assertion::allIsInstanceOf($relatedLinks['items'], Link::class);
+            Assertion::allIsInstanceOf($relatedLinks, Link::class);
         }
         Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED]);
 

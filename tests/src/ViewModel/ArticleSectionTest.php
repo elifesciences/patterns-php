@@ -29,10 +29,8 @@ final class ArticleSectionTest extends ViewModelTest
             'isFirst' => true,
             'headerLink' => new Link('Request a detailed protocol', '#'),
             'relatedLinks' => [
-                'items' => [
-                    new Link('Related link 1', '#'),
-                    new Link('Related link 2', '#'),
-                ],
+                new Link('Related link 1', '#'),
+                new Link('Related link 2', '#'),
             ],
         ];
 
@@ -67,10 +65,8 @@ final class ArticleSectionTest extends ViewModelTest
             'body' => '<p>body</p>',
             'isFirst' => true,
             'relatedLinks' => [
-                'items' => [
-                    new Link('Related link 1', '#'),
-                    new Link('Related link 2', '#'),
-                ],
+                new Link('Related link 1', '#'),
+                new Link('Related link 2', '#'),
             ],
         ];
 
