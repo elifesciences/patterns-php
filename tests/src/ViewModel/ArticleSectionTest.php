@@ -103,13 +103,13 @@ final class ArticleSectionTest extends ViewModelTest
             'basic minimum' => [ArticleSection::basic('some title', 2, '<p>body</p>')],
             'basic complete' => [
                 ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
-                    new Doi('10.7554/eLife.10181.001'), ['items' => [new Link('Related link', '#')]],
+                    new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
                     ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#')),
             ],
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
                 ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
-                    ['items' => [new Link('Related link', '#')]], ArticleSection::STYLE_DEFAULT, true, true,
+                    [new Link('Related link', '#')], ArticleSection::STYLE_DEFAULT, true, true,
                     new Doi('10.7554/eLife.10181.001'))
             ],
         ];
