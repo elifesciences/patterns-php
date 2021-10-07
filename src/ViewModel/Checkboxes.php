@@ -41,6 +41,7 @@ final class Checkboxes implements ViewModel
             Assertion::notNull($messageGroup);
             Assertion::notBlank($messageGroup['errorText']);
         }
+        Assertion::notBlank($name);
 
         $this->id = $id;
         $this->checkboxes = $checkboxes;
