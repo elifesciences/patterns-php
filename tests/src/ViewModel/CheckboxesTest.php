@@ -19,14 +19,12 @@ final class CheckboxesTest extends ViewModelTest
             'checkboxes' => [
                 [
                     'id' => 'choice-id-1',
-                    'name' => 'choice[]',
                     'value' => 'choice-1',
                     'displayValue' => 'Choice 1',
                     'checked' => false,
                 ],
                 [
                     'id' => 'choice-id-2',
-                    'name' => 'choice[]',
                     'value' => 'choice-2',
                     'displayValue' => 'Choice 2',
                     'checked' => true,
@@ -36,7 +34,7 @@ final class CheckboxesTest extends ViewModelTest
                 'labelText' => 'Label for form',
                 'isVisuallyHidden' => true,
             ],
-            'name' => 'name',
+            'name' => 'choice[]',
             'required' => true,
             'disabled' => true,
             'state' => 'invalid',
@@ -48,14 +46,12 @@ final class CheckboxesTest extends ViewModelTest
         $checkboxes = new Checkboxes($data['id'], [
             new CheckboxesOption(
                 $data['checkboxes'][0]['id'],
-                $data['checkboxes'][0]['name'],
                 $data['checkboxes'][0]['value'],
                 $data['checkboxes'][0]['displayValue'],
                 $data['checkboxes'][0]['checked']
             ),
             new CheckboxesOption(
                 $data['checkboxes'][1]['id'],
-                $data['checkboxes'][1]['name'],
                 $data['checkboxes'][1]['value'],
                 $data['checkboxes'][1]['displayValue'],
                 $data['checkboxes'][1]['checked']
@@ -76,15 +72,15 @@ final class CheckboxesTest extends ViewModelTest
         return [
             'minimum' => [
                 new Checkboxes('id', [
-                    new CheckboxesOption('choice-id-1', 'choice[]', 'choice-1', 'Choice 1', false),
-                    new CheckboxesOption('choice-id-2', 'choice[]', 'choice-2', 'Choice 2', true),
-                ], new FormLabel('Form label', 'id'), 'name'),
+                    new CheckboxesOption('choice-id-1', 'choice-1', 'Choice 1', false),
+                    new CheckboxesOption('choice-id-2', 'choice-2', 'Choice 2', true),
+                ], new FormLabel('Form label', 'id'), 'choice[]'),
             ],
             'complete' => [
                 new Checkboxes('id', [
-                    new CheckboxesOption('choice-id-1', 'choice[]', 'choice-1', 'Choice 1', false),
-                    new CheckboxesOption('choice-id-2', 'choice[]', 'choice-2', 'Choice 2', true),
-                ], new FormLabel('Form label', 'id'), 'name', true,
+                    new CheckboxesOption('choice-id-1', 'choice-1', 'Choice 1', false),
+                    new CheckboxesOption('choice-id-2', 'choice-2', 'Choice 2', true),
+                ], new FormLabel('Form label', 'id'), 'choice[]', true,
                     true, Checkboxes::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')),
             ],
         ];
