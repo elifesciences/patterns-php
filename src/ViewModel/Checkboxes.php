@@ -35,7 +35,7 @@ final class Checkboxes implements ViewModel
         MessageGroup $messageGroup = null
     ) {
         Assertion::notEmpty($checkboxes);
-        Assertion::allIsInstanceOf($checkboxes, CheckboxesOption::class);
+        Assertion::allIsInstanceOf($checkboxes, IsCheckboxesOption::class);
         Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
         if (self::STATE_INVALID === $state) {
             Assertion::notNull($messageGroup);

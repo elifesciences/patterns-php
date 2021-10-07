@@ -7,7 +7,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\CastsToArray;
 
-final class CheckboxesOption implements CastsToArray
+final class CheckboxesOption implements CastsToArray, IsCheckboxesOption
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
