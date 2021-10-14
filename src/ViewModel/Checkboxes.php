@@ -17,8 +17,8 @@ final class Checkboxes implements ViewModel
 
     private $id;
     private $checkboxes;
-    private $label;
     private $name;
+    private $title;
     private $required;
     private $disabled;
     private $state;
@@ -27,8 +27,8 @@ final class Checkboxes implements ViewModel
     public function __construct(
         string $id,
         array $checkboxes,
-        FormLabel $label,
         string $name,
+        string $title = null,
         bool $required = null,
         bool $disabled = null,
         string $state = null,
@@ -45,8 +45,8 @@ final class Checkboxes implements ViewModel
 
         $this->id = $id;
         $this->checkboxes = $checkboxes;
-        $this->label = $label;
         $this->name = $name;
+        $this->title = $title;
         $this->required = $required;
         $this->disabled = $disabled;
         $this->state = $state;

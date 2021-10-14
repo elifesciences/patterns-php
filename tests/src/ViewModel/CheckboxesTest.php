@@ -5,7 +5,6 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Checkboxes;
 use eLife\Patterns\ViewModel\CheckboxesGroup;
 use eLife\Patterns\ViewModel\CheckboxesOption;
-use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\MessageGroup;
 
 final class CheckboxesTest extends ViewModelTest
@@ -45,14 +44,11 @@ final class CheckboxesTest extends ViewModelTest
                             'checked' => true,
                         ],
                     ],
-                    'groupLabel' => 'Group 1',
+                    'groupTitle' => 'Group 1',
                 ],
             ],
-            'label' => [
-                'labelText' => 'Label for form',
-                'isVisuallyHidden' => true,
-            ],
             'name' => 'choice[]',
+            'title' => 'Title for form',
             'required' => true,
             'disabled' => true,
             'state' => 'invalid',
@@ -88,8 +84,7 @@ final class CheckboxesTest extends ViewModelTest
                     $data['checkboxes'][2]['children'][1]['checked']
                 ),
             ], 'Group 1'),
-        ], new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']),
-            $data['name'], $data['required'], $data['disabled'], Checkboxes::STATE_INVALID,
+        ], $data['name'], $data['title'], $data['required'], $data['disabled'], Checkboxes::STATE_INVALID,
                 MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         );
 
@@ -106,7 +101,7 @@ final class CheckboxesTest extends ViewModelTest
                 new Checkboxes('id', [
                     new CheckboxesOption('choice-1', 'Choice 1'),
                     new CheckboxesOption('choice-2', 'Choice 2'),
-                ], new FormLabel('Form label', 'id'), 'choice[]'),
+                ], 'choice[]'),
             ],
             'complete' => [
                 new Checkboxes('id', [
@@ -116,7 +111,7 @@ final class CheckboxesTest extends ViewModelTest
                         new CheckboxesOption('choice-3', 'Choice 3', 'choice-id-3', false),
                         new CheckboxesOption('choice-4', 'Choice 4', 'choice-id-4', true),
                     ], 'Group 1')
-                ], new FormLabel('Form label', 'id'), 'choice[]', true,
+                ], 'choice[]', 'Form title', true,
                     true, Checkboxes::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')),
             ],
         ];

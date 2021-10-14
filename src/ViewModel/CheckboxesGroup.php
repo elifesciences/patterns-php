@@ -13,15 +13,15 @@ final class CheckboxesGroup implements CastsToArray, IsCheckboxesOption
     use ArrayFromProperties;
 
     private $children;
-    private $groupLabel;
+    private $groupTitle;
 
-    public function __construct(array $children, string $groupLabel = null)
+    public function __construct(array $children, string $groupTitle = null)
     {
         Assertion::notEmpty($children);
         Assertion::allIsInstanceOf($children, CheckboxesOption::class);
-        Assertion::nullOrNotBlank($groupLabel);
+        Assertion::nullOrNotBlank($groupTitle);
 
         $this->children = $children;
-        $this->groupLabel = $groupLabel;
+        $this->groupTitle = $groupTitle;
     }
 }
