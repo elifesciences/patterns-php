@@ -1,9 +1,15 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 type: object
 properties:
-    homePagePath:
-        type: string
-        minLength: 1
+    logo:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            homePagePath:
+                type: string
+                minLength: 1
+        required:
+            - homePagePath
     primaryLinks:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
@@ -709,6 +715,6 @@ properties:
         required:
             - compactForm
 required:
-    - homePagePath
+    - logo
     - primaryLinks
     - secondaryLinks

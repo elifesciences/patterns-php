@@ -1,6 +1,15 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 type: object
 properties:
+    logo:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            homePagePath:
+                type: string
+                minLength: 1
+        required:
+            - homePagePath
     title:
         type: string
         minLength: 1
@@ -193,6 +202,7 @@ properties:
         required:
             - buttons
 required:
+    - logo
     - title
     - text
     - picture
