@@ -13,6 +13,7 @@ use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SearchBox;
 use eLife\Patterns\ViewModel\SiteHeader;
+use eLife\Patterns\ViewModel\SiteHeaderLogo;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
 use InvalidArgumentException;
 use TypeError;
@@ -20,7 +21,7 @@ use TypeError;
 final class SiteHeaderTest extends ViewModelTest
 {
     private $img;
-    private $homePagePath;
+    private $logo;
     private $primaryLinks;
     private $secondaryLinks;
     private $searchBox;
@@ -34,7 +35,7 @@ final class SiteHeaderTest extends ViewModelTest
             ],
             new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text')
         );
-        $this->homePagePath = '/home/page/path';
+        $this->logo = new SiteHeaderLogo('/home/page/path');
         $this->primaryLinks = SiteHeaderNavBar::primary(
             [
                 NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $this->img),
@@ -65,8 +66,8 @@ final class SiteHeaderTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $siteHeader = new SiteHeader($this->homePagePath, $this->primaryLinks, $this->secondaryLinks, $this->searchBox);
-        $this->assertSame($this->homePagePath, $siteHeader['homePagePath']);
+        $siteHeader = new SiteHeader($this->logo, $this->primaryLinks, $this->secondaryLinks, $this->searchBox);
+        $this->assertSame($this->logo, $siteHeader['logo']);
         $this->assertSame($this->primaryLinks, $siteHeader['primaryLinks']);
         $this->assertSame($this->secondaryLinks, $siteHeader['secondaryLinks']);
         $this->assertSameValuesWithoutOrder($this->searchBox, $siteHeader['searchBox']);
@@ -76,10 +77,10 @@ final class SiteHeaderTest extends ViewModelTest
     /**
      * @test
      */
-    public function home_page_path_must_not_be_blank()
+    public function logo_must_be_supplied()
     {
-        $this->expectException(InvalidArgumentException::class);
-        new SiteHeader('', $this->primaryLinks, $this->secondaryLinks);
+        $this->expectException(TypeError::class);
+        new SiteHeader(null, $this->primaryLinks, $this->secondaryLinks);
     }
 
     /**
@@ -88,7 +89,7 @@ final class SiteHeaderTest extends ViewModelTest
     public function primary_links_must_be_supplied()
     {
         $this->expectException(TypeError::class);
-        new SiteHeader($this->homePagePath, null, $this->secondaryLinks);
+        new SiteHeader($this->logo, null, $this->secondaryLinks);
     }
 
     /**
@@ -97,11 +98,13 @@ final class SiteHeaderTest extends ViewModelTest
     public function secondary_links_must_be_supplied()
     {
         $this->expectException(TypeError::class);
-        new SiteHeader($this->homePagePath, $this->primaryLinks, null);
+        new SiteHeader($this->logo, $this->primaryLinks, null);
     }
 
     public function viewModelProvider() : array
     {
+        $logo = new SiteHeaderLogo('/home/page/path');
+
         $img = new Picture(
             [
                 ['srcset' => '/path/to/svg'],
@@ -127,8 +130,8 @@ final class SiteHeaderTest extends ViewModelTest
         );
 
         return [
-            'minimum' => [new SiteHeader('/home/page/path', $primaryLinks, $secondaryLinks)],
-            'complete' => [new SiteHeader('/home/page/path', $primaryLinks, $secondaryLinks, $this->searchBox)],
+            'minimum' => [new SiteHeader($logo, $primaryLinks, $secondaryLinks)],
+            'complete' => [new SiteHeader($logo, $primaryLinks, $secondaryLinks, $this->searchBox)],
         ];
     }
 

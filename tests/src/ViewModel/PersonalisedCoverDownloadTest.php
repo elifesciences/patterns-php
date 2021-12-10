@@ -9,6 +9,7 @@ use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\Paragraph;
 use eLife\Patterns\ViewModel\PersonalisedCoverDownload;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\SiteHeaderLogo;
 use InvalidArgumentException;
 
 final class PersonalisedCoverDownloadTest extends ViewModelTest
@@ -19,7 +20,9 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'homePagePath' => 'https://example.org',
+            'logo' => [
+                'homePagePath' => 'https://example.org',
+            ],
             'title' => 'title',
             'text' => [
                 [
@@ -63,7 +66,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
         ];
 
         $download = new PersonalisedCoverDownload(
-            $data['homePagePath'],
+            new SiteHeaderLogo($data['logo']['homePagePath']),
             $data['title'],
             array_map(function (array $paragraph) {
                 return new Paragraph($paragraph['text']);
@@ -75,7 +78,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
             new ButtonCollection([Button::link($data['letterButtonCollection']['buttons'][0]['text'], $data['letterButtonCollection']['buttons'][0]['path'])])
         );
 
-        $this->assertSame($data['homePagePath'], $download['homePagePath']);
+        $this->assertSame($data['logo'], $download['logo']->toArray());
         $this->assertSame($data['title'], $download['title']);
         $this->assertSameWithoutOrder($data['text'], $download['text']);
         $this->assertSame($data['a4ListHeading'], $download['a4ListHeading']->toArray());
@@ -92,7 +95,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new PersonalisedCoverDownload('/home/page/path', 'title', [], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
+        new PersonalisedCoverDownload(new SiteHeaderLogo('/home/page/path'), 'title', [], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
     }
 
     /**
@@ -102,13 +105,13 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new PersonalisedCoverDownload('/home/page/path', 'title', ['foo'], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
+        new PersonalisedCoverDownload(new SiteHeaderLogo('/home/page/path'), 'title', ['foo'], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new PersonalisedCoverDownload('/home/page/path', 'title', [new Paragraph('foo')], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]))],
+            [new PersonalisedCoverDownload(new SiteHeaderLogo('/home/page/path'), 'title', [new Paragraph('foo')], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]))],
         ];
     }
 
