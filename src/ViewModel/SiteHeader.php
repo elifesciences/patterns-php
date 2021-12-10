@@ -12,14 +12,14 @@ final class SiteHeader implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $logo;
+    private $title;
     private $primaryLinks;
     private $secondaryLinks;
     private $searchBox;
 
-    public function __construct(SiteHeaderLogo $logo, SiteHeaderNavBar $primaryLinks, SiteHeaderNavBar $secondaryLinks, SearchBox $searchBox = null)
+    public function __construct(SiteHeaderTitle $title, SiteHeaderNavBar $primaryLinks, SiteHeaderNavBar $secondaryLinks, SearchBox $searchBox = null)
     {
-        $this->logo = $logo;
+        $this->title = $title;
         $this->primaryLinks = $primaryLinks;
         $this->secondaryLinks = $secondaryLinks;
         if ($searchBox) {

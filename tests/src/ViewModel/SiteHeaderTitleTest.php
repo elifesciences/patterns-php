@@ -2,17 +2,17 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\SiteHeaderLogo;
+use eLife\Patterns\ViewModel\SiteHeaderTitle;
 use InvalidArgumentException;
 
-final class SiteHeaderLogoTest extends ViewModelTest
+final class SiteHeaderTitleTest extends ViewModelTest
 {
     /**
      * @test
      */
     public function it_has_data()
     {
-        $siteHeaderLogo = new SiteHeaderLogo('/home/page/path');
+        $siteHeaderLogo = new SiteHeaderTitle('/home/page/path');
         $this->assertSame('/home/page/path', $siteHeaderLogo['homePagePath']);
     }
 
@@ -22,18 +22,19 @@ final class SiteHeaderLogoTest extends ViewModelTest
     public function home_page_path_must_not_be_blank()
     {
         $this->expectException(InvalidArgumentException::class);
-        new SiteHeaderLogo('');
+        new SiteHeaderTitle('');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            [new SiteHeaderLogo('/home/page/path')],
+            'minimum' => [new SiteHeaderTitle('/home/page/path')],
+            'complete' => [new SiteHeaderTitle('/home/page/path', true, true)],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/site-header-logo.mustache';
+        return 'resources/templates/site-header-title.mustache';
     }
 }
