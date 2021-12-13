@@ -1,10 +1,14 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 type: object
 properties:
-    logo:
+    title:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
+            borderVariant:
+                type: boolean
+            isWrapped:
+                type: boolean
             homePagePath:
                 type: string
                 minLength: 1
@@ -715,6 +719,6 @@ properties:
         required:
             - compactForm
 required:
-    - logo
+    - title
     - primaryLinks
     - secondaryLinks

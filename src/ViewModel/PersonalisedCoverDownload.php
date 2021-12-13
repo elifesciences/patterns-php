@@ -12,7 +12,7 @@ final class PersonalisedCoverDownload implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $logo;
+    private $siteHeaderTitle;
     private $title;
     private $text;
     private $picture;
@@ -21,7 +21,7 @@ final class PersonalisedCoverDownload implements ViewModel
     private $letterListHeading;
     private $letterButtonCollection;
 
-    public function __construct(SiteHeaderLogo $logo, string $title, array $text, Picture $picture, ListHeading $a4ListHeading, ButtonCollection $a4ButtonCollection, ListHeading $letterListHeading, ButtonCollection $letterButtonCollection)
+    public function __construct(SiteHeaderTitle $siteHeaderTitle, string $title, array $text, Picture $picture, ListHeading $a4ListHeading, ButtonCollection $a4ButtonCollection, ListHeading $letterListHeading, ButtonCollection $letterButtonCollection)
     {
         Assertion::notEmpty($text);
         Assertion::allIsInstanceOf($text, Paragraph::class);
@@ -32,7 +32,7 @@ final class PersonalisedCoverDownload implements ViewModel
         $letterButtonCollection = FlexibleViewModel::fromViewModel($letterButtonCollection)
             ->withProperty('classes', 'button-collection--letter');
 
-        $this->logo = $logo;
+        $this->siteHeaderTitle = $siteHeaderTitle;
         $this->title = $title;
         $this->text = $text;
         $this->picture = $picture;
