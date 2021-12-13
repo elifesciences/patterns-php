@@ -89,7 +89,7 @@ final class SiteHeaderTest extends ViewModelTest
     public function primary_links_must_be_supplied()
     {
         $this->expectException(TypeError::class);
-        new SiteHeader($this->logo, null, $this->secondaryLinks);
+        new SiteHeader($this->title, null, $this->secondaryLinks);
     }
 
     /**
@@ -98,7 +98,7 @@ final class SiteHeaderTest extends ViewModelTest
     public function secondary_links_must_be_supplied()
     {
         $this->expectException(TypeError::class);
-        new SiteHeader($this->logo, $this->primaryLinks, null);
+        new SiteHeader($this->title, $this->primaryLinks, null);
     }
 
     public function viewModelProvider() : array
