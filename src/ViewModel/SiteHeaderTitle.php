@@ -15,14 +15,21 @@ final class SiteHeaderTitle implements ViewModel
     private $homePagePath;
     private $isWrapped;
     private $borderVariant;
+    private $disableMediaQuery;
 
-    public function __construct(string $homePagePath, bool $isWrapped = false, bool $borderVariant = false)
+    public function __construct(
+        string $homePagePath,
+        bool $isWrapped = false,
+        bool $borderVariant = false,
+        bool $disableMediaQuery = false
+    )
     {
         Assertion::notBlank($homePagePath);
 
         $this->homePagePath = $homePagePath;
         $this->isWrapped = $isWrapped;
         $this->borderVariant = $borderVariant;
+        $this->disableMediaQuery = $disableMediaQuery;
     }
 
     public function getTemplateName() : string

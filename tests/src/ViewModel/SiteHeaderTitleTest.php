@@ -29,7 +29,7 @@ final class SiteHeaderTitleTest extends ViewModelTest
     {
         return [
             'minimum' => [new SiteHeaderTitle('/home/page/path')],
-            'complete' => [new SiteHeaderTitle('/home/page/path', true, true)],
+            'complete' => [new SiteHeaderTitle('/home/page/path', true, true, true)],
         ];
     }
 
