@@ -22,7 +22,7 @@ final class TextField implements ViewModel
     private $placeholder;
     private $required;
     private $disabled;
-    private $hiddenUntilChecked;
+    private $isHiddenUntilChecked;
     private $checkboxId;
     private $autofocus;
     private $value;
@@ -38,7 +38,7 @@ final class TextField implements ViewModel
         string $placeholder = null,
         bool $required = null,
         bool $disabled = null,
-        bool $hiddenUntilChecked = null,
+        bool $isHiddenUntilChecked = null,
         string $checkboxId = null,
         bool $autofocus = null,
         string $value = null,
@@ -61,7 +61,7 @@ final class TextField implements ViewModel
         $this->placeholder = $placeholder;
         $this->required = $required;
         $this->disabled = $disabled;
-        $this->hiddenUntilChecked = $hiddenUntilChecked;
+        $this->isHiddenUntilChecked = $isHiddenUntilChecked;
         $this->checkboxId = $checkboxId;
         $this->autofocus = $autofocus;
         $this->value = $value;
@@ -140,14 +140,14 @@ final class TextField implements ViewModel
         string $placeholder = null,
         bool $required = null,
         bool $disabled = null,
-        bool $hiddenUntilChecked = null,
+        bool $isHiddenUntilChecked = null,
         string $checkboxId = null,
         bool $autofocus = null,
         string $value = null,
         string $state = null,
         MessageGroup $messageGroup = null
     ) {
-        return new static('text', $label, $id, $name, $placeholder, $required, $disabled, $hiddenUntilChecked, $checkboxId, $autofocus, $value, $state, $messageGroup);
+        return new static('text', $label, $id, $name, $placeholder, $required, $disabled, $isHiddenUntilChecked, $checkboxId, $autofocus, $value, $state, $messageGroup);
     }
 
     public static function urlInput(
