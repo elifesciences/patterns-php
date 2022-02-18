@@ -30,7 +30,7 @@ final class TextFieldTest extends ViewModelTest
             'placeholder' => 'placeholder',
             'required' => true,
             'disabled' => true,
-            'hiddenUntilChecked' => null,
+            'isHiddenUntilChecked' => null,
             'checkboxId' => null,
             'autofocus' => true,
             'value' => 'value',
