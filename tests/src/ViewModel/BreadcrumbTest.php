@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Breadcrumb;
 use eLife\Patterns\ViewModel\Link;
+use InvalidArgumentException;
 
 final class BreadcrumbTest extends ViewModelTest
 {
@@ -22,6 +23,16 @@ final class BreadcrumbTest extends ViewModelTest
 
         $this->assertEquals($items, $breadcrumb['items']);
         $this->assertSame($data, $breadcrumb->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function items_must_be_links()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Breadcrumb(['foo']);
     }
 
     public function viewModelProvider() : array

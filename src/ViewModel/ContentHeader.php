@@ -18,10 +18,12 @@ final class ContentHeader implements ViewModel
     private $image;
     private $impactStatement;
     private $header;
+    private $breadcrumb;
     private $authors;
     private $institutions;
     private $download;
     private $socialMediaSharers;
+    private $contextualData;
     private $selectNav;
     private $meta;
     private $licence;
@@ -32,12 +34,14 @@ final class ContentHeader implements ViewModel
         ContentHeaderImage $image = null,
         string $impactStatement = null,
         bool $header = false,
+        Breadcrumb $breadcrumb = null,
         array $subjects = [],
         Profile $profile = null,
         array $authors = [],
         array $institutions = [],
         string $download = null,
         SocialMediaSharers $socialMediaSharers = null,
+        ContextualData $contextualData = null,
         SelectNav $selectNav = null,
         Meta $meta = null,
         string $licence = null,
@@ -64,6 +68,7 @@ final class ContentHeader implements ViewModel
                 $this->header['profile'] = $profile;
             }
         }
+        $this->breadcrumb = $breadcrumb;
         if ($authors) {
             $this->authors = ['list' => $authors];
             if ($institutions) {
@@ -72,6 +77,7 @@ final class ContentHeader implements ViewModel
         }
         $this->download = $download;
         $this->socialMediaSharers = $socialMediaSharers;
+        $this->contextualData = $contextualData;
         $this->selectNav = $selectNav;
         $this->meta = $meta;
         $this->licence = $licence;
