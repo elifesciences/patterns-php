@@ -32,7 +32,6 @@ final class ModalWindowTest extends ViewModelTest
         $without = ModalWindow::main('title', 'body');
 
         $this->assertArrayHasKey('closeBtnText', $with->toArray());
-        $this->assertTrue($with->toArray()['closeBtnText']);
 
         $this->assertArrayNotHasKey('closeBtnText', $without->toArray());
     }
