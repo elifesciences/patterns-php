@@ -80,6 +80,6 @@ final class ContentHeader implements ViewModel
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/content-header.mustache';
+        return 'resources/templates/content-header-journal.mustache';
     }
 }
