@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ModalWindow;
+use InvalidArgumentException;
 
 final class ModalWindowTest extends ViewModelTest
 {
