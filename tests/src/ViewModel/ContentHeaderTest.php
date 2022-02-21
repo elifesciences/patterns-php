@@ -170,6 +170,9 @@ final class ContentHeaderTest extends ViewModelTest
                 'url' => false,
                 'text' => 'Research article',
             ],
+            'doi' => [
+                'doi' => '10.7554/eLife.10181.001',
+            ],
             'licence' => 'https://creativecommons.org/licenses/by/4.0/',
         ];
 
@@ -213,6 +216,7 @@ final class ContentHeaderTest extends ViewModelTest
                 Button::form($data['selectNav']['button']['text'], $data['selectNav']['button']['type'])
             ),
             Meta::withText($data['meta']['text']),
+            new Doi($data['doi']['doi']),
             $data['licence']
         );
 
@@ -231,6 +235,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['contextualData'], $contentHeader['contextualData']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
         $this->assertSameWithoutOrder($data['meta'], $contentHeader['meta']);
+        $this->assertSameWithoutOrder($data['doi'], $contentHeader['doi']);
         $this->assertSame($data['licence'], $contentHeader['licence']);
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }

@@ -26,6 +26,7 @@ final class ContentHeader implements ViewModel
     private $contextualData;
     private $selectNav;
     private $meta;
+    private $doi;
     private $licence;
     private $audioPlayer;
 
@@ -44,6 +45,7 @@ final class ContentHeader implements ViewModel
         ContextualData $contextualData = null,
         SelectNav $selectNav = null,
         Meta $meta = null,
+        Doi $doi = null,
         string $licence = null,
         AudioPlayer $audioPlayer = null
     ) {
@@ -80,6 +82,7 @@ final class ContentHeader implements ViewModel
         $this->contextualData = $contextualData;
         $this->selectNav = $selectNav;
         $this->meta = $meta;
+        $this->doi = $doi;
         $this->licence = $licence;
         $this->audioPlayer = $audioPlayer;
     }
