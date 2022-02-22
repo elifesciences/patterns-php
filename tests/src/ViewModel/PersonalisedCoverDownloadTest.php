@@ -69,7 +69,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
         ];
 
         $download = new PersonalisedCoverDownload(
-            new SiteHeaderTitle($data['siteHeaderTitle']['homePagePath'], $data['siteHeaderTitle']['isWrapped'], $data['siteHeaderTitle']['borderVariant']),
+            new SiteHeaderTitle($data['siteHeaderTitle']['homePagePath'], $data['siteHeaderTitle']['isWrapped'], $data['siteHeaderTitle']['borderVariant'], $data['siteHeaderTitle']['disableMediaQuery']),
             $data['title'],
             array_map(function (array $paragraph) {
                 return new Paragraph($paragraph['text']);
