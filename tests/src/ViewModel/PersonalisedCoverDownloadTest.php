@@ -24,6 +24,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
                 'homePagePath' => 'https://example.org',
                 'isWrapped' => true,
                 'borderVariant' => true,
+                'disableMediaQuery' => false,
             ],
             'title' => 'title',
             'text' => [
