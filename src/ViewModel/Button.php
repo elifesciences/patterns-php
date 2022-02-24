@@ -17,6 +17,7 @@ final class Button implements ViewModel
     const STYLE_DEFAULT = 'default';
     const STYLE_LOGIN = 'login';
     const STYLE_OUTLINE = 'outline';
+    const STYLE_SECONDARY = 'secondary';
     const STYLE_SPEECH_BUBBLE = 'speech-bubble';
 
     const TYPE_BUTTON = 'button';
@@ -30,6 +31,7 @@ final class Button implements ViewModel
     private $path;
     private $text;
     private $type;
+    private $clipboard;
     private $id;
     private $name;
 
@@ -37,7 +39,7 @@ final class Button implements ViewModel
     {
         Assertion::notBlank($text);
         Assertion::choice($size, [self::SIZE_CUSTOM, self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
-        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE, self::STYLE_SPEECH_BUBBLE]);
+        Assertion::choice($style, [self::STYLE_DEFAULT, self::STYLE_LOGIN, self::STYLE_OUTLINE, self::STYLE_SECONDARY, self::STYLE_SPEECH_BUBBLE]);
         if (self::STYLE_LOGIN === $style) {
             Assertion::true(self::SIZE_EXTRA_SMALL === $size);
         }
@@ -66,6 +68,25 @@ final class Button implements ViewModel
         $this->classes = implode(' ', $classes);
         $this->id = $id;
         $this->name = $name;
+    }
+
+    public static function clipboard(
+        string $text,
+        string $clipboard,
+        string $name = null,
+        string $size = self::SIZE_MEDIUM,
+        string $style = self::STYLE_DEFAULT,
+        string $id = null,
+        bool $isActive = true,
+        bool $isFullWidth = false
+    ) : Button {
+        Assertion::notBlank($clipboard);
+
+        $button = new static($text, $size, $style, $isActive, $name, $id, $isFullWidth);
+        $button->type = self::TYPE_BUTTON;
+        $button->clipboard = $clipboard;
+
+        return $button;
     }
 
     public static function form(
