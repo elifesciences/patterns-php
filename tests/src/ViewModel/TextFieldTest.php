@@ -30,6 +30,8 @@ final class TextFieldTest extends ViewModelTest
             'placeholder' => 'placeholder',
             'required' => true,
             'disabled' => true,
+            'isHiddenUntilChecked' => null,
+            'checkboxId' => null,
             'autofocus' => true,
             'value' => 'value',
             'state' => 'invalid',
@@ -80,7 +82,7 @@ final class TextFieldTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, null);
+        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, null, false, 'value', TextField::STATE_INVALID, null);
     }
 
     /**
@@ -90,7 +92,7 @@ final class TextFieldTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text'));
+        TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, null, false, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
 
     public function viewModelProvider() : array
@@ -106,7 +108,7 @@ final class TextFieldTest extends ViewModelTest
             'minimal tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name')],
             'complete tel input' => [TextField::telInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name')],
-            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
+            'complete text input' => [TextField::textInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'checkbox-id', true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name')],
             'complete url input' => [TextField::urlInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
         ];
