@@ -113,6 +113,9 @@ properties:
                                                             minLength: 1
                                                         classes:
                                                             type: string
+                                                        clipboard:
+                                                            type: string
+                                                            minLength: 1
                                                     required:
                                                         - text
                                                 -
@@ -161,6 +164,9 @@ properties:
                                                                             minLength: 1
                                                                         classes:
                                                                             type: string
+                                                                        clipboard:
+                                                                            type: string
+                                                                            minLength: 1
                                                                     required:
                                                                         - text
                                                                 -
@@ -371,6 +377,9 @@ properties:
                                                             minLength: 1
                                                         classes:
                                                             type: string
+                                                        clipboard:
+                                                            type: string
+                                                            minLength: 1
                                                     required:
                                                         - text
                                                 -
@@ -419,6 +428,9 @@ properties:
                                                                             minLength: 1
                                                                         classes:
                                                                             type: string
+                                                                        clipboard:
+                                                                            type: string
+                                                                            minLength: 1
                                                                     required:
                                                                         - text
                                                                 -
