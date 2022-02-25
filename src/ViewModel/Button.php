@@ -31,7 +31,7 @@ final class Button implements ViewModel
     private $path;
     private $text;
     private $type;
-    private $clipboard;
+    private $clipboard = null;
     private $id;
     private $name;
 
