@@ -17,7 +17,7 @@ final class ModalWindowTest extends ViewModelTest
             'body' => 'Here is some text for the body section.',
             'closeBtnText' => 'Close',
         ];
-        $modalWindow = ModalWindow::main('Here is a title', 'Here is some text for the body section.', 'Close');
+        $modalWindow = ModalWindow::create('Here is a title', 'Here is some text for the body section.', 'Close');
 
         $this->assertSame($data['title'], $modalWindow['title']);
         $this->assertSame($data['body'], $modalWindow['body']);
@@ -29,8 +29,8 @@ final class ModalWindowTest extends ViewModelTest
      */
     public function it_may_have_close_button_text()
     {
-        $with = ModalWindow::main('title', 'body', 'closeBtnText');
-        $without = ModalWindow::main('title', 'body');
+        $with = ModalWindow::create('title', 'body', 'closeBtnText');
+        $without = ModalWindow::create('title', 'body');
 
         $this->assertArrayHasKey('closeBtnText', $with->toArray());
 
@@ -44,7 +44,7 @@ final class ModalWindowTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ModalWindow::main('', 'body', 'closeBtnText');
+        ModalWindow::create('', 'body');
     }
 
     /**
@@ -54,14 +54,14 @@ final class ModalWindowTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ModalWindow::main('title', '', 'closeBtnText');
+        ModalWindow::create('title', '');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'main minimal' => [ModalWindow::main('title', 'body')],
-            'main complete' => [ModalWindow::main('title', 'body', 'closeBtnText')],
+            'minimal' => [ModalWindow::create('title', 'body')],
+            'complete' => [ModalWindow::create('title', 'body', 'closeBtnText')],
             'small minimal' => [ModalWindow::small('title', 'body')],
             'small complete' => [ModalWindow::small('title', 'body', 'closeBtnText')],
         ];

@@ -29,7 +29,7 @@ final class ModalWindow implements ViewModel
         $this->closeBtnText = $closeBtnText;
     }
 
-    public static function main(string $title, string $body, string $closeBtnText = null) : ModalWindow
+    public static function create(string $title, string $body, string $closeBtnText = null) : ModalWindow
     {
         return new self(false, $title, $body, $closeBtnText);
     }
