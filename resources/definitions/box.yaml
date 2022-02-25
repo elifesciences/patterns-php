@@ -30,6 +30,10 @@ properties:
                 type: boolean
                 default:
                     - false
+            doiWithoutLink:
+                type: boolean
+                default:
+                    - false
         required:
             - doi
     content:
