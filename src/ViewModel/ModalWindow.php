@@ -14,29 +14,48 @@ final class ModalWindow implements ViewModel
 
     private $smallDeviceOnly;
     private $title;
-    private $closeBtnText;
     private $body;
+    private $closeBtnText;
+    private $triggerId;
 
-    private function __construct(bool $smallDeviceOnly, string $title, string $body, string $closeBtnText = null)
+    private function __construct(
+        bool $smallDeviceOnly,
+        string $title,
+        string $body,
+        string $closeBtnText = null,
+        string $triggerId = null
+    )
     {
         Assertion::notBlank($title);
         Assertion::notBlank($body);
         Assertion::nullOrNotBlank($closeBtnText);
+        Assertion::nullOrNotBlank($triggerId);
 
         $this->smallDeviceOnly = $smallDeviceOnly;
         $this->title = $title;
         $this->body = $body;
         $this->closeBtnText = $closeBtnText;
+        $this->triggerId = $triggerId;
     }
 
-    public static function create(string $title, string $body, string $closeBtnText = null) : ModalWindow
+    public static function create(
+        string $title,
+        string $body,
+        string $closeBtnText = null,
+        string $triggerId = null
+    ) : ModalWindow
     {
-        return new self(false, $title, $body, $closeBtnText);
+        return new self(false, $title, $body, $closeBtnText, $triggerId);
     }
 
-    public static function small(string $title, string $body, string $closeBtnText = null) : ModalWindow
+    public static function small(
+        string $title,
+        string $body,
+        string $closeBtnText = null,
+        string $triggerId = null
+    ) : ModalWindow
     {
-        return new self(true, $title, $body, $closeBtnText);
+        return new self(true, $title, $body, $closeBtnText, $triggerId);
     }
 
     public function getTemplateName() : string
