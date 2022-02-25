@@ -31,7 +31,7 @@ final class Button implements ViewModel
     private $path;
     private $text;
     private $type;
-    private $clipboard = null;
+    private $clipboardText;
     private $id;
     private $name;
 
@@ -72,7 +72,7 @@ final class Button implements ViewModel
 
     public static function clipboard(
         string $text,
-        string $clipboard,
+        string $clipboardText,
         string $name = null,
         string $size = self::SIZE_MEDIUM,
         string $style = self::STYLE_DEFAULT,
@@ -80,11 +80,11 @@ final class Button implements ViewModel
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
-        Assertion::notBlank($clipboard);
+        Assertion::notBlank($clipboardText);
 
         $button = new static($text, $size, $style, $isActive, $name, $id, $isFullWidth);
         $button->type = self::TYPE_BUTTON;
-        $button->clipboard = $clipboard;
+        $button->clipboardText = $clipboardText;
 
         return $button;
     }

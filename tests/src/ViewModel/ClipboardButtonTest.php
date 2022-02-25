@@ -18,13 +18,13 @@ final class ClipboardButtonTest extends ViewModelTest
             'type' => Button::TYPE_BUTTON,
             'name' => 'some name',
             'id' => 'someId',
-            'clipboard' => 'clipboard',
+            'clipboardText' => 'someClipboardText',
         ];
 
-        $button = Button::clipboard('text', 'clipboard', $data['name'], Button::SIZE_SMALL, Button::STYLE_OUTLINE, 'someId', true, true);
+        $button = Button::clipboard('text', 'someClipboardText', $data['name'], Button::SIZE_SMALL, Button::STYLE_OUTLINE, 'someId', true, true);
 
         $this->assertSame($data['text'], $button['text']);
-        $this->assertSame($data['clipboard'], $button['clipboard']);
+        $this->assertSame($data['clipboardText'], $button['clipboardText']);
         $this->assertSame($data['type'], $button['type']);
         $this->assertSame($data['classes'], $button['classes']);
         $this->assertSameWithoutOrder($data, $button);
@@ -35,7 +35,7 @@ final class ClipboardButtonTest extends ViewModelTest
      */
     public function it_merges_outline_and_inactive_states()
     {
-        $button = Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, 'someId', false);
+        $button = Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, 'someId', false);
 
         $this->assertSame('button--outline-inactive', $button['classes']);
     }
@@ -47,7 +47,7 @@ final class ClipboardButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::clipboard('', 'clipboard', 'some name');
+        Button::clipboard('', 'someClipboardText', 'some name');
     }
 
     /**
@@ -67,7 +67,7 @@ final class ClipboardButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::clipboard('text', 'clipboard', 'some name', 'foo');
+        Button::clipboard('text', 'someClipboardText', 'some name', 'foo');
     }
 
     /**
@@ -77,20 +77,20 @@ final class ClipboardButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, 'foo');
+        Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, 'foo');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'small' => [Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_SMALL)],
-            'extra small' => [Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_SMALL)],
-            'outline' => [Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
+            'small' => [Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_SMALL)],
+            'extra small' => [Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_SMALL)],
+            'outline' => [Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
             'inactive' => [
-                Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', false),
+                Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', false),
             ],
             'full width' => [
-                Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', true, true),
+                Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', true, true),
             ],
         ];
     }
