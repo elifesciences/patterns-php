@@ -5,7 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Button;
 use InvalidArgumentException;
 
-final class FormButtonTest extends ViewModelTest
+final class ClipboardButtonTest extends ViewModelTest
 {
     /**
      * @test
@@ -18,11 +18,13 @@ final class FormButtonTest extends ViewModelTest
             'type' => Button::TYPE_BUTTON,
             'name' => 'some name',
             'id' => 'someId',
+            'clipboard' => 'clipboard',
         ];
 
-        $button = Button::form('text', Button::TYPE_BUTTON, $data['name'], Button::SIZE_SMALL, Button::STYLE_OUTLINE, 'someId', true, true);
+        $button = Button::clipboard('text', 'clipboard', $data['name'], Button::SIZE_SMALL, Button::STYLE_OUTLINE, 'someId', true, true);
 
         $this->assertSame($data['text'], $button['text']);
+        $this->assertSame($data['clipboard'], $button['clipboard']);
         $this->assertSame($data['type'], $button['type']);
         $this->assertSame($data['classes'], $button['classes']);
         $this->assertSameWithoutOrder($data, $button);
@@ -33,7 +35,7 @@ final class FormButtonTest extends ViewModelTest
      */
     public function it_merges_outline_and_inactive_states()
     {
-        $button = Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, 'someId', false);
+        $button = Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, 'someId', false);
 
         $this->assertSame('button--outline-inactive', $button['classes']);
     }
@@ -45,17 +47,17 @@ final class FormButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('', Button::TYPE_BUTTON, 'some name');
+        Button::clipboard('', 'clipboard', 'some name');
     }
 
     /**
      * @test
      */
-    public function it_cannot_have_an_invalid_type()
+    public function it_cannot_have_blank_clipboard()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('text', 'foo', 'name');
+        Button::clipboard('text', '', 'some name');
     }
 
     /**
@@ -65,7 +67,7 @@ final class FormButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('text', Button::TYPE_BUTTON, 'some name', 'foo');
+        Button::clipboard('text', 'clipboard', 'some name', 'foo');
     }
 
     /**
@@ -75,24 +77,20 @@ final class FormButtonTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, 'foo');
+        Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, 'foo');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'button' => [Button::form('text', Button::TYPE_BUTTON)],
-            'reset' => [Button::form('text', Button::TYPE_RESET, 'some name')],
-            'submit' => [Button::form('text', Button::TYPE_SUBMIT, 'some name')],
-            'small' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_SMALL)],
-            'extra small' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_SMALL)],
-            'outline' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
-            'secondary' => [Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_SECONDARY)],
+            'small' => [Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_SMALL)],
+            'extra small' => [Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_SMALL)],
+            'outline' => [Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
             'inactive' => [
-                Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', false),
+                Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', false),
             ],
             'full width' => [
-                Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', true, true),
+                Button::clipboard('text', 'clipboard', 'some name', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, 'id', true, true),
             ],
         ];
     }
