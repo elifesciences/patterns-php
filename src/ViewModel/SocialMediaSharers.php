@@ -13,9 +13,10 @@ final class SocialMediaSharers implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
+    private $emailUrl;
     private $facebookUrl;
     private $twitterUrl;
-    private $emailUrl;
+    private $linkedInUrl;
     private $redditUrl;
 
     public function __construct(string $title, string $url)
@@ -26,9 +27,10 @@ final class SocialMediaSharers implements ViewModel
         $encodedTitle = rawurlencode($title);
         $encodedUrl = rawurlencode($url);
 
+        $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
-        $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
+        $this->linkedInUrl = "https://www.linkedin.com/shareArticle?title={$encodedTitle}&url={$encodedUrl}";
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
     }
 
