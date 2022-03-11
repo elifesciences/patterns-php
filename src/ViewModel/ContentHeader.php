@@ -17,7 +17,8 @@ final class ContentHeader implements ViewModel
     private $titleLength;
     private $image;
     private $impactStatement;
-    private $header;    private $breadcrumb;
+    private $header;
+    private $breadcrumb;
     private $authors;
     private $institutions;
     private $download;
@@ -33,7 +34,8 @@ final class ContentHeader implements ViewModel
         string $title,
         ContentHeaderImage $image = null,
         string $impactStatement = null,
-        bool $header = false,        Breadcrumb $breadcrumb = null,
+        bool $header = false,
+        Breadcrumb $breadcrumb = null,
         array $subjects = [],
         Profile $profile = null,
         array $authors = [],
