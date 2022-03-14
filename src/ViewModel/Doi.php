@@ -16,11 +16,15 @@ final class Doi implements ViewModel
     const ASSET = 'asset';
 
     private $doi;
+    private $doiWithoutLink;
 
-    public function __construct(string $doi)
+    public function __construct(string $doi, bool $doiWithoutLink = false)
     {
         Assertion::regex($doi, '~^10[.][0-9]{4,}[^\s"/<>]*/[^\s"]+$~');
         $this->doi = $doi;
+        if ($doiWithoutLink) {
+            $this->doiWithoutLink = $doiWithoutLink;
+        }
     }
 
     public function getTemplateName() : string
