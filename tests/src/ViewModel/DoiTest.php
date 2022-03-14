@@ -48,8 +48,8 @@ final class DoiTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            ['minimum' => new Doi('10.7554/eLife.10181.001')],
-            ['complete' => new Doi('10.7554/eLife.10181.001', true)],
+            'minimum' => [new Doi('10.7554/eLife.10181.001')],
+            'complete' => [new Doi('10.7554/eLife.10181.001', true)],
         ];
     }
 
