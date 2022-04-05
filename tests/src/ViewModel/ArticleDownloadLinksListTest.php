@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArticleDownloadLink;
+use eLife\Patterns\ViewModel\ArticleDownloadLinksGroup;
 use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
@@ -38,6 +39,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                             ],
                         ],
                     ],
+                    'intro' => 'intro text',
                 ],
             ],
         ];
@@ -46,12 +48,16 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'id',
             'description',
             [
-                'group title' => [
-                    new ArticleDownloadLink(
-                        new Link('primary name', 'primary url', false, ['key' => 'value']),
-                        new Link('secondary name', 'secondary url')
-                    ),
-                ],
+                new ArticleDownloadLinksGroup(
+                    'group title',
+                    [
+                        new ArticleDownloadLink(
+                            new Link('primary name', 'primary url', false, ['key' => 'value']),
+                            new Link('secondary name', 'secondary url')
+                        ),
+                    ],
+                    'intro text'
+                ),
             ]
         );
 
@@ -69,9 +75,12 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             '',
             'description',
             [
-                'group title' => [
-                    new ArticleDownloadLink(new Link('name', 'url')),
-                ],
+                new ArticleDownloadLinksGroup(
+                    'group title',
+                    [
+                        new ArticleDownloadLink(new Link('name', 'url')),
+                    ]
+                ),
             ]
         );
     }
@@ -87,9 +96,12 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'id',
             '',
             [
-                'group title' => [
-                    new ArticleDownloadLink(new Link('name', 'url')),
-                ],
+                new ArticleDownloadLinksGroup(
+                    'group title',
+                    [
+                        new ArticleDownloadLink(new Link('name', 'url')),
+                    ]
+                ),
             ]
         );
     }
@@ -111,7 +123,12 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ArticleDownloadLinksList('id', 'description', ['group title' => []]);
+        new ArticleDownloadLinksList('id', 'description', [
+            new ArticleDownloadLinksGroup(
+                'group title',
+                []
+            ),
+        ]);
     }
 
     public function viewModelProvider() : array
@@ -122,11 +139,14 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                     'id',
                     'description',
                     [
-                        'group title' => [
-                            new ArticleDownloadLink(
-                                new Link('name', 'url', false, ['key' => 'value'])
-                            ),
-                        ],
+                        new ArticleDownloadLinksGroup(
+                            'group title',
+                            [
+                                new ArticleDownloadLink(
+                                    new Link('name', 'url', false, ['key' => 'value'])
+                                ),
+                            ]
+                        ),
                     ]
                 ),
             ],
@@ -135,12 +155,33 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                     'id',
                     'description',
                     [
-                        'group title' => [
-                            new ArticleDownloadLink(
-                                new Link('name', 'url', false, ['key' => 'value']),
-                                new Link('name', 'url', false, ['key' => 'value'])
-                            ),
-                        ],
+                        new ArticleDownloadLinksGroup(
+                            'group title',
+                            [
+                                new ArticleDownloadLink(
+                                    new Link('name', 'url', false, ['key' => 'value']),
+                                    new Link('name', 'url', false, ['key' => 'value'])
+                                ),
+                            ]
+                        ),
+                    ]
+                ),
+            ],
+            [
+                new ArticleDownloadLinksList(
+                    'id',
+                    'description',
+                    [
+                        new ArticleDownloadLinksGroup(
+                            'group title',
+                            [
+                                new ArticleDownloadLink(
+                                    new Link('name', 'url', false, ['key' => 'value']),
+                                    new Link('name', 'url', false, ['key' => 'value'])
+                                ),
+                            ],
+                            'intro text'
+                        ),
                     ]
                 ),
             ],

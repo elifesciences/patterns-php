@@ -21,19 +21,11 @@ final class ArticleDownloadLinksList implements ViewModel
         Assertion::notBlank($id);
         Assertion::notBlank($description);
         Assertion::notEmpty($groups);
+        Assertion::allIsInstanceOf($groups, ArticleDownloadLinksGroup::class);
 
         $this->id = $id;
         $this->description = $description;
-        $this->groups = array_map(function (string $title, array $items) {
-            Assertion::notBlank($title);
-            Assertion::notEmpty($items);
-            Assertion::allIsInstanceOf($items, ArticleDownloadLink::class);
-
-            return [
-                'title' => $title,
-                'items' => $items,
-            ];
-        }, array_keys($groups), array_values($groups));
+        $this->groups = $groups;
     }
 
     public function getTemplateName() : string
