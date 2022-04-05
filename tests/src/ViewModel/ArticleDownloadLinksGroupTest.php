@@ -34,6 +34,8 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
     public function it_has_data()
     {
         $data = [
+            'jsHideGroup' => true,
+            'id' => 'id',
             'title' => 'group title',
             'items' => [
                 [
@@ -64,7 +66,9 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
                     new Link('secondary name', 'secondary url')
                 ),
             ],
-            'intro text'
+            'intro text',
+            'id',
+            true
         );
 
         $this->assertSame($data, $articleDownloadLinksGroup->toArray());
