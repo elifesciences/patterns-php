@@ -37,6 +37,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                                 'name' => 'secondary name',
                                 'url' => 'secondary url',
                             ],
+                            'checkPMC' => 'https://checkpmc.example',
                         ],
                     ],
                     'intro' => 'intro text',
@@ -53,7 +54,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                     [
                         new ArticleDownloadLink(
                             new Link('primary name', 'primary url', false, ['key' => 'value']),
-                            new Link('secondary name', 'secondary url')
+                            new Link('secondary name', 'secondary url'),
+                            'https://checkpmc.example'
                         ),
                     ],
                     'intro text'
