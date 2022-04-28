@@ -7,7 +7,7 @@ use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
 
-final class ContentHeader implements ViewModel
+final class ContentHeaderNew implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -18,12 +18,15 @@ final class ContentHeader implements ViewModel
     private $image;
     private $impactStatement;
     private $header;
+    private $breadcrumb;
     private $authors;
     private $institutions;
     private $download;
     private $socialMediaSharers;
+    private $contextualData;
     private $selectNav;
     private $meta;
+    private $doi;
     private $licence;
     private $audioPlayer;
 
@@ -32,14 +35,17 @@ final class ContentHeader implements ViewModel
         ContentHeaderImage $image = null,
         string $impactStatement = null,
         bool $header = false,
+        Breadcrumb $breadcrumb = null,
         array $subjects = [],
         Profile $profile = null,
         array $authors = [],
         array $institutions = [],
         string $download = null,
         SocialMediaSharers $socialMediaSharers = null,
+        ContextualData $contextualData = null,
         SelectNav $selectNav = null,
         Meta $meta = null,
+        Doi $doi = null,
         string $licence = null,
         AudioPlayer $audioPlayer = null
     ) {
@@ -70,16 +76,19 @@ final class ContentHeader implements ViewModel
                 $this->institutions = ['list' => $institutions];
             }
         }
+        $this->breadcrumb = $breadcrumb;
         $this->download = $download;
         $this->socialMediaSharers = $socialMediaSharers;
+        $this->contextualData = $contextualData;
         $this->selectNav = $selectNav;
         $this->meta = $meta;
+        $this->doi = $doi;
         $this->licence = $licence;
         $this->audioPlayer = $audioPlayer;
     }
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/content-header.mustache';
+        return 'resources/templates/content-header-journal.mustache';
     }
 }

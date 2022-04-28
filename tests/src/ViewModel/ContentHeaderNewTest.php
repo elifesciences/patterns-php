@@ -3,9 +3,12 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Author;
+use eLife\Patterns\ViewModel\Breadcrumb;
 use eLife\Patterns\ViewModel\Button;
-use eLife\Patterns\ViewModel\ContentHeader;
+use eLife\Patterns\ViewModel\ContentHeaderNew;
 use eLife\Patterns\ViewModel\ContentHeaderImage;
+use eLife\Patterns\ViewModel\ContextualData;
+use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Institution;
@@ -17,20 +20,21 @@ use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
 use eLife\Patterns\ViewModel\SocialMediaSharers;
+use eLife\Patterns\ViewModel\SpeechBubble;
 use InvalidArgumentException;
 
-final class ContentHeaderTest extends ViewModelTest
+final class ContentHeaderNewTest extends ViewModelTest
 {
     public static function buildFixtureForCollection(string $title)
     {
-        return new ContentHeader(
+        return new ContentHeaderNew(
             $title,
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
-            null, true, [],
+            null, true, null, [],
             new Profile(new Link('Dr Curator')),
             [], [], null,
             new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
-            null,
+            null, null,
             Meta::withLink(new Link('Collection'))
         );
     }
@@ -45,7 +49,7 @@ final class ContentHeaderTest extends ViewModelTest
             'titleLength' => 'xx-short',
         ];
 
-        $contentHeader = new ContentHeader($data['title']);
+        $contentHeader = new ContentHeaderNew($data['title']);
 
         $this->assertSame($data['title'], $contentHeader['title']);
         $this->assertSame($data['titleLength'], $contentHeader['titleLength']);
@@ -71,6 +75,27 @@ final class ContentHeaderTest extends ViewModelTest
                 'emailUrl' => 'mailto:?subject=Some%20article%20title&body=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'redditUrl' => 'https://reddit.com/submit/?title=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
             ],
+            'contextualData' => [
+                'metricsData' => [
+                    'data' => [
+                        [
+                            'text' => 'foo',
+                        ],
+                    ],
+                    'annotationCount' => [
+                        'text' => '<span aria-hidden="true"><span data-visible-annotation-count></span></span><span class="visuallyhidden"> Open annotations. The current annotation count on this page is <span data-hypothesis-annotation-count>being calculated</span>.</span>',
+                        'isSmall' => true,
+                        'behaviour' => 'HypothesisOpener',
+                    ],
+                ],
+                'citation' => [
+                    'citeAs' => 'bar',
+                    'doi' => [
+                        'doi' => '10.7554/eLife.10181.001',
+                        'isTruncated' => true,
+                    ],
+                ],
+            ],
             'header' => [
                 'possible' => true,
                 'hasSubjects' => true,
@@ -81,6 +106,14 @@ final class ContentHeaderTest extends ViewModelTest
                 'profile' => [
                     'name' => 'profile',
                     'url' => false,
+                ],
+            ],
+            'breadcrumb' => [
+                'items' => [
+                    [
+                        'url' => '#',
+                        'name' => 'foo',
+                    ],
                 ],
             ],
             'authors' => [
@@ -137,14 +170,20 @@ final class ContentHeaderTest extends ViewModelTest
                 'url' => false,
                 'text' => 'Research article',
             ],
+            'doi' => [
+                'doi' => '10.7554/eLife.10181.001',
+            ],
             'licence' => 'https://creativecommons.org/licenses/by/4.0/',
         ];
 
-        $contentHeader = new ContentHeader(
+        $contentHeader = new ContentHeaderNew(
             $data['title'],
             new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['creditOverlay']),
             $data['impactStatement'],
             true,
+            new Breadcrumb(array_map(function ($item) {
+                return new Link($item['name'], $item['url']);
+            }, $data['breadcrumb']['items'])),
             array_map(function (array $item) {
                 return new Link($item['name']);
             }, $data['header']['subjects']),
@@ -157,6 +196,10 @@ final class ContentHeaderTest extends ViewModelTest
             }, $data['institutions']['list']),
             $data['download'],
             new SocialMediaSharers('Some article title', 'https://example.com/some-article-url'),
+            ContextualData::withMetrics(['foo'], 'bar',
+                new Doi('10.7554/eLife.10181.001'),
+                SpeechBubble::forContextualData()
+            ),
             new SelectNav(
                 $data['selectNav']['route'],
                 new Select(
@@ -173,6 +216,7 @@ final class ContentHeaderTest extends ViewModelTest
                 Button::form($data['selectNav']['button']['text'], $data['selectNav']['button']['type'])
             ),
             Meta::withText($data['meta']['text']),
+            new Doi($data['doi']['doi']),
             $data['licence']
         );
 
@@ -183,12 +227,15 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['image'], $contentHeader['image']);
         $this->assertSame($data['impactStatement'], $contentHeader['impactStatement']);
         $this->assertSameWithoutOrder($data['header'], $contentHeader['header']);
+        $this->assertSameWithoutOrder($data['breadcrumb'], $contentHeader['breadcrumb']);
         $this->assertSameWithoutOrder($data['authors'], $contentHeader['authors']);
         $this->assertSameWithoutOrder($data['institutions'], $contentHeader['institutions']);
         $this->assertSame($data['download'], $contentHeader['download']);
         $this->assertSameWithoutOrder($data['socialMediaSharers'], $contentHeader['socialMediaSharers']);
+        $this->assertSameWithoutOrder($data['contextualData'], $contentHeader['contextualData']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
         $this->assertSameWithoutOrder($data['meta'], $contentHeader['meta']);
+        $this->assertSameWithoutOrder($data['doi'], $contentHeader['doi']);
         $this->assertSame($data['licence'], $contentHeader['licence']);
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
@@ -200,7 +247,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('');
+        new ContentHeaderNew('');
     }
 
     /**
@@ -210,7 +257,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, true, null, ['foo']);
+        new ContentHeaderNew('', null, null, true, null, ['foo']);
     }
 
     /**
@@ -220,7 +267,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, false, [], null, ['foo']);
+        new ContentHeaderNew('', null, null, false, null, [], null, ['foo']);
     }
 
     /**
@@ -230,7 +277,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, false, [], null, [Author::asText('author')], ['foo']);
+        new ContentHeaderNew('', null, null, false, null, [], null, [Author::asText('author')], ['foo']);
     }
 
     /**
@@ -268,18 +315,18 @@ final class ContentHeaderTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new ContentHeader('title')],
+            'minimum' => [new ContentHeaderNew('title')],
             'complete' => [
-                new ContentHeader('title', new ContentHeaderImage(new Picture([], new Image(
+                new ContentHeaderNew('title', new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-                    'the alt text')), 'image credit', true), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
+                    'the alt text')), 'image credit', true), ' impact statement', true, new Breadcrumb([new Link('foo', 'bar')]), [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
             ],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/content-header.mustache';
+        return 'resources/templates/content-header-journal.mustache';
     }
 }
