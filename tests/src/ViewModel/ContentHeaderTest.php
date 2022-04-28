@@ -210,7 +210,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, true, null, ['foo']);
+        new ContentHeader('', null, null, true, ['foo']);
     }
 
     /**
