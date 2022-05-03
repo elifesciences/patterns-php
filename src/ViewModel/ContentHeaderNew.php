@@ -44,7 +44,7 @@ final class ContentHeaderNew implements ViewModel
         SocialMediaSharers $socialMediaSharers = null,
         ContextualData $contextualData = null,
         SelectNav $selectNav = null,
-        Meta $meta = null,
+        MetaNew $meta = null,
         Doi $doi = null,
         string $licence = null,
         AudioPlayer $audioPlayer = null

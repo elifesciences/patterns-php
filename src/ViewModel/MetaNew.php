@@ -27,19 +27,19 @@ final class MetaNew implements ViewModel
         $this->date = $date;
     }
 
-    public static function withLink(Link $link, Date $date = null) : Meta
+    public static function withLink(Link $link, Date $date = null) : MetaNew
     {
         return new self($link['url'], $link['name'], $date);
     }
 
-    public static function withText(string $text, Date $date = null) : Meta
+    public static function withText(string $text, Date $date = null) : MetaNew
     {
         Assertion::minLength($text, 1);
 
         return new self(null, $text, $date);
     }
 
-    public static function withDate(Date $date) : Meta
+    public static function withDate(Date $date) : MetaNew
     {
         return new self(null, null, $date);
     }

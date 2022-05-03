@@ -13,7 +13,7 @@ use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Institution;
 use eLife\Patterns\ViewModel\Link;
-use eLife\Patterns\ViewModel\Meta;
+use eLife\Patterns\ViewModel\MetaNew;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\Profile;
 use eLife\Patterns\ViewModel\Select;
@@ -35,7 +35,7 @@ final class ContentHeaderNewTest extends ViewModelTest
             [], [], null,
             new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
             null, null,
-            Meta::withLink(new Link('Collection'))
+            MetaNew::withLink(new Link('Collection'))
         );
     }
 
@@ -215,7 +215,7 @@ final class ContentHeaderNewTest extends ViewModelTest
                 ),
                 Button::form($data['selectNav']['button']['text'], $data['selectNav']['button']['type'])
             ),
-            Meta::withText($data['meta']['text']),
+            MetaNew::withText($data['meta']['text']),
             new Doi($data['doi']['doi']),
             $data['licence']
         );
