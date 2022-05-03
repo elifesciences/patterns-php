@@ -32,7 +32,7 @@ final class ContentHeaderNewTest extends ViewModelTest
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
             null, true, null, [],
             new Profile(new Link('Dr Curator')),
-            [], [], null,
+            [], [], null, null,
             new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
             null, null,
             MetaNew::withLink(new Link('Collection'))
@@ -133,6 +133,7 @@ final class ContentHeaderNewTest extends ViewModelTest
                 ],
             ],
             'download' => 'download',
+            'cite' => 'cite',
             'selectNav' => [
                 'route' => '#',
                 'select' => [
@@ -195,6 +196,7 @@ final class ContentHeaderNewTest extends ViewModelTest
                 return new Institution($item['name']);
             }, $data['institutions']['list']),
             $data['download'],
+            $data['cite'],
             new SocialMediaSharers('Some article title', 'https://example.com/some-article-url'),
             ContextualData::withMetrics(['foo'], 'bar',
                 new Doi('10.7554/eLife.10181.001'),
@@ -231,6 +233,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['authors'], $contentHeader['authors']);
         $this->assertSameWithoutOrder($data['institutions'], $contentHeader['institutions']);
         $this->assertSame($data['download'], $contentHeader['download']);
+        $this->assertSame($data['cite'], $contentHeader['cite']);
         $this->assertSameWithoutOrder($data['socialMediaSharers'], $contentHeader['socialMediaSharers']);
         $this->assertSameWithoutOrder($data['contextualData'], $contentHeader['contextualData']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
@@ -320,7 +323,7 @@ final class ContentHeaderNewTest extends ViewModelTest
                 new ContentHeaderNew('title', new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-                    'the alt text')), 'image credit', true), ' impact statement', true, new Breadcrumb([new Link('foo', 'bar')]), [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
+                    'the alt text')), 'image credit', true), ' impact statement', true, new Breadcrumb([new Link('foo', 'bar')]), [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#', '#'),
             ],
         ];
     }

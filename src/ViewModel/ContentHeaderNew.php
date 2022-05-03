@@ -22,6 +22,7 @@ final class ContentHeaderNew implements ViewModel
     private $authors;
     private $institutions;
     private $download;
+    private $cite;
     private $socialMediaSharers;
     private $contextualData;
     private $selectNav;
@@ -41,6 +42,7 @@ final class ContentHeaderNew implements ViewModel
         array $authors = [],
         array $institutions = [],
         string $download = null,
+        string $cite = null,
         SocialMediaSharers $socialMediaSharers = null,
         ContextualData $contextualData = null,
         SelectNav $selectNav = null,
@@ -78,6 +80,7 @@ final class ContentHeaderNew implements ViewModel
         }
         $this->breadcrumb = $breadcrumb;
         $this->download = $download;
+        $this->cite = $cite;
         $this->socialMediaSharers = $socialMediaSharers;
         $this->contextualData = $contextualData;
         $this->selectNav = $selectNav;
