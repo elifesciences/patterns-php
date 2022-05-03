@@ -46,6 +46,6 @@ final class MetaNew implements ViewModel
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/meta-new.mustache';
+        return 'resources/templates/meta-journal.mustache';
     }
 }

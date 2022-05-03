@@ -65,6 +65,6 @@ final class MetaNewTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/meta-new.mustache';
+        return 'resources/templates/meta-journal.mustache';
     }
 }
