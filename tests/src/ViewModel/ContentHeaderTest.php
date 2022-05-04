@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Author;
+use eLife\Patterns\ViewModel\Authors;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ContentHeader;
 use eLife\Patterns\ViewModel\ContentHeaderImage;
@@ -28,7 +29,7 @@ final class ContentHeaderTest extends ViewModelTest
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
             null, true, [],
             new Profile(new Link('Dr Curator')),
-            [], [], null,
+            null, null,
             new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
             null,
             Meta::withLink(new Link('Collection'))
@@ -91,11 +92,11 @@ final class ContentHeaderTest extends ViewModelTest
                         'isCorresponding' => true,
                     ],
                 ],
-            ],
-            'institutions' => [
-                'list' => [
-                    [
-                        'name' => 'institution',
+                'institutions' => [
+                    'list' => [
+                        [
+                            'name' => 'institution',
+                        ],
                     ],
                 ],
             ],
@@ -149,12 +150,14 @@ final class ContentHeaderTest extends ViewModelTest
                 return new Link($item['name']);
             }, $data['header']['subjects']),
             new Profile(new Link($data['header']['profile']['name'])),
-            array_map(function (array $item) {
-                return Author::asText($item['name'], $item['isCorresponding'] ?? false);
-            }, $data['authors']['list']),
-            array_map(function (array $item) {
-                return new Institution($item['name']);
-            }, $data['institutions']['list']),
+            new Authors(
+                array_map(function (array $item) {
+                    return Author::asText($item['name'], $item['isCorresponding'] ?? false);
+                }, $data['authors']['list']),
+                array_map(function (array $item) {
+                    return new Institution($item['name']);
+                }, $data['authors']['institutions']['list'])
+            ),
             $data['download'],
             new SocialMediaSharers('Some article title', 'https://example.com/some-article-url'),
             new SelectNav(
@@ -184,7 +187,6 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSame($data['impactStatement'], $contentHeader['impactStatement']);
         $this->assertSameWithoutOrder($data['header'], $contentHeader['header']);
         $this->assertSameWithoutOrder($data['authors'], $contentHeader['authors']);
-        $this->assertSameWithoutOrder($data['institutions'], $contentHeader['institutions']);
         $this->assertSame($data['download'], $contentHeader['download']);
         $this->assertSameWithoutOrder($data['socialMediaSharers'], $contentHeader['socialMediaSharers']);
         $this->assertSameWithoutOrder($data['selectNav'], $contentHeader['selectNav']);
@@ -211,26 +213,6 @@ final class ContentHeaderTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         new ContentHeader('', null, null, true, ['foo']);
-    }
-
-    /**
-     * @test
-     */
-    public function authors_must_be_authors()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new ContentHeader('', null, null, false, [], null, ['foo']);
-    }
-
-    /**
-     * @test
-     */
-    public function institutions_must_be_institutions()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new ContentHeader('', null, null, false, [], null, [Author::asText('author')], ['foo']);
     }
 
     /**
@@ -273,7 +255,7 @@ final class ContentHeaderTest extends ViewModelTest
                 new ContentHeader('title', new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-                    'the alt text')), 'image credit', true), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), [Author::asText('author')], [new Institution('institution')], '#'),
+                    'the alt text')), 'image credit', true), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), new Authors([Author::asText('author')], [new Institution('institution')]), '#'),
             ],
         ];
     }
