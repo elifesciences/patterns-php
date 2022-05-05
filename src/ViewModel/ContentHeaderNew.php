@@ -20,7 +20,6 @@ final class ContentHeaderNew implements ViewModel
     private $header;
     private $breadcrumb;
     private $authors;
-    private $institutions;
     private $download;
     private $cite;
     private $socialMediaSharers;
@@ -39,8 +38,7 @@ final class ContentHeaderNew implements ViewModel
         Breadcrumb $breadcrumb = null,
         array $subjects = [],
         Profile $profile = null,
-        array $authors = [],
-        array $institutions = [],
+        Authors $authors = null,
         string $download = null,
         string $cite = null,
         SocialMediaSharers $socialMediaSharers = null,
@@ -53,8 +51,6 @@ final class ContentHeaderNew implements ViewModel
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
-        Assertion::allIsInstanceOf($authors, Author::class);
-        Assertion::allIsInstanceOf($institutions, Institution::class);
 
         $this->title = $title;
         $this->titleLength = $this->determineTitleLength($this->title);
@@ -72,12 +68,7 @@ final class ContentHeaderNew implements ViewModel
                 $this->header['profile'] = $profile;
             }
         }
-        if ($authors) {
-            $this->authors = ['list' => $authors];
-            if ($institutions) {
-                $this->institutions = ['list' => $institutions];
-            }
-        }
+        $this->authors = $authors;
         $this->breadcrumb = $breadcrumb;
         $this->download = $download;
         $this->cite = $cite;
