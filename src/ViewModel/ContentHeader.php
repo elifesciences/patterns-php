@@ -19,7 +19,6 @@ final class ContentHeader implements ViewModel
     private $impactStatement;
     private $header;
     private $authors;
-    private $institutions;
     private $download;
     private $socialMediaSharers;
     private $selectNav;
@@ -34,8 +33,7 @@ final class ContentHeader implements ViewModel
         bool $header = false,
         array $subjects = [],
         Profile $profile = null,
-        array $authors = [],
-        array $institutions = [],
+        Authors $authors = null,
         string $download = null,
         SocialMediaSharers $socialMediaSharers = null,
         SelectNav $selectNav = null,
@@ -45,8 +43,6 @@ final class ContentHeader implements ViewModel
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
-        Assertion::allIsInstanceOf($authors, Author::class);
-        Assertion::allIsInstanceOf($institutions, Institution::class);
 
         $this->title = $title;
         $this->titleLength = $this->determineTitleLength($this->title);
@@ -64,12 +60,7 @@ final class ContentHeader implements ViewModel
                 $this->header['profile'] = $profile;
             }
         }
-        if ($authors) {
-            $this->authors = ['list' => $authors];
-            if ($institutions) {
-                $this->institutions = ['list' => $institutions];
-            }
-        }
+        $this->authors = $authors;
         $this->download = $download;
         $this->socialMediaSharers = $socialMediaSharers;
         $this->selectNav = $selectNav;
