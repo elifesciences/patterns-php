@@ -20,7 +20,7 @@ use eLife\Patterns\ViewModel\Profile;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
-use eLife\Patterns\ViewModel\SocialMediaSharers;
+use eLife\Patterns\ViewModel\SocialMediaSharersNew;
 use eLife\Patterns\ViewModel\SpeechBubble;
 use InvalidArgumentException;
 
@@ -34,7 +34,7 @@ final class ContentHeaderNewTest extends ViewModelTest
             null, true, null, [],
             new Profile(new Link('Dr Curator')),
             null, null, null,
-            new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
+            new SocialMediaSharersNew('some article title', 'https://example.com/some-uri'),
             null, null,
             MetaNew::withLink(new Link('Collection'))
         );
@@ -200,7 +200,7 @@ final class ContentHeaderNewTest extends ViewModelTest
             ),
             $data['download'],
             $data['cite'],
-            new SocialMediaSharers('Some article title', 'https://example.com/some-article-url'),
+            new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url'),
             ContextualData::withMetrics(['foo'], 'bar',
                 new Doi('10.7554/eLife.10181.001'),
                 SpeechBubble::forContextualData()
