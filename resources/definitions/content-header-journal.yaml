@@ -4,73 +4,6 @@ properties:
     title:
         type: string
         minLength: 1
-    image:
-        allOf:
-            -
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                properties:
-                    pictureClasses:
-                        type: string
-                        minLength: 1
-                    sources:
-                        type: array
-                        uniqueItems: true
-                        items:
-                            type: object
-                            properties:
-                                srcset:
-                                    type: string
-                                    minLength: 1
-                                media:
-                                    type: string
-                                    minLength: 1
-                                type:
-                                    type: string
-                                    enum:
-                                        - image/svg+xml
-                                        - image/webp
-                                        - image/png
-                                        - image/jpeg
-                            required:
-                                - srcset
-                    fallback:
-                        type: object
-                        properties:
-                            srcset:
-                                type: string
-                                pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
-                            sizes:
-                                type: string
-                            defaultPath:
-                                type: string
-                                minLength: 1
-                            altText:
-                                type: string
-                            classes:
-                                type: string
-                        required:
-                            - defaultPath
-                            - altText
-                required:
-                    - fallback
-            -
-                properties:
-                    credit:
-                        type: object
-                        properties:
-                            text:
-                                type: string
-                                minLength: 1
-                            elementId:
-                                type: string
-                                minLength: 1
-                        required:
-                            - text
-                            - elementId
-                    creditOverlay:
-                        type: boolean
-                        default: false
     impactStatement:
         type: string
         minLength: 1
@@ -141,76 +74,6 @@ properties:
                     required:
                         - name
                         - url
-            hasProfile:
-                type: boolean
-                enum:
-                    - true
-            profile:
-                type: object
-                properties:
-                    name:
-                        type: string
-                        minLength: 1
-                    url:
-                        oneOf:
-                            -
-                                type: string
-                                minLength: 1
-                            -
-                                type: boolean
-                                enum:
-                                    - false
-                    image:
-                        $schema: 'http://json-schema.org/draft-04/schema#'
-                        type: object
-                        properties:
-                            pictureClasses:
-                                type: string
-                                minLength: 1
-                            sources:
-                                type: array
-                                uniqueItems: true
-                                items:
-                                    type: object
-                                    properties:
-                                        srcset:
-                                            type: string
-                                            minLength: 1
-                                        media:
-                                            type: string
-                                            minLength: 1
-                                        type:
-                                            type: string
-                                            enum:
-                                                - image/svg+xml
-                                                - image/webp
-                                                - image/png
-                                                - image/jpeg
-                                    required:
-                                        - srcset
-                            fallback:
-                                type: object
-                                properties:
-                                    srcset:
-                                        type: string
-                                        pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
-                                    sizes:
-                                        type: string
-                                    defaultPath:
-                                        type: string
-                                        minLength: 1
-                                    altText:
-                                        type: string
-                                    classes:
-                                        type: string
-                                required:
-                                    - defaultPath
-                                    - altText
-                        required:
-                            - fallback
-                required:
-                    - name
-                    - url
             titleLength:
                 enum:
                     - xx-short
@@ -227,10 +90,6 @@ properties:
                 - subjects
             subjects:
                 - hasSubjects
-            hasProfile:
-                - profile
-            profile:
-                - hasProfile
     socialMediaSharers:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
@@ -257,6 +116,7 @@ properties:
             - linkedInUrl
             - redditUrl
     authors:
+        $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
             list:
@@ -282,22 +142,22 @@ properties:
                     required:
                         - name
                         - url
-        required:
-            - list
-    institutions:
-        type: object
-        properties:
-            list:
-                type: array
-                minItems: 1
-                items:
-                    type: object
-                    properties:
-                        name:
-                            type: string
-                            minLength: 1
-                    required:
-                        - name
+            institutions:
+                type: object
+                properties:
+                    list:
+                        type: array
+                        minItems: 1
+                        items:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - name
+                required:
+                    - list
         required:
             - list
     download:
@@ -306,124 +166,6 @@ properties:
     cite:
         type: string
         minLength: 1
-    selectNav:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            select:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                properties:
-                    id:
-                        type: string
-                        minLength: 1
-                    name:
-                        type: string
-                        minLength: 1
-                    state:
-                        type: string
-                        enum:
-                            - valid
-                            - invalid
-                    messageGroup:
-                        type: object
-                        properties:
-                            errorText:
-                                type: string
-                                minLength: 1
-                            infoText:
-                                type: string
-                                minLength: 1
-                            id:
-                                type: string
-                                minLength: 1
-                        minProperties: 2
-                        required:
-                            - id
-                    required:
-                        type: boolean
-                    disabled:
-                        type: boolean
-                    label:
-                        type: object
-                        properties:
-                            labelText:
-                                type: string
-                                minLength: 1
-                            isVisuallyHidden:
-                                type: boolean
-                        required:
-                            - labelText
-                    options:
-                        array: string
-                        minItems: 1
-                        items:
-                            type: object
-                            properties:
-                                value:
-                                    type: string
-                                    minLength: 1
-                                displayValue:
-                                    type: string
-                                    minLength: 1
-                                selected:
-                                    type: boolean
-                            required:
-                                - value
-                                - displayValue
-                required:
-                    - options
-                dependencies:
-                    label:
-                        - id
-            route:
-                type: string
-                minLength: 1
-            button:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                allOf:
-                    -
-                        properties:
-                            text:
-                                type: string
-                                minLength: 1
-                            classes:
-                                type: string
-                            clipboardText:
-                                type: string
-                                minLength: 1
-                        required:
-                            - text
-                    -
-                        oneOf:
-                            -
-                                properties:
-                                    type:
-                                        type: string
-                                        enum:
-                                            - button
-                                            - reset
-                                            - submit
-                                    id:
-                                        type: string
-                                        minLength: 1
-                                    name:
-                                        type: string
-                                        minLength: 1
-                                required:
-                                    - type
-                            -
-                                properties:
-                                    path:
-                                        type: string
-                                        minLength: 1
-                                required:
-                                    - path
-        required:
-            - select
-            - route
-            - button
     meta:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
@@ -578,49 +320,5 @@ properties:
                     - citeAs
                     - doi
         minProperties: 1
-    audioPlayer:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            title:
-                type: string
-                minLength: 1
-            url:
-                oneOf:
-                    -
-                        type: string
-                        minLength: 1
-                    -
-                        type: boolean
-                        enum:
-                            - false
-            metadata:
-                type: string
-                minLength: 1
-            sources:
-                type: array
-                minItems: 1
-                items:
-                    type: object
-                    properties:
-                        src:
-                            type: string
-                            minLength: 1
-                        mediaType:
-                            type: object
-                            properties:
-                                forMachine:
-                                    type: string
-                                    pattern: '^(audio\/[a-zA-Z0-9!#$%^&\*_\-\+{}\|''.`~]+)(; *[a-zA-Z0-9!#$%^&\*_\-\+{}\|''.`~]+=(([a-zA-Z0-9\.\-]+)|(".+")))*$'
-                                forHuman:
-                                    type: string
-                                    minLength: 1
-        required:
-            - title
-            - url
-            - sources
 required:
     - title
-dependencies:
-    institutions:
-        - authors
