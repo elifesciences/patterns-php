@@ -8,7 +8,7 @@ use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
 use function rawurlencode;
 
-final class SocialMediaSharers implements ViewModel
+final class SocialMediaSharersNew implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -36,6 +36,6 @@ final class SocialMediaSharers implements ViewModel
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/social-media-sharers.mustache';
+        return 'resources/templates/social-media-sharers-journal.mustache';
     }
 }

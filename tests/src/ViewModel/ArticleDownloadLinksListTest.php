@@ -20,6 +20,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
             'description' => 'description',
             'groups' => [
                 [
+                    'jsHideGroup' => true,
+                    'id' => 'id',
                     'title' => 'group title',
                     'items' => [
                         [
@@ -58,7 +60,9 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                             'https://checkpmc.example'
                         ),
                     ],
-                    'intro text'
+                    'intro text',
+                    'id',
+                    true
                 ),
             ]
         );

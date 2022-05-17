@@ -2,10 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\SocialMediaSharers;
+use eLife\Patterns\ViewModel\SocialMediaSharersNew;
 use InvalidArgumentException;
 
-final class SocialMediaSharersTest extends ViewModelTest
+final class SocialMediaSharersNewTest extends ViewModelTest
 {
     /**
      * @test
@@ -25,7 +25,7 @@ final class SocialMediaSharersTest extends ViewModelTest
                 'redditUrl' => 'https://reddit.com/submit/?title=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
             ],
         ];
-        $socialMediaSharers = new SocialMediaSharers($data['raw']['title'], $data['raw']['url']);
+        $socialMediaSharers = new SocialMediaSharersNew($data['raw']['title'], $data['raw']['url']);
 
         $this->assertSame($data['encoded']['emailUrl'], $socialMediaSharers['emailUrl']);
         $this->assertSame($data['encoded']['facebookUrl'], $socialMediaSharers['facebookUrl']);
@@ -42,7 +42,7 @@ final class SocialMediaSharersTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new SocialMediaSharers('', 'https://example.com/some-article-url');
+        new SocialMediaSharersNew('', 'https://example.com/some-article-url');
     }
 
     /**
@@ -52,20 +52,20 @@ final class SocialMediaSharersTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new SocialMediaSharers('Some article title', 'foo');
+        new SocialMediaSharersNew('Some article title', 'foo');
     }
 
     public function viewModelProvider() : array
     {
         return [
             [
-                new SocialMediaSharers('Some article title', 'https://example.com/some-article-url'),
+                new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url'),
             ],
         ];
     }
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/social-media-sharers.mustache';
+        return 'resources/templates/social-media-sharers-journal.mustache';
     }
 }
