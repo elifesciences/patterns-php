@@ -34,7 +34,7 @@ final class ArticleSectionTest extends ViewModelTest
             ],
         ];
 
-        $basicArticleSection = ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
+        $basicArticleSection = ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
             new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
             true, $basicData['headerLink']);
 
@@ -90,19 +90,50 @@ final class ArticleSectionTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_cannot_have_a_title_without_a_heading_level()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ArticleSection::basic('<p>body</p>', 'some title', null);
+    }
+
+    /**
+     * @test
+     */
+    public function it_cannot_have_a_header_link_without_a_title()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ArticleSection::basic('<p>body</p>', null, null, null, null, null,
+            null, false, new Link('Request a detailed protocol', '#'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_cannot_have_a_heading_level_without_a_title()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ArticleSection::basic('<p>body</p>', null, 2);
+    }
+
+    /**
+     * @test
+     */
     public function it_cannot_have_a_doi_without_an_id()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ArticleSection::basic('some title', 2, '<p>body</p>', null, new Doi('10.7554/eLife.10181.001'));
+        ArticleSection::basic('<p>body</p>', null, null, null, new Doi('10.7554/eLife.10181.001'));
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'basic minimum' => [ArticleSection::basic('some title', 2, '<p>body</p>')],
+            'basic minimum' => [ArticleSection::basic('<p>body</p>')],
             'basic complete' => [
-                ArticleSection::basic('some title', 2, '<p>body</p>', 'id',
+                ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
                     new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
                     ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#')),
             ],

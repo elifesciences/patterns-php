@@ -32,8 +32,8 @@ final class ArticleSection implements ViewModel
         string $id = null,
         Doi $doi = null,
         Link $headerLink = null,
-        string $title,
-        int $headingLevel,
+        string $title = null,
+        int $headingLevel = null,
         string $body,
         array $relatedLinks = null,
         string $style = null,
@@ -41,15 +41,27 @@ final class ArticleSection implements ViewModel
         bool $hasBehaviour = false,
         bool $isInitiallyClosed = false
     ) {
-        Assertion::notBlank($title);
-        Assertion::min($headingLevel, 2);
-        Assertion::max($headingLevel, 6);
+        Assertion::nullOrNotBlank($title);
+        Assertion::nullOrMin($headingLevel, 2);
+        Assertion::nullOrMax($headingLevel, 6);
         Assertion::notBlank($body);
         Assertion::nullOrNotEmpty($relatedLinks);
         if (null !== $relatedLinks) {
             Assertion::allIsInstanceOf($relatedLinks, Link::class);
         }
         Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED]);
+
+        if (null === $headingLevel && $title) {
+            throw new InvalidArgumentException('title requires a headingLevel');
+        }
+
+        if (null === $title && $headerLink) {
+            throw new InvalidArgumentException('headerLink requires a title');
+        }
+
+        if (null === $title && $headingLevel) {
+            throw new InvalidArgumentException('headingLevel requires a title');
+        }
 
         if (null === $id && $doi) {
             throw new InvalidArgumentException('DOI requires an ID');
@@ -77,9 +89,9 @@ final class ArticleSection implements ViewModel
     }
 
     public static function basic(
-        string $title,
-        int $headingLevel,
         string $body,
+        string $title = null,
+        int $headingLevel = null,
         $id = null,
         Doi $doi = null,
         array $relatedLinks = null,
