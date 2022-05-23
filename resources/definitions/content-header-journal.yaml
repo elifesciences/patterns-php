@@ -7,6 +7,10 @@ properties:
     impactStatement:
         type: string
         minLength: 1
+    isMagazine:
+        type: boolean
+        enum:
+            - true
     breadcrumb:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
