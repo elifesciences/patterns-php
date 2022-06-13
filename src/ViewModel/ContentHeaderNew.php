@@ -14,6 +14,7 @@ final class ContentHeaderNew implements ViewModel
     use HasTitleLength;
 
     private $title;
+    private $isOneColumn;
     private $titleLength;
     private $image;
     private $impactStatement;
@@ -32,9 +33,10 @@ final class ContentHeaderNew implements ViewModel
 
     public function __construct(
         string $title,
+        bool $isOneColumn = null,
         ContentHeaderImage $image = null,
         string $impactStatement = null,
-        bool $header = false,
+        bool $header = null,
         Breadcrumb $breadcrumb = null,
         array $subjects = [],
         Profile $profile = null,
@@ -52,6 +54,9 @@ final class ContentHeaderNew implements ViewModel
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
 
+        if (true === $isOneColumn) {
+            $this->isOneColumn = $isOneColumn;
+        }
         $this->title = $title;
         $this->titleLength = $this->determineTitleLength($this->title);
 

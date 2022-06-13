@@ -11,6 +11,10 @@ properties:
         type: boolean
         enum:
             - true
+    isOneColumn:
+        type: boolean
+        enum:
+            - true
     breadcrumb:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object

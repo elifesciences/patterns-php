@@ -30,6 +30,7 @@ final class ContentHeaderNewTest extends ViewModelTest
     {
         return new ContentHeaderNew(
             $title,
+            false,
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
             null, true, null, [],
             new Profile(new Link('Dr Curator')),
@@ -58,6 +59,7 @@ final class ContentHeaderNewTest extends ViewModelTest
 
         $data = [
             'title' => 'title',
+            'isOneColumn' => true,
             'titleLength' => 'xx-short',
             'image' => [
                 'fallback' => [
@@ -180,6 +182,7 @@ final class ContentHeaderNewTest extends ViewModelTest
 
         $contentHeader = new ContentHeaderNew(
             $data['title'],
+            true,
             new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['creditOverlay']),
             $data['impactStatement'],
             true,
@@ -228,6 +231,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         $data['image']['credit']['elementId'] = $contentHeader['image']['credit']['elementId'];
 
         $this->assertSame($data['title'], $contentHeader['title']);
+        $this->assertSame($data['isOneColumn'], $contentHeader['isOneColumn']);
         $this->assertSame($data['titleLength'], $contentHeader['titleLength']);
         $this->assertSameWithoutOrder($data['image'], $contentHeader['image']);
         $this->assertSame($data['impactStatement'], $contentHeader['impactStatement']);
@@ -262,7 +266,7 @@ final class ContentHeaderNewTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeaderNew('', null, null, true, null, ['foo']);
+        new ContentHeaderNew('', null, null, null, true, null, ['foo']);
     }
 
     /**
@@ -302,7 +306,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         return [
             'minimum' => [new ContentHeaderNew('title')],
             'complete' => [
-                new ContentHeaderNew('title', new ContentHeaderImage(new Picture([], new Image(
+                new ContentHeaderNew('title', true, new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
                     'the alt text')), 'image credit', true), ' impact statement', true, new Breadcrumb([new Link('foo', 'bar')]), [new Link('subject', '#')], new Profile(new Link('profile')), new Authors([Author::asText('author')], [new Institution('institution')]), '#', '#'),
