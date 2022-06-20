@@ -118,7 +118,6 @@ properties:
                 type: string
                 format: uri
         required:
-            - emailUrl
             - facebookUrl
             - twitterUrl
             - linkedInUrl
