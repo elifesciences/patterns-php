@@ -55,6 +55,18 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         new SocialMediaSharersNew('Some article title', 'foo');
     }
 
+    /**
+     * @test
+     */
+    public function it_may_include_an_email_url()
+    {
+        $with = new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url', true);
+        $without = new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url', false);
+
+        $this->assertArrayHasKey('emailUrl', $with->toArray());
+        $this->assertArrayNotHasKey('emailUrl', $without->toArray());
+    }
+
     public function viewModelProvider() : array
     {
         return [
