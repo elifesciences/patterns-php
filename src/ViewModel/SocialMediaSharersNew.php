@@ -13,13 +13,13 @@ final class SocialMediaSharersNew implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $emailUrl;
+    private $emailUrl = null;
     private $facebookUrl;
     private $twitterUrl;
     private $linkedInUrl;
     private $redditUrl;
 
-    public function __construct(string $title, string $url)
+    public function __construct(string $title, string $url, $includeEmail = true)
     {
         Assertion::notBlank($title);
         Assertion::url($url);
@@ -27,7 +27,10 @@ final class SocialMediaSharersNew implements ViewModel
         $encodedTitle = rawurlencode($title);
         $encodedUrl = rawurlencode($url);
 
-        $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
+        if ($includeEmail) {
+            $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
+        }
+
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
         $this->linkedInUrl = "https://www.linkedin.com/shareArticle?title={$encodedTitle}&url={$encodedUrl}";
