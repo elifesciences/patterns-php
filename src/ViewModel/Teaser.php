@@ -28,9 +28,11 @@ final class Teaser implements ViewModel
     private $category;
     private $image;
     private $footer;
+    private $label;
 
     protected function __construct(
         string $title,
+        string $label,
         array $rootClasses = [],
         string $url = null,
         string $content = null,
@@ -44,6 +46,7 @@ final class Teaser implements ViewModel
         Assertion::notBlank($title);
 
         $this->title = $title;
+        $this->label = $label;
         $this->rootClasses = implode(' ', $rootClasses);
         $this->url = $url ?? false;
         $this->content = $content;
