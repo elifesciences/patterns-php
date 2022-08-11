@@ -28,6 +28,7 @@ final class Teaser implements ViewModel
     private $category;
     private $image;
     private $footer;
+    private $curatorLabels;
 
     protected function __construct(
         string $title,
@@ -39,9 +40,11 @@ final class Teaser implements ViewModel
         Date $eventDate = null,
         Link $category = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        array $curatorLabels = null
     ) {
         Assertion::notBlank($title);
+        Assertion::allString($curatorLabels);
 
         $this->title = $title;
         $this->rootClasses = implode(' ', $rootClasses);
@@ -53,6 +56,7 @@ final class Teaser implements ViewModel
         $this->category = $category;
         $this->image = $image;
         $this->footer = $footer;
+        $this->curatorLabels = $curatorLabels;
     }
 
     public static function relatedItem(
@@ -61,7 +65,8 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        array $curatorLabels = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY, self::STYLE_RELATED];
 
@@ -75,7 +80,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $curatorLabels
         );
     }
 
@@ -86,7 +92,8 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        array $curatorLabels = null
     ) {
         $rootClasses = [];
 
@@ -100,7 +107,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $curatorLabels
         );
     }
 
@@ -133,7 +141,8 @@ final class Teaser implements ViewModel
         string $url = null,
         string $content = null,
         ContextLabel $contextLabel = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        $curatorLabels = null
     ) {
         $rootClasses = [self::STYLE_CHAPTER_LISTING_ITEM];
 
@@ -147,7 +156,8 @@ final class Teaser implements ViewModel
             null,
             null,
             null,
-            $footer
+            $footer,
+            $curatorLabels
         );
     }
 
@@ -157,7 +167,8 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        $curatorLabels = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY];
 
@@ -171,7 +182,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $curatorLabels
         );
     }
 
