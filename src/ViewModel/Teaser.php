@@ -41,7 +41,7 @@ final class Teaser implements ViewModel
         Link $category = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null,
-        array $curatorLabels = null
+        array $curatorLabels = []
     ) {
         Assertion::notBlank($title);
         Assertion::allString($curatorLabels);
@@ -66,7 +66,7 @@ final class Teaser implements ViewModel
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null,
-        array $curatorLabels = null
+        array $curatorLabels = []
     ) {
         $rootClasses = [self::STYLE_SECONDARY, self::STYLE_RELATED];
 
@@ -93,7 +93,7 @@ final class Teaser implements ViewModel
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null,
-        array $curatorLabels = null
+        array $curatorLabels = []
     ) {
         $rootClasses = [];
 
