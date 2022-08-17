@@ -41,7 +41,7 @@ final class Teaser implements ViewModel
         Link $category = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null,
-        array $curationLabels = []
+        CurationLabel $curationLabels = null
     ) {
         Assertion::notBlank($title);
 
@@ -55,10 +55,7 @@ final class Teaser implements ViewModel
         $this->category = $category;
         $this->image = $image;
         $this->footer = $footer;
-        if ($curationLabels) {
-            Assertion::allString($curationLabels);
-            $this->curationLabels = ['list' => $curationLabels];
-        }
+        $this->curationLabels = $curationLabels;
     }
 
     public static function relatedItem(
@@ -68,7 +65,7 @@ final class Teaser implements ViewModel
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null,
-        array $curationLabels = []
+        CurationLabel $curationLabels = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY, self::STYLE_RELATED];
 
@@ -95,7 +92,7 @@ final class Teaser implements ViewModel
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null,
-        array $curationLabels = []
+        CurationLabel $curationLabels = null
     ) {
         $rootClasses = [];
 
@@ -144,7 +141,7 @@ final class Teaser implements ViewModel
         string $content = null,
         ContextLabel $contextLabel = null,
         TeaserFooter $footer = null,
-        array $curationLabels = []
+        CurationLabel $curationLabels = null
     ) {
         $rootClasses = [self::STYLE_CHAPTER_LISTING_ITEM];
 
@@ -170,7 +167,7 @@ final class Teaser implements ViewModel
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null,
-        array $curationLabels = []
+        CurationLabel $curationLabels = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY];
 
