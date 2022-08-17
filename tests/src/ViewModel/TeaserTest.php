@@ -5,6 +5,7 @@ namespace tests\eLife\Patterns\ViewModel;
 use Assert\InvalidArgumentException;
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\ContextLabel;
+use eLife\Patterns\ViewModel\CurationLabel;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Teaser;
@@ -51,7 +52,8 @@ final class TeaserTest extends ViewModelTest
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['formats']['list']
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -74,7 +76,8 @@ final class TeaserTest extends ViewModelTest
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['formats']['list']
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -97,7 +100,8 @@ final class TeaserTest extends ViewModelTest
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['formats']['list']
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -118,7 +122,8 @@ final class TeaserTest extends ViewModelTest
             null,
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -139,7 +144,8 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -160,7 +166,8 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -181,7 +188,8 @@ final class TeaserTest extends ViewModelTest
             null,
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -232,7 +240,8 @@ final class TeaserTest extends ViewModelTest
             }, $data['contextLabel']['list'])),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            new CurationLabel($data['curationLabels']['list'])
         );
         $this->assertSameWithoutOrder($data, $actual);
     }

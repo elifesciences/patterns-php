@@ -8,6 +8,11 @@
       }
     ]
   },
+  "curationLabels": {
+    "list": [
+      "Important", "Curation label", "Ground-Breaking"
+    ]
+  },
 
   "title": "Catch me if you can",
   "url": false,
