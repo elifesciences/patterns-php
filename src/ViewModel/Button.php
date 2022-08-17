@@ -34,8 +34,9 @@ final class Button implements ViewModel
     private $clipboardText;
     private $id;
     private $name;
+    private $color;
 
-    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
+    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true, $color = null)
     {
         Assertion::notBlank($text);
         Assertion::choice($size, [self::SIZE_CUSTOM, self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
@@ -68,6 +69,7 @@ final class Button implements ViewModel
         $this->classes = implode(' ', $classes);
         $this->id = $id;
         $this->name = $name;
+        $this->color = $color;
     }
 
     public static function clipboard(
@@ -114,11 +116,12 @@ final class Button implements ViewModel
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
         bool $isFullWidth = false,
-        string $id = null
+        string $id = null,
+        $color = null
     ) : Button {
         Assertion::notBlank($path);
 
-        $button = new static($text, $size, $style, $isActive, null, $id, $isFullWidth);
+        $button = new static($text, $size, $style, $isActive, null, $id, $isFullWidth, $color);
         $button->path = $path;
 
         return $button;
