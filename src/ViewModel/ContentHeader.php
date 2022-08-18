@@ -25,6 +25,7 @@ final class ContentHeader implements ViewModel
     private $meta;
     private $licence;
     private $audioPlayer;
+    private $curationLabels;
 
     public function __construct(
         string $title,
@@ -39,7 +40,8 @@ final class ContentHeader implements ViewModel
         SelectNav $selectNav = null,
         Meta $meta = null,
         string $licence = null,
-        AudioPlayer $audioPlayer = null
+        AudioPlayer $audioPlayer = null,
+        CurationLabel $curationLabels = null
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
@@ -58,6 +60,9 @@ final class ContentHeader implements ViewModel
             if ($profile) {
                 $this->header['hasProfile'] = true;
                 $this->header['profile'] = $profile;
+            }
+            if (!empty($curationLabels)) {
+                $this->curationLabels = $curationLabels;
             }
         }
         $this->authors = $authors;
