@@ -21,7 +21,7 @@ final class HeroBannerItem implements ViewModel
     private $meta;
 
     public function __construct(
-        string $summary, array $subjects, Link $title, Authors $authors, Meta $meta, Image $image
+        string $summary, array $subjects, Link $title, string $authorLine, Meta $meta, Picture $image
     )
     {
         Assertion::notEmpty($title);
@@ -33,7 +33,7 @@ final class HeroBannerItem implements ViewModel
         $this->url = $title['url'];
         $this->meta = $meta;
         $this->image = $image;
-        $this->authors = $authors;
+        $this->authors = $authorLine;
     }
 
     public function getTemplateName() : string
