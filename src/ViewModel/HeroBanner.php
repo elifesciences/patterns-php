@@ -12,15 +12,15 @@ final class HeroBanner implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $heroBannerItem;
+    private $item;
 
-    public function __construct(HeroBannerItem $heroBannerItem)
+    public function __construct(HeroBannerItem $item)
     {
-        $this->heroBannerItem = $heroBannerItem;
+        $this->item = $item;
     }
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/hero-banner-item.mustache';
+        return 'resources/templates/hero-banner.mustache';
     }
 }

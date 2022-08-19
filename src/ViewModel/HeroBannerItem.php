@@ -13,32 +13,31 @@ final class HeroBannerItem implements ViewModel
     use ArrayFromProperties;
 
     private $title;
-    private $content;
-    private $date;
+    private $summary;
     private $authors;
-    private $topic;
+    private $subjects;
     private $image;
+    private $url;
+    private $meta;
 
     public function __construct(
-        string $title,
-        string $content,
-        \DateTimeImmutable $date,
-        string $authors,
-        array $topic,
-        string $image
+        string $summary, array $subjects, Link $title, Authors $authors, Meta $meta, Image $image
     )
     {
         Assertion::notEmpty($title);
-        $this->title = $title;
-        $this->content = $content;
-        $this->date = $date;
-        $this->authors = $authors;
-        $this->topic = $topic;
+        if (!empty($subjects)) {
+            $this->subjects = ['list' => $subjects];
+        }
+        $this->summary = $summary;
+        $this->title = $title['name'];
+        $this->url = $title['url'];
+        $this->meta = $meta;
         $this->image = $image;
+        $this->authors = $authors;
     }
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/hero-banner.mustache';
+        return 'resources/templates/hero-banner-item.mustache';
     }
 }
