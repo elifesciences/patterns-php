@@ -26,7 +26,7 @@ final class Meta implements ViewModel
         $this->url = $url ?? false;
         $this->text = $text;
         $this->date = $date;
-        if ("Reviewed preprint" === $text) {
+        if ("Reviewed Preprint" === $text) {
             $this->isReviewed = true;
         }
     }
