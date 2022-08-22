@@ -83,8 +83,6 @@ final class TextField implements ViewModel
         string $state = null,
         MessageGroup $messageGroup = null
     ) {
-        Assertion::eq(null, $formFieldInfoLink['alignLeft'] ?? null);
-
         return new static('email', $label, $id, $name, $placeholder, $required, $disabled, null, null, $autofocus, $value, $state, $messageGroup, $formFieldInfoLink);
     }
 
