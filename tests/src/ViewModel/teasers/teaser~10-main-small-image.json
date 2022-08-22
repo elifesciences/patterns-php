@@ -32,7 +32,7 @@
   "footer": {
     "meta": {
       "url": "#",
-      "text": "Research article",
+      "text": "Reviewed preprint",
       "date": {
         "forHuman": {
           "dayOfMonth": 10,
@@ -40,7 +40,8 @@
           "year": 2015
         },
         "forMachine": "2015-09-10"
-      }
+      },
+      "isReviewed": true
     },
 
     "formats": {

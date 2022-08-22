@@ -15,6 +15,7 @@ final class Meta implements ViewModel
     private $url;
     private $text;
     private $date;
+    private $isReviewed;
 
     private function __construct(string $url = null, string $text = null, Date $date = null)
     {
@@ -25,6 +26,9 @@ final class Meta implements ViewModel
         $this->url = $url ?? false;
         $this->text = $text;
         $this->date = $date;
+        if ("Reviewed preprint" === $text) {
+            $this->isReviewed = true;
+        }
     }
 
     public static function withLink(Link $link, Date $date = null) : Meta

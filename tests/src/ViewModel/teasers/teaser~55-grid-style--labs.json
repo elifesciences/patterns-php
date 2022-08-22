@@ -13,7 +13,7 @@
   },
   "footer": {
     "meta": {
-      "text": "Experiment: 001",
+      "text": "Reviewed preprint",
       "url": false,
       "date": {
         "forHuman": {
@@ -22,7 +22,8 @@
           "year": 2015
         },
         "forMachine": "2015-03-31"
-      }
+      },
+      "isReviewed": true
     }
   }
 }

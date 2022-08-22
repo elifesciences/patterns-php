@@ -17,7 +17,7 @@
   "footer": {
     "meta": {
       "url": "#",
-      "text": "Research advance",
+      "text": "Reviewed preprint",
       "date": {
         "forHuman": {
           "dayOfMonth": 16,
@@ -25,7 +25,8 @@
           "year": 2015
         },
         "forMachine": "2015-12-16"
-      }
+      },
+      "isReviewed": true
     }
   }
 }

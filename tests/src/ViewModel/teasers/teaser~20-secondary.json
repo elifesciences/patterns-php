@@ -18,7 +18,7 @@
   "secondaryInfo": "Bloggs, J. et al",
   "footer": {
     "meta": {
-      "text": "Insight",
+      "text": "Reviewed preprint",
       "url": "#",
       "date": {
         "forHuman": {
@@ -27,7 +27,8 @@
           "year": 2015
         },
         "forMachine": "2015-12-16"
-      }
+      },
+      "isReviewed": true
     }
   }
 }
