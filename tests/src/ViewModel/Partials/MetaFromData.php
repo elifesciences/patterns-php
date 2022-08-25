@@ -11,6 +11,11 @@ trait MetaFromData
 {
     final protected function metaFromData(array $data) : Meta
     {
+        if (isset($data['statusDate'])) {
+            return Meta::withStatusDate(
+                $data['text'], Date::simple(new DateTimeImmutable($data['date']['forMachine'])), Date::simple(new DateTimeImmutable($data['statusDate']['forMachine']))
+            );
+        }
         if ($data['url']) {
             if (isset($data['date']['forMachine'])) {
                 return Meta::withLink(

@@ -22,8 +22,7 @@
 
   "footer": {
     "meta": {
-      "url": "#",
-      "text": "Research article",
+      "text": "Reviewed Preprint",
       "date": {
         "forHuman": {
           "dayOfMonth": 10,
@@ -31,6 +30,14 @@
           "year": 2015
         },
         "forMachine": "2015-09-10"
+      },
+      "statusDate": {
+        "forHuman": {
+          "dayOfMonth": 24,
+          "month": "Mar",
+          "year": 2022
+        },
+        "forMachine": "2022-03-24"
       }
     },
 

@@ -15,8 +15,10 @@ final class Meta implements ViewModel
     private $url;
     private $text;
     private $date;
+    private $statusText;
+    private $statusDate;
 
-    private function __construct(string $url = null, string $text = null, Date $date = null)
+    private function __construct(string $url = null, string $text = null, Date $date = null, Date $statusDate = null)
     {
         if ($date instanceof Date) {
             Assertion::false($date['isExpanded']);
@@ -25,6 +27,13 @@ final class Meta implements ViewModel
         $this->url = $url ?? false;
         $this->text = $text;
         $this->date = $date;
+        $this->statusDate = $statusDate;
+        if (null !== $this->statusDate) {
+            $this->statusText = "Published";
+        }
+        if ("Reviewed Preprint" === $text) {
+            $this->statusText = "Updated";
+        }
     }
 
     public static function withLink(Link $link, Date $date = null) : Meta
@@ -42,6 +51,11 @@ final class Meta implements ViewModel
     public static function withDate(Date $date) : Meta
     {
         return new self(null, null, $date);
+    }
+
+    public static function withStatusDate(string $text, Date $date, Date $statusDate) : Meta
+    {
+        return new self(null, $text, $date, $statusDate);
     }
 
     public function getTemplateName() : string
