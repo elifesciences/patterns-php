@@ -90,7 +90,6 @@ properties:
         minLength: 1
     authors:
         type: string
-        minLength: 1
     meta:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
@@ -155,4 +154,3 @@ required:
     - title
     - url
     - summary
-    - authors
