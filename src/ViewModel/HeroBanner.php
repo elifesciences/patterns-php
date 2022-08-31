@@ -21,7 +21,7 @@ final class HeroBanner implements ViewModel
     private $meta;
 
     public function __construct(
-        array $subjects, Link $title, Meta $meta, Picture $image, string $summary, string $authorLine = null
+        array $subjects, Link $title, Meta $meta, Picture $image, string $summary = null, string $authorLine = null
     )
     {
         Assertion::notEmpty($title);
