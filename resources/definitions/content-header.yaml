@@ -434,6 +434,9 @@ properties:
                 required:
                     - forHuman
                     - forMachine
+            isReviewed:
+                type: boolean
+                default: false
         anyOf:
             -
                 required:
