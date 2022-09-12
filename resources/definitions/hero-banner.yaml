@@ -1,9 +1,6 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 type: object
 properties:
-    headingId:
-        type: string
-        minLength: 1
     image:
         allOf:
             -
@@ -87,7 +84,6 @@ properties:
         minLength: 1
     summary:
         type: string
-        minLength: 1
     authors:
         type: string
     meta:
@@ -151,6 +147,7 @@ properties:
                 required:
                     - text
 required:
+    - image
     - title
     - url
-    - summary
+    - meta
