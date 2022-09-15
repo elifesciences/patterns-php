@@ -51,14 +51,20 @@ final class HeroBannerTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new HeroBanner(
+            'minimum' => [new HeroBanner(
+                [],
+                new Link('link', 'url'),
+                Meta::withText('meta'),
+                new Picture([], new Image('path/to/image'))
+            )],
+            'complete' => [new HeroBanner(
                 [new Link('subject', 'subject-url')],
                 new Link('link', 'url'),
                 Meta::withText('meta'),
                 new Picture([], new Image('path/to/image')),
                 'summary',
                 'author line'
-            )]
+            )],
         ];
     }
 
