@@ -2,17 +2,11 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Carousel;
-use eLife\Patterns\ViewModel\CarouselItem;
-use eLife\Patterns\ViewModel\CarouselItemImage;
-use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\HeroBanner;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
-use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Picture;
-use InvalidArgumentException;
 
 final class HeroBannerTest extends ViewModelTest
 {
