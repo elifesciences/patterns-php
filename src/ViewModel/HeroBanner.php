@@ -24,7 +24,8 @@ final class HeroBanner implements ViewModel
         array $subjects, Link $title, Meta $meta, Picture $image, string $summary = null, string $authorLine = null
     )
     {
-        Assertion::notEmpty($title);
+        Assertion::allIsInstanceOf($subjects, Link::class);
+
         if (!empty($subjects)) {
             $this->subjects = ['list' => $subjects];
         }
