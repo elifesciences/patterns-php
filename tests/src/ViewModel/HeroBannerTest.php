@@ -17,6 +17,9 @@ final class HeroBannerTest extends ViewModelTest
     {
         $data = [
             'title' => 'title',
+            'titleLength' => 'short',
+            'summary' => 'summary',
+            'authors' => 'author line',
             'subjects' => [
                 'list' => [
                     [
@@ -42,10 +45,57 @@ final class HeroBannerTest extends ViewModelTest
             [new Link('subject', 'subject-url')],
             new Link('title', 'url'),
             Meta::withText('meta'),
-            new Picture([], new Image('/default/path'))
+            new Picture([], new Image('/default/path')),
+            'summary',
+            'author line'
+        );
+        $this->assertSame($data['subjects']['list'][0], $heroBanner['subjects']['list'][0]->toArray());
+        $this->assertSame($data['title'], $heroBanner['title']);
+        $this->assertSame($data['titleLength'], $heroBanner['titleLength']);
+        $this->assertSame($data['url'], $heroBanner['url']);
+        $this->assertSame($data['meta'], $heroBanner['meta']->toArray());
+        $this->assertSame($data['image'], $heroBanner['image']->toArray());
+        $this->assertSame($data['summary'], $heroBanner['summary']);
+        $this->assertSame($data['authors'], $heroBanner['authors']);
+        $this->assertSame($data, $heroBanner->toArray());
+    }
+
+    /**
+     * @test
+     * @dataProvider titleLengthProvider
+     */
+    public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
+    {
+        $title = str_repeat('é', $length);
+
+        $carouselItem = new HeroBanner(
+            [],
+            new Link($title, 'url'),
+            Meta::withText('meta'),
+            new Picture([], new Image('path/to/image'))
         );
 
-        $this->assertSame($data, $heroBanner->toArray());
+        $this->assertSame($expected, $carouselItem['titleLength']);
+    }
+
+    public function titleLengthProvider() : array
+    {
+        return [
+            [3, 'short'],
+            [19, 'short'],
+            [20, 'short'],
+            [35, 'short'],
+            [36, 'short'],
+            [46, 'short'],
+            [49, 'short'],
+            [50, 'medium'],
+            [58, 'medium'],
+            [80, 'medium'],
+            [89, 'medium'],
+            [90, 'long'],
+            [121, 'long'],
+            [500, 'long'],
+        ];
     }
 
     public function viewModelProvider() : array

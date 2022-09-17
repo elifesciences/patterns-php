@@ -11,8 +11,10 @@ final class HeroBanner implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    use HasTitleLength;
 
     private $title;
+    private $titleLength;
     private $summary;
     private $authors;
     private $subjects;
@@ -31,6 +33,11 @@ final class HeroBanner implements ViewModel
         }
         $this->summary = $summary;
         $this->title = $title['name'];
+        $this->titleLength = $this->determineTitleLength($this->title, [
+            49 => 'short',
+            89 => 'medium',
+            null => 'long',
+        ]);
         $this->url = $title['url'];
         $this->meta = $meta;
         $this->image = $image;
