@@ -11,11 +11,9 @@ final class HighlightItem implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use HasTitleLength;
 
     private $subjects;
     private $title;
-    private $titleLength;
     private $summary;
     private $authors;
     private $url;
@@ -33,7 +31,6 @@ final class HighlightItem implements ViewModel
         $this->title = $title['name'];
         $this->summary = $summary;
         $this->authors = $authors;
-        $this->titleLength = $this->determineTitleLength($this->title);
         $this->url = $title['url'];
         $this->meta = $meta;
         $this->image = $image;

@@ -34,7 +34,6 @@ final class HighlightTest extends ViewModelTest
                         ],
                     ],
                     'title' => 'highlight item',
-                    'titleLength' => 'xx-short',
                     'summary' => "summary",
                     'authors' => "authors",
                     'url' => 'highlight-item-url',
@@ -88,6 +87,26 @@ final class HighlightTest extends ViewModelTest
                 )], new ListHeading('heading', 'headingId')),
             ]
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function it_cannot_have_no_highlight_items()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Highlight([], new ListHeading('heading', 'headingId'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_only_highlight_items()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new Highlight(['foo'], new ListHeading('heading', 'headingId'));
     }
 
     protected function expectedTemplate(): string

@@ -18,6 +18,7 @@ final class Highlight implements ViewModel
     public function __construct(array $items, ListHeading $heading)
     {
         Assertion::notEmpty($items);
+        Assertion::allIsInstanceOf($items, HighlightItem::class);
 
         $this->heading = $heading;
         $this->items = $items;

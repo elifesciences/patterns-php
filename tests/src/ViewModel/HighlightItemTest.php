@@ -2,6 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use DateTimeImmutable;
+use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\HighlightItem;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
@@ -25,13 +27,22 @@ final class HighlightItemTest extends ViewModelTest
                 ],
             ],
             'title' => 'highlight item with a long title',
-            'titleLength' => 'x-short',
             'summary' => "summary",
             'authors' => "authors",
             'url' => 'carousel-item-url',
             'meta' => [
                 'url' => false,
                 'text' => 'meta',
+                'date' => [
+                    'isExpanded' => false,
+                    'isUpdated' => false,
+                    'forHuman' => [
+                        'dayOfMonth' => 21,
+                        'month' => 'Dec',
+                        'year' => 2017,
+                    ],
+                    'forMachine' => '2017-12-21',
+                ],
             ],
             'image' => [
                 'fallback' => [
@@ -44,7 +55,7 @@ final class HighlightItemTest extends ViewModelTest
         $highlightItem = new HighlightItem(
             [new Link('subject', 'subject-url')],
             new Link('highlight item with a long title', 'carousel-item-url'),
-            Meta::withText('meta'),
+            Meta::withText('meta', Date::simple(new DateTimeImmutable('2017-12-21'))),
             new Picture([], new Image('/default/path')),
             'summary',
             'authors'
@@ -52,7 +63,6 @@ final class HighlightItemTest extends ViewModelTest
 
         $this->assertSame($data['subjects']['list'][0], $highlightItem['subjects']['list'][0]->toArray());
         $this->assertSame($data['title'], $highlightItem['title']);
-        $this->assertSame($data['titleLength'], $highlightItem['titleLength']);
         $this->assertSame($data['url'], $highlightItem['url']);
         $this->assertSame($data['summary'], $highlightItem['summary']);
         $this->assertSame($data['authors'], $highlightItem['authors']);
@@ -61,52 +71,19 @@ final class HighlightItemTest extends ViewModelTest
         $this->assertSame($data, $highlightItem->toArray());
     }
 
-    /**
-     * @test
-     * @dataProvider titleLengthProvider
-     */
-    public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
-    {
-        $title = str_repeat('é', $length);
-
-        $carouselItem = new HighlightItem(
-            [],
-            new Link($title, 'carousel-item-url'),
-            Meta::withText('meta'),
-            new Picture([], new Image('/default/path')),
-            'summary',
-            'authors'
-        );
-
-        $this->assertSame($expected, $carouselItem['titleLength']);
-    }
-
-    public function titleLengthProvider() : array
-    {
-        return [
-            [3, 'xx-short'],
-            [19, 'xx-short'],
-            [20, 'x-short'],
-            [35, 'x-short'],
-            [36, 'short'],
-            [46, 'short'],
-            [47, 'medium'],
-            [57, 'medium'],
-            [58, 'long'],
-            [80, 'long'],
-            [81, 'x-long'],
-            [120, 'x-long'],
-            [121, 'xx-long'],
-            [500, 'xx-long'],
-        ];
-    }
-
     public function viewModelProvider() : array
     {
         return [
-            [new HighlightItem(
+            'minimum' => [new HighlightItem(
+                [],
+                new Link('highlight item', 'highlight-item-url'),
+                Meta::withText('meta', Date::simple(new DateTimeImmutable())),
+                new Picture([], new Image('/default/path')),
+                'summary'
+            )],
+            'complete' => [new HighlightItem(
                 [new Link('subject', 'subject-url')],
-                new Link('carousel item', 'carousel-item-url'),
+                new Link('highlight item', 'highlight-item-url'),
                 Meta::withText('meta'),
                 new Picture([], new Image('/default/path')),
                 'summary',
