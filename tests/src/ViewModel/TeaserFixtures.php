@@ -19,6 +19,7 @@ final class TeaserFixtures
     const CHAPTER_LISTING_ITEM = 'teaser~52-chapter-listing-item.json';
     const GRID_STYLE_LABS = 'teaser~55-grid-style--labs.json';
     const GRID_STYLE_PODCAST = 'teaser~60-grid-style--podcast.json';
+    const MAIN_BIG_STATUS_AND_DATE = 'teaser~70-main--big-status-and-date.json';
 
     public static function load(string $const)
     {
@@ -36,6 +37,7 @@ final class TeaserFixtures
             self::CHAPTER_LISTING_ITEM,
             self::GRID_STYLE_LABS,
             self::GRID_STYLE_PODCAST,
+            self::MAIN_BIG_STATUS_AND_DATE,
         ]);
         $json = file_get_contents(__DIR__.'/teasers/'.$const);
 

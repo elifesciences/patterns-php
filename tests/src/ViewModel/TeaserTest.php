@@ -278,6 +278,30 @@ final class TeaserTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_can_load_main_big_status_and_date()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::MAIN_BIG_STATUS_AND_DATE);
+        $actual = Teaser::main(
+            $data['title'],
+            $data['url'] ? $data['url'] : null,
+            $data['content'],
+            $data['secondaryInfo'],
+            new ContextLabel(...array_map(function ($item) {
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
+            }, $data['contextLabel']['list'])),
+            null,
+            TeaserFooter::forArticle(
+                $this->metaFromData($data['footer']['meta']),
+                $data['footer']['formats']['list']
+            ),
+            [$data['rootClasses']]
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
     public function it_cant_load_context_label_without_arguments()
     {
         $this->expectException(InvalidArgumentException::class);

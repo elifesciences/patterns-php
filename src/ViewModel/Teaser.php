@@ -86,9 +86,9 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        array $rootClasses = []
     ) {
-        $rootClasses = [];
 
         return new static(
             $title,
