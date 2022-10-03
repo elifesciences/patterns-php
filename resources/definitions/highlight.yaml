@@ -144,7 +144,6 @@ properties:
                 required:
                     - title
                     - url
-                    - summary
                     - meta
                     - image
         minItems: 1

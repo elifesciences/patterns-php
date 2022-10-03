@@ -71,20 +71,44 @@ final class HighlightItemTest extends ViewModelTest
         $this->assertSame($data, $highlightItem->toArray());
     }
 
+    /**
+     * @test
+     */
+    public function it_may_have_summary()
+    {
+        $with = new HighlightItem(
+            [],
+            new Link('highlight item with a long title', 'highlight-item-url'),
+            Meta::withText('meta'),
+            new Picture([], new Image('/default/path')),
+            'summary'
+        );
+
+        $without = new HighlightItem(
+            [],
+            new Link('highlight item with a long title', 'highlight-item-url'),
+            Meta::withText('meta'),
+            new Picture([], new Image('/default/path'))
+        );
+
+        $this->assertArrayHasKey('summary', $with->toArray());
+
+        $this->assertArrayNotHasKey('summary', $without->toArray());
+    }
+
     public function viewModelProvider() : array
     {
         return [
             'minimum' => [new HighlightItem(
                 [],
                 new Link('highlight item', 'highlight-item-url'),
-                Meta::withText('meta', Date::simple(new DateTimeImmutable())),
-                new Picture([], new Image('/default/path')),
-                'summary'
+                Meta::withText('meta'),
+                new Picture([], new Image('/default/path'))
             )],
             'complete' => [new HighlightItem(
                 [new Link('subject', 'subject-url')],
                 new Link('highlight item', 'highlight-item-url'),
-                Meta::withText('meta'),
+                Meta::withText('meta', Date::simple(new DateTimeImmutable())),
                 new Picture([], new Image('/default/path')),
                 'summary',
                 'authors'
