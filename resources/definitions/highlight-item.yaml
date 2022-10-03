@@ -126,6 +126,5 @@ properties:
 required:
     - title
     - url
-    - summary
     - meta
     - image

@@ -21,7 +21,7 @@ final class HighlightItem implements ViewModel
     private $meta;
     private $image;
 
-    public function __construct(array $subjects, Link $title, Meta $meta, Picture $image, string $summary, string $authors = null)
+    public function __construct(array $subjects, Link $title, Meta $meta, Picture $image, string $summary = null, string $authors = null)
     {
         Assertion::allIsInstanceOf($subjects, Link::class);
 

@@ -2,6 +2,8 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use DateTimeImmutable;
+use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Highlight;
 use eLife\Patterns\ViewModel\HighlightItem;
 use eLife\Patterns\ViewModel\Image;
@@ -77,14 +79,22 @@ final class HighlightTest extends ViewModelTest
     {
         return [
             [
-                new Highlight([new HighlightItem(
-                    [new Link('subject', 'subject-url')],
-                    new Link('highlight item', 'highlight-item-url'),
-                    Meta::withText('meta'),
-                    new Picture([], new Image('/default/path')),
-                    'summary',
-                    'authors'
-                )], new ListHeading('heading', 'headingId')),
+                new Highlight([
+                    new HighlightItem(
+                        [new Link('subject', 'subject-url')],
+                        new Link('highlight item', 'highlight-item-url'),
+                        Meta::withText('meta'),
+                        new Picture([], new Image('/default/path'))
+                    ),
+                    new HighlightItem(
+                        [new Link('subject', 'subject-url')],
+                        new Link('highlight item', 'highlight-item-url'),
+                        Meta::withText('meta', Date::simple(new DateTimeImmutable())),
+                        new Picture([], new Image('/default/path')),
+                        'summary',
+                        'authors'
+                    )
+                ], new ListHeading('heading', 'headingId')),
             ]
         ];
     }
