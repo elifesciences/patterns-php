@@ -74,7 +74,7 @@ final class HighlightItemTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_may_have_summary()
+    public function it_may_have_a_summary()
     {
         $with = new HighlightItem(
             [],
@@ -94,6 +94,32 @@ final class HighlightItemTest extends ViewModelTest
         $this->assertArrayHasKey('summary', $with->toArray());
 
         $this->assertArrayNotHasKey('summary', $without->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_may_have_authors()
+    {
+        $with = new HighlightItem(
+            [],
+            new Link('highlight item with a long title', 'highlight-item-url'),
+            Meta::withText('meta'),
+            new Picture([], new Image('/default/path')),
+            null,
+            'Author line'
+        );
+
+        $without = new HighlightItem(
+            [],
+            new Link('highlight item with a long title', 'highlight-item-url'),
+            Meta::withText('meta'),
+            new Picture([], new Image('/default/path'))
+        );
+
+        $this->assertArrayHasKey('authors', $with->toArray());
+
+        $this->assertArrayNotHasKey('authors', $without->toArray());
     }
 
     public function viewModelProvider() : array
