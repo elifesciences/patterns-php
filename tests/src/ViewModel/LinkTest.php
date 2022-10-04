@@ -60,6 +60,7 @@ final class LinkTest extends PHPUnit_Framework_TestCase
         $with1 = (new Link('name', 'url'))->endOfGroup();
         $with2 = (new Link('name', 'url'))->hiddenWide();
         $with3 = (new Link('name', 'url'))->endOfGroup()->hiddenWide();
+        $with4 = (new Link('name', 'url'))->endOfGroup()->endOfGroup()->hiddenWide();
         $without = new Link('name', 'url');
 
         $this->assertArrayHasKey('classes', $with1->toArray());
@@ -70,6 +71,9 @@ final class LinkTest extends PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('classes', $with3->toArray());
         $this->assertSame('end-of-group hidden-wide', $with3->toArray()['classes']);
+
+        $this->assertArrayHasKey('classes', $with4->toArray());
+        $this->assertSame('end-of-group hidden-wide', $with4->toArray()['classes']);
 
         $this->assertArrayNotHasKey('classes', $without->toArray());
     }
