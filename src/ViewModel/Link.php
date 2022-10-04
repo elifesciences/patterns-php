@@ -50,6 +50,6 @@ final class Link implements CastsToArray
     }
 
     private function addClass($class) {
-        $this->classes = trim($this->classes .= ' '.$class);
+        $this->classes = trim($this->classes.' '.$class);
     }
 }
