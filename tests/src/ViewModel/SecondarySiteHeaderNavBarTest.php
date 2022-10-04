@@ -16,6 +16,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
     private $linkItem1;
     private $linkItem2;
     private $linkItem3;
+    private $linkItem4;
     private $linkItems;
     private $siteHeaderNavBar;
 
@@ -26,8 +27,9 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
 
         $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), true);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false);
-        $this->linkItem3 = NavLinkedItem::asButton($this->button);
-        $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3];
+        $this->linkItem3 = NavLinkedItem::asLink(new Link('Alerts', '/alerts/'), false);
+        $this->linkItem4 = NavLinkedItem::asButton($this->button);
+        $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3, $this->linkItem4];
         $this->siteHeaderNavBar = SiteHeaderNavBar::secondary($this->linkItems);
     }
 
@@ -48,8 +50,13 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame('nav-secondary__item', $siteHeaderNavItems[1]['classes']);
         $this->assertSame($this->linkItem2['rel'], $siteHeaderNavItems[1]['rel']);
 
-        $this->assertSame($this->linkItem3['button']->toArray(), $siteHeaderNavItems[2]['button']);
-        $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[2]['classes']);
+        $this->assertSame($this->linkItem3['text'], $siteHeaderNavItems[2]['text']);
+        $this->assertSame($this->linkItem3['path'], $siteHeaderNavItems[2]['path']);
+        $this->assertSame('nav-secondary__item nav-secondary__item--alert', $siteHeaderNavItems[2]['classes']);
+        $this->assertSame($this->linkItem3['rel'], $siteHeaderNavItems[2]['rel']);
+
+        $this->assertSame($this->linkItem4['button']->toArray(), $siteHeaderNavItems[3]['button']);
+        $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[3]['classes']);
     }
 
     /**
