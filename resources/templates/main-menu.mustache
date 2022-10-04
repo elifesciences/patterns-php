@@ -1,12 +1,15 @@
 <div class="main-menu" id="mainMenu" data-behaviour="MainMenu" tabindex="0">
-  <nav class="main-menu__container" role="navigation">
+  <nav class="main-menu__container wrapper" role="navigation">
+    {{#title}}
+      {{> resources/templates/site-header-title }}
+    {{/title}}
     {{#listHeading}}
       {{> resources/templates/list-heading}}
     {{/listHeading}}
     {{#links}}
       <ul class="main-menu__list">
         {{#items}}
-        <li class="main-menu__list_item">
+        <li class="main-menu__list_item{{#hasBorderBottom}} border-line__bottom{{/hasBorderBottom}}{{#isHiddenMainMenuItemForWideScreen}} main-menu__list_change{{/isHiddenMainMenuItemForWideScreen}}">
           <a href="{{url}}" class="main-menu__list_link">{{name}}</a>
         </li>
         {{/items}}
