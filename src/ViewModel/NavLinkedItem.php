@@ -17,12 +17,9 @@ final class NavLinkedItem implements ViewModel
     ];
 
     private $button;
-    private $loginControl;
-    private $picture;
     private $path;
     private $rel;
     private $text;
-    private $textClasses;
 
     private function __construct()
     {
@@ -30,18 +27,9 @@ final class NavLinkedItem implements ViewModel
 
     public static function asIcon(
         Link $link,
-        Picture $picture,
-        bool $showText = true,
-        bool $search = false,
-        string $iconName = null
+        bool $search = false
     ) : NavLinkedItem {
         $itemAsIcon = static::asLink($link, $search);
-
-        $itemAsIcon->picture = $itemAsIcon->determinePicture($picture, $iconName);
-
-        if (false === $showText) {
-            $itemAsIcon->textClasses = 'visuallyhidden';
-        }
 
         return $itemAsIcon;
     }
@@ -64,30 +52,6 @@ final class NavLinkedItem implements ViewModel
         $itemAsButton->button = $button;
 
         return $itemAsButton;
-    }
-
-    public static function asLoginControl(LoginControl $loginControl) : NavLinkedItem
-    {
-        $itemAsLoginControl = new static();
-        $itemAsLoginControl->loginControl = $loginControl;
-
-        return $itemAsLoginControl;
-    }
-
-    private function determinePicture(Picture $picture, string $iconName = null) : ViewModel
-    {
-        if (!array_key_exists($iconName, static::ICON_CLASSES)) {
-            return $picture;
-        }
-
-        $picture = FlexibleViewModel::fromViewModel($picture);
-
-        $fallback = $picture['fallback'];
-        $fallback['classes'] = '';
-
-        return $picture
-            ->withProperty('fallback', $fallback)
-            ->withProperty('pictureClasses', static::ICON_CLASSES[$iconName]);
     }
 
     public function getTemplateName() : string

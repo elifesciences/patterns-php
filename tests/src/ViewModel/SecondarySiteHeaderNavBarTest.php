@@ -13,33 +13,21 @@ use eLife\Patterns\ViewModel\SiteHeaderNavBar;
 final class SecondarySiteHeaderNavBarTest extends ViewModelTest
 {
     private $button;
-    private $picture;
     private $linkItem1;
     private $linkItem2;
     private $linkItem3;
-    private $linkItem4;
     private $linkItems;
-    private $loginControl;
     private $siteHeaderNavBar;
 
     public function setUp()
     {
         parent::setUp();
-        $this->picture = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text')
-        );
-
         $this->button = Button::form('button text', 'button', 'name');
-        $this->loginControl = LoginControl::loggedIn('/some-uri', 'log in', $this->picture);
 
-        $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $this->picture, true);
+        $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), true);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false);
-        $this->linkItem3 = NavLinkedItem::asLoginControl($this->loginControl);
-        $this->linkItem4 = NavLinkedItem::asButton($this->button);
-        $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3, $this->linkItem4];
+        $this->linkItem3 = NavLinkedItem::asButton($this->button);
+        $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3];
         $this->siteHeaderNavBar = SiteHeaderNavBar::secondary($this->linkItems);
     }
 
@@ -52,22 +40,16 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
 
         $this->assertSame($this->linkItem1['text'], $siteHeaderNavItems[0]['text']);
         $this->assertSame($this->linkItem1['path'], $siteHeaderNavItems[0]['path']);
-        $this->assertSame('nav-secondary__item nav-secondary__item--first', $siteHeaderNavItems[0]['classes']);
-        $this->assertSame('nav-secondary__menu_text', $siteHeaderNavItems[0]['textClasses']);
+        $this->assertSame('nav-secondary__item nav-secondary__item--first nav-secondary__item--search', $siteHeaderNavItems[0]['classes']);
         $this->assertSame($this->linkItem1['rel'], $siteHeaderNavItems[0]['rel']);
-        $this->assertSame($this->linkItem1['picture']->toArray(), $siteHeaderNavItems[0]['picture']);
 
         $this->assertSame($this->linkItem2['text'], $siteHeaderNavItems[1]['text']);
         $this->assertSame($this->linkItem2['path'], $siteHeaderNavItems[1]['path']);
         $this->assertSame('nav-secondary__item', $siteHeaderNavItems[1]['classes']);
         $this->assertSame($this->linkItem2['rel'], $siteHeaderNavItems[1]['rel']);
-        $this->assertSame($this->linkItem2['picture'], $siteHeaderNavItems[1]['picture']);
 
-        $this->assertSame($this->linkItem3['loginControl']->toArray(), $siteHeaderNavItems[2]['loginControl']);
-        $this->assertSame('nav-secondary__item nav-secondary__item--logged-in', $siteHeaderNavItems[2]['classes']);
-
-        $this->assertSame($this->linkItem4['button']->toArray(), $siteHeaderNavItems[3]['button']);
-        $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[3]['classes']);
+        $this->assertSame($this->linkItem3['button']->toArray(), $siteHeaderNavItems[2]['button']);
+        $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[2]['classes']);
     }
 
     /**
@@ -88,19 +70,11 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text')
-        );
-
         $button = Button::form('button text', 'button', 'name');
 
         $navLinkItems = [
-            NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), $img, false),
+            NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), false),
             NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
-            NavLinkedItem::asLoginControl(LoginControl::loggedIn('/some-uri', 'log in', $img)),
             NavLinkedItem::asButton($button),
         ];
 
