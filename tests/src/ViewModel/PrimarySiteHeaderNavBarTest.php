@@ -19,7 +19,7 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
     public function setUp()
     {
         parent::setUp();
-        $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), false);
+        $this->linkItem1 = NavLinkedItem::asLink(new Link('item 1', '/item-1/'), false);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), true);
         $this->linkItem3 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false);
         $this->linkItems = [$this->linkItem1, $this->linkItem2, $this->linkItem3];
@@ -68,7 +68,7 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         $navLinkItems = [
-            NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), false),
+            NavLinkedItem::asLink(new Link('item 1', '/item-1/'), false),
             NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
         ];
 

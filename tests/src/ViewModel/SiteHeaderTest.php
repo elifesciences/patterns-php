@@ -27,7 +27,7 @@ final class SiteHeaderTest extends ViewModelTest
         $this->title = new SiteHeaderTitle('/home/page/path');
         $this->primaryLinks = SiteHeaderNavBar::primary(
             [
-                NavLinkedItem::asIcon(new Link('text-first', '/path/first')),
+                NavLinkedItem::asLink(new Link('text-first', '/path/first')),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asLink(new Link('text-second', '/path/second'), true),
             ]
@@ -95,7 +95,7 @@ final class SiteHeaderTest extends ViewModelTest
 
         $primaryLinks = SiteHeaderNavBar::primary(
             [
-                NavLinkedItem::asIcon(new Link('text-first', '/path/first')),
+                NavLinkedItem::asLink(new Link('text-first', '/path/first')),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asLink(new Link('text-second', '/path/second'), true),
             ]
@@ -103,7 +103,7 @@ final class SiteHeaderTest extends ViewModelTest
 
         $secondaryLinks = SiteHeaderNavBar::secondary(
             [
-                NavLinkedItem::asIcon(new Link('text-first', '/path/first')),
+                NavLinkedItem::asLink(new Link('text-first', '/path/first')),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asButton(Button::link('button text', '/button/path')),
             ]

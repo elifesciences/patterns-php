@@ -25,7 +25,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         parent::setUp();
         $this->button = Button::form('button text', 'button', 'name');
 
-        $this->linkItem1 = NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), true);
+        $this->linkItem1 = NavLinkedItem::asLink(new Link('item 1', '/item-1/'), true);
         $this->linkItem2 = NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false);
         $this->linkItem3 = NavLinkedItem::asLink(new Link('Alerts', '/alerts/'), false);
         $this->linkItem4 = NavLinkedItem::asButton($this->button);
@@ -80,7 +80,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $button = Button::form('button text', 'button', 'name');
 
         $navLinkItems = [
-            NavLinkedItem::asIcon(new Link('item 1', '/item-1/'), false),
+            NavLinkedItem::asLink(new Link('item 1', '/item-1/'), false),
             NavLinkedItem::asLink(new Link('item 2', '/item-2/'), false),
             NavLinkedItem::asButton($button),
         ];

@@ -11,11 +11,6 @@ final class NavLinkedItem implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    const ICON_CLASSES = [
-        'menu' => 'nav-primary__menu_icon',
-        'search' => 'nav-primary__search_icon',
-    ];
-
     private $button;
     private $path;
     private $rel;
@@ -23,15 +18,6 @@ final class NavLinkedItem implements ViewModel
 
     private function __construct()
     {
-    }
-
-    public static function asIcon(
-        Link $link,
-        bool $search = false
-    ) : NavLinkedItem {
-        $itemAsIcon = static::asLink($link, $search);
-
-        return $itemAsIcon;
     }
 
     public static function asLink(
