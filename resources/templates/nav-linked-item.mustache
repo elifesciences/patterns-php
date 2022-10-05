@@ -1,27 +1,15 @@
 <li class="{{classes}}">
 
-  {{#loginControl}}
-    {{> resources/templates/login-control}}
-  {{/loginControl}}
+  {{#button.classes}}
+    {{#button}}
+      {{> resources/templates/button }}
+    {{/button}}
+  {{/button.classes}}
 
-  {{^loginControl}}
-
-    {{#button.classes}}
-      {{#button}}
-        {{> resources/templates/button }}
-      {{/button}}
-    {{/button.classes}}
-
-    {{^button.classes}}
-      {{#path}}<a href="{{path}}"{{#rel}} rel="{{rel}}"{{/rel}}>{{/path}}
-      {{#picture}}
-        {{> resources/templates/picture}}
-      {{/picture}}
-      {{#textClasses}}<span class="{{textClasses}}"> {{{text}}} </span>{{/textClasses}}
-      {{^textClasses}} {{{text}}} {{/textClasses}}
-      {{#path}}</a>{{/path}}
-    {{/button.classes}}
-
-  {{/loginControl}}
+  {{^button.classes}}
+    {{#path}}<a href="{{path}}"{{#rel}} rel="{{rel}}"{{/rel}}>{{/path}}
+      {{{text}}}
+    {{#path}}</a>{{/path}}
+  {{/button.classes}}
 
 </li>
