@@ -52,14 +52,9 @@ allOf:
                             url:
                                 type: string
                                 minLength: 1
-                            hasBorderBottom:
-                                type: boolean
-                                enum:
-                                    - true
-                            isHiddenMainMenuItemForWideScreen:
-                                type: boolean
-                                enum:
-                                    - true
+                            classes:
+                                type: string
+                                minLength: 1
                         required:
                             - name
                             - url
