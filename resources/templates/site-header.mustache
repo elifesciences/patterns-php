@@ -3,14 +3,15 @@
     {{> resources/templates/site-header-title }}
   {{/title}}
   <div class="site-header__navigation" role="navigation" aria-label="Main navigation">
+    <div class="site-header__navigation__item">
+      {{#primaryLinks}}
+        {{> resources/templates/site-header-nav-bar }}
+      {{/primaryLinks}}
+    </div>
 
     {{#secondaryLinks}}
       {{> resources/templates/site-header-nav-bar }}
     {{/secondaryLinks}}
-
-    {{#primaryLinks}}
-      {{> resources/templates/site-header-nav-bar }}
-    {{/primaryLinks}}
 
   </div>
 
