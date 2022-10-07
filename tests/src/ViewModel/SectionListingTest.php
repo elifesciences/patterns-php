@@ -29,8 +29,7 @@ final class SectionListingTest extends ViewModelTest
             'listHeading' => [
                 'heading' => 'heading',
             ],
-            'singleLine' => true,
-            'labelledBy' => 'labelledBy',
+            'singleLine' => true
         ];
 
         $siteLinksList = new SectionListing(
@@ -40,8 +39,7 @@ final class SectionListingTest extends ViewModelTest
                 new Link($data['sections'][1]['name'], $data['sections'][1]['url']),
             ],
             new ListHeading($data['listHeading']['heading']),
-            $data['singleLine'],
-            $data['labelledBy']
+            $data['singleLine']
         );
 
         $this->assertSame($data, $siteLinksList->toArray());
@@ -61,7 +59,7 @@ final class SectionListingTest extends ViewModelTest
     {
         return [
             'minimum' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'))],
-            'complete' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'), true, 'labelledBy')],
+            'complete' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'), true)],
         ];
     }
 
