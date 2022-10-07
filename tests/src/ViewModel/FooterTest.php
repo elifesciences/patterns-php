@@ -20,6 +20,11 @@ final class FooterTest extends ViewModelTest
         $data = [
             'year' => (int) date('Y'),
             'mainMenu' => true,
+            'title' => [
+                'homePagePath' => '/home/page/path',
+                'isWrapped' => false,
+                'borderVariant' => false,
+            ],
             'listHeading' => [
                 'heading' => 'Menu',
             ],
@@ -49,7 +54,8 @@ final class FooterTest extends ViewModelTest
         );
 
         $this->assertSame($data['year'], $footer['year']);
-        $this->assertSame($data['mainMenu'], $footer['mainMenu']);
+        $this->assertEquals($data['mainMenu'], $footer['mainMenu']);
+        $this->assertSame($data['title'], $footer['title']->toArray());
         $this->assertEquals($links, $footer['links']['items']);
         $this->assertSame($data['listHeading'], $footer['listHeading']->toArray());
         $this->assertEquals($footerMenuLinks, $footer['footerMenuLinks']);
