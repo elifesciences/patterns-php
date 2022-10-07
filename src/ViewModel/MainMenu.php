@@ -12,14 +12,16 @@ final class MainMenu implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
+    private $title;
     private $links;
     private $listHeading;
 
-    public function __construct(array $links)
+    public function __construct(SiteHeaderTitle $title, array $links)
     {
         Assertion::notEmpty($links);
         Assertion::allIsInstanceOf($links, Link::class);
 
+        $this->title = $title;
         $this->links = ['items' => $links];
         $this->listHeading = new ListHeading('Menu');
     }

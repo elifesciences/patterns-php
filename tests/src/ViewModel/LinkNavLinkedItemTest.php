@@ -2,27 +2,11 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
-use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
-use eLife\Patterns\ViewModel\Picture;
 
 final class LinkNavLinkedItemTest extends ViewModelTest
 {
-    private $button;
-    private $img;
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/default/image/path', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt')
-        );
-    }
-
     /**
      * @test
      */
