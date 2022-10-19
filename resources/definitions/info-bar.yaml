@@ -7,7 +7,6 @@ properties:
     type:
         type: string
         enum:
-            - announcement
             - attention
             - dismissible
             - info
