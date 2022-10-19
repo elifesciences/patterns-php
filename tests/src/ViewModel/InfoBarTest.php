@@ -77,6 +77,7 @@ final class InfoBarTest extends ViewModelTest
             'correction' => [new InfoBar('text', InfoBar::TYPE_CORRECTION)],
             'warning' => [new InfoBar('text', InfoBar::TYPE_WARNING)],
             'multiple articles' => [new InfoBar('text', InfoBar::TYPE_MULTIPLE_VERSIONS)],
+            'announcement' => [new InfoBar('text', InfoBar::TYPE_ANNOUNCEMENT)],
         ];
     }
 
