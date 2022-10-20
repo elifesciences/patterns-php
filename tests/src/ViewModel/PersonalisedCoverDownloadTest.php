@@ -24,7 +24,6 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
                 'homePagePath' => 'https://example.org',
                 'isWrapped' => true,
                 'borderVariant' => true,
-                'disableMediaQuery' => false,
             ],
             'title' => 'title',
             'text' => [
@@ -69,7 +68,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
         ];
 
         $download = new PersonalisedCoverDownload(
-            new SiteHeaderTitle($data['siteHeaderTitle']['homePagePath'], $data['siteHeaderTitle']['isWrapped'], $data['siteHeaderTitle']['borderVariant'], $data['siteHeaderTitle']['disableMediaQuery']),
+            new SiteHeaderTitle($data['siteHeaderTitle']['homePagePath'], $data['siteHeaderTitle']['isWrapped'], $data['siteHeaderTitle']['borderVariant']),
             $data['title'],
             array_map(function (array $paragraph) {
                 return new Paragraph($paragraph['text']);

@@ -5,22 +5,17 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\CompactForm;
 use eLife\Patterns\ViewModel\Form;
-use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Input;
 use eLife\Patterns\ViewModel\Link;
-use eLife\Patterns\ViewModel\LoginControl;
 use eLife\Patterns\ViewModel\NavLinkedItem;
-use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SearchBox;
 use eLife\Patterns\ViewModel\SiteHeader;
 use eLife\Patterns\ViewModel\SiteHeaderTitle;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
-use InvalidArgumentException;
 use TypeError;
 
 final class SiteHeaderTest extends ViewModelTest
 {
-    private $img;
     private $title;
     private $primaryLinks;
     private $secondaryLinks;
@@ -29,16 +24,10 @@ final class SiteHeaderTest extends ViewModelTest
     public function setUp()
     {
         parent::setUp();
-        $this->img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text')
-        );
         $this->title = new SiteHeaderTitle('/home/page/path');
         $this->primaryLinks = SiteHeaderNavBar::primary(
             [
-                NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $this->img),
+                NavLinkedItem::asLink(new Link('text-first', '/path/first')),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asLink(new Link('text-second', '/path/second'), true),
             ]
@@ -48,7 +37,6 @@ final class SiteHeaderTest extends ViewModelTest
             [
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asButton(Button::link('button text', '/button/path')),
-                NavLinkedItem::asLoginControl(LoginControl::notLoggedIn('Log in / Register', '/log-in')),
             ]
         );
 
@@ -77,7 +65,7 @@ final class SiteHeaderTest extends ViewModelTest
     /**
      * @test
      */
-    public function logo_must_be_supplied()
+    public function title_must_be_supplied()
     {
         $this->expectException(TypeError::class);
         new SiteHeader(null, $this->primaryLinks, $this->secondaryLinks);
@@ -105,16 +93,9 @@ final class SiteHeaderTest extends ViewModelTest
     {
         $title = new SiteHeaderTitle('/home/page/path');
 
-        $img = new Picture(
-            [
-                ['srcset' => '/path/to/svg'],
-            ],
-            new Image('/path/to/fallback/', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'], 'alt text')
-        );
-
         $primaryLinks = SiteHeaderNavBar::primary(
             [
-                NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $img),
+                NavLinkedItem::asLink(new Link('text-first', '/path/first')),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asLink(new Link('text-second', '/path/second'), true),
             ]
@@ -122,10 +103,9 @@ final class SiteHeaderTest extends ViewModelTest
 
         $secondaryLinks = SiteHeaderNavBar::secondary(
             [
-                NavLinkedItem::asIcon(new Link('text-first', '/path/first'), $img),
+                NavLinkedItem::asLink(new Link('text-first', '/path/first')),
                 NavLinkedItem::asLink(new Link('text-first', '/path/first'), false),
                 NavLinkedItem::asButton(Button::link('button text', '/button/path')),
-                NavLinkedItem::asLoginControl(LoginControl::notLoggedIn('Log in / Register', '/log-in')),
             ]
         );
 

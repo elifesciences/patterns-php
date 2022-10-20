@@ -14,16 +14,18 @@ trait HasTitleLength
         null => 'xx-long',
     ];
 
-    private function determineTitleLength($title) : string
+    private function determineTitleLength(string $title, array $overrideLimits = null) : string
     {
+        $limits = $overrideLimits ?? self::$titleLengthLimits;
+
         $charCount = mb_strlen(strip_tags($title));
 
-        foreach (self::$titleLengthLimits as $maxLength => $value) {
+        foreach ($limits as $maxLength => $value) {
             if ($charCount <= $maxLength) {
                 return $value;
             }
         }
 
-        return end(self::$titleLengthLimits);
+        return end($limits);
     }
 }

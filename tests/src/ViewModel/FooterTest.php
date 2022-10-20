@@ -8,6 +8,7 @@ use eLife\Patterns\ViewModel\InvestorLogos;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MainMenu;
 use eLife\Patterns\ViewModel\Picture;
+use eLife\Patterns\ViewModel\SiteHeaderTitle;
 
 final class FooterTest extends ViewModelTest
 {
@@ -19,6 +20,11 @@ final class FooterTest extends ViewModelTest
         $data = [
             'year' => (int) date('Y'),
             'mainMenu' => true,
+            'title' => [
+                'homePagePath' => '/home/page/path',
+                'isWrapped' => false,
+                'borderVariant' => false,
+            ],
             'listHeading' => [
                 'heading' => 'Menu',
             ],
@@ -35,9 +41,12 @@ final class FooterTest extends ViewModelTest
         ];
 
         $footer = new Footer(
-            new MainMenu($links = [
-                new Link($data['links']['items'][0]['name'], $data['links']['items'][0]['url']),
-            ]),
+            new MainMenu(
+                new SiteHeaderTitle('/home/page/path'),
+                $links = [
+                    new Link($data['links']['items'][0]['name'], $data['links']['items'][0]['url']),
+                ]
+            ),
             $footerMenuLinks = [new Link($data['footerMenuLinks'][0]['name'], $data['footerMenuLinks'][0]['url'])],
             new InvestorLogos(...array_map(function (array $logo) {
                 return new Picture([], new Image($logo['fallback']['defaultPath'], [], $logo['fallback']['altText']));
@@ -45,7 +54,8 @@ final class FooterTest extends ViewModelTest
         );
 
         $this->assertSame($data['year'], $footer['year']);
-        $this->assertSame($data['mainMenu'], $footer['mainMenu']);
+        $this->assertEquals($data['mainMenu'], $footer['mainMenu']);
+        $this->assertSame($data['title'], $footer['title']->toArray());
         $this->assertEquals($links, $footer['links']['items']);
         $this->assertSame($data['listHeading'], $footer['listHeading']->toArray());
         $this->assertEquals($footerMenuLinks, $footer['footerMenuLinks']);
@@ -57,7 +67,7 @@ final class FooterTest extends ViewModelTest
     {
         return [
             [
-                new Footer(new MainMenu([new Link('name1', 'url1')]),
+                new Footer(new MainMenu(new SiteHeaderTitle('/home/page/path'), [new Link('name1', 'url1')]),
                     [new Link('name2', 'url2')], new InvestorLogos(new Picture([], new Image('foo.jpg')))),
             ],
         ];
