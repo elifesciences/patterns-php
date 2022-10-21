@@ -17,6 +17,7 @@ final class InfoBar implements ViewModel
     const TYPE_CORRECTION = 'correction';
     const TYPE_MULTIPLE_VERSIONS = 'multiple-versions';
     const TYPE_WARNING = 'warning';
+    const TYPE_ANNOUNCEMENT = 'announcement';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -41,6 +42,7 @@ final class InfoBar implements ViewModel
             self::TYPE_CORRECTION,
             self::TYPE_MULTIPLE_VERSIONS,
             self::TYPE_WARNING,
+            self::TYPE_ANNOUNCEMENT,
         ]);
 
         if (self::TYPE_DISMISSIBLE === $type) {
