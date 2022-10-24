@@ -19,7 +19,7 @@ final class Authors implements ViewModel
         array $list,
         array $institutions = []
     ) {
-        Assertion::notEmpty($list);
+//        Assertion::notEmpty($list);
         Assertion::allIsInstanceOf($list, Author::class);
         Assertion::allIsInstanceOf($institutions, Institution::class);
         $this->list = $list;
