@@ -12,36 +12,47 @@ final class ViewSelector implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $articleUrl;
+    private $primaryUrl;
+    private $primaryLabel;
     private $jumpLinks;
-    private $figureUrl;
-    private $figureIsActive;
+    private $secondaryUrl = null;
+    private $secondaryLabel = null;
+    private $secondaryIsActive;
     private $otherLinks;
     private $sideBySideUrl;
 
     public function __construct(
-        string $articleUrl,
+        Link $primaryLink,
         array $jumpLinks = [],
-        string $figureUrl = null,
-        bool $figureIsActive = false,
+        Link $secondaryLink = null,
+        bool $secondaryIsActive = false,
         string $sideBySideUrl = null,
         array $otherLinks = []
     ) {
-        Assertion::notBlank($articleUrl);
         Assertion::allIsInstanceOf($jumpLinks, Link::class);
         if (count($jumpLinks) > 0) {
             Assertion::min(count($jumpLinks), 2);
         }
         Assertion::allIsInstanceOf($otherLinks, Link::class);
 
-        $this->articleUrl = $articleUrl;
+        $primaryLinkArray = $primaryLink->toArray();
+        Assertion::notBlank($primaryLinkArray['url']);
+        $this->primaryUrl = $primaryLinkArray['url'];
+        $this->primaryLabel = $primaryLinkArray['name'];
+
         if (count($jumpLinks) > 0) {
             $this->jumpLinks = ['links' => $jumpLinks];
         }
-        $this->figureUrl = $figureUrl;
-        if ($this->figureUrl && $figureIsActive) {
-            $this->figureIsActive = $figureIsActive;
+
+        if ($secondaryLink) {
+            $secondaryLinkArray = $secondaryLink->toArray();
+            Assertion::notBlank($secondaryLinkArray['url']);
+            $this->secondaryUrl = $secondaryLinkArray['url'];
+            $this->secondaryLabel = $secondaryLinkArray['name'];
         }
+
+        $this->secondaryIsActive = $secondaryIsActive;
+
         $this->sideBySideUrl = $sideBySideUrl;
         $this->otherLinks = $otherLinks;
     }
