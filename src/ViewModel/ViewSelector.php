@@ -15,8 +15,8 @@ final class ViewSelector implements ViewModel
     private $primaryUrl;
     private $primaryLabel;
     private $jumpLinks;
-    private $secondaryUrl;
-    private $secondaryLabel;
+    private $secondaryUrl = null;
+    private $secondaryLabel = null;
     private $secondaryIsActive;
     private $otherLinks;
     private $sideBySideUrl;
@@ -39,15 +39,17 @@ final class ViewSelector implements ViewModel
         Assertion::notBlank($primaryLinkArray['url']);
         $this->primaryUrl = $primaryLinkArray['url'];
         $this->primaryLabel = $primaryLinkArray['name'];
+
         if (count($jumpLinks) > 0) {
             $this->jumpLinks = ['links' => $jumpLinks];
         }
-        $secondaryLinkArray = $secondaryLink ? $secondaryLink->toArray() : [];
+
         if ($secondaryLink) {
+            $secondaryLinkArray = $secondaryLink->toArray();
             Assertion::notBlank($secondaryLinkArray['url']);
+            $this->secondaryUrl = $secondaryLinkArray['url'];
+            $this->secondaryLabel = $secondaryLinkArray['name'];
         }
-        $this->secondaryUrl = $secondaryLinkArray['url'] ?? null;
-        $this->secondaryLabel = $secondaryLinkArray['name'] ?? null;
 
         $this->secondaryIsActive = $secondaryIsActive;
 
