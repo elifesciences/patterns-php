@@ -20,38 +20,37 @@ final class ViewSelector implements ViewModel
     private $secondaryIsActive;
     private $otherLinks;
     private $sideBySideUrl;
-    /**
-     * @var string
-     */
 
     public function __construct(
-        string $primaryUrl,
-        string $primaryLabel,
+        Link $primaryLink,
         array $jumpLinks = [],
-        string $secondaryUrl = null,
-        string $secondaryLabel = null,
+        Link $secondaryLink = null,
         bool $secondaryIsActive = false,
         string $sideBySideUrl = null,
         array $otherLinks = []
     ) {
-        Assertion::notBlank($primaryUrl);
-        Assertion::notBlank($primaryLabel);
         Assertion::allIsInstanceOf($jumpLinks, Link::class);
         if (count($jumpLinks) > 0) {
             Assertion::min(count($jumpLinks), 2);
         }
         Assertion::allIsInstanceOf($otherLinks, Link::class);
 
-        $this->primaryUrl = $primaryUrl;
-        $this->primaryLabel = $primaryLabel;
+        $primaryLinkArray = $primaryLink->toArray();
+        Assertion::notBlank($primaryLinkArray['url']);
+        $this->primaryUrl = $primaryLinkArray['url'];
+        $this->primaryLabel = $primaryLinkArray['name'];
         if (count($jumpLinks) > 0) {
             $this->jumpLinks = ['links' => $jumpLinks];
         }
-        $this->secondaryUrl = $secondaryUrl;
-        $this->secondaryLabel = $secondaryLabel;
-        if ($this->secondaryUrl && $secondaryIsActive) {
-            $this->secondaryIsActive = $secondaryIsActive;
+        $secondaryLinkArray = $secondaryLink ? $secondaryLink->toArray() : [];
+        if ($secondaryLink) {
+            Assertion::notBlank($secondaryLinkArray['url']);
         }
+        $this->secondaryUrl = $secondaryLinkArray['url'] ?? null;
+        $this->secondaryLabel = $secondaryLinkArray['name'] ?? null;
+
+        $this->secondaryIsActive = $secondaryIsActive;
+
         $this->sideBySideUrl = $sideBySideUrl;
         $this->otherLinks = $otherLinks;
     }

@@ -14,7 +14,7 @@ final class ViewSelectorTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'primaryUrl' => 'article',
+            'primaryUrl' => '#article',
             'primaryLabel' => 'article',
             'jumpLinks' => [
                 'links' => [
@@ -29,7 +29,7 @@ final class ViewSelectorTest extends ViewModelTest
                     ],
                 ],
             ],
-            'secondaryUrl' => 'figures',
+            'secondaryUrl' => '#figures',
             'secondaryLabel' => 'figures',
             'secondaryIsActive' => true,
             'sideBySideUrl' => 'side-by-side',
@@ -42,13 +42,11 @@ final class ViewSelectorTest extends ViewModelTest
         ];
 
         $viewSelector = new ViewSelector(
-            $data['primaryUrl'],
-            $data['primaryLabel'],
+            new Link($data['primaryLabel'], $data['primaryUrl']),
             $jumpLinks = array_map(function ($link) {
                 return new Link($link['name'], $link['url']);
             }, $data['jumpLinks']['links']),
-            $data['secondaryUrl'],
-            $data['secondaryLabel'],
+            new Link($data['secondaryLabel'], $data['secondaryUrl']),
             $data['secondaryIsActive'],
             $data['sideBySideUrl'],
             $otherLinks = array_map(function ($link) {
@@ -74,22 +72,40 @@ final class ViewSelectorTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ViewSelector('article', 'article', [new Link('some link', '#')]);
+        new ViewSelector(new Link('article', '#article'), [new Link('some link', '#')]);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_primary_url()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ViewSelector(new Link('article'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_secondary_url_if_secondary_link_provided()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ViewSelector(new Link('article', '#article'), [], new Link('figures'));
     }
 
     public function viewModelProvider() : array
     {
         return [
             'minimum' => [
-                new ViewSelector('article', 'article'),
+                new ViewSelector(new Link('article', '#article')),
             ],
             'complete' => [
                 new ViewSelector(
-                    'article',
-                    'article',
+                    new Link('article', '#article'),
                     [new Link('some link', '#'), new Link('some link', '#')],
-                    'figures',
-                    'figures',
+                    new Link('figures', '#figures'),
                     true,
                     'side-by-side',
                     [new Link('some link', '#')]
