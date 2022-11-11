@@ -12,35 +12,45 @@ final class ViewSelector implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $articleUrl;
+    private $primaryUrl;
+    private $primaryLabel;
     private $jumpLinks;
-    private $figureUrl;
-    private $figureIsActive;
+    private $secondaryUrl;
+    private $secondaryLabel;
+    private $secondaryIsActive;
     private $otherLinks;
     private $sideBySideUrl;
+    /**
+     * @var string
+     */
 
     public function __construct(
-        string $articleUrl,
+        string $primaryUrl,
+        string $primaryLabel,
         array $jumpLinks = [],
-        string $figureUrl = null,
-        bool $figureIsActive = false,
+        string $secondaryUrl = null,
+        string $secondaryLabel = null,
+        bool $secondaryIsActive = false,
         string $sideBySideUrl = null,
         array $otherLinks = []
     ) {
-        Assertion::notBlank($articleUrl);
+        Assertion::notBlank($primaryUrl);
+        Assertion::notBlank($primaryLabel);
         Assertion::allIsInstanceOf($jumpLinks, Link::class);
         if (count($jumpLinks) > 0) {
             Assertion::min(count($jumpLinks), 2);
         }
         Assertion::allIsInstanceOf($otherLinks, Link::class);
 
-        $this->articleUrl = $articleUrl;
+        $this->primaryUrl = $primaryUrl;
+        $this->primaryLabel = $primaryLabel;
         if (count($jumpLinks) > 0) {
             $this->jumpLinks = ['links' => $jumpLinks];
         }
-        $this->figureUrl = $figureUrl;
-        if ($this->figureUrl && $figureIsActive) {
-            $this->figureIsActive = $figureIsActive;
+        $this->secondaryUrl = $secondaryUrl;
+        $this->secondaryLabel = $secondaryLabel;
+        if ($this->secondaryUrl && $secondaryIsActive) {
+            $this->secondaryIsActive = $secondaryIsActive;
         }
         $this->sideBySideUrl = $sideBySideUrl;
         $this->otherLinks = $otherLinks;
