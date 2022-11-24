@@ -45,17 +45,17 @@ final class DefinitionListTest extends ViewModelTest
                     'descriptors' => ['qux', 'quxx'],
                 ],
             ],
-            'inline' => true,
+            'variant' => 'inline',
         ];
 
         $list = new DefinitionList(array_reduce($data['items'], function (array $carry, array $item) {
             $carry[$item['term']] = $item['descriptors'];
 
             return $carry;
-        }, []), $data['inline']);
+        }, []), $data['variant']);
 
         $this->assertSame($data['items'], $list['items']);
-        $this->assertSame($data['inline'], $list['inline']);
+        $this->assertSame($data['variant'], $list['variant']);
         $this->assertSame($data, $list->toArray());
     }
 
@@ -93,7 +93,7 @@ final class DefinitionListTest extends ViewModelTest
     {
         return [
             'expanded' => [new DefinitionList(['foo' => ['bar']])],
-            'inline' => [new DefinitionList(['foo' => ['bar']], true)],
+            'variant' => [new DefinitionList(['foo' => ['bar']], 'inline')],
         ];
     }
 

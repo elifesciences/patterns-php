@@ -14,9 +14,9 @@ final class DefinitionList implements ViewModel
     use ArrayFromProperties;
 
     private $items;
-    private $inline;
+    private $variant;
 
-    public function __construct(array $items, bool $inline = false)
+    public function __construct(array $items, string $variant = null)
     {
         Assertion::notEmpty($items);
         Assertion::allNotEmpty($items);
@@ -31,8 +31,9 @@ final class DefinitionList implements ViewModel
                 'descriptors' => $descriptors,
             ];
         }, array_keys($items), array_values($items));
-        if ($inline) {
-            $this->inline = $inline;
+
+        if ($variant) {
+            $this->variant = $variant;
         }
     }
 
