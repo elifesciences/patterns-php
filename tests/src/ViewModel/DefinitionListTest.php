@@ -25,7 +25,7 @@ final class DefinitionListTest extends ViewModelTest
             ],
         ];
 
-        $list = new DefinitionList(array_reduce($data['items'], function (array $carry, array $item) {
+        $list = DefinitionList::basic(array_reduce($data['items'], function (array $carry, array $item) {
             $carry[$item['term']] = $item['descriptors'];
 
             return $carry;
@@ -45,17 +45,41 @@ final class DefinitionListTest extends ViewModelTest
                     'descriptors' => ['qux', 'quxx'],
                 ],
             ],
-            'inline' => true,
+            'variant' => 'inline',
         ];
 
-        $list = new DefinitionList(array_reduce($data['items'], function (array $carry, array $item) {
+        $list = DefinitionList::inline(array_reduce($data['items'], function (array $carry, array $item) {
             $carry[$item['term']] = $item['descriptors'];
 
             return $carry;
-        }, []), $data['inline']);
+        }, []));
 
         $this->assertSame($data['items'], $list['items']);
-        $this->assertSame($data['inline'], $list['inline']);
+        $this->assertSame($data['variant'], $list['variant']);
+        $this->assertSame($data, $list->toArray());
+
+        $data = [
+            'items' => [
+                [
+                    'term' => 'foo',
+                    'descriptors' => ['bar'],
+                ],
+                [
+                    'term' => 'baz',
+                    'descriptors' => ['qux', 'quxx'],
+                ],
+            ],
+            'variant' => 'timeline',
+        ];
+
+        $list = DefinitionList::timeline(array_reduce($data['items'], function (array $carry, array $item) {
+            $carry[$item['term']] = $item['descriptors'];
+
+            return $carry;
+        }, []));
+
+        $this->assertSame($data['items'], $list['items']);
+        $this->assertSame($data['variant'], $list['variant']);
         $this->assertSame($data, $list->toArray());
     }
 
@@ -66,7 +90,7 @@ final class DefinitionListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new DefinitionList([]);
+        DefinitionList::basic([]);
     }
 
     /**
@@ -76,7 +100,7 @@ final class DefinitionListTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new DefinitionList(['foo' => []]);
+        DefinitionList::basic(['foo' => []]);
     }
 
     /**
@@ -84,7 +108,7 @@ final class DefinitionListTest extends ViewModelTest
      */
     public function it_may_contain_single_items()
     {
-        $list = new DefinitionList(['foo' => 'bar']);
+        $list = DefinitionList::basic(['foo' => 'bar']);
 
         $this->assertSame(['bar'], $list['items'][0]['descriptors']);
     }
@@ -92,8 +116,9 @@ final class DefinitionListTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'expanded' => [new DefinitionList(['foo' => ['bar']])],
-            'inline' => [new DefinitionList(['foo' => ['bar']], true)],
+            'expanded' => [DefinitionList::basic(['foo' => ['bar']])],
+            'inline' => [DefinitionList::inline(['foo' => ['bar']])],
+            'timeline' => [DefinitionList::timeline(['foo' => ['bar']])],
         ];
     }
 

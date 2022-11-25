@@ -14,9 +14,9 @@ final class DefinitionList implements ViewModel
     use ArrayFromProperties;
 
     private $items;
-    private $inline;
+    private $variant;
 
-    public function __construct(array $items, bool $inline = false)
+    private function __construct(array $items, string $variant = null)
     {
         Assertion::notEmpty($items);
         Assertion::allNotEmpty($items);
@@ -31,9 +31,23 @@ final class DefinitionList implements ViewModel
                 'descriptors' => $descriptors,
             ];
         }, array_keys($items), array_values($items));
-        if ($inline) {
-            $this->inline = $inline;
-        }
+
+        $this->variant = $variant;
+    }
+
+    public static function basic(array $items) : DefinitionList
+    {
+        return new self($items);
+    }
+
+    public static function inline(array $items) : DefinitionList
+    {
+        return new self($items, 'inline');
+    }
+
+    public static function timeline(array $items) : DefinitionList
+    {
+        return new self($items, 'timeline');
     }
 
     public function getTemplateName() : string
