@@ -54,7 +54,10 @@ final class ViewSelector implements ViewModel
         }
 
         $this->secondaryIsActive = $secondaryIsActive;
-        $this->isTabSelector = $isTabSelector;
+
+        if ($isTabSelector) {
+            $this->isTabSelector = $isTabSelector;
+        }
 
         $this->sideBySideUrl = $sideBySideUrl;
         $this->otherLinks = $otherLinks;

@@ -32,7 +32,7 @@ final class ViewSelectorTest extends ViewModelTest
             'secondaryUrl' => '#figures',
             'secondaryLabel' => 'figures',
             'secondaryIsActive' => true,
-            'isTabSelector' => false,
+            'isTabSelector' => true,
             'sideBySideUrl' => 'side-by-side',
             'otherLinks' => [
                 [
