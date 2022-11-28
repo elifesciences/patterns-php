@@ -18,6 +18,7 @@ final class ViewSelector implements ViewModel
     private $secondaryUrl = null;
     private $secondaryLabel = null;
     private $secondaryIsActive;
+    private $isTabSelector;
     private $otherLinks;
     private $sideBySideUrl;
 
@@ -26,6 +27,7 @@ final class ViewSelector implements ViewModel
         array $jumpLinks = [],
         Link $secondaryLink = null,
         bool $secondaryIsActive = false,
+        bool $isTabSelector = false,
         string $sideBySideUrl = null,
         array $otherLinks = []
     ) {
@@ -52,6 +54,7 @@ final class ViewSelector implements ViewModel
         }
 
         $this->secondaryIsActive = $secondaryIsActive;
+        $this->isTabSelector = $isTabSelector;
 
         $this->sideBySideUrl = $sideBySideUrl;
         $this->otherLinks = $otherLinks;
