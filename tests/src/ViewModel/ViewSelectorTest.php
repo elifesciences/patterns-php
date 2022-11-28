@@ -104,7 +104,7 @@ final class ViewSelectorTest extends ViewModelTest
             'minimum' => [
                 new ViewSelector(new Link('article', '#article')),
             ],
-            'tabSelector' => [
+            'tab selector' => [
                 new ViewSelector(
                     new Link('primary', '#primary'),
                     [],
