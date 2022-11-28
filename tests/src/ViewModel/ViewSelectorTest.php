@@ -32,6 +32,7 @@ final class ViewSelectorTest extends ViewModelTest
             'secondaryUrl' => '#figures',
             'secondaryLabel' => 'figures',
             'secondaryIsActive' => true,
+            'isTabSelector' => true,
             'sideBySideUrl' => 'side-by-side',
             'otherLinks' => [
                 [
@@ -48,6 +49,7 @@ final class ViewSelectorTest extends ViewModelTest
             }, $data['jumpLinks']['links']),
             new Link($data['secondaryLabel'], $data['secondaryUrl']),
             $data['secondaryIsActive'],
+            $data['isTabSelector'],
             $data['sideBySideUrl'],
             $otherLinks = array_map(function ($link) {
                 return new Link($link['name'], $link['url']);
@@ -60,6 +62,7 @@ final class ViewSelectorTest extends ViewModelTest
         $this->assertSame($data['secondaryUrl'], $viewSelector['secondaryUrl']);
         $this->assertSame($data['secondaryLabel'], $viewSelector['secondaryLabel']);
         $this->assertSame($data['secondaryIsActive'], $viewSelector['secondaryIsActive']);
+        $this->assertSame($data['isTabSelector'], $viewSelector['isTabSelector']);
         $this->assertSame($data['sideBySideUrl'], $viewSelector['sideBySideUrl']);
         $this->assertEquals($otherLinks, $viewSelector['otherLinks']);
         $this->assertSameWithoutOrder($data, $viewSelector);
@@ -101,11 +104,21 @@ final class ViewSelectorTest extends ViewModelTest
             'minimum' => [
                 new ViewSelector(new Link('article', '#article')),
             ],
+            'tab selector' => [
+                new ViewSelector(
+                    new Link('primary', '#primary'),
+                    [],
+                    new Link('secondary', '#secondary'),
+                    true,
+                    true
+                ),
+            ],
             'complete' => [
                 new ViewSelector(
                     new Link('article', '#article'),
                     [new Link('some link', '#'), new Link('some link', '#')],
                     new Link('figures', '#figures'),
+                    true,
                     true,
                     'side-by-side',
                     [new Link('some link', '#')]
