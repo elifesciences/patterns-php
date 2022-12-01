@@ -64,6 +64,9 @@ properties:
                                                         clipboardText:
                                                             type: string
                                                             minLength: 1
+                                                        id:
+                                                            type: string
+                                                            minLength: 1
                                                     required:
                                                         - text
                                                 -
@@ -76,9 +79,6 @@ properties:
                                                                         - button
                                                                         - reset
                                                                         - submit
-                                                                id:
-                                                                    type: string
-                                                                    minLength: 1
                                                                 name:
                                                                     type: string
                                                                     minLength: 1
@@ -146,6 +146,9 @@ properties:
                                                         clipboardText:
                                                             type: string
                                                             minLength: 1
+                                                        id:
+                                                            type: string
+                                                            minLength: 1
                                                     required:
                                                         - text
                                                 -
@@ -158,9 +161,6 @@ properties:
                                                                         - button
                                                                         - reset
                                                                         - submit
-                                                                id:
-                                                                    type: string
-                                                                    minLength: 1
                                                                 name:
                                                                     type: string
                                                                     minLength: 1
