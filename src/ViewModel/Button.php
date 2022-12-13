@@ -24,6 +24,11 @@ final class Button implements ViewModel
     const TYPE_SUBMIT = 'submit';
     const TYPE_RESET = 'reset';
 
+    const ACTION_VARIANT_CITATION = 'citation';
+    const ACTION_VARIANT_COMMENT = 'comment';
+    const ACTION_VARIANT_DOWNLOAD = 'download';
+    const ACTION_VARIANT_SHARE = 'share';
+
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
@@ -120,6 +125,30 @@ final class Button implements ViewModel
 
         $button = new static($text, $size, $style, $isActive, null, $id, $isFullWidth);
         $button->path = $path;
+
+        return $button;
+    }
+
+    public static function action(
+        string $text,
+        bool $isActive = true,
+        string $variant = null
+    ) : Button {
+        $button = new static($text, self::SIZE_CUSTOM, self::STYLE_DEFAULT, $isActive, null, null, false);
+
+        if ($variant) {
+            Assertion::choice($variant,
+                [
+                    self::ACTION_VARIANT_CITATION,
+                    self::ACTION_VARIANT_COMMENT,
+                    self::ACTION_VARIANT_DOWNLOAD,
+                    self::ACTION_VARIANT_SHARE
+                ]
+            );
+            $button->classes .= ' button--action icon icon-' . $variant;
+            $button->id = 'button-action-' . $variant;
+            $button->path = '#' . $variant;
+        }
 
         return $button;
     }
