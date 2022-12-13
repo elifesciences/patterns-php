@@ -135,6 +135,7 @@ final class Button implements ViewModel
         string $variant = null
     ) : Button {
         $button = new static($text, self::SIZE_CUSTOM, self::STYLE_DEFAULT, $isActive, null, null, false);
+        $button->path = '#';
 
         if ($variant) {
             Assertion::choice($variant,
@@ -147,7 +148,7 @@ final class Button implements ViewModel
             );
             $button->classes .= ' button--action icon icon-' . $variant;
             $button->id = 'button-action-' . $variant;
-            $button->path = '#' . $variant;
+            $button->path .= $variant;
         }
 
         return $button;
