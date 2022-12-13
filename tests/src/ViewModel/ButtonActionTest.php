@@ -19,7 +19,7 @@ final class ButtonActionTest extends ViewModelTest
         ];
 
         $buttonAction = Button::action($data['text'], true, 'citation');
-        $this->assertSame($data, $buttonAction->toArray());
+        $this->assertSameWithoutOrder($data, $buttonAction->toArray());
     }
 
     public function viewModelProvider() : array
