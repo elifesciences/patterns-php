@@ -36,10 +36,10 @@ final class ButtonActionTest extends ViewModelTest
     {
         return [
             'basic' => [Button::action('Button action')],
-            'citation' => [Button::action('Button action (citation)', true, 'citation')],
-            'comment' => [Button::action('Button action (comment)', true, 'comment')],
-            'download' => [Button::action('Button action (download)', true, 'download')],
-            'share' => [Button::action('Button action (share)', true, 'share')],
+            'citation' => [Button::action('Button action (citation)', true, Button::ACTION_VARIANT_CITATION)],
+            'comment' => [Button::action('Button action (comment)', true, Button::ACTION_VARIANT_COMMENT)],
+            'download' => [Button::action('Button action (download)', true, Button::ACTION_VARIANT_DOWNLOAD)],
+            'share' => [Button::action('Button action (share)', true, Button::ACTION_VARIANT_SHARE)],
         ];
     }
 
