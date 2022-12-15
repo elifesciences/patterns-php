@@ -13,11 +13,10 @@ final class ButtonActionTest extends ViewModelTest
     {
         $data = [
             'text' => 'Button action (citation)',
-            'path' => '#citation',
             'classes' => 'button--default button--action icon icon-citation',
-            'id' => 'button-action-citation'
+            'id' => 'button-action-citation',
+            'path' => '#citation'
         ];
-
         $buttonAction = Button::action($data['text'], true, 'citation');
         $this->assertSameWithoutOrder($data, $buttonAction->toArray());
     }
