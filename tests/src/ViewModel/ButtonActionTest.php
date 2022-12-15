@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
+use InvalidArgumentException;
 
 final class ButtonActionTest extends ViewModelTest
 {
@@ -21,11 +22,24 @@ final class ButtonActionTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $buttonAction->toArray());
     }
 
+    /**
+     * @test
+     */
+    public function it_cannot_have_an_invalid_variant()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        Button::action('text', true, 'foo');
+    }
+
     public function viewModelProvider() : array
     {
         return [
             'basic' => [Button::action('Button action')],
-            'full' => [Button::action('Button action (citation)', true, 'citation')],
+            'citation' => [Button::action('Button action (citation)', true, 'citation')],
+            'comment' => [Button::action('Button action (comment)', true, 'comment')],
+            'download' => [Button::action('Button action (download)', true, 'download')],
+            'share' => [Button::action('Button action (share)', true, 'share')],
         ];
     }
 
