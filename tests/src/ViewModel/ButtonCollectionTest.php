@@ -55,6 +55,7 @@ final class ButtonCollectionTest extends ViewModelTest
             'minimum' => [new ButtonCollection([Button::link('text', 'path')])],
             'inline' => [new ButtonCollection([Button::action('text')], true)],
             'centered and compact' => [new ButtonCollection([Button::link('text', 'path')], false, true, true)],
+            'complete' => [new ButtonCollection([Button::link('text', 'path')], true, true, true)],
         ];
     }
 
