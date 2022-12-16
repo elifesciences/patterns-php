@@ -13,15 +13,19 @@ final class ButtonCollection implements ViewModel
     use ArrayFromProperties;
 
     private $buttons;
+    private $inline;
     private $centered;
     private $compact;
 
-    public function __construct(array $buttons, bool $centered = false, bool $compact = false)
+    public function __construct(array $buttons, bool $inline = false, bool $centered = false, bool $compact = false)
     {
         Assertion::notEmpty($buttons);
         Assertion::allIsInstanceOf($buttons, Button::class);
 
         $this->buttons = $buttons;
+        if ($inline) {
+            $this->inline = $inline;
+        }
         if ($centered) {
             $this->centered = $centered;
         }
