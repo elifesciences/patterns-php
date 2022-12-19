@@ -42,7 +42,7 @@ final class ButtonCollectionTest extends ViewModelTest
             'inline' => true,
         ];
 
-        $blockAction = new ButtonCollection([Button::action($data['buttons'][0]['text'], $data['buttons'][0]['text'])], $data['inline']);
+        $blockAction = new ButtonCollection([Button::action($data['buttons'][0]['text'], $data['buttons'][0]['path'])], $data['inline']);
 
         $this->assertSameWithoutOrder($data['buttons'], $blockAction['buttons']);
         $this->assertSame($data['inline'], $blockAction['inline']);
