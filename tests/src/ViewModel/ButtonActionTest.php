@@ -14,11 +14,11 @@ final class ButtonActionTest extends ViewModelTest
     {
         $data = [
             'text' => 'Button action (citation)',
-            'classes' => 'button--default button--action icon icon-citation',
+            'path' => '#citation',
             'id' => 'button-action-citation',
-            'path' => '#citation'
+            'classes' => 'button--default button--action icon icon-citation',
         ];
-        $buttonAction = Button::action($data['text'], true, 'citation');
+        $buttonAction = Button::action($data['text'], $data['path'], 1, $data['id'], 'citation');
         $this->assertSameWithoutOrder($data, $buttonAction->toArray());
     }
 
@@ -29,17 +29,17 @@ final class ButtonActionTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Button::action('text', true, 'foo');
+        Button::action('text', "#", 1, null, 'foo');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'basic' => [Button::action('Button action')],
-            'citation' => [Button::action('Button action (citation)', true, Button::ACTION_VARIANT_CITATION)],
-            'comment' => [Button::action('Button action (comment)', true, Button::ACTION_VARIANT_COMMENT)],
-            'download' => [Button::action('Button action (download)', true, Button::ACTION_VARIANT_DOWNLOAD)],
-            'share' => [Button::action('Button action (share)', true, Button::ACTION_VARIANT_SHARE)],
+            'basic' => [Button::action('Button action', '#')],
+            'citation' => [Button::action('Button action (citation)', "#", 1, null, Button::ACTION_VARIANT_CITATION)],
+            'comment' => [Button::action('Button action (comment)', "#", 1, null, Button::ACTION_VARIANT_COMMENT)],
+            'download' => [Button::action('Button action (download)', "#", 1, null, Button::ACTION_VARIANT_DOWNLOAD)],
+            'share' => [Button::action('Button action (share)', "#", 1, null, Button::ACTION_VARIANT_SHARE)],
         ];
     }
 

@@ -131,11 +131,13 @@ final class Button implements ViewModel
 
     public static function action(
         string $text,
+        string $path,
         bool $isActive = true,
+        string $id = null,
         string $variant = null
     ) : Button {
-        $button = new static($text, self::SIZE_CUSTOM, self::STYLE_DEFAULT, $isActive, null, null, false);
-        $button->path = '#';
+        $button = new static($text, self::SIZE_CUSTOM, self::STYLE_DEFAULT, $isActive, null, $id, false);
+        $button->path = $path;
         $button->classes .= ' button--action';
 
         if ($variant) {
@@ -144,12 +146,10 @@ final class Button implements ViewModel
                     self::ACTION_VARIANT_CITATION,
                     self::ACTION_VARIANT_COMMENT,
                     self::ACTION_VARIANT_DOWNLOAD,
-                    self::ACTION_VARIANT_SHARE
+                    self::ACTION_VARIANT_SHARE,
                 ]
             );
             $button->classes .= ' icon icon-' . $variant;
-            $button->id = 'button-action-' . $variant;
-            $button->path .= $variant;
         }
 
         return $button;
