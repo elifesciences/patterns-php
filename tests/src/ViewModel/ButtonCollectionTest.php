@@ -42,7 +42,7 @@ final class ButtonCollectionTest extends ViewModelTest
             'inline' => true,
         ];
 
-        $blockAction = new ButtonCollection([Button::action($data['buttons'][0]['text'])], $data['inline']);
+        $blockAction = new ButtonCollection([Button::action($data['buttons'][0]['text'], $data['buttons'][0]['text'])], $data['inline']);
 
         $this->assertSameWithoutOrder($data['buttons'], $blockAction['buttons']);
         $this->assertSame($data['inline'], $blockAction['inline']);
@@ -53,7 +53,7 @@ final class ButtonCollectionTest extends ViewModelTest
     {
         return [
             'minimum' => [new ButtonCollection([Button::link('text', 'path')])],
-            'inline' => [new ButtonCollection([Button::action('text')], true)],
+            'inline' => [new ButtonCollection([Button::action('text', '#')], true)],
             'centered and compact' => [new ButtonCollection([Button::link('text', 'path')], false, true, true)],
             'complete' => [new ButtonCollection([Button::link('text', 'path')], true, true, true)],
         ];
