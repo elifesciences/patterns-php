@@ -23,9 +23,9 @@ final class ContentAsideTest extends ViewModelTest
             ]
         ];
 
-        $contentAside = new ContentAside($data['status']['title']);
+        $contentAside = new ContentAside($data['status']);
 
-        $this->assertSame($data['title'], $contentAside['title']);
+        $this->assertSame($data['status'], $contentAside['status']);
         $this->assertSame($data, $contentAside->toArray());
 
         $data = [
