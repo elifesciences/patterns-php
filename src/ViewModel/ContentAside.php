@@ -11,7 +11,6 @@ final class ContentAside implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
-    use HasTitleLength;
 
     private $status;
     private $actionButtons;
@@ -19,16 +18,24 @@ final class ContentAside implements ViewModel
     private $timeline;
 
     public function __construct(
-        array $status = [],
+        string $title,
+        string $description = null,
         Link $link = null,
         ButtonCollection $actionButtons = null,
         ContextualData $contextualData = null,
         DefinitionList $timeline = null
     ) {
-        Assertion::notBlank($status['title']);
+        Assertion::notBlank($title);
 
-        $this->status['link'] = $link['name'];
-        $this->status['url'] = $link['url'];
+        $this->status['title'] = $title;
+        if ($description) {
+            $this->status['description'] = $description;
+        }
+
+        if ($link) {
+            $this->status['link'] = $link['name'];
+            $this->status['url'] = $link['url'];
+        }
 
         $this->actionButtons = $actionButtons;
         $this->contextualData = $contextualData;

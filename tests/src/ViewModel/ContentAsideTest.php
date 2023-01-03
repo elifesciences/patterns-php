@@ -18,22 +18,19 @@ final class ContentAsideTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'status' => [
-                'title' => "Research article",
-            ]
+            'title' => "Research article"
         ];
 
-        $contentAside = new ContentAside($data['status']);
+        $contentAside = new ContentAside($data['title']);
 
-        $this->assertSame($data['status'], $contentAside['status']);
-        $this->assertSame($data, $contentAside->toArray());
+        $this->assertSame($data['title'], $contentAside['status']['title']);
 
         $data = [
-            'status' => [
-                'title' => 'Research article',
-                'description' => 'The author(s) have declared this to be the current/final version.',
-                'link' => 'About eLife\'s process',
-                'url' => '#'
+            'title' => 'Research article',
+            'description' => 'The author(s) have declared this to be the current/final version.',
+            'link' => [
+                'name' => 'About eLife\'s process',
+                'url' => '#',
             ],
             new ButtonCollection([Button::action('text', '#')], true),
             'actionButtons' => [
@@ -62,14 +59,14 @@ final class ContentAsideTest extends ViewModelTest
                         'descriptors' => ['bar'],
                     ]
                 ],
-                'variant' => 'timeline',
-                'isCollapsible' => true,
+                'variant' => 'timeline'
             ]
         ];
 
         $contentAside = new ContentAside(
-            $data['status'],
-            new Link($data['status']['link'], $data['status']['url']),
+            $data['title'],
+            $data['description'],
+            new Link($data['link']['name'], $data['link']['url']),
             new ButtonCollection(
                 [
                     Button::action(
@@ -87,6 +84,10 @@ final class ContentAsideTest extends ViewModelTest
             }, []))
         );
 
+        $this->assertSame($data['title'], $contentAside['status']['title']);
+        $this->assertSame($data['description'], $contentAside['status']['description']);
+        $this->assertSame($data['link']['name'], $contentAside['status']['link']);
+        $this->assertSame($data['link']['url'], $contentAside['status']['url']);
         $this->assertSameWithoutOrder($data['actionButtons'], $contentAside['actionButtons']);
         $this->assertSameWithoutOrder($data['contextualData'], $contentAside['contextualData']);
         $this->assertSameWithoutOrder($data['timeline'], $contentAside['timeline']);
@@ -99,15 +100,17 @@ final class ContentAsideTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentAside(['title' => '']);
+        new ContentAside('');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new ContentAside(['title' => 'Research article'])],
+            'minimum' => [new ContentAside('Research article')],
             'complete' => [
-                new ContentAside(['title' => 'Research article'],
+                new ContentAside(
+                    'Research article',
+                    'The author(s) have declared this to be the current/final version.',
                     new Link('About eLife\'s process', '#'),
                     new ButtonCollection([Button::action('text', '#')], true),
                     ContextualData::withMetrics(['foo']),
@@ -118,6 +121,6 @@ final class ContentAsideTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/content-header-simple.mustache';
+        return 'resources/templates/content-aside.mustache';
     }
 }
