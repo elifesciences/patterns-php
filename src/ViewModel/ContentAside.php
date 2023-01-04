@@ -2,7 +2,6 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
@@ -18,25 +17,12 @@ final class ContentAside implements ViewModel
     private $timeline;
 
     public function __construct(
-        string $title,
-        string $description = null,
-        Link $link = null,
+        ContentAsideStatus $status,
         ButtonCollection $actionButtons = null,
         ContextualData $contextualData = null,
         DefinitionList $timeline = null
     ) {
-        Assertion::notBlank($title);
-
-        $this->status['title'] = $title;
-        if ($description) {
-            $this->status['description'] = $description;
-        }
-
-        if ($link) {
-            $this->status['link'] = $link['name'];
-            $this->status['url'] = $link['url'];
-        }
-
+        $this->status = $status;
         $this->actionButtons = $actionButtons;
         $this->contextualData = $contextualData;
         $this->timeline = $timeline;
