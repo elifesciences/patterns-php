@@ -1,0 +1,206 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    status:
+        type: object
+        properties:
+            title:
+                type: string
+                minLength: 1
+            description:
+                type: string
+                minLength: 1
+            link:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    name:
+                        type: string
+                        minLength: 1
+                    url:
+                        type: string
+                        minLength: 1
+                required:
+                    - name
+                    - url
+        required:
+            - title
+    actionButtons:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            compact:
+                type: boolean
+            centered:
+                type: boolean
+            inline:
+                type: boolean
+            classes:
+                type: string
+            buttons:
+                type: array
+                minItems: 1
+                items:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    allOf:
+                        -
+                            properties:
+                                text:
+                                    type: string
+                                    minLength: 1
+                                classes:
+                                    type: string
+                                clipboardText:
+                                    type: string
+                                    minLength: 1
+                                id:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - text
+                        -
+                            oneOf:
+                                -
+                                    properties:
+                                        type:
+                                            type: string
+                                            enum:
+                                                - button
+                                                - reset
+                                                - submit
+                                        name:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - type
+                                -
+                                    properties:
+                                        path:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - path
+        required:
+            - buttons
+    metrics:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            metricsData:
+                type: object
+                properties:
+                    data:
+                        type: array
+                        minItems: 1
+                        items:
+                            type: object
+                            properties:
+                                text:
+                                    type: string
+                                    minLength: 1
+                            required:
+                                - text
+                    annotationCount:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            text:
+                                type: string
+                            prefix:
+                                type: string
+                            isSmall:
+                                type: boolean
+                                enum:
+                                    - true
+                            isWrapped:
+                                type: boolean
+                                enum:
+                                    - true
+                            hasPlaceholder:
+                                type: boolean
+                                enum:
+                                    - true
+                            behaviour:
+                                type: string
+                                minLength: 1
+                        required:
+                            - text
+                        anyOf:
+                            -
+                                required:
+                                    - isSmall
+                                not:
+                                    required:
+                                        - hasPlaceholder
+                            -
+                                required:
+                                    - hasPlaceholder
+                                not:
+                                    required:
+                                        - isSmall
+                            -
+                                not:
+                                    required:
+                                        - isSmall
+                                        - hasPlaceholder
+                minProperties: 1
+            citation:
+                type: object
+                properties:
+                    citeAs:
+                        type: string
+                        minLength: 1
+                    doi:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            doi:
+                                type: string
+                                minLength: 1
+                            variant:
+                                type: string
+                                enum:
+                                    - article-section
+                                    - asset
+                            isTruncated:
+                                type: boolean
+                                default:
+                                    - false
+                            doiWithoutLink:
+                                type: boolean
+                                default:
+                                    - false
+                        required:
+                            - doi
+                required:
+                    - citeAs
+                    - doi
+        minProperties: 1
+    timeline:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            variant:
+                type: string
+                enum:
+                    - inline
+                    - timeline
+            items:
+                type: array
+                minItems: 1
+                items:
+                    type: object
+                    properties:
+                        term:
+                            type: string
+                        descriptors:
+                            type: array
+                            minItems: 1
+                            items:
+                                type: string
+                    required:
+                        - term
+                        - descriptors
+        required:
+            - items
