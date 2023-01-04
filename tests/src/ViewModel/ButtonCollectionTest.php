@@ -20,33 +20,18 @@ final class ButtonCollectionTest extends ViewModelTest
                     'text' => 'text',
                 ],
             ],
+            'inline' => true,
             'centered' => true,
             'compact' => true,
         ];
 
-        $blockLink = new ButtonCollection([Button::link($data['buttons'][0]['text'], $data['buttons'][0]['path'])], false, $data['centered'], $data['compact']);
+        $blockLink = new ButtonCollection([Button::link($data['buttons'][0]['text'], $data['buttons'][0]['path'])], true, $data['centered'], $data['compact']);
 
         $this->assertSameWithoutOrder($data['buttons'], $blockLink['buttons']);
+        $this->assertSame($data['inline'], $blockLink['inline']);
         $this->assertSame($data['centered'], $blockLink['centered']);
         $this->assertSame($data['compact'], $blockLink['compact']);
         $this->assertSame($data, $blockLink->toArray());
-
-        $data = [
-            'buttons' => [
-                [
-                    'text' => 'text',
-                    'classes' => 'button--default',
-                    'path' => '#'
-                ],
-            ],
-            'inline' => true,
-        ];
-
-        $blockAction = new ButtonCollection([Button::action($data['buttons'][0]['text'], $data['buttons'][0]['path'])], $data['inline']);
-
-        $this->assertSameWithoutOrder($data['buttons'], $blockAction['buttons']);
-        $this->assertSame($data['inline'], $blockAction['inline']);
-        $this->assertSameWithoutOrder($data, $blockAction->toArray());
     }
 
     public function viewModelProvider() : array
