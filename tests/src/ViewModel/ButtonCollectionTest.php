@@ -25,7 +25,7 @@ final class ButtonCollectionTest extends ViewModelTest
             'compact' => true,
         ];
 
-        $blockLink = new ButtonCollection([Button::link($data['buttons'][0]['text'], $data['buttons'][0]['path'])], true, $data['centered'], $data['compact']);
+        $blockLink = new ButtonCollection([Button::link($data['buttons'][0]['text'], $data['buttons'][0]['path'])], $data['inline'], $data['centered'], $data['compact']);
 
         $this->assertSameWithoutOrder($data['buttons'], $blockLink['buttons']);
         $this->assertSame($data['inline'], $blockLink['inline']);
