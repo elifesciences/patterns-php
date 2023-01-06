@@ -20,13 +20,15 @@ final class ButtonCollectionTest extends ViewModelTest
                     'text' => 'text',
                 ],
             ],
+            'inline' => true,
             'centered' => true,
             'compact' => true,
         ];
 
-        $blockLink = new ButtonCollection([Button::link($data['buttons'][0]['text'], $data['buttons'][0]['path'])], $data['centered'], $data['compact']);
+        $blockLink = new ButtonCollection([Button::link($data['buttons'][0]['text'], $data['buttons'][0]['path'])], $data['inline'], $data['centered'], $data['compact']);
 
         $this->assertSameWithoutOrder($data['buttons'], $blockLink['buttons']);
+        $this->assertSame($data['inline'], $blockLink['inline']);
         $this->assertSame($data['centered'], $blockLink['centered']);
         $this->assertSame($data['compact'], $blockLink['compact']);
         $this->assertSame($data, $blockLink->toArray());
@@ -36,7 +38,9 @@ final class ButtonCollectionTest extends ViewModelTest
     {
         return [
             'minimum' => [new ButtonCollection([Button::link('text', 'path')])],
-            'complete' => [new ButtonCollection([Button::link('text', 'path')], true, true)],
+            'inline' => [new ButtonCollection([Button::action('text', '#')], true)],
+            'centered and compact' => [new ButtonCollection([Button::link('text', 'path')], false, true, true)],
+            'complete' => [new ButtonCollection([Button::link('text', 'path')], true, true, true)],
         ];
     }
 
