@@ -30,6 +30,7 @@ final class ContentHeaderNew implements ViewModel
     private $doi;
     private $licence;
     private $audioPlayer;
+    private $hasAside;
 
     public function __construct(
         string $title,
@@ -49,7 +50,8 @@ final class ContentHeaderNew implements ViewModel
         MetaNew $meta = null,
         Doi $doi = null,
         string $licence = null,
-        AudioPlayer $audioPlayer = null
+        AudioPlayer $audioPlayer = null,
+        bool $hasAside = false
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
@@ -84,6 +86,9 @@ final class ContentHeaderNew implements ViewModel
         $this->doi = $doi;
         $this->licence = $licence;
         $this->audioPlayer = $audioPlayer;
+        if (true === $hasAside) {
+            $this->hasAside = $hasAside;
+        }
     }
 
     public function getTemplateName() : string
