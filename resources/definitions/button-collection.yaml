@@ -5,6 +5,8 @@ properties:
         type: boolean
     centered:
         type: boolean
+    inline:
+        type: boolean
     classes:
         type: string
     buttons:
@@ -27,6 +29,10 @@ properties:
                         id:
                             type: string
                             minLength: 1
+                        isHypothesisTrigger:
+                            type: boolean
+                            enum:
+                                - true
                     required:
                         - text
                 -
