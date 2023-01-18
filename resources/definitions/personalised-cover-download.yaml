@@ -96,6 +96,8 @@ properties:
                 type: boolean
             centered:
                 type: boolean
+            inline:
+                type: boolean
             classes:
                 type: string
             buttons:
@@ -162,6 +164,8 @@ properties:
             compact:
                 type: boolean
             centered:
+                type: boolean
+            inline:
                 type: boolean
             classes:
                 type: string
