@@ -39,6 +39,7 @@ final class Button implements ViewModel
     private $clipboardText;
     private $id;
     private $name;
+    private $isHypothesisTrigger;
 
     private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true)
     {
@@ -150,6 +151,14 @@ final class Button implements ViewModel
                 ]
             );
             $button->classes .= ' icon icon-' . $variant;
+
+            if ($variant == self::ACTION_VARIANT_COMMENT) {
+                $button->isHypothesisTrigger = true;
+                $button->text = "Comment<span aria-hidden='true'><span data-visible-annotation-count></span> </span><span class='visuallyhidden'>Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>";
+            }
+
+            var_dump($button);
+            die;
         }
 
         return $button;
