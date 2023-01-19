@@ -156,9 +156,6 @@ final class Button implements ViewModel
                 $button->isHypothesisTrigger = true;
                 $button->text = "Comment<span aria-hidden='true'><span data-visible-annotation-count></span> </span><span class='visuallyhidden'>Open annotations (there are currently <span data-hypothesis-annotation-count>0</span> annotations on this page). </span>";
             }
-
-            var_dump($button);
-            die;
         }
 
         return $button;
