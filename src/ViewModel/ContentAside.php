@@ -13,20 +13,20 @@ final class ContentAside implements ViewModel
 
     private $status;
     private $actionButtons;
-    private $contextualData;
+    private $metrics;
     private $timeline;
     private $related;
 
     public function __construct(
         ContentAsideStatus $status,
         ButtonCollection $actionButtons = null,
-        ContextualData $contextualData = null,
+        ContextualData $metrics = null,
         DefinitionList $timeline = null,
         ListingTeasers $related = null
     ) {
         $this->status = $status;
         $this->actionButtons = $actionButtons;
-        $this->contextualData = $contextualData;
+        $this->metrics = $metrics;
         $this->timeline = $timeline;
         $this->related = $related;
     }

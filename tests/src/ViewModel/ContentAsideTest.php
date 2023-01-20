@@ -37,7 +37,7 @@ final class ContentAsideTest extends ViewModelTest
                 ],
                 'inline' => true,
             ],
-            'contextualData' => [
+            'metrics' => [
                 'metricsData' => [
                     'data' => [
                         [
@@ -95,7 +95,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertSame($data['link']['name'], $contentAside['status']['link']['name']);
         $this->assertSame($data['link']['url'], $contentAside['status']['link']['url']);
         $this->assertSameWithoutOrder($data['actionButtons'], $contentAside['actionButtons']);
-        $this->assertSameWithoutOrder($data['contextualData'], $contentAside['contextualData']);
+        $this->assertSameWithoutOrder($data['metrics'], $contentAside['metrics']);
         $this->assertSameWithoutOrder($data['timeline'], $contentAside['timeline']);
         $this->assertSameWithoutOrder($data['related'], $contentAside['related']);
     }
