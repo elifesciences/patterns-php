@@ -301,6 +301,38 @@ final class ContentHeaderNewTest extends ViewModelTest
         ];
     }
 
+    /**
+     * @test
+     */
+    public function it_may_have_aside()
+    {
+        $with = new ContentHeaderNew(
+            'title',
+            true,
+            new ContentHeaderImage(
+                new Picture([], new Image(
+                    '/default/path',
+                    ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
+                    'the alt text'
+                )), 'image credit', true
+            ),
+            ' impact statement',
+            true,
+            new Breadcrumb([new Link('foo', 'bar')]),
+            [new Link('subject', '#')],
+            new Profile(new Link('profile')),
+            new Authors([Author::asText('author')], [new Institution('institution')]),
+            '#',
+            '#', null, null, null, null, null, null, null, true
+        );
+
+        $without = new ContentHeaderNew('title');
+
+        $this->assertArrayHasKey('hasAside', $with->toArray());
+
+        $this->assertArrayNotHasKey('hasAside', $without->toArray());
+    }
+
     public function viewModelProvider() : array
     {
         return [
