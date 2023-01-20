@@ -152,7 +152,7 @@ final class Button implements ViewModel
             );
             $button->classes .= ' icon icon-' . $variant;
 
-            if ($variant == self::ACTION_VARIANT_COMMENT) {
+            if ($variant === self::ACTION_VARIANT_COMMENT) {
                 $button->isHypothesisTrigger = true;
             }
         }
