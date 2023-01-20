@@ -32,6 +32,19 @@ final class ButtonActionTest extends ViewModelTest
         Button::action('text', "#", 1, null, 'foo');
     }
 
+    /**
+     * @test
+     */
+    public function it_may_have_hypothesis_trigger()
+    {
+        $with = Button::action('Button action (comment)', "#", 1, null, Button::ACTION_VARIANT_COMMENT);
+        $without = Button::action('Button action', '#');
+
+        $this->assertArrayHasKey('isHypothesisTrigger', $with->toArray());
+
+        $this->assertArrayNotHasKey('isHypothesisTrigger', $without->toArray());
+    }
+
     public function viewModelProvider() : array
     {
         return [
