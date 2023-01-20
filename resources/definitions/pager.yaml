@@ -18,6 +18,10 @@ properties:
                     id:
                         type: string
                         minLength: 1
+                    isHypothesisTrigger:
+                        type: boolean
+                        enum:
+                            - true
                 required:
                     - text
             -
@@ -59,6 +63,10 @@ properties:
                     id:
                         type: string
                         minLength: 1
+                    isHypothesisTrigger:
+                        type: boolean
+                        enum:
+                            - true
                 required:
                     - text
             -
