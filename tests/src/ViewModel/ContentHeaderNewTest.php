@@ -31,6 +31,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         return new ContentHeaderNew(
             $title,
             false,
+            false,
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
             null, true, null, [],
             new Profile(new Link('Dr Curator')),
@@ -182,6 +183,7 @@ final class ContentHeaderNewTest extends ViewModelTest
 
         $contentHeader = new ContentHeaderNew(
             $data['title'],
+            false,
             true,
             new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['creditOverlay']),
             $data['impactStatement'],
@@ -266,7 +268,7 @@ final class ContentHeaderNewTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeaderNew('', null, null, null, true, null, ['foo']);
+        new ContentHeaderNew('', false, null, null, null, true, null, ['foo']);
     }
 
     /**
@@ -301,12 +303,26 @@ final class ContentHeaderNewTest extends ViewModelTest
         ];
     }
 
+    /**
+     * @test
+     */
+    public function it_may_have_aside()
+    {
+        $with = new ContentHeaderNew('title', true);
+
+        $without = new ContentHeaderNew('title');
+
+        $this->assertArrayHasKey('hasAside', $with->toArray());
+
+        $this->assertArrayNotHasKey('hasAside', $without->toArray());
+    }
+
     public function viewModelProvider() : array
     {
         return [
             'minimum' => [new ContentHeaderNew('title')],
             'complete' => [
-                new ContentHeaderNew('title', true, new ContentHeaderImage(new Picture([], new Image(
+                new ContentHeaderNew('title', false, true, new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
                     'the alt text')), 'image credit', true), ' impact statement', true, new Breadcrumb([new Link('foo', 'bar')]), [new Link('subject', '#')], new Profile(new Link('profile')), new Authors([Author::asText('author')], [new Institution('institution')]), '#', '#'),
