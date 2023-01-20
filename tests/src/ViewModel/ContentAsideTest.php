@@ -9,6 +9,8 @@ use eLife\Patterns\ViewModel\ContentAsideStatus;
 use eLife\Patterns\ViewModel\ContextualData;
 use eLife\Patterns\ViewModel\DefinitionList;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\ListingTeasers;
+use eLife\Patterns\ViewModel\Teaser;
 use InvalidArgumentException;
 
 final class ContentAsideTest extends ViewModelTest
@@ -60,7 +62,12 @@ final class ContentAsideTest extends ViewModelTest
                     ]
                 ],
                 'variant' => 'timeline'
-            ]
+            ],
+            'related' => ListingTeasers::basic([
+                Teaser::basic('title', 'url'),
+                Teaser::basic('title', 'url'),
+                Teaser::basic('title', 'url'),
+            ])
         ];
 
         $contentAside = new ContentAside(
@@ -83,7 +90,12 @@ final class ContentAsideTest extends ViewModelTest
                 $carry[$item['term']] = $item['descriptors'];
 
                 return $carry;
-            }, []))
+            }, [])),
+            ListingTeasers::basic(
+                array_map(function ($item) {
+                    return Teaser::basic($item['title'], $item['url']);
+                }, $data['related']['items'])
+            )
         );
 
         $this->assertSame($data['title'], $contentAside['status']['title']);
@@ -93,6 +105,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['actionButtons'], $contentAside['actionButtons']);
         $this->assertSameWithoutOrder($data['contextualData'], $contentAside['contextualData']);
         $this->assertSameWithoutOrder($data['timeline'], $contentAside['timeline']);
+        $this->assertSameWithoutOrder($data['related'], $contentAside['related']);
     }
 
     /**
@@ -118,7 +131,13 @@ final class ContentAsideTest extends ViewModelTest
                     ),
                     new ButtonCollection([Button::action('text', '#')], true),
                     ContextualData::withMetrics(['foo']),
-                    DefinitionList::timeline(['foo' => ['bar']]))
+                    DefinitionList::timeline(['foo' => ['bar']]),
+                    ListingTeasers::basic([
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                        Teaser::basic('title', 'url'),
+                    ])
+                )
             ],
         ];
     }

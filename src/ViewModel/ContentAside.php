@@ -15,17 +15,20 @@ final class ContentAside implements ViewModel
     private $actionButtons;
     private $contextualData;
     private $timeline;
+    private $related;
 
     public function __construct(
         ContentAsideStatus $status,
         ButtonCollection $actionButtons = null,
         ContextualData $contextualData = null,
-        DefinitionList $timeline = null
+        DefinitionList $timeline = null,
+        ListingTeasers $related = null
     ) {
         $this->status = $status;
         $this->actionButtons = $actionButtons;
         $this->contextualData = $contextualData;
         $this->timeline = $timeline;
+        $this->related = $related;
     }
 
     public function getTemplateName() : string
