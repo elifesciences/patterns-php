@@ -14,6 +14,7 @@ final class ContentHeaderNew implements ViewModel
     use HasTitleLength;
 
     private $title;
+    private $hasAside;
     private $isOneColumn;
     private $titleLength;
     private $image;
@@ -30,10 +31,10 @@ final class ContentHeaderNew implements ViewModel
     private $doi;
     private $licence;
     private $audioPlayer;
-    private $hasAside;
 
     public function __construct(
         string $title,
+        bool $hasAside = false,
         bool $isOneColumn = null,
         ContentHeaderImage $image = null,
         string $impactStatement = null,
@@ -50,11 +51,14 @@ final class ContentHeaderNew implements ViewModel
         MetaNew $meta = null,
         Doi $doi = null,
         string $licence = null,
-        AudioPlayer $audioPlayer = null,
-        bool $hasAside = false
+        AudioPlayer $audioPlayer = null
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
+
+        if (true === $hasAside) {
+            $this->hasAside = $hasAside;
+        }
 
         if (true === $isOneColumn) {
             $this->isOneColumn = $isOneColumn;
@@ -86,9 +90,6 @@ final class ContentHeaderNew implements ViewModel
         $this->doi = $doi;
         $this->licence = $licence;
         $this->audioPlayer = $audioPlayer;
-        if (true === $hasAside) {
-            $this->hasAside = $hasAside;
-        }
     }
 
     public function getTemplateName() : string

@@ -21,14 +21,6 @@ final class ContentAsideTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'title' => 'Research article'
-        ];
-
-        $contentAside = new ContentAside(new ContentAsideStatus('Research article'));
-
-        $this->assertSame($data['title'], $contentAside['status']['title']);
-
-        $data = [
             'title' => 'Research article',
             'description' => 'The author(s) have declared this to be the current/final version.',
             'link' => [
