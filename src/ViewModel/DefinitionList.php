@@ -21,16 +21,20 @@ final class DefinitionList implements ViewModel
         Assertion::notEmpty($items);
         Assertion::allNotEmpty($items);
 
-        $this->items = array_map(function (string $term, $descriptors) {
-            $descriptors = (array) $descriptors;
+        if ('timeline' === $variant) {
+            $this->items = $items;
+        } else {
+            $this->items = array_map(function (string $term, $descriptors) {
+                $descriptors = (array)$descriptors;
 
-            Assertion::allString($descriptors);
+                Assertion::allString($descriptors);
 
-            return [
-                'term' => $term,
-                'descriptors' => $descriptors,
-            ];
-        }, array_keys($items), array_values($items));
+                return [
+                    'term' => $term,
+                    'descriptors' => $descriptors,
+                ];
+            }, array_keys($items), array_values($items));
+        }
 
         $this->variant = $variant;
     }
