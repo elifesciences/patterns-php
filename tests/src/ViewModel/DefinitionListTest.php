@@ -114,7 +114,7 @@ final class DefinitionListTest extends ViewModelTest
         return [
             'expanded' => [DefinitionList::basic(['foo' => ['bar']])],
             'inline' => [DefinitionList::inline(['foo' => ['bar']])],
-            'timeline' => [DefinitionList::timeline(['term' => 'foo', 'descriptors' => ['bar']])],
+            'timeline' => [DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]])],
         ];
     }
 

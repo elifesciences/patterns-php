@@ -119,7 +119,7 @@ final class ContentAsideTest extends ViewModelTest
                     ),
                     new ButtonCollection([Button::action('text', '#')], true),
                     ContextualData::withMetrics(['foo']),
-                    DefinitionList::timeline(['term' => 'foo', 'descriptors' => ['bar']]),
+                    DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]]),
                     ListingTeasers::basic([
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
