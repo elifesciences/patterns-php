@@ -72,11 +72,7 @@ final class DefinitionListTest extends ViewModelTest
             'variant' => 'timeline',
         ];
 
-        $list = DefinitionList::timeline(array_reduce($data['items'], function (array $carry, array $item) {
-            $carry[$item['term']] = $item['descriptors'];
-
-            return $carry;
-        }, []));
+        $list = DefinitionList::timeline($data['items']);
 
         $this->assertSame($data['items'], $list['items']);
         $this->assertSame($data['variant'], $list['variant']);
@@ -118,7 +114,7 @@ final class DefinitionListTest extends ViewModelTest
         return [
             'expanded' => [DefinitionList::basic(['foo' => ['bar']])],
             'inline' => [DefinitionList::inline(['foo' => ['bar']])],
-            'timeline' => [DefinitionList::timeline(['foo' => ['bar']])],
+            'timeline' => [DefinitionList::timeline(['term' => 'foo', 'descriptors' => ['bar']])],
         ];
     }
 
