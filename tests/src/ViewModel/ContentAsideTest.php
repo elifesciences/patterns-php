@@ -78,11 +78,7 @@ final class ContentAsideTest extends ViewModelTest
                 $data['actionButtons']['inline']
             ),
             ContextualData::withMetrics(['foo']),
-            DefinitionList::timeline(array_reduce($data['timeline']['items'], function (array $carry, array $item) {
-                $carry[$item['term']] = $item['descriptors'];
-
-                return $carry;
-            }, [])),
+            DefinitionList::timeline($data['timeline']['items']),
             ListingTeasers::basic(
                 array_map(function ($item) {
                     return Teaser::basic($item['title'], $item['url']);
@@ -123,7 +119,7 @@ final class ContentAsideTest extends ViewModelTest
                     ),
                     new ButtonCollection([Button::action('text', '#')], true),
                     ContextualData::withMetrics(['foo']),
-                    DefinitionList::timeline(['foo' => ['bar']]),
+                    DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]]),
                     ListingTeasers::basic([
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
