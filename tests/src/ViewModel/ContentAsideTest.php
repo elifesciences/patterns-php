@@ -102,9 +102,9 @@ final class ContentAsideTest extends ViewModelTest
     public function it_may_have_a_status()
     {
         $with = new ContentAside(new ContentAsideStatus("content aside"));
-        $this->assertSame('content aside', $with['status']['title']);
-
         $without = new ContentAside();
+
+        $this->assertSame('content aside', $with['status']['title']);
         $this->assertNull($without['status']);
     }
 
