@@ -101,17 +101,17 @@ final class ContentAsideTest extends ViewModelTest
      */
     public function it_may_have_a_status()
     {
-        $contentAside = new ContentAside(new ContentAsideStatus("content aside"));
-        $this->assertSame('content aside', $contentAside['status']['title']);
+        $with = new ContentAside(new ContentAsideStatus("content aside"));
+        $this->assertSame('content aside', $with['status']['title']);
 
-        $contentAside = new ContentAside();
-        $this->assertNull($contentAside['status']);
+        $without = new ContentAside();
+        $this->assertNull($without['status']);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new ContentAside(new ContentAsideStatus('Research article'))],
+            'minimum' => [new ContentAside()],
             'complete' => [
                 new ContentAside(
                     new ContentAsideStatus(
