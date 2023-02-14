@@ -21,11 +21,13 @@ final class ContentAsideTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'title' => 'Research article',
-            'description' => 'The author(s) have declared this to be the current/final version.',
-            'link' => [
-                'name' => 'About eLife\'s process',
-                'url' => '#',
+            'status' => [
+                'title' => 'Research article',
+                'description' => 'The author(s) have declared this to be the current/final version.',
+                'link' => [
+                    'name' => 'About eLife\'s process',
+                    'url' => '#',
+                ],
             ],
             'actionButtons' => [
                 'buttons' => [
@@ -64,9 +66,9 @@ final class ContentAsideTest extends ViewModelTest
 
         $contentAside = new ContentAside(
             new ContentAsideStatus(
-                $data['title'],
-                $data['description'],
-                new Link($data['link']['name'], $data['link']['url'])
+                $data['status']['title'],
+                $data['status']['description'],
+                new Link($data['status']['link']['name'], $data['status']['link']['url'])
             ),
             new ButtonCollection(
                 [
@@ -86,14 +88,15 @@ final class ContentAsideTest extends ViewModelTest
             )
         );
 
-        $this->assertSame($data['title'], $contentAside['status']['title']);
-        $this->assertSame($data['description'], $contentAside['status']['description']);
-        $this->assertSame($data['link']['name'], $contentAside['status']['link']['name']);
-        $this->assertSame($data['link']['url'], $contentAside['status']['link']['url']);
+        $this->assertSame($data['status']['title'], $contentAside['status']['title']);
+        $this->assertSame($data['status']['description'], $contentAside['status']['description']);
+        $this->assertSame($data['status']['link']['name'], $contentAside['status']['link']['name']);
+        $this->assertSame($data['status']['link']['url'], $contentAside['status']['link']['url']);
         $this->assertSameWithoutOrder($data['actionButtons'], $contentAside['actionButtons']);
         $this->assertSameWithoutOrder($data['metrics'], $contentAside['metrics']);
         $this->assertSameWithoutOrder($data['timeline'], $contentAside['timeline']);
         $this->assertSameWithoutOrder($data['related'], $contentAside['related']);
+        $this->assertSameWithoutOrder($data, $contentAside->toArray());
     }
 
     /**
@@ -104,8 +107,10 @@ final class ContentAsideTest extends ViewModelTest
         $with = new ContentAside(new ContentAsideStatus("content aside"));
         $without = new ContentAside();
 
+        $this->assertArrayHasKey('status', $with->toArray());
         $this->assertSame('content aside', $with['status']['title']);
-        $this->assertNull($without['status']);
+
+        $this->assertArrayNotHasKey('status', $without);
     }
 
     public function viewModelProvider() : array
