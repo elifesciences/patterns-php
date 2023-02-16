@@ -1,45 +1,49 @@
 <aside class="content-aside" data-behaviour="ContentAside">
-  <div class="content-aside__first-column">
-    {{#status}}
-      <div class="status-wrapper">
-        <h5 class="status-title">{{status.title}}</h5>
-      
-        {{#status.description}}
-          <div class="status-description">{{status.description}}</div>
-        {{/status.description}}
-      
-        {{#status.link}}
-          <a href="{{status.link.url}}" class="status-link">{{status.link.name}}</a>
-        {{/status.link}}
-      </div>
-    {{/status}}
-  
-    {{#actionButtons}}
-      {{>resources/templates/button-collection}}
-    {{/actionButtons}}
+  <div class="content-aside__column-wrapper">
+    <div class="content-aside__first-column">
+      {{#status}}
+        <div class="status-wrapper">
+          <h5 class="status-title">{{status.title}}</h5>
+        
+          {{#status.description}}
+            <div class="status-description">{{status.description}}</div>
+          {{/status.description}}
+        
+          {{#status.link}}
+            <a href="{{status.link.url}}" class="status-link">{{status.link.name}}</a>
+          {{/status.link}}
+        </div>
+      {{/status}}
     
-    {{#metrics}}
-      {{>resources/templates/contextual-data}}
-    {{/metrics}}
-
-  </div>   
-
-  <div class="content-aside__second-column">
-
-    {{#timeline}}
-      <div class="content-aside__definition-list">
-        {{>resources/templates/definition-list}}
-      </div>
-    {{/timeline}}
+      {{#actionButtons}}
+        {{>resources/templates/button-collection}}
+      {{/actionButtons}}
+      
+      {{#metrics}}
+        {{>resources/templates/contextual-data}}
+      {{/metrics}}
     
-    {{#related}}
-      <div class="divider"></div>
-
-      <div class="content-aside__related-item grid-secondary-column__item--extended-wide-only">
-        {{> resources/templates/listing-teasers }}
-      </div>
-    {{/related}}
-
+    </div>   
+    
+    <div class="content-aside__second-column">
+    
+      {{#timeline}}
+        <div class="divider"></div>
+    
+        <div class="content-aside__definition-list">
+          {{>resources/templates/definition-list}}
+        </div>
+      {{/timeline}}
+      
+      {{#related}}
+        <div class="divider"></div>
+    
+        <div class="content-aside__related-item grid-secondary-column__item--extended-wide-only">
+          {{> resources/templates/listing-teasers }}
+        </div>
+      {{/related}}
+    
+    </div>
   </div>
 
   <div class="divider"></div>
