@@ -30,7 +30,7 @@ final class ContentHeaderTest extends ViewModelTest
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
             null,
             true,
-            new Breadcrumb([new Link('foo', 'url')]),
+            new Breadcrumb([new Link('foo', 'url'), new Link('bar')]),
             [],
             new Profile(new Link('Dr Curator')),
             null, null,
@@ -72,7 +72,8 @@ final class ContentHeaderTest extends ViewModelTest
             'impactStatement' => 'impact statement',
             'breadcrumb' => [
                 'items' => [
-                    ['name' => 'foo', 'url' => 'url']
+                    ['name' => 'foo', 'url' => 'url'],
+                    ['name' => 'bar']
                 ]
             ],
             'socialMediaSharers' => [
@@ -155,7 +156,7 @@ final class ContentHeaderTest extends ViewModelTest
             new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['creditOverlay']),
             $data['impactStatement'],
             true,
-            new Breadcrumb([new Link('foo', 'url')]),
+            new Breadcrumb([new Link('foo', 'url'), new Link('bar')]),
             array_map(function (array $item) {
                 return new Link($item['name']);
             }, $data['header']['subjects']),
