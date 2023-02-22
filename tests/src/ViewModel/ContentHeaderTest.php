@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Author;
 use eLife\Patterns\ViewModel\Authors;
+use eLife\Patterns\ViewModel\Breadcrumb;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ContentHeader;
 use eLife\Patterns\ViewModel\ContentHeaderImage;
@@ -27,7 +28,10 @@ final class ContentHeaderTest extends ViewModelTest
         return new ContentHeader(
             $title,
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
-            null, true, [],
+            null,
+            true,
+            new Breadcrumb([new Link('foo', 'url'), new Link('bar')]),
+            [],
             new Profile(new Link('Dr Curator')),
             null, null,
             new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
@@ -66,6 +70,12 @@ final class ContentHeaderTest extends ViewModelTest
                 'creditOverlay' => true,
             ],
             'impactStatement' => 'impact statement',
+            'breadcrumb' => [
+                'items' => [
+                    ['name' => 'foo', 'url' => 'url'],
+                    ['name' => 'bar']
+                ]
+            ],
             'socialMediaSharers' => [
                 'facebookUrl' => 'https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'twitterUrl' => 'https://twitter.com/intent/tweet/?text=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
@@ -146,6 +156,7 @@ final class ContentHeaderTest extends ViewModelTest
             new ContentHeaderImage(new Picture([], new Image($data['image']['fallback']['defaultPath'])), $data['image']['credit']['text'], $data['image']['creditOverlay']),
             $data['impactStatement'],
             true,
+            new Breadcrumb([new Link('foo', 'url'), new Link('bar')]),
             array_map(function (array $item) {
                 return new Link($item['name']);
             }, $data['header']['subjects']),
@@ -186,6 +197,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data['image'], $contentHeader['image']);
         $this->assertSame($data['impactStatement'], $contentHeader['impactStatement']);
         $this->assertSameWithoutOrder($data['header'], $contentHeader['header']);
+        $this->assertSameWithoutOrder($data['breadcrumb'], $contentHeader['breadcrumb']);
         $this->assertSameWithoutOrder($data['authors'], $contentHeader['authors']);
         $this->assertSame($data['download'], $contentHeader['download']);
         $this->assertSameWithoutOrder($data['socialMediaSharers'], $contentHeader['socialMediaSharers']);
@@ -212,7 +224,7 @@ final class ContentHeaderTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ContentHeader('', null, null, true, ['foo']);
+        new ContentHeader('', null, null, true, null, ['foo']);
     }
 
     /**
@@ -255,7 +267,14 @@ final class ContentHeaderTest extends ViewModelTest
                 new ContentHeader('title', new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-                    'the alt text')), 'image credit', true), ' impact statement', true, [new Link('subject', '#')], new Profile(new Link('profile')), new Authors([Author::asText('author')], [new Institution('institution')]), '#'),
+                    'the alt text')), 'image credit', true),
+                    ' impact statement',
+                    true,
+                    new Breadcrumb([new Link('foo', 'url')]),
+                    [new Link('subject', '#')],
+                    new Profile(new Link('profile')),
+                    new Authors([Author::asText('author')], [new Institution('institution')]), '#'
+                ),
             ],
         ];
     }

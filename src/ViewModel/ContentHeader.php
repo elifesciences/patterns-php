@@ -18,6 +18,7 @@ final class ContentHeader implements ViewModel
     private $image;
     private $impactStatement;
     private $header;
+    private $breadcrumb;
     private $authors;
     private $download;
     private $socialMediaSharers;
@@ -31,6 +32,7 @@ final class ContentHeader implements ViewModel
         ContentHeaderImage $image = null,
         string $impactStatement = null,
         bool $header = false,
+        Breadcrumb $breadcrumb = null,
         array $subjects = [],
         Profile $profile = null,
         Authors $authors = null,
@@ -60,6 +62,7 @@ final class ContentHeader implements ViewModel
                 $this->header['profile'] = $profile;
             }
         }
+        $this->breadcrumb = $breadcrumb;
         $this->authors = $authors;
         $this->download = $download;
         $this->socialMediaSharers = $socialMediaSharers;

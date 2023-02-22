@@ -35,9 +35,24 @@ final class BreadcrumbTest extends ViewModelTest
         new Breadcrumb(['foo']);
     }
 
+    /**
+     * @test
+     */
+    public function item_link_may_have_url()
+    {
+        $with = new Breadcrumb([new Link('foo', 'url')]);
+        $without = new Breadcrumb([new Link('foo')]);
+
+        $this->assertSame('foo', $with->toArray()['items'][0]['name']);
+        $this->assertSame('url', $with->toArray()['items'][0]['url']);
+        $this->assertSame('foo', $without->toArray()['items'][0]['name']);
+        $this->assertFalse($without->toArray()['items'][0]['url']);
+    }
+
     public function viewModelProvider() : array
     {
         return [
+            [new Breadcrumb([new Link('name')])],
             [new Breadcrumb([new Link('name', 'url')])],
         ];
     }
