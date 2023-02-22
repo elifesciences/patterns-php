@@ -18,7 +18,7 @@ final class ContentAside implements ViewModel
     private $related;
 
     public function __construct(
-        ContentAsideStatus $status,
+        ContentAsideStatus $status = null,
         ButtonCollection $actionButtons = null,
         ContextualData $metrics = null,
         DefinitionList $timeline = null,
