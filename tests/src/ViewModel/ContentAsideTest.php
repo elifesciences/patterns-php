@@ -115,17 +115,21 @@ final class ContentAsideTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_must_have_a_title()
+    public function it_may_have_a_status()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $with = new ContentAside(new ContentAsideStatus("content aside"));
+        $without = new ContentAside();
 
-        new ContentAside(new ContentAsideStatus(''));
+        $this->assertArrayHasKey('status', $with->toArray());
+        $this->assertSame('content aside', $with['status']['title']);
+
+        $this->assertArrayNotHasKey('status', $without);
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new ContentAside(new ContentAsideStatus('Research article'))],
+            'minimum' => [new ContentAside()],
             'complete' => [
                 new ContentAside(
                     new ContentAsideStatus(

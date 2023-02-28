@@ -34,7 +34,6 @@ properties:
                         minLength: 1
                 required:
                     - name
-                    - url
                 minItems: 1
         required:
             - items
