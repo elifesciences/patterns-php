@@ -11,8 +11,10 @@ final class ContentAsideStatus implements CastsToArray
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    use HasTitleLength;
 
     private $title;
+    private $titleLength;
     private $description;
     private $link;
 
@@ -22,6 +24,10 @@ final class ContentAsideStatus implements CastsToArray
         Assertion::nullOrNotBlank($description);
 
         $this->title = $title;
+        $this->titleLength = $this->determineTitleLength($this->title, [
+            23 => 'short',
+            null => 'long',
+        ]);
         $this->description = $description;
         $this->link = $link;
     }

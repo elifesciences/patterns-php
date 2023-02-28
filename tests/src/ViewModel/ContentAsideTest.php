@@ -23,6 +23,7 @@ final class ContentAsideTest extends ViewModelTest
         $data = [
             'status' => [
                 'title' => 'Research article',
+                'titleLength' => 'short',
                 'description' => 'The author(s) have declared this to be the current/final version.',
                 'link' => [
                     'name' => 'About eLife\'s process',
@@ -32,9 +33,9 @@ final class ContentAsideTest extends ViewModelTest
             'actionButtons' => [
                 'buttons' => [
                     [
+                        'classes' => 'button--default button--action',
+                        'path' => '#',
                         'text' => 'text',
-                        'classes' => 'button--default',
-                        'path' => '#'
                     ],
                 ],
                 'inline' => true,
@@ -57,11 +58,26 @@ final class ContentAsideTest extends ViewModelTest
                 ],
                 'variant' => 'timeline'
             ],
-            'related' => ListingTeasers::basic([
-                Teaser::basic('title', 'url'),
-                Teaser::basic('title', 'url'),
-                Teaser::basic('title', 'url'),
-            ])
+            'related' => [
+                'items' => [
+                   [
+                       'title' => 'title',
+                       'rootClasses' => 'teaser--secondary',
+                       'url' => 'url',
+                   ],
+                   [
+                       'title' => 'title',
+                       'rootClasses' => 'teaser--secondary',
+                       'url' => 'url',
+                   ],
+                   [
+                       'title' => 'title',
+                       'rootClasses' => 'teaser--secondary',
+                       'url' => 'url',
+                   ],
+                ],
+                'highlights' => false,
+            ],
         ];
 
         $contentAside = new ContentAside(
@@ -88,15 +104,12 @@ final class ContentAsideTest extends ViewModelTest
             )
         );
 
-        $this->assertSame($data['status']['title'], $contentAside['status']['title']);
-        $this->assertSame($data['status']['description'], $contentAside['status']['description']);
-        $this->assertSame($data['status']['link']['name'], $contentAside['status']['link']['name']);
-        $this->assertSame($data['status']['link']['url'], $contentAside['status']['link']['url']);
-        $this->assertSameWithoutOrder($data['actionButtons'], $contentAside['actionButtons']);
-        $this->assertSameWithoutOrder($data['metrics'], $contentAside['metrics']);
-        $this->assertSameWithoutOrder($data['timeline'], $contentAside['timeline']);
-        $this->assertSameWithoutOrder($data['related'], $contentAside['related']);
-        $this->assertSameWithoutOrder($data, $contentAside->toArray());
+        $this->assertSame($data['status'], $contentAside['status']->toArray());
+        $this->assertSame($data['actionButtons'], $contentAside['actionButtons']->toArray());
+        $this->assertSame($data['metrics'], $contentAside['metrics']->toArray());
+        $this->assertSame($data['timeline'], $contentAside['timeline']->toArray());
+        $this->assertSame($data['related'], $contentAside['related']->toArray());
+        $this->assertSame($data, $contentAside->toArray());
     }
 
     /**
