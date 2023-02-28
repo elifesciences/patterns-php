@@ -61,7 +61,7 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
      */
     public function a_status_title_has_the_correct_designation_for_its_length(int $length, string $expected)
     {
-        $title = str_repeat('é', $length);
+        $title = str_repeat('e', $length);
 
         $contentAsideStatus = new ContentAsideStatus(
             $title
@@ -73,7 +73,12 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
     public function titleLengthProvider() : array
     {
         return [
+            [5, 'short'],
+            [15, 'short'],
+            [23, 'short'],
             [24, 'long'],
+            [30, 'long'],
+            [50, 'long'],
         ];
     }
 }
