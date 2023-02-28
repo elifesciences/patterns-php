@@ -21,18 +21,21 @@ final class ContentAsideTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'title' => 'Research article',
-            'description' => 'The author(s) have declared this to be the current/final version.',
-            'link' => [
-                'name' => 'About eLife\'s process',
-                'url' => '#',
+            'status' => [
+                'title' => 'Research article',
+                'titleLength' => 'short',
+                'description' => 'The author(s) have declared this to be the current/final version.',
+                'link' => [
+                    'name' => 'About eLife\'s process',
+                    'url' => '#',
+                ],
             ],
             'actionButtons' => [
                 'buttons' => [
                     [
+                        'classes' => 'button--default button--action',
+                        'path' => '#',
                         'text' => 'text',
-                        'classes' => 'button--default',
-                        'path' => '#'
                     ],
                 ],
                 'inline' => true,
@@ -55,18 +58,33 @@ final class ContentAsideTest extends ViewModelTest
                 ],
                 'variant' => 'timeline'
             ],
-            'related' => ListingTeasers::basic([
-                Teaser::basic('title', 'url'),
-                Teaser::basic('title', 'url'),
-                Teaser::basic('title', 'url'),
-            ])
+            'related' => [
+                'items' => [
+                   [
+                       'title' => 'title',
+                       'rootClasses' => 'teaser--secondary',
+                       'url' => 'url',
+                   ],
+                   [
+                       'title' => 'title',
+                       'rootClasses' => 'teaser--secondary',
+                       'url' => 'url',
+                   ],
+                   [
+                       'title' => 'title',
+                       'rootClasses' => 'teaser--secondary',
+                       'url' => 'url',
+                   ],
+                ],
+                'highlights' => false,
+            ],
         ];
 
         $contentAside = new ContentAside(
             new ContentAsideStatus(
-                $data['title'],
-                $data['description'],
-                new Link($data['link']['name'], $data['link']['url'])
+                $data['status']['title'],
+                $data['status']['description'],
+                new Link($data['status']['link']['name'], $data['status']['link']['url'])
             ),
             new ButtonCollection(
                 [
@@ -86,14 +104,12 @@ final class ContentAsideTest extends ViewModelTest
             )
         );
 
-        $this->assertSame($data['title'], $contentAside['status']['title']);
-        $this->assertSame($data['description'], $contentAside['status']['description']);
-        $this->assertSame($data['link']['name'], $contentAside['status']['link']['name']);
-        $this->assertSame($data['link']['url'], $contentAside['status']['link']['url']);
-        $this->assertSameWithoutOrder($data['actionButtons'], $contentAside['actionButtons']);
-        $this->assertSameWithoutOrder($data['metrics'], $contentAside['metrics']);
-        $this->assertSameWithoutOrder($data['timeline'], $contentAside['timeline']);
-        $this->assertSameWithoutOrder($data['related'], $contentAside['related']);
+        $this->assertSame($data['status'], $contentAside['status']->toArray());
+        $this->assertSame($data['actionButtons'], $contentAside['actionButtons']->toArray());
+        $this->assertSame($data['metrics'], $contentAside['metrics']->toArray());
+        $this->assertSame($data['timeline'], $contentAside['timeline']->toArray());
+        $this->assertSame($data['related'], $contentAside['related']->toArray());
+        $this->assertSame($data, $contentAside->toArray());
     }
 
     /**
