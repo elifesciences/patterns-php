@@ -27,6 +27,7 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
     {
         $data = [
             'title' => 'title',
+            'titleLength' => 'short',
             'description' => 'description',
             'link' => [
                 'name' => 'name',
@@ -37,6 +38,7 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
         $status = new ContentAsideStatus('title', 'description', new Link('name', '#'));
 
         $this->assertSame($data['title'], $status['title']);
+        $this->assertSame($data['titleLength'], $status['titleLength']);
         $this->assertSame($data['description'], $status['description']);
         $this->assertSame($data['link']['name'], $status['link']['name']);
         $this->assertSame($data['link']['url'], $status['link']['url']);
@@ -51,5 +53,27 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
         $this->expectException(InvalidArgumentException::class);
 
         new ContentAsideStatus('');
+    }
+
+    /**
+     * @test
+     * @dataProvider titleLengthProvider
+     */
+    public function a_status_title_has_the_correct_designation_for_its_length(int $length, string $expected)
+    {
+        $title = str_repeat('é', $length);
+
+        $contentAsideStatus = new ContentAsideStatus(
+            $title
+        );
+
+        $this->assertSame($expected, $contentAsideStatus['titleLength']);
+    }
+
+    public function titleLengthProvider() : array
+    {
+        return [
+            [24, 'long'],
+        ];
     }
 }
