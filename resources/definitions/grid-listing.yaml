@@ -289,6 +289,9 @@ allOf:
                                                                 type: boolean
                                                                 enum:
                                                                     - false
+                                                    contextAriaLabel:
+                                                        type: string
+                                                        minItems: 1
                                                 required:
                                                     - name
                                                     - url
@@ -301,6 +304,9 @@ allOf:
                                             type: boolean
                                             enum:
                                                 - false
+                                headerAriaLabel:
+                                    type: string
+                                    minItems: 1
                                 title:
                                     type: string
                                     minLength: 1
@@ -535,6 +541,9 @@ allOf:
                                                 type: boolean
                                                 enum:
                                                     - true
+                                            ariaLabel:
+                                                type: string
+                                                minLength: 1
                                         required:
                                             - text
                                     -
@@ -580,6 +589,9 @@ allOf:
                                                 type: boolean
                                                 enum:
                                                     - true
+                                            ariaLabel:
+                                                type: string
+                                                minLength: 1
                                         required:
                                             - text
                                     -
