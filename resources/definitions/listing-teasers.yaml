@@ -49,6 +49,9 @@ properties:
                                                 type: boolean
                                                 enum:
                                                     - false
+                                    contextAriaLabel:
+                                        type: string
+                                        minItems: 1
                                 required:
                                     - name
                                     - url
@@ -61,6 +64,9 @@ properties:
                             type: boolean
                             enum:
                                 - false
+                headerAriaLabel:
+                    type: string
+                    minItems: 1
                 title:
                     type: string
                     minLength: 1
@@ -295,6 +301,9 @@ properties:
                                 type: boolean
                                 enum:
                                     - true
+                            ariaLabel:
+                                type: string
+                                minLength: 1
                         required:
                             - text
                     -
@@ -340,6 +349,9 @@ properties:
                                 type: boolean
                                 enum:
                                     - true
+                            ariaLabel:
+                                type: string
+                                minLength: 1
                         required:
                             - text
                     -
@@ -386,6 +398,9 @@ properties:
                 minLength: 1
             isInline:
                 type: boolean
+            ariaLabel:
+                type: string
+                minLength: 1
         required:
             - url
             - name

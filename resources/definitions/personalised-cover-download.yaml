@@ -124,6 +124,9 @@ properties:
                                     type: boolean
                                     enum:
                                         - true
+                                ariaLabel:
+                                    type: string
+                                    minLength: 1
                             required:
                                 - text
                         -
@@ -197,6 +200,9 @@ properties:
                                     type: boolean
                                     enum:
                                         - true
+                                ariaLabel:
+                                    type: string
+                                    minLength: 1
                             required:
                                 - text
                         -
