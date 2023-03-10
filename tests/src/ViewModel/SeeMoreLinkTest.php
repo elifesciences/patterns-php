@@ -31,7 +31,8 @@ final class SeeMoreLinkTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new SeeMoreLink(new Link('something', 'http://google.com'))],
+            'minimal' => [new SeeMoreLink(new Link('something'))],
+            'complete' => [new SeeMoreLink(new Link('something', 'http://google.com', 'something more'))],
         ];
     }
 
