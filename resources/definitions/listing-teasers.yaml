@@ -295,6 +295,9 @@ properties:
                                 type: boolean
                                 enum:
                                     - true
+                            ariaLabel:
+                                type: string
+                                minLength: 1
                         required:
                             - text
                     -
@@ -340,6 +343,9 @@ properties:
                                 type: boolean
                                 enum:
                                     - true
+                            ariaLabel:
+                                type: string
+                                minLength: 1
                         required:
                             - text
                     -
@@ -386,6 +392,9 @@ properties:
                 minLength: 1
             isInline:
                 type: boolean
+            ariaLabel:
+                type: string
+                minLength: 1
         required:
             - url
             - name
