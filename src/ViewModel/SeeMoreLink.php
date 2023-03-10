@@ -15,11 +15,12 @@ final class SeeMoreLink implements ViewModel
 
     protected $url;
 
-    public function __construct(Link $link, bool $isInline = false)
+    public function __construct(Link $link, bool $isInline = false, string $ariaLabel = null)
     {
         $this->name = $link['name'];
         $this->url = $link['url'];
         $this->isInline = $isInline;
+        $this->ariaLabel = $ariaLabel;
     }
 
     public function getTemplateName() : string
