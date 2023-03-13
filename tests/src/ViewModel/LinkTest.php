@@ -27,20 +27,20 @@ final class LinkTest extends PHPUnit_Framework_TestCase
         $data = [
             'name' => 'name',
             'url' => 'url',
+            'ariaLabel' => 'Related articles',
             'isCurrent' => true,
             'attributes' => [['key' => 'key', 'value' => 'value']],
             'classes' => 'end-of-group hidden-wide',
-            'ariaLabel' => 'Related articles',
         ];
 
-        $link = (new Link('name', 'url', true, ['key' => 'value'], 'Related articles'))->endOfGroup()->hiddenWide();
+        $link = (new Link('name', 'url', 'Related articles', true, ['key' => 'value']))->endOfGroup()->hiddenWide();
 
         $this->assertSame($data['name'], $link['name']);
         $this->assertSame($data['url'], $link['url']);
+        $this->assertSame($data['ariaLabel'], $link['ariaLabel']);
         $this->assertSame($data['isCurrent'], $link['isCurrent']);
         $this->assertSame($data['attributes'], $link['attributes']);
         $this->assertSame($data['classes'], $link['classes']);
-        $this->assertSame($data['ariaLabel'], $link['ariaLabel']);
         $this->assertSame($data, $link->toArray());
     }
 

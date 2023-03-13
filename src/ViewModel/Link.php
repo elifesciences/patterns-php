@@ -17,12 +17,12 @@ final class Link implements CastsToArray
 
     private $name;
     private $url = null;
+    private $ariaLabel;
     private $isCurrent;
     private $attributes;
     private $classes;
-    private $ariaLabel;
 
-    public function __construct(string $name, string $url = null, bool $isCurrent = false, array $attributes = [], string $ariaLabel = null)
+    public function __construct(string $name, string $url = null, string $ariaLabel = null, bool $isCurrent = false, array $attributes = [])
     {
         Assertion::notBlank($name);
 

@@ -19,7 +19,7 @@ final class SeeMoreLinkTest extends ViewModelTest
             'isInline' => true,
         ];
 
-        $link = new SeeMoreLink(new Link($data['name'], $data['url'], true, ['key' => 'value'], $data['ariaLabel']), $data['isInline']);
+        $link = new SeeMoreLink(new Link($data['name'], $data['url'], $data['ariaLabel']), $data['isInline']);
 
         $this->assertSame($data['name'], $link['name'], 'The names should match');
         $this->assertSame($data['url'], $link['url'], 'The URLs should match');
@@ -32,7 +32,7 @@ final class SeeMoreLinkTest extends ViewModelTest
     {
         return [
             'minimal' => [new SeeMoreLink(new Link('something', 'http://google.com'))],
-            'complete' => [new SeeMoreLink(new Link('something', 'http://google.com', false, ['key' => 'value'], 'Research article'))],
+            'complete' => [new SeeMoreLink(new Link('something', 'http://google.com', 'Research article', false, ['key' => 'value']))],
         ];
     }
 
