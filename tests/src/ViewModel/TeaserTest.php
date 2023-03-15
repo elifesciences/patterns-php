@@ -27,6 +27,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::basic(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forNonArticle($this->metaFromData($data['footer']['meta']))
         );
@@ -42,6 +43,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['content'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
@@ -65,6 +67,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['content'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
@@ -88,6 +91,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['content'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
@@ -111,6 +115,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::secondary(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url'] ? $item['url'] : null);
@@ -132,6 +137,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::secondary(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url'] ? $item['url'] : null);
@@ -153,6 +159,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::secondary(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url'] ? $item['url'] : null);
@@ -174,6 +181,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::relatedItem(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['secondaryInfo'],
             new ContextLabel(...array_map(function ($item) {
                 return new Link($item['name'], $item['url'] ? $item['url'] : null);
@@ -195,6 +203,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::event(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['secondaryInfo'],
             Date::simple(new DateTimeImmutable($data['eventDate']['forMachine']))
         );
@@ -210,6 +219,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::event(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['secondaryInfo'],
             Date::simple(new DateTimeImmutable($data['eventDate']['forMachine'])),
             true
@@ -246,6 +256,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::withGrid(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['content'],
             null,
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
@@ -265,6 +276,7 @@ final class TeaserTest extends ViewModelTest
         $actual = Teaser::withGrid(
             $data['title'],
             $data['url'] ? $data['url'] : null,
+            $data['ariaLabel'],
             $data['content'],
             $data['secondaryInfo'],
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),

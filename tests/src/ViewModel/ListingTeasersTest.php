@@ -54,6 +54,7 @@ final class ListingTeasersTest extends ViewModelTest
                     'title' => 'title',
                     'rootClasses' => 'teaser--secondary teaser--highlights',
                     'url' => 'url',
+                    'ariaLabel' => 'aria',
                     'secondaryInfo' => 'Author et al',
                     'footer' => [
                         'meta' => [
@@ -68,6 +69,7 @@ final class ListingTeasersTest extends ViewModelTest
                     'title' => 'title',
                     'rootClasses' => 'teaser--secondary teaser--highlights',
                     'url' => 'url',
+                    'ariaLabel' => 'aria',
                 ],
                 [
                     'carouselItem' => true,
@@ -75,6 +77,7 @@ final class ListingTeasersTest extends ViewModelTest
                     'title' => 'title',
                     'rootClasses' => 'teaser--secondary teaser--highlights',
                     'url' => 'url',
+                    'ariaLabel' => 'aria',
                 ],
             ],
             'heading' => [
@@ -90,7 +93,7 @@ final class ListingTeasersTest extends ViewModelTest
                     $footer = TeaserFooter::forNonArticle(Meta::withLink(new Link($item['footer']['meta']['text'], $item['footer']['meta']['url'])));
                 }
 
-                return Teaser::secondary($item['title'], $item['url'], $item['secondaryInfo'] ?? null, null, null, $footer ?? null);
+                return Teaser::secondary($item['title'], $item['url'], $item['ariaLabel'], $item['secondaryInfo'] ?? null, null, null, $footer ?? null);
             }, $data['items']), new ListHeading($data['heading']['heading'], $data['heading']['headingId']), $data['id']);
 
         $this->assertSameWithoutOrder($data, $listingTeaser->toArray());

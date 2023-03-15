@@ -21,6 +21,7 @@ final class Teaser implements ViewModel
     private $title;
     private $rootClasses;
     private $url;
+    private $ariaLabel;
     private $content;
     private $secondaryInfo;
     private $contextLabel;
@@ -33,6 +34,7 @@ final class Teaser implements ViewModel
         string $title,
         array $rootClasses = [],
         string $url = null,
+        string $ariaLabel = null,
         string $content = null,
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
@@ -46,6 +48,7 @@ final class Teaser implements ViewModel
         $this->title = $title;
         $this->rootClasses = implode(' ', $rootClasses);
         $this->url = $url ?? false;
+        $this->ariaLabel = $ariaLabel;
         $this->content = $content;
         $this->secondaryInfo = $secondaryInfo;
         $this->contextLabel = $contextLabel;
@@ -58,6 +61,7 @@ final class Teaser implements ViewModel
     public static function relatedItem(
         string $title,
         string $url = null,
+        string $ariaLabel = null,
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
@@ -69,6 +73,7 @@ final class Teaser implements ViewModel
             $title,
             $rootClasses,
             $url,
+            $ariaLabel,
             null,
             $secondaryInfo,
             $contextLabel,
@@ -82,6 +87,7 @@ final class Teaser implements ViewModel
     public static function main(
         string $title,
         string $url = null,
+        string $ariaLabel = null,
         string $content = null,
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
@@ -94,6 +100,7 @@ final class Teaser implements ViewModel
             $title,
             $rootClasses,
             $url,
+            $ariaLabel,
             $content,
             $secondaryInfo,
             $contextLabel,
@@ -107,6 +114,7 @@ final class Teaser implements ViewModel
     public static function withGrid(
         string $title,
         string $url = null,
+        string $ariaLabel = null,
         string $content = null,
         string $secondaryInfo = null,
         TeaserImage $image = null,
@@ -118,6 +126,7 @@ final class Teaser implements ViewModel
             $title,
             $rootClasses,
             $url,
+            $ariaLabel,
             $content,
             $secondaryInfo,
             null,
@@ -141,6 +150,7 @@ final class Teaser implements ViewModel
             $title,
             $rootClasses,
             $url,
+            null,
             $content,
             null,
             $contextLabel,
@@ -154,6 +164,7 @@ final class Teaser implements ViewModel
     public static function secondary(
         string $title,
         string $url = null,
+        string $ariaLabel = null,
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
@@ -165,6 +176,7 @@ final class Teaser implements ViewModel
             $title,
             $rootClasses,
             $url,
+            $ariaLabel,
             null,
             $secondaryInfo,
             $contextLabel,
@@ -178,6 +190,7 @@ final class Teaser implements ViewModel
     public static function event(
         string $title,
         string $url = null,
+        string $ariaLabel = null,
         string $secondaryInfo = null,
         Date $eventDate = null,
         bool $isSecondary = false,
@@ -192,6 +205,7 @@ final class Teaser implements ViewModel
             $title,
             $rootClasses,
             $url,
+            $ariaLabel,
             null,
             $secondaryInfo,
             null,
@@ -205,6 +219,7 @@ final class Teaser implements ViewModel
     public static function basic(
         string $title,
         string $url = null,
+        string $ariaLabel = null,
         TeaserImage $image = null,
         TeaserFooter $footer = null
     ) {
@@ -214,6 +229,7 @@ final class Teaser implements ViewModel
             $title,
             $rootClasses,
             $url,
+            $ariaLabel,
             null,
             null,
             null,
