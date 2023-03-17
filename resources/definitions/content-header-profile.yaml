@@ -38,6 +38,9 @@ properties:
                 url:
                     type: string
                     minLength: 1
+                ariaLabel:
+                    type: string
+                    minLength: 1
             required:
                 - name
                 - url
@@ -49,6 +52,9 @@ properties:
                 type: string
                 minLength: 1
             url:
+                type: string
+                minLength: 1
+            ariaLabel:
                 type: string
                 minLength: 1
         required:
