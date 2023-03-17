@@ -267,9 +267,6 @@ properties:
                                                         type: boolean
                                                         enum:
                                                             - false
-                                            contextAriaLabel:
-                                                type: string
-                                                minItems: 1
                                         required:
                                             - name
                                             - url
@@ -282,7 +279,7 @@ properties:
                                     type: boolean
                                     enum:
                                         - false
-                        headerAriaLabel:
+                        ariaLabel:
                             type: string
                             minItems: 1
                         title:
