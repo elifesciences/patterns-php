@@ -32,8 +32,8 @@ final class SeeMoreLinkTest extends ViewModelTest
     {
         return [
             'minimal' => [new SeeMoreLink(new Link('something'))],
-            'link only' => [new SeeMoreLink(new Link('something', 'http://google.com'))],
             'complete' => [new SeeMoreLink(new Link('something', 'http://google.com', 'Research article', false, ['key' => 'value']))],
+            'link only' => [new SeeMoreLink(new Link('something', 'http://google.com'))],
         ];
     }
 
