@@ -28,10 +28,16 @@ final class SeeMoreLinkTest extends ViewModelTest
         $this->assertSame($data, array_merge($link->toArray(), ['isInline' => true]));
     }
 
+    public function it_must_have_a_url()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new SeeMoreLink(new Link('something'));
+    }
+
     public function viewModelProvider() : array
     {
         return [
-            'minimal' => [new SeeMoreLink(new Link('something'))],
             'complete' => [new SeeMoreLink(new Link('something', 'http://google.com', 'Research article', false, ['key' => 'value']))],
             'link only' => [new SeeMoreLink(new Link('something', 'http://google.com'))],
         ];
