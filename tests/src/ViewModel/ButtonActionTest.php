@@ -17,8 +17,9 @@ final class ButtonActionTest extends ViewModelTest
             'path' => '#citation',
             'id' => 'button-action-citation',
             'classes' => 'button--default button--action icon icon-citation',
+            'ariaLabel' => 'Button action'
         ];
-        $buttonAction = Button::action($data['text'], $data['path'], 1, $data['id'], 'citation');
+        $buttonAction = Button::action($data['text'], $data['path'], 1, $data['id'], 'citation', $data['ariaLabel']);
         $this->assertSameWithoutOrder($data, $buttonAction->toArray());
     }
 
