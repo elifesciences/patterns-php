@@ -2,7 +2,6 @@
   "rootClasses": "teaser--grid-style",
   "url": "#",
   "title": "Multicellular life, potato blight and Hepatitis&nbsp;B",
-  "ariaLabel": "Descriptive and accessible label",
   "secondaryInfo": "Episode 24",
   "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris commodo consequat.",
   "image": {
@@ -25,5 +24,6 @@
         "forMachine": "2015-03-31"
       }
     }
-  }
+  },
+  "ariaLabel": "Descriptive and accessible label"
 }

@@ -2,7 +2,6 @@
   "rootClasses": "teaser--grid-style",
   "url": "#",
   "title": "eLife Lens search",
-  "ariaLabel": "Descriptive and accessible label",
   "content": "Lorem ipsum dolor sit amet,consectetur adipiscing elit. Pellentesque sem enim, pretium non risus non, molestie.",
   "image": {
     "fallback": {
@@ -25,5 +24,6 @@
         "forMachine": "2015-03-31"
       }
     }
-  }
+  },
+  "ariaLabel": "Descriptive and accessible label"
 }

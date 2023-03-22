@@ -15,7 +15,6 @@
   },
   "title": "Mapping Ebola in wild animals for better disease control",
   "url": "#",
-  "ariaLabel": "Descriptive and accessible label",
   "secondaryInfo": "Bloggs, J. et al",
   "image": {
     "fallback": {
@@ -38,5 +37,6 @@
         "forMachine": "2015-12-16"
       }
     }
-  }
+  },
+  "ariaLabel": "Descriptive and accessible label"
 }

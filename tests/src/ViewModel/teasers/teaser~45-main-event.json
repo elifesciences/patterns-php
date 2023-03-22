@@ -2,7 +2,6 @@
   "rootClasses": "teaser--event",
   "url": "#",
   "title": "HSFP Postdoctoral Fellowships from the Human Frontier Science Program",
-  "ariaLabel": "Descriptive and accessible label",
   "secondaryInfo": "eLife",
   "eventDate": {
     "forHuman": {
@@ -11,5 +10,6 @@
       "year": 2015
     },
     "forMachine": "2015-12-18"
-  }
+  },
+  "ariaLabel": "Descriptive and accessible label"
 }

@@ -131,7 +131,6 @@ final class GridListingTest extends ViewModelTest
                     'title' => 'title',
                     'rootClasses' => 'teaser--grid-style',
                     'url' => 'url',
-                    'ariaLabel' => 'aria',
                     'content' => 'content',
                     'secondaryInfo' => 'secondary info',
                     'image' => [
@@ -167,7 +166,6 @@ final class GridListingTest extends ViewModelTest
                 Teaser::withGrid(
                     'title',
                     'url',
-                    'aria',
                     'content',
                     'secondary info',
                     TeaserImage::prominent(
@@ -239,7 +237,6 @@ final class GridListingTest extends ViewModelTest
                         Teaser::withGrid(
                             'title',
                             'url',
-                            'aria',
                             'content',
                             'secondary info',
                             TeaserImage::prominent(
@@ -271,7 +268,6 @@ final class GridListingTest extends ViewModelTest
                         Teaser::withGrid(
                             'title',
                             'url',
-                            'aria',
                             'content',
                             'secondary info',
                             TeaserImage::prominent(
@@ -303,7 +299,6 @@ final class GridListingTest extends ViewModelTest
                         Teaser::withGrid(
                             'title',
                             'url',
-                            'aria',
                             'content',
                             'secondary info',
                             TeaserImage::prominent(
