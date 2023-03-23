@@ -21,6 +21,7 @@ final class Teaser implements ViewModel
     private $title;
     private $rootClasses;
     private $url;
+    private $ariaLabel;
     private $content;
     private $secondaryInfo;
     private $contextLabel;
@@ -39,7 +40,8 @@ final class Teaser implements ViewModel
         Date $eventDate = null,
         Link $category = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        string $ariaLabel = null
     ) {
         Assertion::notBlank($title);
 
@@ -53,6 +55,7 @@ final class Teaser implements ViewModel
         $this->category = $category;
         $this->image = $image;
         $this->footer = $footer;
+        $this->ariaLabel = $ariaLabel;
     }
 
     public static function relatedItem(
@@ -61,7 +64,8 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY, self::STYLE_RELATED];
 
@@ -75,7 +79,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $ariaLabel
         );
     }
 
@@ -86,7 +91,8 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        string $ariaLabel = null
     ) {
         $rootClasses = [];
 
@@ -100,7 +106,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $ariaLabel
         );
     }
 
@@ -110,7 +117,8 @@ final class Teaser implements ViewModel
         string $content = null,
         string $secondaryInfo = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_GRID];
 
@@ -124,7 +132,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $ariaLabel
         );
     }
 
@@ -147,7 +156,8 @@ final class Teaser implements ViewModel
             null,
             null,
             null,
-            $footer
+            $footer,
+            null
         );
     }
 
@@ -157,7 +167,8 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         ContextLabel $contextLabel = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY];
 
@@ -171,7 +182,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $ariaLabel
         );
     }
 
@@ -181,7 +193,8 @@ final class Teaser implements ViewModel
         string $secondaryInfo = null,
         Date $eventDate = null,
         bool $isSecondary = false,
-        TeaserImage $image = null
+        TeaserImage $image = null,
+        string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_EVENT];
         if ($isSecondary) {
@@ -198,7 +211,8 @@ final class Teaser implements ViewModel
             $eventDate,
             null,
             $image,
-            null
+            null,
+            $ariaLabel
         );
     }
 
@@ -206,7 +220,8 @@ final class Teaser implements ViewModel
         string $title,
         string $url = null,
         TeaserImage $image = null,
-        TeaserFooter $footer = null
+        TeaserFooter $footer = null,
+        string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY];
 
@@ -220,7 +235,8 @@ final class Teaser implements ViewModel
             null,
             null,
             $image,
-            $footer
+            $footer,
+            $ariaLabel
         );
     }
 
