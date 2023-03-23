@@ -46,6 +46,8 @@
     "formats": {
       "list": ["HTML", "PDF"]
     }
-  }
+  },
+
+  "ariaLabel": "Descriptive and accessible label"
 
 }

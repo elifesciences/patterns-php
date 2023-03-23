@@ -28,7 +28,8 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'] ? $data['url'] : null,
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
-            TeaserFooter::forNonArticle($this->metaFromData($data['footer']['meta']))
+            TeaserFooter::forNonArticle($this->metaFromData($data['footer']['meta'])),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -51,7 +52,8 @@ final class TeaserTest extends ViewModelTest
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['formats']['list']
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -74,7 +76,8 @@ final class TeaserTest extends ViewModelTest
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['formats']['list']
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -97,7 +100,8 @@ final class TeaserTest extends ViewModelTest
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta']),
                 $data['footer']['formats']['list']
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -118,7 +122,8 @@ final class TeaserTest extends ViewModelTest
             null,
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -139,7 +144,8 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -160,7 +166,8 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -181,7 +188,8 @@ final class TeaserTest extends ViewModelTest
             null,
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -196,7 +204,10 @@ final class TeaserTest extends ViewModelTest
             $data['title'],
             $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
-            Date::simple(new DateTimeImmutable($data['eventDate']['forMachine']))
+            Date::simple(new DateTimeImmutable($data['eventDate']['forMachine'])),
+            false,
+            null,
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -212,7 +223,9 @@ final class TeaserTest extends ViewModelTest
             $data['url'] ? $data['url'] : null,
             $data['secondaryInfo'],
             Date::simple(new DateTimeImmutable($data['eventDate']['forMachine'])),
-            true
+            true,
+            null,
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -251,7 +264,8 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
@@ -270,7 +284,8 @@ final class TeaserTest extends ViewModelTest
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_PROMINENT),
             TeaserFooter::forNonArticle(
                 $this->metaFromData($data['footer']['meta'])
-            )
+            ),
+            $data['ariaLabel']
         );
         $this->assertSameWithoutOrder($data, $actual);
     }
