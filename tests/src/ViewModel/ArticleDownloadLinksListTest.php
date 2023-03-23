@@ -55,7 +55,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                     'group title',
                     [
                         new ArticleDownloadLink(
-                            new Link('primary name', 'primary url', false, ['key' => 'value']),
+                            new Link('primary name', 'primary url', null, false, ['key' => 'value']),
                             new Link('secondary name', 'secondary url'),
                             'https://checkpmc.example'
                         ),
@@ -149,7 +149,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                             'group title',
                             [
                                 new ArticleDownloadLink(
-                                    new Link('name', 'url', false, ['key' => 'value'])
+                                    new Link('name', 'url', null, false, ['key' => 'value'])
                                 ),
                             ]
                         ),
@@ -165,8 +165,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                             'group title',
                             [
                                 new ArticleDownloadLink(
-                                    new Link('name', 'url', false, ['key' => 'value']),
-                                    new Link('name', 'url', false, ['key' => 'value'])
+                                    new Link('name', 'url', null, false, ['key' => 'value']),
+                                    new Link('name', 'url', null, false, ['key' => 'value'])
                                 ),
                             ]
                         ),
@@ -182,8 +182,8 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
                             'group title',
                             [
                                 new ArticleDownloadLink(
-                                    new Link('name', 'url', false, ['key' => 'value']),
-                                    new Link('name', 'url', false, ['key' => 'value'])
+                                    new Link('name', 'url', null, false, ['key' => 'value']),
+                                    new Link('name', 'url', null, false, ['key' => 'value'])
                                 ),
                             ],
                             'intro text'
