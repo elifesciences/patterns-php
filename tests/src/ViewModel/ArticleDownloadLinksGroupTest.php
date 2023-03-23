@@ -63,7 +63,7 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
             'group title',
             [
                 new ArticleDownloadLink(
-                    new Link('primary name', 'primary url', false, ['key' => 'value']),
+                    new Link('primary name', 'primary url', null, false, ['key' => 'value']),
                     new Link('secondary name', 'secondary url'),
                     'https://checkpmc.example'
                 ),
