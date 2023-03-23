@@ -17,14 +17,16 @@ final class LinkButtonTest extends ViewModelTest
             'path' => 'path',
             'text' => 'text',
             'id' => 'someId',
+            'ariaLabel' => 'Link buttton'
         ];
 
-        $button = Button::link('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true, 'someId');
+        $button = Button::link('text', 'path', Button::SIZE_SMALL, Button::STYLE_OUTLINE, true, true, 'someId', 'Link buttton');
 
         $this->assertSame($data['text'], $button['text']);
         $this->assertSame($data['path'], $button['path']);
         $this->assertSame($data['id'], $button['id']);
         $this->assertSame($data['classes'], $button['classes']);
+        $this->assertSame($data['ariaLabel'], $button['ariaLabel']);
         $this->assertSame($data, $button->toArray());
     }
 
@@ -87,6 +89,7 @@ final class LinkButtonTest extends ViewModelTest
             'outline' => [Button::link('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE)],
             'inactive' => [Button::link('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, false)],
             'full width' => [Button::link('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true)],
+            'aria label' => [Button::link('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_DEFAULT, true, true, 'Link button')],
         ];
     }
 

@@ -29,5 +29,6 @@
         "forMachine": "2015-12-16"
       }
     }
-  }
+  },
+  "ariaLabel": "Descriptive and accessible label"
 }
