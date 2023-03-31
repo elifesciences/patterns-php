@@ -20,14 +20,13 @@ final class SocialMediaSharersNew implements ViewModel
     private $redditUrl;
     private $mastodonUrl;
 
-    public function __construct(string $title, string $url, $includeEmail = true, string $text = null)
+    public function __construct(string $title, string $url, $includeEmail = true, bool $hasMastodon = false)
     {
         Assertion::notBlank($title);
         Assertion::url($url);
 
         $encodedTitle = rawurlencode($title);
         $encodedUrl = rawurlencode($url);
-        $encodedText = rawurlencode($text);
 
         if ($includeEmail) {
             $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
@@ -37,8 +36,8 @@ final class SocialMediaSharersNew implements ViewModel
         $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
         $this->linkedInUrl = "https://www.linkedin.com/shareArticle?title={$encodedTitle}&url={$encodedUrl}";
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
-        if (null !== $text) {
-            $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedText}";
+        if ($hasMastodon) {
+            $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedTitle}%20{$encodedUrl}";
         }
     }
 
