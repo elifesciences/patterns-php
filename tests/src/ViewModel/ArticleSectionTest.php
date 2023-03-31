@@ -32,11 +32,12 @@ final class ArticleSectionTest extends ViewModelTest
                 new Link('Related link 1', '#'),
                 new Link('Related link 2', '#'),
             ],
+            'relatedLinksSeparator' => 'circle'
         ];
 
         $basicArticleSection = ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
             new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
-            true, $basicData['headerLink']);
+            true, $basicData['headerLink'], $basicData['relatedLinksSeparator']);
 
         $this->assertSame($basicData['classes'], $basicArticleSection['classes']);
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
@@ -49,6 +50,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($basicData['isFirst'], $basicArticleSection['isFirst']);
         $this->assertSame($basicData['headerLink'], $basicArticleSection['headerLink']);
         $this->assertSame($basicData['relatedLinks'], $basicArticleSection['relatedLinks']);
+        $this->assertSame($basicData['relatedLinksSeparator'], $basicArticleSection['relatedLinksSeparator']);
         $this->assertSameWithoutOrder($basicData, $basicArticleSection);
 
         $collapsibleData = [
@@ -68,11 +70,12 @@ final class ArticleSectionTest extends ViewModelTest
                 new Link('Related link 1', '#'),
                 new Link('Related link 2', '#'),
             ],
+            'relatedLinksSeparator' => 'circle'
         ];
 
         $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
             $collapsibleData['relatedLinks'], ArticleSection::STYLE_HIGHLIGHTED, true, true,
-            new Doi('10.7554/eLife.10181.001'));
+            new Doi('10.7554/eLife.10181.001'), ArticleSection::SEPARETED_CIRCLE);
 
         $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
@@ -84,6 +87,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($collapsibleData['body'], $collapsibleArticleSection['body']);
         $this->assertSame($collapsibleData['isFirst'], $collapsibleArticleSection['isFirst']);
         $this->assertSame($collapsibleData['relatedLinks'], $collapsibleArticleSection['relatedLinks']);
+        $this->assertSame($collapsibleData['relatedLinksSeparator'], $collapsibleArticleSection['relatedLinksSeparator']);
         $this->assertSameWithoutOrder($collapsibleData, $collapsibleArticleSection);
     }
 
@@ -128,6 +132,29 @@ final class ArticleSectionTest extends ViewModelTest
         ArticleSection::basic('<p>body</p>', null, null, null, new Doi('10.7554/eLife.10181.001'));
     }
 
+    /**
+     * @test
+     */
+    public function it_cannot_have_a_related_links_separator_without_related_Links()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ArticleSection::basic('<p>body</p>', null, null, null, null, null,
+            null, false, null, ArticleSection::SEPARETED_CIRCLE);
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_valid_related_links_separator()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ArticleSection::basic('<p>body</p>', null, null, null, null,
+            [new Link('Related link 1', '#'), new Link('Related link 2', '#')],
+            null, false, null, 'not valid');
+    }
+
     public function viewModelProvider() : array
     {
         return [
@@ -135,13 +162,14 @@ final class ArticleSectionTest extends ViewModelTest
             'basic complete' => [
                 ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
                     new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
-                    ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#')),
+                    ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#'),
+                    ArticleSection::SEPARETED_CIRCLE),
             ],
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
                 ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
                     [new Link('Related link', '#')], ArticleSection::STYLE_DEFAULT, true, true,
-                    new Doi('10.7554/eLife.10181.001'))
+                    new Doi('10.7554/eLife.10181.001'), ArticleSection::SEPARETED_CIRCLE)
             ],
         ];
     }

@@ -12,6 +12,7 @@ final class ArticleSection implements ViewModel
 {
     const STYLE_DEFAULT = 'default';
     const STYLE_HIGHLIGHTED = 'highlighted';
+    const SEPARETED_CIRCLE = 'circle';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -27,7 +28,8 @@ final class ArticleSection implements ViewModel
     private $relatedLinks;
     private $isFirst;
     private $headerLink;
-
+    private $relatedLinksSeparator;
+    
     private function __construct(
         string $id = null,
         Doi $doi = null,
@@ -39,7 +41,8 @@ final class ArticleSection implements ViewModel
         string $style = null,
         bool $isFirst = false,
         bool $hasBehaviour = false,
-        bool $isInitiallyClosed = false
+        bool $isInitiallyClosed = false,
+        string $relatedLinksSeparator = null
     ) {
         Assertion::nullOrNotBlank($title);
         Assertion::nullOrMin($headingLevel, 2);
@@ -50,6 +53,7 @@ final class ArticleSection implements ViewModel
             Assertion::allIsInstanceOf($relatedLinks, Link::class);
         }
         Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED]);
+        Assertion::nullOrChoice($relatedLinksSeparator, [self::SEPARETED_CIRCLE]);
 
         if (null === $headingLevel && $title) {
             throw new InvalidArgumentException('title requires a headingLevel');
@@ -65,6 +69,10 @@ final class ArticleSection implements ViewModel
 
         if (null === $id && $doi) {
             throw new InvalidArgumentException('DOI requires an ID');
+        }
+
+        if (null === $relatedLinks && $relatedLinksSeparator) {
+            throw new InvalidArgumentException('relatedLinksSeparator requires relatedLinks');
         }
 
         if (null !== $doi) {
@@ -86,6 +94,7 @@ final class ArticleSection implements ViewModel
         $this->body = $body;
         $this->relatedLinks = $relatedLinks;
         $this->isFirst = $isFirst;
+        $this->relatedLinksSeparator = $relatedLinksSeparator;
     }
 
     public static function basic(
@@ -97,9 +106,10 @@ final class ArticleSection implements ViewModel
         array $relatedLinks = null,
         string $style = null,
         bool $isFirst = false,
-        Link $headerLink = null
+        Link $headerLink = null,
+        string $relatedLinksSeparator = null
     ) : ArticleSection {
-        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst);
+        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator);
     }
 
     public static function collapsible(
@@ -111,7 +121,8 @@ final class ArticleSection implements ViewModel
         string $style = null,
         bool $isInitiallyClosed = false,
         bool $isFirst = false,
-        Doi $doi = null
+        Doi $doi = null,
+        string $relatedLinksSeparator = null
     ) : ArticleSection {
         return new self(
             $id,
@@ -124,7 +135,8 @@ final class ArticleSection implements ViewModel
             $style,
             $isFirst,
             true,
-            $isInitiallyClosed
+            $isInitiallyClosed,
+            $relatedLinksSeparator
         );
     }
 
