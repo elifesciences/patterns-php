@@ -120,6 +120,9 @@ properties:
             redditUrl:
                 type: string
                 format: uri
+            mastodonUrl:
+                type: string
+                format: uri
         required:
             - facebookUrl
             - twitterUrl
