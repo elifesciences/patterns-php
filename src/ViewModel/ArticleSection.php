@@ -12,7 +12,7 @@ final class ArticleSection implements ViewModel
 {
     const STYLE_DEFAULT = 'default';
     const STYLE_HIGHLIGHTED = 'highlighted';
-    const SEPARETED_CIRCLE = 'circle';
+    const RELATED_LINKS_SEPARATOR_CIRCLE = 'circle';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -53,7 +53,7 @@ final class ArticleSection implements ViewModel
             Assertion::allIsInstanceOf($relatedLinks, Link::class);
         }
         Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED]);
-        Assertion::nullOrChoice($relatedLinksSeparator, [self::SEPARETED_CIRCLE]);
+        Assertion::nullOrChoice($relatedLinksSeparator, [self::RELATED_LINKS_SEPARATOR_CIRCLE]);
 
         if (null === $headingLevel && $title) {
             throw new InvalidArgumentException('title requires a headingLevel');

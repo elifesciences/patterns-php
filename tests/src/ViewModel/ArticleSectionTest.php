@@ -75,7 +75,7 @@ final class ArticleSectionTest extends ViewModelTest
 
         $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
             $collapsibleData['relatedLinks'], ArticleSection::STYLE_HIGHLIGHTED, true, true,
-            new Doi('10.7554/eLife.10181.001'), ArticleSection::SEPARETED_CIRCLE);
+            new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE);
 
         $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
@@ -140,7 +140,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         ArticleSection::basic('<p>body</p>', null, null, null, null, null,
-            null, false, null, ArticleSection::SEPARETED_CIRCLE);
+            null, false, null, ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE);
     }
 
     /**
@@ -163,13 +163,13 @@ final class ArticleSectionTest extends ViewModelTest
                 ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
                     new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
                     ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#'),
-                    ArticleSection::SEPARETED_CIRCLE),
+                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE),
             ],
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
                 ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
                     [new Link('Related link', '#')], ArticleSection::STYLE_DEFAULT, true, true,
-                    new Doi('10.7554/eLife.10181.001'), ArticleSection::SEPARETED_CIRCLE)
+                    new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE)
             ],
         ];
     }
