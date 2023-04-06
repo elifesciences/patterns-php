@@ -1,0 +1,24 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    items:
+        type: array
+        selectedClass:
+            type: string
+            minLength: 1
+        items:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                name:
+                    type: string
+                    minLength: 1
+                url:
+                    type: string
+                    minLength: 1
+                ariaLabel:
+                    type: string
+                    minLength: 1
+            required:
+                - name
+                - url
