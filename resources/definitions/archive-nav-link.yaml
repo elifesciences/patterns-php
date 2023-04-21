@@ -55,15 +55,24 @@ properties:
                             - altText
                 required:
                     - fallback
-            text:
-                type: string
-                minLength: 1
-            url:
-                type: string
-                minLength: 1
+            link:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                    name:
+                        type: string
+                        minLength: 1
+                    url:
+                        type: string
+                        minLength: 1
+                    ariaLabel:
+                        type: string
+                        minLength: 1
+                required:
+                    - name
+                    - url
         required:
-            - text
-            - url
+            - link
     label:
         type: string
         minLength: 1
@@ -71,12 +80,16 @@ properties:
         type: array
         minItems: 1
         items:
+            $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
                 name:
                     type: string
                     minLength: 1
                 url:
+                    type: string
+                    minLength: 1
+                ariaLabel:
                     type: string
                     minLength: 1
             required:
