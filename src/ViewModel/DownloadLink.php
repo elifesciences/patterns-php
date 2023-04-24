@@ -11,19 +11,12 @@ final class DownloadLink implements CastsToArray
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $name;
-    private $url;
+    private $link;
     private $fileName;
 
-    private function __construct(string $name, string $url, string $fileName = null)
+    public function __construct(Link $link, string $fileName = null)
     {
-        $this->name = $name;
-        $this->url = $url;
+        $this->link = $link;
         $this->fileName = $fileName;
-    }
-
-    public static function fromLink(Link $link, string $fileName = null)
-    {
-        return new static($link['name'], $link['url'], $fileName);
     }
 }

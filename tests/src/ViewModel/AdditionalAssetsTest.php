@@ -28,8 +28,10 @@ final class AdditionalAssetsTest extends ViewModelTest
                     ],
                     'nonDoiLink' => 'http://google.com/',
                     'downloadLink' => [
-                        'name' => 'download link',
-                        'url' => 'http://google.com/download',
+                        'link' => [
+                            'name' => 'download link',
+                            'url' => 'http://google.com/download'
+                        ],
                         'fileName' => 'file name',
                     ],
                 ],
@@ -40,8 +42,8 @@ final class AdditionalAssetsTest extends ViewModelTest
                 AdditionalAsset::withoutDoi(
                     $data['assets'][0]['assetId'],
                     CaptionText::withHeading($data['assets'][0]['captionText']['heading'], $data['assets'][0]['captionText']['standfirst'], $data['assets'][0]['captionText']['text']),
-                    DownloadLink::fromLink(
-                        new Link($data['assets'][0]['downloadLink']['name'], $data['assets'][0]['downloadLink']['url']),
+                    new DownloadLink(
+                        new Link($data['assets'][0]['downloadLink']['link']['name'], $data['assets'][0]['downloadLink']['link']['url']),
                         $data['assets'][0]['downloadLink']['fileName']
                     ),
                     $data['assets'][0]['nonDoiLink']
@@ -56,7 +58,7 @@ final class AdditionalAssetsTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
+        $downloadLink = new DownloadLink(new Link('Download link', 'http://google.com/download'), 'File name');
 
         return [
             [
