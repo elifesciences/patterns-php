@@ -15,16 +15,14 @@ final class SortControlOption implements CastsToArray
     const ASC = 'ascending';
     const DESC = 'descending';
 
-    private $option;
-    private $url;
+    private $link;
     private $sorting;
 
     public function __construct(Link $link, string $sorting = null)
     {
         Assertion::nullOrInArray($sorting, [self::ASC, self::DESC]);
 
-        $this->option = $link['name'];
-        $this->url = $link['url'];
+        $this->link = $link;
         $this->sorting = $sorting;
     }
 }
