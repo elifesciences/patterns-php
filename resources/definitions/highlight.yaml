@@ -19,12 +19,22 @@ properties:
                 $schema: 'http://json-schema.org/draft-04/schema#'
                 type: object
                 properties:
-                    title:
-                        type: string
-                        minLength: 1
-                    url:
-                        type: string
-                        minLength: 1
+                    link:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                minLength: 1
+                            url:
+                                type: string
+                                minLength: 1
+                            ariaLabel:
+                                type: string
+                                minLength: 1
+                        required:
+                            - name
+                            - url
                     authors:
                         type: string
                         minLength: 1
@@ -142,8 +152,7 @@ properties:
                                 required:
                                     - fallback
                 required:
-                    - title
-                    - url
+                    - link
                     - meta
                     - image
         minItems: 1
