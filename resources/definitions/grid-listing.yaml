@@ -183,6 +183,9 @@ allOf:
                                             ariaLabel:
                                                 type: string
                                                 minLength: 1
+                                            isCurrent:
+                                                type: boolean
+                                                default: false
                                         required:
                                             - name
                                             - url
