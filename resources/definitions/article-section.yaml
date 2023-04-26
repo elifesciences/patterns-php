@@ -48,6 +48,7 @@ properties:
         type: boolean
         default: false
     headerLink:
+        $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
             name:
@@ -56,6 +57,12 @@ properties:
             url:
                 type: string
                 minLength: 1
+            ariaLabel:
+                type: string
+                minLength: 1
+            isCurrent:
+                type: boolean
+                default: false
         required:
             - name
             - url
@@ -65,16 +72,25 @@ properties:
             - circle
     relatedLinks:
         type: array
-        properties:
-            name:
-                type: string
-                minLength: 1
-            url:
-                type: string
-                minLength: 1
-        required:
-            - name
-            - url
+        items:
+            $schema: 'http://json-schema.org/draft-04/schema#'
+            type: object
+            properties:
+                name:
+                    type: string
+                    minLength: 1
+                url:
+                    type: string
+                    minLength: 1
+                ariaLabel:
+                    type: string
+                    minLength: 1
+                isCurrent:
+                    type: boolean
+                    default: false
+            required:
+                - name
+                - url
 dependencies:
     title:
         - headingLevel
