@@ -13,17 +13,19 @@ final class SeeMoreLinkTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'name' => 'something',
-            'url' => 'http://google.com',
-            'ariaLabel' => 'Related articles',
+            'link' => [
+                'name' => 'something',
+                'url' => 'http://google.com',
+                'ariaLabel' => 'Related articles'
+            ],
             'isInline' => true,
         ];
 
-        $link = new SeeMoreLink(new Link($data['name'], $data['url'], $data['ariaLabel']), $data['isInline']);
+        $link = new SeeMoreLink(new Link($data['link']['name'], $data['link']['url'], $data['link']['ariaLabel']), $data['isInline']);
 
-        $this->assertSame($data['name'], $link['name'], 'The names should match');
-        $this->assertSame($data['url'], $link['url'], 'The URLs should match');
-        $this->assertSame($data['ariaLabel'], $link['ariaLabel'], 'The ariaLabel should match');
+        $this->assertSame($data['link']['name'], $link['link']['name'], 'The names should match');
+        $this->assertSame($data['link']['url'], $link['link']['url'], 'The URLs should match');
+        $this->assertSame($data['link']['ariaLabel'], $link['link']['ariaLabel'], 'The ariaLabel should match');
         $this->assertSame($data['isInline'], $link['isInline'], 'The isInline property should be true');
         $this->assertSame($data, array_merge($link->toArray(), ['isInline' => true]));
     }
