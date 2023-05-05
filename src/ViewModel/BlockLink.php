@@ -11,14 +11,12 @@ final class BlockLink implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $text;
-    private $url;
+    private $link;
     private $image;
 
     public function __construct(Link $link, Picture $image = null)
     {
-        $this->text = $link['name'];
-        $this->url = $link['url'];
+        $this->link = $link;
         $this->image = $image;
     }
 
