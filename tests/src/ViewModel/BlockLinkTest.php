@@ -15,8 +15,10 @@ final class BlockLinkTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'text' => 'text',
-            'url' => 'url',
+            'link' => [
+                'name' => 'name',
+                'url' => 'url'
+            ],
             'image' => [
                 'fallback' => [
                     'altText' => '',
@@ -25,10 +27,10 @@ final class BlockLinkTest extends ViewModelTest
             ],
         ];
 
-        $blockLink = new BlockLink(new Link('text', 'url'), new Picture([], new Image($data['image']['fallback']['defaultPath'])));
+        $blockLink = new BlockLink(new Link('name', 'url'), new Picture([], new Image($data['image']['fallback']['defaultPath'])));
 
-        $this->assertSame($data['text'], $blockLink['text']);
-        $this->assertSame($data['url'], $blockLink['url']);
+        $this->assertSame($data['link']['name'], $blockLink['link']['name']);
+        $this->assertSame($data['link']['url'], $blockLink['link']['url']);
         $this->assertSame($data['image'], $blockLink['image']->toArray());
         $this->assertSame($data, $blockLink->toArray());
     }
@@ -36,8 +38,8 @@ final class BlockLinkTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'without image' => [new BlockLink(new Link('text', 'url'))],
-            'with image' => [new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path')))],
+            'without image' => [new BlockLink(new Link('name', 'url'))],
+            'with image' => [new BlockLink(new Link('name', 'url'), new Picture([], new Image('/default/path')))],
         ];
     }
 
