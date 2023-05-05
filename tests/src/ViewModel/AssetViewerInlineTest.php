@@ -75,7 +75,7 @@ final class AssetViewerInlineTest extends ViewModelTest
             new CaptionedAsset(new Image('/default/path',
                 ['2' => '/path/to/image/500/wide', '1' => '/default/path']), CaptionText::withHeading('heading')),
             [
-                AdditionalAsset::withoutDoi('id', CaptionText::withHeading('Without doi'), new DownloadLink(new Link('Download link', 'http://google.com/download'), 'File name'), 'http://google.com/'),
+                AdditionalAsset::withoutDoi('id', CaptionText::withHeading('Without doi'), DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name'), 'http://google.com/'),
             ], new Link('filename', 'http://www.example.com/download'), new OpenLink('http://www.example.com/open', 500, 400), 2, 'foo');
 
         $this->assertSame($data['id'], $viewer['id']);
@@ -220,7 +220,7 @@ final class AssetViewerInlineTest extends ViewModelTest
                 AssetViewerInline::supplement('id', 1, 'parentId', 'label',
                     new CaptionedAsset(new Image('/default/path',
                         ['2' => '/path/to/image/500/wide', '1' => '/default/path']), CaptionText::withHeading('heading')), [
-                        AdditionalAsset::withoutDoi('id', CaptionText::withHeading('Without doi'), new DownloadLink(new Link('Download link', 'http://google.com/download'),
+                        AdditionalAsset::withoutDoi('id', CaptionText::withHeading('Without doi'), DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'),
                             'File name'), 'http://google.com/'),
                     ]),
             ],

@@ -35,7 +35,7 @@ final class AdditionalAssetTest extends ViewModelTest
         $additionalAsset = AdditionalAsset::withoutDoi(
             $data['assetId'],
             CaptionText::withHeading($data['captionText']['heading'], $data['captionText']['standfirst'], $data['captionText']['text']),
-            new DownloadLink(
+            DownloadLink::fromLink(
                 new Link($data['downloadLink']['link']['name'], $data['downloadLink']['link']['url']), $data['downloadLink']['fileName']
             ),
             $data['nonDoiLink']
@@ -72,7 +72,7 @@ final class AdditionalAssetTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $downloadLink = new DownloadLink(new Link('Download link', 'http://google.com/download'), 'File name');
+        $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
 
         return [
             'minimum DOI' => [AdditionalAsset::withDoi('id', CaptionText::withHeading('heading'), null, new Doi('10.7554/eLife.10181.001'))],

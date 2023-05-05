@@ -42,7 +42,7 @@ final class AdditionalAssetsTest extends ViewModelTest
                 AdditionalAsset::withoutDoi(
                     $data['assets'][0]['assetId'],
                     CaptionText::withHeading($data['assets'][0]['captionText']['heading'], $data['assets'][0]['captionText']['standfirst'], $data['assets'][0]['captionText']['text']),
-                    new DownloadLink(
+                    DownloadLink::fromLink(
                         new Link($data['assets'][0]['downloadLink']['link']['name'], $data['assets'][0]['downloadLink']['link']['url']),
                         $data['assets'][0]['downloadLink']['fileName']
                     ),
@@ -58,7 +58,7 @@ final class AdditionalAssetsTest extends ViewModelTest
 
     public function viewModelProvider() : array
     {
-        $downloadLink = new DownloadLink(new Link('Download link', 'http://google.com/download'), 'File name');
+        $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
 
         return [
             [
