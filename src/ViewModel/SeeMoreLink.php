@@ -11,21 +11,12 @@ final class SeeMoreLink implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    protected $name;
-    protected $url;
-    protected $ariaLabel;
+    private $link;
+    private $isInline;
 
     public function __construct(Link $link, bool $isInline = false)
     {
-        $this->name = $link['name'];
-        if (isset($link['url'])) {
-            $this->url = $link['url'];
-        }
-
-        if (isset($link['ariaLabel'])) {
-            $this->ariaLabel = $link['ariaLabel'];
-        }
-
+        $this->link = $link;
         $this->isInline = $isInline;
     }
 

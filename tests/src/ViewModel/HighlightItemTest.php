@@ -26,10 +26,12 @@ final class HighlightItemTest extends ViewModelTest
                     ],
                 ],
             ],
-            'title' => 'highlight item with a long title',
+            'link' => [
+                'name' => 'highlight item with a long title',
+                'url' => 'carousel-item-url'
+            ],
             'summary' => "summary",
             'authors' => "authors",
-            'url' => 'carousel-item-url',
             'meta' => [
                 'url' => false,
                 'text' => 'meta',
@@ -62,8 +64,7 @@ final class HighlightItemTest extends ViewModelTest
         );
 
         $this->assertSame($data['subjects']['list'][0], $highlightItem['subjects']['list'][0]->toArray());
-        $this->assertSame($data['title'], $highlightItem['title']);
-        $this->assertSame($data['url'], $highlightItem['url']);
+        $this->assertSame($data['link'], $highlightItem['link']->toArray());
         $this->assertSame($data['summary'], $highlightItem['summary']);
         $this->assertSame($data['authors'], $highlightItem['authors']);
         $this->assertSame($data['meta'], $highlightItem['meta']->toArray());
