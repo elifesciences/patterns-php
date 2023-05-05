@@ -13,25 +13,24 @@ final class HighlightItem implements ViewModel
     use ArrayFromProperties;
 
     private $subjects;
-    private $title;
+    private $link;
     private $summary;
     private $authors;
-    private $url;
     private $button;
     private $meta;
     private $image;
 
-    public function __construct(array $subjects, Link $title, Meta $meta, Picture $image, string $summary = null, string $authors = null)
+    public function __construct(array $subjects, Link $link, Meta $meta, Picture $image, string $summary = null, string $authors = null)
     {
         Assertion::allIsInstanceOf($subjects, Link::class);
 
         if (!empty($subjects)) {
             $this->subjects = ['list' => $subjects];
         }
-        $this->title = $title['name'];
+
+        $this->link = $link;
         $this->summary = $summary;
         $this->authors = $authors;
-        $this->url = $title['url'];
         $this->meta = $meta;
         $this->image = $image;
     }
