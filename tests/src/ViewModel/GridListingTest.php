@@ -33,8 +33,10 @@ final class GridListingTest extends ViewModelTest
             ],
             'blockLinks' => [
                 [
-                    'text' => 'text',
-                    'url' => 'url',
+                    'link' => [
+                        'name' => 'name',
+                        'url' => 'url'
+                    ],
                     'image' => [
                         'fallback' => [
                             'altText' => '',
@@ -46,7 +48,7 @@ final class GridListingTest extends ViewModelTest
             ],
         ];
         $blockLinks = GridListing::forBlockLinks([
-            new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))),
+            new BlockLink(new Link('name', 'url'), new Picture([], new Image('/default/path'))),
         ], new ListHeading('heading'));
 
         $this->assertSame($blockLinksData['classes'], $blockLinks['classes']);
@@ -62,8 +64,10 @@ final class GridListingTest extends ViewModelTest
             'archiveNavLinks' => [
                 [
                     'blockLink' => [
-                        'text' => 'text',
-                        'url' => 'url',
+                        'link' => [
+                            'name' => 'name',
+                            'url' => 'url'
+                        ],
                         'image' => [
                             'fallback' => [
                                 'altText' => '',
@@ -82,7 +86,7 @@ final class GridListingTest extends ViewModelTest
             ],
         ];
         $archiveNavLinks = GridListing::forArchiveNavLinks([
-            ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
+            ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
                 new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
         ], new ListHeading('heading'));
 
@@ -205,22 +209,22 @@ final class GridListingTest extends ViewModelTest
     {
         return [
             'no heading' => [
-                GridListing::forBlockLinks([new BlockLink(new Link('text', 'url'))]),
+                GridListing::forBlockLinks([new BlockLink(new Link('name', 'url'))]),
             ],
             'block links' => [
                 GridListing::forBlockLinks(
                     [
-                        new BlockLink(new Link('text', 'url')),
-                        new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))),
+                        new BlockLink(new Link('name', 'url')),
+                        new BlockLink(new Link('name', 'url'), new Picture([], new Image('/default/path'))),
                     ],
                     new ListHeading('heading')),
             ],
             'archive nav links' => [
                 GridListing::forArchiveNavLinks(
                     [
-                        ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'))),
-                        ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
-                            new Picture([], new Image('/default/path'))), 'label', [new Link('text', 'url')]),
+                        ArchiveNavLink::basic(new BlockLink(new Link('name', 'url'))),
+                        ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
+                            new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
                     ],
                     new ListHeading('heading')),
             ],
