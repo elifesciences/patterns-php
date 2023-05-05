@@ -16,20 +16,24 @@ final class SortControlTest extends ViewModelTest
         $data = [
             'options' => [
                     [
-                        'option' => 'option 1',
-                        'url' => '#',
+                        'link' => [
+                            'name' => 'name 1',
+                            'url' => '#'
+                        ],
                         'sorting' => 'ascending',
                     ],
 
                     [
-                        'option' => 'option 2',
-                        'url' => '#',
+                        'link' => [
+                            'name' => 'name 2',
+                            'url' => '#'
+                        ],
                     ],
                 ],
         ];
         $sortControl = new SortControl([
-            new SortControlOption(new Link($data['options'][0]['option'], $data['options'][0]['url']), $data['options'][0]['sorting']),
-            new SortControlOption(new Link($data['options'][1]['option'], $data['options'][1]['url'])),
+            new SortControlOption(new Link($data['options'][0]['link']['name'], $data['options'][0]['link']['url']), $data['options'][0]['sorting']),
+            new SortControlOption(new Link($data['options'][1]['link']['name'], $data['options'][1]['link']['url'])),
         ]);
 
         $this->assertSame($data, $sortControl->toArray());
@@ -40,14 +44,14 @@ final class SortControlTest extends ViewModelTest
         return [
             [
                 new SortControl([
-                    new SortControlOption(new Link('option 1', '#'), SortControlOption::ASC),
-                    new SortControlOption(new Link('option 2', '#'), SortControlOption::DESC),
+                    new SortControlOption(new Link('name 1', '#'), SortControlOption::ASC),
+                    new SortControlOption(new Link('name 2', '#'), SortControlOption::DESC),
                 ]),
             ],
             [
                 new SortControl([
-                    new SortControlOption(new Link('alt option 1', '#'), 'descending'),
-                    new SortControlOption(new Link('alt option 2', '#')),
+                    new SortControlOption(new Link('alt name 1', '#'), 'descending'),
+                    new SortControlOption(new Link('alt name 2', '#')),
                 ]),
             ],
         ];
