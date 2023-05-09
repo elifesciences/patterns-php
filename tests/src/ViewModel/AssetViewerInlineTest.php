@@ -50,8 +50,10 @@ final class AssetViewerInlineTest extends ViewModelTest
                             ],
                             'nonDoiLink' => 'http://google.com/',
                             'downloadLink' => [
-                                'name' => 'Download link',
-                                'url' => 'http://google.com/download',
+                                'link' => [
+                                    'name' => 'Download link',
+                                    'url' => 'http://google.com/download'
+                                ],
                                 'fileName' => 'File name',
                             ],
                         ],
