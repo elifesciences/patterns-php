@@ -25,8 +25,10 @@ final class AdditionalAssetTest extends ViewModelTest
                 ],
                 'nonDoiLink' => 'http://google.com/',
                 'downloadLink' => [
-                    'name' => 'download link',
-                    'url' => 'http://google.com/download',
+                    'link' => [
+                        'name' => 'download link',
+                        'url' => 'http://google.com/download'
+                    ],
                     'fileName' => 'file name',
                 ],
             ];
@@ -34,7 +36,7 @@ final class AdditionalAssetTest extends ViewModelTest
             $data['assetId'],
             CaptionText::withHeading($data['captionText']['heading'], $data['captionText']['standfirst'], $data['captionText']['text']),
             DownloadLink::fromLink(
-                new Link($data['downloadLink']['name'], $data['downloadLink']['url']), $data['downloadLink']['fileName']
+                new Link($data['downloadLink']['link']['name'], $data['downloadLink']['link']['url']), $data['downloadLink']['fileName']
             ),
             $data['nonDoiLink']
         );

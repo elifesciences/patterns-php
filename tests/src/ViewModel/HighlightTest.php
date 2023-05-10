@@ -35,10 +35,12 @@ final class HighlightTest extends ViewModelTest
                             ],
                         ],
                     ],
-                    'title' => 'highlight item',
+                    'link' => [
+                        'name' => 'highlight item',
+                        'url' => 'highlight-item-url'
+                    ],
                     'summary' => "summary",
                     'authors' => "authors",
-                    'url' => 'highlight-item-url',
                     'meta' => [
                         'url' => false,
                         'text' => 'meta',
