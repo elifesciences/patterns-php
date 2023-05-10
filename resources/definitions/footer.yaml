@@ -8,6 +8,7 @@ allOf:
             footerMenuLinks:
                 type: array
                 items:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
                         name:
@@ -16,6 +17,12 @@ allOf:
                         url:
                             type: string
                             minLength: 1
+                        ariaLabel:
+                            type: string
+                            minLength: 1
+                        isCurrent:
+                            type: boolean
+                            default: false
                     required:
                         - name
                         - url
