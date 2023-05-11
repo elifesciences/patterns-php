@@ -6,7 +6,6 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\ArticleDownloadLink;
 use eLife\Patterns\ViewModel\ArticleDownloadLinksGroup;
 use eLife\Patterns\ViewModel\Link;
-use eLife\Patterns\ViewModel\PrimaryLink;
 use PHPUnit_Framework_TestCase;
 
 final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
@@ -20,7 +19,7 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
             'group title',
             [
                 new ArticleDownloadLink(
-                    new PrimaryLink(new Link('name', 'url'))
+                    new Link('name', 'url')
                 ),
             ],
             'intro text'
@@ -51,7 +50,7 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
                                 ],
                             ],
                         ],
-                        'checkPMC' => 'https://checkpmc.example',
+                        'checkPMC' => 'https://checkpmc.example'
                     ],
                     'secondary' => [
                         'name' => 'secondary name',
@@ -66,8 +65,9 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
             'group title',
             [
                 new ArticleDownloadLink(
-                    new PrimaryLink(new Link('primary name', 'primary url', null, false, ['key' => 'value']), 'https://checkpmc.example'),
-                    new Link('secondary name', 'secondary url')
+                    new Link('primary name', 'primary url', null, false, ['key' => 'value']),
+                    new Link('secondary name', 'secondary url'),
+                    'https://checkpmc.example'
                 ),
             ],
             'intro text',
