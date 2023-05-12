@@ -16,10 +16,10 @@ final class ArticleDownloadLink implements CastsToArray
 
     public function __construct(Link $primary, Link $secondary = null, string $checkPMC = null)
     {
-        $this->primary = ['link' => $primary];
+        $this->primary['link'] = $primary;
 
         if (null !== $checkPMC) {
-            $this->primary = ['link' => $primary, 'checkPMC' => $checkPMC];
+            $this->primary['checkPMC'] = $checkPMC;
         }
 
         $this->secondary = $secondary;
