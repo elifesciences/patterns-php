@@ -40,20 +40,22 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
             'items' => [
                 [
                     'primary' => [
-                        'name' => 'primary name',
-                        'url' => 'primary url',
-                        'attributes' => [
-                            [
-                                'key' => 'key',
-                                'value' => 'value',
+                       'link' => [
+                            'name' => 'primary name',
+                            'url' => 'primary url',
+                            'attributes' => [
+                                [
+                                    'key' => 'key',
+                                    'value' => 'value',
+                                ],
                             ],
                         ],
+                        'checkPMC' => 'https://checkpmc.example'
                     ],
                     'secondary' => [
                         'name' => 'secondary name',
                         'url' => 'secondary url',
-                    ],
-                    'checkPMC' => 'https://checkpmc.example',
+                    ]
                 ],
             ],
             'intro' => 'intro text',
