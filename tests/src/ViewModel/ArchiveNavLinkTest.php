@@ -17,8 +17,10 @@ final class ArchiveNavLinkTest extends ViewModelTest
     {
         $data = [
             'blockLink' => [
-                'text' => 'text',
-                'url' => 'url',
+                'link' => [
+                    'name' => 'name',
+                    'url' => 'url'
+                ],
                 'image' => [
                     'fallback' => [
                         'altText' => '',
@@ -28,15 +30,17 @@ final class ArchiveNavLinkTest extends ViewModelTest
             ],
         ];
 
-        $archiveNavLink = ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'), new Picture([], new Image('/default/path'))));
+        $archiveNavLink = ArchiveNavLink::basic(new BlockLink(new Link('name', 'url'), new Picture([], new Image('/default/path'))));
 
         $this->assertSame($data['blockLink'], $data['blockLink']);
         $this->assertSame($data, $archiveNavLink->toArray());
 
         $data = [
             'blockLink' => [
-                'text' => 'text',
-                'url' => 'url',
+                'link' => [
+                    'name' => 'name',
+                    'url' => 'url'
+                ],
                 'image' => [
                     'fallback' => [
                         'altText' => '',
@@ -53,7 +57,7 @@ final class ArchiveNavLinkTest extends ViewModelTest
             ],
         ];
 
-        $archiveNavLink = ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
+        $archiveNavLink = ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
             new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]);
 
         $this->assertSame($data['blockLink'], $data['blockLink']);
@@ -66,10 +70,10 @@ final class ArchiveNavLinkTest extends ViewModelTest
     {
         return [
             'without links' => [
-                ArchiveNavLink::basic(new BlockLink(new Link('text', 'url'))),
+                ArchiveNavLink::basic(new BlockLink(new Link('name', 'url'))),
             ],
             'with links' => [
-                ArchiveNavLink::withLinks(new BlockLink(new Link('text', 'url'),
+                ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
                     new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
             ],
         ];

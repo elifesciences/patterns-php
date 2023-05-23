@@ -17,8 +17,10 @@ final class ListingProfileSnippetsTest extends ViewModelTest
     {
         $data = [
             'seeMoreLink' => [
-                'name' => 'See more',
-                'url' => '#',
+                'link' => [
+                    'name' => 'See more',
+                    'url' => '#'
+                ]
             ],
             'items' => [
                 self::getProfileSnippetData(),
@@ -32,7 +34,7 @@ final class ListingProfileSnippetsTest extends ViewModelTest
                 self::getProfileSnippetFixture(),
                 self::getProfileSnippetFixture(),
             ],
-            new SeeMoreLink(new Link($data['seeMoreLink']['name'], $data['seeMoreLink']['url']))
+            new SeeMoreLink(new Link($data['seeMoreLink']['link']['name'], $data['seeMoreLink']['link']['url']))
         );
         $this->assertSameWithoutOrder($data, $listingProfileSnippets);
     }
