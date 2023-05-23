@@ -26,12 +26,15 @@ final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
     {
         $data = [
             'primary' => [
-                'name' => 'primary name', 'url' => 'primary url',
+                'link' => [
+                    'name' => 'primary name',
+                    'url' => 'primary url'
+                ],
+                'checkPMC' => 'https://checkpmc.example',
             ],
             'secondary' => [
                 'name' => 'secondary name', 'url' => 'secondary url',
-            ],
-            'checkPMC' => 'https://checkpmc.example',
+            ]
         ];
 
         $articleDownloadLink = new ArticleDownloadLink(
@@ -40,9 +43,9 @@ final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
             'https://checkpmc.example'
         );
 
-        $this->assertSame($data['primary'], $articleDownloadLink['primary']->toArray());
+        $this->assertSame($data['primary']['link'], $articleDownloadLink['primary']['link']->toArray());
         $this->assertSame($data['secondary'], $articleDownloadLink['secondary']->toArray());
-        $this->assertSame($data['checkPMC'], $articleDownloadLink['checkPMC']);
+        $this->assertSame($data['primary']['checkPMC'], $articleDownloadLink['primary']['checkPMC']);
         $this->assertSame($data, $articleDownloadLink->toArray());
     }
 
@@ -60,8 +63,8 @@ final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
             new Link('primary name', 'primary url')
         );
 
-        $this->assertArrayHasKey('checkPMC', $with->toArray());
+        $this->assertArrayHasKey('checkPMC', $with->toArray()['primary']);
 
-        $this->assertArrayNotHasKey('checkPMC', $without->toArray());
+        $this->assertArrayNotHasKey('checkPMC', $without->toArray()['primary']);
     }
 }
