@@ -1,1 +1,19 @@
-<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><title>ic_image_black_24px</title><g fill="none" fill-rule="evenodd"><path d="M-5-5h40v40H-5z"/><path d="M30 26.667V3.333C30 1.5 28.5 0 26.667 0H3.333A3.343 3.343 0 0 0 0 3.333v23.334C0 28.5 1.5 30 3.333 30h23.334C28.5 30 30 28.5 30 26.667zM9.167 17.5l4.166 5.017L19.167 15l7.5 10H3.333l5.834-7.5z" fill="#333" fill-rule="nonzero"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_image_black_24px</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="archives-list" transform="translate(-497.000000, -778.000000)">
+            <g id="listing" transform="translate(128.000000, 383.000000)">
+                <g id="result" transform="translate(264.000000, 338.000000)">
+                    <g id="ic_image_black_24px" transform="translate(100.000000, 52.000000)">
+                        <polygon id="Shape" points="0 0 40 0 40 40 0 40"></polygon>
+                        <path d="M35,31.6666667 L35,8.33333333 C35,6.5 33.5,5 31.6666667,5 L8.33333333,5 C6.5,5 5,6.5 5,8.33333333 L5,31.6666667 C5,33.5 6.5,35 8.33333333,35 L31.6666667,35 C33.5,35 35,33.5 35,31.6666667 Z M14.1666667,22.5 L18.3333333,27.5166667 L24.1666667,20 L31.6666667,30 L8.33333333,30 L14.1666667,22.5 Z" id="Shape" fill="#333333" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

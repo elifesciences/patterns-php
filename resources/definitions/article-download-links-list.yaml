@@ -13,11 +13,6 @@ properties:
         items:
             type: object
             properties:
-                jsHideGroup:
-                    type: boolean
-                id:
-                    type: string
-                    minLength: 1
                 title:
                     type: string
                     minLength: 1
@@ -33,26 +28,10 @@ properties:
                             primary:
                                 type: object
                                 properties:
-                                    link:
-                                        $schema: 'http://json-schema.org/draft-04/schema#'
-                                        type: object
-                                        properties:
-                                            name:
-                                                type: string
-                                                minLength: 1
-                                            url:
-                                                type: string
-                                                minLength: 1
-                                            ariaLabel:
-                                                type: string
-                                                minLength: 1
-                                            isCurrent:
-                                                type: boolean
-                                                default: false
-                                        required:
-                                            - name
-                                            - url
-                                    checkPMC:
+                                    name:
+                                        type: string
+                                        minLength: 1
+                                    url:
                                         type: string
                                         minLength: 1
                                     attributes:
@@ -68,9 +47,9 @@ properties:
                                             required:
                                                 - key
                                 required:
-                                    - link
+                                    - name
+                                    - url
                             secondary:
-                                $schema: 'http://json-schema.org/draft-04/schema#'
                                 type: object
                                 properties:
                                     name:
@@ -79,12 +58,6 @@ properties:
                                     url:
                                         type: string
                                         minLength: 1
-                                    ariaLabel:
-                                        type: string
-                                        minLength: 1
-                                    isCurrent:
-                                        type: boolean
-                                        default: false
                                 required:
                                     - name
                                     - url

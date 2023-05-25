@@ -4,29 +4,18 @@ properties:
     sideBySideUrl:
         type: string
         minLength: 1
-    primaryUrl:
+    articleUrl:
         type: string
         minLength: 1
-    secondaryUrl:
+    figureUrl:
         type: string
         minLength: 1
-    secondaryIsActive:
+    figureIsActive:
         type: boolean
         default: false
-    primaryLabel:
-        type: string
-        minLength: 1
-    secondaryLabel:
-        type: string
-        minLength: 1
-    isTabSelector:
-        type: boolean
-        enum:
-            - true
     otherLinks:
         type: array
         items:
-            $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
                 name:
@@ -35,12 +24,6 @@ properties:
                 url:
                     type: string
                     minLength: 1
-                ariaLabel:
-                    type: string
-                    minLength: 1
-                isCurrent:
-                    type: boolean
-                    default: false
             required:
                 - name
                 - url
@@ -51,7 +34,6 @@ properties:
                 type: array
                 minItems: 2
                 items:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
                         name:
@@ -60,22 +42,10 @@ properties:
                         url:
                             type: string
                             minLength: 1
-                        ariaLabel:
-                            type: string
-                            minLength: 1
-                        isCurrent:
-                            type: boolean
-                            default: false
                     required:
                         - name
                         - url
         required:
             - links
 required:
-    - primaryUrl
-    - primaryLabel
-dependencies:
-    secondaryUrl:
-        - secondaryLabel
-    secondaryLabel:
-        - secondaryUrl
+    - articleUrl

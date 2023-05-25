@@ -5,14 +5,12 @@
   {{#isInitiallyClosed}}data-initial-state="closed"{{/isInitiallyClosed}}
 >
 
-  {{#title}}
-    <header class="article-section__header">
-      <h{{headingLevel}} class="article-section__header_text">{{{title}}}</h{{headingLevel}}>
-      {{#headerLink}}
-        <a href="{{url}}" class="article-section__header_link">{{name}}</a>
-      {{/headerLink}}
-    </header>
-  {{/title}}
+  <header class="article-section__header">
+    <h{{headingLevel}} class="article-section__header_text">{{{title}}}</h{{headingLevel}}>
+    {{#headerLink}}
+      <a href="{{url}}" class="article-section__header_link">{{name}}</a>
+    {{/headerLink}}
+  </header>
 
   <div class="article-section__body">
     {{^showCharts}}
@@ -32,7 +30,7 @@
     {{/doi}}
 
     {{#relatedLinks.0}}
-      <ul class="article-section__related{{#relatedLinksSeparator}} article-section__separator-{{relatedLinksSeparator}}{{/relatedLinksSeparator}}">
+      <ul class="article-section__related">
         {{#relatedLinks}}
         <li class="article-section__related_item">
           <a href="{{url}}" class="article-section__related_link">{{name}}</a>

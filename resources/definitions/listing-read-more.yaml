@@ -148,16 +148,6 @@ properties:
                             clipboardText:
                                 type: string
                                 minLength: 1
-                            id:
-                                type: string
-                                minLength: 1
-                            isHypothesisTrigger:
-                                type: boolean
-                                enum:
-                                    - true
-                            ariaLabel:
-                                type: string
-                                minLength: 1
                         required:
                             - text
                     -
@@ -170,6 +160,9 @@ properties:
                                             - button
                                             - reset
                                             - submit
+                                    id:
+                                        type: string
+                                        minLength: 1
                                     name:
                                         type: string
                                         minLength: 1
@@ -196,16 +189,6 @@ properties:
                             clipboardText:
                                 type: string
                                 minLength: 1
-                            id:
-                                type: string
-                                minLength: 1
-                            isHypothesisTrigger:
-                                type: boolean
-                                enum:
-                                    - true
-                            ariaLabel:
-                                type: string
-                                minLength: 1
                         required:
                             - text
                     -
@@ -218,6 +201,9 @@ properties:
                                             - button
                                             - reset
                                             - submit
+                                    id:
+                                        type: string
+                                        minLength: 1
                                     name:
                                         type: string
                                         minLength: 1
@@ -244,28 +230,16 @@ properties:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
-            link:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                properties:
-                    name:
-                        type: string
-                        minLength: 1
-                    url:
-                        type: string
-                        minLength: 1
-                    ariaLabel:
-                        type: string
-                        minLength: 1
-                    isCurrent:
-                        type: boolean
-                        default: false
-                required:
-                    - name
-                    - url
+            url:
+                type: string
+                minLength: 1
+            name:
+                type: string
+                minLength: 1
             isInline:
                 type: boolean
         required:
-            - link
+            - url
+            - name
 required:
     - items
