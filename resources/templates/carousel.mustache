@@ -1,0 +1,14 @@
+<div class="carousel" role="region" data-behaviour="Carousel"{{#headingId}} aria-labelledby="{{headingId}}"{{/headingId}}>
+  {{#heading}}
+    {{>resources/templates/list-heading}}
+  {{/heading}}
+
+  <ul class="carousel__items">
+
+    {{#items}}
+      {{> resources/templates/carousel-item}}
+    {{/items}}
+
+  </ul>
+
+</div>

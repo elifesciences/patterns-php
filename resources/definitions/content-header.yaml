@@ -74,24 +74,6 @@ properties:
     impactStatement:
         type: string
         minLength: 1
-    breadcrumb:
-        $schema: 'http://json-schema.org/draft-04/schema#'
-        type: object
-        properties:
-            items:
-                type: array
-                properties:
-                    name:
-                        type: string
-                        minLength: 1
-                    url:
-                        type: string
-                        minLength: 1
-                required:
-                    - name
-                minItems: 1
-        required:
-            - items
     header:
         type: object
         properties:
@@ -212,29 +194,24 @@ properties:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
-            emailUrl:
-                type: string
-                format: uri
             facebookUrl:
                 type: string
                 format: uri
             twitterUrl:
                 type: string
                 format: uri
-            linkedInUrl:
+            emailUrl:
                 type: string
                 format: uri
             redditUrl:
                 type: string
                 format: uri
         required:
-            - emailUrl
             - facebookUrl
             - twitterUrl
-            - linkedInUrl
+            - emailUrl
             - redditUrl
     authors:
-        $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
             list:
@@ -260,22 +237,22 @@ properties:
                     required:
                         - name
                         - url
-            institutions:
-                type: object
-                properties:
-                    list:
-                        type: array
-                        minItems: 1
-                        items:
-                            type: object
-                            properties:
-                                name:
-                                    type: string
-                                    minLength: 1
-                            required:
-                                - name
-                required:
-                    - list
+        required:
+            - list
+    institutions:
+        type: object
+        properties:
+            list:
+                type: array
+                minItems: 1
+                items:
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                            minLength: 1
+                    required:
+                        - name
         required:
             - list
     download:
@@ -368,16 +345,6 @@ properties:
                             clipboardText:
                                 type: string
                                 minLength: 1
-                            id:
-                                type: string
-                                minLength: 1
-                            isHypothesisTrigger:
-                                type: boolean
-                                enum:
-                                    - true
-                            ariaLabel:
-                                type: string
-                                minLength: 1
                         required:
                             - text
                     -
@@ -390,6 +357,9 @@ properties:
                                             - button
                                             - reset
                                             - submit
+                                    id:
+                                        type: string
+                                        minLength: 1
                                     name:
                                         type: string
                                         minLength: 1
@@ -509,3 +479,6 @@ properties:
             - sources
 required:
     - title
+dependencies:
+    institutions:
+        - authors

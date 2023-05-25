@@ -5,6 +5,8 @@ properties:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
+            disableMediaQuery:
+                type: boolean
             borderVariant:
                 type: boolean
             isWrapped:
@@ -96,8 +98,6 @@ properties:
                 type: boolean
             centered:
                 type: boolean
-            inline:
-                type: boolean
             classes:
                 type: string
             buttons:
@@ -117,16 +117,6 @@ properties:
                                 clipboardText:
                                     type: string
                                     minLength: 1
-                                id:
-                                    type: string
-                                    minLength: 1
-                                isHypothesisTrigger:
-                                    type: boolean
-                                    enum:
-                                        - true
-                                ariaLabel:
-                                    type: string
-                                    minLength: 1
                             required:
                                 - text
                         -
@@ -139,6 +129,9 @@ properties:
                                                 - button
                                                 - reset
                                                 - submit
+                                        id:
+                                            type: string
+                                            minLength: 1
                                         name:
                                             type: string
                                             minLength: 1
@@ -172,8 +165,6 @@ properties:
                 type: boolean
             centered:
                 type: boolean
-            inline:
-                type: boolean
             classes:
                 type: string
             buttons:
@@ -193,16 +184,6 @@ properties:
                                 clipboardText:
                                     type: string
                                     minLength: 1
-                                id:
-                                    type: string
-                                    minLength: 1
-                                isHypothesisTrigger:
-                                    type: boolean
-                                    enum:
-                                        - true
-                                ariaLabel:
-                                    type: string
-                                    minLength: 1
                             required:
                                 - text
                         -
@@ -215,6 +196,9 @@ properties:
                                                 - button
                                                 - reset
                                                 - submit
+                                        id:
+                                            type: string
+                                            minLength: 1
                                         name:
                                             type: string
                                             minLength: 1

@@ -8,7 +8,6 @@ allOf:
             footerMenuLinks:
                 type: array
                 items:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
                         name:
@@ -17,12 +16,6 @@ allOf:
                         url:
                             type: string
                             minLength: 1
-                        ariaLabel:
-                            type: string
-                            minLength: 1
-                        isCurrent:
-                            type: boolean
-                            default: false
                     required:
                         - name
                         - url
@@ -34,19 +27,6 @@ allOf:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
         properties:
-            title:
-                $schema: 'http://json-schema.org/draft-04/schema#'
-                type: object
-                properties:
-                    borderVariant:
-                        type: boolean
-                    isWrapped:
-                        type: boolean
-                    homePagePath:
-                        type: string
-                        minLength: 1
-                required:
-                    - homePagePath
             links:
                 type: object
                 properties:
@@ -57,9 +37,6 @@ allOf:
                                 type: string
                                 minLength: 1
                             url:
-                                type: string
-                                minLength: 1
-                            classes:
                                 type: string
                                 minLength: 1
                         required:

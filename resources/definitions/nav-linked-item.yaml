@@ -12,6 +12,8 @@ allOf:
                     text:
                         type: string
                         minLength: 1
+                    textClasses:
+                        type: string
                     path:
                         type: string
                         minLength: 1
@@ -19,6 +21,54 @@ allOf:
                         type: string
                         enum:
                             - search
+                    picture:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            pictureClasses:
+                                type: string
+                                minLength: 1
+                            sources:
+                                type: array
+                                uniqueItems: true
+                                items:
+                                    type: object
+                                    properties:
+                                        srcset:
+                                            type: string
+                                            minLength: 1
+                                        media:
+                                            type: string
+                                            minLength: 1
+                                        type:
+                                            type: string
+                                            enum:
+                                                - image/svg+xml
+                                                - image/webp
+                                                - image/png
+                                                - image/jpeg
+                                    required:
+                                        - srcset
+                            fallback:
+                                type: object
+                                properties:
+                                    srcset:
+                                        type: string
+                                        pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                                    sizes:
+                                        type: string
+                                    defaultPath:
+                                        type: string
+                                        minLength: 1
+                                    altText:
+                                        type: string
+                                    classes:
+                                        type: string
+                                required:
+                                    - defaultPath
+                                    - altText
+                        required:
+                            - fallback
                 required:
                     - text
             -
@@ -37,16 +87,6 @@ allOf:
                                     clipboardText:
                                         type: string
                                         minLength: 1
-                                    id:
-                                        type: string
-                                        minLength: 1
-                                    isHypothesisTrigger:
-                                        type: boolean
-                                        enum:
-                                            - true
-                                    ariaLabel:
-                                        type: string
-                                        minLength: 1
                                 required:
                                     - text
                             -
@@ -59,6 +99,9 @@ allOf:
                                                     - button
                                                     - reset
                                                     - submit
+                                            id:
+                                                type: string
+                                                minLength: 1
                                             name:
                                                 type: string
                                                 minLength: 1
@@ -73,3 +116,135 @@ allOf:
                                             - path
                 required:
                     - button
+            -
+                properties:
+                    loginControl:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        oneOf:
+                            -
+                                properties:
+                                    button:
+                                        $schema: 'http://json-schema.org/draft-04/schema#'
+                                        type: object
+                                        allOf:
+                                            -
+                                                properties:
+                                                    text:
+                                                        type: string
+                                                        minLength: 1
+                                                    classes:
+                                                        type: string
+                                                    clipboardText:
+                                                        type: string
+                                                        minLength: 1
+                                                required:
+                                                    - text
+                                            -
+                                                oneOf:
+                                                    -
+                                                        properties:
+                                                            type:
+                                                                type: string
+                                                                enum:
+                                                                    - button
+                                                                    - reset
+                                                                    - submit
+                                                            id:
+                                                                type: string
+                                                                minLength: 1
+                                                            name:
+                                                                type: string
+                                                                minLength: 1
+                                                        required:
+                                                            - type
+                                                    -
+                                                        properties:
+                                                            path:
+                                                                type: string
+                                                                minLength: 1
+                                                        required:
+                                                            - path
+                                required:
+                                    - button
+                            -
+                                properties:
+                                    isLoggedIn:
+                                        type: boolean
+                                        enum:
+                                            - true
+                                    defaultUri:
+                                        type: string
+                                        minLength: 1
+                                    displayName:
+                                        type: string
+                                        minLength: 1
+                                    subsidiaryText:
+                                        type: string
+                                        minLength: 1
+                                    icon:
+                                        $schema: 'http://json-schema.org/draft-04/schema#'
+                                        type: object
+                                        properties:
+                                            pictureClasses:
+                                                type: string
+                                                minLength: 1
+                                            sources:
+                                                type: array
+                                                uniqueItems: true
+                                                items:
+                                                    type: object
+                                                    properties:
+                                                        srcset:
+                                                            type: string
+                                                            minLength: 1
+                                                        media:
+                                                            type: string
+                                                            minLength: 1
+                                                        type:
+                                                            type: string
+                                                            enum:
+                                                                - image/svg+xml
+                                                                - image/webp
+                                                                - image/png
+                                                                - image/jpeg
+                                                    required:
+                                                        - srcset
+                                            fallback:
+                                                type: object
+                                                properties:
+                                                    srcset:
+                                                        type: string
+                                                        pattern: '^((https)?[^ ]+ [1-9][0-9.]*x, )*((https?)?[^ ]+ 1x)$'
+                                                    sizes:
+                                                        type: string
+                                                    defaultPath:
+                                                        type: string
+                                                        minLength: 1
+                                                    altText:
+                                                        type: string
+                                                    classes:
+                                                        type: string
+                                                required:
+                                                    - defaultPath
+                                                    - altText
+                                        required:
+                                            - fallback
+                                    linkFieldRoots:
+                                        type: string
+                                        pattern: '^[ \t]*[a-z][a-z-$_]*[^-,][ \t]*(,[ \t]*[a-z][a-z-$_]*[^-,][ \t]*)*$'
+                                    linkFieldData:
+                                        type: string
+                                        minLength: 1
+                                required:
+                                    - isLoggedIn
+                                    - defaultUri
+                                    - displayName
+                                    - icon
+                                dependencies:
+                                    linkFieldRoots:
+                                        - linkFieldData
+                                    linkFieldData:
+                                        - linkFieldRoots
+                required:
+                    - loginControl

@@ -29,24 +29,17 @@ properties:
             type: object
             properties:
                 contentType:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
                     type: object
                     properties:
-                        name:
-                            type: string
-                            minLength: 1
                         url:
                             type: string
                             minLength: 1
-                        ariaLabel:
+                        name:
                             type: string
                             minLength: 1
-                        isCurrent:
-                            type: boolean
-                            default: false
                     required:
-                        - name
                         - url
+                        - name
                 text:
                     type: string
             required:

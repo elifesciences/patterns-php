@@ -6,6 +6,9 @@ properties:
         minLength: 1
     singleLine:
         type: boolean
+    labelledBy:
+        type: string
+        minLength: 1
     listHeading:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
@@ -21,24 +24,19 @@ properties:
         type: array
         minItems: 1
         items:
-            $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
-                name:
-                    type: string
-                    minLength: 1
                 url:
                     type: string
                     minLength: 1
-                ariaLabel:
+                name:
                     type: string
                     minLength: 1
                 isCurrent:
                     type: boolean
-                    default: false
             required:
-                - name
                 - url
+                - name
 required:
     - id
     - sections

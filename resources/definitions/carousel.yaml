@@ -19,31 +19,82 @@ properties:
                 $schema: 'http://json-schema.org/draft-04/schema#'
                 type: object
                 properties:
-                    link:
-                        $schema: 'http://json-schema.org/draft-04/schema#'
+                    subjects:
                         type: object
                         properties:
-                            name:
-                                type: string
-                                minLength: 1
-                            url:
-                                type: string
-                                minLength: 1
-                            ariaLabel:
-                                type: string
-                                minLength: 1
-                            isCurrent:
-                                type: boolean
-                                default: false
+                            list:
+                                type: array
+                                minItems: 1
+                                items:
+                                    type: object
+                                    properties:
+                                        name:
+                                            type: string
+                                            minLength: 1
+                                        url:
+                                            type: string
+                                            minLength: 1
+                                    required:
+                                        - name
+                                        - url
                         required:
-                            - name
-                            - url
-                    authors:
+                            - list
+                    title:
                         type: string
                         minLength: 1
-                    summary:
+                    titleLength:
+                        enum:
+                            - xx-short
+                            - x-short
+                            - short
+                            - medium
+                            - long
+                            - x-long
+                            - xx-long
+                    url:
                         type: string
                         minLength: 1
+                    button:
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        allOf:
+                            -
+                                properties:
+                                    text:
+                                        type: string
+                                        minLength: 1
+                                    classes:
+                                        type: string
+                                    clipboardText:
+                                        type: string
+                                        minLength: 1
+                                required:
+                                    - text
+                            -
+                                oneOf:
+                                    -
+                                        properties:
+                                            type:
+                                                type: string
+                                                enum:
+                                                    - button
+                                                    - reset
+                                                    - submit
+                                            id:
+                                                type: string
+                                                minLength: 1
+                                            name:
+                                                type: string
+                                                minLength: 1
+                                        required:
+                                            - type
+                                    -
+                                        properties:
+                                            path:
+                                                type: string
+                                                minLength: 1
+                                        required:
+                                            - path
                     meta:
                         $schema: 'http://json-schema.org/draft-04/schema#'
                         type: object
@@ -154,8 +205,23 @@ properties:
                                             - altText
                                 required:
                                     - fallback
+                            -
+                                properties:
+                                    credit:
+                                        type: object
+                                        properties:
+                                            text:
+                                                type: string
+                                                minLength: 1
+                                            elementId:
+                                                type: string
+                                                minLength: 1
+                                        required:
+                                            - text
+                                            - elementId
                 required:
-                    - link
+                    - title
+                    - url
                     - meta
                     - image
         minItems: 1

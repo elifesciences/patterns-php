@@ -1,25 +1,20 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 type: object
 properties:
-    items:
+    paras:
         type: array
-        minItems: 2
+        minItems: 1
         items:
             $schema: 'http://json-schema.org/draft-04/schema#'
             type: object
             properties:
-                name:
+                text:
                     type: string
                     minLength: 1
-                url:
+                id:
                     type: string
                     minLength: 1
-                ariaLabel:
-                    type: string
-                    minLength: 1
-                isCurrent:
-                    type: boolean
-                    default: false
             required:
-                - name
-                - url
+                - text
+required:
+    - paras

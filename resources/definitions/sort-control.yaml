@@ -7,32 +7,20 @@ properties:
         items:
             type: object
             properties:
-                link:
-                    $schema: 'http://json-schema.org/draft-04/schema#'
-                    type: object
-                    properties:
-                        name:
-                            type: string
-                            minLength: 1
-                        url:
-                            type: string
-                            minLength: 1
-                        ariaLabel:
-                            type: string
-                            minLength: 1
-                        isCurrent:
-                            type: boolean
-                            default: false
-                    required:
-                        - name
-                        - url
+                option:
+                    type: string
+                    minLength: 1
                 sorting:
                     type: string
                     minLength: 1
                     enum:
                         - ascending
                         - descending
+                url:
+                    type: string
+                    minLength: 1
             required:
-                - link
+                - option
+                - url
 required:
     - options
