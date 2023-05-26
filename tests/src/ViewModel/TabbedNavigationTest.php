@@ -19,11 +19,20 @@ final class TabbedNavigationTest extends ViewModelTest
                 [
                     'name' => 'Tabbed navigation1',
                     'url' => 'http://google.com',
-                    'selectedClass' => ' tabbed-navigation__tab-label--active'
+                    'classes' => ' tabbed-navigation__tab-label--active'
                 ],
                 [
                     'name' => 'Tabbed navigation2',
                     'url' => 'http://google.com'
+                ],
+                [
+                    'name' => 'Tabbed navigation3',
+                    'url' => 'http://google.com'
+                ],
+                [
+                    'name' => 'Tabbed navigation4',
+                    'url' => 'http://google.com',
+                    'classes' => ' tabbed-navigation__tab-label--side-by-side'
                 ]
             ]
         ];
@@ -32,16 +41,25 @@ final class TabbedNavigationTest extends ViewModelTest
             [
                 TabbedNavigationLink::fromLink(
                     new Link($data['items'][0]['name'], $data['items'][0]['url']),
-                    $data['items'][0]['selectedClass']
+                    $data['items'][0]['classes']
                 ),
                 TabbedNavigationLink::fromLink(
                     new Link($data['items'][1]['name'], $data['items'][1]['url'])
+                ),
+                TabbedNavigationLink::fromLink(
+                    new Link($data['items'][2]['name'], $data['items'][2]['url'])
+                ),
+                TabbedNavigationLink::fromLink(
+                    new Link($data['items'][3]['name'], $data['items'][3]['url']),
+                    $data['items'][3]['classes']
                 )
             ]
         );
 
         $this->assertSame($data['items'][0], $tabbedNavigation['items'][0]->toArray());
         $this->assertSame($data['items'][1], $tabbedNavigation['items'][1]->toArray());
+        $this->assertSame($data['items'][2], $tabbedNavigation['items'][2]->toArray());
+        $this->assertSame($data['items'][3], $tabbedNavigation['items'][3]->toArray());
 
         $this->assertSame($data, $tabbedNavigation->toArray());
     }
@@ -59,12 +77,15 @@ final class TabbedNavigationTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'default' => [
+            'full' => [
                 new TabbedNavigation(
                     [
-                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation1', 'http://google.com'), ' tabbed-navigation__tab-label--active'),
+                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation1', 'http://google.com'),
+                        ' tabbed-navigation__tab-label--active'),
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation2', 'http://google.com')),
-                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation2', 'http://google.com'))
+                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation3', 'http://google.com')),
+                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation4', 'http://google.com'),
+                        ' tabbed-navigation__tab-label--side-by-side')
                     ]
                 )
             ],
@@ -75,11 +96,20 @@ final class TabbedNavigationTest extends ViewModelTest
                     ]
                 )
             ],
-            'two links with and without selected class' => [
+            'two links' => [
                 new TabbedNavigation(
                     [
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation1', 'http://google.com'), ' tabbed-navigation__tab-label--active'),
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation2', 'http://google.com'))
+                    ]
+                )
+            ],
+            'three links' => [
+                new TabbedNavigation(
+                    [
+                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation1', 'http://google.com'), ' tabbed-navigation__tab-label--active'),
+                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation2', 'http://google.com')),
+                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation3', 'http://google.com')),
                     ]
                 )
             ]

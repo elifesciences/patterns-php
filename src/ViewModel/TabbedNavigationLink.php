@@ -13,17 +13,17 @@ final class TabbedNavigationLink implements CastsToArray
 
     private $name;
     private $url;
-    private $selectedClass;
+    private $classes;
 
-    private function __construct(string $name, string $url, string $selectedClass = null)
+    private function __construct(string $name, string $url, string $classes = null)
     {
         $this->name = $name;
         $this->url = $url;
-        $this->selectedClass = $selectedClass;
+        $this->classes = $classes;
     }
 
-    public static function fromLink(Link $link, string $selectedClass = null)
+    public static function fromLink(Link $link, string $classes = null)
     {
-        return new static($link['name'], $link['url'], $selectedClass);
+        return new static($link['name'], $link['url'], $classes);
     }
 }
