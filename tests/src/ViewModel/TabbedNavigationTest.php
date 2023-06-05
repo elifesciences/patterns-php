@@ -32,7 +32,8 @@ final class TabbedNavigationTest extends ViewModelTest
                 [
                     'name' => 'Tabbed navigation4',
                     'url' => 'http://google.com',
-                    'classes' => ' tabbed-navigation__tab-label--side-by-side'
+                    'classes' => ' tabbed-navigation__tab-label--side-by-side',
+                    'isSideBySide' => true
                 ]
             ]
         ];
@@ -51,7 +52,8 @@ final class TabbedNavigationTest extends ViewModelTest
                 ),
                 TabbedNavigationLink::fromLink(
                     new Link($data['items'][3]['name'], $data['items'][3]['url']),
-                    $data['items'][3]['classes']
+                    $data['items'][3]['classes'],
+                    $data['items'][3]['isSideBySide']
                 )
             ]
         );
@@ -85,7 +87,7 @@ final class TabbedNavigationTest extends ViewModelTest
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation2', 'http://google.com')),
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation3', 'http://google.com')),
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation4', 'http://google.com'),
-                        ' tabbed-navigation__tab-label--side-by-side')
+                        ' tabbed-navigation__tab-label--side-by-side', true)
                     ]
                 )
             ],

@@ -14,16 +14,20 @@ final class TabbedNavigationLink implements CastsToArray
     private $name;
     private $url;
     private $classes;
+    private $isSideBySide;
 
-    private function __construct(string $name, string $url, string $classes = null)
+    private function __construct(string $name, string $url, string $classes = null, bool $isSideBySide = false)
     {
         $this->name = $name;
         $this->url = $url;
         $this->classes = $classes;
+        if ($isSideBySide) {
+            $this->isSideBySide = $isSideBySide;
+        }
     }
 
-    public static function fromLink(Link $link, string $classes = null)
+    public static function fromLink(Link $link, string $classes = null, bool $isSideBySide = false)
     {
-        return new static($link['name'], $link['url'], $classes);
+        return new static($link['name'], $link['url'], $classes, $isSideBySide);
     }
 }
