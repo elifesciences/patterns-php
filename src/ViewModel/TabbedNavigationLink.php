@@ -22,6 +22,7 @@ final class TabbedNavigationLink implements CastsToArray
         $this->url = $url;
         $this->classes = $classes;
         if ($isSideBySide) {
+            $this->classes .= ' tabbed-navigation__tab-label--side-by-side';
             $this->isSideBySide = $isSideBySide;
         }
     }
