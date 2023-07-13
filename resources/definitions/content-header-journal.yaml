@@ -130,6 +130,10 @@ properties:
             mastodonUrl:
                 type: string
                 format: uri
+            hasComment:
+                type: boolean
+                enum:
+                    - true
         required:
             - facebookUrl
             - twitterUrl
