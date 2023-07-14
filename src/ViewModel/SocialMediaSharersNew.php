@@ -20,7 +20,7 @@ final class SocialMediaSharersNew implements ViewModel
     private $redditUrl;
     private $mastodonUrl;
 
-    public function __construct(string $title, string $url, $includeEmail = true, bool $hasMastodon = false)
+    public function __construct(string $title, string $url, $includeEmail = true, bool $hasMastodon = false, bool $hasComment = false)
     {
         Assertion::notBlank($title);
         Assertion::url($url);
@@ -38,6 +38,10 @@ final class SocialMediaSharersNew implements ViewModel
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
         if ($hasMastodon) {
             $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedTitle}%20{$encodedUrl}";
+        }
+        
+        if ($hasComment) {
+            $this->hasComment = $hasComment;
         }
     }
 
