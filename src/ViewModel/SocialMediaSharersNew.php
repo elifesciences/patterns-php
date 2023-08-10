@@ -38,7 +38,7 @@ final class SocialMediaSharersNew implements ViewModel
         }
 
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
-        $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTwitterTitle}&url={$encodedUrl}";;
+        $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTwitterTitle}&url={$encodedUrl}";
         $this->linkedInUrl = "https://www.linkedin.com/shareArticle?title={$encodedTitle}&url={$encodedUrl}";
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
         if ($hasMastodon) {
