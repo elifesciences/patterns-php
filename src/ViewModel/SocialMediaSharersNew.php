@@ -26,7 +26,7 @@ final class SocialMediaSharersNew implements ViewModel
         Assertion::url($url);
 
         $encodedTitle = rawurlencode($title);
-        $encodedTwitterTitle = "In%20%40eLife%3A%20" . $encodedTitle;
+        $encodedTwitterTitle = $encodedTitle;
         $encodedUrl = rawurlencode($url);
 
         if ($includeEmail) {
@@ -34,12 +34,11 @@ final class SocialMediaSharersNew implements ViewModel
         }
 
         if ($hasUpdatedTwitterText) {
-            $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTwitterTitle}&url={$encodedUrl}";;
-        } else {
-            $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
+            $encodedTwitterTitle = "In%20%40eLife%3A%20" . $encodedTitle;
         }
 
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
+        $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTwitterTitle}&url={$encodedUrl}";;
         $this->linkedInUrl = "https://www.linkedin.com/shareArticle?title={$encodedTitle}&url={$encodedUrl}";
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
         if ($hasMastodon) {
