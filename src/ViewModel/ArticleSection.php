@@ -42,7 +42,8 @@ final class ArticleSection implements ViewModel
         bool $isFirst = false,
         bool $hasBehaviour = false,
         bool $isInitiallyClosed = false,
-        string $relatedLinksSeparator = null
+        string $relatedLinksSeparator = null,
+        string $classes = null
     ) {
         Assertion::nullOrNotBlank($title);
         Assertion::nullOrMin($headingLevel, 2);
@@ -84,6 +85,10 @@ final class ArticleSection implements ViewModel
             $this->classes = 'article-section--'.$style;
         }
 
+        if ($classes) {
+            $this->classes = "$this->classes $classes";
+        }
+
         $this->id = $id;
         $this->doi = $doi;
         $this->headerLink = $headerLink;
@@ -107,9 +112,10 @@ final class ArticleSection implements ViewModel
         string $style = null,
         bool $isFirst = false,
         Link $headerLink = null,
-        string $relatedLinksSeparator = null
+        string $relatedLinksSeparator = null,
+        string $classes = null
     ) : ArticleSection {
-        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator);
+        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes);
     }
 
     public static function collapsible(

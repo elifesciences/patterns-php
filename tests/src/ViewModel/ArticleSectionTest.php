@@ -15,7 +15,7 @@ final class ArticleSectionTest extends ViewModelTest
     public function it_has_data()
     {
         $basicData = [
-            'classes' => 'article-section--default',
+            'classes' => 'article-section--default test-class',
             'id' => 'id',
             'doi' => [
                 'doi' => '10.7554/eLife.10181.001',
@@ -37,7 +37,7 @@ final class ArticleSectionTest extends ViewModelTest
 
         $basicArticleSection = ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
             new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
-            true, $basicData['headerLink'], $basicData['relatedLinksSeparator']);
+            true, $basicData['headerLink'], $basicData['relatedLinksSeparator'], 'test-class');
 
         $this->assertSame($basicData['classes'], $basicArticleSection['classes']);
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
