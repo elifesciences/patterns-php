@@ -137,7 +137,8 @@ final class ArticleSection implements ViewModel
         bool $isInitiallyClosed = false,
         bool $isFirst = false,
         Doi $doi = null,
-        string $relatedLinksSeparator = null
+        string $relatedLinksSeparator = null,
+        bool $hasEditorTitle = false
     ) : ArticleSection {
         return new self(
             $id,
@@ -151,7 +152,8 @@ final class ArticleSection implements ViewModel
             $isFirst,
             true,
             $isInitiallyClosed,
-            $relatedLinksSeparator
+            $relatedLinksSeparator,
+            $hasEditorTitle
         );
     }
 
