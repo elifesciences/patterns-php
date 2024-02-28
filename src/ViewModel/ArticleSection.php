@@ -12,6 +12,7 @@ final class ArticleSection implements ViewModel
 {
     const STYLE_DEFAULT = 'default';
     const STYLE_HIGHLIGHTED = 'highlighted';
+    const STYLE_EDITOR = 'editor';
     const RELATED_LINKS_SEPARATOR_CIRCLE = 'circle';
 
     use ArrayAccessFromProperties;
@@ -29,7 +30,8 @@ final class ArticleSection implements ViewModel
     private $isFirst;
     private $headerLink;
     private $relatedLinksSeparator;
-    
+    private $hasEditorTitle;
+
     private function __construct(
         string $id = null,
         Doi $doi = null,
@@ -43,7 +45,8 @@ final class ArticleSection implements ViewModel
         bool $hasBehaviour = false,
         bool $isInitiallyClosed = false,
         string $relatedLinksSeparator = null,
-        string $classes = null
+        string $classes = null,
+        bool $hasEditorTitle = false
     ) {
         Assertion::nullOrNotBlank($title);
         Assertion::nullOrMin($headingLevel, 2);
@@ -53,19 +56,23 @@ final class ArticleSection implements ViewModel
         if (null !== $relatedLinks) {
             Assertion::allIsInstanceOf($relatedLinks, Link::class);
         }
-        Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED]);
+        Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED, self::STYLE_EDITOR]);
         Assertion::nullOrChoice($relatedLinksSeparator, [self::RELATED_LINKS_SEPARATOR_CIRCLE]);
 
-        if (null === $headingLevel && $title) {
-            throw new InvalidArgumentException('title requires a headingLevel');
+        if (null === $headingLevel && !$hasEditorTitle && $title ) {
+            throw new InvalidArgumentException('title requires a headingLevel or hasEditorTitle');
         }
 
         if (null === $title && $headerLink) {
             throw new InvalidArgumentException('headerLink requires a title');
         }
 
-        if (null === $title && $headingLevel) {
+        if (null === $title && $headingLevel && !$hasEditorTitle) {
             throw new InvalidArgumentException('headingLevel requires a title');
+        }
+
+        if (null === $title && $hasEditorTitle && null === $headingLevel) {
+            throw new InvalidArgumentException('hasEditorTitle requires a title');
         }
 
         if (null === $id && $doi) {
@@ -100,6 +107,7 @@ final class ArticleSection implements ViewModel
         $this->relatedLinks = $relatedLinks;
         $this->isFirst = $isFirst;
         $this->relatedLinksSeparator = $relatedLinksSeparator;
+        $this->hasEditorTitle = $hasEditorTitle;
     }
 
     public static function basic(
@@ -113,9 +121,10 @@ final class ArticleSection implements ViewModel
         bool $isFirst = false,
         Link $headerLink = null,
         string $relatedLinksSeparator = null,
-        string $classes = null
+        string $classes = null,
+        bool $hasEditorTitle = false
     ) : ArticleSection {
-        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes);
+        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes, $hasEditorTitle);
     }
 
     public static function collapsible(
