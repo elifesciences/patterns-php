@@ -46,7 +46,7 @@ final class ArticleSection implements ViewModel
         bool $isInitiallyClosed = false,
         string $relatedLinksSeparator = null,
         string $classes = null,
-        bool $hasEditorTitle = false
+        bool $hasEditorTitle = null
     ) {
         Assertion::nullOrNotBlank($title);
         Assertion::nullOrMin($headingLevel, 2);
@@ -122,7 +122,7 @@ final class ArticleSection implements ViewModel
         Link $headerLink = null,
         string $relatedLinksSeparator = null,
         string $classes = null,
-        bool $hasEditorTitle = false
+        bool $hasEditorTitle = null
     ) : ArticleSection {
         return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes, $hasEditorTitle);
     }
@@ -137,8 +137,7 @@ final class ArticleSection implements ViewModel
         bool $isInitiallyClosed = false,
         bool $isFirst = false,
         Doi $doi = null,
-        string $relatedLinksSeparator = null,
-        bool $hasEditorTitle = false
+        string $relatedLinksSeparator = null
     ) : ArticleSection {
         return new self(
             $id,
@@ -152,8 +151,7 @@ final class ArticleSection implements ViewModel
             $isFirst,
             true,
             $isInitiallyClosed,
-            $relatedLinksSeparator,
-            $hasEditorTitle
+            $relatedLinksSeparator
         );
     }
 
