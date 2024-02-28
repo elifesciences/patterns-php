@@ -146,6 +146,18 @@ final class ArticleSectionTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_cannot_have_heading_level_and_has_editor_title()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        ArticleSection::basic('<p>body</p>', 'title', 3, null, null, null,
+            null, false, null, ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, null,
+        true);
+    }
+
+    /**
+     * @test
+     */
     public function it_must_have_a_valid_related_links_separator()
     {
         $this->expectException(InvalidArgumentException::class);
