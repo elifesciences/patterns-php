@@ -91,9 +91,26 @@ properties:
             required:
                 - name
                 - url
+    hasEditorTitle:
+        type: boolean
+        default: false
 dependencies:
     title:
-        - headingLevel
+        oneOf:
+            -
+                required:
+                    - headingLevel
+                not:
+                    required:
+                        - hasEditorTitle
+            -
+                required:
+                    - hasEditorTitle
+                not:
+                    required:
+                        - headingLevel
+    hasEditorTitle:
+        - title
     headingLevel:
         - title
     headerLink:
