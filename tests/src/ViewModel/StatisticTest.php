@@ -11,8 +11,8 @@ class StatisticTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $data = ['label' => 'Downloads', 'value' => '2,034'];
-        $model = Statistic::fromNumber($data['label'], 2034);
+        $data = ['label' => 'Downloads', 'value' => '2,034', 'additionalText' => 'text'];
+        $model = Statistic::fromNumber($data['label'], 2034, $data['additionalText']);
         $this->assertSameValuesWithoutOrder($data, $model->toArray());
     }
 

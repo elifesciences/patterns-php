@@ -33,10 +33,7 @@ final class Statistic implements ViewModel
 
         $this->label = $label;
         $this->value = $value;
-
-        if ($additionalText) {
-            $this->additionalText = $additionalText;
-        }
+        $this->additionalText = $additionalText;
     }
 
     public function getTemplateName() : string
