@@ -28,7 +28,7 @@ class StatisticCollectionTest extends ViewModelTest
             ],
         ];
         $model = new StatisticCollection(...array_map(function ($stat) {
-            return Statistic::fromString($stat['label'], $stat['value'],  $stat['additionalText']);
+            return Statistic::fromString($stat['label'], $stat['value'], $stat['additionalText']);
         }, $data['stats']));
 
         $this->assertSameValuesWithoutOrder($data, $model->toArray());
