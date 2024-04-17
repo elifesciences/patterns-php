@@ -14,26 +14,24 @@ final class Statistic implements ViewModel
 
     private $label;
     private $value;
-    private $additionalText;
 
-    public static function fromString(string $label, string $value, string $additionalText = null)
+    public static function fromString(string $label, string $value)
     {
-        return new static($label, $value, $additionalText);
+        return new static($label, $value);
     }
 
-    public static function fromNumber(string $label, int $value, string $additionalText = null)
+    public static function fromNumber(string $label, int $value)
     {
-        return new static($label, number_format($value), $additionalText);
+        return new static($label, number_format($value));
     }
 
-    private function __construct(string $label, string $value, string $additionalText = null)
+    private function __construct(string $label, string $value)
     {
         Assertion::notBlank($label);
         Assertion::notBlank($value);
 
         $this->label = $label;
         $this->value = $value;
-        $this->additionalText = $additionalText;
     }
 
     public function getTemplateName() : string

@@ -11,8 +11,8 @@ class StatisticTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $data = ['label' => 'Downloads', 'value' => '2,034', 'additionalText' => 'text'];
-        $model = Statistic::fromNumber($data['label'], 2034, $data['additionalText']);
+        $data = ['label' => 'Downloads', 'value' => '2,034'];
+        $model = Statistic::fromNumber($data['label'], 2034);
         $this->assertSameValuesWithoutOrder($data, $model->toArray());
     }
 
@@ -26,10 +26,10 @@ class StatisticTest extends ViewModelTest
                 Statistic::fromNumber('Downloads', 2034),
             ],
             'full' => [
-                Statistic::fromString('Downloads', '2,034', 'text'),
+                Statistic::fromString('Downloads', '2,034'),
             ],
             'full from number' => [
-                Statistic::fromNumber('Downloads', 2034, 'text'),
+                Statistic::fromNumber('Downloads', 2034),
             ],
         ];
     }

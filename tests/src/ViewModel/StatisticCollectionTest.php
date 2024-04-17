@@ -51,8 +51,8 @@ class StatisticCollectionTest extends ViewModelTest
           ],
           'full' => [
               new StatisticCollection(
-                  Statistic::fromString('label', '1,234', 'text'),
-                  Statistic::fromNumber('label', 1234, 'text')
+                  Statistic::fromString('label', '1,234'),
+                  Statistic::fromNumber('label', 1234)
               ),
           ],
         ];
