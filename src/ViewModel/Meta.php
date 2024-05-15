@@ -12,6 +12,7 @@ final class Meta implements ViewModel
     const STATUS_NOT_REVISED = 'Not yet revised';
     const STATUS_REVISED = 'Revised';
     const STATUS_VOR = 'Version of Record';
+    const STATUS_POA = 'Accepted Manuscript';
 
     const COLOR_NOT_REVISED = 'not-revised';
     const COLOR_REVISED = 'revised';
@@ -34,7 +35,7 @@ final class Meta implements ViewModel
             Assertion::false($date['isExpanded']);
         }
 
-        Assertion::nullOrChoice($articleStatus, [self::STATUS_NOT_REVISED, self::STATUS_REVISED, self::STATUS_VOR]);
+        Assertion::nullOrChoice($articleStatus, [self::STATUS_NOT_REVISED, self::STATUS_REVISED, self::STATUS_VOR, self::STATUS_POA]);
         Assertion::nullOrChoice($articleStatusColorClass, [self::COLOR_NOT_REVISED, self::COLOR_REVISED, self::COLOR_VOR]);
 
         $this->url = $url ?? false;
