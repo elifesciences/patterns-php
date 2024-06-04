@@ -54,7 +54,7 @@ final class DefinitionList implements ViewModel
         return new self($items, 'inline');
     }
 
-    public static function timeline(array $items, $color) : DefinitionList
+    public static function timeline(array $items, $color = null) : DefinitionList
     {
         return new self($items, 'timeline', $color);
     }
