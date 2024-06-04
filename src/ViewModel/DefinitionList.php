@@ -10,19 +10,24 @@ use eLife\Patterns\ViewModel;
 
 final class DefinitionList implements ViewModel
 {
+    const COLOR_VOR = 'vor';
+
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
     private $items;
     private $variant;
+    private $color;
 
-    private function __construct(array $items, string $variant = null)
+    private function __construct(array $items, string $variant = null, string $color = null)
     {
         Assertion::notEmpty($items);
         Assertion::allNotEmpty($items);
+        Assertion::nullOrChoice($color, [self::COLOR_VOR]);
 
         if ('timeline' === $variant) {
             $this->items = $items;
+            $this->color = $color;
         } else {
             $this->items = array_map(function (string $term, $descriptors) {
                 $descriptors = (array)$descriptors;
@@ -49,9 +54,9 @@ final class DefinitionList implements ViewModel
         return new self($items, 'inline');
     }
 
-    public static function timeline(array $items) : DefinitionList
+    public static function timeline(array $items, $color) : DefinitionList
     {
-        return new self($items, 'timeline');
+        return new self($items, 'timeline', $color);
     }
 
     public function getTemplateName() : string

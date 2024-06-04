@@ -70,12 +70,14 @@ final class DefinitionListTest extends ViewModelTest
                 ],
             ],
             'variant' => 'timeline',
+            'color' => 'vor'
         ];
 
-        $list = DefinitionList::timeline($data['items']);
+        $list = DefinitionList::timeline($data['items'], $data['color']);
 
         $this->assertSame($data['items'], $list['items']);
         $this->assertSame($data['variant'], $list['variant']);
+        $this->assertSame($data['color'], $list['color']);
         $this->assertSame($data, $list->toArray());
     }
 
@@ -109,12 +111,22 @@ final class DefinitionListTest extends ViewModelTest
         $this->assertSame(['bar'], $list['items'][0]['descriptors']);
     }
 
+    /**
+     * @test
+     */
+    public function it_must_have_a_valid_color()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]], 'not valid color');
+    }
+
     public function viewModelProvider() : array
     {
         return [
             'expanded' => [DefinitionList::basic(['foo' => ['bar']])],
             'inline' => [DefinitionList::inline(['foo' => ['bar']])],
-            'timeline' => [DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]])],
+            'timeline' => [DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]], 'vor')],
         ];
     }
 
