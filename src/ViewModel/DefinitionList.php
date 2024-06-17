@@ -18,8 +18,9 @@ final class DefinitionList implements ViewModel
     private $items;
     private $variant;
     private $color;
+    private $label;
 
-    private function __construct(array $items, string $variant = null, string $color = null)
+    private function __construct(array $items, string $variant = null, string $color = null, string $label = null)
     {
         Assertion::notEmpty($items);
         Assertion::allNotEmpty($items);
@@ -42,6 +43,7 @@ final class DefinitionList implements ViewModel
         }
 
         $this->variant = $variant;
+        $this->label = $label;
     }
 
     public static function basic(array $items) : DefinitionList
@@ -54,9 +56,9 @@ final class DefinitionList implements ViewModel
         return new self($items, 'inline');
     }
 
-    public static function timeline(array $items, $color = null) : DefinitionList
+    public static function timeline(array $items, string $color = null, string $label = null) : DefinitionList
     {
-        return new self($items, 'timeline', $color);
+        return new self($items, 'timeline', $color, $label);
     }
 
     public function getTemplateName() : string
