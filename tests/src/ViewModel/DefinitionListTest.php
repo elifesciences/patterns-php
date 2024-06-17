@@ -74,7 +74,7 @@ final class DefinitionListTest extends ViewModelTest
             'label' => 'Version history'
         ];
 
-        $list = DefinitionList::timeline($data['items'], $data['color']);
+        $list = DefinitionList::timeline($data['items'], $data['color'], $data['label']);
 
         $this->assertSame($data['items'], $list['items']);
         $this->assertSame($data['variant'], $list['variant']);
