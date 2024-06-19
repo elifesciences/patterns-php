@@ -56,7 +56,8 @@ final class ContentAsideTest extends ViewModelTest
                         'descriptors' => ['bar'],
                     ]
                 ],
-                'variant' => 'timeline'
+                'variant' => 'timeline',
+                'color' => 'vor'
             ],
             'related' => [
                 'items' => [
@@ -96,7 +97,7 @@ final class ContentAsideTest extends ViewModelTest
                 $data['actionButtons']['inline']
             ),
             ContextualData::withMetrics(['foo']),
-            DefinitionList::timeline($data['timeline']['items']),
+            DefinitionList::timeline($data['timeline']['items'], $data['timeline']['color']),
             ListingTeasers::basic(
                 array_map(function ($item) {
                     return Teaser::basic($item['title'], $item['url']);
