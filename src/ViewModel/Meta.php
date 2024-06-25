@@ -51,7 +51,7 @@ final class Meta implements ViewModel
     public static function withLink(Link $link, Date $date = null, string $articleStatus = null,
     string $articleStatusColorClass = null, Link $versionLink = null) : Meta
     {
-        return new self($link['url'], $link['name'], $date, $articleStatus, $articleStatusColorClass, $versionLink['url'], $versionLink['name']);
+        return new self($link['url'], $link['name'], $date, $articleStatus, $articleStatusColorClass, $versionLink['url'] ?? null, $versionLink['name'] ?? null);
     }
 
     public static function withText(string $text, Date $date = null) : Meta
