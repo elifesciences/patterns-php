@@ -17,7 +17,7 @@ final class MetaTest extends ViewModelTest
     {
         $data = [
             'url' => '#',
-            'text' => 'Reviewed Preprint v1',
+            'text' => 'Research article',
             'date' => [
                 'isExpanded' => false,
                 'isUpdated' => false,
@@ -30,11 +30,10 @@ final class MetaTest extends ViewModelTest
             ],
             'articleStatus' => 'Not yet revised',
             'articleStatusColorClass' => 'not-revised',
-            'versionUrl' => '#',
-            'versionText' => 'Research article',
+            'version' => 'Reviewed Preprint v1',
         ];
         $meta = Meta::withLink(new Link($data['text'], $data['url']), Date::simple(new DateTimeImmutable('2015-05-15')),
-        $data['articleStatus'], $data['articleStatusColorClass'], new Link($data['versionText'], $data['versionUrl']));
+        $data['articleStatus'], $data['articleStatusColorClass'], $data['version']);
 
         $this->assertSame($data, $meta->toArray());
         $this->assertSame($data['url'], $meta['url']);
@@ -42,8 +41,7 @@ final class MetaTest extends ViewModelTest
         $this->assertSame($data['date'], $meta['date']->toArray());
         $this->assertSame($data['articleStatus'], $meta['articleStatus']);
         $this->assertSame($data['articleStatusColorClass'], $meta['articleStatusColorClass']);
-        $this->assertSame($data['versionText'], $meta['versionText']);
-        $this->assertSame($data['versionUrl'], $meta['versionUrl']);
+        $this->assertSame($data['version'], $meta['version']);
     }
 
     /**
@@ -63,7 +61,7 @@ final class MetaTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'Not valid status', 'revised', new Link('bar', '#'));
+        Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'Not valid status', 'revised', 'bar');
     }
 
     /**
@@ -73,7 +71,7 @@ final class MetaTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'revised', 'Not valid status color class', new Link('bar', '#'));
+        Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'revised', 'Not valid status color class', 'bar');
     }
 
     public static function getDateStub()
@@ -89,7 +87,7 @@ final class MetaTest extends ViewModelTest
             'text' => [Meta::withText('foo', self::getDateStub())],
             'text and date' => [Meta::withText('foo', self::getDateStub())],
             'date' => [Meta::withDate(self::getDateStub())],
-            'all' => [Meta::withLink(new Link('foo', '#'), self::getDateStub()), 'Revised', 'revised', new Link('bar', '#')],
+            'all' => [Meta::withLink(new Link('foo', '#'), self::getDateStub()), 'Revised', 'revised', 'bar'],
         ];
     }
 
