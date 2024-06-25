@@ -26,10 +26,11 @@ final class Meta implements ViewModel
     private $date;
     private $articleStatus;
     private $articleStatusColorClass;
-    private $version;
+    private $versionUrl;
+    private $versionText;
 
     private function __construct(string $url = null, string $text = null, Date $date = null, string $articleStatus = null,
-    string $articleStatusColorClass = null, string $version = null)
+    string $articleStatusColorClass = null, string $versionUrl = null, string $versionText = null)
     {
         if ($date instanceof Date) {
             Assertion::false($date['isExpanded']);
@@ -43,13 +44,14 @@ final class Meta implements ViewModel
         $this->date = $date;
         $this->articleStatus = $articleStatus;
         $this->articleStatusColorClass = $articleStatusColorClass;
-        $this->version = $version;
+        $this->versionUrl = $versionUrl;
+        $this->versionText = $versionText;
     }
 
     public static function withLink(Link $link, Date $date = null, string $articleStatus = null,
-    string $articleStatusColorClass = null, string $version = null) : Meta
+    string $articleStatusColorClass = null, Link $versionLink = null) : Meta
     {
-        return new self($link['url'], $link['name'], $date, $articleStatus, $articleStatusColorClass, $version);
+        return new self($link['url'], $link['name'], $date, $articleStatus, $articleStatusColorClass, $versionLink['url'], $versionLink['name']);
     }
 
     public static function withText(string $text, Date $date = null) : Meta
