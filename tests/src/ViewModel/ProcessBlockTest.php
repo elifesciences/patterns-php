@@ -38,7 +38,7 @@ final class ProcessBlockTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ProcessBlock(['body' => 'content', 'variant' => 'not valid variant', new Link('name', 'url')], );
+        new ProcessBlock('content', 'not valid variant', new Link('name', 'url'));
     }
 
     public function viewModelProvider() : array
