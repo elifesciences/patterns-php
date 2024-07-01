@@ -4,6 +4,7 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ProcessBlock;
 use eLife\Patterns\ViewModel\Link;
+use InvalidArgumentException;
 
 final class ProcessBlockTest extends ViewModelTest
 {
