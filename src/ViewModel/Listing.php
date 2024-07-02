@@ -20,7 +20,7 @@ final class Listing implements ViewModel
     private function __construct(bool $isOrdered, string $prefix = null, array $items, string $classes = null)
     {
         Assertion::nullOrChoice($prefix,
-            ['alpha-lower', 'alpha-upper', 'bullet', 'number', 'roman-lower', 'roman-upper']);
+            ['alpha-lower', 'alpha-upper', 'bullet', 'number', 'roman-lower', 'roman-upper', 'line']);
         Assertion::notEmpty($items);
         Assertion::allString($items);
 
