@@ -19,8 +19,9 @@ final class DefinitionList implements ViewModel
     private $variant;
     private $color;
     private $label;
+    private $isActive;
 
-    private function __construct(array $items, string $variant = null, string $color = null, string $label = null)
+    private function __construct(array $items, string $variant = null, string $color = null, string $label = null, bool $isActive = false)
     {
         Assertion::notEmpty($items);
         Assertion::allNotEmpty($items);
@@ -29,6 +30,9 @@ final class DefinitionList implements ViewModel
         if ('timeline' === $variant) {
             $this->items = $items;
             $this->color = $color;
+            if ($isActive) {
+                $this->isActive = $isActive;
+            }
         } else {
             $this->items = array_map(function (string $term, $descriptors) {
                 $descriptors = (array)$descriptors;
@@ -56,9 +60,9 @@ final class DefinitionList implements ViewModel
         return new self($items, 'inline');
     }
 
-    public static function timeline(array $items, string $color = null, string $label = null) : DefinitionList
+    public static function timeline(array $items, string $color = null, string $label = null, bool $isActive = false) : DefinitionList
     {
-        return new self($items, 'timeline', $color, $label);
+        return new self($items, 'timeline', $color, $label, $isActive);
     }
 
     public function getTemplateName() : string
