@@ -71,17 +71,15 @@ final class DefinitionListTest extends ViewModelTest
             ],
             'variant' => 'timeline',
             'color' => 'vor',
-            'label' => 'Version history',
-            'isActive' => true
+            'label' => 'Version history'
         ];
 
-        $list = DefinitionList::timeline($data['items'], $data['color'], $data['label'], $data['isActive']);
+        $list = DefinitionList::timeline($data['items'], $data['color'], $data['label']);
 
         $this->assertSame($data['items'], $list['items']);
         $this->assertSame($data['variant'], $list['variant']);
         $this->assertSame($data['color'], $list['color']);
         $this->assertSame($data['label'], $list['label']);
-        $this->assertSame($data['isActive'], $list['isActive']);
         $this->assertSame($data, $list->toArray());
     }
 
@@ -130,7 +128,7 @@ final class DefinitionListTest extends ViewModelTest
         return [
             'expanded' => [DefinitionList::basic(['foo' => ['bar']])],
             'inline' => [DefinitionList::inline(['foo' => ['bar']])],
-            'timeline with version and active class' => [DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]], 'vor', null, true)],
+            'timeline' => [DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]], 'vor')],
             'timeline with label' => [DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]], 'vor', 'Version history')],
         ];
     }
