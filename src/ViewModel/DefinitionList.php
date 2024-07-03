@@ -30,7 +30,9 @@ final class DefinitionList implements ViewModel
         if ('timeline' === $variant) {
             $this->items = $items;
             $this->color = $color;
-            $this->isActive = $isActive;
+            if ($isActive) {
+                $this->isActive = $isActive;
+            }
         } else {
             $this->items = array_map(function (string $term, $descriptors) {
                 $descriptors = (array)$descriptors;
