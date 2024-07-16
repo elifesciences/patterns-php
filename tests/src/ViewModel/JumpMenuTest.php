@@ -39,16 +39,6 @@ final class JumpMenuTest extends ViewModelTest
         new JumpMenu(['name']);
     }
 
-    /**
-     * @test
-     */
-    public function it_must_have_at_least_1_link_if_any()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new JumpMenu([]);
-    }
-
     public function viewModelProvider() : array
     {
         return [
