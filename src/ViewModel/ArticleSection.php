@@ -13,6 +13,7 @@ final class ArticleSection implements ViewModel
     const STYLE_DEFAULT = 'default';
     const STYLE_HIGHLIGHTED = 'highlighted';
     const STYLE_EDITOR = 'editor';
+    const STYLE_PEER_REVIEW = 'peer-review';
     const RELATED_LINKS_SEPARATOR_CIRCLE = 'circle';
 
     use ArrayAccessFromProperties;
@@ -56,7 +57,7 @@ final class ArticleSection implements ViewModel
         if (null !== $relatedLinks) {
             Assertion::allIsInstanceOf($relatedLinks, Link::class);
         }
-        Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED, self::STYLE_EDITOR]);
+        Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED, self::STYLE_EDITOR, self::STYLE_PEER_REVIEW]);
         Assertion::nullOrChoice($relatedLinksSeparator, [self::RELATED_LINKS_SEPARATOR_CIRCLE]);
 
         if (null === $headingLevel && !$hasEditorTitle && $title ) {
