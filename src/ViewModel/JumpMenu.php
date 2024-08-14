@@ -18,7 +18,7 @@ final class JumpMenu implements ViewModel
     {
         Assertion::allIsInstanceOf($items, Link::class);
         if (count($items) > 0) {
-            Assertion::min(count($items), 2);
+            Assertion::min(count($items), 1);
         }
 
         $this->items = $items;
