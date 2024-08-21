@@ -10,6 +10,7 @@ use eLife\Patterns\ViewModel\ContextualData;
 use eLife\Patterns\ViewModel\DefinitionList;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListingTeasers;
+use eLife\Patterns\ViewModel\PreviousVersionWarning;
 use eLife\Patterns\ViewModel\Teaser;
 use InvalidArgumentException;
 
@@ -79,6 +80,13 @@ final class ContentAsideTest extends ViewModelTest
                 ],
                 'highlights' => false,
             ],
+            'previousVersion' => [
+                'text' => 'text',
+                'link' => [
+                    'name' => 'Previous version',
+                    'url' => '#',
+                ],
+            ]
         ];
 
         $contentAside = new ContentAside(
@@ -102,7 +110,11 @@ final class ContentAsideTest extends ViewModelTest
                 array_map(function ($item) {
                     return Teaser::basic($item['title'], $item['url']);
                 }, $data['related']['items'])
-            )
+            ),
+            new PreviousVersionWarning(
+                $data['previousVersion']['text'],
+                new Link($data['previousVersion']['link']['name'], $data['previousVersion']['link']['url'])
+            ),
         );
 
         $this->assertSame($data['status'], $contentAside['status']->toArray());
@@ -110,6 +122,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertSame($data['metrics'], $contentAside['metrics']->toArray());
         $this->assertSame($data['timeline'], $contentAside['timeline']->toArray());
         $this->assertSame($data['related'], $contentAside['related']->toArray());
+        $this->assertSame($data['previousVersion'], $contentAside['previousVersion']->toArray());
         $this->assertSame($data, $contentAside->toArray());
     }
 
@@ -125,6 +138,20 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertSame('content aside', $with['status']['title']);
 
         $this->assertArrayNotHasKey('status', $without);
+    }
+
+    /**
+     * @test
+     */
+    public function it_may_have_a_previous_version()
+    {
+        $with = new ContentAside(null, null, null, null, null, new PreviousVersionWarning("text"));
+        $without = new ContentAside(null, null, null, null, null, null);
+
+        $this->assertArrayHasKey('previousVersion', $with->toArray());
+        $this->assertSame('text', $with['previousVersion']['text']);
+
+        $this->assertArrayNotHasKey('previousVersion', $without);
     }
 
     public function viewModelProvider() : array
@@ -145,7 +172,11 @@ final class ContentAsideTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
                         Teaser::basic('title', 'url'),
-                    ])
+                    ]),
+                    new PreviousVersionWarning(
+                        'Text',
+                        new Link('Previous version', '#')
+                    )
                 )
             ],
         ];
