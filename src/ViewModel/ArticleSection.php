@@ -159,6 +159,8 @@ final class ArticleSection implements ViewModel
             true,
             $isInitiallyClosed,
             $relatedLinksSeparator,
+            null,
+            null,
             $assessment
         );
     }
