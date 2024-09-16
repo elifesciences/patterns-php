@@ -36,7 +36,7 @@ final class TermTest extends ViewModelTest
         ];
 
         $term = new Term(array_reduce($data['terms'], function (array $carry, array $item) {
-            $carry[$item['term']] = $item['isHighlighted'];
+            $carry[$item['term']] = $item['isHighlighted'] ?? false;
 
             return $carry;
         }, []));
