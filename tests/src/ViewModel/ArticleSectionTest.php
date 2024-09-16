@@ -36,10 +36,10 @@ final class ArticleSectionTest extends ViewModelTest
             ],
             'relatedLinksSeparator' => 'circle',
             'assessment' => new Assessment(
-                new Term([
-                    'title' => 'significance',
-                    'description' => 'description',
-                    'terms' => [
+                new Term(
+                    'significance',
+                    'description',
+                    [
                         [
                             'term' => 'Landmark'
                         ],
@@ -48,11 +48,11 @@ final class ArticleSectionTest extends ViewModelTest
                             'isHighlighted' => true,
                         ]
                     ]
-                ]),
-                new Term([
-                    'title' => 'strength',
-                    'description' => 'description',
-                    'terms' => [
+                ),
+                new Term(
+                    'strength',
+                    'description',
+                    [
                         [
                             'term' => 'Exceptional'
                         ],
@@ -61,7 +61,7 @@ final class ArticleSectionTest extends ViewModelTest
                             'isHighlighted' => true,
                         ]
                     ]
-                ]),
+                ),
                 'summary'
             )
         ];
@@ -104,10 +104,10 @@ final class ArticleSectionTest extends ViewModelTest
             ],
             'relatedLinksSeparator' => 'circle',
             'assessment' => new Assessment(
-                [
-                    'title' => 'significance',
-                    'description' => 'description',
-                    'terms' => [
+                new Term(
+                    'significance',
+                    'description',
+                    [
                         [
                             'term' => 'Landmark'
                         ],
@@ -116,11 +116,11 @@ final class ArticleSectionTest extends ViewModelTest
                             'isHighlighted' => true,
                         ]
                     ]
-                ],
-                [
-                    'title' => 'strength',
-                    'description' => 'description',
-                    'terms' => [
+                ),
+                new Term(
+                    'strength',
+                    'description',
+                    [
                         [
                             'term' => 'Exceptional'
                         ],
@@ -129,7 +129,7 @@ final class ArticleSectionTest extends ViewModelTest
                             'isHighlighted' => true,
                         ]
                     ]
-                ],
+                ),
                 'summary'
             )
         ];
