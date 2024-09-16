@@ -18,9 +18,9 @@ final class Assessment implements ViewModel
 
     public function __construct(Term $significance = null, Term $strength = null, string $summary = null)
     {
-        Assertion::nullOrNotBlank($title);
-        Assertion::nullOrNotBlank($description);
-        Assertion::nullOrNotBlank($terms);
+        Assertion::nullOrNotBlank($significance);
+        Assertion::nullOrNotBlank($strength);
+        Assertion::nullOrNotBlank($summary);
 
         $this->significance = $significance;
         $this->strength = $strength;
