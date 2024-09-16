@@ -26,10 +26,13 @@ final class Term implements ViewModel
         $this->termDescription = $termDescription;
 
         $this->terms = array_map(function ($term) {
-            return [
-                'term' => $term['term'],
-                'isHighlighted' => $term['isHighlighted'] ?? false,
-            ];
+            $result = ['term' => $term['term']];
+
+            if (isset($term['isHighlighted']) && $term['isHighlighted']) {
+                $result['isHighlighted'] = true;
+            }
+
+            return $result;
         }, $terms);
     }
 

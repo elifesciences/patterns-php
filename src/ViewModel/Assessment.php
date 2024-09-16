@@ -21,6 +21,8 @@ final class Assessment implements ViewModel
         Assertion::nullOrNotBlank($significance);
         Assertion::nullOrNotBlank($strength);
         Assertion::nullOrNotBlank($summary);
+        Assertion::allIsInstanceOf($significance, Term::class);
+        Assertion::allIsInstanceOf($strength, Term::class);
 
         $this->significance = $significance;
         $this->strength = $strength;
