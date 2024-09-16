@@ -141,7 +141,12 @@ final class ArticleSectionTest extends ViewModelTest
 
         $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
             $collapsibleData['relatedLinks'], ArticleSection::STYLE_HIGHLIGHTED, true, true,
-            new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, $collapsibleData['assessment']);
+            new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
+            new Assessment(
+                new Term('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
+                new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+                'summary')
+        );
 
         $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
