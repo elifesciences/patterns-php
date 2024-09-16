@@ -6,6 +6,7 @@ use eLife\Patterns\ViewModel\Assessment;
 use eLife\Patterns\ViewModel\ArticleSection;
 use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\Term;
 use InvalidArgumentException;
 
 final class ArticleSectionTest extends ViewModelTest
