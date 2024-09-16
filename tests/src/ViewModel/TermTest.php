@@ -35,15 +35,18 @@ final class TermTest extends ViewModelTest
             ],
         ];
 
-        $term = new Term(array_reduce($data['terms'], function (array $carry, array $item) {
-            $carry[$item['term']] = $item['isHighlighted'] ?? false;
+        $term = new Term(
+            $data['title'],
+            $data['description'],
+            array_reduce($data['terms'], function (array $carry, array $item) {
+                $carry[] = [
+                    'term' => $item['term'],
+                    'isHighlighted' => $item['isHighlighted'] ?? false
+                ];
+                return $carry;
+            }, [])
+        );
 
-            return $carry;
-        }, []));
-
-        $this->assertSame($data['title'], $term['title']);
-        $this->assertSame($data['description'], $term['description']);
-        $this->assertSame($data['items'], $term['items']);
         $this->assertSame($data, $term->toArray());
     }
 
