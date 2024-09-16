@@ -21,7 +21,6 @@ final class Term implements ViewModel
         Assertion::notBlank($title);
         Assertion::notBlank($description);
         Assertion::notEmpty($terms);
-        Assertion::allNotEmpty($terms);
 
         $this->title = $title;
         $this->description = $description;
