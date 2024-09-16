@@ -37,7 +37,7 @@ final class TermTest extends ViewModelTest
 
         $term = new Term(
             $data['title'],
-            $data['description'],
+            $data['termDescription'],
             array_reduce($data['terms'], function (array $carry, array $item) {
                 $termData = ['term' => $item['term']];
 
