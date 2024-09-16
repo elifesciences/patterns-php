@@ -41,11 +41,11 @@ final class ArticleSectionTest extends ViewModelTest
                     'description',
                     [
                         [
-                            'Landmark'
+                            'term' => 'Landmark'
                         ],
                         [
-                            'Valuable',
-                            true,
+                            'term' => 'Valuable',
+                            'isHighlighted' => true,
                         ]
                     ]
                 ),
@@ -54,11 +54,11 @@ final class ArticleSectionTest extends ViewModelTest
                     'description',
                     [
                         [
-                           'Exceptional'
+                            'term' => 'Exceptional'
                         ],
                         [
-                            'Solid',
-                            true,
+                            'term' => 'Solid',
+                            'isHighlighted' => true,
                         ]
                     ]
                 ),
@@ -109,11 +109,11 @@ final class ArticleSectionTest extends ViewModelTest
                     'description',
                     [
                         [
-                            'Landmark'
+                            'term' => 'Landmark'
                         ],
                         [
-                            'Valuable',
-                            true,
+                            'term' => 'Valuable',
+                            'isHighlighted' => true,
                         ]
                     ]
                 ),
@@ -122,11 +122,11 @@ final class ArticleSectionTest extends ViewModelTest
                     'description',
                     [
                         [
-                            'Exceptional'
+                            'term' => 'Exceptional'
                         ],
                         [
-                            'Solid',
-                            true,
+                            'term' => 'Solid',
+                            'isHighlighted' => true,
                         ]
                     ]
                 ),
