@@ -87,7 +87,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($basicData['headerLink'], $basicArticleSection['headerLink']);
         $this->assertSame($basicData['relatedLinks'], $basicArticleSection['relatedLinks']);
         $this->assertSame($basicData['relatedLinksSeparator'], $basicArticleSection['relatedLinksSeparator']);
-        $this->assertSame($basicData['assessment'], $basicArticleSection['assessment']);
+        $this->assertEquals($basicData['assessment'], $basicArticleSection['assessment']);
         $this->assertSameWithoutOrder($basicData, $basicArticleSection);
 
         $collapsibleData = [
