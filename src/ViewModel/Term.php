@@ -13,17 +13,17 @@ final class Term implements ViewModel
     use ArrayFromProperties;
 
     private $title;
-    private $description;
+    private $termDescription;
     private $terms;
 
-    public function __construct(string $title, string $description, array $terms)
+    public function __construct(string $title, string $termDescription, array $terms)
     {
         Assertion::notBlank($title);
-        Assertion::notBlank($description);
+        Assertion::notBlank($termDescription);
         Assertion::notEmpty($terms);
 
         $this->title = $title;
-        $this->description = $description;
+        $this->termDescription = $termDescription;
 
         $this->terms = array_map(function ($term) {
             return [

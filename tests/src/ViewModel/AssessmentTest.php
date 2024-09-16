@@ -18,7 +18,7 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
         $data = [
             'significance' => [
                 'title' => 'significance',
-                'description' => 'description',
+                'termDescription' => 'description',
                 'terms' => [
                     [
                         'term' => 'Landmark'
@@ -31,7 +31,7 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
             ],
             'strength' => [
                 'title' => 'strength',
-                'description' => 'description',
+                'termDescription' => 'description',
                 'terms' => [
                     [
                         'term' => 'Exceptional'

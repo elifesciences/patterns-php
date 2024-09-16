@@ -14,7 +14,7 @@ final class TermTest extends ViewModelTest
     {
         $data = [
             'title' => 'some title',
-            'description' => 'description',
+            'termDescription' => 'description',
             'terms' => [
                 [
                     'term' => 'Landmark'
