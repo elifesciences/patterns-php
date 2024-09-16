@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\Assessment;
 use eLife\Patterns\ViewModel\ArticleSection;
 use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\Link;
@@ -32,12 +33,41 @@ final class ArticleSectionTest extends ViewModelTest
                 new Link('Related link 1', '#'),
                 new Link('Related link 2', '#'),
             ],
-            'relatedLinksSeparator' => 'circle'
+            'relatedLinksSeparator' => 'circle',
+            'assessment' => new Assessment(
+                [
+                    'title' => 'significance',
+                    'description' => 'description',
+                    'terms' => [
+                        [
+                            'term' => 'Landmark'
+                        ],
+                        [
+                            'term' => 'Valuable',
+                            'isHighlighted' => true,
+                        ]
+                    ]
+                ],
+                [
+                    'title' => 'strength',
+                    'description' => 'description',
+                    'terms' => [
+                        [
+                            'term' => 'Exceptional'
+                        ],
+                        [
+                            'term' => 'Solid',
+                            'isHighlighted' => true,
+                        ]
+                    ]
+                ],
+                'summary'
+            )
         ];
 
         $basicArticleSection = ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
             new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
-            true, $basicData['headerLink'], $basicData['relatedLinksSeparator'], 'test-class');
+            true, $basicData['headerLink'], $basicData['relatedLinksSeparator'], 'test-class', $basicData['assessment']);
 
         $this->assertSame($basicData['classes'], $basicArticleSection['classes']);
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
@@ -51,6 +81,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($basicData['headerLink'], $basicArticleSection['headerLink']);
         $this->assertSame($basicData['relatedLinks'], $basicArticleSection['relatedLinks']);
         $this->assertSame($basicData['relatedLinksSeparator'], $basicArticleSection['relatedLinksSeparator']);
+        $this->assertSame($basicData['assessment'], $basicArticleSection['assessment']);
         $this->assertSameWithoutOrder($basicData, $basicArticleSection);
 
         $collapsibleData = [
@@ -70,12 +101,41 @@ final class ArticleSectionTest extends ViewModelTest
                 new Link('Related link 1', '#'),
                 new Link('Related link 2', '#'),
             ],
-            'relatedLinksSeparator' => 'circle'
+            'relatedLinksSeparator' => 'circle',
+            'assessment' => new Assessment(
+                [
+                    'title' => 'significance',
+                    'description' => 'description',
+                    'terms' => [
+                        [
+                            'term' => 'Landmark'
+                        ],
+                        [
+                            'term' => 'Valuable',
+                            'isHighlighted' => true,
+                        ]
+                    ]
+                ],
+                [
+                    'title' => 'strength',
+                    'description' => 'description',
+                    'terms' => [
+                        [
+                            'term' => 'Exceptional'
+                        ],
+                        [
+                            'term' => 'Solid',
+                            'isHighlighted' => true,
+                        ]
+                    ]
+                ],
+                'summary'
+            )
         ];
 
         $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
             $collapsibleData['relatedLinks'], ArticleSection::STYLE_HIGHLIGHTED, true, true,
-            new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE);
+            new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, $collapsibleData['assessment']);
 
         $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
         $this->assertSame($collapsibleData['id'], $collapsibleArticleSection['id']);
@@ -88,6 +148,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSame($collapsibleData['isFirst'], $collapsibleArticleSection['isFirst']);
         $this->assertSame($collapsibleData['relatedLinks'], $collapsibleArticleSection['relatedLinks']);
         $this->assertSame($collapsibleData['relatedLinksSeparator'], $collapsibleArticleSection['relatedLinksSeparator']);
+        $this->assertSame($collapsibleData['assessment'], $collapsibleArticleSection['assessment']);
         $this->assertSameWithoutOrder($collapsibleData, $collapsibleArticleSection);
     }
 
@@ -175,13 +236,16 @@ final class ArticleSectionTest extends ViewModelTest
                 ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
                     new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
                     ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#'),
-                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE),
+                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, new Assessment(['significance', 'description', [['Landmark'], ['Valuable', true]]]),
+                    ['strength', 'description', [['Exceptional'], ['Solid', true]]], 'summary')
             ],
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
                 ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
                     [new Link('Related link', '#')], ArticleSection::STYLE_DEFAULT, true, true,
-                    new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE)
+                    new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
+                    new Assessment(['significance', 'description', [['Landmark'], ['Valuable', true]]]),
+                    ['strength', 'description', [['Exceptional'], ['Solid', true]]], 'summary')
             ],
         ];
     }
