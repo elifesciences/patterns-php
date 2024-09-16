@@ -25,12 +25,14 @@ final class Term implements ViewModel
         $this->title = $title;
         $this->description = $description;
 
-        $this->terms = array_map(function (string $term, bool $isHighlighted = false) {
+        $this->terms = array_map(function ($term) {
+            $isHighlighted = isset($term[1]) ? $term[1] : false;
+
             return [
-                'term' => $term,
+                'term' => $term[0],
                 'isHighlighted' => $isHighlighted,
             ];
-        }, array_keys($terms), array_values($terms));
+        }, $terms);
     }
 
     public function getTemplateName() : string
