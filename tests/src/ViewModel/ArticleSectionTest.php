@@ -68,7 +68,9 @@ final class ArticleSectionTest extends ViewModelTest
 
         $basicArticleSection = ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
             new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
-            true, $basicData['headerLink'], $basicData['relatedLinksSeparator'], 'test-class', $basicData['assessment']);
+            true, $basicData['headerLink'], $basicData['relatedLinksSeparator'], 'test-class',
+            new Assessment(new Term('significance', 'description', [['Landmark'], ['Valuable', true]]),
+            new Term('strength', 'description', [['Exceptional'], ['Solid', true]]), 'summary'));
 
         $this->assertSame($basicData['classes'], $basicArticleSection['classes']);
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
