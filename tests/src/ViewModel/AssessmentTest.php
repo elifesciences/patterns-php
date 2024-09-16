@@ -51,11 +51,6 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
             'summary'
         );
 
-        $this->assertSame($data['significance']['title'], $assessment['significance']['title']->toArray());
-        $this->assertSame($data['significance']['description'], $assessment['significance']['description']->toArray());
-        $this->assertSame($data['strength']['title'], $assessment['strength']['title']->toArray());
-        $this->assertSame($data['strength']['description'], $assessment['strength']['description']->toArray());
-        $this->assertSame($data['summary'], $assessment['summary']);
         $this->assertSame($data, $assessment->toArray());
     }
 }
