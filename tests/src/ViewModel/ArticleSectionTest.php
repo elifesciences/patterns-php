@@ -35,7 +35,7 @@ final class ArticleSectionTest extends ViewModelTest
             ],
             'relatedLinksSeparator' => 'circle',
             'assessment' => new Assessment(
-                [
+                new Term([
                     'title' => 'significance',
                     'description' => 'description',
                     'terms' => [
@@ -47,8 +47,8 @@ final class ArticleSectionTest extends ViewModelTest
                             'isHighlighted' => true,
                         ]
                     ]
-                ],
-                [
+                ]),
+                new Term([
                     'title' => 'strength',
                     'description' => 'description',
                     'terms' => [
@@ -60,7 +60,7 @@ final class ArticleSectionTest extends ViewModelTest
                             'isHighlighted' => true,
                         ]
                     ]
-                ],
+                ]),
                 'summary'
             )
         ];
