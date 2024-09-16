@@ -41,7 +41,6 @@ final class TermTest extends ViewModelTest
             return $carry;
         }, []));
 
-
         $this->assertSame($data['title'], $term['title']);
         $this->assertSame($data['description'], $term['description']);
         $this->assertSame($data['items'], $term['items']);
@@ -51,7 +50,7 @@ final class TermTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Term('title', 'description', [['text1'], ['text2', true]])],
+            [new Term('title', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]])],
         ];
     }
 

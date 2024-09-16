@@ -45,8 +45,8 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
         ];
 
         $assessment = new Assessment(
-            new Term('significance', 'description', [['Landmark'], ['Valuable', true]]),
-            new Term('strength', 'description', [['Exceptional'], ['Solid', true]]),
+            new Term('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
+            new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
             'summary'
         );
 

@@ -239,16 +239,23 @@ final class ArticleSectionTest extends ViewModelTest
                 ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
                     new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
                     ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#'),
-                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, new Assessment(new Term('significance', 'description', [['Landmark'], ['Valuable', true]]),
-                    new Term('strength', 'description', [['Exceptional'], ['Solid', true]]), 'summary'))
+                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, new Assessment(
+                    new Term('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
+                    new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+                    'summary'))
             ],
+            new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
                 ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
                     [new Link('Related link', '#')], ArticleSection::STYLE_DEFAULT, true, true,
                     new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
-                    new Assessment(new Term('significance', 'description', [['Landmark'], ['Valuable', true]]),
-                    new Term('strength', 'description', [['Exceptional'], ['Solid', true]]), 'summary'))
+                    new Assessment(
+                        new Term('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
+                        new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+                        'summary')
+                    )
             ],
         ];
     }
