@@ -42,7 +42,7 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
                     ]
                 ]
             ],
-            'summary'
+            'summary' => 'summary'
         ];
 
         $assessment = new Assessment(
