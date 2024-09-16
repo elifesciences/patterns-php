@@ -252,8 +252,6 @@ final class ArticleSectionTest extends ViewModelTest
                     new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
                     'summary'))
             ],
-            new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
-
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
             'collapsible complete' => [
                 ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
