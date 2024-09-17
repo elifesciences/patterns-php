@@ -15,15 +15,18 @@ final class Term implements ViewModel
     private $title;
     private $termDescription;
     private $terms;
+    private $termDescriptionAriaLabel;
 
-    public function __construct(string $title, string $termDescription, array $terms)
+    public function __construct(string $title, string $termDescription, array $terms, string $termDescriptionAriaLabel = null)
     {
         Assertion::notBlank($title);
         Assertion::notBlank($termDescription);
         Assertion::notEmpty($terms);
+        Assertion::nullOrNotBlank($termDescriptionAriaLabel);
 
         $this->title = $title;
         $this->termDescription = $termDescription;
+        $this->termDescriptionAriaLabel = $termDescriptionAriaLabel;
 
         $this->terms = array_map(function ($term) {
             $result = ['term' => $term['term']];
