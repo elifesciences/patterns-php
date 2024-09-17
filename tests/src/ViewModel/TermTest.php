@@ -15,7 +15,6 @@ final class TermTest extends ViewModelTest
         $data = [
             'title' => 'some title',
             'termDescription' => 'description',
-            'termDescriptionAriaLabel' => 'aria',
             'terms' => [
                 [
                     'term' => 'Landmark'
@@ -34,6 +33,7 @@ final class TermTest extends ViewModelTest
                     'term' => 'Useful'
                 ]
             ],
+            'termDescriptionAriaLabel' => 'aria'
         ];
 
         $term = new Term(
