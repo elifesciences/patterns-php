@@ -194,6 +194,38 @@ properties:
                     - citeAs
                     - doi
         minProperties: 1
+    previousVersion:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            text:
+                type: string
+                minLength: 1
+            link:
+                oneOf:
+                    -
+                        $schema: 'http://json-schema.org/draft-04/schema#'
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                minLength: 1
+                            url:
+                                type: string
+                                minLength: 1
+                            ariaLabel:
+                                type: string
+                                minLength: 1
+                            isCurrent:
+                                type: boolean
+                                default: false
+                        required:
+                            - name
+                            - url
+                    -
+                        type: 'null'
+        required:
+            - text
     timeline:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
