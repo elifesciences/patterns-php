@@ -32,6 +32,7 @@ final class ArticleSection implements ViewModel
     private $headerLink;
     private $relatedLinksSeparator;
     private $hasEditorTitle;
+    private $assessment;
 
     private function __construct(
         string $id = null,
@@ -47,7 +48,8 @@ final class ArticleSection implements ViewModel
         bool $isInitiallyClosed = false,
         string $relatedLinksSeparator = null,
         string $classes = null,
-        bool $hasEditorTitle = null
+        bool $hasEditorTitle = null,
+        Assessment $assessment = null
     ) {
         Assertion::nullOrNotBlank($title);
         Assertion::nullOrMin($headingLevel, 2);
@@ -59,6 +61,7 @@ final class ArticleSection implements ViewModel
         }
         Assertion::nullOrChoice($style, [self::STYLE_DEFAULT, self::STYLE_HIGHLIGHTED, self::STYLE_EDITOR, self::STYLE_PEER_REVIEW]);
         Assertion::nullOrChoice($relatedLinksSeparator, [self::RELATED_LINKS_SEPARATOR_CIRCLE]);
+        Assertion::nullOrNotBlank($assessment);
 
         if (null === $headingLevel && !$hasEditorTitle && $title ) {
             throw new InvalidArgumentException('title requires a headingLevel or hasEditorTitle');
@@ -109,6 +112,7 @@ final class ArticleSection implements ViewModel
         $this->isFirst = $isFirst;
         $this->relatedLinksSeparator = $relatedLinksSeparator;
         $this->hasEditorTitle = $hasEditorTitle;
+        $this->assessment = $assessment;
     }
 
     public static function basic(
@@ -123,9 +127,10 @@ final class ArticleSection implements ViewModel
         Link $headerLink = null,
         string $relatedLinksSeparator = null,
         string $classes = null,
-        bool $hasEditorTitle = null
+        bool $hasEditorTitle = null,
+        Assessment $assessment = null
     ) : ArticleSection {
-        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes, $hasEditorTitle);
+        return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes, $hasEditorTitle, $assessment);
     }
 
     public static function collapsible(
@@ -138,7 +143,8 @@ final class ArticleSection implements ViewModel
         bool $isInitiallyClosed = false,
         bool $isFirst = false,
         Doi $doi = null,
-        string $relatedLinksSeparator = null
+        string $relatedLinksSeparator = null,
+        Assessment $assessment = null
     ) : ArticleSection {
         return new self(
             $id,
@@ -152,7 +158,10 @@ final class ArticleSection implements ViewModel
             $isFirst,
             true,
             $isInitiallyClosed,
-            $relatedLinksSeparator
+            $relatedLinksSeparator,
+            null,
+            null,
+            $assessment
         );
     }
 
