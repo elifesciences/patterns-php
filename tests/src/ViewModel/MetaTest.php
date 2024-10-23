@@ -28,13 +28,20 @@ final class MetaTest extends ViewModelTest
                 ],
                 'forMachine' => '2015-05-15',
             ],
+            'articleStatus' => 'Not yet revised',
+            'articleStatusColorClass' => 'not-revised',
+            'version' => 'Reviewed Preprint v1',
         ];
-        $meta = Meta::withLink(new Link($data['text'], $data['url']), Date::simple(new DateTimeImmutable('2015-05-15')));
+        $meta = Meta::withLink(new Link($data['text'], $data['url']), Date::simple(new DateTimeImmutable('2015-05-15')),
+        $data['articleStatus'], $data['articleStatusColorClass'], $data['version']);
 
         $this->assertSame($data, $meta->toArray());
         $this->assertSame($data['url'], $meta['url']);
         $this->assertSame($data['text'], $meta['text']);
         $this->assertSame($data['date'], $meta['date']->toArray());
+        $this->assertSame($data['articleStatus'], $meta['articleStatus']);
+        $this->assertSame($data['articleStatusColorClass'], $meta['articleStatusColorClass']);
+        $this->assertSame($data['version'], $meta['version']);
     }
 
     /**
@@ -45,6 +52,26 @@ final class MetaTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         Meta::withDate(Date::expanded(new DateTimeImmutable()));
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_valid_article_status()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'Not valid status', 'revised', 'bar');
+    }
+
+    /**
+     * @test
+     */
+    public function it_must_have_a_valid_article_status_color_class()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'revised', 'Not valid status color class', 'bar');
     }
 
     public static function getDateStub()
@@ -60,6 +87,7 @@ final class MetaTest extends ViewModelTest
             'text' => [Meta::withText('foo', self::getDateStub())],
             'text and date' => [Meta::withText('foo', self::getDateStub())],
             'date' => [Meta::withDate(self::getDateStub())],
+            'all' => [Meta::withLink(new Link('foo', '#'), self::getDateStub()), 'Revised', 'revised', 'bar'],
         ];
     }
 
