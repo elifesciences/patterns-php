@@ -49,7 +49,7 @@ final class TermTest extends ViewModelTest
                 $carry[] = $termData;
                 return $carry;
             }, []),
-            $data['termDescriptionAriaLabel'],
+            $data['termDescriptionAriaLabel']
         );
 
         $this->assertSame($data, $term->toArray());

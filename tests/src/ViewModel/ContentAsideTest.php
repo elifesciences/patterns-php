@@ -114,7 +114,7 @@ final class ContentAsideTest extends ViewModelTest
             new PreviousVersionWarning(
                 $data['previousVersion']['text'],
                 new Link($data['previousVersion']['link']['name'], $data['previousVersion']['link']['url'])
-            ),
+            )
         );
 
         $this->assertSame($data['status'], $contentAside['status']->toArray());
