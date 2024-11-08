@@ -5,6 +5,7 @@ elifeLibrary {
         checkout scm
         commit = elifeGitRevision()
         message = sh script: "git log -1 --pretty=%B | head -n 1", returnStdout: true
+        sh script: "php -v"
     }
 
     elifeVariants(['lowest', 'default'], { dependencies ->
