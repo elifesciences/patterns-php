@@ -40,7 +40,6 @@ final class TeaserTest extends ViewModelTest
     public function it_can_load_main()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN);
-        unset($data['footer']['formats']);
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
@@ -64,7 +63,6 @@ final class TeaserTest extends ViewModelTest
     public function it_can_load_main_small_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_SMALL_IMAGE);
-        unset($data['footer']['formats']);
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
@@ -88,7 +86,6 @@ final class TeaserTest extends ViewModelTest
     public function it_can_load_main_big_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_BIG_IMAGE);
-        unset($data['footer']['formats']);
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
