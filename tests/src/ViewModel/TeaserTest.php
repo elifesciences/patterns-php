@@ -40,6 +40,7 @@ final class TeaserTest extends ViewModelTest
     public function it_can_load_main()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN);
+        unset($data['footer']['formats']);
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
@@ -50,8 +51,7 @@ final class TeaserTest extends ViewModelTest
             }, $data['contextLabel']['list'])),
             null,
             TeaserFooter::forArticle(
-                $this->metaFromData($data['footer']['meta']),
-                $data['footer']['formats']['list']
+                $this->metaFromData($data['footer']['meta'])
             ),
             $data['ariaLabel']
         );
@@ -64,6 +64,7 @@ final class TeaserTest extends ViewModelTest
     public function it_can_load_main_small_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_SMALL_IMAGE);
+        unset($data['footer']['formats']);
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
@@ -74,8 +75,7 @@ final class TeaserTest extends ViewModelTest
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_SMALL),
             TeaserFooter::forArticle(
-                $this->metaFromData($data['footer']['meta']),
-                $data['footer']['formats']['list']
+                $this->metaFromData($data['footer']['meta'])
             ),
             $data['ariaLabel']
         );
@@ -88,6 +88,7 @@ final class TeaserTest extends ViewModelTest
     public function it_can_load_main_big_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_BIG_IMAGE);
+        unset($data['footer']['formats']);
         $actual = Teaser::main(
             $data['title'],
             $data['url'] ? $data['url'] : null,
@@ -98,8 +99,7 @@ final class TeaserTest extends ViewModelTest
             }, $data['contextLabel']['list'])),
             $this->teaserImageFromData($data['image'], TeaserImage::STYLE_BIG),
             TeaserFooter::forArticle(
-                $this->metaFromData($data['footer']['meta']),
-                $data['footer']['formats']['list']
+                $this->metaFromData($data['footer']['meta'])
             ),
             $data['ariaLabel']
         );
