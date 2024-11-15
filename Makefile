@@ -1,4 +1,4 @@
-.PHONY: lint test
+.PHONY: lint test update-pattern-library
 
 vendor:
 	composer install
@@ -8,3 +8,6 @@ test: vendor
 
 lint:
 	find src tests -name '*.php' | xargs -L1 php -l
+
+update-pattern-library:
+	bin/update

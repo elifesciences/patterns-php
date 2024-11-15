@@ -118,6 +118,8 @@ foreach (array_diff($foundTemplates, $resolvedTemplates) as $missingTemplate) {
     }
 }
 
+echo "SUCCESS! \n";
+
 /**
  * Naive JSON reference resolver than can handle YAML.
  *
