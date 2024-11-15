@@ -533,16 +533,6 @@ allOf:
                                                 -
                                                     required:
                                                         - text
-                                        formats:
-                                            type: object
-                                            properties:
-                                                list:
-                                                    type: array
-                                                    minItems: 1
-                                                    item:
-                                                        type: string
-                                            required:
-                                                - list
                                     required:
                                         - meta
                             dependencies:
