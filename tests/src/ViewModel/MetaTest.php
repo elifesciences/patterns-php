@@ -88,6 +88,7 @@ final class MetaTest extends ViewModelTest
             'text and date' => [Meta::withText('foo', self::getDateStub())],
             'date' => [Meta::withDate(self::getDateStub())],
             'all' => [Meta::withLink(new Link('foo', '#'), self::getDateStub()), 'Revised', 'revised', 'bar'],
+            'version' => [Meta::withVersion('Reviewed preprint v2', self::getDateStub(), 'Revised', 'revised')],
         ];
     }
 

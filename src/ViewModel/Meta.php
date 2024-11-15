@@ -52,6 +52,12 @@ final class Meta implements ViewModel
         return new self($link['url'], $link['name'], $date, $articleStatus, $articleStatusColorClass, $version);
     }
 
+    public static function withVersion(string $version, Date $date = null, string $articleStatus = null,
+    string $articleStatusColorClass = null) : Meta
+    {
+        return new self(null, null, $date, $articleStatus, $articleStatusColorClass, $version);
+    }
+
     public static function withText(string $text, Date $date = null) : Meta
     {
         Assertion::minLength($text, 1);
