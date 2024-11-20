@@ -2,8 +2,10 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Assessment;
-use eLife\Patterns\ViewModel\AssessmentTermsArticle;
+use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\Term;
 use PHPUnit_Framework_TestCase;
 
 final class AssessmentTest extends PHPUnit_Framework_TestCase
@@ -44,8 +46,8 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
         ];
 
         $assessment = new Assessment(
-            new AssessmentTermsArticle('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
-            new AssessmentTermsArticle('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+            new Term('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
+            new Term('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
             'summary'
         );
 
