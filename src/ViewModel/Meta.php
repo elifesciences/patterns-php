@@ -9,7 +9,7 @@ use eLife\Patterns\ViewModel;
 
 final class Meta implements ViewModel
 {
-    const STATUS_NOT_REVISED = 'Not yet revised';
+    const STATUS_NOT_REVISED = 'Not revised';
     const STATUS_REVISED = 'Revised';
     const STATUS_VOR = 'Version of Record';
     const STATUS_POA = 'Accepted Manuscript';
