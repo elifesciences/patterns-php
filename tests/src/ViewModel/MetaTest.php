@@ -28,7 +28,7 @@ final class MetaTest extends ViewModelTest
                 ],
                 'forMachine' => '2015-05-15',
             ],
-            'articleStatus' => 'Not revised',
+            'articleStatus' => 'Not yet revised',
             'articleStatusColorClass' => 'not-revised',
             'version' => 'Reviewed Preprint v1',
         ];
