@@ -15,13 +15,16 @@ final class Term implements ViewModel
     private $term;
     private $isHighlighted;
 
-    public function __construct(string $term, bool $isHighlighted = false)
+    public function __construct(string $term, bool $isHighlighted = null)
     {
         Assertion::notBlank($term);
+        Assertion::nullOrTrue($isHighlighted);
 
         $this->term = $term;
-        $this->isHighlighted = $isHighlighted;
-
+        $this->isHighlighted = null;
+        if (isset($isHighlighted) && $isHighlighted) {
+            $this->isHighlighted = $isHighlighted;
+        }
     }
 
     public function getTemplateName() : string

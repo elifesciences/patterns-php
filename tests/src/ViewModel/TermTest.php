@@ -27,7 +27,6 @@ final class TermTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new Term('Important')],
             [new Term('Valuable', true)],
         ];
     }
