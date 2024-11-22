@@ -38,16 +38,7 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
         $articleAssesmentTerms = new ArticleAssessmentTerms(
             $data['title'],
             $data['termDescription'],
-            array_reduce($data['terms'], function (array $carry, array $item) {
-                $termData = ['term' => $item['term']];
-
-                if (isset($item['isHighlighted']) && $item['isHighlighted']) {
-                    $termData['isHighlighted'] = true;
-                }
-
-                $carry[] = $termData;
-                return $carry;
-            }, []),
+            $data['terms'],
             $data['termDescriptionAriaLabel']
         );
 
