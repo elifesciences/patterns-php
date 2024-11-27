@@ -21,7 +21,6 @@ final class Term implements ViewModel
 
         $this->term = $term;
         $this->isHighlighted = $isHighlighted;
-
     }
 
     public function getTemplateName() : string
