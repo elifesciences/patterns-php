@@ -1,4 +1,4 @@
-.PHONY: lint test update-pattern-library
+.PHONY: lint phpcs test update-pattern-library
 
 vendor:
 	composer install
@@ -6,7 +6,10 @@ vendor:
 test: vendor
 	vendor/bin/phpunit
 
-lint:
+phpcs:
+	vendor/bin/phpcs --standard=phpcs.xml.dist --warning-severity=0 -p bin src tests
+
+lint: phpcs
 	find src tests -name '*.php' | xargs -L1 php -l
 
 update-pattern-library:
