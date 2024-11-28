@@ -17,20 +17,24 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
             'termDescription' => 'description',
             'terms' => [
                 [
-                    'term' => 'Landmark'
+                    'term' => 'Landmark',
+                    'isHighlighted' => false,
                 ],
                 [
-                    'term' => 'Fundamental'
+                    'term' => 'Fundamental',
+                    'isHighlighted' => false,
                 ],
                 [
-                    'term' => 'Important'
+                    'term' => 'Important',
+                    'isHighlighted' => false,
                 ],
                 [
                     'term' => 'Valuable',
                     'isHighlighted' => true,
                 ],
                 [
-                    'term' => 'Useful'
+                    'term' => 'Useful',
+                    'isHighlighted' => false,
                 ]
             ],
             'termDescriptionAriaLabel' => 'aria'

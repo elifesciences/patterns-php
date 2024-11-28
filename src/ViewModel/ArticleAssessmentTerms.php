@@ -29,15 +29,7 @@ final class ArticleAssessmentTerms implements ViewModel
         $this->termDescription = $termDescription;
         $this->termDescriptionAriaLabel = $termDescriptionAriaLabel;
 
-        $this->terms = array_map(function ($term) {
-            $result = ['term' => $term['term']];
-
-            if (isset($term['isHighlighted']) && $term['isHighlighted']) {
-                $result['isHighlighted'] = true;
-            }
-
-            return $result;
-        }, $terms);
+        $this->terms = $terms;
     }
 
     public function getTemplateName() : string
