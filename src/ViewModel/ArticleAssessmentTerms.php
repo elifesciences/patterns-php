@@ -22,6 +22,7 @@ final class ArticleAssessmentTerms implements ViewModel
         Assertion::notBlank($title);
         Assertion::notBlank($termDescription);
         Assertion::notEmpty($terms);
+        Assertion::allIsInstanceOf($terms, Term::class);
         Assertion::nullOrNotBlank($termDescriptionAriaLabel);
 
         $this->title = $title;

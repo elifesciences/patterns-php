@@ -3,6 +3,7 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArticleAssessmentTerms;
+use eLife\Patterns\ViewModel\Term;
 
 final class ArticleAssesmentTermsTest extends ViewModelTest
 {
@@ -38,7 +39,13 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
         $articleAssessmentTerms = new ArticleAssessmentTerms(
             $data['title'],
             $data['termDescription'],
-            $data['terms'],
+            [
+                new Term('Landmark'),
+                new Term('Fundamental'),
+                new Term('Important'),
+                new Term('Valuable', true),
+                new Term('Useful'),
+            ],
             $data['termDescriptionAriaLabel']
         );
 
@@ -48,7 +55,14 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            [new ArticleAssessmentTerms('title', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]), 'aria'],
+            [
+                new ArticleAssessmentTerms(
+                    'title',
+                     'description', 
+                     [new Term('Exceptional'), new Term('Solid', true)],
+                    'aria'
+                ),
+            ],
         ];
     }
 

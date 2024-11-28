@@ -7,6 +7,7 @@ use eLife\Patterns\ViewModel\Assessment;
 use eLife\Patterns\ViewModel\ArticleSection;
 use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\Term;
 use InvalidArgumentException;
 
 final class ArticleSectionTest extends ViewModelTest
@@ -40,26 +41,16 @@ final class ArticleSectionTest extends ViewModelTest
                     'significance',
                     'description',
                     [
-                        [
-                            'term' => 'Landmark'
-                        ],
-                        [
-                            'term' => 'Valuable',
-                            'isHighlighted' => true,
-                        ]
+                        new Term('Landmark'),
+                        new Term('Valuable', true),
                     ]
                 ),
                 new ArticleAssessmentTerms(
                     'strength',
                     'description',
                     [
-                        [
-                            'term' => 'Exceptional'
-                        ],
-                        [
-                            'term' => 'Solid',
-                            'isHighlighted' => true,
-                        ]
+                        new Term('Exceptional'),
+                        new Term('Solid', true),
                     ]
                 ),
                 'summary'
@@ -70,8 +61,8 @@ final class ArticleSectionTest extends ViewModelTest
             new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
             true, $basicData['headerLink'], $basicData['relatedLinksSeparator'], 'test-class', null,
             new Assessment(
-                new ArticleAssessmentTerms('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
-                new ArticleAssessmentTerms('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+                new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
+                new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
                 'summary')
             );
 
@@ -113,26 +104,16 @@ final class ArticleSectionTest extends ViewModelTest
                     'significance',
                     'description',
                     [
-                        [
-                            'term' => 'Landmark'
-                        ],
-                        [
-                            'term' => 'Valuable',
-                            'isHighlighted' => true,
-                        ]
+                        new Term('Landmark'),
+                        new Term('Valuable', true),
                     ]
                 ),
                 new ArticleAssessmentTerms(
                     'strength',
                     'description',
                     [
-                        [
-                            'term' => 'Exceptional'
-                        ],
-                        [
-                            'term' => 'Solid',
-                            'isHighlighted' => true,
-                        ]
+                        new Term('Exceptional'),
+                        new Term('Solid', true),
                     ]
                 ),
                 'summary'
@@ -143,8 +124,8 @@ final class ArticleSectionTest extends ViewModelTest
             $collapsibleData['relatedLinks'], ArticleSection::STYLE_HIGHLIGHTED, true, true,
             new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
             new Assessment(
-                new ArticleAssessmentTerms('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
-                new ArticleAssessmentTerms('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+                new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
+                new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
                 'summary')
         );
 
@@ -248,8 +229,8 @@ final class ArticleSectionTest extends ViewModelTest
                     new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
                     ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#'),
                     ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, null, null, new Assessment(
-                    new ArticleAssessmentTerms('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
-                    new ArticleAssessmentTerms('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+                    new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
+                    new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
                     'summary'))
             ],
             'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
@@ -258,8 +239,8 @@ final class ArticleSectionTest extends ViewModelTest
                     [new Link('Related link', '#')], ArticleSection::STYLE_DEFAULT, true, true,
                     new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
                     new Assessment(
-                        new ArticleAssessmentTerms('significance', 'description', [['term' => 'Landmark'], ['term' => 'Valuable', 'isHighlighted' => true]]),
-                        new ArticleAssessmentTerms('strength', 'description', [['term' => 'Exceptional'], ['term' => 'Solid', 'isHighlighted' => true]]),
+                        new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
+                        new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
                         'summary')
                     )
             ],
