@@ -16,6 +16,19 @@ Installation
 
 Execute `composer require elife/patterns:dev-master`.
 
+Running Tests
+-------------
+
+To run all tests:
+```
+make test
+```
+
+To run one test:
+```
+vendor/bin/phpunit tests/src/ViewModel/ArticleSectionTest.php
+```
+
 Versioning
 ----------
 
