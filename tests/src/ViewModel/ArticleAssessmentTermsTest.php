@@ -58,8 +58,8 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
             [
                 new ArticleAssessmentTerms(
                     'title',
-                     'description', 
-                     [new Term('Exceptional'), new Term('Solid', true)],
+                    'description',
+                    [new Term('Exceptional'), new Term('Solid', true)],
                     'aria'
                 ),
             ],
