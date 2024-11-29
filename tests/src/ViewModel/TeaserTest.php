@@ -10,6 +10,8 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
+use eLife\Patterns\ViewModel\TeaserTerms;
+use eLife\Patterns\ViewModel\Term;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
 use tests\eLife\Patterns\ViewModel\Partials\TeaserImageFromData;
 
@@ -51,6 +53,30 @@ final class TeaserTest extends ViewModelTest
             null,
             TeaserFooter::forArticle(
                 $this->metaFromData($data['footer']['meta'])
+            ),
+            $data['ariaLabel']
+        );
+        $this->assertSameWithoutOrder($data, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_load_main_with_terms()
+    {
+        $data = TeaserFixtures::load(TeaserFixtures::MAIN_WITH_TERMS);
+        $actual = Teaser::main(
+            $data['title'],
+            $data['url'] ? $data['url'] : null,
+            $data['content'],
+            $data['secondaryInfo'],
+            new ContextLabel(...array_map(function ($item) {
+                return new Link($item['name'], $item['url'] ? $item['url'] : null);
+            }, $data['contextLabel']['list'])),
+            null,
+            TeaserFooter::forArticle(
+                $this->metaFromData($data['footer']['meta']),
+                new TeaserTerms([new Term('Valuable'), new Term('Solid')])
             ),
             $data['ariaLabel']
         );

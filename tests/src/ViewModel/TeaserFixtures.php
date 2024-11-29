@@ -7,6 +7,7 @@ use Assert\Assertion;
 final class TeaserFixtures
 {
     const MAIN = 'teaser~05-main.json';
+    const MAIN_WITH_TERMS = 'teaser~05-main-with-terms.json';
     const MAIN_SMALL_IMAGE = 'teaser~10-main-small-image.json';
     const MAIN_BIG_IMAGE = 'teaser~15-main-big-image.json';
     const SECONDARY = 'teaser~20-secondary.json';
@@ -24,6 +25,7 @@ final class TeaserFixtures
     {
         Assertion::inArray($const, [
             self::MAIN,
+            self::MAIN_WITH_TERMS,
             self::MAIN_SMALL_IMAGE,
             self::MAIN_BIG_IMAGE,
             self::SECONDARY,
