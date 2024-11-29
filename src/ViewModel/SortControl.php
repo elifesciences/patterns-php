@@ -22,7 +22,7 @@ final class SortControl implements ViewModel
         $this->options = $options;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/sort-control.mustache';
     }

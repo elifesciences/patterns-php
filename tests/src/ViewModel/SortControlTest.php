@@ -39,7 +39,7 @@ final class SortControlTest extends ViewModelTest
         $this->assertSame($data, $sortControl->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -57,7 +57,7 @@ final class SortControlTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/sort-control.mustache';
     }

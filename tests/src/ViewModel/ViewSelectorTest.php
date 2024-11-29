@@ -98,7 +98,7 @@ final class ViewSelectorTest extends ViewModelTest
         new ViewSelector(new Link('article', '#article'), [], new Link('figures'));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [
@@ -127,7 +127,7 @@ final class ViewSelectorTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/view-selector.mustache';
     }

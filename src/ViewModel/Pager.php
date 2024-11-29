@@ -26,17 +26,17 @@ final class Pager implements ViewModel
         $this->targetId = $targetId;
     }
 
-    public static function firstPage(Link $nextPage, string $targetId = null) : Pager
+    public static function firstPage(Link $nextPage, string $targetId = null): Pager
     {
         return new self(null, $nextPage, $targetId);
     }
 
-    public static function subsequentPage(Link $previousPage, Link $nextPage = null, string $targetId = null) : Pager
+    public static function subsequentPage(Link $previousPage, Link $nextPage = null, string $targetId = null): Pager
     {
         return new self($previousPage, $nextPage, $targetId);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/pager.mustache';
     }

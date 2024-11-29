@@ -78,7 +78,7 @@ final class HeroBannerTest extends ViewModelTest
         $this->assertSame($expected, $carouselItem['titleLength']);
     }
 
-    public function titleLengthProvider() : array
+    public function titleLengthProvider(): array
     {
         return [
             [3, 'short'],
@@ -98,7 +98,7 @@ final class HeroBannerTest extends ViewModelTest
         ];
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new HeroBanner(
@@ -118,7 +118,7 @@ final class HeroBannerTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/hero-banner.mustache';
     }

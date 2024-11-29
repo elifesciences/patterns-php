@@ -76,7 +76,7 @@ final class CaptionTextTest extends ViewModelTest
         CaptionText::withText('');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum with heading' => [CaptionText::withHeading('heading')],
@@ -87,7 +87,7 @@ final class CaptionTextTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/caption-text.mustache';
     }

@@ -47,7 +47,7 @@ final class CallToAction implements ViewModel
             ->withProperty('classes', "{$button['classes']} call-to-action__button");
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/call-to-action.mustache';
     }

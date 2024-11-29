@@ -33,7 +33,7 @@ final class MediaSourceTest extends ViewModelTest
         $this->assertSameValuesWithoutOrder($mediaSource, $data);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -58,7 +58,7 @@ final class MediaSourceTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/media-source.mustache';
     }

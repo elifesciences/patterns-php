@@ -70,7 +70,7 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, $contentAsideStatus['titleLength']);
     }
 
-    public function titleLengthProvider() : array
+    public function titleLengthProvider(): array
     {
         return [
             [5, 'short'],

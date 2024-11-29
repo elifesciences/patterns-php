@@ -55,14 +55,16 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
             [
                 'affiliation 1',
                 'affiliation 2',
-            ]);
+            ]
+        );
 
         $this->assertSame(
             [
                 'affiliation 1',
                 'affiliation 2',
             ],
-            $contentHeaderProfile['details']['affiliations']);
+            $contentHeaderProfile['details']['affiliations']
+        );
     }
 
     /**
@@ -73,7 +75,8 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         $contentHeaderProfile = ContentHeaderProfile::notLoggedIn(
             'Display name',
             [],
-            'email@address.com');
+            'email@address.com'
+        );
 
         $this->assertSame('email@address.com', $contentHeaderProfile['details']['emailAddress']);
     }
@@ -103,7 +106,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         $this->assertNull($contentHeaderProfile['details']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [ContentHeaderProfile::notLoggedIn('Display name')],
@@ -145,7 +148,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/content-header-profile.mustache';
     }

@@ -34,10 +34,15 @@ final class MediaChapterListingItemTest extends ViewModelTest
             ],
         ];
 
-        $item = new MediaChapterListingItem($data['title'], $data['startTime']['forMachine'], $data['chapterNumber'],
-            $data['content'], array_map(function (array $contentSource) {
+        $item = new MediaChapterListingItem(
+            $data['title'],
+            $data['startTime']['forMachine'],
+            $data['chapterNumber'],
+            $data['content'],
+            array_map(function (array $contentSource) {
                 return new ContentSource(new Link($contentSource['contentType']['name'], $contentSource['contentType']['url']), $contentSource['text']);
-            }, $data['contentSources']));
+            }, $data['contentSources'])
+        );
 
         $this->assertSame($data['title'], $item['title']);
         $this->assertSame($data['startTime'], $item['startTime']);
@@ -78,7 +83,7 @@ final class MediaChapterListingItemTest extends ViewModelTest
         new MediaChapterListingItem('title', 0, 0);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new MediaChapterListingItem('title', 0, 1)],
@@ -86,7 +91,7 @@ final class MediaChapterListingItemTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/media-chapter-listing-item.mustache';
     }

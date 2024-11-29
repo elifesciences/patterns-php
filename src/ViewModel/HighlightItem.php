@@ -35,7 +35,7 @@ final class HighlightItem implements ViewModel
         $this->image = $image;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/highlight-item.mustache';
     }

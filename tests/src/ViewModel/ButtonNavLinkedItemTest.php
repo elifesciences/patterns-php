@@ -40,7 +40,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
         $this->assertSame($data, $buttonNavLinkedItem->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         $button = Button::link('the button text', '/the/button/path');
 
@@ -49,7 +49,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/nav-linked-item.mustache';
     }

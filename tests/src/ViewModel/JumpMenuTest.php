@@ -29,9 +29,9 @@ final class JumpMenuTest extends ViewModelTest
         $this->assertSame($data, $jumpMenu->toArray());
     }
 
-     /**
-     * @test
-     */
+    /**
+    * @test
+    */
     public function items_must_be_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -39,14 +39,14 @@ final class JumpMenuTest extends ViewModelTest
         new JumpMenu(['name']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new JumpMenu([new Link('link1', 'url1'), new Link('link2', 'url2')])],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/jump-menu.mustache';
     }

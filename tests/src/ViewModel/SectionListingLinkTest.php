@@ -44,14 +44,14 @@ final class SectionListingLinkTest extends ViewModelTest
         new SectionListingLink('foo', '');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new SectionListingLink('text', 'id')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/section-listing-link.mustache';
     }

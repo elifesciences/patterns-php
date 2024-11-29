@@ -50,7 +50,7 @@ final class ContextualData implements ViewModel
         string $citeAs = null,
         Doi $doi = null,
         SpeechBubble $annotationCount = null
-    ) : ContextualData {
+    ): ContextualData {
         Assertion::notEmpty($metrics);
 
         return new self($metrics, $citeAs, $doi, $annotationCount);
@@ -61,13 +61,13 @@ final class ContextualData implements ViewModel
         Doi $doi,
         array $metrics = [],
         SpeechBubble $annotationCount = null
-    ) : ContextualData {
+    ): ContextualData {
         Assertion::notBlank($citeAs);
 
         return new self($metrics, $citeAs, $doi, $annotationCount);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/contextual-data.mustache';
     }

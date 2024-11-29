@@ -119,19 +119,31 @@ final class AudioPlayerTest extends ViewModelTest
             'metadata' => str_replace('"', '\'', json_encode(['number' => 1, 'chapters' => $chapters])),
         ];
 
-        $audioPlayer = new AudioPlayer($data['episodeNumber'], new Link($data['title'], $data['url']),
+        $audioPlayer = new AudioPlayer(
+            $data['episodeNumber'],
+            new Link($data['title'], $data['url']),
             [
-                new MediaSource($data['sources'][0]['src'],
+                new MediaSource(
+                    $data['sources'][0]['src'],
                     new MediaType($data['sources'][0]['mediaType']['forMachine']),
-                    new MediaSourceFallback('fallback', true)),
-                new MediaSource($data['sources'][1]['src'],
-                    new MediaType($data['sources'][1]['mediaType']['forMachine'])),
+                    new MediaSourceFallback('fallback', true)
+                ),
+                new MediaSource(
+                    $data['sources'][1]['src'],
+                    new MediaType($data['sources'][1]['mediaType']['forMachine'])
+                ),
             ],
             [
-                new MediaChapterListingItem($chapters[0]['title'], $chapters[0]['time'],
-                    $chapters[0]['number']),
-                new MediaChapterListingItem($chapters[1]['title'], $chapters[1]['time'],
-                    $chapters[1]['number']),
+                new MediaChapterListingItem(
+                    $chapters[0]['title'],
+                    $chapters[0]['time'],
+                    $chapters[0]['number']
+                ),
+                new MediaChapterListingItem(
+                    $chapters[1]['title'],
+                    $chapters[1]['time'],
+                    $chapters[1]['number']
+                ),
             ]
         );
 
@@ -148,14 +160,19 @@ final class AudioPlayerTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $audioPlayer);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
-                new AudioPlayer(1, new Link('title of player', 'url'),
+                new AudioPlayer(
+                    1,
+                    new Link('title of player', 'url'),
                     [
-                        new MediaSource('/audio.mp3', new MediaType('audio/mpeg'),
-                            new MediaSourceFallback('fallback', true)),
+                        new MediaSource(
+                            '/audio.mp3',
+                            new MediaType('audio/mpeg'),
+                            new MediaSourceFallback('fallback', true)
+                        ),
                         new MediaSource('/audio.ogg', new MediaType('audio/ogg')),
                     ],
                     [
@@ -166,7 +183,7 @@ final class AudioPlayerTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/audio-player.mustache';
     }

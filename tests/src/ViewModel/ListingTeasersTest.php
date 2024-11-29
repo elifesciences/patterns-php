@@ -94,7 +94,10 @@ final class ListingTeasersTest extends ViewModelTest
                 }
 
                 return Teaser::secondary($item['title'], $item['url'], $item['secondaryInfo'] ?? null, null, null, $footer ?? null, $item['ariaLabel'] ?? null);
-            }, $data['items']), new ListHeading($data['heading']['heading'], $data['heading']['headingId']), $data['id']);
+            }, $data['items']),
+            new ListHeading($data['heading']['heading'], $data['heading']['headingId']),
+            $data['id']
+        );
 
         $this->assertSameWithoutOrder($data, $listingTeaser->toArray());
     }
@@ -109,7 +112,7 @@ final class ListingTeasersTest extends ViewModelTest
         ListingTeasers::basic([]);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -134,7 +137,8 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     Pager::firstPage(new Link('testing', '#')),
-                    new ListHeading('heading'), 'id'
+                    new ListHeading('heading'),
+                    'id'
                 ),
             ],
             [
@@ -156,7 +160,8 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::basic('title', 'url'),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
-                    new ListHeading('heading'), 'id'
+                    new ListHeading('heading'),
+                    'id'
                 ),
             ],
             [
@@ -166,13 +171,14 @@ final class ListingTeasersTest extends ViewModelTest
                         Teaser::secondary('title', 'url'),
                         Teaser::secondary('title', 'url'),
                     ],
-                    new ListHeading('heading'), 'id'
+                    new ListHeading('heading'),
+                    'id'
                 ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/listing-teasers.mustache';
     }

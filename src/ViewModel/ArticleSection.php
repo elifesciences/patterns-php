@@ -10,14 +10,13 @@ use InvalidArgumentException;
 
 final class ArticleSection implements ViewModel
 {
-    const STYLE_DEFAULT = 'default';
-    const STYLE_HIGHLIGHTED = 'highlighted';
-    const STYLE_EDITOR = 'editor';
-    const STYLE_PEER_REVIEW = 'peer-review';
-    const RELATED_LINKS_SEPARATOR_CIRCLE = 'circle';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const STYLE_DEFAULT = 'default';
+    public const STYLE_HIGHLIGHTED = 'highlighted';
+    public const STYLE_EDITOR = 'editor';
+    public const STYLE_PEER_REVIEW = 'peer-review';
+    public const RELATED_LINKS_SEPARATOR_CIRCLE = 'circle';
 
     private $classes;
     private $id;
@@ -63,7 +62,7 @@ final class ArticleSection implements ViewModel
         Assertion::nullOrChoice($relatedLinksSeparator, [self::RELATED_LINKS_SEPARATOR_CIRCLE]);
         Assertion::nullOrNotBlank($assessment);
 
-        if (null === $headingLevel && !$hasEditorTitle && $title ) {
+        if (null === $headingLevel && !$hasEditorTitle && $title) {
             throw new InvalidArgumentException('title requires a headingLevel or hasEditorTitle');
         }
 
@@ -129,7 +128,7 @@ final class ArticleSection implements ViewModel
         string $classes = null,
         bool $hasEditorTitle = null,
         Assessment $assessment = null
-    ) : ArticleSection {
+    ): ArticleSection {
         return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes, $hasEditorTitle, $assessment);
     }
 
@@ -145,7 +144,7 @@ final class ArticleSection implements ViewModel
         Doi $doi = null,
         string $relatedLinksSeparator = null,
         Assessment $assessment = null
-    ) : ArticleSection {
+    ): ArticleSection {
         return new self(
             $id,
             $doi,
@@ -165,7 +164,7 @@ final class ArticleSection implements ViewModel
         );
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/article-section.mustache';
     }

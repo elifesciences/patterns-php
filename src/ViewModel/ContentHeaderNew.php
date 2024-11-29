@@ -92,7 +92,7 @@ final class ContentHeaderNew implements ViewModel
         $this->audioPlayer = $audioPlayer;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/content-header-journal.mustache';
     }

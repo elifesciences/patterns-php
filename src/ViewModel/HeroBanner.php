@@ -23,9 +23,13 @@ final class HeroBanner implements ViewModel
     private $meta;
 
     public function __construct(
-        array $subjects, Link $title, Meta $meta, Picture $image, string $summary = null, string $authorLine = null
-    )
-    {
+        array $subjects,
+        Link $title,
+        Meta $meta,
+        Picture $image,
+        string $summary = null,
+        string $authorLine = null
+    ) {
         Assertion::allIsInstanceOf($subjects, Link::class);
 
         if (!empty($subjects)) {
@@ -44,7 +48,7 @@ final class HeroBanner implements ViewModel
         $this->authors = $authorLine;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/hero-banner.mustache';
     }

@@ -14,7 +14,8 @@ final class PictureTest extends ViewModelTest
         $this->imageFixture = new Image(
             '/default/path',
             ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-            'the alt text');
+            'the alt text'
+        );
     }
 
     /**
@@ -46,7 +47,7 @@ final class PictureTest extends ViewModelTest
         $this->assertSame($data, $picture->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         $image = new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text');
 
@@ -84,7 +85,7 @@ final class PictureTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/picture.mustache';
     }

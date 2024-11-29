@@ -88,7 +88,7 @@ final class AuthorsTest extends ViewModelTest
         new Authors([Author::asText('author')], ['foo']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new Authors([Author::asText('author')])],
@@ -98,7 +98,7 @@ final class AuthorsTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/authors.mustache';
     }

@@ -23,28 +23,28 @@ final class CaptionText implements ViewModel
         $this->text = $text;
     }
 
-    public static function withHeading(string $heading, string $standfirst = null, string $text = null) : CaptionText
+    public static function withHeading(string $heading, string $standfirst = null, string $text = null): CaptionText
     {
         Assertion::notBlank($heading);
 
         return new self($heading, $standfirst, $text);
     }
 
-    public static function withStandFirst(string $standfirst, string $text = null) : CaptionText
+    public static function withStandFirst(string $standfirst, string $text = null): CaptionText
     {
         Assertion::notBlank($standfirst);
 
         return new self(null, $standfirst, $text);
     }
 
-    public static function withText(string $text) : CaptionText
+    public static function withText(string $text): CaptionText
     {
         Assertion::notBlank($text);
 
         return new self(null, null, $text);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/caption-text.mustache';
     }

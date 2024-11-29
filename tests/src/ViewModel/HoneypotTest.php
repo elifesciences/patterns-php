@@ -63,7 +63,7 @@ final class HoneypotTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $textFieldAsArray);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))],
@@ -71,7 +71,7 @@ final class HoneypotTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/honeypot.mustache';
     }

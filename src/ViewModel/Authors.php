@@ -28,7 +28,7 @@ final class Authors implements ViewModel
         }
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/authors.mustache';
     }

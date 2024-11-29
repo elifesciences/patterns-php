@@ -35,7 +35,9 @@ final class ContextualDataTest extends ViewModelTest
             ],
         ];
 
-        $contextualData = ContextualData::withMetrics(['foo'], 'bar',
+        $contextualData = ContextualData::withMetrics(
+            ['foo'],
+            'bar',
             new Doi('10.7554/eLife.10181.001'),
             SpeechBubble::forContextualData()
         );
@@ -56,7 +58,7 @@ final class ContextualDataTest extends ViewModelTest
         $this->assertTrue($contextualData['citation']['doi']['isTruncated']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'hypothesis only' => [ContextualData::annotationsOnly(SpeechBubble::forContextualData())],
@@ -67,7 +69,7 @@ final class ContextualDataTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/contextual-data.mustache';
     }

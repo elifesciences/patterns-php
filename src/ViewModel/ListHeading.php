@@ -23,7 +23,7 @@ final class ListHeading implements ViewModel
         $this->headingId = $headingId;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/list-heading.mustache';
     }

@@ -139,7 +139,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
         ]);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -196,7 +196,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/article-download-links-list.mustache';
     }

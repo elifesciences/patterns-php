@@ -14,7 +14,7 @@ trait HasTitleLength
         null => 'xx-long',
     ];
 
-    private function determineTitleLength(string $title, array $overrideLimits = null) : string
+    private function determineTitleLength(string $title, array $overrideLimits = null): string
     {
         $limits = $overrideLimits ?? self::$titleLengthLimits;
 

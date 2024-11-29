@@ -25,7 +25,7 @@ final class MiniSectionTest extends ViewModelTest
         $this->assertSame($data, $miniSection->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'Body' => [new MiniSection('body')],
@@ -33,7 +33,7 @@ final class MiniSectionTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/mini-section.mustache';
     }

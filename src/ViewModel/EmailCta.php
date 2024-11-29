@@ -34,7 +34,7 @@ final class EmailCta implements ViewModel
         $this->privacyLabel = $privacyLabel;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/email-cta.mustache';
     }

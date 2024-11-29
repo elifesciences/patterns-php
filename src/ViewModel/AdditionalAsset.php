@@ -57,7 +57,7 @@ final class AdditionalAsset implements ViewModel
         return new static($id, $captionText, $downloadLink, $uri);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/additional-asset.mustache';
     }

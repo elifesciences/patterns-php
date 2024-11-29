@@ -33,7 +33,7 @@ final class Box implements ViewModel
         $this->content = $content;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/box.mustache';
     }

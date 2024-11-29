@@ -24,7 +24,7 @@ final class SectionListingLink implements ViewModel
         $this->targetFragmentId = $targetFragmentId;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/section-listing-link.mustache';
     }

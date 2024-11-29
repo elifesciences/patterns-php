@@ -9,11 +9,10 @@ use eLife\Patterns\ViewModel;
 
 final class CompactForm implements ViewModel
 {
-    const STATE_INVALID = 'invalid';
-    const STATE_VALID = 'valid';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const STATE_INVALID = 'invalid';
+    public const STATE_VALID = 'valid';
 
     private $formAction;
     private $formId;
@@ -55,7 +54,7 @@ final class CompactForm implements ViewModel
         $this->honeypot = $honeypot;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/compact-form.mustache';
     }

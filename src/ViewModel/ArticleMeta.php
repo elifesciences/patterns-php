@@ -30,7 +30,7 @@ final class ArticleMeta implements ViewModel
         }, array_keys($groups), array_values($groups)));
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/article-meta.mustache';
     }

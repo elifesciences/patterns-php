@@ -24,7 +24,9 @@ final class ProfileSnippetTest extends ViewModelTest
             'title' => 'Title McTitle',
             'name' => 'Name McName',
         ];
-        $profileSnippet = new ProfileSnippet($data['name'], $data['title'],
+        $profileSnippet = new ProfileSnippet(
+            $data['name'],
+            $data['title'],
             new Picture([], new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text'))
         );
 
@@ -35,7 +37,7 @@ final class ProfileSnippetTest extends ViewModelTest
         $this->assertSame($data, $profileSnippet->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -55,7 +57,7 @@ final class ProfileSnippetTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/profile-snippet.mustache';
     }

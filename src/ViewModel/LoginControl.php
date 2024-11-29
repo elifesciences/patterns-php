@@ -31,7 +31,7 @@ final class LoginControl implements ViewModel
         Picture $icon,
         string $subsidiaryText = null,
         array $linkFields = []
-    ) : LoginControl {
+    ): LoginControl {
         Assertion::notBlank($defaultUri);
         Assertion::notBlank($displayName);
         Assertion::notBlank($icon);
@@ -54,7 +54,7 @@ final class LoginControl implements ViewModel
         return $loggedInControl;
     }
 
-    public static function notLoggedIn(string $text, string $uri) : LoginControl
+    public static function notLoggedIn(string $text, string $uri): LoginControl
     {
         Assertion::notBlank($uri);
         Assertion::notBlank($text);
@@ -80,7 +80,7 @@ final class LoginControl implements ViewModel
         }, array_keys($linkFields), array_values($linkFields), range(1, count($linkFields))));
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/login-control.mustache';
     }

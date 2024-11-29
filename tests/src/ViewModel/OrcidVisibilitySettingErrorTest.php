@@ -21,14 +21,14 @@ final class OrcidVisibilitySettingErrorTest extends ViewModelTest
         $this->assertSame($data, $orcidVisibilitySettingError->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new OrcidVisibilitySettingError('/contact')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/orcid-error-visibility-setting.mustache';
     }

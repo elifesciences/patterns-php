@@ -6,5 +6,5 @@ use ArrayAccess;
 
 interface CastsToArray extends ArrayAccess
 {
-    public function toArray() : array;
+    public function toArray(): array;
 }

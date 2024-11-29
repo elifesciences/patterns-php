@@ -20,7 +20,7 @@ final class ImageLink implements ViewModel
         $this->image = $image;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/image-link.mustache';
     }

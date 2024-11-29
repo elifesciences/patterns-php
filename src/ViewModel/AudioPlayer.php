@@ -56,7 +56,7 @@ final class AudioPlayer implements ViewModel
         $this->metadata = str_replace('"', '\'', json_encode($this->metadata));
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/audio-player.mustache';
     }

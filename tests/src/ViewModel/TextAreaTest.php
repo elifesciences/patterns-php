@@ -77,7 +77,7 @@ class TextAreaTest extends ViewModelTest
         new TextArea(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, 'value', 10, 10, 'form', TextArea::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new TextArea(new FormLabel('label text'), 'someid', 'name', 'default value')],
@@ -101,7 +101,7 @@ class TextAreaTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/text-area.mustache';
     }

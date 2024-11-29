@@ -24,7 +24,7 @@ final class FilterGroup implements ViewModel
         $this->filters = $filters;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/filter-group.mustache';
     }

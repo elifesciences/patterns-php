@@ -63,7 +63,7 @@ final class InputTest extends PHPUnit_Framework_TestCase
         new Input('', 'text', 'name');
     }
 
-    public function invalidTypeProvider() : array
+    public function invalidTypeProvider(): array
     {
         return [
             [''],

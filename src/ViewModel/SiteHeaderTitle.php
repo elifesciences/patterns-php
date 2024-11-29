@@ -20,8 +20,7 @@ final class SiteHeaderTitle implements ViewModel
         string $homePagePath,
         bool $isWrapped = false,
         bool $borderVariant = false
-    )
-    {
+    ) {
         Assertion::notBlank($homePagePath);
 
         $this->homePagePath = $homePagePath;
@@ -29,7 +28,7 @@ final class SiteHeaderTitle implements ViewModel
         $this->borderVariant = $borderVariant;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/site-header-title.mustache';
     }

@@ -15,7 +15,7 @@ final class MustachePatternRenderer implements PatternRenderer
         $this->mustache = $mustache;
     }
 
-    public function render(ViewModel ...$viewModels) : string
+    public function render(ViewModel ...$viewModels): string
     {
         return implode('', array_map(function (ViewModel $viewModel) {
             return $this->mustache->render($viewModel->getTemplateName(), $viewModel);

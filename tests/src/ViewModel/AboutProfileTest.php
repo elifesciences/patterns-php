@@ -81,7 +81,7 @@ final class AboutProfileTest extends ViewModelTest
         $this->assertArrayNotHasKey('hasPlaceholderImage', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [
@@ -90,7 +90,7 @@ final class AboutProfileTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/about-profile.mustache';
     }

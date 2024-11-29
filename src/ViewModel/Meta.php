@@ -9,17 +9,16 @@ use eLife\Patterns\ViewModel;
 
 final class Meta implements ViewModel
 {
-    const STATUS_NOT_REVISED = 'Not revised';
-    const STATUS_REVISED = 'Revised';
-    const STATUS_VOR = 'Version of Record';
-    const STATUS_POA = 'Accepted Manuscript';
-
-    const COLOR_NOT_REVISED = 'not-revised';
-    const COLOR_REVISED = 'revised';
-    const COLOR_VOR = 'vor';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const STATUS_NOT_REVISED = 'Not revised';
+    public const STATUS_REVISED = 'Revised';
+    public const STATUS_VOR = 'Version of Record';
+    public const STATUS_POA = 'Accepted Manuscript';
+
+    public const COLOR_NOT_REVISED = 'not-revised';
+    public const COLOR_REVISED = 'revised';
+    public const COLOR_VOR = 'vor';
 
     private $url;
     private $text;
@@ -28,8 +27,14 @@ final class Meta implements ViewModel
     private $articleStatusColorClass;
     private $version;
 
-    private function __construct(string $url = null, string $text = null, Date $date = null, string $articleStatus = null,
-    string $articleStatusColorClass = null, string $version = null)
+    private function __construct(
+        string $url = null,
+        string $text = null,
+        Date $date = null,
+        string $articleStatus = null,
+        string $articleStatusColorClass = null,
+        string $version = null
+    )
     {
         if ($date instanceof Date) {
             Assertion::false($date['isExpanded']);
@@ -46,31 +51,40 @@ final class Meta implements ViewModel
         $this->version = $version;
     }
 
-    public static function withLink(Link $link, Date $date = null, string $articleStatus = null,
-    string $articleStatusColorClass = null, string $version = null) : Meta
+    public static function withLink(
+        Link $link,
+        Date $date = null,
+        string $articleStatus = null,
+        string $articleStatusColorClass = null,
+        string $version = null
+    ): Meta
     {
         return new self($link['url'], $link['name'], $date, $articleStatus, $articleStatusColorClass, $version);
     }
 
-    public static function withVersion(string $version, Date $date = null, string $articleStatus = null,
-    string $articleStatusColorClass = null) : Meta
+    public static function withVersion(
+        string $version,
+        Date $date = null,
+        string $articleStatus = null,
+        string $articleStatusColorClass = null
+    ): Meta
     {
         return new self(null, null, $date, $articleStatus, $articleStatusColorClass, $version);
     }
 
-    public static function withText(string $text, Date $date = null) : Meta
+    public static function withText(string $text, Date $date = null): Meta
     {
         Assertion::minLength($text, 1);
 
         return new self(null, $text, $date);
     }
 
-    public static function withDate(Date $date) : Meta
+    public static function withDate(Date $date): Meta
     {
         return new self(null, null, $date);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/meta.mustache';
     }

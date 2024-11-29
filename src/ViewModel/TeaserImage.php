@@ -15,9 +15,9 @@ final class TeaserImage implements CastsToArray
     private $sources;
     private $type;
 
-    const STYLE_PROMINENT = 'prominent';
-    const STYLE_BIG = 'big';
-    const STYLE_SMALL = 'small';
+    public const STYLE_PROMINENT = 'prominent';
+    public const STYLE_BIG = 'big';
+    public const STYLE_SMALL = 'small';
 
     private function __construct(
         Picture $image,

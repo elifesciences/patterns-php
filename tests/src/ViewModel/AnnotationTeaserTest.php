@@ -42,7 +42,8 @@ final class AnnotationTeaserTest extends ViewModelTest
             $data['inContextUri'],
             $data['highlight'],
             $data['content'],
-            $data['isRestricted']);
+            $data['isRestricted']
+        );
         $this->assertSame($data['document'], $annotationTeaser['document']);
         $this->assertSame($data['highlight'], $annotationTeaser['highlight']);
         $this->assertSame($data['content'], $annotationTeaser['content']);
@@ -108,7 +109,8 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::forAnnotation('the document',
+        AnnotationTeaser::forAnnotation(
+            'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
             'highlight',
@@ -138,7 +140,8 @@ final class AnnotationTeaserTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        AnnotationTeaser::forPageNote('the document',
+        AnnotationTeaser::forPageNote(
+            'the document',
             Date::simple(new DateTimeImmutable('2017-12-21')),
             '#the-uri',
             ''
@@ -174,7 +177,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         $this->assertTrue($annotationTeaser['isReply']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'highlight' => [
@@ -204,7 +207,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/annotation-teaser.mustache';
     }

@@ -75,7 +75,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame($this->siteHeaderNavBar['classesInner'], 'nav-secondary__list clearfix');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         $button = Button::form('button text', 'button', 'name');
 
@@ -90,7 +90,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/site-header-nav-bar.mustache';
     }

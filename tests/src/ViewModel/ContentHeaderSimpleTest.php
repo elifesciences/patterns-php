@@ -34,7 +34,7 @@ final class ContentHeaderSimpleTest extends ViewModelTest
         new ContentHeaderSimple('');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ContentHeaderSimple('title')],
@@ -42,7 +42,7 @@ final class ContentHeaderSimpleTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/content-header-simple.mustache';
     }

@@ -41,7 +41,9 @@ final class SelectTest extends ViewModelTest
                 'infoText' => 'info text',
             ],
         ];
-        $select = new Select($data['id'], [
+        $select = new Select(
+            $data['id'],
+            [
             new SelectOption(
                 $data['options'][0]['value'],
                 $data['options'][0]['displayValue'],
@@ -52,9 +54,13 @@ final class SelectTest extends ViewModelTest
                 $data['options'][1]['displayValue'],
                 $data['options'][1]['selected']
             ),
-        ], new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']),
-            $data['name'], $data['required'], $data['disabled'], Select::STATE_INVALID,
-                MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
+        ],
+            new FormLabel($data['label']['labelText'], $data['label']['isVisuallyHidden']),
+            $data['name'],
+            $data['required'],
+            $data['disabled'],
+            Select::STATE_INVALID,
+            MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         );
 
         // id of messageGroup is unpredictable so must be ignored by the test
@@ -63,7 +69,7 @@ final class SelectTest extends ViewModelTest
         $this->assertSame($data, $selectAsArray);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [
@@ -73,16 +79,24 @@ final class SelectTest extends ViewModelTest
                 ], new FormLabel('Form label', 'id'), 'name'),
             ],
             'complete' => [
-                new Select('id', [
+                new Select(
+                    'id',
+                    [
                     new SelectOption('choice-1', 'Choice 1', false),
                     new SelectOption('choice-2', 'Choice 2', true),
-                ], new FormLabel('Form label', 'id'), 'name', true,
-                    true, Select::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')),
+                ],
+                    new FormLabel('Form label', 'id'),
+                    'name',
+                    true,
+                    true,
+                    Select::STATE_INVALID,
+                    MessageGroup::forInfoText('info text', 'error text')
+                ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/select.mustache';
     }

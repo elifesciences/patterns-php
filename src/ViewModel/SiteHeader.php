@@ -27,7 +27,7 @@ final class SiteHeader implements ViewModel
         }
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/site-header.mustache';
     }

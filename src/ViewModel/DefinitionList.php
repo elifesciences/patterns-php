@@ -2,18 +2,17 @@
 
 namespace eLife\Patterns\ViewModel;
 
-use function array_values;
 use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
+use function array_values;
 
 final class DefinitionList implements ViewModel
 {
-    const COLOR_VOR = 'vor';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const COLOR_VOR = 'vor';
 
     private $items;
     private $variant;
@@ -50,22 +49,22 @@ final class DefinitionList implements ViewModel
         $this->label = $label;
     }
 
-    public static function basic(array $items) : DefinitionList
+    public static function basic(array $items): DefinitionList
     {
         return new self($items);
     }
 
-    public static function inline(array $items) : DefinitionList
+    public static function inline(array $items): DefinitionList
     {
         return new self($items, 'inline');
     }
 
-    public static function timeline(array $items, string $color = null, string $label = null, bool $isActive = false) : DefinitionList
+    public static function timeline(array $items, string $color = null, string $label = null, bool $isActive = false): DefinitionList
     {
         return new self($items, 'timeline', $color, $label, $isActive);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/definition-list.mustache';
     }

@@ -31,7 +31,7 @@ final class DecisionLetterHeaderTest extends ViewModelTest
         return new ProfileSnippet('Name McName', 'Title McTitle');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'without profiles' => [new DecisionLetterHeader('Main text of letter')],
@@ -39,7 +39,7 @@ final class DecisionLetterHeaderTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/decision-letter-header.mustache';
     }

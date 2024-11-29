@@ -23,7 +23,7 @@ final class NavLinkedItem implements ViewModel
     public static function asLink(
         Link $link,
         bool $search = false
-    ) : NavLinkedItem {
+    ): NavLinkedItem {
         $itemAsText = new static();
         $itemAsText->text = $link['name'];
         $itemAsText->path = $link['url'];
@@ -32,7 +32,7 @@ final class NavLinkedItem implements ViewModel
         return $itemAsText;
     }
 
-    public static function asButton(Button $button) : NavLinkedItem
+    public static function asButton(Button $button): NavLinkedItem
     {
         $itemAsButton = new static();
         $itemAsButton->button = $button;
@@ -40,7 +40,7 @@ final class NavLinkedItem implements ViewModel
         return $itemAsButton;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/nav-linked-item.mustache';
     }

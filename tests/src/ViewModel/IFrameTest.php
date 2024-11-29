@@ -28,7 +28,7 @@ final class IFrameTest extends ViewModelTest
         $this->assertSame($iFrame->toArray(), $data);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'square' => [new IFrame('http://www.example.com/', 100, 100)],
@@ -70,7 +70,7 @@ final class IFrameTest extends ViewModelTest
         new IFrame('http://www.example.com/', 100, 0);
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/iframe.mustache';
     }

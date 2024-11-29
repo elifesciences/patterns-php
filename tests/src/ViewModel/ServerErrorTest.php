@@ -26,7 +26,7 @@ final class ServerErrorTest extends ViewModelTest
         $this->assertSame($data, $serverError->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ServerError()],
@@ -34,7 +34,7 @@ final class ServerErrorTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/server-error.mustache';
     }

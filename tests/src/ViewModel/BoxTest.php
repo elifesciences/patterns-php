@@ -56,7 +56,7 @@ final class BoxTest extends ViewModelTest
         new Box(null, null, 'title', $headingLevel, null, 'content');
     }
 
-    public function headingLevelProvider() : array
+    public function headingLevelProvider(): array
     {
         return [[0], [7]];
     }
@@ -71,7 +71,7 @@ final class BoxTest extends ViewModelTest
         new Box(null, null, 'title', 1, null, '');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new Box(null, null, 'title', 1, null, 'content')],
@@ -79,7 +79,7 @@ final class BoxTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/box.mustache';
     }

@@ -32,14 +32,14 @@ final class OrcidTest extends ViewModelTest
         new Orcid('foo');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new Orcid('0000-0002-1825-0097')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/orcid.mustache';
     }

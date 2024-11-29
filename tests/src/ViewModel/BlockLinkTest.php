@@ -35,7 +35,7 @@ final class BlockLinkTest extends ViewModelTest
         $this->assertSame($data, $blockLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'without image' => [new BlockLink(new Link('name', 'url'))],
@@ -43,7 +43,7 @@ final class BlockLinkTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/block-link.mustache';
     }

@@ -83,7 +83,7 @@ final class CallToActionTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $callToAction->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [
@@ -107,7 +107,7 @@ final class CallToActionTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/call-to-action.mustache';
     }

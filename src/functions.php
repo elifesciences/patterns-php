@@ -2,7 +2,7 @@
 
 namespace eLife\Patterns;
 
-function mixed_visibility_text(string $prefix, string $text, string $suffix = '') : string
+function mixed_visibility_text(string $prefix, string $text, string $suffix = ''): string
 {
     $wrappedPrefix = '';
     $wrappedSuffix = '';
@@ -21,7 +21,7 @@ function mixed_accessibility_text(
     string $visibleInaccessiblePrefix,
     string $hiddenAccessibleText,
     string $visibleInaccessibleSuffix = ''
-) : string {
+): string {
     $string = '';
 
     if (false === empty($visibleInaccessiblePrefix)) {

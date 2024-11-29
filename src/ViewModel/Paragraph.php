@@ -21,7 +21,7 @@ final class Paragraph implements ViewModel
         $this->text = $text;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/paragraph.mustache';
     }

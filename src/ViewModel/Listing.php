@@ -19,8 +19,10 @@ final class Listing implements ViewModel
 
     private function __construct(bool $isOrdered, string $prefix = null, array $items, string $classes = null)
     {
-        Assertion::nullOrChoice($prefix,
-            ['alpha-lower', 'alpha-upper', 'bullet', 'number', 'roman-lower', 'roman-upper', 'line']);
+        Assertion::nullOrChoice(
+            $prefix,
+            ['alpha-lower', 'alpha-upper', 'bullet', 'number', 'roman-lower', 'roman-upper', 'line']
+        );
         Assertion::notEmpty($items);
         Assertion::allString($items);
 
@@ -30,22 +32,22 @@ final class Listing implements ViewModel
         $this->classes = $classes;
     }
 
-    public static function ordered(array $items, string $prefix = null) : Listing
+    public static function ordered(array $items, string $prefix = null): Listing
     {
         return new self(true, $prefix, $items);
     }
 
-    public static function unordered(array $items, string $prefix = null) : Listing
+    public static function unordered(array $items, string $prefix = null): Listing
     {
         return new self(false, $prefix, $items);
     }
 
-    public static function forTeaser(array $items, string $prefix = 'bullet') : Listing
+    public static function forTeaser(array $items, string $prefix = 'bullet'): Listing
     {
         return new self(false, $prefix, $items, 'list--teaser');
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/list.mustache';
     }

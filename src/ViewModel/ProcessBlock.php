@@ -9,10 +9,9 @@ use eLife\Patterns\ViewModel;
 
 final class ProcessBlock implements ViewModel
 {
-    const COLOR_VOR = 'vor';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const COLOR_VOR = 'vor';
 
     private $body;
     private $variant;
@@ -27,7 +26,7 @@ final class ProcessBlock implements ViewModel
         $this->link = $link;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/process-block.mustache';
     }

@@ -49,7 +49,7 @@ final class BreadcrumbTest extends ViewModelTest
         $this->assertFalse($without->toArray()['items'][0]['url']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new Breadcrumb([new Link('name')])],
@@ -57,7 +57,7 @@ final class BreadcrumbTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/breadcrumb.mustache';
     }

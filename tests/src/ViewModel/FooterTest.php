@@ -63,17 +63,20 @@ final class FooterTest extends ViewModelTest
         $this->assertSame($data, $footer->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
-                new Footer(new MainMenu(new SiteHeaderTitle('/home/page/path'), [new Link('name1', 'url1')]),
-                    [new Link('name2', 'url2')], new InvestorLogos(new Picture([], new Image('foo.jpg')))),
+                new Footer(
+                    new MainMenu(new SiteHeaderTitle('/home/page/path'), [new Link('name1', 'url1')]),
+                    [new Link('name2', 'url2')],
+                    new InvestorLogos(new Picture([], new Image('foo.jpg')))
+                ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/footer.mustache';
     }

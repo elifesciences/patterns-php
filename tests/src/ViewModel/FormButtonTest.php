@@ -78,7 +78,7 @@ final class FormButtonTest extends ViewModelTest
         Button::form('text', Button::TYPE_BUTTON, 'some name', Button::SIZE_MEDIUM, 'foo');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'button' => [Button::form('text', Button::TYPE_BUTTON)],
@@ -97,7 +97,7 @@ final class FormButtonTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/button.mustache';
     }

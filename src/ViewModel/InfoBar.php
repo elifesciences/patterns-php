@@ -10,17 +10,16 @@ use eLife\Patterns\ViewModel;
 
 final class InfoBar implements ViewModel
 {
-    const TYPE_ATTENTION = 'attention';
-    const TYPE_DISMISSIBLE = 'dismissible';
-    const TYPE_INFO = 'info';
-    const TYPE_SUCCESS = 'success';
-    const TYPE_CORRECTION = 'correction';
-    const TYPE_MULTIPLE_VERSIONS = 'multiple-versions';
-    const TYPE_WARNING = 'warning';
-    const TYPE_ANNOUNCEMENT = 'announcement';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const TYPE_ATTENTION = 'attention';
+    public const TYPE_DISMISSIBLE = 'dismissible';
+    public const TYPE_INFO = 'info';
+    public const TYPE_SUCCESS = 'success';
+    public const TYPE_CORRECTION = 'correction';
+    public const TYPE_MULTIPLE_VERSIONS = 'multiple-versions';
+    public const TYPE_WARNING = 'warning';
+    public const TYPE_ANNOUNCEMENT = 'announcement';
 
     private $dismissible;
     private $id;
@@ -31,7 +30,8 @@ final class InfoBar implements ViewModel
         string $text,
         string $type = self::TYPE_INFO,
         string $id = null,
-        DateTimeImmutable $cookieExpires = null)
+        DateTimeImmutable $cookieExpires = null
+    )
     {
         Assertion::notBlank($text);
         Assertion::choice($type, [
@@ -59,7 +59,7 @@ final class InfoBar implements ViewModel
         $this->type = $type;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/info-bar.mustache';
     }

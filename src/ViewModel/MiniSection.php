@@ -23,7 +23,7 @@ final class MiniSection implements ViewModel
         $this->listHeading = $listHeading;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/mini-section.mustache';
     }

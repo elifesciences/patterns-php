@@ -85,16 +85,16 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($validator->isValid(), $message);
     }
 
-    abstract public function viewModelProvider() : array;
+    abstract public function viewModelProvider(): array;
 
-    final protected function createViewModel() : ViewModel
+    final protected function createViewModel(): ViewModel
     {
         return array_values($this->viewModelProvider())[0][0];
     }
 
-    abstract protected function expectedTemplate() : string;
+    abstract protected function expectedTemplate(): string;
 
-    private function loadDefinition() : stdClass
+    private function loadDefinition(): stdClass
     {
         $templateName = $this->createViewModel()->getTemplateName();
         $yamlFile = __DIR__.'/../../../resources/definitions/'.basename($templateName, 'mustache').'yaml';

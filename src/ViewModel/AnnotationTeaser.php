@@ -12,7 +12,7 @@ final class AnnotationTeaser implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    const RESTRICTED_ACCESS_TEXT = 'Only me';
+    public const RESTRICTED_ACCESS_TEXT = 'Only me';
 
     private $content;
     private $document;
@@ -58,7 +58,7 @@ final class AnnotationTeaser implements ViewModel
         string $highlight,
         string $content,
         bool $isRestricted = false
-    ) : AnnotationTeaser {
+    ): AnnotationTeaser {
         return new static(
             $document,
             $date,
@@ -75,7 +75,7 @@ final class AnnotationTeaser implements ViewModel
         string $inContextUri,
         string $highlight,
         bool $isRestricted = false
-    ) : AnnotationTeaser {
+    ): AnnotationTeaser {
         return new static(
             $document,
             $date,
@@ -92,7 +92,7 @@ final class AnnotationTeaser implements ViewModel
         string $inContextUri,
         string $content,
         bool $isRestricted = false
-    ) : AnnotationTeaser {
+    ): AnnotationTeaser {
         return new static(
             $document,
             $date,
@@ -109,7 +109,7 @@ final class AnnotationTeaser implements ViewModel
         string $inContextUri,
         string $content,
         bool $isRestricted = false
-    ) : AnnotationTeaser {
+    ): AnnotationTeaser {
         return new static(
             $document,
             $date,
@@ -121,7 +121,7 @@ final class AnnotationTeaser implements ViewModel
         );
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/annotation-teaser.mustache';
     }

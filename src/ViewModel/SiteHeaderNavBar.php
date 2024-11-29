@@ -55,17 +55,17 @@ final class SiteHeaderNavBar implements ViewModel
         $this->classesInner = 'nav-'.$type.'__list clearfix';
     }
 
-    public static function primary(array $linkedItems) : SiteHeaderNavBar
+    public static function primary(array $linkedItems): SiteHeaderNavBar
     {
         return new static($linkedItems, 'primary');
     }
 
-    public static function secondary(array $linkedItems) : SiteHeaderNavBar
+    public static function secondary(array $linkedItems): SiteHeaderNavBar
     {
         return new static($linkedItems, 'secondary');
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/site-header-nav-bar.mustache';
     }

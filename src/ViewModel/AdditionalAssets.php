@@ -26,7 +26,7 @@ final class AdditionalAssets implements ViewModel
         $this->assets = $assets;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/additional-assets.mustache';
     }

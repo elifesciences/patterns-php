@@ -25,14 +25,14 @@ final class MessageGroup implements CastsToArray
         $this->infoText = $infoText;
     }
 
-    public static function forInfoText(string $infoText, string $errorText = null) : MessageGroup
+    public static function forInfoText(string $infoText, string $errorText = null): MessageGroup
     {
         Assertion::notBlank($infoText);
 
         return new self($errorText, $infoText);
     }
 
-    public static function forErrorText(string $errorText) : MessageGroup
+    public static function forErrorText(string $errorText): MessageGroup
     {
         Assertion::notBlank($errorText);
 

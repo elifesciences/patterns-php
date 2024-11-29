@@ -85,7 +85,7 @@ final class BarChartTest extends ViewModelTest
         new BarChart('id', 'type', 'containerId', 'http://example.com', BarChart::METRIC_DOWNLOADS, 'foo');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'full' => [
@@ -101,7 +101,7 @@ final class BarChartTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/bar-chart.mustache';
     }

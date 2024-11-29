@@ -63,7 +63,7 @@ final class FilterPanelTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $panel->toArray());
     }
 
-    private function allToArray(array $all) : array
+    private function allToArray(array $all): array
     {
         return array_map(
             function (ViewModel $a) {
@@ -73,7 +73,7 @@ final class FilterPanelTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new FilterPanel('Search results', [
@@ -86,7 +86,7 @@ final class FilterPanelTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/filter-panel.mustache';
     }

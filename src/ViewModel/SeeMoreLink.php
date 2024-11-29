@@ -20,7 +20,7 @@ final class SeeMoreLink implements ViewModel
         $this->isInline = $isInline;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/see-more-link.mustache';
     }

@@ -28,7 +28,7 @@ final class ArticleDownloadLinksList implements ViewModel
         $this->groups = $groups;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/article-download-links-list.mustache';
     }

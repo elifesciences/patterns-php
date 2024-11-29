@@ -18,7 +18,7 @@ final class OrcidVisibilitySettingError implements ViewModel
         $this->contactUri = $contactUri;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/orcid-error-visibility-setting.mustache';
     }

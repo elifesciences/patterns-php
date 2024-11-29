@@ -44,13 +44,13 @@ final class SocialMediaSharersNew implements ViewModel
         if ($hasMastodon) {
             $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedTitle}%20{$encodedUrl}";
         }
-        
+
         if ($hasComment) {
             $this->hasComment = $hasComment;
         }
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/social-media-sharers-journal.mustache';
     }

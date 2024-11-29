@@ -50,7 +50,7 @@ final class AuthorsDetailsTest extends ViewModelTest
         $this->assertSame($data, $authorsDetails->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -62,7 +62,7 @@ final class AuthorsDetailsTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/authors-details.mustache';
     }

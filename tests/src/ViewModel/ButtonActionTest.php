@@ -46,7 +46,7 @@ final class ButtonActionTest extends ViewModelTest
         $this->assertArrayNotHasKey('isHypothesisTrigger', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'basic' => [Button::action('Button action', '#')],
@@ -57,7 +57,7 @@ final class ButtonActionTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/button.mustache';
     }

@@ -23,7 +23,7 @@ final class Term implements ViewModel
         $this->isHighlighted = $isHighlighted;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/term.mustache';
     }

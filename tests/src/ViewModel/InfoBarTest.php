@@ -67,7 +67,7 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, null, new DateTimeImmutable('2020-01-15'));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'attention' => [new InfoBar('text', InfoBar::TYPE_ATTENTION)],
@@ -81,7 +81,7 @@ final class InfoBarTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/info-bar.mustache';
     }

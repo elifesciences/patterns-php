@@ -34,7 +34,7 @@ final class ButtonCollectionTest extends ViewModelTest
         $this->assertSame($data, $blockLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ButtonCollection([Button::link('text', 'path')])],
@@ -44,7 +44,7 @@ final class ButtonCollectionTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/button-collection.mustache';
     }

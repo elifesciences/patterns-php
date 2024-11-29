@@ -39,7 +39,7 @@ final class ListingReadMore implements ViewModel
         $this->allRelated = $this->areAllRelated($items);
     }
 
-    private function areAllRelated(array $items) : bool
+    private function areAllRelated(array $items): bool
     {
         foreach ($items as $item) {
             if (!$item['isRelated']) {
@@ -50,7 +50,7 @@ final class ListingReadMore implements ViewModel
         return true;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/listing-read-more.mustache';
     }

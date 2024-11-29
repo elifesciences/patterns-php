@@ -65,7 +65,7 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame($this->siteHeaderNavBar['classesInner'], 'nav-primary__list clearfix');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         $navLinkItems = [
             NavLinkedItem::asLink(new Link('item 1', '/item-1/'), false),
@@ -77,7 +77,7 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/site-header-nav-bar.mustache';
     }

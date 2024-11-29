@@ -32,7 +32,7 @@ final class InvestorLogosTest extends ViewModelTest
         $this->assertSame($data, $investorLogos->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -41,7 +41,7 @@ final class InvestorLogosTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/investor-logos.mustache';
     }

@@ -34,7 +34,7 @@ final class ListHeadingTest extends ViewModelTest
         new ListHeading('');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'complete' => [
@@ -46,7 +46,7 @@ final class ListHeadingTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/list-heading.mustache';
     }

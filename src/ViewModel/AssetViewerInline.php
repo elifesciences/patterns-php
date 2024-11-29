@@ -88,7 +88,7 @@ final class AssetViewerInline implements ViewModel
         OpenLink $open = null,
         int $supplementCount = 0,
         string $seeAllLink = null
-    ) : AssetViewerInline {
+    ): AssetViewerInline {
         return new self($id, null, null, $label, $captionedAsset, $additionalAssets, $download, $open, $supplementCount, $seeAllLink);
     }
 
@@ -101,11 +101,11 @@ final class AssetViewerInline implements ViewModel
         array $additionalAssets = [],
         Link $download = null,
         OpenLink $open = null
-    ) : AssetViewerInline {
+    ): AssetViewerInline {
         return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets, $download, $open);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/asset-viewer-inline.mustache';
     }

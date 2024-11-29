@@ -16,12 +16,12 @@ final class Honeypot implements ViewModel
         $this->textField = $textField;
     }
 
-    protected function getViewModel() : ViewModel
+    protected function getViewModel(): ViewModel
     {
         return $this->textField;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/honeypot.mustache';
     }

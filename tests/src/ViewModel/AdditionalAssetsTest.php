@@ -37,7 +37,8 @@ final class AdditionalAssetsTest extends ViewModelTest
                 ],
             ],
         ];
-        $additionalAssets = new AdditionalAssets($data['heading'],
+        $additionalAssets = new AdditionalAssets(
+            $data['heading'],
             [
                 AdditionalAsset::withoutDoi(
                     $data['assets'][0]['assetId'],
@@ -48,7 +49,8 @@ final class AdditionalAssetsTest extends ViewModelTest
                     ),
                     $data['assets'][0]['nonDoiLink']
                 ),
-            ]);
+            ]
+        );
 
         $this->assertSame('Some title', $additionalAssets['heading']);
         $this->assertCount(1, $additionalAssets['assets']);
@@ -56,23 +58,27 @@ final class AdditionalAssetsTest extends ViewModelTest
         $this->assertSame($data, $additionalAssets->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
 
         return [
             [
-                new AdditionalAssets(null,
-                    [AdditionalAsset::withDoi('id', CaptionText::withHeading('heading'), $downloadLink, new Doi('10.7554/eLife.10181.001'))]),
+                new AdditionalAssets(
+                    null,
+                    [AdditionalAsset::withDoi('id', CaptionText::withHeading('heading'), $downloadLink, new Doi('10.7554/eLife.10181.001'))]
+                ),
             ],
             [
-                new AdditionalAssets('Some title',
-                    [AdditionalAsset::withoutDoi('id', CaptionText::withHeading('heading'), $downloadLink, 'http://google.com/')]),
+                new AdditionalAssets(
+                    'Some title',
+                    [AdditionalAsset::withoutDoi('id', CaptionText::withHeading('heading'), $downloadLink, 'http://google.com/')]
+                ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/additional-assets.mustache';
     }

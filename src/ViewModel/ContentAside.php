@@ -34,7 +34,7 @@ final class ContentAside implements ViewModel
         $this->previousVersion = $previousVersion;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/content-aside.mustache';
     }

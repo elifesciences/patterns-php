@@ -24,8 +24,7 @@ final class ArticleDownloadLinksGroup implements CastsToArray
         string $intro = null,
         string $id = null,
         bool $jsHideGroup = false
-    )
-    {
+    ) {
         Assertion::notBlank($title);
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, ArticleDownloadLink::class);

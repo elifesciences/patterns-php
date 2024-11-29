@@ -67,7 +67,7 @@ final class CaptionedAsset implements ViewModel
         }
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/captioned-asset.mustache';
     }

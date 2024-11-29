@@ -9,11 +9,10 @@ use eLife\Patterns\ViewModel;
 
 final class TextField implements ViewModel
 {
-    const STATE_INVALID = 'invalid';
-    const STATE_VALID = 'valid';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const STATE_INVALID = 'invalid';
+    public const STATE_VALID = 'valid';
 
     private $inputType;
     private $label;
@@ -163,7 +162,7 @@ final class TextField implements ViewModel
         return new static('url', $label, $id, $name, $placeholder, $required, $disabled, null, null, $autofocus, $value, $state, $messageGroup);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/text-field.mustache';
     }

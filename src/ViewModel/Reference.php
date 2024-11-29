@@ -58,7 +58,7 @@ final class Reference implements ViewModel
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []
-    ) : Reference {
+    ): Reference {
         return new self($title, $origin, $label, $id, null, $doi, $authorLists, $abstracts);
     }
 
@@ -69,11 +69,11 @@ final class Reference implements ViewModel
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []
-    ) : Reference {
+    ): Reference {
         return new self($title['name'], $origin, $label, $id, $title['url'], null, $authorLists, $abstracts);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/reference.mustache';
     }

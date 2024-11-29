@@ -49,17 +49,17 @@ final class AuthorDetails implements ViewModel
         }, array_keys($groups), array_values($groups));
     }
 
-    public static function forPerson(string $id, string $name, array $details = [], Orcid $orcid = null) : AuthorDetails
+    public static function forPerson(string $id, string $name, array $details = [], Orcid $orcid = null): AuthorDetails
     {
         return new self($id, $name, $details, $orcid);
     }
 
-    public static function forGroup(string $id, string $name, array $details = [], array $groups = []) : AuthorDetails
+    public static function forGroup(string $id, string $name, array $details = [], array $groups = []): AuthorDetails
     {
         return new self($id, $name, $details, null, $groups);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/author-details.mustache';
     }

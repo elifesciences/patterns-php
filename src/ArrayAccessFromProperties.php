@@ -6,7 +6,7 @@ trait ArrayAccessFromProperties
 {
     use ReadOnlyArrayAccess;
 
-    final public function offsetExists($offset) : bool
+    final public function offsetExists($offset): bool
     {
         if ('_' === substr($offset, 0, 1)) {
             return false;

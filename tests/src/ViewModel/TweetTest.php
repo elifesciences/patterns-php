@@ -43,7 +43,7 @@ final class TweetTest extends ViewModelTest
         $this->assertSame($data['hideCards'], $tweet['hideCards']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new Tweet('#', 'accountId', 'accountLabel', 'text', Date::simple(new DateTimeImmutable()))],
@@ -51,7 +51,7 @@ final class TweetTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/tweet.mustache';
     }

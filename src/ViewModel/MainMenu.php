@@ -26,7 +26,7 @@ final class MainMenu implements ViewModel
         $this->listHeading = new ListHeading('Menu');
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/main-menu.mustache';
     }

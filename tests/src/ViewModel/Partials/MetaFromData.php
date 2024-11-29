@@ -9,7 +9,7 @@ use eLife\Patterns\ViewModel\Meta;
 
 trait MetaFromData
 {
-    final protected function metaFromData(array $data) : Meta
+    final protected function metaFromData(array $data): Meta
     {
         if ($data['url']) {
             if (isset($data['date']['forMachine'])) {

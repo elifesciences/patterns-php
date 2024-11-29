@@ -54,7 +54,7 @@ final class FilterGroupTest extends ViewModelTest
         $this->assertSame('3,000', $filterGroup['filters'][2]['results']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -67,7 +67,7 @@ final class FilterGroupTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/filter-group.mustache';
     }

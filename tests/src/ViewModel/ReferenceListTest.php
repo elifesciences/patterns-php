@@ -11,12 +11,12 @@ use eLife\Patterns\ViewModel\ReferenceList;
 
 final class ReferenceListTest extends ViewModelTest
 {
-    private static function referenceStub(string $id) : Reference
+    private static function referenceStub(string $id): Reference
     {
         return Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'), $id, 'label', ['origin'], [new ReferenceAuthorList([Author::asText('author')], 'suffix')], [new Link('abstract', 'link')]);
     }
 
-    private static function referenceStubArray(string $id) : array
+    private static function referenceStubArray(string $id): array
     {
         return self::referenceStub($id)->toArray();
     }
@@ -46,7 +46,7 @@ final class ReferenceListTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $referenceList);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -61,7 +61,7 @@ final class ReferenceListTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/reference-list.mustache';
     }

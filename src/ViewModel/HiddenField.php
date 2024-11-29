@@ -22,7 +22,7 @@ final class HiddenField implements ViewModel
         $this->value = $value;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/hidden-field.mustache';
     }

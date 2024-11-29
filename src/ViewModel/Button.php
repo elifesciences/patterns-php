@@ -9,28 +9,27 @@ use eLife\Patterns\ViewModel;
 
 final class Button implements ViewModel
 {
-    const SIZE_CUSTOM = 'custom';
-    const SIZE_MEDIUM = 'medium';
-    const SIZE_SMALL = 'small';
-    const SIZE_EXTRA_SMALL = 'extra-small';
-
-    const STYLE_DEFAULT = 'default';
-    const STYLE_LOGIN = 'login';
-    const STYLE_OUTLINE = 'outline';
-    const STYLE_SECONDARY = 'secondary';
-    const STYLE_SPEECH_BUBBLE = 'speech-bubble';
-
-    const TYPE_BUTTON = 'button';
-    const TYPE_SUBMIT = 'submit';
-    const TYPE_RESET = 'reset';
-
-    const ACTION_VARIANT_CITATION = 'citation';
-    const ACTION_VARIANT_COMMENT = 'comment';
-    const ACTION_VARIANT_DOWNLOAD = 'download';
-    const ACTION_VARIANT_SHARE = 'share';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const SIZE_CUSTOM = 'custom';
+    public const SIZE_MEDIUM = 'medium';
+    public const SIZE_SMALL = 'small';
+    public const SIZE_EXTRA_SMALL = 'extra-small';
+
+    public const STYLE_DEFAULT = 'default';
+    public const STYLE_LOGIN = 'login';
+    public const STYLE_OUTLINE = 'outline';
+    public const STYLE_SECONDARY = 'secondary';
+    public const STYLE_SPEECH_BUBBLE = 'speech-bubble';
+
+    public const TYPE_BUTTON = 'button';
+    public const TYPE_SUBMIT = 'submit';
+    public const TYPE_RESET = 'reset';
+
+    public const ACTION_VARIANT_CITATION = 'citation';
+    public const ACTION_VARIANT_COMMENT = 'comment';
+    public const ACTION_VARIANT_DOWNLOAD = 'download';
+    public const ACTION_VARIANT_SHARE = 'share';
 
     private $classes;
     private $path;
@@ -86,7 +85,7 @@ final class Button implements ViewModel
         string $id = null,
         bool $isActive = true,
         bool $isFullWidth = false
-    ) : Button {
+    ): Button {
         Assertion::notBlank($clipboardText);
 
         $button = new static($text, $size, $style, $isActive, $name, $id, $isFullWidth);
@@ -105,7 +104,7 @@ final class Button implements ViewModel
         string $id = null,
         bool $isActive = true,
         bool $isFullWidth = false
-    ) : Button {
+    ): Button {
         Assertion::choice($type, [self::TYPE_BUTTON, self::TYPE_SUBMIT, self::TYPE_RESET]);
 
         $button = new static($text, $size, $style, $isActive, $name, $id, $isFullWidth);
@@ -123,7 +122,7 @@ final class Button implements ViewModel
         bool $isFullWidth = false,
         string $id = null,
         string $ariaLabel = null
-    ) : Button {
+    ): Button {
         Assertion::notBlank($path);
 
         $button = new static($text, $size, $style, $isActive, null, $id, $isFullWidth, $ariaLabel);
@@ -139,13 +138,14 @@ final class Button implements ViewModel
         string $id = null,
         string $variant = null,
         string $ariaLabel = null
-    ) : Button {
+    ): Button {
         $button = new static($text, self::SIZE_CUSTOM, self::STYLE_DEFAULT, $isActive, null, $id, false, $ariaLabel);
         $button->path = $path;
         $button->classes .= ' button--action';
 
         if ($variant) {
-            Assertion::choice($variant,
+            Assertion::choice(
+                $variant,
                 [
                     self::ACTION_VARIANT_CITATION,
                     self::ACTION_VARIANT_COMMENT,
@@ -170,7 +170,7 @@ final class Button implements ViewModel
         string $id = null,
         bool $isPopulated = false,
         bool $isSmall = false
-    ) : Button {
+    ): Button {
         $button = new static($text, self::SIZE_CUSTOM, self::STYLE_SPEECH_BUBBLE, $isActive, $name, $id, false);
         $button->type = self::TYPE_BUTTON;
 
@@ -185,7 +185,7 @@ final class Button implements ViewModel
         return $button;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/button.mustache';
     }

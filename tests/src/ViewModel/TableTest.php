@@ -68,7 +68,7 @@ final class TableTest extends ViewModelTest
         new Table(['foo']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new Table(['<table><tr><td>foo</td></tr></table>'])],
@@ -76,7 +76,7 @@ final class TableTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/table.mustache';
     }

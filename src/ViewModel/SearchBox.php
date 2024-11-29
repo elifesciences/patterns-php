@@ -20,7 +20,7 @@ final class SearchBox implements ViewModel
         $this->subjectFilter = $subjectFilter;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/search-box.mustache';
     }

@@ -23,7 +23,7 @@ final class Picture implements ViewModel, IsCaptioned
         $this->fallback = $fallback;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/picture.mustache';
     }

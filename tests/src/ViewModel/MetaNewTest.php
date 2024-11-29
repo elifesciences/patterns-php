@@ -52,7 +52,7 @@ final class MetaNewTest extends ViewModelTest
         return Date::simple(new DateTimeImmutable());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'link' => [MetaNew::withLink(new Link('foo', '#'), self::getDateStub())],
@@ -63,7 +63,7 @@ final class MetaNewTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/meta-journal.mustache';
     }

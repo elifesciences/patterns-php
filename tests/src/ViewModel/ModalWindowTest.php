@@ -77,7 +77,7 @@ final class ModalWindowTest extends ViewModelTest
         $this->assertArrayNotHasKey('triggerId', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimal' => [ModalWindow::create('title', 'body')],
@@ -87,7 +87,7 @@ final class ModalWindowTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/modal-window.mustache';
     }

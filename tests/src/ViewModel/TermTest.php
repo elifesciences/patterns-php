@@ -24,7 +24,7 @@ final class TermTest extends ViewModelTest
         $this->assertSame($data, $term->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new Term('Important')],
@@ -32,7 +32,7 @@ final class TermTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/term.mustache';
     }

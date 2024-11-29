@@ -44,7 +44,7 @@ final class LinkNavLinkedItemTest extends ViewModelTest
         $this->assertSame($dataAsLink, $asLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'basic' => [NavLinkedItem::asLink(new Link('the text', '/the/path'))],
@@ -52,7 +52,7 @@ final class LinkNavLinkedItemTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/nav-linked-item.mustache';
     }

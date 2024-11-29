@@ -22,7 +22,7 @@ final class PullQuoteTest extends ViewModelTest
         $this->assertSame($data, $pullQuote->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'with quote' => [new PullQuote('quote')],
@@ -31,7 +31,7 @@ final class PullQuoteTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/pull-quote.mustache';
     }

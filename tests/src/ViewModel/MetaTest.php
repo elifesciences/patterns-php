@@ -32,8 +32,13 @@ final class MetaTest extends ViewModelTest
             'articleStatusColorClass' => 'not-revised',
             'version' => 'Reviewed Preprint v1',
         ];
-        $meta = Meta::withLink(new Link($data['text'], $data['url']), Date::simple(new DateTimeImmutable('2015-05-15')),
-        $data['articleStatus'], $data['articleStatusColorClass'], $data['version']);
+        $meta = Meta::withLink(
+            new Link($data['text'], $data['url']),
+            Date::simple(new DateTimeImmutable('2015-05-15')),
+            $data['articleStatus'],
+            $data['articleStatusColorClass'],
+            $data['version']
+        );
 
         $this->assertSame($data, $meta->toArray());
         $this->assertSame($data['url'], $meta['url']);
@@ -79,7 +84,7 @@ final class MetaTest extends ViewModelTest
         return Date::simple(new DateTimeImmutable());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'link' => [Meta::withLink(new Link('foo', '#'), self::getDateStub())],
@@ -92,7 +97,7 @@ final class MetaTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/meta.mustache';
     }

@@ -79,7 +79,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
         $this->assertStringMatchesFormat($expectedButtonClasses, $observedButtonClasses);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'basic' => [Button::speechBubble('&#8220;')],
@@ -87,7 +87,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/button.mustache';
     }

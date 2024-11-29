@@ -32,7 +32,7 @@ final class Table implements ViewModel, IsCaptioned
         }
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/table.mustache';
     }

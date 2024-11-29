@@ -46,14 +46,14 @@ final class MainMenuTest extends ViewModelTest
         $this->assertSame($data, $mainMenu->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new MainMenu(new SiteHeaderTitle('/home/page/path'), [new Link('name', 'url')])],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/main-menu.mustache';
     }

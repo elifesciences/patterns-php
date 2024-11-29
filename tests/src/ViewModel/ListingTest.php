@@ -80,7 +80,7 @@ final class ListingTest extends ViewModelTest
         Listing::unordered([$this]);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'ordered' => [Listing::ordered(['foo', 'bar'], 'roman-upper')],
@@ -90,7 +90,7 @@ final class ListingTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/list.mustache';
     }

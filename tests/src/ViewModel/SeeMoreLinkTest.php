@@ -37,7 +37,7 @@ final class SeeMoreLinkTest extends ViewModelTest
         new SeeMoreLink(new Link('something'));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'complete' => [new SeeMoreLink(new Link('something', 'http://google.com', 'Research article', false, ['key' => 'value']))],
@@ -45,7 +45,7 @@ final class SeeMoreLinkTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/see-more-link.mustache';
     }

@@ -32,7 +32,7 @@ final class ArticleAssessmentTerms implements ViewModel
         $this->terms = $terms;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/article-assessment-terms.mustache';
     }

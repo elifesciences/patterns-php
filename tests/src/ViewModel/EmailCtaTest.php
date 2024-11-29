@@ -36,7 +36,7 @@ final class EmailCtaTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $emailCta->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -50,7 +50,7 @@ final class EmailCtaTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/email-cta.mustache';
     }

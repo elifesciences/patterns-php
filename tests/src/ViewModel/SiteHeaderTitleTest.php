@@ -25,7 +25,7 @@ final class SiteHeaderTitleTest extends ViewModelTest
         new SiteHeaderTitle('');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new SiteHeaderTitle('/home/page/path')],
@@ -33,7 +33,7 @@ final class SiteHeaderTitleTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/site-header-title.mustache';
     }

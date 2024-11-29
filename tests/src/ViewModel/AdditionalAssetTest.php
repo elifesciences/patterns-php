@@ -36,7 +36,8 @@ final class AdditionalAssetTest extends ViewModelTest
             $data['assetId'],
             CaptionText::withHeading($data['captionText']['heading'], $data['captionText']['standfirst'], $data['captionText']['text']),
             DownloadLink::fromLink(
-                new Link($data['downloadLink']['link']['name'], $data['downloadLink']['link']['url']), $data['downloadLink']['fileName']
+                new Link($data['downloadLink']['link']['name'], $data['downloadLink']['link']['url']),
+                $data['downloadLink']['fileName']
             ),
             $data['nonDoiLink']
         );
@@ -70,7 +71,7 @@ final class AdditionalAssetTest extends ViewModelTest
         $this->assertSame($data, $additionalAsset->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
 
@@ -82,7 +83,7 @@ final class AdditionalAssetTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/additional-asset.mustache';
     }

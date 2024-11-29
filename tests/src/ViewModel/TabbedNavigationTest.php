@@ -76,18 +76,23 @@ final class TabbedNavigationTest extends ViewModelTest
         new TabbedNavigation([]);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'full' => [
                 new TabbedNavigation(
                     [
-                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation1', 'http://google.com'),
-                        ' tabbed-navigation__tab-label--active'),
+                        TabbedNavigationLink::fromLink(
+                            new Link('Tabbed navigation1', 'http://google.com'),
+                            ' tabbed-navigation__tab-label--active'
+                        ),
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation2', 'http://google.com')),
                         TabbedNavigationLink::fromLink(new Link('Tabbed navigation3', 'http://google.com')),
-                        TabbedNavigationLink::fromLink(new Link('Tabbed navigation4', 'http://google.com'),
-                        ' tabbed-navigation__tab-label--side-by-side', true)
+                        TabbedNavigationLink::fromLink(
+                            new Link('Tabbed navigation4', 'http://google.com'),
+                            ' tabbed-navigation__tab-label--side-by-side',
+                            true
+                        )
                     ]
                 )
             ],
@@ -118,7 +123,7 @@ final class TabbedNavigationTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/tabbed-navigation.mustache';
     }

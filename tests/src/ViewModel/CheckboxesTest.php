@@ -57,7 +57,9 @@ final class CheckboxesTest extends ViewModelTest
                 'infoText' => 'info text',
             ],
         ];
-        $checkboxes = new Checkboxes($data['id'], [
+        $checkboxes = new Checkboxes(
+            $data['id'],
+            [
             new CheckboxesOption(
                 $data['checkboxes'][0]['value'],
                 $data['checkboxes'][0]['label'],
@@ -84,8 +86,13 @@ final class CheckboxesTest extends ViewModelTest
                     $data['checkboxes'][2]['children'][1]['checked']
                 ),
             ], 'Group 1'),
-        ], $data['name'], $data['title'], $data['required'], $data['disabled'], Checkboxes::STATE_INVALID,
-                MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
+        ],
+            $data['name'],
+            $data['title'],
+            $data['required'],
+            $data['disabled'],
+            Checkboxes::STATE_INVALID,
+            MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText'])
         );
 
         // id of messageGroup is unpredictable so must be ignored by the test
@@ -94,7 +101,7 @@ final class CheckboxesTest extends ViewModelTest
         $this->assertSame($data, $checkboxesAsArray);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [
@@ -104,20 +111,28 @@ final class CheckboxesTest extends ViewModelTest
                 ], 'choice[]'),
             ],
             'complete' => [
-                new Checkboxes('id', [
+                new Checkboxes(
+                    'id',
+                    [
                     new CheckboxesOption('choice-1', 'Choice 1', 'choice-id-1', false),
                     new CheckboxesOption('choice-2', 'Choice 2', 'choice-id-2', true),
                     new CheckboxesGroup([
                         new CheckboxesOption('choice-3', 'Choice 3', 'choice-id-3', false),
                         new CheckboxesOption('choice-4', 'Choice 4', 'choice-id-4', true),
                     ], 'Group 1')
-                ], 'choice[]', 'Form title', true,
-                    true, Checkboxes::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text')),
+                ],
+                    'choice[]',
+                    'Form title',
+                    true,
+                    true,
+                    Checkboxes::STATE_INVALID,
+                    MessageGroup::forInfoText('info text', 'error text')
+                ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/checkboxes.mustache';
     }

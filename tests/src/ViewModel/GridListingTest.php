@@ -86,14 +86,18 @@ final class GridListingTest extends ViewModelTest
             ],
         ];
         $archiveNavLinks = GridListing::forArchiveNavLinks([
-            ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
-                new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
+            ArchiveNavLink::withLinks(new BlockLink(
+                new Link('name', 'url'),
+                new Picture([], new Image('/default/path'))
+            ), 'label', [new Link('name', 'url')]),
         ], new ListHeading('heading'));
 
         $this->assertSame($archiveNavLinksData['heading'], $archiveNavLinks['heading']->toArray());
         $this->assertCount(1, $archiveNavLinksData['archiveNavLinks']);
-        $this->assertSame($archiveNavLinksData['archiveNavLinks'][0],
-            $archiveNavLinks['archiveNavLinks'][0]->toArray());
+        $this->assertSame(
+            $archiveNavLinksData['archiveNavLinks'][0],
+            $archiveNavLinks['archiveNavLinks'][0]->toArray()
+        );
         $this->assertSame($archiveNavLinksData, $archiveNavLinks->toArray());
 
         $date = new DateTimeImmutable();
@@ -205,7 +209,7 @@ final class GridListingTest extends ViewModelTest
         $this->assertSame($teasersData, $teasers->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'no heading' => [
@@ -217,16 +221,20 @@ final class GridListingTest extends ViewModelTest
                         new BlockLink(new Link('name', 'url')),
                         new BlockLink(new Link('name', 'url'), new Picture([], new Image('/default/path'))),
                     ],
-                    new ListHeading('heading')),
+                    new ListHeading('heading')
+                ),
             ],
             'archive nav links' => [
                 GridListing::forArchiveNavLinks(
                     [
                         ArchiveNavLink::basic(new BlockLink(new Link('name', 'url'))),
-                        ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
-                            new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
+                        ArchiveNavLink::withLinks(new BlockLink(
+                            new Link('name', 'url'),
+                            new Picture([], new Image('/default/path'))
+                        ), 'label', [new Link('name', 'url')]),
                     ],
-                    new ListHeading('heading')),
+                    new ListHeading('heading')
+                ),
             ],
             'image links' => [
                 GridListing::forImageLinks(
@@ -264,7 +272,8 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    new ListHeading('heading')),
+                    new ListHeading('heading')
+                ),
             ],
             'teasers with load more' => [
                 GridListing::forTeasers(
@@ -295,7 +304,9 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    new ListHeading('heading'), Pager::firstPage(new Link('testing', '#'))),
+                    new ListHeading('heading'),
+                    Pager::firstPage(new Link('testing', '#'))
+                ),
             ],
             'teasers with pager' => [
                 GridListing::forTeasers(
@@ -326,7 +337,9 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    new ListHeading('heading'), Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
+                    new ListHeading('heading'),
+                    Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))
+                ),
                 'id',
             ],
         ];
@@ -392,7 +405,7 @@ final class GridListingTest extends ViewModelTest
         GridListing::forTeasers(['foo']);
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/grid-listing.mustache';
     }

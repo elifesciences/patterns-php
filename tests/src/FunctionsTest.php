@@ -2,9 +2,9 @@
 
 namespace tests\eLife\Patterns;
 
+use PHPUnit_Framework_TestCase;
 use function eLife\Patterns\mixed_accessibility_text;
 use function eLife\Patterns\mixed_visibility_text;
-use PHPUnit_Framework_TestCase;
 
 final class FunctionsTest extends PHPUnit_Framework_TestCase
 {

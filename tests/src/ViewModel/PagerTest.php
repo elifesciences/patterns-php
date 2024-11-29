@@ -49,7 +49,7 @@ final class PagerTest extends ViewModelTest
         $this->assertSame($data, $pager->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'both' => [Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')), 'targetId'],
@@ -58,7 +58,7 @@ final class PagerTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/pager.mustache';
     }

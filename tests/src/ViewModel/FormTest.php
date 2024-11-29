@@ -65,7 +65,7 @@ final class FormTest extends PHPUnit_Framework_TestCase
         new Form('/foo', '', 'GET');
     }
 
-    public function invalidMethodProvider() : array
+    public function invalidMethodProvider(): array
     {
         return [
             [''],

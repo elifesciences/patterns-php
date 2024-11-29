@@ -24,8 +24,7 @@ final class ModalWindow implements ViewModel
         string $body,
         string $closeBtnText = null,
         string $triggerId = null
-    )
-    {
+    ) {
         Assertion::notBlank($title);
         Assertion::notBlank($body);
         Assertion::nullOrNotBlank($closeBtnText);
@@ -43,8 +42,7 @@ final class ModalWindow implements ViewModel
         string $body,
         string $closeBtnText = null,
         string $triggerId = null
-    ) : ModalWindow
-    {
+    ): ModalWindow {
         return new self(false, $title, $body, $closeBtnText, $triggerId);
     }
 
@@ -53,12 +51,11 @@ final class ModalWindow implements ViewModel
         string $body,
         string $closeBtnText = null,
         string $triggerId = null
-    ) : ModalWindow
-    {
+    ): ModalWindow {
         return new self(true, $title, $body, $closeBtnText, $triggerId);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/modal-window.mustache';
     }

@@ -21,7 +21,7 @@ final class ReferenceList implements ViewModel
         $this->references = $references;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/reference-list.mustache';
     }

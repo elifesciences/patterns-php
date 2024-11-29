@@ -134,15 +134,18 @@ final class CaptionedAssetTest extends ViewModelTest
     {
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'Captionless image' => [
                 new CaptionedAsset(
                     new Picture(
                         [['srcset' => '/path/to/svg']],
-                        new Image('/default/path', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'],
-                            'the alt text')
+                        new Image(
+                            '/default/path',
+                            ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'],
+                            'the alt text'
+                        )
                     )
                 ),
             ],
@@ -150,17 +153,26 @@ final class CaptionedAssetTest extends ViewModelTest
                 new CaptionedAsset(
                     new Picture(
                         [['srcset' => '/path/to/svg']],
-                        new Image('/default/path', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'],
-                            'the alt text')
-                    ), null, null, true
+                        new Image(
+                            '/default/path',
+                            ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'],
+                            'the alt text'
+                        )
+                    ),
+                    null,
+                    null,
+                    true
                 ),
             ],
             'Captioned image' => [
                 new CaptionedAsset(
                     new Picture(
                         [['srcset' => '/path/to/svg']],
-                        new Image('/default/path', ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'],
-                            'the alt text')
+                        new Image(
+                            '/default/path',
+                            ['2' => '/hi-res/image/path/in/srcset', '1' => '/image/path/in/srcset'],
+                            'the alt text'
+                        )
                     ),
                     CaptionText::withHeading('heading')
                 ),
@@ -189,7 +201,7 @@ final class CaptionedAssetTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/captioned-asset.mustache';
     }

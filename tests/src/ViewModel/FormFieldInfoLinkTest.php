@@ -23,14 +23,14 @@ final class FormFieldInfoLinkTest extends ViewModelTest
         $this->assertSame($data, $formFieldInfoLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new FormFieldInfoLink('name', 'https://url')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/form-field-info-link.mustache';
     }

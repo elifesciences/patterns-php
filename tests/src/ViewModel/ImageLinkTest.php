@@ -31,14 +31,14 @@ final class ImageLinkTest extends ViewModelTest
         $this->assertSame($data, $imageLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new ImageLink('url', new Picture([], new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text')))],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/image-link.mustache';
     }

@@ -26,7 +26,7 @@ final class FormFieldInfoLink implements ViewModel
         $this->url = $url;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/form-field-info-link.mustache';
     }

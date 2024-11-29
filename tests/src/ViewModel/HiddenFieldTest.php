@@ -25,7 +25,7 @@ final class HiddenFieldTest extends ViewModelTest
         $this->assertSame($data, $field->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new HiddenField()],
@@ -33,7 +33,7 @@ final class HiddenFieldTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/hidden-field.mustache';
     }

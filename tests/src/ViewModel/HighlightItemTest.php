@@ -123,7 +123,7 @@ final class HighlightItemTest extends ViewModelTest
         $this->assertArrayNotHasKey('authors', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new HighlightItem(
@@ -143,7 +143,7 @@ final class HighlightItemTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/highlight-item.mustache';
     }

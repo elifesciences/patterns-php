@@ -56,7 +56,7 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
         $this->assertSame($data, $articleAssessmentTerms->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -70,7 +70,7 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/article-assessment-terms.mustache';
     }

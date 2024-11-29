@@ -17,8 +17,10 @@ final class MediaType implements CastsToArray
 
     public function __construct(string $mediaType)
     {
-        Assertion::regex($mediaType,
-            '/^([a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+\/[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+)(; *[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+=(([a-zA-Z0-9\.\-]+)|(".+")))*$/');
+        Assertion::regex(
+            $mediaType,
+            '/^([a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+\/[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+)(; *[a-zA-Z0-9!#$%^&\*_\-\+{}\|\'.`~]+=(([a-zA-Z0-9\.\-]+)|(".+")))*$/'
+        );
 
         $this->forMachine = $mediaType;
         $this->forHuman = $this->guessHumanType();

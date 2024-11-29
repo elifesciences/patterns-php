@@ -25,7 +25,7 @@ final class MediaSource implements ViewModel
         $this->fallback = $fallback;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/media-source.mustache';
     }

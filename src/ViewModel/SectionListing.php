@@ -29,7 +29,7 @@ final class SectionListing implements ViewModel
         $this->listHeading = $listHeading;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/section-listing.mustache';
     }

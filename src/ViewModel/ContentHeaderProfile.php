@@ -28,7 +28,7 @@ final class ContentHeaderProfile implements ViewModel
         array $affiliations = [],
         string $emailAddress = null,
         Orcid $orcid = null
-    ) : ContentHeaderProfile {
+    ): ContentHeaderProfile {
         Assertion::notEmpty($displayName);
         Assertion::allIsInstanceOf($secondaryLinks, Link::class);
 
@@ -46,7 +46,7 @@ final class ContentHeaderProfile implements ViewModel
         array $affiliations = [],
         string $emailAddress = null,
         Orcid $orcid = null
-    ) : ContentHeaderProfile {
+    ): ContentHeaderProfile {
         Assertion::notEmpty($displayName);
 
         $contentHeader = new static();
@@ -80,7 +80,7 @@ final class ContentHeaderProfile implements ViewModel
         return null;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/content-header-profile.mustache';
     }

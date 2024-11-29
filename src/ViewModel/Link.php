@@ -9,11 +9,10 @@ use eLife\Patterns\CastsToArray;
 
 final class Link implements CastsToArray
 {
-    const STYLE_END_OF_GROUP = 'end-of-group';
-    const STYLE_HIDDEN_WIDE = 'hidden-wide';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const STYLE_END_OF_GROUP = 'end-of-group';
+    public const STYLE_HIDDEN_WIDE = 'hidden-wide';
 
     private $name;
     private $url = null;
@@ -39,19 +38,22 @@ final class Link implements CastsToArray
         }, []);
     }
 
-    public function hiddenWide() : self {
+    public function hiddenWide(): self
+    {
         $this->addClass(self::STYLE_HIDDEN_WIDE);
 
         return $this;
     }
 
-    public function endOfGroup() : self {
+    public function endOfGroup(): self
+    {
         $this->addClass(self::STYLE_END_OF_GROUP);
 
         return $this;
     }
 
-    private function addClass($class) {
+    private function addClass($class)
+    {
         if (!in_array($class, $this->classes ? explode(' ', $this->classes) : [])) {
             $this->classes = trim($this->classes.' '.$class);
         }

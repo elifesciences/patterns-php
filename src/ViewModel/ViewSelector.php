@@ -63,7 +63,7 @@ final class ViewSelector implements ViewModel
         $this->otherLinks = $otherLinks;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/view-selector.mustache';
     }

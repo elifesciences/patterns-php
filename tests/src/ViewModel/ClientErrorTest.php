@@ -26,7 +26,7 @@ final class ClientErrorTest extends ViewModelTest
         $this->assertSame($data, $clientError->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ClientError()],
@@ -34,7 +34,7 @@ final class ClientErrorTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/client-error.mustache';
     }

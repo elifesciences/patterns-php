@@ -18,7 +18,7 @@ final class FlexibleViewModel implements ViewModel
         $this->properties = $properties;
     }
 
-    public static function fromViewModel(ViewModel $viewModel) : FlexibleViewModel
+    public static function fromViewModel(ViewModel $viewModel): FlexibleViewModel
     {
         return new self(
             $viewModel->getTemplateName(),
@@ -26,7 +26,7 @@ final class FlexibleViewModel implements ViewModel
         );
     }
 
-    public function withProperty(string $key, $value) : FlexibleViewModel
+    public function withProperty(string $key, $value): FlexibleViewModel
     {
         $viewModel = self::fromViewModel($this);
         $viewModel->properties[$key] = $value;
@@ -34,7 +34,7 @@ final class FlexibleViewModel implements ViewModel
         return $viewModel;
     }
 
-    public function toArray() : array
+    public function toArray(): array
     {
         return $this->properties;
     }
@@ -63,7 +63,7 @@ final class FlexibleViewModel implements ViewModel
         throw new BadMethodCallException('Object is immutable');
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return $this->templateName;
     }

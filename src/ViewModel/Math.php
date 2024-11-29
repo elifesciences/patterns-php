@@ -25,7 +25,7 @@ final class Math implements ViewModel
         $this->label = $label;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/math.mustache';
     }

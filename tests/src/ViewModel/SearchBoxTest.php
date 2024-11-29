@@ -36,11 +36,18 @@ final class SearchBoxTest extends ViewModelTest
 
         $searchBox = new SearchBox(
             $compactForm = new CompactForm(
-                new Form($data['compactForm']['formAction'], $data['compactForm']['formId'],
-                    $data['compactForm']['formMethod']),
-                new Input($data['compactForm']['label'], $data['compactForm']['inputType'],
-                    $data['compactForm']['inputName'], $data['compactForm']['inputValue'],
-                    $data['compactForm']['inputPlaceholder']),
+                new Form(
+                    $data['compactForm']['formAction'],
+                    $data['compactForm']['formId'],
+                    $data['compactForm']['formMethod']
+                ),
+                new Input(
+                    $data['compactForm']['label'],
+                    $data['compactForm']['inputType'],
+                    $data['compactForm']['inputName'],
+                    $data['compactForm']['inputValue'],
+                    $data['compactForm']['inputPlaceholder']
+                ),
                 $data['compactForm']['ctaText']
             ),
             $subjectFilter = new SubjectFilter(...array_values($data['subjectFilter']))
@@ -51,7 +58,7 @@ final class SearchBoxTest extends ViewModelTest
         $this->assertSame($data, $searchBox->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'without subject filter' => [
@@ -76,7 +83,7 @@ final class SearchBoxTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/search-box.mustache';
     }

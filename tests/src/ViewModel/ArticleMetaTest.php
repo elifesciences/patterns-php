@@ -73,14 +73,14 @@ final class ArticleMetaTest extends ViewModelTest
         new ArticleMeta(['group' => ['foo']]);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new ArticleMeta(['group' => [new Link('link', 'url'), new Link('non-link')]])],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/article-meta.mustache';
     }

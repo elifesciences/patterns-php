@@ -4,7 +4,7 @@ namespace eLife\Patterns;
 
 trait ArrayFromProperties
 {
-    final public function toArray() : array
+    final public function toArray(): array
     {
         $vars = [];
 

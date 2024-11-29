@@ -95,7 +95,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         $this->assertArrayNotHasKey('hasComment', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url')],
@@ -103,7 +103,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/social-media-sharers-journal.mustache';
     }

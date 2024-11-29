@@ -22,8 +22,10 @@ class ContentHeaderReadMoreTest extends ViewModelTest
             'url' => 'url',
         ];
 
-        $contentHeader = new ContentHeaderReadMore($data['title'],
-            $data['url']);
+        $contentHeader = new ContentHeaderReadMore(
+            $data['title'],
+            $data['url']
+        );
 
         $this->assertSame($data['title'], $contentHeader['title']);
         $this->assertSame($data['url'], $contentHeader['url']);
@@ -92,7 +94,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
         new ContentHeaderReadMore('title', 'url', ['foo']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ContentHeaderReadMore('some title', 'url')],
@@ -102,7 +104,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/content-header-read-more.mustache';
     }

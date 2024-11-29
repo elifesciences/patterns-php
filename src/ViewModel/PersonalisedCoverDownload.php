@@ -42,7 +42,7 @@ final class PersonalisedCoverDownload implements ViewModel
         $this->letterButtonCollection = $letterButtonCollection;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/personalised-cover-download.mustache';
     }

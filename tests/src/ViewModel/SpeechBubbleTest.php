@@ -40,7 +40,7 @@ final class SpeechBubbleTest extends ViewModelTest
         $this->assertSame($data, $hypothesisOpener->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'for article body' => [SpeechBubble::forArticleBody()],
@@ -48,7 +48,7 @@ final class SpeechBubbleTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/speech-bubble.mustache';
     }

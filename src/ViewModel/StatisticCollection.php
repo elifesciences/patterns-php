@@ -21,7 +21,7 @@ final class StatisticCollection implements ViewModel
         $this->stats = $stats;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/statistic-collection.mustache';
     }

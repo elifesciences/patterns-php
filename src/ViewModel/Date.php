@@ -29,17 +29,17 @@ final class Date implements ViewModel
         $this->forMachine = $date->format('Y-m-d');
     }
 
-    public static function simple(DateTimeImmutable $date, bool $isUpdated = false) : Date
+    public static function simple(DateTimeImmutable $date, bool $isUpdated = false): Date
     {
         return new self($date, false, $isUpdated);
     }
 
-    public static function expanded(DateTimeImmutable $date) : Date
+    public static function expanded(DateTimeImmutable $date): Date
     {
         return new self($date, true);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/date.mustache';
     }

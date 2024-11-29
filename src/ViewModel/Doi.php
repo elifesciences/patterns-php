@@ -12,8 +12,8 @@ final class Doi implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    const ARTICLE_SECTION = 'article-section';
-    const ASSET = 'asset';
+    public const ARTICLE_SECTION = 'article-section';
+    public const ASSET = 'asset';
 
     private $doi;
     private $doiWithoutLink;
@@ -27,7 +27,7 @@ final class Doi implements ViewModel
         }
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/doi.mustache';
     }

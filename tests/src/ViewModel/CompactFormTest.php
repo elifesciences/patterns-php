@@ -65,9 +65,18 @@ final class CompactFormTest extends ViewModelTest
 
         $form = new CompactForm(
             new Form($data['formAction'], $data['formId'], $data['formMethod']),
-            new Input($data['label'], $data['inputType'], $data['inputName'], $data['inputValue'],
-                $data['inputPlaceholder'], true),
-            $data['ctaText'], CompactForm::STATE_INVALID, MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText']), [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
+            new Input(
+                $data['label'],
+                $data['inputType'],
+                $data['inputName'],
+                $data['inputValue'],
+                $data['inputPlaceholder'],
+                true
+            ),
+            $data['ctaText'],
+            CompactForm::STATE_INVALID,
+            MessageGroup::forInfoText($data['messageGroup']['infoText'], $data['messageGroup']['errorText']),
+            [new HiddenField($data['hiddenFields'][0]['name'], $data['hiddenFields'][0]['id'], $data['hiddenFields'][0]['value'])],
             new Honeypot(TextField::emailInput(
                 new FormLabel($data['honeypot']['label']['labelText']),
                 $data['honeypot']['id'],
@@ -128,7 +137,10 @@ final class CompactFormTest extends ViewModelTest
         new CompactForm(
             new Form('formAction', 'formId', 'GET'),
             new Input('label', 'text', 'name'),
-            'foo', null, null, [$this]
+            'foo',
+            null,
+            null,
+            [$this]
         );
     }
 
@@ -142,7 +154,9 @@ final class CompactFormTest extends ViewModelTest
         new CompactForm(
             new Form('formAction', 'formId', 'GET'),
             new Input('label', 'text', 'name'),
-            'foo', CompactForm::STATE_INVALID, null
+            'foo',
+            CompactForm::STATE_INVALID,
+            null
         );
     }
 
@@ -156,11 +170,13 @@ final class CompactFormTest extends ViewModelTest
         new CompactForm(
             new Form('formAction', 'formId', 'GET'),
             new Input('label', 'text', 'name'),
-            'foo', CompactForm::STATE_INVALID, MessageGroup::forInfoText('info text')
+            'foo',
+            CompactForm::STATE_INVALID,
+            MessageGroup::forInfoText('info text')
         );
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [
@@ -174,14 +190,17 @@ final class CompactFormTest extends ViewModelTest
                 new CompactForm(
                     new Form('/foo', 'foo', 'GET'),
                     new Input('label', 'text', 'input', 'value', 'placeholder', true),
-                    'cta', CompactForm::STATE_INVALID, MessageGroup::forInfoText('info text', 'error text'), [new HiddenField('name', 'id', 'value')],
+                    'cta',
+                    CompactForm::STATE_INVALID,
+                    MessageGroup::forInfoText('info text', 'error text'),
+                    [new HiddenField('name', 'id', 'value')],
                     new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))
                 ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/compact-form.mustache';
     }

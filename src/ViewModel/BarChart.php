@@ -9,13 +9,12 @@ use eLife\Patterns\ViewModel;
 
 final class BarChart implements ViewModel
 {
-    const METRIC_DOWNLOADS = 'downloads';
-    const METRIC_PAGE_VIEWS = 'page-views';
-    const PERIOD_DAY = 'day';
-    const PERIOD_MONTH = 'month';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const METRIC_DOWNLOADS = 'downloads';
+    public const METRIC_PAGE_VIEWS = 'page-views';
+    public const PERIOD_DAY = 'day';
+    public const PERIOD_MONTH = 'month';
 
     private $id;
     private $type;
@@ -47,7 +46,7 @@ final class BarChart implements ViewModel
         $this->period = $period;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/bar-chart.mustache';
     }

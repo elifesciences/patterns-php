@@ -29,7 +29,7 @@ final class ListingAnnotationTeasers implements ViewModel
         $this->pagination = $pagination;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/listing-annotation-teasers.mustache';
     }

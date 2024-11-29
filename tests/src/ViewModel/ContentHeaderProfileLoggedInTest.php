@@ -65,14 +65,16 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             [
                 'affiliation 1',
                 'affiliation 2',
-            ]);
+            ]
+        );
 
         $this->assertSame(
             [
                 'affiliation 1',
                 'affiliation 2',
             ],
-            $contentHeaderProfile['details']['affiliations']);
+            $contentHeaderProfile['details']['affiliations']
+        );
     }
 
     /**
@@ -85,7 +87,8 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             new Link('log out link text', '/log-out-link-uri'),
             [],
             [],
-            'email@address.com');
+            'email@address.com'
+        );
 
         $this->assertSame('email@address.com', $contentHeaderProfile['details']['emailAddress']);
     }
@@ -112,7 +115,8 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
 
         $this->assertSameWithoutOrder(
             new Link('log out link text', '/log-out-link-uri'),
-            $contentHeaderProfile['logoutLink']);
+            $contentHeaderProfile['logoutLink']
+        );
     }
 
     /**
@@ -134,10 +138,11 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
                 new Link('link 1 text', 'link 1 url'),
                 new Link('link 2 text', 'link 2 url'),
             ],
-            $contentHeaderProfile['secondaryLinks']);
+            $contentHeaderProfile['secondaryLinks']
+        );
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [ContentHeaderProfile::loggedIn('Display name')],
@@ -196,7 +201,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/content-header-profile.mustache';
     }

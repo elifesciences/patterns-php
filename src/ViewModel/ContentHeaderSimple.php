@@ -23,7 +23,7 @@ final class ContentHeaderSimple implements ViewModel
         $this->strapline = $strapline;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/content-header-simple.mustache';
     }

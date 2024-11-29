@@ -125,7 +125,7 @@ final class DefinitionListTest extends ViewModelTest
         DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]], 'not valid color');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'expanded' => [DefinitionList::basic(['foo' => ['bar']])],
@@ -135,7 +135,7 @@ final class DefinitionListTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/definition-list.mustache';
     }

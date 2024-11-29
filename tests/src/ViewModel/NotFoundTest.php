@@ -26,7 +26,7 @@ final class NotFoundTest extends ViewModelTest
         $this->assertSame($data, $notFound->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new NotFound()],
@@ -34,7 +34,7 @@ final class NotFoundTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/not-found.mustache';
     }

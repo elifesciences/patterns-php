@@ -39,7 +39,7 @@ final class Footer implements ViewModel
         $this->logos = $investorLogos['logos'];
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/footer.mustache';
     }

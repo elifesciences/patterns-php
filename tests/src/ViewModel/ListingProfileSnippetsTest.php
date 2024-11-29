@@ -39,12 +39,12 @@ final class ListingProfileSnippetsTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $listingProfileSnippets);
     }
 
-    public static function getProfileSnippetData() : array
+    public static function getProfileSnippetData(): array
     {
         return self::getProfileSnippetFixture()->toArray();
     }
 
-    public static function getProfileSnippetFixture() : ProfileSnippet
+    public static function getProfileSnippetFixture(): ProfileSnippet
     {
         return new ProfileSnippet(
             'Name McName',
@@ -52,7 +52,7 @@ final class ListingProfileSnippetsTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -71,7 +71,7 @@ final class ListingProfileSnippetsTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/listing-profile-snippets.mustache';
     }

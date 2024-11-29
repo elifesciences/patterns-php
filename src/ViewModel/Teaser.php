@@ -12,11 +12,11 @@ final class Teaser implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    const STYLE_SECONDARY = 'teaser--secondary';
-    const STYLE_RELATED = 'teaser--related';
-    const STYLE_EVENT = 'teaser--event';
-    const STYLE_CHAPTER_LISTING_ITEM = 'teaser--chapter-listing-item';
-    const STYLE_GRID = 'teaser--grid-style';
+    public const STYLE_SECONDARY = 'teaser--secondary';
+    public const STYLE_RELATED = 'teaser--related';
+    public const STYLE_EVENT = 'teaser--event';
+    public const STYLE_CHAPTER_LISTING_ITEM = 'teaser--chapter-listing-item';
+    public const STYLE_GRID = 'teaser--grid-style';
 
     private $title;
     private $rootClasses;
@@ -240,7 +240,7 @@ final class Teaser implements ViewModel
         );
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/teaser.mustache';
     }

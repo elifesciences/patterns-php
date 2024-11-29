@@ -55,7 +55,7 @@ final class SectionListingTest extends ViewModelTest
         new SectionListing('', [new Link('subject', 'url')], new ListHeading('heading'));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'))],
@@ -63,7 +63,7 @@ final class SectionListingTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/section-listing.mustache';
     }

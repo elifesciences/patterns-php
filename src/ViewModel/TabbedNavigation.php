@@ -14,7 +14,8 @@ final class TabbedNavigation implements ViewModel
 
     private $items;
 
-    public function __construct(array $items = null) {
+    public function __construct(array $items = null)
+    {
         Assertion::nullOrNotEmpty($items);
         if (null !== $items) {
             Assertion::allIsInstanceOf($items, TabbedNavigationLink::class);
@@ -23,7 +24,7 @@ final class TabbedNavigation implements ViewModel
         $this->items = $items;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/tabbed-navigation.mustache';
     }

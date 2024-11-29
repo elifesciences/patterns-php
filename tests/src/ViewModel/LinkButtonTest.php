@@ -80,7 +80,7 @@ final class LinkButtonTest extends ViewModelTest
         Button::link('text', 'path', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, 'foo');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'button' => [Button::link('text', 'path')],
@@ -93,7 +93,7 @@ final class LinkButtonTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/button.mustache';
     }

@@ -21,7 +21,7 @@ final class Code implements ViewModel
         $this->code = $code;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/code.mustache';
     }

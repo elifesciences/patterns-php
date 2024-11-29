@@ -34,7 +34,7 @@ final class SocialMediaSharers implements ViewModel
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/social-media-sharers.mustache';
     }

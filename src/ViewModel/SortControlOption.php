@@ -12,8 +12,8 @@ final class SortControlOption implements CastsToArray
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    const ASC = 'ascending';
-    const DESC = 'descending';
+    public const ASC = 'ascending';
+    public const DESC = 'descending';
 
     private $link;
     private $sorting;

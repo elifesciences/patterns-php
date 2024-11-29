@@ -124,7 +124,7 @@ final class LoginControlLoggedInTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')))],
@@ -134,7 +134,7 @@ final class LoginControlLoggedInTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/login-control.mustache';
     }

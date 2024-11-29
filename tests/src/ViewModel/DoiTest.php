@@ -45,7 +45,7 @@ final class DoiTest extends ViewModelTest
         $this->assertArrayNotHasKey('doiWithoutLink', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new Doi('10.7554/eLife.10181.001')],
@@ -53,7 +53,7 @@ final class DoiTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/doi.mustache';
     }

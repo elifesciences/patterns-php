@@ -21,7 +21,7 @@ final class InvestorLogos implements ViewModel
         $this->logos = $logos;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/investor-logos.mustache';
     }

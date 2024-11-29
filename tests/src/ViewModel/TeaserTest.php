@@ -308,7 +308,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $teaser);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -317,7 +317,7 @@ final class TeaserTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/teaser.mustache';
     }

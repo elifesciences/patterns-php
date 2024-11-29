@@ -33,11 +33,17 @@ final class ContentHeaderNewTest extends ViewModelTest
             false,
             false,
             new ContentHeaderImage(new Picture([], new Image('/default/path'))),
-            null, true, null, [],
+            null,
+            true,
+            null,
+            [],
             new Profile(new Link('Dr Curator')),
-            null, null, null,
+            null,
+            null,
+            null,
             new SocialMediaSharersNew('some article title', 'https://example.com/some-uri'),
-            null, null,
+            null,
+            null,
             MetaNew::withLink(new Link('Collection'))
         );
     }
@@ -206,7 +212,9 @@ final class ContentHeaderNewTest extends ViewModelTest
             $data['download'],
             $data['cite'],
             new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url'),
-            ContextualData::withMetrics(['foo'], 'bar',
+            ContextualData::withMetrics(
+                ['foo'],
+                'bar',
                 new Doi('10.7554/eLife.10181.001'),
                 SpeechBubble::forContextualData()
             ),
@@ -283,7 +291,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         $this->assertSame($expected, $contentHeader['titleLength']);
     }
 
-    public function titleLengthProvider() : array
+    public function titleLengthProvider(): array
     {
         return [
             [3,   'xx-short'],
@@ -317,7 +325,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         $this->assertArrayNotHasKey('hasAside', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ContentHeaderNew('title')],
@@ -325,12 +333,13 @@ final class ContentHeaderNewTest extends ViewModelTest
                 new ContentHeaderNew('title', false, true, new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-                    'the alt text')), 'image credit', true), ' impact statement', true, new Breadcrumb([new Link('foo', 'bar')]), [new Link('subject', '#')], new Profile(new Link('profile')), new Authors([Author::asText('author')], [new Institution('institution')]), '#', '#'),
+                    'the alt text'
+                )), 'image credit', true), ' impact statement', true, new Breadcrumb([new Link('foo', 'bar')]), [new Link('subject', '#')], new Profile(new Link('profile')), new Authors([Author::asText('author')], [new Institution('institution')]), '#', '#'),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/content-header-journal.mustache';
     }

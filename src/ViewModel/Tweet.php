@@ -35,7 +35,7 @@ final class Tweet implements ViewModel
         $this->hideCards = $hideCards;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/tweet.mustache';
     }

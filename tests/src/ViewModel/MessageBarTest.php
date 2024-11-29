@@ -20,14 +20,14 @@ final class MessageBarTest extends ViewModelTest
         $this->assertSame($data, $messageBar->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new MessageBar('testing message bar')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/message-bar.mustache';
     }

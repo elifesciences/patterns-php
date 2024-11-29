@@ -25,7 +25,7 @@ final class ReadMoreItem implements ViewModel
         $this->isRelated = $isRelated;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/read-more-item.mustache';
     }

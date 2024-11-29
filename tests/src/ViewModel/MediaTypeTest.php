@@ -45,7 +45,7 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, $mediaType['forHuman']);
     }
 
-    public function humanNameProvider() : Traversable
+    public function humanNameProvider(): Traversable
     {
         $types = [
             'application/epub+zip' => 'EPUB',
@@ -86,7 +86,7 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
         new MediaType($input);
     }
 
-    public function invalidMediaTypeProvider() : array
+    public function invalidMediaTypeProvider(): array
     {
         return [
             'no sub-type' => ['foo'],

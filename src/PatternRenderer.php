@@ -4,5 +4,5 @@ namespace eLife\Patterns;
 
 interface PatternRenderer
 {
-    public function render(ViewModel ...$viewModels) : string;
+    public function render(ViewModel ...$viewModels): string;
 }

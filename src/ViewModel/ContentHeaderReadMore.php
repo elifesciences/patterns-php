@@ -44,7 +44,7 @@ final class ContentHeaderReadMore implements ViewModel
         $this->meta = $meta;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/content-header-read-more.mustache';
     }

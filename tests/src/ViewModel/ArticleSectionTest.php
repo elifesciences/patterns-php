@@ -57,14 +57,25 @@ final class ArticleSectionTest extends ViewModelTest
             )
         ];
 
-        $basicArticleSection = ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
-            new Doi('10.7554/eLife.10181.001'), $basicData['relatedLinks'], ArticleSection::STYLE_DEFAULT,
-            true, $basicData['headerLink'], $basicData['relatedLinksSeparator'], 'test-class', null,
+        $basicArticleSection = ArticleSection::basic(
+            '<p>body</p>',
+            'some title',
+            2,
+            'id',
+            new Doi('10.7554/eLife.10181.001'),
+            $basicData['relatedLinks'],
+            ArticleSection::STYLE_DEFAULT,
+            true,
+            $basicData['headerLink'],
+            $basicData['relatedLinksSeparator'],
+            'test-class',
+            null,
             new Assessment(
                 new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
                 new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
-                'summary')
-            );
+                'summary'
+            )
+        );
 
         $this->assertSame($basicData['classes'], $basicArticleSection['classes']);
         $this->assertSame($basicData['id'], $basicArticleSection['id']);
@@ -120,13 +131,22 @@ final class ArticleSectionTest extends ViewModelTest
             )
         ];
 
-        $collapsibleArticleSection = ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
-            $collapsibleData['relatedLinks'], ArticleSection::STYLE_HIGHLIGHTED, true, true,
-            new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
+        $collapsibleArticleSection = ArticleSection::collapsible(
+            'id',
+            'some title',
+            2,
+            '<p>body</p>',
+            $collapsibleData['relatedLinks'],
+            ArticleSection::STYLE_HIGHLIGHTED,
+            true,
+            true,
+            new Doi('10.7554/eLife.10181.001'),
+            ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
             new Assessment(
                 new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
                 new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
-                'summary')
+                'summary'
+            )
         );
 
         $this->assertSame($collapsibleData['classes'], $collapsibleArticleSection['classes']);
@@ -161,8 +181,17 @@ final class ArticleSectionTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ArticleSection::basic('<p>body</p>', null, null, null, null, null,
-            null, false, new Link('Request a detailed protocol', '#'));
+        ArticleSection::basic(
+            '<p>body</p>',
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            false,
+            new Link('Request a detailed protocol', '#')
+        );
     }
 
     /**
@@ -192,8 +221,18 @@ final class ArticleSectionTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ArticleSection::basic('<p>body</p>', null, null, null, null, null,
-            null, false, null, ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE);
+        ArticleSection::basic(
+            '<p>body</p>',
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            false,
+            null,
+            ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE
+        );
     }
 
     /**
@@ -203,9 +242,20 @@ final class ArticleSectionTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ArticleSection::basic('<p>body</p>', 'title', 3, null, null, null,
-            null, false, null, ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, null,
-        true);
+        ArticleSection::basic(
+            '<p>body</p>',
+            'title',
+            3,
+            null,
+            null,
+            null,
+            null,
+            false,
+            null,
+            ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
+            null,
+            true
+        );
     }
 
     /**
@@ -215,39 +265,69 @@ final class ArticleSectionTest extends ViewModelTest
     {
         $this->expectException(InvalidArgumentException::class);
 
-        ArticleSection::basic('<p>body</p>', null, null, null, null,
+        ArticleSection::basic(
+            '<p>body</p>',
+            null,
+            null,
+            null,
+            null,
             [new Link('Related link 1', '#'), new Link('Related link 2', '#')],
-            null, false, null, 'not valid');
+            null,
+            false,
+            null,
+            'not valid'
+        );
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'basic minimum' => [ArticleSection::basic('<p>body</p>')],
             'basic complete' => [
-                ArticleSection::basic('<p>body</p>', 'some title', 2, 'id',
-                    new Doi('10.7554/eLife.10181.001'), [new Link('Related link', '#')],
-                    ArticleSection::STYLE_DEFAULT, false, new Link('Request a detailed protocol', '#'),
-                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE, null, null, new Assessment(
-                    new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
-                    new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
-                    'summary'))
-            ],
-            'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
-            'collapsible complete' => [
-                ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>',
-                    [new Link('Related link', '#')], ArticleSection::STYLE_DEFAULT, true, true,
-                    new Doi('10.7554/eLife.10181.001'), ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
+                ArticleSection::basic(
+                    '<p>body</p>',
+                    'some title',
+                    2,
+                    'id',
+                    new Doi('10.7554/eLife.10181.001'),
+                    [new Link('Related link', '#')],
+                    ArticleSection::STYLE_DEFAULT,
+                    false,
+                    new Link('Request a detailed protocol', '#'),
+                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
+                    null,
+                    null,
                     new Assessment(
                         new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
                         new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
-                        'summary')
+                        'summary'
                     )
+                )
+            ],
+            'collapsible minimum' => [ArticleSection::collapsible('id', 'some title', 2, '<p>body</p>')],
+            'collapsible complete' => [
+                ArticleSection::collapsible(
+                    'id',
+                    'some title',
+                    2,
+                    '<p>body</p>',
+                    [new Link('Related link', '#')],
+                    ArticleSection::STYLE_DEFAULT,
+                    true,
+                    true,
+                    new Doi('10.7554/eLife.10181.001'),
+                    ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE,
+                    new Assessment(
+                        new ArticleAssessmentTerms('significance', 'description', [new Term('Landmark'), new Term('Valuable', true)]),
+                        new ArticleAssessmentTerms('strength', 'description', [new Term('Exceptional'), new Term('Solid', true)]),
+                        'summary'
+                    )
+                )
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/article-section.mustache';
     }

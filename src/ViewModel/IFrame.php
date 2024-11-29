@@ -29,7 +29,7 @@ final class IFrame implements ViewModel, IsCaptioned
         $this->allowFullScreen = $allowFullScreen;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/iframe.mustache';
     }

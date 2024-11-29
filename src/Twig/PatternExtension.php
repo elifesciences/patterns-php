@@ -27,7 +27,7 @@ final class PatternExtension extends Twig_Extension
         ];
     }
 
-    public function renderPattern(ViewModel $viewModel) : string
+    public function renderPattern(ViewModel $viewModel): string
     {
         return $this->renderer->render($viewModel);
     }

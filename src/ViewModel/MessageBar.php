@@ -21,7 +21,7 @@ final class MessageBar implements ViewModel
         $this->message = $message;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/message-bar.mustache';
     }

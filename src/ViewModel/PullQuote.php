@@ -25,7 +25,7 @@ final class PullQuote implements ViewModel
         $this->cite = $cite;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/pull-quote.mustache';
     }

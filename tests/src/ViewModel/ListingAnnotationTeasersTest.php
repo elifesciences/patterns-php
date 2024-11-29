@@ -101,23 +101,26 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
         ListingAnnotationTeasers::basic([]);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
                 ListingAnnotationTeasers::basic(
                     [
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
@@ -128,40 +131,47 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
             [
                 ListingAnnotationTeasers::withPagination(
                     [
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
                     ],
                     Pager::firstPage(new Link('testing', '#')),
-                    new ListHeading('heading'), 'id'
+                    new ListHeading('heading'),
+                    'id'
                 ),
             ],
             [
                 ListingAnnotationTeasers::withPagination(
                     [
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
                         ),
-                        AnnotationTeaser::forPageNote('the document',
+                        AnnotationTeaser::forPageNote(
+                            'the document',
                             Date::simple(new DateTimeImmutable('2017-12-21')),
                             '#the-uri',
                             ' the content'
@@ -174,7 +184,7 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/listing-annotation-teasers.mustache';
     }

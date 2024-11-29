@@ -6,7 +6,7 @@ trait MultipleTemplates
 {
     private $templateName;
 
-    abstract public function getDefaultTemplateName() : string;
+    abstract public function getDefaultTemplateName(): string;
 
     private function setTemplateName(string $templateName)
     {
@@ -15,7 +15,7 @@ trait MultipleTemplates
         return $this;
     }
 
-    final public function getTemplateName() : string
+    final public function getTemplateName(): string
     {
         if ($this->templateName) {
             return __DIR__.'/../../resources/templates/'.$this->templateName.'.mustache';

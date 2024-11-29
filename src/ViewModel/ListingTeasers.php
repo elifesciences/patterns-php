@@ -48,14 +48,14 @@ final class ListingTeasers implements ViewModel
         }
     }
 
-    public static function forHighlights(array $items, ListHeading $heading, string $id) : ViewModel
+    public static function forHighlights(array $items, ListHeading $heading, string $id): ViewModel
     {
         $viewModel = new static($items, $id, $heading, null, null, true);
 
         return $viewModel;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/listing-teasers.mustache';
     }

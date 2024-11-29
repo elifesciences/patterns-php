@@ -31,14 +31,14 @@ final class ParagraphTest extends ViewModelTest
         new Paragraph('');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new Paragraph('some text')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/paragraph.mustache';
     }

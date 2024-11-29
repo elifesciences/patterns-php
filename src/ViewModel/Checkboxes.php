@@ -9,11 +9,10 @@ use eLife\Patterns\ViewModel;
 
 final class Checkboxes implements ViewModel
 {
-    const STATE_INVALID = 'invalid';
-    const STATE_VALID = 'valid';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const STATE_INVALID = 'invalid';
+    public const STATE_VALID = 'valid';
 
     private $id;
     private $checkboxes;
@@ -53,7 +52,7 @@ final class Checkboxes implements ViewModel
         $this->messageGroup = $messageGroup;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/checkboxes.mustache';
     }

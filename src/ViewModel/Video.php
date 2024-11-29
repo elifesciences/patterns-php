@@ -36,7 +36,7 @@ final class Video implements ViewModel, IsCaptioned
         }
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/video.mustache';
     }

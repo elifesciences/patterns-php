@@ -41,7 +41,7 @@ final class ProcessBlockTest extends ViewModelTest
         new ProcessBlock('content', 'not valid variant', new Link('name', 'url'));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ProcessBlock('content')],
@@ -50,7 +50,7 @@ final class ProcessBlockTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/process-block.mustache';
     }

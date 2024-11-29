@@ -27,7 +27,7 @@ final class DecisionLetterHeader implements ViewModel
         $this->mainText = $mainText;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/decision-letter-header.mustache';
     }

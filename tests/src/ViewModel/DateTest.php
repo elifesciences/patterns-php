@@ -47,7 +47,7 @@ final class DateTest extends ViewModelTest
         $this->assertSame($dataExpanded, $viewModelExpanded->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'simple' => [Date::simple(new DateTimeImmutable())],
@@ -56,7 +56,7 @@ final class DateTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/date.mustache';
     }

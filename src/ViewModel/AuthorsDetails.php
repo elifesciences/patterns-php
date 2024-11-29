@@ -21,7 +21,7 @@ final class AuthorsDetails implements ViewModel
         $this->authorDetails = $authorDetails;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/authors-details.mustache';
     }

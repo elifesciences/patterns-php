@@ -110,14 +110,14 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
         new PersonalisedCoverDownload(new SiteHeaderTitle('/home/page/path', true, true), 'title', ['foo'], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new PersonalisedCoverDownload(new SiteHeaderTitle('/home/page/path', true, true), 'title', [new Paragraph('foo')], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]))],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/personalised-cover-download.mustache';
     }

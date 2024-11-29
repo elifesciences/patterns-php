@@ -33,7 +33,8 @@ final class ContentHeaderTest extends ViewModelTest
             new Breadcrumb([new Link('foo', 'url'), new Link('bar')]),
             [],
             new Profile(new Link('Dr Curator')),
-            null, null,
+            null,
+            null,
             new SocialMediaSharers('some article title', 'https://example.com/some-uri'),
             null,
             Meta::withLink(new Link('Collection'))
@@ -239,7 +240,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSame($expected, $contentHeader['titleLength']);
     }
 
-    public function titleLengthProvider() : array
+    public function titleLengthProvider(): array
     {
         return [
             [3,   'xx-short'],
@@ -259,27 +260,31 @@ final class ContentHeaderTest extends ViewModelTest
         ];
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ContentHeader('title')],
             'complete' => [
-                new ContentHeader('title', new ContentHeaderImage(new Picture([], new Image(
+                new ContentHeader(
+                    'title',
+                    new ContentHeaderImage(new Picture([], new Image(
                     '/default/path',
                     ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
-                    'the alt text')), 'image credit', true),
+                    'the alt text'
+                )), 'image credit', true),
                     ' impact statement',
                     true,
                     new Breadcrumb([new Link('foo', 'url')]),
                     [new Link('subject', '#')],
                     new Profile(new Link('profile')),
-                    new Authors([Author::asText('author')], [new Institution('institution')]), '#'
+                    new Authors([Author::asText('author')], [new Institution('institution')]),
+                    '#'
                 ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/content-header.mustache';
     }

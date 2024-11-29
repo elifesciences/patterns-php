@@ -24,7 +24,7 @@ final class Highlight implements ViewModel
         $this->items = $items;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/highlight.mustache';
     }

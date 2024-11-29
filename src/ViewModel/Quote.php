@@ -25,7 +25,7 @@ final class Quote implements ViewModel
         $this->cite = $cite;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/quote.mustache';
     }

@@ -23,7 +23,7 @@ final class InlineProfile implements ViewModel
         $this->text = $text;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/inline-profile.mustache';
     }

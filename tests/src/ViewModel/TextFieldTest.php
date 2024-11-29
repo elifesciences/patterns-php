@@ -95,12 +95,23 @@ final class TextFieldTest extends ViewModelTest
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, null, false, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],
-            'complete email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name',
-                new FormFieldInfoLink('info link text', '/info-link-url'), 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
+            'complete email input' => [TextField::emailInput(
+                new FormLabel('label'),
+                'id',
+                'some name',
+                new FormFieldInfoLink('info link text', '/info-link-url'),
+                'placeholder',
+                true,
+                true,
+                true,
+                'value',
+                TextField::STATE_INVALID,
+                MessageGroup::forErrorText('error message')
+            )],
             'minimal password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name')],
             'complete password input' => [TextField::passwordInput(new FormLabel('label'), 'id', 'some name', 'placeholder', true, true, true, 'value', TextField::STATE_INVALID, MessageGroup::forErrorText('error message'))],
             'minimal search input' => [TextField::searchInput(new FormLabel('label'), 'id', 'some name')],
@@ -114,7 +125,7 @@ final class TextFieldTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/text-field.mustache';
     }

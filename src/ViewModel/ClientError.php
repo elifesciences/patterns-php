@@ -18,7 +18,7 @@ final class ClientError implements ViewModel
         $this->button = $button;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/client-error.mustache';
     }

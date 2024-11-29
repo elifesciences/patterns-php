@@ -41,7 +41,7 @@ final class GridListing implements ViewModel
         $this->id = $id;
     }
 
-    public static function forBlockLinks(array $blockLinks, ListHeading $heading = null) : GridListing
+    public static function forBlockLinks(array $blockLinks, ListHeading $heading = null): GridListing
     {
         Assertion::notEmpty($blockLinks);
         Assertion::allIsInstanceOf($blockLinks, BlockLink::class);
@@ -55,7 +55,7 @@ final class GridListing implements ViewModel
         return new self('grid-listing--block-link', $heading, $blockLinks);
     }
 
-    public static function forArchiveNavLinks(array $archiveNavLinks, ListHeading $heading = null) : GridListing
+    public static function forArchiveNavLinks(array $archiveNavLinks, ListHeading $heading = null): GridListing
     {
         Assertion::notEmpty($archiveNavLinks);
         Assertion::allIsInstanceOf($archiveNavLinks, ArchiveNavLink::class);
@@ -63,7 +63,7 @@ final class GridListing implements ViewModel
         return new self(null, $heading, [], $archiveNavLinks);
     }
 
-    public static function forImageLinks(array $imageLinks, ListHeading $heading = null) : GridListing
+    public static function forImageLinks(array $imageLinks, ListHeading $heading = null): GridListing
     {
         Assertion::notEmpty($imageLinks);
         Assertion::allIsInstanceOf($imageLinks, ImageLink::class);
@@ -71,7 +71,7 @@ final class GridListing implements ViewModel
         return new self('grid-listing--image-link', $heading, [], [], $imageLinks);
     }
 
-    public static function forTeasers(array $teasers, ListHeading $heading = null, Pager $pagination = null, string $id = null) : GridListing
+    public static function forTeasers(array $teasers, ListHeading $heading = null, Pager $pagination = null, string $id = null): GridListing
     {
         Assertion::notEmpty($teasers);
         Assertion::allIsInstanceOf($teasers, Teaser::class);
@@ -79,7 +79,7 @@ final class GridListing implements ViewModel
         return new self(null, $heading, [], [], [], $teasers, $pagination, $id);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/grid-listing.mustache';
     }

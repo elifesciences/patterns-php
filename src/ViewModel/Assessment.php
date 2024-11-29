@@ -27,7 +27,7 @@ final class Assessment implements ViewModel
         $this->summary = $summary;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/assessment.mustache';
     }

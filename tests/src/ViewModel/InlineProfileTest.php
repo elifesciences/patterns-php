@@ -41,14 +41,14 @@ final class InlineProfileTest extends ViewModelTest
         new InlineProfile(new Picture([], new Image('path')), '');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new InlineProfile(new Picture([], new Image('path')), 'text')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/inline-profile.mustache';
     }

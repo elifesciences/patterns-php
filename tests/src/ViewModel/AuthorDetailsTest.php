@@ -93,7 +93,7 @@ final class AuthorDetailsTest extends ViewModelTest
         AuthorDetails::forPerson('id', '');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum person' => [AuthorDetails::forPerson('id', 'name')],
@@ -105,7 +105,7 @@ final class AuthorDetailsTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/author-details.mustache';
     }

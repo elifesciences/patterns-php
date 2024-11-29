@@ -21,7 +21,7 @@ final class Orcid implements ViewModel
         $this->id = $id;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/orcid.mustache';
     }

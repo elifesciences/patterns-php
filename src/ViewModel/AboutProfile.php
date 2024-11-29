@@ -31,7 +31,7 @@ final class AboutProfile implements ViewModel
         $this->profile = $profile;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/about-profile.mustache';
     }

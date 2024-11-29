@@ -28,14 +28,14 @@ final class CodeTest extends ViewModelTest
         new Code('');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [new Code('<p>code</p>')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/code.mustache';
     }

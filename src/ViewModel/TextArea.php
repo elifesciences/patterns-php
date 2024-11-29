@@ -9,11 +9,10 @@ use eLife\Patterns\ViewModel;
 
 final class TextArea implements ViewModel
 {
-    const STATE_INVALID = 'invalid';
-    const STATE_VALID = 'valid';
-
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
+    public const STATE_INVALID = 'invalid';
+    public const STATE_VALID = 'valid';
 
     private $label;
     private $name;
@@ -65,7 +64,7 @@ final class TextArea implements ViewModel
         $this->messageGroup = $messageGroup;
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/text-area.mustache';
     }

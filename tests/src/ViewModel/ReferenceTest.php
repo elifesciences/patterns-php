@@ -101,7 +101,7 @@ final class ReferenceTest extends ViewModelTest
         $this->assertSame($data, $reference->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'))],
@@ -111,7 +111,7 @@ final class ReferenceTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/reference.mustache';
     }

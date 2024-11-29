@@ -36,7 +36,7 @@ final class ListingProfileSnippets implements ViewModel
         return new static($items, $heading, $seeMoreLink);
     }
 
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return 'resources/templates/listing-profile-snippets.mustache';
     }

@@ -57,8 +57,10 @@ final class ArchiveNavLinkTest extends ViewModelTest
             ],
         ];
 
-        $archiveNavLink = ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
-            new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]);
+        $archiveNavLink = ArchiveNavLink::withLinks(new BlockLink(
+            new Link('name', 'url'),
+            new Picture([], new Image('/default/path'))
+        ), 'label', [new Link('name', 'url')]);
 
         $this->assertSame($data['blockLink'], $data['blockLink']);
         $this->assertSame($data['label'], $data['label']);
@@ -66,20 +68,22 @@ final class ArchiveNavLinkTest extends ViewModelTest
         $this->assertSame($data, $archiveNavLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'without links' => [
                 ArchiveNavLink::basic(new BlockLink(new Link('name', 'url'))),
             ],
             'with links' => [
-                ArchiveNavLink::withLinks(new BlockLink(new Link('name', 'url'),
-                    new Picture([], new Image('/default/path'))), 'label', [new Link('name', 'url')]),
+                ArchiveNavLink::withLinks(new BlockLink(
+                    new Link('name', 'url'),
+                    new Picture([], new Image('/default/path'))
+                ), 'label', [new Link('name', 'url')]),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/archive-nav-link.mustache';
     }

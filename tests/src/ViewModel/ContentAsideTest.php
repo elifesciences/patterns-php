@@ -154,7 +154,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertArrayNotHasKey('previousVersion', $without);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'minimum' => [new ContentAside()],
@@ -182,7 +182,7 @@ final class ContentAsideTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/content-aside.mustache';
     }

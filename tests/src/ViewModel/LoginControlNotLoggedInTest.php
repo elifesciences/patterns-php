@@ -55,14 +55,14 @@ final class LoginControlNotLoggedInTest extends ViewModelTest
         $this->assertNull($loginControl['isLoggedIn']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [LoginControl::notLoggedIn('some text', '#loginUri')],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/login-control.mustache';
     }

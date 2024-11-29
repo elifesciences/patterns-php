@@ -46,7 +46,8 @@ final class ListingReadMoreTest extends ViewModelTest
             return new ReadMoreItem(
                 new ContentHeaderReadMore($item['item']['title'], $item['item']['url']),
                 $item['content'] ?? null,
-                $item['isRelated'] ?? false);
+                $item['isRelated'] ?? false
+            );
         }, $data['items']);
 
         $listingReadMore = ListingReadMore::basic($list);
@@ -82,7 +83,8 @@ final class ListingReadMoreTest extends ViewModelTest
             return new ReadMoreItem(
                 new ContentHeaderReadMore($item['item']['title'], $item['item']['url']),
                 $item['content'] ?? null,
-                $item['isRelated']);
+                $item['isRelated']
+            );
         }, $data['items']);
 
         $listingReadMore = ListingReadMore::basic($list);
@@ -116,14 +118,15 @@ final class ListingReadMoreTest extends ViewModelTest
             return new ReadMoreItem(
                 new ContentHeaderReadMore($item['item']['title'], $item['item']['url']),
                 $item['content'] ?? null,
-                $item['isRelated'] ?? false);
+                $item['isRelated'] ?? false
+            );
         }, $data['items']);
 
         $listingReadMore = ListingReadMore::basic($list);
         $this->assertFalse($listingReadMore['allRelated']);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             [
@@ -156,7 +159,8 @@ final class ListingReadMoreTest extends ViewModelTest
                         new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
                     ],
                     Pager::firstPage(new Link('testing', '#')),
-                    new ListHeading('heading'), 'id'
+                    new ListHeading('heading'),
+                    'id'
                 ),
             ],
             [
@@ -178,13 +182,14 @@ final class ListingReadMoreTest extends ViewModelTest
                         new ReadMoreItem(new ContentHeaderReadMore('title', '#')),
                     ],
                     new SeeMoreLink(new Link('testing', '#')),
-                    new ListHeading('heading'), 'id'
+                    new ListHeading('heading'),
+                    'id'
                 ),
             ],
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/listing-read-more.mustache';
     }

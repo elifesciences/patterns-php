@@ -18,7 +18,7 @@ final class PatternExtensionTest extends PHPUnit_Framework_TestCase
      */
     public function it_is_a_twig_extension()
     {
-        $extension = new PatternExtension(new CallbackPatternRenderer(function (ViewModel $viewModel) : string {
+        $extension = new PatternExtension(new CallbackPatternRenderer(function (ViewModel $viewModel): string {
             return 'foobar';
         }));
 
@@ -33,7 +33,7 @@ final class PatternExtensionTest extends PHPUnit_Framework_TestCase
     {
         $twigLoader = new Twig_Loader_Array(['foo' => '{{render_pattern(bar)}}']);
         $twig = new Twig_Environment($twigLoader);
-        $twig->addExtension(new PatternExtension(new CallbackPatternRenderer(function (ViewModel $viewModel) : string {
+        $twig->addExtension(new PatternExtension(new CallbackPatternRenderer(function (ViewModel $viewModel): string {
             return 'foobar';
         })));
 

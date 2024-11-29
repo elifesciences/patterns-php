@@ -89,7 +89,7 @@ final class SiteHeaderTest extends ViewModelTest
         new SiteHeader($this->title, $this->primaryLinks, null);
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         $title = new SiteHeaderTitle('/home/page/path');
 
@@ -115,7 +115,7 @@ final class SiteHeaderTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/site-header.mustache';
     }

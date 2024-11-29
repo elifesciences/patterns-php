@@ -80,7 +80,7 @@ final class ClipboardButtonTest extends ViewModelTest
         Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, 'foo');
     }
 
-    public function viewModelProvider() : array
+    public function viewModelProvider(): array
     {
         return [
             'small' => [Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_SMALL)],
@@ -95,7 +95,7 @@ final class ClipboardButtonTest extends ViewModelTest
         ];
     }
 
-    protected function expectedTemplate() : string
+    protected function expectedTemplate(): string
     {
         return 'resources/templates/button.mustache';
     }

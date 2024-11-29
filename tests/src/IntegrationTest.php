@@ -41,7 +41,7 @@ final class IntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertSame("foo bar\nbar\n", $patternRenderer->render($viewModel->reveal()));
     }
 
-    private function createPatternRenderer() : PatternRenderer
+    private function createPatternRenderer(): PatternRenderer
     {
         $mustache = new Mustache_Engine([
             'loader' => new Mustache_Loader_FilesystemLoader(__DIR__.'/../resources'),
