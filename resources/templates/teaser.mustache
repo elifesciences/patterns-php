@@ -87,6 +87,14 @@
       {{> resources/templates/meta}}
     {{/meta}}
 
+    {{#terms}}
+      <ul class="teaser__terms" aria-label="Lorem ipsum">
+        {{#items}}
+        <li>{{>resources/templates/term}}</li>
+        {{/items}}
+      </ul>
+    {{/terms}}
+
   </footer>
   {{/footer}}
 </div>

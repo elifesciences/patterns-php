@@ -238,6 +238,23 @@ properties:
                     -
                         required:
                             - text
+            terms:
+                type: object
+                properties:
+                    items:
+                        type: array
+                        items:
+                            $schema: 'http://json-schema.org/draft-04/schema#'
+                            type: object
+                            properties:
+                                value:
+                                    type: string
+                                    minLength: 1
+                                isHighlighted:
+                                    default: false
+                                    type: boolean
+                            required:
+                                - value
         required:
             - meta
 dependencies:

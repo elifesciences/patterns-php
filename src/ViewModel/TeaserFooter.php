@@ -12,17 +12,21 @@ final class TeaserFooter implements CastsToArray
     use ArrayFromProperties;
 
     private $meta;
+    private $terms;
 
     private function __construct(
-        Meta $meta
+        Meta $meta,
+        $terms = null
     ) {
         $this->meta = $meta;
+        $this->terms = $terms;
     }
 
     public static function forArticle(
-        Meta $meta
+        Meta $meta,
+        $terms = null
     ) {
-        return new static($meta);
+        return new static($meta, $terms);
     }
 
     public static function forNonArticle(
