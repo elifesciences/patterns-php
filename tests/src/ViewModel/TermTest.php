@@ -13,6 +13,7 @@ final class TermTest extends ViewModelTest
     {
         $data = [
             'term' => 'Valuable',
+            'value' => 'Valuable',
             'isHighlighted' => true,
         ];
 

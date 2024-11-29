@@ -13,13 +13,15 @@ final class Term implements ViewModel
     use ArrayFromProperties;
 
     private $term;
+    private $value;
     private $isHighlighted;
 
-    public function __construct(string $term, bool $isHighlighted = false)
+    public function __construct(string $value, bool $isHighlighted = false)
     {
-        Assertion::notBlank($term);
+        Assertion::notBlank($value);
 
-        $this->term = $term;
+        $this->term = $value;
+        $this->value = $value;
         $this->isHighlighted = $isHighlighted;
     }
 
