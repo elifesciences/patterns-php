@@ -115,14 +115,14 @@ properties:
                             $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
                             properties:
-                                term:
+                                value:
                                     type: string
                                     minLength: 1
                                 isHighlighted:
                                     default: false
                                     type: boolean
                             required:
-                                - term
+                                - value
                     termDescriptionAriaLabel:
                         type: string
                         minLength: 1
@@ -147,14 +147,14 @@ properties:
                             $schema: 'http://json-schema.org/draft-04/schema#'
                             type: object
                             properties:
-                                term:
+                                value:
                                     type: string
                                     minLength: 1
                                 isHighlighted:
                                     default: false
                                     type: boolean
                             required:
-                                - term
+                                - value
                     termDescriptionAriaLabel:
                         type: string
                         minLength: 1
