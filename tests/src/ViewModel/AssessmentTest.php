@@ -20,12 +20,10 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
                 'termDescription' => 'description',
                 'terms' => [
                     [
-                        'term' => 'Landmark',
                         'value' => 'Landmark',
                         'isHighlighted' => false,
                     ],
                     [
-                        'term' => 'Valuable',
                         'value' => 'Valuable',
                         'isHighlighted' => true,
                     ]
@@ -36,12 +34,10 @@ final class AssessmentTest extends PHPUnit_Framework_TestCase
                 'termDescription' => 'description',
                 'terms' => [
                     [
-                        'term' => 'Exceptional',
                         'value' => 'Exceptional',
                         'isHighlighted' => false,
                     ],
                     [
-                        'term' => 'Solid',
                         'value' => 'Solid',
                         'isHighlighted' => true,
                     ]

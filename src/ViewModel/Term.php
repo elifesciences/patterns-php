@@ -12,7 +12,6 @@ final class Term implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $term;
     private $value;
     private $isHighlighted;
 
@@ -20,7 +19,6 @@ final class Term implements ViewModel
     {
         Assertion::notBlank($value);
 
-        $this->term = $value;
         $this->value = $value;
         $this->isHighlighted = $isHighlighted;
     }

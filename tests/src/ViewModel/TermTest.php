@@ -12,15 +12,11 @@ final class TermTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'term' => 'Valuable',
             'value' => 'Valuable',
             'isHighlighted' => true,
         ];
 
-        $term = new Term(
-            $data['term'],
-            $data['isHighlighted']
-        );
+        $term = new Term('Valuable', true);
 
         $this->assertSame($data, $term->toArray());
     }
