@@ -1,4 +1,5 @@
-.PHONY: lint phpcs test update-pattern-library
+PROJECT_NAME = patterns-php
+.PHONY: build lint phpcs test test-ci update-pattern-library
 
 vendor:
 	composer install
@@ -14,3 +15,12 @@ lint: phpcs
 
 update-pattern-library:
 	bin/update
+
+build:
+	$(if $(PHP_VERSION),,$(error PHP_VERSION make variable needs to be set))
+	docker buildx build --build-arg=PHP_VERSION=$(PHP_VERSION) -t $(PROJECT_NAME):$(PHP_VERSION) .
+
+test-ci: build
+	docker run --rm $(PROJECT_NAME):$(PHP_VERSION) bash -c 'vendor/bin/phpunit'
+
+ci: test-ci
