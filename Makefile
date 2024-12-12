@@ -22,5 +22,3 @@ build:
 
 test-ci: build
 	docker run --rm $(PROJECT_NAME):$(PHP_VERSION) bash -c 'vendor/bin/phpunit'
-
-ci: test-ci

@@ -20,5 +20,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run tests
-        run: make PHP_VERSION=${{ matrix.php_version }} test
+        run: make PHP_VERSION=${{ matrix.php_version }} test-ci
 
