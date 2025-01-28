@@ -19,7 +19,7 @@ final class FilterPanelTest extends ViewModelTest
             'title' => 'Search results',
             'filterGroups' => [
                     [
-                        'title' => 'title',
+                        'filterTitle' => 'title',
                         'filters' => [
                                 [
                                     'isChecked' => true,

@@ -12,15 +12,15 @@ final class FilterGroup implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $title;
+    private $filterTitle;
     private $filters;
 
-    public function __construct(string $title, array $filters)
+    public function __construct(string $filterTitle, array $filters)
     {
-        Assertion::notBlank($title);
+        Assertion::notBlank($filterTitle);
         Assertion::allIsInstanceOf($filters, Filter::class);
 
-        $this->title = $title;
+        $this->filterTitle = $filterTitle;
         $this->filters = $filters;
     }
 

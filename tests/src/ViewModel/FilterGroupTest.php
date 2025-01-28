@@ -13,7 +13,7 @@ final class FilterGroupTest extends ViewModelTest
     public function it_has_data()
     {
         $data = [
-            'title' => 'title',
+            'filterTitle' => 'title',
             'filters' => [
                     [
                         'isChecked' => true,
@@ -42,7 +42,7 @@ final class FilterGroupTest extends ViewModelTest
             new Filter($data['filters'][2]['isChecked'], $data['filters'][2]['label'], $data['filters'][2]['results'], $data['filters'][2]['name'], $data['filters'][2]['results'], $data['filters'][2]['value']),
         ]);
 
-        $this->assertSame($data['title'], $filterGroup['title']);
+        $this->assertSame($data['filterTitle'], $filterGroup['filterTitle']);
         $this->assertSame($data['filters'][0]['label'], $filterGroup['filters'][0]['label']);
         $this->assertSame($data['filters'][1]['label'], $filterGroup['filters'][1]['label']);
         $this->assertSame($data['filters'][2]['label'], $filterGroup['filters'][2]['label']);
