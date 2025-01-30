@@ -14,14 +14,17 @@ final class FilterGroup implements ViewModel
 
     private $filterTitle;
     private $filters;
+    private $isSelectFilter;
 
-    public function __construct(string $filterTitle, array $filters)
+    public function __construct(string $filterTitle = null, array $filters, string $isSelectFilter = null)
     {
-        Assertion::notBlank($filterTitle);
+        Assertion::nullOrNotBlank($filterTitle);
         Assertion::allIsInstanceOf($filters, Filter::class);
+        Assertion::nullOrNotBlank($isSelectFilter);
 
         $this->filterTitle = $filterTitle;
         $this->filters = $filters;
+        $this->isSelectFilter = $isSelectFilter;
     }
 
     public function getTemplateName() : string

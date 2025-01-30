@@ -18,13 +18,19 @@ final class Filter implements CastsToArray
     private $name;
     private $value;
 
-    public function __construct(bool $isChecked, string $label, int $results, string $name, string $value = null)
+    public function __construct(
+        bool $isChecked,
+        string $label,
+        int $results = null,
+        string $name = null,
+        string $value = null
+    )
     {
         Assertion::notBlank($label);
 
         $this->isChecked = $isChecked;
         $this->label = $label;
-        $this->results = number_format($results);
+        $this->results = $results ? number_format($results) : null;
         $this->name = $name;
         $this->value = $value;
     }

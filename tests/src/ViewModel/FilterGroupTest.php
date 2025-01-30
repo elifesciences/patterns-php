@@ -18,8 +18,6 @@ final class FilterGroupTest extends ViewModelTest
                     [
                         'isChecked' => true,
                         'label' => 'filter 1',
-                        'results' => 10,
-                        'name' => 'some_name_10',
                     ],
                     [
                         'isChecked' => true,
@@ -37,10 +35,24 @@ final class FilterGroupTest extends ViewModelTest
                 ],
         ];
         $filterGroup = new FilterGroup('title', [
-            new Filter($data['filters'][0]['isChecked'], $data['filters'][0]['label'], $data['filters'][0]['results'], $data['filters'][0]['name']),
-            new Filter($data['filters'][1]['isChecked'], $data['filters'][1]['label'], $data['filters'][1]['results'], $data['filters'][1]['name']),
-            new Filter($data['filters'][2]['isChecked'], $data['filters'][2]['label'], $data['filters'][2]['results'], $data['filters'][2]['name'], $data['filters'][2]['results'], $data['filters'][2]['value']),
-        ]);
+            new Filter(
+                $data['filters'][0]['isChecked'],
+                $data['filters'][0]['label']
+            ),
+            new Filter(
+                $data['filters'][1]['isChecked'],
+                $data['filters'][1]['label'],
+                $data['filters'][1]['results'],
+                $data['filters'][1]['name']
+            ),
+            new Filter(
+                $data['filters'][2]['isChecked'],
+                $data['filters'][2]['label'],
+                $data['filters'][2]['results'],
+                $data['filters'][2]['name'],
+                $data['filters'][2]['value']
+            ),
+        ], 'select-filter');
 
         $this->assertSame($data['filterTitle'], $filterGroup['filterTitle']);
         $this->assertSame($data['filters'][0]['label'], $filterGroup['filters'][0]['label']);
@@ -49,9 +61,10 @@ final class FilterGroupTest extends ViewModelTest
         $this->assertTrue($data['filters'][0]['isChecked']);
         $this->assertTrue($data['filters'][1]['isChecked']);
         $this->assertFalse($data['filters'][2]['isChecked']);
-        $this->assertSame('10', $filterGroup['filters'][0]['results']);
+        $this->assertNull($filterGroup['filters'][0]['results']);
         $this->assertSame('20', $filterGroup['filters'][1]['results']);
         $this->assertSame('3,000', $filterGroup['filters'][2]['results']);
+        $this->assertSame('select-filter', $filterGroup['isSelectFilter']);
     }
 
     public function viewModelProvider() : array
@@ -63,6 +76,11 @@ final class FilterGroupTest extends ViewModelTest
                     new Filter(true, 'filter 2', '20', 'some_name_20'),
                     new Filter(true, 'filter 3', '30', 'some_name_30'),
                 ]),
+                new FilterGroup('title', [
+                    new Filter(true, 'filter 1'),
+                    new Filter(true, 'filter 2', '20', 'some_name_20'),
+                    new Filter(true, 'filter 3', '30', 'some_name_30'),
+                ], 'select-filter'),
             ],
         ];
     }
