@@ -27,6 +27,7 @@ final class Filter implements CastsToArray
     )
     {
         Assertion::notBlank($label);
+        Assertion::nullOrNotBlank($value);
 
         $this->isChecked = $isChecked;
         $this->label = $label;
