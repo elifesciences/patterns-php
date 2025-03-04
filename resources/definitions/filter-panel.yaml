@@ -14,7 +14,7 @@ properties:
                 filterTitle:
                     type: string
                     minLength: 1
-                isSelectFilter:
+                selectFilterName:
                     type: string
                     minLength: 1
                 filters:
