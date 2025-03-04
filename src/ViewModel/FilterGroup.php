@@ -14,7 +14,7 @@ final class FilterGroup implements ViewModel
 
     private $filterTitle;
     private $filters;
-    private $isSelectFilter;
+    private $selectFilterName;
 
     public function __construct(string $filterTitle = null, array $filters, string $selectFilterName = null)
     {
@@ -24,7 +24,7 @@ final class FilterGroup implements ViewModel
 
         $this->filterTitle = $filterTitle;
         $this->filters = $filters;
-        $this->isSelectFilter = $selectFilterName;
+        $this->selectFilterName = $selectFilterName;
     }
 
     public function getTemplateName() : string

@@ -64,7 +64,7 @@ final class FilterGroupTest extends ViewModelTest
         $this->assertNull($filterGroup['filters'][0]['results']);
         $this->assertSame('20', $filterGroup['filters'][1]['results']);
         $this->assertSame('3,000', $filterGroup['filters'][2]['results']);
-        $this->assertSame('select-filter', $filterGroup['isSelectFilter']);
+        $this->assertSame('select-filter', $filterGroup['selectFilterName']);
     }
 
     public function viewModelProvider() : array
