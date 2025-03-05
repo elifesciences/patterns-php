@@ -8,7 +8,7 @@ test: vendor
 	vendor/bin/phpunit
 
 .PHONY: phpcs
-phpcs:
+phpcs: vendor
 	vendor/bin/phpcs --standard=phpcs.xml.dist --warning-severity=0 -p bin src tests
 
 .PHONY: lint
