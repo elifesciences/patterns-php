@@ -32,3 +32,6 @@ lint-ci: build
 .PHONY: test-ci
 test-ci: build
 	docker run --rm $(PROJECT_NAME):$(PHP_VERSION) bash -c 'vendor/bin/phpunit'
+
+.PHONY: check
+check: test lint
