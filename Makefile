@@ -13,7 +13,7 @@ phpcs:
 
 .PHONY: lint
 lint: phpcs
-	find src tests -name '*.php' | xargs -L1 php -l
+	./syntax-check.sh
 
 .PHONY: update-pattern-library
 update-pattern-library:
