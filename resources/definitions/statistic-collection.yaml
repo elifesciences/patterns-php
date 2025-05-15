@@ -14,6 +14,9 @@ properties:
                 value:
                     type: string
                     minLength: 1
+                shouldNotEscapeTerm:
+                    type: string
+                    minLength: 1
             required:
                 - label
                 - value
