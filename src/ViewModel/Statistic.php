@@ -16,9 +16,9 @@ final class Statistic implements ViewModel
     private $value;
     private $shouldNotEscapeTerm;
 
-    public static function fromString(string $label, string $value)
+    public static function fromString(string $label, string $value, string $shouldNotEscapeTerm = null)
     {
-        return new static($label, $value);
+        return new static($label, $value, $shouldNotEscapeTerm);
     }
 
     public static function fromNumber(string $label, int $value, string $shouldNotEscapeTerm = null)

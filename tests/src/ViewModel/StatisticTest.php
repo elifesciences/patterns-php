@@ -23,7 +23,6 @@ class StatisticTest extends ViewModelTest
     {
         $expectedViewmodelStateAfterConstruction = ['label' => 'Downloads', 'value' => '2,034', 'shouldNotEscapeTerm'=>'true'];
         $constructedViewmodel = Statistic::fromString($expectedViewmodelStateAfterConstruction['label'], '2,034', 'true');
-        $this->markTestSkipped();
         $this->assertSameValuesWithoutOrder($expectedViewmodelStateAfterConstruction, $constructedViewmodel->toArray());
     }
 
