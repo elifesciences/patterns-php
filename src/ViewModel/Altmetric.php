@@ -18,6 +18,7 @@ final class Altmetric implements ViewModel
         string $doi
     ) {
         Assertion::notBlank($doi);
+        $this->doi = $doi;
     }
 
     public function getTemplateName() : string
