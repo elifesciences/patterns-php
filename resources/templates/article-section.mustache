@@ -24,6 +24,10 @@
       {{>resources/templates/statistic-collection}}
     {{/showCharts}}
 
+    {{#altmetric}}
+      {{> resources/templates/altmetric}}
+    {{/altmetric}}
+
     {{#chart}}
       {{>resources/templates/bar-chart}}
     {{/chart}}
@@ -32,10 +36,6 @@
       {{> resources/templates/doi}}
     {{/doi}}
 
-    {{#altmetric}}
-      {{> resources/templates/altmetric}}
-    {{/altmetric}}
-    
     {{#assessment}}
       {{> resources/templates/assessment}}
     {{/assessment}}
