@@ -19,6 +19,8 @@ final class AltmetricTest extends ViewModelTest
         $result = new Altmetric($data['doi'], $data['donutSize'], $data['showBadgeDetails']);
 
         $this->assertSame($data['doi'], $result['doi']);
+        $this->assertSame($data['donutSize'], $result['donutSize']);
+        $this->assertSame($data['showBadgeDetails'], $result['showBadgeDetails']);
         $this->assertSame($data, $result->toArray());
     }
 
