@@ -90,8 +90,8 @@ final class ContentAsideTest extends ViewModelTest
             ],
             'altmetric' => [
                 'doi' => '10.7554/eLife.09560',
-                'donutSize' => 'medium-donut',
-                'showBadgeDetails' => true,
+                'donutSize' => 'donut',
+                'showBadgeDetails' => false,
             ]
         ];
 
@@ -188,6 +188,22 @@ final class ContentAsideTest extends ViewModelTest
                 )
             ],
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function it_may_have_an_altmetric_badge()
+    {
+        $with = new ContentAside(null, null, null, null, null, null, new Altmetric('10.7554/eLife.09560', 'donut', false));
+        $without = new ContentAside(null, null, null, null, null, null, null);
+
+        $this->assertArrayHasKey('altmetric', $with->toArray());
+        $this->assertSame('10.7554/eLife.09560', $with['altmetric']['doi']);
+        $this->assertSame('donut', $with['altmetric']['donutSize']);
+        $this->assertSame(false, $with['altmetric']['showBadgeDetails']);
+
+        $this->assertArrayNotHasKey('altmetric', $without);
     }
 
     protected function expectedTemplate() : string
