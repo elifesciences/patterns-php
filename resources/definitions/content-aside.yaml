@@ -194,6 +194,20 @@ properties:
                     - citeAs
                     - doi
         minProperties: 1
+    altmetric:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            doi:
+                type: string
+            showBadgeDetails:
+                type: boolean
+            donutSize:
+                type: string
+        required:
+            - doi
+            - showBadgeDetails
+            - donutSize
     previousVersion:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
