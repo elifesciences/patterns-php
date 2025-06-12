@@ -13,12 +13,21 @@ final class Altmetric implements ViewModel
     use ArrayFromProperties;
 
     private $doi;
+    private $donutSize;
+    private $showBadgeDetails;
 
     public function __construct(
-        string $doi
+        string $doi,
+        string $donutSize,
+        bool $showBadgeDetails
     ) {
         Assertion::notBlank($doi);
+        Assertion::notBlank($donutSize);
+        Assertion::notNull($showBadgeDetails);
+
         $this->doi = $doi;
+        $this->donutSize = $donutSize;
+        $this->showBadgeDetails = $showBadgeDetails;
     }
 
     public function getTemplateName() : string

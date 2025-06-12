@@ -37,13 +37,18 @@
         {{>resources/templates/contextual-data}}
       {{/metrics}}
 
-      {{#related}}
-        <div class="divider"></div>
+      <div class="divider"></div>
 
+      {{#altmetric}}
+        {{>resources/templates/altmetric}}
+      {{/altmetric}}
+
+      {{#related}}
         <div class="article__related-item grid-secondary-column__item--extended-wide-only">
           {{> resources/templates/listing-teasers }}
         </div>
       {{/related}}{{!
-    }}</div>
+    }}
+    </div>
   </div>
 </aside>

@@ -13,8 +13,10 @@ final class AltmetricTest extends ViewModelTest
     {
         $data = [
             'doi' => '10.7554/eLife.10181.001',
+            'donutSize' => 'medium-donut',
+            'showBadgeDetails' => true
         ];
-        $result = new Altmetric($data['doi']);
+        $result = new Altmetric($data['doi'], $data['donutSize'], $data['showBadgeDetails']);
 
         $this->assertSame($data['doi'], $result['doi']);
         $this->assertSame($data, $result->toArray());
@@ -23,8 +25,8 @@ final class AltmetricTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'minimum' => [new Altmetric('10.7554/eLife.10181.001')],
-            'complete' => [new Altmetric('10.7554/eLife.10181.001')],
+            'altmetricBadgeWithDetails' => [new Altmetric('10.7554/eLife.10181.001', 'medium-donut', true)],
+            'altmetricBadgeWithoutDetails' => [new Altmetric('10.7554/eLife.10181.001', 'donut', false)],
         ];
     }
 
