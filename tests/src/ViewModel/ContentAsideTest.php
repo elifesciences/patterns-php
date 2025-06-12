@@ -2,6 +2,7 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\Altmetric;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ButtonCollection;
 use eLife\Patterns\ViewModel\ContentAside;
@@ -86,6 +87,11 @@ final class ContentAsideTest extends ViewModelTest
                     'name' => 'Previous version',
                     'url' => '#',
                 ],
+            ],
+            'altmetric' => [
+                'doi' => '10.7554/eLife.09560',
+                'donutSize' => 'medium-donut',
+                'showBadgeDetails' => true,
             ]
         ];
 
@@ -114,7 +120,8 @@ final class ContentAsideTest extends ViewModelTest
             new PreviousVersionWarning(
                 $data['previousVersion']['text'],
                 new Link($data['previousVersion']['link']['name'], $data['previousVersion']['link']['url'])
-            )
+            ),
+            new Altmetric($data['altmetric']['doi'], $data['altmetric']['donutSize'], $data['altmetric']['showBadgeDetails'])
         );
 
         $this->assertSame($data['status'], $contentAside['status']->toArray());
@@ -123,6 +130,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertSame($data['timeline'], $contentAside['timeline']->toArray());
         $this->assertSame($data['related'], $contentAside['related']->toArray());
         $this->assertSame($data['previousVersion'], $contentAside['previousVersion']->toArray());
+        $this->assertSame($data['altmetric'], $contentAside['altmetric']->toArray());
         $this->assertSame($data, $contentAside->toArray());
     }
 
