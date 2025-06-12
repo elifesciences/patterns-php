@@ -17,6 +17,7 @@ final class ContentAside implements ViewModel
     private $timeline;
     private $related;
     private $previousVersion;
+    private $altmetric;
 
     public function __construct(
         ContentAsideStatus $status = null,
@@ -24,7 +25,8 @@ final class ContentAside implements ViewModel
         ContextualData $metrics = null,
         DefinitionList $timeline = null,
         ListingTeasers $related = null,
-        PreviousVersionWarning $previousVersion = null
+        PreviousVersionWarning $previousVersion = null,
+        Altmetric $altmetric = null
     ) {
         $this->status = $status;
         $this->actionButtons = $actionButtons;
@@ -32,6 +34,7 @@ final class ContentAside implements ViewModel
         $this->timeline = $timeline;
         $this->related = $related;
         $this->previousVersion = $previousVersion;
+        $this->altmetric = $altmetric;
     }
 
     public function getTemplateName() : string
