@@ -1,2 +1,102 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 type: object
+properties:
+    primaryButton:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        allOf:
+            -
+                properties:
+                    text:
+                        type: string
+                        minLength: 1
+                    classes:
+                        type: string
+                    clipboardText:
+                        type: string
+                        minLength: 1
+                    id:
+                        type: string
+                        minLength: 1
+                    isHypothesisTrigger:
+                        type: boolean
+                        enum:
+                            - true
+                    ariaLabel:
+                        type: string
+                        minLength: 1
+                required:
+                    - text
+            -
+                oneOf:
+                    -
+                        properties:
+                            type:
+                                type: string
+                                enum:
+                                    - button
+                                    - reset
+                                    - submit
+                            name:
+                                type: string
+                                minLength: 1
+                        required:
+                            - type
+                    -
+                        properties:
+                            path:
+                                type: string
+                                minLength: 1
+                        required:
+                            - path
+    secondaryButton:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        allOf:
+            -
+                properties:
+                    text:
+                        type: string
+                        minLength: 1
+                    classes:
+                        type: string
+                    clipboardText:
+                        type: string
+                        minLength: 1
+                    id:
+                        type: string
+                        minLength: 1
+                    isHypothesisTrigger:
+                        type: boolean
+                        enum:
+                            - true
+                    ariaLabel:
+                        type: string
+                        minLength: 1
+                required:
+                    - text
+            -
+                oneOf:
+                    -
+                        properties:
+                            type:
+                                type: string
+                                enum:
+                                    - button
+                                    - reset
+                                    - submit
+                            name:
+                                type: string
+                                minLength: 1
+                        required:
+                            - type
+                    -
+                        properties:
+                            path:
+                                type: string
+                                minLength: 1
+                        required:
+                            - path
+required:
+    - primaryButton
+    - secondaryButton
