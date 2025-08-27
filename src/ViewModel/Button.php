@@ -185,8 +185,18 @@ final class Button implements ViewModel
         return $button;
     }
 
-    public static function homeBanner($text, $path) {
-        return static::link($text, $path);
+    public static function homeBanner(
+        string $text,
+        string $path,
+        string $size = self::SIZE_MEDIUM,
+        string $style = self::STYLE_DEFAULT
+) : Button {
+        Assertion::notBlank($path);
+
+        $button = new static($text, $size, $style, true);
+        $button->path = $path;
+
+        return $button;
     }
 
     public function getTemplateName() : string
