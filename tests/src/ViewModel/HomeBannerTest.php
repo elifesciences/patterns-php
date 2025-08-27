@@ -20,12 +20,12 @@ final class HomeBannerTest extends ViewModelTest
 
         $data = [
             'primaryButton' => [
-                'classes' => 'button--default home-page__button',
+                'classes' => 'button--default home-banner__button',
                 'path' => '#',
                 'text' => 'Primary button',
             ],
             'secondaryButton' => [
-                'classes' => 'button--default home-page__button',
+                'classes' => 'button--default home-banner__button',
                 'path' => '#',
                 'text' => 'Secondary button',
             ]
