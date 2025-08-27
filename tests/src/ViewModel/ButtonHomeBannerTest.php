@@ -22,16 +22,6 @@ final class ButtonHomeBannerTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $buttonHomeBanner->toArray());
     }
 
-    /**
-     * @test
-     */
-//    public function it_cannot_have_an_invalid_variant()
-//    {
-//        $this->expectException(InvalidArgumentException::class);
-//
-//        Button::action('text', "#", 1, null, 'foo');
-//    }
-
     public function viewModelProvider() : array
     {
         return [
