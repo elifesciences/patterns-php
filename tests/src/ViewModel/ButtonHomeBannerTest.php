@@ -3,7 +3,6 @@
 namespace src\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
-use InvalidArgumentException;
 use tests\eLife\Patterns\ViewModel\ViewModelTest;
 
 final class ButtonHomeBannerTest extends ViewModelTest
