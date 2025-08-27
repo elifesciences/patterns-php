@@ -195,6 +195,7 @@ final class Button implements ViewModel
 
         $button = new static($text, $size, $style, true);
         $button->path = $path;
+        $button->classes .= ' home-banner__button';
 
         return $button;
     }
