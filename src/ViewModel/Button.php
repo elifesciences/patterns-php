@@ -185,6 +185,10 @@ final class Button implements ViewModel
         return $button;
     }
 
+    public static function homeBanner($text, $path) {
+        return static::link($text, $path);
+    }
+
     public function getTemplateName() : string
     {
         return 'resources/templates/button.mustache';
