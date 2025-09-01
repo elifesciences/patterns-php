@@ -25,11 +25,24 @@ final class SiteHeaderTitleTest extends ViewModelTest
         new SiteHeaderTitle('');
     }
 
+    /**
+     * @test
+     */
+    public function it_may_have_a_custom_elife_logo()
+    {
+        $with = new SiteHeaderTitle('#', false, false, 'foo');
+        $without = new SiteHeaderTitle('#', false, false);
+
+        $this->assertArrayHasKey('elifeLogo', $with->toArray());
+
+        $this->assertArrayNotHasKey('elifeLogo', $without->toArray());
+    }
+
     public function viewModelProvider() : array
     {
         return [
             'minimum' => [new SiteHeaderTitle('/home/page/path')],
-            'complete' => [new SiteHeaderTitle('/home/page/path', true, true)],
+            'complete' => [new SiteHeaderTitle('/home/page/path', true, true, 'foo')],
         ];
     }
 
