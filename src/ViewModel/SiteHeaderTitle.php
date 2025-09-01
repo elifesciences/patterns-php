@@ -15,13 +15,12 @@ final class SiteHeaderTitle implements ViewModel
     private $homePagePath;
     private $isWrapped;
     private $borderVariant;
-    private $elifeLogo;
+    private $isHomePage;
 
     public function __construct(
         string $homePagePath,
         bool $isWrapped = false,
-        bool $borderVariant = false,
-        string $elifeLogo = null
+        bool $borderVariant = false
     )
     {
         Assertion::notBlank($homePagePath);
@@ -29,7 +28,13 @@ final class SiteHeaderTitle implements ViewModel
         $this->homePagePath = $homePagePath;
         $this->isWrapped = $isWrapped;
         $this->borderVariant = $borderVariant;
-        $this->elifeLogo = $elifeLogo;
+    }
+
+    public function isHomePage() : self
+    {
+        $this->isHomePage = true;
+
+        return $this;
     }
 
     public function getTemplateName() : string
