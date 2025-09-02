@@ -30,7 +30,7 @@ final class SiteHeaderTitle implements ViewModel
         $this->borderVariant = $borderVariant;
     }
 
-    public function isHomePage() : self
+    public function setForHomePage() : self
     {
         $this->isHomePage = true;
 

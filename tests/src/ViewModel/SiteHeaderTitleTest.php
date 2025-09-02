@@ -28,12 +28,12 @@ final class SiteHeaderTitleTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_can_be_set_as_home_page()
+    public function it_can_be_set_for_the_home_page()
     {
         $titleDefault = new SiteHeaderTitle('#', false, false);
         $this->assertArrayNotHasKey('isHomePage', $titleDefault->toArray());
 
-        $titleHomePage = (new SiteHeaderTitle('#', false, false))->isHomePage();
+        $titleHomePage = (new SiteHeaderTitle('#', false, false))->setForHomePage();
         $this->assertTrue($titleHomePage->toArray()['isHomePage']);
     }
 
@@ -41,7 +41,7 @@ final class SiteHeaderTitleTest extends ViewModelTest
     {
         return [
             'minimum' => [new SiteHeaderTitle('/home/page/path')],
-            'complete' => [(new SiteHeaderTitle('/home/page/path', true, true))->isHomePage()],
+            'complete' => [(new SiteHeaderTitle('/home/page/path', true, true))->setForHomePage()],
         ];
     }
 
