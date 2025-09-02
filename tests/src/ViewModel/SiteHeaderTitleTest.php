@@ -28,21 +28,20 @@ final class SiteHeaderTitleTest extends ViewModelTest
     /**
      * @test
      */
-    public function it_may_have_a_custom_elife_logo()
+    public function it_can_be_set_as_home_page()
     {
-        $with = new SiteHeaderTitle('#', false, false, 'foo');
-        $without = new SiteHeaderTitle('#', false, false);
+        $titleDefault = new SiteHeaderTitle('#', false, false);
+        $this->assertArrayNotHasKey('isHomePage', $titleDefault->toArray());
 
-        $this->assertArrayHasKey('elifeLogo', $with->toArray());
-
-        $this->assertArrayNotHasKey('elifeLogo', $without->toArray());
+        $titleHomePage = (new SiteHeaderTitle('#', false, false))->isHomePage();
+        $this->assertTrue($titleHomePage->toArray()['isHomePage']);
     }
 
     public function viewModelProvider() : array
     {
         return [
             'minimum' => [new SiteHeaderTitle('/home/page/path')],
-            'complete' => [new SiteHeaderTitle('/home/page/path', true, true, 'foo')],
+            'complete' => [(new SiteHeaderTitle('/home/page/path', true, true))->isHomePage()],
         ];
     }
 
