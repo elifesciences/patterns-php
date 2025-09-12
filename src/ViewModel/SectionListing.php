@@ -16,8 +16,9 @@ final class SectionListing implements ViewModel
     private $sections;
     private $listHeading;
     private $singleLine;
+    private $displayHeading;
 
-    public function __construct(string $id, array $sections, ListHeading $listHeading, bool $singleLine = false)
+    public function __construct(string $id, array $sections, ListHeading $listHeading, bool $singleLine = false, bool $displayHeading = false)
     {
         Assertion::notBlank($id);
         Assertion::allIsInstanceOf($sections, Link::class);
@@ -26,6 +27,7 @@ final class SectionListing implements ViewModel
         $this->id = $id;
         $this->sections = $sections;
         $this->singleLine = $singleLine;
+        $this->displayHeading = $displayHeading;
         $this->listHeading = $listHeading;
     }
 

@@ -59,7 +59,7 @@ final class SectionListingTest extends ViewModelTest
     {
         return [
             'minimum' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'))],
-            'complete' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'), true)],
+            'complete' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'), true, true)],
         ];
     }
 
