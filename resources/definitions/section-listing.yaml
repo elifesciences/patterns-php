@@ -6,6 +6,8 @@ properties:
         minLength: 1
     singleLine:
         type: boolean
+    displayHeading:
+        type: boolean
     listHeading:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
