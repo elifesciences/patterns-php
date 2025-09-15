@@ -29,7 +29,8 @@ final class SectionListingTest extends ViewModelTest
             'listHeading' => [
                 'heading' => 'heading',
             ],
-            'singleLine' => true
+            'singleLine' => true,
+            'displayHeading' => false,
         ];
 
         $siteLinksList = new SectionListing(
@@ -39,7 +40,8 @@ final class SectionListingTest extends ViewModelTest
                 new Link($data['sections'][1]['name'], $data['sections'][1]['url']),
             ],
             new ListHeading($data['listHeading']['heading']),
-            $data['singleLine']
+            $data['singleLine'],
+            $data['displayHeading']
         );
 
         $this->assertSame($data, $siteLinksList->toArray());
