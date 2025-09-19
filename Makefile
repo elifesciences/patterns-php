@@ -5,7 +5,7 @@ vendor:
 
 .PHONY: test
 test: vendor
-	vendor/bin/phpunit
+	vendor/bin/phpunit ${TEST}
 
 .PHONY: phpcs
 phpcs: vendor
