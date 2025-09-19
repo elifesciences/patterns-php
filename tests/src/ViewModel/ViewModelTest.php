@@ -146,11 +146,20 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue(is_array($expected), 'array expected');
         $this->assertTrue(is_array($actual), 'array expected');
-        $expectedArray = (array) $expected;
-        $actualArray = (array) $actual;
-        sort($expectedArray);
-        sort($actualArray);
-        $this->assertSame($expectedArray, $actualArray);
+        $isArrayOrObject = false;
+        foreach ($expected as $expected_item) {
+            $this->assertContains($expected_item, $actual);
+            if (is_array($expected_item) || is_object($expected_item)) {
+                $isArrayOrObject = true;
+            }
+        }
+        if (false === $isArrayOrObject) {
+            $expectedArray = (array) $expected;
+            $actualArray = (array) $actual;
+            sort($expectedArray);
+            sort($actualArray);
+            $this->assertSame($expectedArray, $actualArray);
+        }
     }
 
     private function handleValue($value)

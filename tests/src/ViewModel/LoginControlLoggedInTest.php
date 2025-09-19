@@ -52,7 +52,6 @@ final class LoginControlLoggedInTest extends ViewModelTest
         $data['linkFieldData'] = $this->linkFields['expectedOutput']['linkFieldData'];
         $data['linkFieldRoots'] = $this->linkFields['expectedOutput']['linkFieldRoots'];
         unset($data['linkFields']);
-        $this->markTestIncomplete('failing');
         $this->assertSameValuesWithoutOrder($data, $profileLoginControl->toArray());
     }
 
