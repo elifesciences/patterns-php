@@ -15,10 +15,9 @@ final class ButtonHomeBannerTest extends ViewModelTest
         $data = [
             'text' => 'Some text',
             'path' => '#',
-            'classes' => 'button--default home-banner__button'
+            'classes' => 'button--default button--full home-banner__button'
         ];
         $buttonHomeBanner = Button::homeBanner('Some text', '#');
-        $this->markTestIncomplete('failing');
         $this->assertSameWithoutOrder($data, $buttonHomeBanner->toArray());
     }
 
