@@ -15,7 +15,7 @@ final class ButtonHomeBannerTest extends ViewModelTest
         $data = [
             'text' => 'Some text',
             'path' => '#',
-            'classes' => 'button--default button--full home-banner__button'
+            'classes' => 'button--default button--full home-banner__button',
         ];
         $buttonHomeBanner = Button::homeBanner('Some text', '#');
         $this->assertSameWithoutOrder($data, $buttonHomeBanner->toArray());
@@ -24,7 +24,8 @@ final class ButtonHomeBannerTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'basic' => [Button::homeBanner('Some text', '#')],
+            'minimal' => [Button::homeBanner('Some text', '#')],
+            'complete' => [Button::homeBanner('Some text', '#', Button::SIZE_SMALL, Button::STYLE_SECONDARY)],
         ];
     }
 
