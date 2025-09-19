@@ -14,31 +14,30 @@ final class HomeBannerTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $primaryButton = Button::link('Primary button', '#');
-        $secondaryButton = Button::link('Secondary button', '#');
+        $primaryButton = Button::homeBanner('Primary button', '#');
+        $secondaryButton = Button::homeBanner('Secondary button', '#');
         $homeBanner = new HomeBanner($primaryButton, $secondaryButton);
 
         $data = [
             'primaryButton' => [
-                'classes' => 'button--default home-banner__button',
+                'classes' => 'button--default button--full home-banner__button',
                 'path' => '#',
                 'text' => 'Primary button',
             ],
             'secondaryButton' => [
-                'classes' => 'button--default home-banner__button',
+                'classes' => 'button--default button--full home-banner__button',
                 'path' => '#',
                 'text' => 'Secondary button',
             ]
-            ];
+        ];
 
-        $this->markTestIncomplete('failing test');
         $this->assertSame($data, $homeBanner->toArray());
     }
 
     public function viewModelProvider() : array
     {
-        $primaryButton = Button::link('Primary button', '#');
-        $secondaryButton = Button::link('Secondary button', '#');
+        $primaryButton = Button::homeBanner('Primary button', '#');
+        $secondaryButton = Button::homeBanner('Secondary button', '#');
         return [
             'complete' => [new HomeBanner($primaryButton, $secondaryButton)],
         ];
