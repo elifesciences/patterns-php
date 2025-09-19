@@ -153,6 +153,12 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
                 $isArrayOrObject = true;
             }
         }
+        foreach ($actual as $actual_item) {
+            $this->assertContains($actual_item, $expected);
+            if (is_array($actual_item) || is_object($actual_item)) {
+                $isArrayOrObject = true;
+            }
+        }
         if (false === $isArrayOrObject) {
             $expectedArray = (array) $expected;
             $actualArray = (array) $actual;
