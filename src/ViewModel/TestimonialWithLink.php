@@ -11,7 +11,14 @@ final class TestimonialWithLink implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    public function __construct() {
+    private $quotation;
+    private $attribution;
+    private $link;
+
+    public function __construct(string $quotation, string $attribution, Link $link) {
+        $this->quotation = $quotation;
+        $this->attribution = $attribution;
+        $this->link = $link;
     }
 
     public function getTemplateName() : string
