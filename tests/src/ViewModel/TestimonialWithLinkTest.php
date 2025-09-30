@@ -14,13 +14,14 @@ final class TestimonialWithLinkTest extends ViewModelTest
     public function it_has_data()
     {
         $testimonialWithLink = new TestimonialWithLink(
-            'quotation',
+            'quotation of the day.',
             'attribution',
             new Link('Link name', '#')
         );
 
         $data = [
-            'quotation' => 'quotation',
+            'quotation' => 'quotation of the ',
+            'quotationLastWord' => 'day.',
             'attribution' => 'attribution',
             'link' => [
                 'name' => 'Link name',
@@ -31,10 +32,26 @@ final class TestimonialWithLinkTest extends ViewModelTest
         $this->assertSame($data, $testimonialWithLink->toArray());
     }
 
+    /**
+     * @test
+     */
+    public function it_may_have_a_one_word_quotation()
+    {
+        $testimonialWithLink = new TestimonialWithLink(
+            'quotation',
+            'attribution',
+            new Link('Link name', '#')
+        );
+
+        $data = $testimonialWithLink->toArray();
+        $this->assertSame('quotation', $data['quotation']);
+        $this->assertArrayNotHasKey('quotationLastWord', $data);
+    }
+
     public function viewModelProvider() : array
     {
         return [
-            'complete' => [new TestimonialWithLink('quotation', 'attribution', new Link('#', 'Link name'))],
+            'complete' => [new TestimonialWithLink('quotation of the day', 'attribution', new Link('#', 'Link name'))],
         ];
     }
 
