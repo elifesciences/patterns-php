@@ -26,13 +26,10 @@ final class TestimonialWithLink implements ViewModel
     private function setQuotation(string $quotation) : void
     {
         $words = explode(' ', trim($quotation));
-        $lastWord = array_pop($words);
-        
+        $this->quotationLastWord = array_pop($words);
+
         if (count($words) > 0) {
             $this->quotation = implode(' ', $words).' ';
-            $this->quotationLastWord = $lastWord;
-        } else {
-            $this->quotation = $lastWord;
         }
     }
 

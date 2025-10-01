@@ -30,6 +30,6 @@ properties:
             - name
             - url
 required:
-    - quotation
+    - quotationLastWord
     - attribution
     - link

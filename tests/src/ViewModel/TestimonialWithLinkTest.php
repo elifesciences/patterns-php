@@ -44,8 +44,8 @@ final class TestimonialWithLinkTest extends ViewModelTest
         );
 
         $data = $testimonialWithLink->toArray();
-        $this->assertSame('quotation', $data['quotation']);
-        $this->assertArrayNotHasKey('quotationLastWord', $data);
+        $this->assertSame('quotation', $data['quotationLastWord']);
+        $this->assertArrayNotHasKey('quotation', $data);
     }
 
     public function viewModelProvider() : array
