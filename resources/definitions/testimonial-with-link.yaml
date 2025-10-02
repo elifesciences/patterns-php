@@ -41,6 +41,7 @@ properties:
             - name
             - url
 required:
+    - image
     - quotationLastWord
     - attribution
     - link
