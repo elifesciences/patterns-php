@@ -12,12 +12,14 @@ final class TestimonialWithLink implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
+    private $image;
     private $quotation;
     private $quotationLastWord;
     private $attribution;
     private $link;
 
-    public function __construct(string $quotation, string $attribution, Link $link) {
+    public function __construct(SimpleImage $image, string $quotation, string $attribution, Link $link) {
+        $this->image = $image;
         $this->setQuotation($quotation);
         $this->attribution = $attribution;
         $this->link = $link;

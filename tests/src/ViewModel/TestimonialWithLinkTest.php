@@ -3,6 +3,7 @@
 namespace src\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
+use eLife\Patterns\ViewModel\SimpleImage;
 use eLife\Patterns\ViewModel\TestimonialWithLink;
 use tests\eLife\Patterns\ViewModel\ViewModelTest;
 
@@ -14,12 +15,17 @@ final class TestimonialWithLinkTest extends ViewModelTest
     public function it_has_data()
     {
         $testimonialWithLink = new TestimonialWithLink(
+            new SimpleImage('/foo.png', 'altText'),
             'quotation of the day.',
             'attribution',
             new Link('Link name', '#')
         );
 
         $data = [
+            'image' => [
+                'path' => '/foo.png',
+                'altText' => 'altText',
+            ],
             'quotation' => 'quotation of the ',
             'quotationLastWord' => 'day.',
             'attribution' => 'attribution',
@@ -38,6 +44,7 @@ final class TestimonialWithLinkTest extends ViewModelTest
     public function it_may_have_a_one_word_quotation()
     {
         $testimonialWithLink = new TestimonialWithLink(
+            new SimpleImage('/foo.png', 'altText'),
             'quotation',
             'attribution',
             new Link('Link name', '#')
@@ -51,7 +58,7 @@ final class TestimonialWithLinkTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'complete' => [new TestimonialWithLink('quotation of the day', 'attribution', new Link('#', 'Link name'))],
+            'complete' => [new TestimonialWithLink(new SimpleImage('/foo.png', 'altText'), 'quotation of the day', 'attribution', new Link('#', 'Link name'))],
         ];
     }
 
