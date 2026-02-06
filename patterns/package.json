@@ -1,0 +1,18 @@
+{
+  "name": "patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "patternlab serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@pattern-lab/cli": "^6.1.0",
+    "@pattern-lab/uikit-workshop": "^6.1.0"
+  }
+}

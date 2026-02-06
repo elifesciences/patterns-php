@@ -3,3 +3,6 @@
 /.php_cs.cache
 /phpunit.xml
 /vendor/
+/patterns/node_modules
+/patterns/public/
+/patterns/dependencyGraph.json
