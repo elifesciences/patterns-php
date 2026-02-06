@@ -1,0 +1,67 @@
+@import "../../definitions";
+
+.profile-snippet {
+  border-top: 1px solid $color-text-dividers;
+  @include blg-spacing("top", "small");
+  @include blg-spacing("bottom", "small");
+
+  .listing-list__item:first-child & {
+    border-top-style: none;
+  }
+
+}
+
+.decision-letter-header {
+
+  .profile-snippet {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .profile-snippet__contact_details {
+    padding-bottom: 0;
+  }
+
+}
+
+.profile-snippet:after {
+  content: "";
+  clear: both;
+  display: block;
+  float: none;
+}
+
+.profile-snippet__picture {
+  display: block;
+  float: right;
+  width: 72px;
+}
+
+.profile-snippet__name {
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(18);
+  font-weight: bold;
+}
+
+.profile-snippet__title {
+  font-family: $font-primary;
+  @include font-size-and-vertical-height($font-size-base-in-px);
+  font-weight: 400;
+  margin: 0;
+}
+
+.profile-snippet__contact_details {
+  font-family: $font-primary;
+  @include font-size-and-vertical-height(14, 18.2);
+  font-style: italic;
+  font-weight: 400;
+  @include padding(40, "bottom");
+}
+
+@media only screen {
+  .profile-snippet__picture {
+    width: auto;
+    @include margin(24, "left");
+    max-width: #{get_rem_from_px(72)}rem;
+  }
+}

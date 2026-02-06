@@ -1,0 +1,111 @@
+@import "../../definitions";
+
+.definition-list--timeline {
+  dt,
+  dd {
+    @include padding(28, "left");
+    font-family: $font-secondary;
+    font-weight: bold;
+    position: relative;
+
+    time {
+      font-weight: normal;
+    }
+  }
+
+  dt {
+    @include font-size-and-vertical-height(16, 24);
+    @include margin(18, "top");
+
+    &:first-child {
+      @include margin(0, "top");
+    }
+
+    a {
+      color: $color-text;
+
+      &:hover {
+        @include link-hover();
+      }
+    }
+  }
+
+  dd {
+    @include font-size-and-vertical-height(14, 24);
+    color: $color-text-secondary;
+
+    .version {
+      color: $color-text;
+
+      &:after {
+        @include padding(0 5 0);
+        content: "\00a0\2022\00a0";
+        color: $color-text-secondary;
+        font-weight: bold;
+      }
+    }
+
+    a {
+      color: $color-text-secondary;
+      display: block;
+
+      &:hover {
+        @include link-hover();
+      }
+    }
+  }
+
+  dt:before,
+  dd:before {
+    background-color: $color-status-variable-c;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8px;
+  }
+
+  dt:before {
+    border-radius: 6px 6px 0 0;
+  }
+
+  dd:before {
+    border-radius: 0 0 6px 6px;
+  }
+
+  .definition-list--vor {
+    & + dd a {
+      color: $color-primary;
+    }
+
+    &:before,
+    & + dd:before {
+      background-color: $color-status-variable-b;
+    }
+  }
+}
+
+.definition-list--inline {
+  dt,
+  dd {
+    display: inline;
+  }
+
+  dt {
+    margin-top: 0;
+    &:before {
+      content: "";
+      display: table;
+    }
+    &:after {
+      content: ": ";
+    }
+  }
+
+  dd + dd {
+    &:before {
+      content: ", ";
+    }
+  }
+}

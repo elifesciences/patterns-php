@@ -1,0 +1,34 @@
+@import "../../definitions";
+
+.text-field,
+.text-field[type="text"],
+.text-field[type="email"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.text-field {
+  border: 1px solid $color-text-dividers;
+  border-radius: #{$border-radius}px;
+  color: $color-text;
+  display: block;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height($font-size-base-in-px);
+  @include padding($blg-space-extra-small-in-px - 1 12);
+  @include margin($blg-space-extra-small-in-px / 2, "bottom");
+  width: 100%;
+
+  &:focus {
+    border: 1px solid $color-text-placeholder;
+    outline: 0;
+  }
+}
+
+.text-field--textarea {
+  resize: vertical;
+}
+
+.text-field--invalid {
+  border: 1px solid $color-attention;
+}

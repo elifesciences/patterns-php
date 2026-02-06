@@ -1,0 +1,18 @@
+@import "../../definitions";
+
+.decision-letter-header__main_text {
+  @include blg-spacing("bottom", "small", "margin");
+}
+
+.decision-letter-header__main_text * {
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.decision-letter-header__main_text  p {
+  @include blg-spacing("bottom", "small");
+}
+
+.decision-letter-header__main_text a {
+  @include discreet-link();
+}

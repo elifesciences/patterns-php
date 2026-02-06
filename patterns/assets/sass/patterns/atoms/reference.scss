@@ -1,0 +1,188 @@
+@import "../../definitions";
+
+.reference__title {
+  @include author-typeg();
+  font-weight: bold;
+  display: inline;
+  text-decoration: none;
+
+  .popup__content & {
+    @include popup_title_text();
+  }
+
+}
+
+a.reference__title:hover {
+  color: $color-primary;
+}
+
+.reference__label {
+  @include author-typeg();
+  @include font-size-and-vertical-height(12);
+  color: $color-text-secondary;
+}
+
+.reference__authors_list {
+  display: inline;
+  list-style: none;
+  @include nospace();
+}
+
+.reference__author {
+  @include font-size-and-vertical-height(16);
+  display: inline;
+  font-family: $font-secondary;
+  margin: 0;
+  padding: 0;
+
+  .popup__content & {
+    @include popup_title_text();
+  }
+
+}
+
+.reference__author:after {
+  content: ", ";
+}
+
+.reference__author:last-of-type:after {
+  content: "";
+}
+
+.reference__authors_link {
+  color: inherit;
+  font-family: $font-secondary;
+  text-decoration: none;
+
+}
+
+a.reference__authors_link:hover {
+  color: $color-primary;
+}
+
+.reference__authors_list_suffix {
+  @include author-typeg();
+
+  .popup__content & {
+    @include popup_title_text();
+  }
+
+}
+
+.reference__origin {
+  @include author-typeg();
+  @include font-size-and-vertical-height(16);
+  display: inline;
+  padding-bottom: 0;
+
+  & a {
+    @include discreet-link();
+  }
+
+  .popup__content & {
+    @include popup-ancillary-text();
+  }
+
+}
+
+.reference__abstracts {
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.reference__abstract {
+  display: inline;
+  @include author-typeg();
+  @include font-size-and-vertical-height(14);
+
+  .popup__content & {
+    @include popup-ancillary-text();
+    padding-bottom: 0;
+  }
+
+}
+
+.reference__abstract_link {
+
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+}
+
+.reference {
+
+  .doi {
+
+    .doi__link {
+      @include font-size-and-vertical-height(14);
+      color: $color-primary;
+    }
+
+  }
+
+  .doi__reference-spacing {
+    @include margin(6, "bottom");
+  }
+
+  .reference__link-outer {
+    @include label-content-typeg($color-text-secondary, $uppercase: true);
+    @include font-size-and-vertical-height(14);
+  }
+
+  .reference__link {
+    padding-bottom: 0;
+    display: block;
+    float: left;
+    max-width: #{$bkpt-site--small - 120}px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: none;
+    white-space: nowrap;
+
+    @media only all and (max-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      max-width: #{$bkpt-site--small - 208}px;
+    }
+
+    &:before {
+      white-space: pre;
+    }
+
+  }
+
+  .reference__origin {
+
+    a {
+      @include font-size-and-vertical-height(14);
+      border-bottom: none;
+      color: $color-primary;
+    }
+  }
+
+  .doi + .reference__abstracts {
+    display: inline;
+  }
+
+  .reference__abstracts > .reference__abstract,
+  .reference__origin + .reference__abstracts > .reference__abstract {
+
+    &:before {
+      content: " | ";
+      color: $color-text-dividers;
+    }
+
+  }
+
+  .reference__origin + .reference__abstracts > .reference__abstract {
+
+    &:first-child {
+
+      &:before {
+        content: " ";
+      }
+    }
+
+  }
+}

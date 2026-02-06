@@ -1,0 +1,21 @@
+@import "../../definitions";
+
+.image-link__link {
+  border: 1px solid $color-text-dividers;
+  display: table;
+  height: (60px + (48px * 2) + 2px); // image + padding + border
+  width: 100%;
+}
+
+.image-link__picture {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.image-link__img {
+  display: block;
+  margin: auto;
+  max-width: 180px;
+  max-height: 115px;
+}

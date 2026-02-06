@@ -1,0 +1,112 @@
+@import "../../definitions";
+
+// Also modified within @mixin article-with-background and the content header scss files.
+// Consider introducing .meta--variants and so moving content-header .meta rules to here.
+// (Would require a view model change though, so non-trivial).
+
+.meta {
+  @include label-content-typeg($uppercase: false);
+  @include font-size-and-vertical-height(12);
+
+  .content-header-journal & {
+    @include font-size-and-vertical-height(14, 24);
+  }
+
+  .highlights & {
+    @include truncate-with-ellipsis();
+  }
+}
+
+.meta__type {
+  color: inherit;
+  text-decoration: none;
+
+  & + .date::before {
+    content: "\00a0\2022\00a0";
+    font-weight: bold;
+  }
+
+  .teaser--main & {
+    @include font-size-and-vertical-height(14, 18);
+
+    & + .date::before {
+      content: "";
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      & + .date::before {
+        content: "\00a0\2022\00a0";
+        font-weight: bold;
+      }
+    }
+  }
+
+  .teaser & {
+    & + .date::before {
+      content: "";
+    }
+  }
+}
+
+a.meta__type {
+  &:hover {
+    color: $color-primary-dark;
+  }
+}
+
+.meta > a.meta__type:last-child {
+  &:after {
+    content: "";
+  }
+}
+
+.teaser {
+  .meta__status,
+  .meta__type,
+  .meta__version {
+    @include font-size-and-vertical-height(14, 20);
+
+    color: $color-text-secondary;
+    display: inline-block;
+  }
+
+  .meta__status,
+  .meta__type,
+  .meta__version {
+    &:after {
+      color: $color-text-secondary;
+      content: "\00a0\2022\00a0";
+      display: inline-block;
+      font-weight: bold;
+      width: 13px;
+    }
+  }
+
+  .meta__status {
+    color: $color-text;
+  }
+
+  .meta__status-circle {
+    @include margin(1, "bottom");
+    @include margin(8, "right");
+    @include margin(1, "left");
+
+    background-color: $color-status-variable-c;
+    border-radius: 50%;
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+  }
+
+  .meta__status-circle-not-revised {
+    background-color: $color-status-variable-e;
+  }
+
+  .meta__status-circle-revised {
+    background-color: $color-status-variable-d;
+  }
+
+  .meta__status-circle-vor {
+    background-color: $color-primary;
+  }
+}

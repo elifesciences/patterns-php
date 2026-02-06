@@ -1,0 +1,136 @@
+@import "../../definitions";
+
+.site-footer {
+  border-top: 1px solid $color-text-dividers;
+  @include blg-spacing("top", "medium", "padding");
+  @include padding(16, "bottom");
+}
+
+.footer-navigation {
+  padding: 0;
+  @include blg-spacing("bottom", "medium", "padding");
+}
+
+.footer-navigation__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.footer-navigation__list_item {
+  @include label-content-typeg($color-text, $uppercase: true);
+}
+
+.footer-navigation__list_link {
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.site-smallprint__copyright_link {
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+
+  .footer-navigation__list {
+    column-count: 2;
+    column-gap: 0.5rem;
+    text-align: left;
+  }
+
+  .footer-navigation__list_item {
+    break-inside: avoid-column;
+  }
+}
+
+.site-smallprint {
+  padding: 0 6%;
+  text-align: center;
+
+  small {
+    display: block;
+  }
+
+}
+
+.carbon-neutral-wrapper {
+  text-align: center;
+
+  .carbon-neutral-link {
+    @include margin(0 0 47);
+    @include label-content-typeg($color-text, $uppercase: true);
+    align-items: center;
+    color: $color-text;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    max-width: 247px;
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}rem) {
+    text-align: left;
+  }
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+  .site-footer__container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: #{get-rem-from-px($max-site-width)}rem;
+    padding: 0 6%;
+
+    .grid-cell:nth-child(1) {
+      float: left;
+      flex: 1 50%;
+      @include blg-spacing("bottom", "small");
+      width: 50%;
+    }
+
+    .grid-cell:nth-child(2) {
+      float: right;
+      flex: 1 50%;
+      @include blg-spacing("bottom", "small");
+      width: 50%;
+    }
+
+    .grid-cell:nth-child(3) {
+      clear: both;
+      flex: 1 100%;
+      width: 100%;
+    }
+  }
+
+  .site-smallprint {
+    padding: 0;
+    text-align: left;
+  }
+
+  .site-smallprint__copyright {
+    text-align: center;
+  }
+
+  address {
+    padding-bottom: 84px;
+  }
+}
+
+@media only screen and (min-width: #{get-rem-from-px($max-site-width)}em) {
+  .site-footer__container {
+    @include padding(0 15);
+  }
+
+  .footer-navigation {
+    @include blg-spacing("bottom", "large", "padding");
+  }
+}

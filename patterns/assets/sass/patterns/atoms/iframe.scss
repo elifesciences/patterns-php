@@ -1,0 +1,25 @@
+@import "../../definitions";
+
+.iframe {
+  clear: both;
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  @include blg-spacing("top", "medium", "margin");
+  @include blg-spacing("bottom", "medium", "margin");
+
+  .captioned-asset & {
+    @include blg-spacing("top", "small", "margin");
+    @include blg-spacing("bottom", "small", "margin");
+  }
+
+  iframe {
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

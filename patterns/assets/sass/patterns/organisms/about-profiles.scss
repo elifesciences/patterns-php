@@ -1,0 +1,41 @@
+@import "../../definitions";
+
+.about-profiles {
+  list-style: none;
+  padding-left: 0;
+
+  .list-heading + & {
+    @include blg-spacing("top", "extra-small", "margin");
+  }
+}
+
+.about-profiles__item {
+  .about-profiles--compact & {
+    &:after {
+      border-bottom: 1px solid $color-text-dividers;
+      content: "";
+      display: block;
+      @include width(48);
+      @include blg-spacing("bottom", "smallish", "margin");
+    }
+  }
+}
+
+@media only all and (min-width: #{get-rem-from-px($bkpt-grid-listing--medium-width)}em) {
+  .about-profiles--compact {
+    @supports (display: flex) {
+      margin-left: -1em;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .about-profiles__item {
+    .about-profiles--compact & {
+      @supports (display: flex) {
+        padding-left: 1em;
+        width: 50%;
+      }
+    }
+  }
+}

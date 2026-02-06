@@ -1,0 +1,825 @@
+@import "variables";
+@import "typographic-hierarchy";
+
+// Put all general mixins, and any helper functions, in this file.
+// Mixins for a single pattern may be put in that pattern's scss file instead if that makes sense, use judgement.
+
+@function get-px-from-rem($size_in_rem) {
+  @return $size_in_rem * $font-size-base-in-px;
+}
+
+@function get-rem-from-px($size_in_px) {
+  @return $size_in_px/$font-size-base-in-px;
+}
+
+@function get-breakpoint($string) {
+  @if $string == "x-small" {
+    @return #{get-rem-from-px($bkpt-site--x-small)}em;
+  } @else if $string == "small" {
+    @return #{get-rem-from-px($bkpt-site--small)}em;
+  } @else if $string == "medium" {
+    @return #{get-rem-from-px($bkpt-site--medium)}em;
+  } @else if $string == "wide" {
+    @return #{get-rem-from-px($bkpt-site--wide)}em;
+  } @else if $string == "x-wide" {
+    @return #{get-rem-from-px($bkpt-site--x-wide)}em;
+  }
+}
+
+@mixin font-size($size_in_px) {
+  font-size: get-rem-from-px($size_in_px) * 1rem;
+}
+
+@mixin padding($size_in_px, $dimension: "") {
+  @if $dimension == top or $dimension == right or $dimension == bottom or $dimension == left or $dimension == inline  or $dimension == block {
+    padding-#{$dimension}: #{$size_in_px}px;
+    padding-#{$dimension}: #{get-rem-from-px($size_in_px)}rem;
+  }
+  @else if $dimension == "" and type_of($size_in_px) == list {
+    $parts-px: ();
+    $parts-rem: ();
+    @each $size in $size_in_px {
+      $parts-px: append($parts-px, #{$size}px, "space");
+    }
+    @each $size in $size_in_px {
+      $parts-rem: append($parts-rem, #{get-rem-from-px($size)}rem, "space");
+    }
+    padding: $parts-px;
+    padding: $parts-rem;
+  }
+  @else {
+    padding: #{$size_in_px}px;
+    padding: #{get-rem-from-px($size_in_px)}rem;
+  }
+}
+
+@mixin margin($size_in_px, $dimension: "") {
+  @if $dimension == top or $dimension == right or $dimension == bottom or $dimension == left or $dimension == inline {
+    margin-#{$dimension}: #{$size_in_px}px;
+    margin-#{$dimension}: #{get-rem-from-px($size_in_px)}rem;
+  }
+  @else if $dimension == "" and type_of($size_in_px) == list {
+    $parts-px: ();
+    $parts-rem: ();
+    @each $size in $size_in_px {
+      $parts-px: append($parts-px, #{$size}px, "space");
+    }
+    @each $size in $size_in_px {
+      $parts-rem: append($parts-rem, #{get-rem-from-px($size)}rem, "space");
+    }
+    margin: $parts-px;
+    margin: $parts-rem;
+  }
+  @else {
+    margin: #{$size_in_px}px;
+    margin: #{get-rem-from-px($size_in_px)}rem;
+  }
+}
+
+@mixin height($size_in_px) {
+  height: #{$size_in_px}px;
+  height: #{get-rem-from-px($size_in_px)}rem;
+}
+
+@mixin width($size_in_px) {
+  width: #{$size_in_px}px;
+  width: #{get-rem-from-px($size_in_px)}rem;
+}
+
+@mixin constrain-height($size_in_px, $extreme) {
+  @if $extreme == min or $extreme == max {
+    #{$extreme}-height: #{$size_in_px}px;
+    #{$extreme}-height: #{get-rem-from-px($size_in_px)}rem;
+  }
+}
+
+@mixin constrain-width($size_in_px, $extreme) {
+  @if $extreme == min or $extreme == max {
+    #{$extreme}-width: #{$size_in_px}px;
+    #{$extreme}-width: #{get-rem-from-px($size_in_px)}rem;
+  }
+}
+
+@mixin flexbox-centre-x-and-y {
+  @supports (display: flex) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/*
+ * Backwards compatible clearfix.
+ * See http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  zoom: 1; /* ie 6/7 */
+}
+
+@mixin hidden() {
+  display: none;
+}
+
+@mixin unhidden($display-as: block) {
+  display: $display-as;
+}
+
+@mixin visuallyhidden() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  user-select: none;
+}
+
+@mixin visuallyunhidden() {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: auto;
+  position: static;
+  width: auto;
+}
+
+@mixin box-shadow() {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+@mixin tooltip-box() {
+  background-color: $color-text-ui-background--reverse;
+  color: $color-text-ui-background;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  @include padding(16);
+}
+
+@mixin border-radius-simple($top-left: $border-radius, $top-right: 0, $bottom-left: 0, $bottom-right: 0) {
+  border-radius: #{$top-left}px #{$top-right}px #{$bottom-left}px #{$bottom-right}px;
+}
+
+@mixin arrow($direction: "up", $size: 7, $color: $color-text-ui-background--reverse) {
+  border-style: solid;
+  border-width: #{$size}px;
+  border-color: transparent;
+
+  @if $direction == "right" {
+    border-left-color: $color;
+    border-right-width: 0;
+
+  } @else if $direction == "down" {
+    border-bottom-width: 0;
+    border-top-color: $color;
+
+  } @else if $direction == "left" {
+    border-left-width: 0;
+    border-right-color: $color;
+
+  } @else if $direction == "up" {
+    border-bottom-color: $color;
+    border-top-width: 0;
+  }
+  content: "";
+  height: 0;
+  width: 0;
+}
+
+// From https://codepen.io/jonneal/pen/kptBs
+@mixin chevron ($direction: "top", $colour: white, $size: 1em) {
+  border-color: $colour;
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  content: "";
+  display: inline-block;
+  height: $size;
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+  width: $size;
+
+  @if $direction == "top" {
+    transform: rotate(-45deg);
+  } @else if $direction == "right" {
+    transform: rotate(45deg);
+  } @else if $direction == "bottom" {
+    transform: rotate(135deg);
+  } @else if $direction == "left" {
+    transform: rotate(-135deg);
+  }
+
+}
+
+@mixin loading-spinner($torus-width: 5, $size: 22,
+$highlight-color: $color-primary, $base-color: rgba(255, 255, 255, 0.2)) {
+  animation: full-rotation 1.1s infinite linear;
+  border: #{$torus-width}px solid $base-color;
+  border-left: #{$torus-width}px solid $highlight-color;
+  border-radius: 50%;
+  display: block;
+  height: #{$size}px;
+  overflow: hidden;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  width: #{$size}px;
+
+  @keyframes full-rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+}
+
+@mixin nospace($direction: "all") {
+  @if $direction == "all" {
+    margin: 0;
+    padding: 0;
+  } @else if $direction == "top" {
+    margin-top: 0;
+    padding-top: 0;
+  } @else if $direction == "right" {
+    margin-right: 0;
+    padding-right: 0;
+  } @else if $direction == "bottom" {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  } @else if $direction == "left" {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
+@mixin wrapper($padding: true, $isHomePage: false) {
+  box-sizing: content-box;
+  margin: auto;
+
+  @if $isHomePage {
+    @include constrain-width($max-home-page-width, "max");
+  } @else {
+    @include constrain-width($max-site-width, "max");
+  }
+
+  @if $padding {
+    padding-left: #{$site-spacing}px;
+    padding-right: #{$site-spacing}px;
+
+    @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      padding-left: #{$site-spacing-large}px;
+      padding-right: #{$site-spacing-large}px;
+    }
+
+  }
+}
+
+@mixin wrapper-alternative($padding: true) {
+  box-sizing: content-box;
+  @include constrain-width(1104, "max");
+  margin: auto;
+
+  @if $padding {
+    padding-left: #{$site-spacing}px;
+    padding-right: #{$site-spacing}px;
+
+    @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      padding-left: #{$site-spacing-large}px;
+      padding-right: #{$site-spacing-large}px;
+    }
+
+    @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+      padding-left: #{$site-spacing-large}px;
+      padding-right: #{$site-spacing-large}px;
+    }
+  }
+}
+
+// $vertical-height-in-px: desired height of the element as a function of font-size and line-height
+// TODO: Devise a good name (& extend blg name system?), for the default vertical height
+@mixin font-size-and-vertical-height($font-size-in-px, $vertical-height-in-px: $default-vertical-height-in-px) {
+  @include font-size($font-size-in-px);
+  line-height: #{($vertical-height-in-px / $font-size-in-px)};
+}
+
+@mixin body-para {
+  @include body-typeg();
+  @include body-spacing();
+}
+
+// Baseline grid
+@mixin blg-spacing($direction, $level, $type: "padding") {
+  @if $type == "padding" {
+    @if $level == "extra-small" {
+      @include padding($blg-space-extra-small-in-px, $direction);
+    } @else if $level == "small" {
+      @include padding($blg-space-small-in-px, $direction);
+    } @else if $level == "smallish" {
+      @include padding($blg-space-smallish-in-px, $direction);
+    } @else if $level == "medium" {
+      @include padding($blg-space-medium-in-px, $direction);
+    } @else if $level == "large" {
+      @include padding($blg-space-large-in-px, $direction);
+    }
+  } @else if $type == "margin" {
+    @if $level == "extra-extra-small" {
+      @include margin($blg-space-extra-extra-small-in-px, $direction);
+    } @else if $level == "extra-small" {
+      @include margin($blg-space-extra-small-in-px, $direction);
+    } @else if $level == "small" {
+      @include margin($blg-space-small-in-px, $direction);
+    } @else if $level == "smallish" {
+      @include margin($blg-space-smallish-in-px, $direction);
+    } @else if $level == "medium" {
+      @include margin($blg-space-medium-in-px, $direction);
+    } @else if $level == "large" {
+      @include margin($blg-space-large-in-px, $direction);
+    }
+  }
+}
+
+// Cross-pattern common style expressions
+
+@mixin teaser-root-style() {
+  border-top: 1px solid $color-text-dividers;
+  @include padding($teaser-spacing-top 0 0 0);
+  // margin not padding here as we want the margin to collapse for the last item in the list within a listing container
+  // where that listing container also has a margin on the bottom.
+  @include margin($teaser-spacing-bottom, "bottom");
+
+  // TODO: Move to listing-list
+  .listing-list__item:first-child & {
+    border-top-style: none;
+  }
+
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+    float: none;
+  }
+}
+
+@mixin teaser-context-label-style() {
+  @include label-subject-typeg();
+  color: $color-text-secondary;
+}
+
+@mixin teaser-header-text-style() {
+  @include listing-main-art-title-typeg();
+  @include blg-spacing("top", "extra-small");
+}
+
+@mixin teaser-header-text-link-style() {
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+
+}
+
+@mixin teaser-footer-style() {
+  color: $color-text-secondary;
+  display: flex;
+  @include label-content-typeg();
+  justify-content: space-between;
+  text-transform: none;
+}
+
+@mixin teaser-body-style() {
+  @include listing-impact-statement-typeg();
+  @include nospace("bottom");
+}
+
+@mixin dismissible_navigation {
+  @include typeg-portal-quick-nav();
+  @include font-size-and-vertical-height($font-size-base-in-px, 48);
+  @include nospace();
+  text-align: center;
+}
+
+@mixin checkbox-label() {
+  @include typeg-form-label();
+  @include blg-spacing("bottom", "extra-small");
+  display: block;
+}
+
+@mixin overlay() {
+  background-color: $color-overlay;
+  position: fixed;
+  min-height: 100vh;
+  top: 0;
+  width: 100vw;
+  // z-index should be overridden as necessary
+  z-index: 10;
+}
+
+@mixin discreet-link ($color: $color-text, $has-hover-state: true) {
+  border-bottom: 1px dotted $color;
+  color: $color;
+  text-decoration: none;
+
+  @if $has-hover-state == true {
+    &:hover {
+      border-bottom-color: $color-primary;
+      color: $color-primary;
+    }
+  } @else {
+    &:hover {
+      border-bottom-color: $color;
+      color: $color;
+    }
+
+  }
+
+}
+
+@mixin popup_title_text {
+  @include font-size-and-vertical-height(14, 20);
+}
+
+@mixin popup-ancillary-text() {
+  color: $color-text--reverse;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(11, 18);
+}
+
+@mixin popup-large-ancillary-text() {
+  color: $color-text--reverse;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(14, 20);
+}
+
+@mixin inline-image {
+  margin-bottom: 0.1em;
+  max-height: 1em;
+  vertical-align: middle;
+}
+
+@mixin background-icon($url, $size: 21px, $position-x: 50px, $position-y: 0, $width: 70px) {
+  display: none;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    @include margin(24, "right");
+    background: url($url) no-repeat;
+    background-size: $size;
+    display: block;
+    text-indent: -9999px;
+    width: 24px;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    background-position-x: $position-x;
+    background-position-y: $position-y;
+    text-indent: 0;
+    width: $width;
+  }
+}
+
+@mixin colors($background-color: $color-primary, $border-color: $background-color, $color: $color-text--reverse) {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  color: $color;
+}
+
+@mixin non_js_control_link {
+  color: $color-text;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(14);
+  font-weight: normal;
+  text-decoration: underline;
+  text-transform: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin color-link-hover() {
+  color: $color-primary-dark;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@mixin link-hover() {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@mixin truncate-with-ellipsis() {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin picture-with-overlay() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@mixin img-with-overlay() {
+  z-index: -2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  min-width: 100%;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  &:after {
+    // Hide broken images
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin image-credit() {
+  color: $color-text-secondary;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(11);
+  @include blg-spacing("top", "extra-small");
+  @include blg-spacing("bottom", "extra-small");
+  text-align: right;
+
+  & a,
+  & a:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  visibility: hidden;
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    visibility: visible;
+  }
+}
+
+@mixin image-credit-overlay {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  @include blg-spacing("right", "extra-small");
+}
+
+@mixin blg-pad-top--small-to-medium {
+  @include blg-spacing("top", "medium");
+}
+
+@mixin blg-pad-bottom--small-to-medium {
+
+  @include blg-spacing("bottom", "small");
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include blg-spacing("bottom", "medium");
+  }
+
+}
+
+@mixin blg-pad-top--large-to-extra-large {
+
+  @include blg-spacing("top", "large");
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include blg-spacing("top", "extra-large");
+  }
+
+}
+
+@mixin blg-pad-bottom--large-to-extra-large {
+
+  @include blg-spacing("bottom", "large");
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include blg-spacing("bottom", "extra-large");
+  }
+
+}
+
+@mixin blg-pad-vertical-small-to-medium {
+  @include blg-pad-top--small-to-medium();
+  @include blg-pad-bottom--small-to-medium();
+}
+
+@mixin blg-pad-vertical-large-to-extra-large {
+  @include blg-pad-top--large-to-extra-large();
+  @include blg-pad-bottom--large-to-extra-large();
+}
+
+@mixin blg-margin-bottom--medium-to-large {
+
+  @include blg-spacing("bottom", "medium", "margin");
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include blg-spacing("bottom", "large", "margin");
+  }
+
+}
+
+@mixin blg-margin-bottom--small-to-medium {
+
+  @include blg-spacing("bottom", "small", "margin");
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include blg-spacing("bottom", "medium", "margin");
+  }
+
+}
+
+@mixin blg-column-container() {
+  @include blg-margin-bottom--medium-to-large();
+}
+
+@mixin visually-hide-below-breakpoint($breakpoint-name, $height, $margin-shorthand) {
+  @if $breakpoint-name == "x-small" or $breakpoint-name == "small" or $breakpoint-name == "medium" or $breakpoint-name == "wide" or $breakpoint-name == "x-wide" {
+
+    @include visuallyhidden();
+
+    @media only all and (min-width: get-breakpoint($breakpoint-name)) {
+      @include visuallyunhidden();
+      overflow: hidden;
+
+      // After visually unhiding, height and margin need to be explicitly set again
+      @include height($height);
+      @include margin($margin-shorthand);
+    }
+
+  }
+}
+
+// Content header title size adjustment according to length.
+//   The number of lines a title occupies can't be precisely determined as it depends on line breaks,
+//  which in turn depends on word length and relative position. So by necessity this is approximate.
+//
+//Rules:
+//    At 320px (the narrowest supported width):
+//      xx-short is for text likely to span 1 line
+//      x-short is for text likely to span 2 lines
+//      short is for text likely to span 3 lines
+//      medium is for text likely to span between 3 - 4 lines
+//      long is for text likely to span 4 lines
+//      x-long is for text likely to span 5 - 6 lines
+//      xx-long is for text likely to span 7 lines
+//
+//      N.B. xx-long is a safety net, title lengths for image content headers
+//        really should not get this long
+@mixin header-title-size($title-length: "medium") {
+
+  @if $title-length == "xx-short" {
+
+    @include title-font-size("xx-large");
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      @include title-font-size("xxx-large");
+    }
+
+  } @else if $title-length == "x-short" {
+
+    @include title-font-size("x-large");
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include title-font-size("xx-large");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      @include title-font-size("xxx-large");
+    }
+
+  } @else if $title-length == "short" {
+
+    @include title-font-size("medium");
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      @include title-font-size("large");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include title-font-size("x-large");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      @include title-font-size("xx-large");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+      @include title-font-size("xxx-large");
+    }
+
+  } @else if $title-length == "medium" {
+    @include title-font-size("small");
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      @include title-font-size("medium");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include title-font-size("large");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      @include title-font-size("x-large");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+      @include title-font-size("xxx-large");
+    }
+
+  } @else if $title-length == "long" {
+
+    @include title-font-size("x-small");
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      @include title-font-size("small");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include title-font-size("large");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+      @include title-font-size("x-large");
+    }
+
+  } @else if $title-length == "x-long" {
+
+    @include title-font-size("x-small");
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include title-font-size("small");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      @include title-font-size("small");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+      @include title-font-size("medium");
+    }
+
+  } @else if $title-length == "xx-long" {
+
+    @include title-font-size("xx-small");
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      @include title-font-size("x-small");
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      @include title-font-size("small");
+    }
+
+  }
+
+}
+
+// margin should be on the top
+@mixin local-item-style {
+  @include margin(0);
+  @include blg-spacing("bottom", "small", "margin");
+  @include font-size-and-vertical-height(14);
+  font-family: $font-secondary;
+}
+
+@mixin content-aside-layout {
+  display: block;
+  max-width: 260px;
+}

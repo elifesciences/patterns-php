@@ -1,0 +1,160 @@
+@import "../../definitions";
+
+.site-header {
+  @include margin(30 0);
+  max-height: 96px;
+  position: relative;
+  z-index: 20;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    @include margin(42 0);
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    @include margin(54 0 42 0);
+  }
+
+  @supports (display: flex) {
+    display: flex;
+  }
+
+  .search-box {
+    background-color: #fff;
+    display: none;
+
+    &.search-box--js {
+      display: block;
+      visibility: visible;
+      position: absolute;
+      top: -20px;
+      transition: transform 150ms;
+      width: 100%;
+      z-index: 5;
+
+      // Justified breach of the css selector 3-clause-rule, as this controls different states of the same element
+      &:not(.search-box--shown) {
+        visibility: hidden;
+      }
+
+    }
+  }
+
+}
+
+.search-box__search_option {
+  position: relative;
+  z-index: 5;
+}
+
+.site-header__title {
+  display: inline-block;
+  float: left;
+  position: relative;
+  z-index: 21;
+}
+
+.site-header__logo_link {
+  display: block;
+  height: 35px;
+  width: 88px;
+
+  // Lock-out IE 11. Dirty :-(
+  @supports (display: flex) {
+    background: none;
+  }
+}
+
+.site-header__logo_link_image {
+  display: none;
+
+  // Lock-out IE 11. Dirty :-(
+  @supports (display: flex) {
+    display: block;
+  }
+
+}
+
+.site-header__navigation {
+  background-color: #fff;
+  height: 35px;
+  display: flex;
+  justify-content: right;
+  margin-left: auto;
+  position: relative;
+  width: 100%;
+  z-index: 20;
+}
+
+.site-header__skip_to_content {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  white-space: nowrap;
+}
+
+.site-header__skip_to_content__link {
+  @include visuallyhidden();
+  @include padding(15 36 14);
+  z-index: 50;
+
+  &:focus {
+    @include visuallyunhidden();
+    position: absolute;
+  }
+}
+
+.site-header--home-page {
+  .search-box,
+  .site-header__navigation {
+    background-color: $color-homepage-tinted-background;
+  }
+}
+
+@media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+
+  .site-header__title {
+    float: left;
+    position: relative;
+    width: 88px;
+  }
+
+  .site-header__logo_link {
+    @include margin(0);
+    background: none;
+    display: block;
+    float: right;
+    height: 35px;
+    position: relative;
+    width: 88px;
+    z-index: 10;
+  }
+
+  .site-header__logo_link_image {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+  .site-header {
+    max-height: 119px;
+  }
+
+  .site-header__navigation {
+    @include margin(20, "left");
+  }
+
+  .site-header__navigation__item {
+    justify-content: flex-start;
+  }
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+  .site-header {
+    max-height: 143px;
+  }
+}
+
+.overlay {
+  @include overlay();
+}

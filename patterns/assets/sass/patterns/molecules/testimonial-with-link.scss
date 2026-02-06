@@ -1,0 +1,136 @@
+@import "../../definitions";
+
+.testimonial-with-link {
+  @include padding($site-spacing-medium, "inline");
+  @include padding($default-vertical-height-in-px, "block");
+  background-color: $color-homepage-tinted-background;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+    @include padding(60, "inline");
+    @include padding(36, "block");
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include margin($site-spacing-large, "inline");
+    border-radius: #{get-rem-from-px(8)}rem;
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: #{get-rem-from-px(72)}rem;
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--home-additional-widest)}em) {
+    max-width: #{get-rem-from-px($max-home-page-width)}rem;
+    margin-inline: auto;
+  }
+}
+
+.testimonial-with-link__image {
+  display: none;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    display: block;
+    position: relative;
+
+    &,
+    &::before {
+      max-width: 184px;
+      max-height: 184px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+      border-radius: 50%;
+      background-color: rgba(132, 138, 162, 0.38);
+    }
+
+    & img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      filter: grayscale(85%) contrast(125%);
+    }
+  }
+}
+
+.testimonial-with-link__quotation {
+  @include margin(0, "inline");
+  @include margin(0, "top");
+  @include margin(13, "bottom");
+  @include font-size-and-vertical-height($font-size-in-px: 16, $vertical-height-in-px: 24);
+  color: $color-primary-dark--home-page;
+  font-family: $font-secondary;
+  font-weight: 600;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+    @include margin(10, "top");
+
+    &::before,
+    & .last-word::after {
+      @include font-size(52);
+      color: #2994d2;
+      display: inline-block;
+      vertical-align: bottom;
+      position: relative;
+    }
+
+    &::before {
+      line-height: calc(34 / 52);
+      content: open-quote;
+      text-indent: -26px;
+      top: 12px;
+    }
+
+    & .last-word {
+      display: inline-block;
+
+      &::after {
+        line-height: calc(24 / 52);
+        content: close-quote;
+        top: 10px;
+        left: 5px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    font-size: #{get-rem-from-px(20)}rem;
+  }
+}
+
+.testimonial-with-link__attribution {
+  @include font-size-and-vertical-height($font-size-in-px: 14, $vertical-height-in-px: 20);
+  @include margin(19, "bottom");
+  font-family: $font-secondary;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include font-size-and-vertical-height($font-size-in-px: 16, $vertical-height-in-px: 20);
+  }
+}
+
+.testimonial-with-link__link {
+  @include font-size-and-vertical-height($font-size-in-px: 14, $vertical-height-in-px: 24);
+  color: $color-primary-dark--home-page;
+  font-family: $font-secondary;
+  font-weight: 700;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+    @include margin(5, "bottom");
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include font-size-and-vertical-height($font-size-in-px: 16, $vertical-height-in-px: 24);
+  }
+
+  &::after {
+    content: "\00a0\279C";
+  }
+}

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "patternlab serve"
+    "dev": "patternlab serve",
+    "build-sass": "node build-pattern-manifest.js && sass assets/sass/build.scss source/assets/css/all.css"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "type": "commonjs",
   "dependencies": {
     "@pattern-lab/cli": "^6.1.0",
-    "@pattern-lab/uikit-workshop": "^6.1.0"
+    "@pattern-lab/uikit-workshop": "^6.1.0",
+    "sass": "^1.97.3"
   }
 }

@@ -1,0 +1,60 @@
+@import "../../definitions";
+
+.article-meta {
+  border-top: 1px solid $color-text-dividers;
+  @include blg-spacing("top", "medium", "padding");
+  font-family: $font-secondary;
+  text-align: center;
+
+  // Need the extra specificity here to override
+  .article-meta__link {
+    color: $color-primary;
+    text-decoration: none;
+
+    &:hover {
+      @include color-link-hover();
+    }
+
+  }
+
+}
+
+.article-meta__group_title {
+  @include label-content-typeg($color-text-secondary);
+  @include font-size-and-vertical-height(12);
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.article-meta__link_list {
+  list-style: none;
+  margin: 0;
+  @include blg-spacing("bottom", "small", "margin");
+  padding: 0;
+}
+
+.article-meta__link_list_item {
+  display: inline;
+  @include label-subject-typeg();
+  margin: 0;
+  padding: 0;
+  &:after {
+    content: ", ";
+  }
+}
+
+.article-meta__link_list_item:last-child {
+  &:after {
+    content: "";
+  }
+}
+
+.article-meta__group:last-child .article-meta__link_list {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: #{get-rem-from-px(640)}rem) {
+  .article-meta {
+    text-align: left;
+  }
+}

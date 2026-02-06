@@ -1,0 +1,692 @@
+@import "../../definitions";
+
+.content-header {
+  @include wrapper(false);
+  color: $color-text;
+  padding-top: 0;
+  // $content-header-padding - 1 to account for the 1px border
+  @include padding($content-header-padding - 1, "bottom");
+  position: relative;
+  text-align: center;
+
+  // Expect .wrapper to only be introduced when not an image header
+  &.wrapper {
+    padding-bottom: 0;
+
+    &:after {
+      border-bottom: 1px solid $color-text-dividers;
+      content: "";
+      display: block;
+      width: 100%;
+
+      .social-media-page--wrapper & {
+        @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+          grid-column: 2/12;
+        }
+
+        @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+          grid-column: 3/11;
+        }
+      }
+    }
+
+  }
+
+}
+
+.content-header-journal {
+  text-align: left;
+  position: static;
+
+  &.wrapper {
+    &:after {
+      border-bottom: none;
+    }
+  }
+
+  .wrapper--content-with-header-and-aside & {
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+      @include margin(0, "left");
+    }
+  }
+}
+
+.content-header--read-more {
+  .content-header__subject_list {
+    @include padding(0, "left");
+    @include padding(0, "right");
+    width: 100%;
+  }
+}
+
+.content-header-image-wrapper--no-credit {
+  @include padding($content-header-image-credit-height, "bottom");
+}
+
+.content-header__top {
+  @include margin($content-header-padding / 2, "top");
+  text-align: left;
+
+  & ~ .content-header__body {
+    @include margin($content-header-padding, "top");
+    @include margin($content-header-padding * 2, "bottom");
+  }
+}
+
+.content-header__body {
+  @include margin($content-header-padding * 2, "top");
+  @include margin($content-header-padding, "bottom");
+
+  .content-header--header & {
+    @include margin($content-header-padding / 2, "top");
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include margin($content-header-padding, "top");
+    }
+  }
+
+  .content-header-grid__main & {
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include margin(36, "bottom");
+      @include margin(0, "top");
+    };
+  }
+}
+
+.content-header--image {
+  border-bottom: none;
+  color: $color-text--reverse;
+  height: #{$content-header-image-height--narrow-screen}px;
+  overflow: hidden;
+  padding-bottom: 0;
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    height: #{$content-header-image-height--medium-width-screen}px;
+  }
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    min-height: #{$content-header-image-height--wide-screen}px;
+  }
+
+  .content-header__body {
+    height: #{($content-header-padding * 5.5)}px;
+
+    .content-header-journal & {
+      height: #{($content-header-padding * 7)}px;
+    }
+
+    .content-header--has-social-media-sharers & {
+      min-height: #{$content-header-padding * 8}px;
+
+      .content-header-journal & {
+        height: #{($content-header-padding * 9)}px;
+      }
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    @include padding(0 12);
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      @include padding(0 48);
+      @include margin($content-header-padding * 2, "top");
+      @include margin($content-header-padding, "bottom");
+
+      .content-header-journal & {
+        height: #{$content-header-padding * 5}px;
+      }
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      height: #{$content-header-padding * 7}px;
+
+      .content-header--has-social-media-sharers & {
+        min-height: #{$content-header-padding * 9}px;
+      }
+
+    }
+
+  }
+
+  .social-media-sharers {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 52px;
+
+    .content-header-journal & {
+      bottom: 28px;
+    }
+  }
+
+  &.content-header--has-profile .content-header__body {
+    // max-width to avoid lots of resetting
+    @media only all and (max-width: #{get-rem-from-px($bkpt-site--medium - 1)}em) {
+      display: block;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+}
+
+.content-header__title {
+  @include font-size-and-vertical-height(36, 48);
+  @include margin(0, "top");
+  @include margin(24, "bottom");
+
+  .content-header-journal & {
+    @include margin(6, "top");
+    @include margin(12, "bottom");
+  }
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include font-size-and-vertical-height(41, 48);
+  }
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    @include font-size-and-vertical-height(46, 72);
+  }
+
+  .content-header--header &,
+  .content-header--read-more & {
+    @include font-size-and-vertical-height(29, 36);
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include font-size-and-vertical-height(36, 48);
+    }
+  }
+}
+
+.content-header__title_link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.content-header--image {
+
+  .content-header__body {
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include margin($content-header-padding * 3, "top");
+    }
+
+  }
+
+  .content-header__title {
+    @include font-size-and-vertical-height(41, 48);
+    margin-bottom: 0;
+    height: 132px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include font-size(52);
+      height: auto;
+      display: block;
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      @include font-size-and-vertical-height(58, 72);
+    }
+
+    &.content-header__title--xx-short {
+      @include header-title-size("xx-short");
+    }
+
+    &.content-header__title--x-short {
+      @include header-title-size("x-short");
+    }
+
+    &.content-header__title--short {
+      @include header-title-size("short");
+    }
+
+    &.content-header__title--medium {
+      @include header-title-size("medium");
+    }
+
+    &.content-header__title--long {
+      @include header-title-size("long");
+    }
+
+    &.content-header__title--x-long {
+      @include header-title-size("x-long");
+    }
+
+    &.content-header__title--xx-long {
+      @include header-title-size("xx-long");
+    }
+
+  }
+
+}
+
+.content-header__picture {
+  @include picture-with-overlay;
+}
+
+.content-header__image {
+  @include img-with-overlay;
+}
+
+.content-header__profile_wrapper {
+  @include padding(18 0 6 0);
+  @include font-size-and-vertical-height(12, 12);
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    line-height: normal;
+  }
+
+}
+
+.content-header__profile {
+  text-decoration: none;
+  dl,
+  .content-header__profile_label,
+  .content-header__profile_data {
+    display: inline-block;
+    margin: 0;
+    @include font-size-and-vertical-height(12, 12);
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      display: block;
+      @include font-size-and-vertical-height(11);
+    }
+
+  }
+
+}
+
+.content-header__profile_label {
+  @include label-content-typeg($color-text--reverse);
+}
+
+.content-header__profile_data {
+  @include label-content-typeg($color-text--reverse, false);
+}
+
+.content-header__profile_image {
+  display: none;
+}
+
+@supports (display: flex) {
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    .content-header__profile--has-image {
+      display: inline-flex;
+      justify-content: center;
+      text-align: left;
+      width: 100%;
+
+      .content-header__profile_image {
+        display: block;
+        border-radius: #{$content-header-profile-width / 2}px;
+        height: #{$content-header-profile-width}px;
+        width: #{$content-header-profile-width}px;
+        @include margin(12, "right");
+      }
+
+      dl,
+      dt,
+      dd {
+        display: block;
+      }
+
+      .content-header__profile_data {
+        color: $color-text--reverse;
+        font-family: $font-secondary;
+        @include font-size-and-vertical-height(14);
+      }
+    }
+
+    .content-header__profile_wrapper {
+      @include padding($content-header-padding 0 0);
+    }
+
+  }
+
+}
+
+.content-header__component-assets {
+  display: grid;
+  grid-template-columns: 50px auto 50px;
+}
+
+.content-header__subject_list {
+  @include blg-spacing("top", "small");
+  @include label-subject-typeg();
+  @include padding(0, "left");
+  @include padding(0, "right");
+  grid-row: 1;
+  margin: 0;
+  order: 2;
+  text-align: center;
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}rem) {
+    @include padding(72, "left");
+    @include padding(72, "right");
+
+    .content-header-journal & {
+      @include padding(0, "left");
+      @include padding(0, "right");
+    }
+  }
+
+  .content-header--image & {
+    color: inherit;
+  }
+
+  &:before {
+    color: $color-text-secondary;
+  }
+
+  .content-header-journal & {
+    @include padding(0, "top");
+  }
+}
+
+.content-header__subject_list_item {
+  @include label-subject-typeg();
+  @include font-size-and-vertical-height(13);
+  display: inline;
+  list-style-type: none;
+  padding: 0;
+
+  & .content-header__subject_link {
+    font-weight: bold;
+  }
+
+  & .content-header__subject_link:after {
+    content: ", ";
+  }
+
+  .content-header--image & {
+    color: inherit;
+  }
+}
+
+.content-header__subject_list_item:last-child {
+
+  & .content-header__subject_link:after {
+    content: "";
+  }
+
+}
+
+.content-header__subject_link {
+  @include label-subject-typeg();
+  @include font-size-and-vertical-height(13);
+  text-decoration: none;
+
+  .content-header-journal & {
+    @include font-size-and-vertical-height(14);
+  }
+
+  &:hover {
+    @include color-link-hover();
+  }
+
+  .content-header--image & {
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+
+.content-header__icons {
+  @include margin(14 0 0 0);
+  @include padding(0);
+  grid-row: 1;
+  list-style: none;
+  order: 1;
+
+  .content-header-journal & {
+    @include margin(0 0 0 6);
+    order: 0;
+  }
+
+  .content-header-journal.content-header__has-aside & {
+    @media only all and (max-width: #{get-rem-from-px($bkpt-site--small - 1)}em) {
+      @include margin(0);
+    }
+  }
+
+  .content-header--image & {
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-content-header--extra-wide)}em) {
+      left: 16px;
+    }
+
+  }
+
+  .content-header--image & {
+    left: 12px;
+    top: #{$blg-space-extra-small-in-px}px;
+  }
+
+  .content-header__one-column & {
+    grid-row: auto;
+  }
+
+}
+
+$iconlist: cc oa;
+
+.content-header__icon {
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  display: block;
+  height: 22px;
+  width: 17px;
+
+  .content-header-journal & {
+    background-position: 0 0;
+    height: 20px;
+  }
+}
+
+@each $icon in $iconlist {
+  .content-header__icon--#{$icon} {
+    background-image: url("../img/icons/#{$icon}.svg"), linear-gradient(transparent, transparent);
+
+    &:hover {
+      background-image: url("../img/icons/#{$icon}-hover.svg"), linear-gradient(transparent, transparent);
+
+      .content-header-journal & {
+        background-image: url("../img/icons/#{$icon}-new.svg");
+      }
+    }
+
+    .content-header-journal & {
+      background-image: url("../img/icons/#{$icon}-new.svg");
+    }
+  }
+}
+
+.content-header-journal {
+  .content-header__icon--cc {
+    width: 18px;
+  }
+
+  .content-header__icon--oa {
+    width: 16px;
+  }
+}
+
+.side-section-wrapper__download_link {
+  grid-row: 1;
+  grid-column-end: 4;
+  order: 3;
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    margin-top: 14px;
+  }
+
+  .content-header--image & {
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+      right: 16px;
+    }
+
+  }
+
+  .content-header--image & {
+    right: 12px;
+    position: absolute;
+    top: -12px;
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      top: 0;
+    }
+
+  }
+
+}
+
+.content-header__download_icon {
+  width: #{$content-header-download-width}px;
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    width: #{$content-header-download-width-medium}px;
+  }
+}
+
+.side-section {
+  .content-header__download_icon {
+    width: #{$content-header-download-width}px;
+  }
+}
+
+.content-header__impact-statement {
+  @include subtitle-typeg();
+  @include margin($content-header-padding, "bottom");
+  max-width: 100%;
+
+  a {
+    @include discreet-link($color-text, false);
+
+    &:hover,
+    &:active {
+      color: inherit;
+    }
+
+  }
+
+  .content-header--image & {
+    @include margin(0, "bottom");
+    display: none;
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-content-header--wide)}em) {
+      display: block;
+    }
+
+    a {
+      @include discreet-link($color-text--reverse, false);
+    }
+
+  }
+
+  .content-header--image.content-header--has-social-media-sharers & {
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-content-header--wide)}em) {
+      display: none;
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-content-header--extra-wide)}em) {
+      display: block;
+    }
+
+  }
+
+}
+
+.content-header__cta {
+  // $content-header-padding minus 6px because child button is 30px not 24px high
+  @include margin(18, "bottom");
+
+  .content-header--image & {
+    @include margin(0, "bottom");
+    position: absolute;
+    bottom: 44px;
+    left: 0;
+    right: 0;
+  }
+}
+
+.content-header__meta {
+  @include padding(24, "bottom");
+
+  .content-header--image & {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: #{$content-header-padding / 4}px;
+    @include font-size-and-vertical-height(12, 12);
+
+    .content-header-journal & {
+      bottom: #{$content-header-padding / 2}px;
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      bottom: 0;
+      @include font-size-and-vertical-height(12);
+    }
+
+  }
+
+  .content-header-grid__main & {
+    @include padding(0, "bottom");
+  }
+
+}
+
+// TODO: Consider if the meta-pattern-defined styles should be defined in the meta pattern
+.meta {
+  .content-header--image & {
+    color: inherit;
+    @include font-size-and-vertical-height(12, 12);
+  }
+
+}
+
+.date {
+
+  .content-header--image & {
+    color: inherit;
+    @include font-size-and-vertical-height(12, 12);
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      @include font-size-and-vertical-height(12);
+    }
+
+  }
+
+}
+
+.meta__type {
+  .content-header--image & {
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+
+.content-header__image-credit {
+  @include image-credit();
+}
+
+.content-header__image-credit--overlay {
+  @include image-credit-overlay();
+}

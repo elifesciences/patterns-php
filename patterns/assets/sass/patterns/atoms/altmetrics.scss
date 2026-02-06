@@ -1,0 +1,51 @@
+@import "../../definitions";
+
+.altmetric-container-with-details {
+  @include padding(15, "top");
+}
+
+.altmetric-container-without-details {
+  @include padding(30, "top");
+  display: none;
+  gap: 10px;
+  justify-content: space-between;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--extended-wide)}em) {
+    display: flex;
+  }
+}
+
+// required specificity to override a selector from normalize overrides
+div.altmetric-embed.altmetric-embed.altmetric-embed.altmetric-embed.altmetric-embed.altmetric-embed.altmetric-embed div.altmetric-normal-legend p.altmetric-see-more-details a {
+  border-bottom: none;
+  color: $color-primary;
+  font-family: $font-secondary;
+
+  @include font-size-and-vertical-height(14, 24);
+}
+
+.altmetric-embed {
+  @include margin(30, "bottom");
+  @include padding(15, "top");
+}
+
+.altmetric-see-more-details {
+  @include margin(16, "top");
+}
+
+div.altmetric-container-without-details.altmetric-container-without-details.altmetric-container-without-details.altmetric-container-without-details.altmetric-container-without-details.altmetric-container-without-details.altmetric-container-without-details p.altmetric-text--small {
+  font-family: $font-secondary;
+
+  @include font-size-and-vertical-height(14, 20);
+
+  a.altmetric-link--small {
+    border-bottom: none;
+    color: $color-text;
+    font-weight: bold;
+  }
+}
+
+.altmetric-embed:empty + .altmetric-text--small,
+.altmetric-hidden + .altmetric-text--small {
+  display: none;
+}

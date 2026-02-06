@@ -1,0 +1,13 @@
+@import "../../definitions";
+
+.select {
+  @include margin(6, "bottom");
+
+  &:focus {
+    border-color: $color-text-placeholder;
+  }
+}
+
+.select--invalid {
+  border-color: $color-attention;
+}

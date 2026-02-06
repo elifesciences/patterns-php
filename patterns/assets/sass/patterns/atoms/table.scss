@@ -1,0 +1,103 @@
+@import "../../definitions";
+
+.table {
+  clear: both;
+  @include blg-spacing("top", "medium", "margin");
+  @include blg-spacing("bottom", "medium", "margin");
+
+  .captioned-asset & {
+    @include blg-spacing("top", "small", "margin");
+    @include blg-spacing("bottom", "small", "margin");
+  }
+}
+
+.table__table {
+  position: relative;
+  overflow: auto;
+
+  .table & {
+    @include blg-spacing("top", "small", "margin");
+    @include blg-spacing("bottom", "small", "margin");
+  }
+}
+
+// Tables are usually delivered as a blob of HTML from an upstream application, not via the pattern system.
+table {
+  border-collapse: collapse;
+  @include blg-spacing("top", "small", "margin");
+  @include blg-spacing("bottom", "small", "margin");
+  width: 100%;
+
+  .table__table & {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  & a {
+    @include discreet-link();
+  }
+}
+
+th {
+  background-color: $color-text-ui-code;
+  border: 1px solid $color-text-dividers;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(13, 18);
+  font-weight: bold;
+  @include padding(6);
+}
+
+td {
+  border: 1px solid $color-text-dividers;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(13, 18);
+  font-weight: 500;
+  @include padding(6);
+
+  li,
+  p {
+    @include font-size-and-vertical-height(13, 18);
+    font-family: $font-secondary;
+  }
+}
+
+.table-footnote {
+  display: table;
+  @supports (display: flex) {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.table-footnote {
+
+  // Only set line height when not a MathJax-controlled element
+  *:not([class*="mjx-"]) {
+    @include fig-caption-text-typeg(0);
+  }
+
+  *[class*="mjx-"] {
+    @include fig-caption-text-typeg(0, false);
+  }
+
+}
+
+.table-footnote__label {
+  display: table-cell;
+  @supports (display: flex) {
+    display: block;
+  }
+  @include padding(4, "right");
+}
+
+.table-footnote__text {
+  display: table-cell;
+  @supports (display: flex) {
+    display: block;
+    flex: 1;
+  }
+
+  & * {
+    @include nospace("bottom");
+  }
+}

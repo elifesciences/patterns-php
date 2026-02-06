@@ -1,0 +1,59 @@
+@import "../../definitions";
+
+.section-listing-link {
+  border-bottom: 1px solid $color-text-dividers;
+  color: $color-text;
+  display: block;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height($font-size-base-in-px);
+  @include padding($blg-space-extra-small-in-px - 1, "top");
+  padding-right: 0;
+  @include blg-spacing("bottom", "extra-small");
+  padding-left: 0;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+
+  &:not(.section-listing--single-line) {
+    border-top: 1px solid $color-text-dividers;
+  }
+
+  .main--with-new-designs-borders & {
+    border-top: none;
+  }
+
+  &:after {
+    content: "\00a\00bb";
+  }
+
+  // Needs specificity to override display property when unhidden
+  &.hidden {
+    @include hidden();
+  }
+}
+
+.section-listing-link:hover,
+.section-listing-link:active {
+  color: $color-primary;
+}
+
+.banner-and-subjects-wrapper .section-listing-link {
+  --subjects-listing-link-line-height: #{$default-vertical-height-in-px / $font-size-base-in-px}rem;
+
+  font-weight: 600;
+  color: $color-primary-dark--home-page;
+
+  &:after {
+    content: "\00a\279C";
+    position: relative;
+    top: 1px;
+  }
+
+  &:hover {
+    color: $color-text;
+  }
+
+  height: var(--subjects-height);
+  padding-top: calc((var(--subjects-height) - var(--subjects-listing-link-line-height)) / 2);
+  padding-bottom: calc((var(--subjects-height) - var(--subjects-listing-link-line-height)) / 2);
+}

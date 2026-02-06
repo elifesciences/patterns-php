@@ -1,0 +1,133 @@
+@import "../../definitions";
+
+.main-menu__section {
+  @include padding(15, "bottom");
+}
+
+.main-menu__title {
+  @include section-title-typeg();
+  @include nospace();
+  @include padding(5, "bottom");
+  text-transform: uppercase;
+}
+
+.main-menu__title-container {
+  @include padding(30, "top");
+  @include padding(30, "bottom");
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    @include padding(42, "top");
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    @include padding(54, "top");
+  }
+
+  .site-header__title {
+    float: none;
+  }
+}
+
+.main-menu__list {
+  @include padding(0, "left");
+}
+
+.main-menu__list_item {
+  @include dismissible_navigation();
+  @include padding(24, "bottom");
+  display: block;
+  line-height: 0;
+  text-align: left;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    &.hidden-wide {
+      display: none;
+    }
+  }
+
+  &.end-of-group {
+    @include margin(24, "bottom");
+    border-bottom: 1px solid $color-text-dividers;
+  }
+
+  &:last-child {
+    @include padding(48, "bottom");
+  }
+}
+
+.main-menu__list_link {
+  @include font-size-and-vertical-height(14, 24);
+  color: $color-text;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.main-menu__close_control {
+  @include font-size-and-vertical-height(14, 24);
+  @include padding(0);
+  @include margin(8, "top");
+  background: url("../img/icons/close.svg") no-repeat 49px 3px;
+  background-size: 14px;
+  border: none;
+  color: $color-text;
+  font-family: $font-secondary;
+  font-weight: bold;
+  float: right;
+  text-align: left;
+  width: 68px;
+
+  &:hover {
+    background-image: url("../img/icons/close-blue.svg");
+    color: $color-primary;
+  }
+}
+
+.main-menu--js {
+  display: none;
+
+  .main-menu__container {
+    display: block;
+  }
+
+  &.main-menu--shown {
+    background-color: $color-text--reverse;
+    box-sizing: border-box;
+    color: $color-text;
+    display: block;
+    float: left;
+    height: 100vh;
+    left: -3000px;
+    max-width: 100%;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    transform: translate3d(3000px, 0, 0);
+    width: 100%;
+    z-index: 40;
+
+    @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+      width: 320px;
+    }
+  }
+
+  .main_menu__quit {
+    display: none;
+  }
+}
+
+.main-menu__container {
+  &:hover {
+    color: $color-primary;
+  }
+
+  .site-header__logo_link {
+    display: block;
+    float: none;
+    height: 35px;
+    width: 88px;
+  }
+}

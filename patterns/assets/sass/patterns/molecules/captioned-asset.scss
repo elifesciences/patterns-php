@@ -1,0 +1,59 @@
+@import "../../definitions";
+
+.captioned-asset {
+  clear: both;
+  margin: 0;
+  @include blg-spacing("top", "medium", "margin");
+  @include blg-spacing("bottom", "medium", "margin");
+
+  // Required for Digests when captioned-asset may be first piece of main content in the page. Prevents the top edge
+  // of the image frame sitting below any content appearing in the right hand column.
+  .content-container > &:first-child {
+    margin-top: 0;
+  }
+
+  .asset-viewer-inline & {
+    clear: none;
+    margin-top: 0;
+    @include blg-spacing("bottom", "small", "margin");
+  }
+}
+
+.captioned-asset--inline {
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    float: left;
+    margin-top: 0;
+    @include margin(24, "right");
+    @include blg-spacing("bottom", "small", "margin");
+    max-width: 50%;
+  }
+}
+
+.captioned-asset__picture {
+  display: block;
+  width: 100%;
+}
+
+.captioned-asset__image {
+  display: block;
+  outline: 1px solid $color-text-dividers;
+  @include blg-spacing("top", "extra-small");
+  @include padding(12, "right");
+  @include blg-spacing("bottom", "extra-small");
+  @include padding(12, "left");
+  width: 100%;
+}
+
+.captioned-asset__caption {
+  padding: 0 6%;
+  @include blg-spacing("top", "extra-small", "margin");
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-captioned-asset-caption)}em) {
+
+  .captioned-asset__caption {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+}

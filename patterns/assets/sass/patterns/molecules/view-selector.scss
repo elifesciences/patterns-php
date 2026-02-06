@@ -1,0 +1,192 @@
+@import "../../definitions";
+
+.button--switch-selector {
+  .js & {
+    &.view-selector {
+      display: inline-block;
+
+      @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+        display: none;
+      }
+    }
+
+    & ~ .grid__item .list-heading {
+      display: none;
+
+      @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+        display: block;
+      }
+    }
+  }
+
+  .view-selector__link--primary,
+  .view-selector__link--secondary {
+    color: $color-text;
+  }
+}
+
+.view-selector {
+  @include blg-spacing("bottom", "smallish", "margin");
+
+  &.button--switch-selector {
+    display: none;
+  }
+}
+
+.view-selector__list {
+  background-color: #fff;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.view-selector__list-item {
+  @include local-item-style();
+}
+
+.view-selector__link {
+  display: block;
+  text-decoration: none;
+
+  span {
+    display: inline-block;
+  }
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.view-selector__list-item--active {
+  color: $color-text;
+
+  .view-selector__link {
+    color: $color-text;
+  }
+}
+
+.view-selector__link {
+  color: $color-text-secondary;
+}
+
+.view-selector__jump_link {
+  color: $color-text-secondary;
+}
+
+.view-selector__jump_link--active {
+  color: $color-text;
+}
+
+.view-selector__jump_link_item {
+  @include local-item-style();
+}
+
+.view-selector__jump_link {
+  text-decoration: none;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.view-selector__divider {
+  @include margin(24, "bottom");
+  border-bottom: 1px solid $color-text-dividers;
+}
+
+@media only screen and (max-width: #{get-rem-from-px($bkpt-view-selector - 1)}em) {
+
+  .view-selector {
+    display: none;
+  }
+
+  .view-selector--has-secondary {
+    display: inline-block;
+    width: 100%;
+    grid-column: 1/13;
+    grid-row: 1;
+  }
+
+  .view-selector__list {
+    margin: auto;
+    @include constrain-width(375, "max");
+    width: 100%;
+  }
+
+  .view-selector__list-item {
+    display: none;
+    border: 1px solid $color-text;
+    float: left;
+    margin: 0;
+    @include padding(0 6);
+    text-align: center;
+    width: 50%;
+  }
+
+  /** Selector nesting here because otherwise this all gets horrible quickly **/
+  .view-selector__list-item--primary {
+    display: inline-block;
+    border-right: none;
+    @include border-radius-simple(4, 0, 0, 4);
+  }
+
+  .view-selector__list-item--secondary {
+    display: inline-block;
+    border-left: none;
+    @include border-radius-simple(0, 4, 4, 0);
+  }
+
+  .view-selector__list-item--active {
+    background-color: $color-text;
+
+    .view-selector__link {
+      color: $color-text-ui-background;
+
+      &:hover {
+        cursor: default;
+      }
+
+    }
+  }
+
+  .view-selector__link {
+    @include font-size-and-vertical-height(14, 36);
+    @include height(34);
+    @include nospace();
+    text-align: center;
+
+    span {
+      padding: 0;
+    }
+  }
+
+  .view-selector__link--secondary {
+    color: $color-text;
+  }
+
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-view-selector)}em) {
+
+  // Applied with js to stop the selector scrolling off the top of the screen.
+  .view-selector {
+    // Supply what was being provided by the grid now this element has been taken out the flow.
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+
+  .view-selector--fixed {
+    @include padding(48, "top");
+    max-height: 100vh;
+    max-width: ($grid-column *2) + $grid-gutter;
+    min-height: 11rem;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+
+    .wrapper--content-with-header-and-aside & {
+      @include padding(72, "top");
+    }
+  }
+
+}

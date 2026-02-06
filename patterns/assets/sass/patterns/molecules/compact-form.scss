@@ -1,0 +1,69 @@
+@import "../../definitions";
+
+.compact-form__container {
+  border: none;
+  margin: 0 auto;
+  @include constrain-width(440, "max");
+  padding: 0;
+  position: relative;
+
+  .search-box__inner & {
+    max-width: none;
+  }
+}
+
+.compact-form__input {
+  background-color: #fff;
+  border: #{$border-width}px solid $color-text-dividers;
+  border-right: none;
+  border-radius: #{$border-radius}px;
+  display: block;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height($font-size-base-in-px);
+  @include padding($blg-space-extra-small-in-px - 1 55 $blg-space-extra-small-in-px - 1 12);
+  width: 100%;
+
+  .compact-form--invalid & {
+    border: 1px solid $color-attention;
+  }
+
+  &:focus {
+    border: #{$border-width}px solid $color-text-placeholder;
+    outline: 0;
+  }
+}
+
+.compact-form__submit {
+  background: url("../img/icons/arrow-forward.png");
+  background: url("../img/icons/arrow-forward.svg"), linear-gradient(transparent, transparent);
+  background-color: $color-information;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 0 #{$border-radius}px #{$border-radius}px 0;
+  color: $color-text-ui-background;
+  @include height($button-height-regular);
+  position: absolute;
+  right: 0;
+  top: 0;
+  @include width(47);
+}
+
+.compact-form__message {
+  display: block;
+  @include typeg-form-message;
+  @include margin(6, "top");
+
+  &.compact-form__message--invalid {
+    color: $color-attention;
+  }
+
+  &.compact-form__message--info {
+    color: $color-information;
+  }
+
+}
+
+.compact-form__reset {
+  @include visuallyhidden();
+}

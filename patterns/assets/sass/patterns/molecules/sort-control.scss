@@ -1,0 +1,63 @@
+@import "../../definitions";
+
+.sort-control {
+  @include blg-spacing("top", "extra-small");
+  @include blg-spacing("bottom", "extra-small");
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height($font-size-base-in-px);
+  font-weight: bold;
+}
+
+.sort-control__title {
+  color: $color-text;
+  display: inline-block;
+  float: left;
+  @include margin(8, "right");
+}
+
+.sort-control__options {
+  display: table;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sort-control__option {
+  display: table-cell;
+  float: left;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  @include padding(10, "right");
+}
+
+.sort-control__link {
+  color: $color-text;
+  display: block;
+  @include padding(15, "right");
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.sort-control__link--ascending {
+  background: url("../img/icons/arrow-up.png") 100% 50% no-repeat;
+  background: url("../img/icons/arrow-up.svg") 100% 50% no-repeat, linear-gradient(transparent, transparent);
+
+  &:hover {
+    background: url("../img/icons/arrow-up-hover.png") 100% 50% no-repeat;
+    background: url("../img/icons/arrow-up-hover.svg") 100% 50% no-repeat, linear-gradient(transparent, transparent);
+  }
+}
+
+.sort-control__link--descending {
+  background: url("../img/icons/arrow-down.png") 100% 50% no-repeat;
+  background: url("../img/icons/arrow-down.svg") 100% 50% no-repeat, linear-gradient(transparent, transparent);
+
+  &:hover {
+    background: url("../img/icons/arrow-down-hover.png") 100% 50% no-repeat;
+    background: url("../img/icons/arrow-down-hover.svg") 100% 50% no-repeat, linear-gradient(transparent, transparent);
+  }
+}

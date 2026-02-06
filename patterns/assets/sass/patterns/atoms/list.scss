@@ -1,0 +1,98 @@
+@import "../../definitions";
+
+.list {
+  clear: both;
+  list-style-type: none;
+  padding-left: 0.75rem;
+
+  .article-section__body &:not([class*=" "]) {
+    @include padding (0, "left");
+  }
+}
+
+.list--teaser {
+
+  a {
+    &:hover {
+      @include color-link-hover();
+    }
+  }
+}
+
+.list--line {
+  @include margin(12, "top");
+  @include padding(28, "left");
+  position: relative;
+
+  &:before {
+    background-color: $color-text-ui-background-light-gray;
+    border-radius: 6px;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8px;
+  }
+
+  li {
+    @include font-size(14);
+    @include padding(16, "bottom");
+    font-family: $font-secondary;
+    font-weight: normal;
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      @include padding(8, "bottom");
+      display: grid;
+      grid-template-columns: 1fr auto;
+    }
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &:last-child {
+      @include padding(0);
+    }
+  }
+
+  strong {
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      grid-column: 1;
+    }
+  }
+
+  time {
+    color: $color-status-variable-a;
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      @include margin(24, "left");
+      grid-column: 2;
+    }
+  }
+
+  strong,
+  time {
+    display: block;
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      display: inline;
+    }
+  }
+}
+
+$prefixes: ("alpha-lower": "lower-latin", "alpha-upper": "upper-latin", "bullet": "disc", "number": "decimal", "roman-lower": "lower-roman", "roman-upper": "upper-roman");
+
+@each $prefix, $list-style-type in $prefixes {
+  .list--#{$prefix} {
+    list-style-type: #{$list-style-type};
+    @include padding (20, "left");
+    &:not(.list--teaser):not(.author-details__list) {
+      @if ($prefix == "number" or $prefix == "bullet") {
+        a {
+          @include discreet-link();
+        }
+      }
+    }
+  }
+}

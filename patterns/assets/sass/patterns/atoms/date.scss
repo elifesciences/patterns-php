@@ -1,0 +1,57 @@
+@import "../../definitions";
+
+.date {
+  @include label-content-typeg($color: inherit, $uppercase: false);
+  @include font-size-and-vertical-height(12);
+
+  .teaser--main & {
+    @include font-size-and-vertical-height(14, 18);
+    display: block;
+
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      display: inline-block;
+    }
+  }
+
+  .teaser--secondary & {
+    @include font-size-and-vertical-height(14, 18);
+  }
+
+  .teaser--main.teaser & {
+    display: inline-block;
+  }
+
+  .teaser--grid-style & {
+    @include font-size-and-vertical-height(14, 24);
+  }
+}
+
+.date--expanded {
+  background-color: $color-primary;
+  @include label-content-typeg();
+  color: $color-text-ui-background;
+  display: block;
+  @supports (display: flex) {
+    display: flex;
+  }
+  flex-direction: column;
+  float: right;
+  height: 70px;
+  justify-content: space-around;
+  @include blg-spacing("top", "extra-small", "margin");
+  @include margin(24, "left");
+  text-align: center;
+  width: 70px;
+
+  .date__prominent {
+    @include font-size-and-vertical-height(36, 36);
+    text-align: center;
+    @include padding(10, "top");
+  }
+
+  .date__normal {
+    margin-top: 0;
+    @include margin(5, "bottom");
+  }
+
+}

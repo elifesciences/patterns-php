@@ -1,0 +1,158 @@
+@import "../../definitions";
+
+/*
+ * button class is intentionally generic. Semantics should still be used in the HTML to markup a link as a link and a button as a button, etc, but this class will make sure the styling persists regardless.
+ */
+
+@mixin button--extra-small() {
+  border-radius: 3px;
+  @include font-size(11);
+  line-height: 2.1818181818; /* 24px with 11px font size */
+  @include padding(0 6);
+  @include height(24);
+}
+
+.button {
+  border: none;
+  border-radius: 4px;
+  color: $color-text--reverse;
+  display: inline-block;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(14, 14);
+  font-weight: 500;
+  @include padding(17 40 16);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.button--default {
+  @include colors($color-primary);
+  @include padding(15 36 14);
+
+  &:hover {
+    @include colors($color-primary-dark);
+  }
+}
+
+.button--secondary {
+  @include colors($color-text-ui-background-secondary, $color-text-dividers, $color-text);
+  @include padding(15 36 14);
+
+  &:hover {
+    @include colors($color-text-dividers, $color-text-dividers, $color-text);
+  }
+}
+
+.button--outline {
+  @include colors($color-text--reverse, $color-primary, $color-primary);
+  @include padding(15 36 14);
+
+  &:hover {
+    @include colors($color-text--reverse, $color-primary-dark, $color-primary-dark);
+  }
+}
+
+.button--reversed {
+  @include colors(transparent, $color-text--reverse);
+  @include padding(15 36 14);
+
+  &:hover {
+    @include colors($color-primary-dark);
+  }
+}
+
+.button--full {
+  display: block;
+  width: 100%;
+}
+
+.button--small {
+  @include font-size-and-vertical-height(11);
+  @include padding(3 12);
+}
+
+.button--extra-small {
+
+  @include button--extra-small();
+}
+
+.button--login {
+  @include button--extra-small();
+  // All quantities are 1px smaller to allow for the 1px border
+  background: $color-success url("../img/icons/orcid.png") 3px 3px no-repeat;
+  background: $color-success url("../img/icons/orcid.svg") 3px 3px no-repeat;
+  @include colors($color-success);
+
+  &:hover {
+    @include colors($color-success-dark);
+  }
+
+  @include padding(23, "left");
+}
+
+.button--inactive {
+  @include colors(#81c4e8);
+  cursor: not-allowed;
+
+  &:hover {
+    @include colors(lighten($color-primary, 40%));
+  }
+}
+
+.button--reversed-inactive {
+  @include colors($color-text--reverse, #909090, #909090);
+  border-width: 2px;
+
+  cursor: not-allowed;
+}
+
+.button--success {
+  background: $color-success;
+  border: 1px solid $color-success;
+
+  &:hover {
+    background-color: #2b7306;
+    border: 1px solid #2b7306;
+  }
+}
+
+.button--action {
+  @include padding(9 20);
+  background-color: $color-text-ui-background-light-gray;
+  border: none;
+  color: $color-text;
+  display: inline-flex;
+  font-weight: 700;
+  min-height: 40px;
+  line-height: 24px;
+  text-transform: initial;
+
+  &:hover {
+    background-color: $color-text-ui-background-secondary-grey;
+    border: none;
+    color: $color-text;
+  }
+
+  &.icon {
+    @include padding(40, "left");
+    background-position: 11px;
+    background-repeat: no-repeat;
+  }
+
+  &.icon-comment {
+    background-image: url("../img/icons/commenting.svg");
+  }
+
+  &.icon-citation {
+    background-image: url("../img/icons/cite.svg");
+  }
+
+  &.icon-download {
+    background-image: url("../img/icons/download.svg");
+  }
+
+  &.icon-share {
+    background-image: url("../img/icons/share.svg");
+  }
+}

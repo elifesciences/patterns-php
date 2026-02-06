@@ -55,10 +55,10 @@
         "patternSectionSubgroup": "views/partials/patternSectionSubgroup.mustache",
         "viewall": "views/viewall.mustache"
       },
-      "js": "source/js",
-      "images": "source/images",
-      "fonts": "source/fonts",
-      "css": "source/css"
+      "js": "source/assets/js",
+      "images": "source/assets/img",
+      "fonts": "source/assets/fonts",
+      "css": "source/assets/css"
     },
     "public": {
       "root": "public/",
@@ -66,10 +66,10 @@
       "data": "public/styleguide/data/",
       "annotations": "public/annotations/",
       "styleguide": "public/styleguide/",
-      "js": "public/js",
-      "images": "public/images",
-      "fonts": "public/fonts",
-      "css": "public/css"
+      "js": "public/assets/js",
+      "images": "public/assets/images",
+      "fonts": "public/assets/fonts",
+      "css": "public/assets/css"
     }
   },
   "patternExtension": "mustache",

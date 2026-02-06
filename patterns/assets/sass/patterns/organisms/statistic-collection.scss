@@ -1,0 +1,30 @@
+@import "../../definitions";
+
+.statistic-collection {
+  @include margin(0);
+  @include padding(0);
+}
+
+.statistic-collection__item {
+  @include margin(0);
+  @include padding(0);
+  display: inline-block;
+  list-style-type: none;
+
+  &:after {
+    content: "\00a0\2022\00a0";
+    display: inline-block;
+    width: 13px;
+  }
+
+  &:last-child:after {
+    content: "";
+    display: unset;
+  }
+
+  &.no-separator {
+    &:after {
+      content: "";
+    }
+  }
+}

@@ -1,0 +1,111 @@
+@import "../../definitions";
+
+.audio-player {
+  background-color: $color-text;
+  margin: 0 auto;
+  @include constrain-width($max-site-width, "max");
+  @include height($audio-player-height);
+  @include blg-spacing("top", "extra-small");
+  @include padding(24, "right");
+  @include padding(24, "left");
+  @include padding($blg-space-small-in-px - 2, "bottom");
+  position: relative;
+}
+
+.audio-player__toggle_play {
+  background: #222 url("../img/icons/audio-play.svg") center center no-repeat;
+  border: none;
+  color: $color-text--reverse;
+  height: 100%;
+  left: 0;
+  padding: 0;
+  position: absolute;
+  // visuallyhidden mixin cannot be used here as will hide play and pause button
+  text-indent: -9999px;
+  top: 0;
+  @include width(72);
+  &.loading {
+    background-image: none;
+    @include loading-spinner();
+    left: 24px;
+    top: 26px;
+
+  }
+
+}
+
+.audio-player__toggle_play--pauseable {
+  background-image: url("../img/icons/audio-pause.svg");
+}
+
+.audio-player__header {
+  color: $color-text--reverse;
+  @include listing-side-art-title-typeg();
+  @include font-size-and-vertical-height($font-size-base-in-px);
+  @include nospace();
+}
+
+.audio-player__header-link {
+  color: inherit;
+}
+
+.audio-player__player {
+  display: block;
+  width: 100%;
+}
+
+.audio-player__progress {
+  background-color: #444;
+  cursor: pointer;
+  @include height(4);
+  position: relative;
+  top: 9px;
+  width: 100%;
+}
+
+.audio-player__progress_bar {
+  background-color: $color-primary;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
+
+.audio-player__times {
+  float: right;
+  @include label-content-typeg($color-text-secondary);
+  color: $color-text--reverse;
+  margin-top: 1px;
+}
+
+.audio-player__current_time:after {
+  content: "\00a0/\00a0";
+}
+
+.audio-player--js {
+
+  @include height($audio-player-height--js);
+
+  .audio-player__toggle_play {
+    display: block;
+  }
+
+  .audio-player__container {
+    @include padding(48, "left");
+  }
+
+  .audio-player__title {
+    @include truncate-with-ellipsis();
+    max-width: calc(100% - 6.4em);
+  }
+
+  .audio-player__player {
+    // Testing shows iOS7 doesn't honour display: none on audio elements
+    // so using visuallyhidden too. (We want display: none so controls aren't
+    // duplicated.)
+    @include visuallyhidden();
+    display: none;
+  }
+
+}

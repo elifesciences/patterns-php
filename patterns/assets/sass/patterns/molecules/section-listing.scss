@@ -1,0 +1,116 @@
+@import "../../definitions";
+
+.section-listing {
+
+  @include nospace();
+  @include blg-spacing("top", "extra-small");
+  list-style: none;
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    border-bottom: 1px solid $color-text-dividers;
+
+    &:not(.section-listing--single-line) {
+      border-top: 1px solid $color-text-dividers;
+      @include padding($blg-space-small-in-px, "bottom");
+      @include padding($blg-space-small-in-px, "top");
+
+      .js .section-listing-wrapper--home-page & {
+        @include padding($size_in_px: 60, $dimension: "bottom");
+      }
+    }
+
+    .main--with-new-designs-borders & {
+      border-bottom: none;
+      border-top: none;
+    }
+  }
+
+}
+
+.section-listing-wrapper--home-page .list-heading {
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    .js & {
+      @include padding($size_in_px: 68, $dimension: "top");
+      @include padding($size_in_px: 8, $dimension: "bottom");
+
+      text-align: left;
+    }
+  }
+}
+
+.section-listing__list_item {
+  @include dismissible_navigation();
+}
+
+.section-listing__list_link {
+  color: $color-text;
+  text-decoration: none;
+
+  .section-listing-wrapper--home-page & {
+    color: $color-primary-dark--home-page;
+    font-weight: 600;
+
+    &:hover {
+      color: $color-text;
+    }
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.section-listing--single-line {
+
+  .section-listing__list_item--current {
+    .section-listing__list_link {
+      color: $color-primary;
+    }
+
+  }
+
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-section-listing)}rem) {
+
+  .section-listing--single-line {
+    column-count: 1;
+  }
+
+  .js {
+
+    .section-listing {
+      column-count: 3;
+      column-gap: 2.25rem;
+    }
+
+    .wrapper--subjects .section-listing {
+      column-gap: #{get-rem-from-px(24)}rem;
+    }
+
+    .section-listing__list_item {
+      @include font-size-and-vertical-height($font-size-base-in-px);
+      text-align: left;
+    }
+
+    .section-listing-wrapper--home-page .section-listing__list_item {
+      @include font-size-and-vertical-height($font-size-in-px: $font-size-base-in-px, $vertical-height-in-px: 30);
+    }
+
+    .section-listing--single-line {
+      border-bottom: 1px solid $color-text-dividers;
+      column-count: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include padding(11, "bottom");
+
+      .section-listing__list_item {
+        @include margin(0 12);
+      }
+
+    }
+
+  }
+
+}

@@ -1,0 +1,194 @@
+@import "../../definitions";
+
+.speech-bubble {
+
+  &[data-behaviour~="HypothesisOpener"] {
+    display: none;
+  }
+
+  @include colors();
+  border-radius: #{$border-radius}px;
+  display: block;
+  font-family: $font-secondary;
+
+  @include font-size-and-vertical-height(14, 36);
+  @include height(36);
+  padding: 0;
+
+  position: relative;
+
+  text-align: center;
+  text-decoration: none;
+  // Variable needed?
+  @include width($button-speech-bubble-width-in-px);
+
+  &:after {
+    @include arrow("right", 20, $color-primary);
+    left: 8px;
+    position: absolute;
+    top: 8px;
+    z-index: -1;
+
+    &:hover {
+      border-left-color: $color-primary-dark;
+    }
+
+  }
+
+  &:hover {
+    background-color: $color-primary-dark;
+    border-color: $color-primary-dark;
+
+    &:after {
+      border-left-color: $color-primary-dark;
+    }
+
+  }
+
+}
+
+.speech-bubble__inner {
+  display: inline-block;
+}
+
+.speech-bubble--inline {
+  @include margin(12, "left");
+}
+
+.speech-bubble--small {
+  display: inline-block;
+  @include font-size-and-vertical-height(11, 14);
+  @include height(14);
+  min-width: 2em;
+  padding-left: 4px;
+  padding-right: 4px;
+  width: auto;
+
+  &:after {
+    @include arrow("right", 3, $color-primary);
+    left: 5px;
+    top: 10px;
+  }
+
+}
+
+.speech-bubble--container {
+  display: grid;
+
+  .speech-bubble--wrapped {
+    display: inline-block;
+
+    @media only all and (max-width: #{get-rem-from-px($bkpt-site--medium - 1)}em) {
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+.speech-bubble--wrapped {
+  @include font-size-and-vertical-height(11, 15);
+  @include padding(13 18 14);
+  display: block;
+  font-weight: 300;
+  height: auto;
+  min-width: 2em;
+  width: auto;
+  justify-self: end;
+
+  .speech-bubble--wrapped__prefix {
+    @include font-size-and-vertical-height(14, 18);
+    display: inline-block;
+    font-family: $font-secondary;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .speech-bubble__inner {
+    @include margin(9, "left");
+    @include padding(3 5 0 5);
+    @include font-size-and-vertical-height(14, 18);
+    background: #fff;
+    border-radius: #{$border-radius}px;
+    color: $color-primary-dark;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    min-width: 26px;
+    position: relative;
+
+    &:after {
+      background: url(../img/icons/speech-bubble-wrapped-triangle.svg) no-repeat 0 0;
+      content: "";
+      width: 10px;
+      height: 10px;
+      bottom: -10px;
+      left: 5px;
+      position: absolute;
+    }
+  }
+}
+
+.speech-bubble--has-placeholder {
+  &:not(.speech-bubble--wrapped) {
+    font-family: $font-primary;
+
+    // line-height deliberately set smaller than font size because the default content is expected to be a double-quote
+    // character, which sits high on the line. When the content is not the default, ensure to apply the
+    // class: button--speech-bubble-populated
+    @include font-size-and-vertical-height(48, 36);
+    @include blg-spacing("top", "extra-small");
+  }
+
+  &.speech-bubble--wrapped {
+    .speech-bubble__inner {
+      background: #fff url(../img/icons/speech-bubble-wrapped-placeholder.svg) no-repeat 8px 5px;
+      text-indent: -9999px;
+    }
+  }
+
+}
+
+.speech-bubble--loading {
+  position: relative;
+
+  &::before {
+    animation: ellipsis steps(4,end) 1000ms infinite;
+    box-sizing: content-box;
+    content: "\2026";
+    display: block;
+    left: 0;
+    overflow: hidden;
+    @include padding(4, "left");
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    width: 0;
+  }
+
+  @keyframes ellipsis {
+
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 55%;
+    }
+
+  }
+
+}
+
+.speech-bubble[disabled] {
+  background-color: $color-text-dividers;
+  border-color: $color-text-dividers;
+  cursor: not-allowed;
+
+  &:after {
+    border-left-color: $color-text-dividers;
+    cursor: not-allowed;
+    left: 5px;
+    top: 10px;
+  }
+
+}

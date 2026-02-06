@@ -1,0 +1,21 @@
+@import "../../definitions";
+
+.statistic {
+  @include margin(6, "bottom");
+  display: inline-block;
+
+  + .statistic {
+    @include margin(0 0 0 15);
+  }
+}
+
+.statistic__value {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.statistic__label {
+  @include margin(0, "top");
+  display: inline-block;
+  font-weight: normal;
+}

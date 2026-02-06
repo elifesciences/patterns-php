@@ -1,0 +1,62 @@
+@import "../../definitions";
+
+$gutter: 10;
+
+.button-collection {
+  display: table;
+  @include nospace();
+  @include blg-spacing("bottom", "small", "margin");
+  @include margin($blg-space-small-in-px * -1, "top");
+  @supports (display: flex) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &.button-collection--inline {
+    @include margin(0, "top");
+    display: inline-block;
+
+    .button-collection__item {
+      @include margin(0, "top");
+      @include margin(12, "right");
+      position: relative;
+
+      &:last-child {
+        @include margin(0, "right");
+      }
+    }
+  }
+}
+
+.button-collection--centered {
+  margin-left: auto;
+  margin-right: auto;
+  @include padding($gutter, "left");
+  @supports (display: flex) {
+    justify-content: center;
+  }
+}
+
+.button-collection__item {
+  float: left;
+  list-style: none;
+  @include blg-spacing("top", "small", "margin");
+  @include margin($gutter, "right");
+
+  .button-collection--compact & {
+    margin-right: 0;
+    &:not(:first-child) {
+      .button {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+    &:not(:last-child) {
+      .button {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+}

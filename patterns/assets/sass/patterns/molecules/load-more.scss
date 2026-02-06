@@ -1,0 +1,5 @@
+@import "../../definitions";
+
+.load-more {
+  @include blg-spacing("bottom", "extra-small", "margin");
+}

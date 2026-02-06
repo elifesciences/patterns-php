@@ -1,0 +1,33 @@
+@import "../../definitions";
+
+.pager {
+
+  @supports (display: flex) {
+    display: flex;
+    justify-content: space-between;
+    overflow-anchor: none;
+  }
+
+  .button {
+    min-height: 45px;
+    position: relative;
+  }
+
+  .button:nth-child(2) {
+    float: right;
+  }
+
+  .listing-column-container & {
+    @include blg-spacing("top", "small");
+  }
+}
+
+.js .pager__text_wrapper.loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  @include loading-spinner($highlight-color: $color-text--reverse, $base-color: #81c4e8);
+}

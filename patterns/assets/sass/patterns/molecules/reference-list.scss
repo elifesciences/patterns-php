@@ -1,0 +1,16 @@
+@import "../../definitions";
+
+.reference-list {
+  list-style: none;
+  @include nospace();
+  @include blg-spacing("bottom", "extra-small");
+}
+
+.reference-list__item {
+  @include blg-spacing("bottom", "small", "margin");
+  @include padding(0);
+  @include font-size-and-vertical-height(16);
+  display: flex;
+  position: relative;
+  display: flex;
+}

@@ -1,0 +1,159 @@
+@import "../../definitions";
+
+// Derived via http://sharingbuttons.io/ with the options:
+//  Icons:
+//    - email
+//    - facebook
+//    - twitter
+//    - reddit
+//  Icon size: small
+//  Round: off
+//  Fill: solid
+
+.social-media-sharers {
+  flex-grow: 0;
+  flex-basis: 24px;
+
+  .content-header-journal &,
+  .modal-content & {
+    flex-basis: auto;
+    @include margin(0);
+    @include margin(12, "bottom");
+    @include padding(0);
+    justify-content: center;
+
+    li {
+      @include margin(0, "left");
+      @include margin(0, "right");
+      list-style: none;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+        @include margin(8, "left");
+        @include margin(8, "right");
+      }
+    }
+  }
+
+  .content-header__one-column-container & {
+    @include margin(0, "bottom");
+  }
+
+  .side-section-wrapper & {
+    display: flex;
+
+    li {
+      @include margin(0, "left");
+      @include margin(6, "right");
+
+      @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+
+        &:first-child,
+        &:last-child {
+          display: none;
+        }
+
+        &:nth-child(5) {
+          @include margin(0, "right");
+        }
+      }
+    }
+
+    @media only all and (max-width: #{get-rem-from-px($bkpt-site--small - 1)}em) {
+      display: none;
+    }
+  }
+
+  .article-section.article-section__sharers & {
+    display: flex;
+    margin-top: 16px;
+    list-style: none;
+    padding: 0;
+
+    li:first-child .social-media-sharer {
+      margin-left: 0;
+    }
+
+    .social-media-sharer {
+      background-color: $color-text-ui-background;
+      border: none;
+    }
+  }
+}
+
+.social-media-sharer,
+.social-media-sharer__icon {
+  display: inline-block;
+}
+
+.social-media-sharer {
+
+  background-color: $color-text;
+  border-radius: #{$border-radius}px;
+  color: $color-text--reverse;
+  margin: 0 8px;
+  height: 24px;
+  padding: 2px 0;
+  text-decoration: none;
+  transition: 25ms ease-out;
+  width: 24px;
+
+  .social-media-page--wrapper &,
+  .content-header-journal &,
+  .modal-content & {
+    background-color: transparent;
+    border-radius: 0;
+    margin: 0 9px;
+    transition: 0ms;
+
+    &:hover svg path {
+      fill: $color-primary;
+    }
+  }
+
+  .content-header--image & {
+    background-color: transparent;
+    border: 1px solid $color-text--reverse;
+    padding: 1px 0;
+  }
+
+  .side-section-wrapper & {
+    @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      margin: 0 6px;
+
+      &:first-child {
+        margin: 0 6px 0 0;
+      }
+    }
+  }
+
+  .content-header:not(.content-header--image):not(.content-header-journal) & {
+
+    &:hover,
+    &:active {
+      background-color: $color-primary;
+    }
+
+  }
+
+}
+
+.social-media-sharer__icon svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 7px;
+  vertical-align: top;
+}
+
+.social-media-sharer__icon_wrapper--small svg {
+  margin: 0;
+  vertical-align: middle;
+}
+
+.social-media-sharer__icon--solid {
+  fill: #fff;
+  stroke: none;
+}

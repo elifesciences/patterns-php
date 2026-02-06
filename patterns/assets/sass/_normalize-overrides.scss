@@ -1,0 +1,247 @@
+@import "definitions";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  color: $color-text;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  @include h1-typeg();
+  @include h1-spacing();
+}
+
+h2 {
+  @include h2-typeg();
+  @include h2-spacing();
+}
+
+h3 {
+  @include h3-typeg();
+  @include h3-spacing();
+}
+
+h4,
+.h4 {
+  @include h4-typeg();
+  @include h4-spacing();
+}
+
+h5 {
+  @include h5-typeg();
+  @include h5-spacing();
+}
+
+h6 {
+  @include h6-typeg();
+  @include h6-spacing();
+}
+
+p {
+  @include body-para();
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+p a:not(.additional-asset__link--download):not(.asset-viewer-inline__download_all_link):not(.asset-viewer-inline__open_link):not(.reference__title):not(.doi):not(.reference__authors_link):not(.trigger):not(.popup__link):not(.see-more-link) {
+  @include discreet-link();
+}
+
+.article-section__body ul:not(.reference__abstracts) a:not(.article-download-links-list__secondary_link) {
+  @include discreet-link();
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.monospace {
+  font-family: $font-monospace;
+}
+
+.sequence {
+  word-wrap: break-word; // Fallback for those that don't apply word-break on inline elements.
+  word-break: break-all;
+}
+
+.small-caps {
+  font-variant-caps: small-caps;
+  font-feature-settings: "smcp";
+}
+
+.author-callout-style-a1 {
+  color: rgb(54, 107, 251); // Blue
+}
+
+.author-callout-style-a2 {
+  color: rgb(156, 39, 176); // Purple
+}
+
+.author-callout-style-a3 {
+  color: rgb(213, 0, 0); // Red
+}
+
+.author-callout-style-b1 {
+  background-color: rgb(144, 202, 249); // Blue
+}
+
+.author-callout-style-b2 {
+  background-color: rgb(197, 225, 165); // Green
+}
+
+.author-callout-style-b3 {
+  background-color: rgb(255, 183, 77); // Orange
+}
+
+.author-callout-style-b4 {
+  background-color: rgb(255, 241, 118); // Yellow
+}
+
+.author-callout-style-b5 {
+  background-color: rgb(158, 134, 201); // Purple
+}
+
+.author-callout-style-b6 {
+  background-color: rgb(229, 115, 115); // Red
+}
+
+.author-callout-style-b7 {
+  background-color: rgb(244, 143, 177); // Pink
+}
+
+.author-callout-style-b8 {
+  background-color: rgb(230, 230, 230); // Grey
+}
+
+ul,
+ol {
+  @include blg-spacing("bottom", "small", "margin");
+  margin-top: 0;
+  @include padding(48, "left");
+}
+
+dl {
+  @include blg-spacing("bottom", "small", "margin");
+  margin-top: 0;
+}
+
+li,
+dt,
+dd {
+  @include body-typeg();
+}
+
+dt {
+  font-weight: bold;
+  dd + & {
+    @include blg-spacing("top", "small", "margin");
+  }
+}
+
+dd {
+  margin-left: 0;
+}
+
+small {
+  @include small-typeg();
+}
+
+address {
+  @include small-typeg();
+}
+
+.hidden {
+  display: none;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+.visuallyhidden {
+  @include visuallyhidden();
+}
+
+.clearfix {
+  @include clearfix();
+}
+
+.global-wrapper.pull-offscreen-right {
+  width: calc(100% + 330px);
+}
+
+.global-inner:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  @include margin(6, "right");
+}
+
+select {
+  height: #{$blg-space-small-in-px}px;
+}
+
+// See https://css-tricks.com/almanac/selectors/p/placeholder/ for discussion of non-std :placeholder pseudoelement
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $color-text-placeholder;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: $color-text-placeholder;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  color: $color-text-placeholder;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $color-text-placeholder;
+}
+
+@media only all and (max-width: #{get-rem-from-px($bkpt-site--wide - 1)}em) {
+
+  .article-secondary-column {
+    display: none;
+  }
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  img {
+    @include inline-image();
+  }
+}

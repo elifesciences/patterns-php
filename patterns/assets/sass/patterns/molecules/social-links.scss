@@ -1,0 +1,86 @@
+@import "../../definitions";
+
+.social-links {
+  @include padding(0 0 19 0);
+  text-align: center;
+}
+
+.social-links__list {
+  margin: 0;
+  // px not rem as adjustment for images, not text.
+  padding: 1px 0 0;
+}
+
+.social-links__list_item {
+  display: inline-block;
+  margin: 0;
+  @include padding(0 10);
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}rem) {
+    @include padding(0 12);
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}rem) {
+    @include padding(0 18 0 0);
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}rem) {
+    @include padding(0 20 0 0);
+  }
+}
+
+.social-links__list_link {
+  svg path {
+    fill: $color-text;
+  }
+  &:hover svg path {
+    fill: $color-primary;
+  }
+}
+
+.github-link-wrapper {
+  text-align: center;
+
+  .github-link {
+    @include margin(0 0 60);
+    @include label-content-typeg($color-text, $uppercase: true);
+    align-items: center;
+    color: $color-text;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    min-height: 24px;
+    width: auto;
+
+    svg path {
+      fill: $color-text;
+    }
+    &:hover svg path {
+      fill: $color-primary;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    .github-link--text {
+      @include margin(2 0 0 7);
+    }
+  }
+}
+
+@media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}rem) {
+  .social-links {
+    text-align: left;
+  }
+
+  .github-link-wrapper {
+    text-align: initial;
+
+    .github-link {
+      @include margin(0 0 72);
+      justify-content: start;
+    }
+
+  }
+}

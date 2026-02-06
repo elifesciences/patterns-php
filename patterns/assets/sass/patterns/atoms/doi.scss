@@ -1,0 +1,50 @@
+@import "../../definitions";
+
+.doi {
+  @include label-content-typeg($color-text-secondary, $uppercase: false);
+
+  .popup__content & {
+    @include popup-ancillary-text();
+  }
+
+  // Extra specificity needed to override: .article-section a
+  a.doi__link {
+    border-bottom: none;
+    color: $color-text-secondary;
+    text-decoration: none;
+    text-transform: none;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    .popup__content & {
+      @include popup-ancillary-text();
+    }
+
+  }
+
+  &--article-section {
+    color: $color-text;
+    display: block;
+    @include font-size(14);
+    @include blg-spacing("bottom", "small", "margin");
+
+    a.doi__link {
+      color: $color-text;
+    }
+
+  }
+
+  &--asset {
+    @include label-content-typeg($color-text);
+    display: block;
+
+    a.doi__link {
+      @include fig-caption-text-typeg(0);
+      color: $color-text;
+      display: block;
+    }
+  }
+
+}

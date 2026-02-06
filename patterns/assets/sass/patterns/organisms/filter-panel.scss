@@ -1,0 +1,11 @@
+@import "../../definitions";
+
+.filter-panel__title {
+  color: $color-text;
+  display: block;
+  font-family: $font-secondary;
+  @include font-size-and-vertical-height(14);
+  font-weight: bold;
+  @include blg-spacing("top", "extra-small");
+  @include blg-spacing("bottom", "extra-small");
+}
