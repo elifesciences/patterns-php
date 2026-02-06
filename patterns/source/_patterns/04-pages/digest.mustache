@@ -1,0 +1,68 @@
+<div class="global-wrapper page--magazine{{#hasTwoColumns}} social-media-page--wrapper{{/hasTwoColumns}}" data-item-type="digest">
+  <div class="global-inner">
+    {{#siteHeader}}
+      {{> organisms-site-header }}
+    {{/siteHeader}}
+    <main role="main" class="main blg-margin-bottom-large" id="maincontent">
+
+      {{#contentHeader}}
+        {{> organisms-content-header-journal }}
+      {{/contentHeader}}
+
+      <div class="wrapper wrapper--content content--narrow-column">
+
+        <div class="content-container-grid">
+
+        {{#hasTwoColumns}}
+          {{#captionedAsset}}
+            <div class="captioned-asset--wrapper">
+              {{> molecules-captioned-asset}}
+            </div>
+          {{/captionedAsset}}
+
+          {{#socialMediaSharersLinks}}
+            {{> atoms-social-media-sharers-journal}}
+          {{/socialMediaSharersLinks}}
+        {{/hasTwoColumns}}
+
+          <div class="main-content-grid{{^related}} no-secondary-column{{/related}}">
+            {{^hasTwoColumns}}
+              {{#captionedAsset}}
+                {{> molecules-captioned-asset}}
+              {{/captionedAsset}}
+            {{/hasTwoColumns}}
+
+            {{#mainContent}}
+              {{{ mainContent }}}
+            {{/mainContent}}
+
+            {{! May need to make the article section pattern more content flexible (include other patterns/not have header). New variants? }}
+            {{#articleMeta}}
+              <section class="article-section">
+                  {{> molecules-article-meta }}
+              </section>
+            {{/articleMeta}}
+
+          </div>
+
+          {{#related}}
+            <div class="secondary-column-grid">
+              <div class="grid-secondary-column__item">
+                {{> organisms-listing-teasers }}
+              </div>
+            </div>
+          {{/related}}
+
+        </div>
+
+      </div>
+
+    </main>
+
+    {{#emailCta}}
+    {{> organisms-email-cta }}
+    {{/emailCta}}
+
+    {{> organisms-footer }}
+  </div> {{! /.global-inner }}
+</div> {{! /.global-wrapper }}

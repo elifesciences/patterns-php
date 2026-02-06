@@ -1,0 +1,7 @@
+{
+  "text": "Button small",
+  "classes": "button--default button--small",
+  "type": "button",
+  "name": "button-name",
+  "ariaLabel": "Descriptive and accessible name"
+}

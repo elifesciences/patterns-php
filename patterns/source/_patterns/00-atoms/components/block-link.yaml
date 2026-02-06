@@ -1,0 +1,11 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  isGridListing:
+    type: boolean
+  image:
+    $ref: picture.yaml
+  link:
+    $ref: ../../../non-pattern-schema/link.yaml
+required:
+  - link

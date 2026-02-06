@@ -1,0 +1,16 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  borderVariant:
+    type: boolean
+  isWrapped:
+    type: boolean
+  homePagePath:
+    type: string
+    minLength: 1
+  isHomePage:
+    type: boolean
+    enum:
+      - true
+required:
+  - homePagePath

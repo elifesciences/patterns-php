@@ -1,0 +1,32 @@
+<div class="wrapper-alternative">
+  {{#siteHeaderTitle}}
+    {{> molecules-site-header-title }}
+  {{/siteHeaderTitle}}
+  <h1 class="personalised-cover__header-text">{{{title}}}</h1>
+  <div class="personalised-cover-outer">
+    <div class="personalised-cover-text">
+      {{#text}}
+        {{> atoms-paragraph }}
+      {{/text}}
+    </div>
+    <div class="personalised-cover-thumbnail">
+      {{#picture}}
+        {{> atoms-picture}}
+      {{/picture}}
+    </div>
+    <div data-behaviour="PersonalisedCoverDownload" class="personalised-cover-buttons">
+      {{#a4ListHeading}}
+        {{> atoms-list-heading }}
+      {{/a4ListHeading}}
+      {{#a4ButtonCollection}}
+        {{> molecules-button-collection }}
+      {{/a4ButtonCollection}}
+      {{#letterListHeading}}
+        {{> atoms-list-heading }}
+      {{/letterListHeading}}
+      {{#letterButtonCollection}}
+        {{> molecules-button-collection }}
+      {{/letterButtonCollection}}
+    </div>
+  </div>
+</div>

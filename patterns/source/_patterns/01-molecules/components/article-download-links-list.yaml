@@ -1,0 +1,65 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  id:
+    type: string
+    minLength: 1
+  description:
+    type: string
+    minLength: 1
+  groups:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      properties:
+        jsHideGroup:
+          type: boolean
+        id:
+          type: string
+          minLength: 1
+        title:
+          type: string
+          minLength: 1
+        intro:
+          type: string
+          minLength: 1
+        items:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            properties:
+              primary:
+                type: object
+                properties:
+                  link:
+                    $ref: ../../../non-pattern-schema/link.yaml
+                  checkPMC:
+                    type: string
+                    minLength: 1
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                          minLength: 1
+                        value:
+                          type: string
+                      required:
+                        - key
+                required:
+                  - link
+              secondary:
+                $ref: ../../../non-pattern-schema/link.yaml
+            required:
+              - primary
+      required:
+        - title
+        - items
+required:
+  - id
+  - description
+  - groups

@@ -1,0 +1,33 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  id:
+    type: string
+    minLength: 1
+  text:
+    type: string
+    minLength: 1
+  needsJs:
+    type: boolean
+    enum:
+      - true
+  dismissible:
+    properties:
+      cookieExpires:
+        type: string
+        minLength: 1
+    required:
+      - cookieExpires
+  button:
+    $ref: ../../00-atoms/components/button.yaml
+  image:
+    $ref: ../../00-atoms/components/picture.yaml
+required:
+  - id
+  - text
+  - button
+  - image
+dependencies:
+  dismissible:
+    - needsJs
+

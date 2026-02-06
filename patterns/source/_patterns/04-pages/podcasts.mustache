@@ -1,0 +1,51 @@
+<div class="global-wrapper">
+
+  <div class="global-inner">
+
+    {{#siteHeader}}
+      {{> organisms-site-header }}
+    {{/siteHeader}}
+
+    <main role="main" class="main" id="maincontent">
+
+      {{#contentHeader}}
+        {{> organisms-content-header}}
+      {{/contentHeader}}
+
+      <div class="wrapper">
+
+        <div>[Carousel goes here.]</div>
+
+        {{#listHeading}}
+          {{> atoms-list-heading}}
+        {{/listHeading}}
+
+        <div class="grid">
+
+          <div class="listing-column-container">
+
+            <div class="grid__item large--one-whole listing-column-main">
+
+              {{#podcastsListing}}
+                {{> organisms-grid-listing}}
+              {{/podcastsListing}}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    {{#emailCta}}
+      {{> organisms-email-cta }}
+    {{/emailCta}}
+
+    {{> organisms-footer }}
+
+  </div>
+
+</div>

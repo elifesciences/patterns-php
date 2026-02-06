@@ -1,0 +1,22 @@
+{
+  "id": "select1",
+  "name": "select1",
+  "label": {
+    "labelText": "Select"
+  },
+  "options": [
+    {
+      "value": "2016",
+      "displayValue": "2016"
+    },
+    {
+      "value": "2015",
+      "displayValue": "2015",
+      "selected": true
+    },
+    {
+      "value": "2014",
+      "displayValue": "2014"
+    }
+  ]
+}

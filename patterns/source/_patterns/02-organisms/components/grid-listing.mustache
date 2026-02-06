@@ -1,0 +1,34 @@
+{{#heading}}{{> atoms-list-heading}}{{/heading}}
+<ol class="grid-listing{{#classes}} {{classes}}{{/classes}}"{{#id}} id="{{id}}"{{/id}}>
+  {{#blockLinks}}
+    <li class="grid-listing-item grid-listing-item--block-link">
+      {{> atoms-block-link}}
+    </li>
+  {{/blockLinks}}
+
+  {{#archiveNavLinks}}
+    <li class="grid-listing-item">
+      {{> molecules-archive-nav-link}}
+    </li>
+  {{/archiveNavLinks}}
+
+  {{#imageLinks}}
+    <li class="grid-listing-item grid-listing-item--image-link">
+      {{> atoms-image-link}}
+    </li>
+  {{/imageLinks}}
+
+  {{#teasers}}
+    <li class="grid-listing-item">
+      {{! grid style teasers only: labs or podcast }}
+      {{> molecules-teaser}}
+    </li>
+  {{/teasers}}
+
+</ol>
+
+{{#pagination}}
+  <div class="grid-listing__pagination">
+      {{> molecules-pager}}
+  </div>
+{{/pagination}}

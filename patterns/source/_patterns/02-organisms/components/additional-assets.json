@@ -1,0 +1,44 @@
+{
+  "heading": "How should this optional heading be styled?",
+  "assets": [
+    {
+      "assetId": "pageLevelUniqueFragmentId3",
+      "captionText": {
+        "heading": "Table 1 - source data 1.",
+        "standfirst": "Is the species name mentioned in the title, impact statement, abstract and digest of eLife papers (July–Sept 2014)?",
+        "text": "some more details here"
+      },
+      "nonDoiLink": "https://example.com/a-non-doi-link",
+
+      "downloadLink": {
+        "link": {
+          "url": "#downloadLink",
+          "name": "Download me"
+        },
+        "fileName": "#download-me.png"
+      }
+    },
+
+    {
+      "assetId": "pageLevelUniqueFragmentId1",
+      "captionText": {
+        "heading": "Table 1 - source data 1.",
+        "standfirst": "Is the species name mentioned in the title, impact statement, abstract and digest of eLife papers (July–Sept 2014)?",
+        "text": "some more details here"
+      },
+      "doi": {
+        "doi": "10.7554/eLife.10181.001",
+        "variant": "asset"
+      },
+
+      "downloadLink": {
+        "link": {
+          "url": "#downloadLink",
+          "name": "Download me"
+        },
+        "fileName": "#download-me.png"
+      }
+    }
+
+  ]
+}

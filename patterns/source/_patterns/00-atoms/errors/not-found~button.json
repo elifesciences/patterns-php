@@ -1,0 +1,8 @@
+{
+  "button": {
+    "text": "Back to home",
+    "classes": "button--default",
+    "path": "#",
+    "ariaLabel": "Descriptive and accessible name"
+  }
+}

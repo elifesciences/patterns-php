@@ -1,0 +1,23 @@
+<div class="global-wrapper">
+
+    <div class="global-inner">
+
+      {{#siteHeader}}
+        {{> organisms-site-header }}
+      {{/siteHeader}}
+
+        <main role="main" class="main" id="maincontent">
+
+          {{#error}}
+              {{> atoms-not-found }}
+          {{/error}}
+
+        </main>
+
+        {{> organisms-email-cta }}
+
+        {{> organisms-footer }}
+
+    </div>
+
+</div>

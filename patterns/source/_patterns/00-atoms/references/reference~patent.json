@@ -1,0 +1,34 @@
+{
+  "title": "IRE-1alpha inhibitors (US20100941530)",
+  "origin": "Mankind Corp, United States patent, United States",
+  "label": "Patent",
+  "hasAuthors": true,
+  "authorLists": [
+    {
+      "authors": [
+        {
+          "name": "Patterson JB",
+          "url": false
+        },
+        {
+          "name": "Lonergan DG",
+          "url": false
+        },
+        {
+          "name": "Flynn GA",
+          "url": false
+        },
+        {
+          "name": "Qingpeng Z",
+          "url": false
+        },
+        {
+          "name": "Pallai PV",
+          "url": false
+        }
+      ],
+      "suffix": "(2011)"
+    }
+  ],
+  "hasAbstracts": false
+}

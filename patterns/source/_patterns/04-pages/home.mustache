@@ -1,0 +1,78 @@
+<div class="global-wrapper global-wrapper--home-page">
+  {{#floatingActionButton}}
+    {{> molecules-floating-action-button }}
+  {{/floatingActionButton}}
+
+  <div class="global-inner">
+    {{#siteHeader}}
+      <div class="site-header-home-wrapper site-header--home-page">
+        {{> organisms-site-header }}
+      </div>
+    {{/siteHeader}}
+
+    <main role="main" class="main main--with-new-designs-borders" id="maincontent">
+      <div class="banner-and-subjects-wrapper">
+
+        {{#homeBanner}}
+            {{> molecules-home-banner}}
+        {{/homeBanner}}
+
+        {{#sectionsListingLink}}
+        <div class="wrapper wrapper--subjects">
+          {{> atoms-section-listing-link}}
+        </div>
+        {{/sectionsListingLink}}
+        
+      </div>
+
+       {{#highlight}}
+       <div class="wrapper">
+           {{> organisms-highlight}}
+       </div>
+       {{/highlight}}
+
+       {{#testimonialWithLink}}
+           {{> molecules-testimonial-with-link}}
+       {{/testimonialWithLink}}
+
+        <div class="wrapper wrapper--listing">
+        <div class="grid">
+
+          {{#viewSelector}}
+            {{> molecules-view-selector }}
+          {{/viewSelector}}
+
+          <div class="grid__item one-whole x-large--eight-twelfths listing-column-main" id="primaryListing">
+
+            {{#mainTeasers}}
+              {{> organisms-listing-teasers}}
+            {{/mainTeasers}}
+
+          </div>
+
+          <div class="grid__item one-whole x-large--four-twelfths listing-column-secondary" id="secondaryListing">
+
+              {{#secondaryTeasers}}
+                {{> organisms-listing-teasers}}
+              {{/secondaryTeasers}}
+
+          </div>
+
+          <div>
+      </div>
+
+
+      {{#sectionsListing}}
+        <div class="wrapper u-pad-top-lg">
+          {{> molecules-section-listing}}
+        </div>
+      {{/sectionsListing}}
+    </main>
+
+    {{#emailCta}}
+    {{> organisms-email-cta }}
+    {{/emailCta}}
+
+    {{> organisms-footer }}
+  </div> {{! /.global-inner }}
+</div> {{! /.global-wrapper }}

@@ -1,0 +1,18 @@
+{
+  "title": "Philosophie Anatomique",
+  "origin": "Paris: Méquignon-Marvis",
+  "label": "Book",
+  "hasAuthors": true,
+  "authorLists": [
+    {
+      "authors": [
+        {
+          "name": "Geoffroy Saint-Hilaire E.",
+          "url": false
+        }
+      ],
+      "suffix": "(1818)"
+    }
+  ],
+  "hasAbstracts": false
+}

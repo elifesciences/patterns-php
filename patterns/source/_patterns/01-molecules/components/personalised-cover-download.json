@@ -1,0 +1,69 @@
+{
+  "siteHeaderTitle": {
+    "isWrapped": true,
+    "borderVariant": true,
+    "homePagePath": "#"
+  },
+  "title": "Download your personalised magazine cover",
+  "text": [
+    {
+      "text": "Thank you for publishing your research with us."
+    },
+    {
+      "text": "As a small keepsake for you and your co-authors we hope you’ll download this free poster highlighting your paper on an eLife magazine style cover."
+    },
+    {
+      "text": "Like your research it’s open access so you can print it, frame it, tweet it, use it as wallpaper in your lab...the possibilities are endless."
+    }
+  ],
+  "picture": {
+    "sources": [
+      {
+        "srcset": "https://placehold.it/600x876",
+        "type": "image/svg+xml"
+      }
+    ],
+    "fallback": {
+      "srcset": "https://placehold.it/600x876 1x",
+      "sizes": "138px",
+      "defaultPath": "https://placehold.it/600x876",
+      "altText": "Meaningful alt text here please."
+    }
+  },
+  "a4ListHeading": {
+    "heading": "A4"
+  },
+  "a4ButtonCollection": {
+    "centered": false,
+    "buttons": [
+      {
+        "text": "Download PDF",
+        "path": "#",
+        "ariaLabel": "Descriptive and accessible name"
+      },
+      {
+        "text": "Download jpg",
+        "path": "#",
+        "ariaLabel": "Descriptive and accessible name"
+      }
+    ]
+  },
+  "letterListHeading": {
+    "heading": "US Letter"
+  },
+  "letterButtonCollection": {
+    "centered": false,
+    "buttons": [
+      {
+        "text": "Download PDF",
+        "path": "#",
+        "ariaLabel": "Descriptive and accessible name"
+      },
+      {
+        "text": "Download jpg",
+        "path": "#",
+        "ariaLabel": "Descriptive and accessible name"
+      }
+    ]
+  }
+}

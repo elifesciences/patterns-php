@@ -1,0 +1,412 @@
+{
+  "archiveNavLinks": [
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "December"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "November"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "October"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "September"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "August"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "July"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "June"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "May"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "April"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "March"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "February"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    },
+    {
+      "url": "#",
+      "blockLink": {
+        "link": {
+          "url": "#",
+          "name": "January"
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/263/176",
+            "altText": ""
+          }
+        }
+      },
+      "label": "Highlights this month:",
+      "links": [
+        {
+          "name": "Exploring the ins and outs of breathing",
+          "url": "#Exploring"
+        },
+        {
+          "name": "The ancient origins of lubricated joints",
+          "url": "#The"
+        },
+        {
+          "name": "Modulating protein quality control",
+          "url": "#Modulating"
+        },
+        {
+          "name": "How open science helps researchers succeed",
+          "url": "#How"
+        }
+      ]
+    }
+
+  ]
+}

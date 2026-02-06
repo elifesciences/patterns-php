@@ -1,0 +1,49 @@
+{
+  "contextLabel": {
+    "list": [
+      {
+        "name": "Cell biology",
+        "url": "#"
+      },
+      {
+        "name": "Epidemiology and Global Health",
+        "url": "#"
+      }
+    ]
+  },
+
+  "image": {
+    "fallback": {
+      "defaultPath": "https://unsplash.it/250/140/",
+      "srcset": "https://unsplash.it/500/280/ 2x, https://unsplash.it/250/140/ 1x",
+      "altText": "Meaningful alt text here please."
+    },
+    "type": "big"
+  },
+
+  "url": "#",
+
+  "ariaLabel": "Descriptive and accessible label",
+
+  "title": "Retrograde fibroblast growth factor 22 (FGF22) signaling regulates insulin-like growth factor 2 (IGF2) expression for activity-dependent synapse stabilization in the mammalian brain",
+
+  "secondaryInfo": "Akiko Terauchi, Erin M Johnson-Venkatesh ... Hisashi Umemori",
+
+  "content": "Feedback signaling between the synapse and nucleus via FGF22 and IGF2 directs the activity-dependent stabilization of presynaptic terminals in the mouse hippocampus.",
+
+  "footer": {
+    "meta": {
+      "url": "#",
+      "text": "Research article",
+      "date": {
+        "forHuman": {
+          "dayOfMonth": 10,
+          "month": "Sep",
+          "year": 2015
+        },
+        "forMachine": "2015-09-10"
+      }
+    }
+  }
+
+}

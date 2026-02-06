@@ -1,0 +1,97 @@
+{
+  "title": "NKX2-5 mutations causative for congenital heart disease retain functionality and are directed to hundreds of targets",
+  "titleLink": "https://www.gov.uk/government/publications/educational-excellence-everywhere",
+  "origin": "NCBI Gene Expression Omnibus.",
+  "label": "Data",
+  "hasAuthors": true,
+  "authorLists": [
+    {
+      "authors": [
+        {
+          "name": "Bouveret R",
+          "url": false
+        },
+        {
+          "name": "Bouveret R",
+          "url": false
+        },
+        {
+          "name": "Schonrock N",
+          "url": false
+        },
+        {
+          "name": "Ramialison M",
+          "url": false
+        },
+        {
+          "name": "Doan T",
+          "url": false
+        },
+        {
+          "name": "de Jong D",
+          "url": false
+        },
+        {
+          "name": "Bondue A",
+          "url": false
+        },
+        {
+          "name": "Kaur G",
+          "url": false
+        },
+        {
+          "name": "Mohamed S",
+          "url": false
+        },
+        {
+          "name": "Fonoudi H",
+          "url": false
+        },
+        {
+          "name": "Chen C",
+          "url": false
+        },
+        {
+          "name": "Wouters M",
+          "url": false
+        },
+        {
+          "name": "Bhattacharya S",
+          "url": false
+        },
+        {
+          "name": "Plachta N",
+          "url": false
+        },
+        {
+          "name": "Dunwoodie SL",
+          "url": false
+        },
+        {
+          "name": "Chapman G",
+          "url": false
+        },
+        {
+          "name": "Blanpain C",
+          "url": false
+        },
+        {
+          "name": "Harvey RP",
+          "url": false
+        }
+      ],
+      "suffix": "(2015)"
+    }
+  ],
+  "hasAbstracts": true,
+  "abstracts": [
+    {
+      "name": "PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/"
+    },
+    {
+      "name": "Google Scholar",
+      "url": "https://google.co.uk"
+    }
+  ]
+}

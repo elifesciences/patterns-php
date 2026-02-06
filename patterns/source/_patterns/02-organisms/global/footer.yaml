@@ -1,0 +1,16 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+allOf:
+  - properties:
+      year:
+        type: integer
+      footerMenuLinks:
+        type: array
+        items:
+          $ref: ../../../non-pattern-schema/link.yaml
+        minItems: 1
+    required:
+      - year
+      - footerMenuLinks
+  - $ref: ../../01-molecules/navigation/main-menu.yaml
+  - $ref: ../../01-molecules/components/investor-logos.yaml

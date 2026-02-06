@@ -1,0 +1,10 @@
+{
+  "url": "#",
+  "image": {
+    "fallback": {
+      "defaultPath": "https://unsplash.it/180/60/",
+      "srcset": "https://unsplash.it/360/120/ 2x, https://unsplash.it/180/60/ 1x",
+      "altText": "Meaningful alt text here please."
+    }
+  }
+}

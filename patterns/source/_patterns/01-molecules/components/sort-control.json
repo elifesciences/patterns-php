@@ -1,0 +1,7 @@
+{
+  "options": [
+    { "link": { "name": "Date", "url": "?sortby=date&amp;sort=desc" }, "sorting": "descending" },
+    { "link": { "name": "Relevance", "url": "?sortby=relevance&amp;sort=asc" }, "sorting": "ascending" },
+    { "link": { "name": "Cite", "url": "?sortby=cite&amp;sort=desc" } }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "classes": "grid-listing--image-link",
+  "imageLinks": [
+    {
+      "url": "#",
+      "image": {
+        "fallback": {
+          "defaultPath": "https://unsplash.it/250/140/",
+          "srcset": "https://unsplash.it/500/280/ 2x, https://unsplash.it/250/140/ 1x",
+          "altText": "Meaningful alt text here please."
+        }
+      }
+    },
+    {
+      "url": "#",
+      "image": {
+        "fallback": {
+          "defaultPath": "https://unsplash.it/200/140/",
+          "srcset": "https://unsplash.it/400/280/ 2x, https://unsplash.it/200/140/ 1x",
+          "altText": "Meaningful alt text here please."
+        }
+      }
+    },
+    {
+      "url": "#",
+      "image": {
+        "fallback": {
+          "defaultPath": "https://unsplash.it/250/100/",
+          "srcset": "https://unsplash.it/500/200/ 2x, https://unsplash.it/250/100/ 1x",
+          "altText": "Meaningful alt text here please."
+        }
+      }
+    },
+    {
+      "url": "#",
+      "image": {
+        "fallback": {
+          "defaultPath": "https://unsplash.it/200/140/",
+          "srcset": "https://unsplash.it/400/280/ 2x, https://unsplash.it/200/140/ 1x",
+          "altText": "Meaningful alt text here please."
+        }
+      }
+    },
+    {
+      "url": "#",
+      "image": {
+        "fallback": {
+          "defaultPath": "https://unsplash.it/250/140/",
+          "srcset": "https://unsplash.it/500/280/ 2x, https://unsplash.it/250/140/ 1x",
+          "altText": "Meaningful alt text here please."
+        }
+      }
+    },
+    {
+      "url": "#",
+      "image": {
+        "fallback": {
+          "defaultPath": "https://unsplash.it/250/100/",
+          "srcset": "https://unsplash.it/500/200/ 2x, https://unsplash.it/250/100/ 1x",
+          "altText": "Meaningful alt text here please."
+        }
+      }
+    }
+  ]
+}

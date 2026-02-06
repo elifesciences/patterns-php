@@ -1,0 +1,18 @@
+{
+  "title": "The Pymol Molecular Graphics System",
+  "origin": "DeLano Scientific, Palo Alto, CA",
+  "label": "Software",
+  "hasAuthors": true,
+  "authorLists": [
+    {
+      "authors": [
+        {
+          "name": "DeLano W. L.",
+          "url": false
+        }
+      ],
+      "suffix": "(2002)"
+    }
+  ],
+  "hasAbstracts": false
+}

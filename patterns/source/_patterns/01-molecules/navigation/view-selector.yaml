@@ -1,0 +1,47 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  sideBySideUrl:
+    type: string
+    minLength: 1
+  primaryUrl:
+    type: string
+    minLength: 1
+  secondaryUrl:
+    type: string
+    minLength: 1
+  secondaryIsActive:
+    type: boolean
+    default: false
+  primaryLabel:
+    type: string
+    minLength: 1
+  secondaryLabel:
+    type: string
+    minLength: 1
+  isTabSelector:
+    type: boolean
+    enum:
+      - true
+  otherLinks:
+    type: array
+    items:
+      $ref: ../../../non-pattern-schema/link.yaml
+  jumpLinks:
+    type: object
+    properties:
+      links:
+        type: array
+        minItems: 2
+        items:
+          $ref: ../../../non-pattern-schema/link.yaml
+    required:
+      - links
+required:
+  - primaryUrl
+  - primaryLabel
+dependencies:
+  secondaryUrl:
+    - secondaryLabel
+  secondaryLabel:
+    - secondaryUrl

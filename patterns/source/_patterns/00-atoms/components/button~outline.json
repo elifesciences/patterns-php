@@ -1,0 +1,7 @@
+{
+  "text": "Button outline",
+  "classes": "button--outline",
+  "type": "button",
+  "name": "button-name",
+  "ariaLabel": "Descriptive and accessible name"
+}

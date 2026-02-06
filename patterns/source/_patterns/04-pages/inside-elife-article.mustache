@@ -1,0 +1,47 @@
+<div class="global-wrapper{{#hasTwoColumns}} social-media-page--wrapper{{/hasTwoColumns}}" data-item-type="blog-article">
+  <div class="global-inner">
+    {{#siteHeader}}
+      {{> organisms-site-header }}
+    {{/siteHeader}}
+
+    <main role="main" class="main" id="maincontent">
+
+      {{#contentHeader}}
+        {{> organisms-content-header-journal }}
+      {{/contentHeader}}
+
+      {{#contextualData}}
+        <div class="wrapper">
+        {{> molecules-contextual-data }}
+        </div>
+      {{/contextualData}}
+
+      <div class="wrapper wrapper--content content--one-column">
+
+        <div class="content-container-grid">
+        
+          {{#socialMediaSharersLinks}}
+            {{> atoms-social-media-sharers-journal}}
+          {{/socialMediaSharersLinks}}
+
+          <div class="main-content-grid">
+
+            {{#mainContent}}
+              {{{mainContent}}}
+            {{/mainContent}}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    {{#emailCta}}
+      {{> organisms-email-cta }}
+    {{/emailCta}}
+
+    {{> organisms-footer }}
+  </div> {{! /.global-inner }}
+</div> {{! /.global-wrapper }}

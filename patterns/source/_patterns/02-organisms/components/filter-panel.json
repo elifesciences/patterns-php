@@ -1,0 +1,54 @@
+{
+  "title": "Refine your results by:",
+  "filterGroups": [
+    {
+        "filterTitle": "Significance (minimum)",
+        "filters": [
+          { "isChecked": false, "label": "Show all" },
+          { "isChecked": false, "value": "landmark", "label": "Landmark" },
+          { "isChecked": false, "value": "fundamental ", "label": "Fundamental" },
+          { "isChecked": false, "value": "important", "label": "Important" },
+          { "isChecked": false, "value": "valuable", "label": "Valuable" },
+          { "isChecked": true, "value": "useful", "label": "Useful" }
+        ],
+        "selectFilterName": "significance"
+    },
+    {
+        "filterTitle": "Strength of evidence (minimum)",
+        "filters": [
+          { "isChecked": false, "label": "Show all" },
+          { "isChecked": true, "value": "exceptional", "label": "Exceptional" },
+          { "isChecked": false, "value": "compelling", "label": "Compelling" },
+          { "isChecked": false, "value": "convincing", "label": "Convincing" },
+          { "isChecked": false, "value": "solid", "label": "Solid" },
+          { "isChecked": false, "value": "incomplete", "label": "Incomplete" },
+          { "isChecked": false, "value": "inadequate", "label": "Inadequate" }
+        ],
+        "selectFilterName": "strength"
+    },
+    {
+      "filters": [
+        { "isChecked": true, "name": "original", "label": "Include papers accepted via eLife's original publishing model" }
+      ]
+    },
+    {
+        "filterTitle": "Research categories",
+        "filters": [
+          { "isChecked": true, "name": "Cell", "label": "Cell Biology"},
+          { "isChecked": false, "name": "Neuroscience", "label": "Neuroscience", "results": "2" },
+          { "isChecked": false, "name": "Biophysics", "label": "Biophysics and Structural Biology", "results": "24" },
+          { "isChecked": true, "name": "Biochemistry", "label": "Biochemistry", "results": "71" },
+          { "isChecked": false, "name": "Developmental ", "label": "Developmental Biology and Stem Cells", "results": "13" },
+          { "isChecked": false, "name": "Immunology", "label": "Immunology", "results": "144" },
+          { "isChecked": false, "name": "Ecology", "label": "Ecology", "results": "71" },
+          { "isChecked": false, "name": "Epidemiology ", "label": "Epidemiology and Global Health", "results": "57" }
+        ]
+    }
+  ],
+  "button": {
+    "text": "Search the eLife site",
+    "classes": "button--default",
+    "type": "submit",
+    "name": "button"
+  }
+}

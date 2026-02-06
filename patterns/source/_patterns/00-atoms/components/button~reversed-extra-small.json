@@ -1,0 +1,7 @@
+{
+  "text": "Button reversed extra small",
+  "classes": "button--reversed button--extra-small",
+  "type": "button",
+  "name": "button-name",
+  "ariaLabel": "Descriptive and accessible name"
+}

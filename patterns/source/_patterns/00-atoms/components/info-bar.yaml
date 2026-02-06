@@ -1,0 +1,32 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  text:
+    type: string
+    minLength: 1
+  type:
+    type: string
+    enum:
+      - announcement
+      - attention
+      - dismissible
+      - info
+      - multiple-versions
+      - correction
+      - success
+      - warning
+  id:
+    type: string
+    minLength: 1
+  dismissible:
+      properties:
+        cookieExpires:
+          type: string
+          minLength: 1
+      required:
+        - cookieExpires
+required:
+  - text
+  - type
+dependencies:
+  dismissible: [id]

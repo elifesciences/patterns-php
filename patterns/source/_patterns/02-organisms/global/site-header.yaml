@@ -1,0 +1,15 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  title:
+    $ref: ../../01-molecules/navigation/site-header-title.yaml
+  primaryLinks:
+    $ref: ../../01-molecules/navigation/site-header-nav-bar.yaml
+  secondaryLinks:
+    $ref: ../../01-molecules/navigation/site-header-nav-bar.yaml
+  searchBox:
+    $ref: ../../01-molecules/components/search-box.yaml
+required:
+  - title
+  - primaryLinks
+  - secondaryLinks

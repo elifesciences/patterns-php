@@ -1,0 +1,379 @@
+{
+  "floatingActionButton": {
+    "text": "#OwnYourImpact",
+    "path": "/articles",
+    "ariaLabel": "Own Your Impact"
+  },
+  "newHomePage": true,
+  "siteHeader": {
+    "title": {
+      "homePagePath": "#",
+      "isHomePage": true
+    },
+    "primaryLinks":
+    {
+      "classesOuter": "nav-primary",
+      "classesInner": "nav-primary__list clearfix",
+      "linkedItems": [
+        {
+          "text": "Menu",
+          "classes": "nav-primary__item nav-primary__item--first",
+          "path": "#mainMenu",
+          "ariaLabel": "Descriptive and accessible name"
+        },
+
+        {
+          "text": "Home",
+          "path": "#",
+          "classes": "nav-primary__item",
+          "ariaLabel": "Descriptive and accessible name"
+        },
+
+        {
+          "text": "Magazine",
+          "path": "#",
+          "classes": "nav-primary__item",
+          "ariaLabel": "Descriptive and accessible name"
+        },
+
+        {
+          "text": "Community",
+          "path": "#",
+          "classes": "nav-primary__item",
+          "ariaLabel": "Descriptive and accessible name"
+        },
+
+        {
+          "text": "About",
+          "path": "#",
+          "classes": "nav-primary__item",
+          "ariaLabel": "Descriptive and accessible name"
+        }
+      ]
+    },
+
+    "secondaryLinks":
+    {
+      "classesOuter": "nav-secondary",
+      "classesInner": "nav-secondary__list clearfix",
+      "linkedItems": [
+        {
+          "text": "Search",
+          "rel": "search",
+          "classes": "nav-secondary__item nav-secondary__item--search",
+          "path": "#",
+          "ariaLabel": "Descriptive and accessible name"
+        },
+
+        {
+          "text": "Alerts",
+          "classes": "nav-secondary__item nav-secondary__item--alert",
+          "path": "#",
+          "ariaLabel": "Descriptive and accessible name"
+        },
+
+        {
+          "text": "Submit your research",
+          "path": "#",
+          "classes": "nav-secondary__item nav-secondary__item--hide-narrow",
+          "button": {
+            "classes": "button--default button--extra-small",
+            "ariaLabel": "Descriptive and accessible name"
+          }
+        }
+      ]
+    },
+
+    "searchBox": {
+      "inContentHeader": true,
+      "compactForm": {
+        "formAction": "/search",
+        "formId": "searchBox",
+        "formMethod": "GET",
+        "label": "Search by keyword or author",
+        "inputType": "search",
+        "inputName": "search",
+        "inputValue": "",
+        "inputPlaceholder": "Search by keyword or author",
+        "ctaText": "Search"
+      },
+
+      "subjectFilter": {
+        "name": "subject_filter",
+        "value": "cell_biology",
+        "text": "Cell biology"
+      }
+    }
+
+  },
+  "homeBanner": {
+    "primaryButton": {
+      "text": "Browse the latest research",
+      "classes": "button--default home-banner__button",
+      "path": "#"
+    },
+    "secondaryButton": {
+      "text": "Learn more about eLife",
+      "classes": "button--secondary home-banner__button",
+      "path": "#"
+    }
+  },
+  "highlight": {
+    "heading": {
+      "heading": "Highlights"
+    },
+    "items": [
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Limb evolution in cephalopods"
+        },
+        "authors": "Oscar A Tarazona, Davys H Lopez, Martin J Cohn",
+        "summary": "The arms and tentacles of cephalopods are built by the same genetic mechanisms as vertebrate limbs and insect wings.",
+        "meta": {
+          "url": "#",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 1,
+              "month": "May",
+              "year": 2022
+            },
+            "forMachine": "2022-05-01"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      },
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Preprints and peer review - share your views in our survey"
+        },
+        "summary": "We would like to know what researchers think of the preprint and peer review landscape in 2022 and beyond.",
+        "meta": {
+          "url": "#",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 6,
+              "month": "May",
+              "year": 2020
+            },
+            "forMachine": "2020-05-06"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      },
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Sparks of Change"
+        },
+        "summary": "Tell us how the culture of research is changing.",
+        "meta": {
+          "url": "#LinkToResearchArticles",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 26,
+              "month": "April",
+              "year": 2022
+            },
+            "forMachine": "2022-04-26"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      },
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Limb evolution in cephalopods"
+        },
+        "authors": "Oscar A Tarazona, Davys H Lopez, Martin J Cohn",
+        "summary": "The arms and tentacles of cephalopods are built by the same genetic mechanisms as vertebrate limbs and insect wings.",
+        "meta": {
+          "url": "#",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 1,
+              "month": "May",
+              "year": 2022
+            },
+            "forMachine": "2022-05-01"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      },
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Preprints and peer review - share your views in our survey"
+        },
+        "summary": "We would like to know what researchers think of the preprint and peer review landscape in 2022 and beyond.",
+        "meta": {
+          "url": "#",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 6,
+              "month": "May",
+              "year": 2020
+            },
+            "forMachine": "2020-05-06"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      },
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Sparks of Change"
+        },
+        "summary": "Tell us how the culture of research is changing.",
+        "meta": {
+          "url": "#LinkToResearchArticles",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 26,
+              "month": "April",
+              "year": 2022
+            },
+            "forMachine": "2022-04-26"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      }
+    ]
+  },
+  "sectionsListingLink": {
+    "targetFragmentId": "sectionsListing",
+    "text": "All research categories"
+  },
+
+  "sectionsListing": {
+    "id": "sectionsListing",
+    "homePage": true,
+    "listHeading": {
+      "heading": "Categories"
+    },
+    "sections": [
+      {
+        "url": "#",
+        "name": "Biochemistry and Chemical Biology"
+      },
+      {
+        "url": "#",
+        "name": "Cancer Biology"
+      },
+      {
+        "url": "#",
+        "name": "Cell Biology"
+      },
+      {
+        "url": "#",
+        "name": "Chromosomes and Gene Expression"
+      },
+      {
+        "url": "#",
+        "name": "Computational and Systems Biology"
+      },
+      {
+        "url": "#",
+        "name": "Developmental Biology"
+      },
+      {
+        "url": "#",
+        "name": "Ecology"
+      },
+      {
+        "url": "#",
+        "name": "Epidemiology and Global Health"
+      },
+      {
+        "url": "#",
+        "name": "Evolutionary Biology"
+      },
+      {
+        "url": "#",
+        "name": "Genetics and Genomics"
+      },
+      {
+        "url": "#",
+        "name": "Immunology and Inflammation"
+      },
+      {
+        "url": "#",
+        "name": "Medicine"
+      },
+      {
+        "url": "#",
+        "name": "Microbiology and Infectious Disease"
+      },
+      {
+        "url": "#",
+        "name": "Neuroscience"
+      },
+      {
+        "url": "#",
+        "name": "Physics of Living Systems"
+      },
+      {
+        "url": "#",
+        "name": "Plant Biology"
+      },
+      {
+        "url": "#",
+        "name": "Stem Cells and Regenerative Medicine"
+      },
+      {
+        "url": "#",
+        "name": "Structural Biology and Molecular Biophysics"
+      }
+    ]
+  },
+  "testimonialWithLink": {
+    "image": {
+      "path": "https://iiif.elifesciences.org/journal-cms/person%2F2025-09%2Fpatrick-allard-from-source.jpg/0,0,512,512/320,/0/default.webp",
+      "altText": "Headshot of Patrick Allard."
+    },
+    "quotation": "We liked the idea of having an open 'conversation' with the reviewers during the process, and having the chance to polish the manuscript by following the editors and reviewers’ recommendations without the threat of ",
+    "quotationLastWord": "rejection.",
+    "attribution": "Patrick Allard, Professor at University of California, Los Angeles",
+    "link": {
+      "url": "https://elifesciences.org/about/why-publish-with-elife",
+      "name": "Why expert researchers support the eLife model"
+    }
+  }
+}

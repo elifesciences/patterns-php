@@ -1,0 +1,28 @@
+{
+  "rootClasses": "teaser--secondary",
+  "title": "One hundred eLife digests on Medium&hellip; (&hellip; and counting)",
+  "url": "https://medium.com/@elife/one-hundred-elife-digests-on-medium-5a99aa5e80a1#.mne4282yx",
+  "ariaLabel": "Descriptive and accessible label",
+  "image": {
+    "fallback": {
+      "defaultPath": "../../assets/img/patterns/molecules/teaser-medium-icon-1x.png",
+      "srcset": "../../assets/img/patterns/molecules/teaser-medium-icon-2x.png 2x, ../../assets/img/patterns/molecules/teaser-medium-icon-1x.png 1x",
+      "altText": "Meaningful alt text please"
+    },
+    "type": "small"
+  },
+
+  "footer": {
+    "meta" :{
+      "date": {
+        "forHuman": {
+          "dayOfMonth": 16,
+          "month": "Dec",
+          "year": 2015
+        },
+        "forMachine": "2015-12-16"
+      }
+    }
+    }
+
+}

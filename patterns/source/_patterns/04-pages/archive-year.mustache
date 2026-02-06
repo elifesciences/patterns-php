@@ -1,0 +1,45 @@
+<div class="global-wrapper">
+
+  <div class="global-inner">
+
+    {{#siteHeader}}
+      {{> organisms-site-header }}
+    {{/siteHeader}}
+
+    <main role="main" class="main" id="maincontent">
+
+      {{#contentHeader}}
+        {{> organisms-content-header}}
+      {{/contentHeader}}
+
+      <div class="wrapper">
+
+        <div class="grid">
+
+          <div class="listing-column-container">
+
+            <div class="grid__item large--one-whole listing-column-main">
+
+              {{#archiveNavListing}}
+                {{> organisms-grid-listing}}
+              {{/archiveNavListing}}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    {{#emailCta}}
+    {{> organisms-email-cta }}
+    {{/emailCta}}
+
+    {{> organisms-footer }}
+
+  </div>
+
+</div>
