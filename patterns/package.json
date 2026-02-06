@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "patternlab serve",
-    "build-sass": "node build-pattern-manifest.js && sass assets/sass/build.scss source/assets/css/all.css"
+    "build-sass": "node build-pattern-manifest.js && sass assets/sass/build.scss source/assets/css/all.css && postcss source/assets/css/all.css --use autoprefixer -r"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,11 @@
     "@pattern-lab/cli": "^6.1.0",
     "@pattern-lab/uikit-workshop": "^6.1.0",
     "sass": "^1.97.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.24",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1"
   }
 }
