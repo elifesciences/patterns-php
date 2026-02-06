@@ -1,0 +1,147 @@
+#!/usr/bin/env php
+<?php
+
+use Rs\Json\Pointer;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Yaml\Yaml;
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+$filesystem = new Filesystem();
+$tokenizer = new Mustache_Tokenizer();
+
+$output = function (string $type, string $buffer) {
+    if (Process::ERR === $type) {
+        echo "ERR > {$buffer}";
+    } else {
+        echo "OUT > {$buffer}";
+    }
+};
+
+$execute = function (array $command, $timeout = 60) use ($output) {
+    ProcessBuilder::create()
+        ->setArguments($command)
+        ->getProcess()
+        ->setTimeout($timeout)
+        ->enableOutput()
+        ->run($output)
+    ;
+};
+$executeAndCheck = function (array $command, $timeout = 60, $attempts = 1) use ($output) {
+    for ($i = 1; $i <= $attempts; ++$i) {
+        try {
+            ProcessBuilder::create()
+                ->setArguments($command)
+                ->getProcess()
+                ->setTimeout($timeout)
+                ->enableOutput()
+                ->mustRun($output)
+            ;
+
+            return;
+        } catch (ProcessFailedException $e) {
+            if (strstr($e->getMessage(), 'i/o timeout')) {
+                echo "Retrying: {$e->getMessage()}\n";
+                continue;
+            }
+            throw $e;
+        }
+    }
+};
+
+
+$sourceDir = __DIR__.'/../patterns/source';
+$outputDir = __DIR__.'/../resources';
+
+// $filesystem->remove($sourceDir);
+
+// $filesystem->mirror($sourceDir.'/assets', $outputDir.'/assets', null,
+//     ['override' => true, 'delete' => true]);
+
+$patternDir = "{$sourceDir}/_patterns";
+
+$finder = (new Finder())->files()->in($patternDir)->name('*.yaml');
+
+// $filesystem->remove($outputDir.'/definitions/');
+// $filesystem->remove($outputDir.'/templates/');
+
+$foundTemplates = [];
+$resolvedTemplates = [];
+
+foreach ($finder as $file) {
+    $yaml = Yaml::parse($file->getContents());
+    $yaml = resolveJsonReferences($yaml, $file);
+    $yaml = Yaml::dump($yaml, 100);
+
+    $filesystem->dumpFile($outputDir.'/definitions/'.$file->getFilename(), $yaml);
+
+    $template = new SplFileInfo(substr($file->getRealPath(), 0, -4).'mustache');
+    $foundTemplates[] = $template->getFilename();
+
+    $contents = file_get_contents($template->getRealPath());
+
+    foreach ($tokenizer->scan($contents) as $token) {
+        if (Mustache_Tokenizer::T_PARTIAL === $token['type']) {
+            $foundTemplates[] = explode('-', $token['name'], 2)[1].'.mustache';
+        }
+    }
+
+    $contents = preg_replace('~{{>(\s*)(atoms|molecules|organisms)-~i', '{{>$1resources/templates/', $contents);
+    $contents = preg_replace('~{{\s*#\s*_pl_only_([^ }]*).*?_pl_only_\1\s*}}~is', '', $contents);
+
+    $filesystem->dumpFile($outputDir.'/templates/'.$template->getFilename(), $contents);
+    $resolvedTemplates[] = $template->getFilename();
+}
+
+foreach (array_diff($foundTemplates, $resolvedTemplates) as $missingTemplate) {
+    $finder = (new Finder())->files()->in($patternDir)->name($missingTemplate);
+    if (0 === count($finder)) {
+        throw new Exception('Can\'t find template '.$missingTemplate);
+    } elseif (count($finder) > 1) {
+        throw new Exception('Found more than one template for '.$missingTemplate);
+    }
+
+    foreach ($finder as $template) {
+        $filesystem->copy($template->getRealPath(), $outputDir.'/templates/'.$template->getFilename(), true);
+    }
+}
+
+echo "SUCCESS! \n";
+
+/**
+ * Naive JSON reference resolver than can handle YAML.
+ *
+ * @internal
+ */
+function resolveJsonReferences(array $json, SplFileInfo $file) : array
+{
+    foreach ($json as $key => $value) {
+        if (is_array($value)) {
+            $json[$key] = resolveJsonReferences($value, $file);
+        } elseif ('$ref' === $key) {
+            $parts = explode('#', $value, 2);
+
+            if (empty($parts[0])) {
+                $referenced = $file;
+            } else {
+                $referenced = new SplFileInfo(dirname($file->getRealPath()).'/'.$parts[0]);
+            }
+
+            if (null === $json = json_decode(file_get_contents($referenced->getRealPath()), true)) {
+                $json = Yaml::parse(file_get_contents($referenced->getRealPath()));
+            }
+
+            if (!empty($parts[1])) {
+                $json = (new Pointer(json_encode($json)))->get($parts[1]);
+            }
+
+            return resolveJsonReferences($json, $referenced);
+        }
+    }
+
+    return $json;
+}

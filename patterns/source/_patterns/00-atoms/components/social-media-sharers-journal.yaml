@@ -1,0 +1,30 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  emailUrl:
+    type: string
+    format: uri
+  facebookUrl:
+    type: string
+    format: uri
+  twitterUrl:
+    type: string
+    format: uri
+  linkedInUrl:
+    type: string
+    format: uri
+  redditUrl:
+    type: string
+    format: uri
+  mastodonUrl:
+    type: string
+    format: uri
+  hasComment:
+    type: boolean
+    enum:
+      - true
+required:
+  - facebookUrl
+  - twitterUrl
+  - linkedInUrl
+  - redditUrl
