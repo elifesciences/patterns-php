@@ -81,7 +81,7 @@ export const js = async () => {
 
 // 3. Image Task
 export const images = () => {
-  return gulp.src(paths.imgSrc)
+  return gulp.src(paths.imgSrc, { encoding: false })
     .pipe(imagemin())
     .pipe(gulp.dest(paths.imgDest));
 };
