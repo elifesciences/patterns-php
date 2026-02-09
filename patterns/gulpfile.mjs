@@ -45,7 +45,9 @@ export const generateCss = async () => {
   return gulp.src(paths.sassMain)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass({ outputStyle: isProd ? 'compressed' : 'expanded' }).on('error', sass.logError))
+    .pipe(sass({
+      style: isProd ? 'compressed' : 'expanded'
+    }).on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(rename('all.css'))
     .pipe(sourcemaps.write('./'))
