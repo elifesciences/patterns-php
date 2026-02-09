@@ -71,7 +71,6 @@ export const js = async () => {
     .pipe(source('main.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
-    // Use gulp-if instead of the ternary operator
     .pipe(isProd ? uglify() : through2.obj())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.jsDest))
@@ -102,7 +101,7 @@ export const watch = () => {
 };
 
 // Build / Default
-const build = gulp.series(
+export const build = gulp.series(
   gulp.parallel(generateCss, js, images, fonts)
 );
 
