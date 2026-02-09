@@ -15,6 +15,7 @@
   "dependencies": {
     "@pattern-lab/cli": "^6.1.0",
     "@pattern-lab/uikit-workshop": "^6.1.0",
+    "gulp": "^5.0.1",
     "sass": "^1.97.3"
   },
   "devDependencies": {
