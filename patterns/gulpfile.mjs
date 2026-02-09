@@ -23,16 +23,20 @@ const argv = minimist(process.argv.slice(2));
 const isProd = argv.environment === 'production';
 
 // Paths
+const srcDir = './assets';
+const destDir = './source/assets';
 const paths = {
-  jsMain: './assets/js/main.js',
-  jsLoader: './assets/js/elife-loader.js',
-  jsDest: './source/assets/js',
-  sassMain: './assets/sass/build.scss',
-  cssDest: './source/assets/css',
-  imgSrc: './assets/img/**/*',
-  imgDest: './source/assets/img',
-  fontsSrc: './assets/fonts/**/*',
-  fontsDest: './source/assets/fonts'
+  jsMain: `${srcDir}/js/main.js`,
+  jsLoader: `${srcDir}/js/elife-loader.js`,
+  jsDest: `${destDir}/js`,
+  sassMain: `${srcDir}/sass/build.scss`,
+  cssDest: `${destDir}/css`,
+  imgSrc: `${srcDir}/img/**/*`,
+  imgDest: `${destDir}/img`,
+  fontsSrc: `${srcDir}/fonts/**/*`,
+  fontsDest: `${destDir}/fonts`,
+  preloadSrc: `${srcDir}/preload.json`,
+  preloadDest: `${destDir}/preload.json`,
 };
 
 /*************************************
@@ -92,17 +96,23 @@ export const fonts = async () => {
     .pipe(gulp.dest(paths.fontsDest));
 };
 
+// 5. preload
+export const preload = async () => {
+  gulp.src(paths.preloadSrc).pipe(gulp.dest(destDir));
+};
+
 // Watch Task
 export const watch = () => {
   gulp.watch('assets/sass/**/*', generateCss);
   gulp.watch('assets/js/**/*', js);
   gulp.watch('assets/img/**/*', images);
   gulp.watch('assets/fonts/**/*', fonts);
+  gulp.watch('assets/preload.json', preload);
 };
 
 // Build / Default
 export const build = gulp.series(
-  gulp.parallel(generateCss, js, images, fonts)
+  gulp.parallel(generateCss, js, images, fonts, preload)
 );
 
 export default build;
