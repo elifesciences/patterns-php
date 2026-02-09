@@ -5,7 +5,7 @@
 @import "base.scss";
 
 // all patterns
-@import "_pattern-manifest.scss";
+@import "patterns/**/[^_]*.scss";
 
 // Third Party Hacks
 @import "third-party-hacks.scss";
