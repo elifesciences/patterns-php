@@ -7,3 +7,4 @@
 /patterns/public/
 /patterns/dependencyGraph.json
 /patterns/source/assets
+/patterns/test/build
