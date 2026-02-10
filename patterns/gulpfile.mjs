@@ -14,6 +14,7 @@ import autoprefixer from "gulp-autoprefixer";
 import imagemin from "gulp-imagemin";
 import minimist from "minimist";
 import through2 from "through2";
+import { build as esbuild } from "esbuild";
 
 const sass = gulpSass(dartSass);
 // const browserSync = browserSyncLib.create();
@@ -116,19 +117,24 @@ export const test = async () => {
   return gulp
     .src("./test/*.spec.js", { read: false })
     .pipe(
-      through2.obj(function (file, _, cb) {
-        const b = browserify(file.path, { debug: true }).transform(babelify, {
-          presets: ["@babel/preset-env"],
-        });
-        b.bundle((err, buf) => {
-          if (err) {
-            console.error(err);
-            return cb(err);
-          }
-          file.contents = buf;
+      through2.obj(async function (file, _, cb) {
+        try {
+          const result = await esbuild({
+            entryPoints: [file.path],
+            bundle: true,
+            platform: "node",
+            format: "cjs",
+            sourcemap: false,
+            write: false,
+          });
+          const output = result.outputFiles[0];
+          file.contents = Buffer.from(output.contents);
           this.push(file);
           cb();
-        });
+        } catch (err) {
+          console.error(err);
+          cb(err);
+        }
       }),
     )
     .pipe(gulp.dest("./test/build"));
