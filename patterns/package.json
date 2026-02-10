@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "patternlab serve",
     "build": "gulp --environment production",
-    "watch": "gulp watch",
-    "build-sass": "node build-pattern-manifest.js && sass assets/sass/build.scss source/assets/css/all.css && postcss source/assets/css/all.css --use autoprefixer -r"
+    "watch": "gulp watch"
   },
   "keywords": [],
   "author": "",
