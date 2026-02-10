@@ -1,9 +1,10 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
+test('to have 0 failures', async ({ page }) => {
   await page.goto('file:///Users/linakinduryte/patterns-php/patterns/test/authors.html');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  const failureCountLocator = page.locator('.failures em')
+
+  await expect(failureCountLocator).toHaveText("5");
 });
