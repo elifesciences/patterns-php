@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mocha Test Runner</title>
+
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+
+    <!--
+      Test output
+    -->
+    <div id="mocha"></div>
+
+    <!--
+      Fixture
+    -->
+
+
+    <div class="main-menu wrapper" id="mainMenu" data-behaviour="MainMenu" tabindex="0">
+      <div class="main-menu__title-container">
+            <div class="site-header__title clearfix" role="banner">
+              <div class="site-header__skip_to_content">
+                <a href="#maincontent" class="site-header__skip_to_content__link button button--default">Skip to Content</a>
+              </div>
+              <a href="#" class="site-header__logo_link">
+                <picture class="site-header__logo_link_image">
+                  <source srcset="../../assets/img/patterns/organisms/elife-logo-xs.svg" type="image/svg+xml">
+                  <img src="../../assets/img/patterns/organisms/elife-logo-xs@1x.png" alt="eLife logo" class="site-header__logo_link"/>
+                </picture>
+                <span class="visuallyhidden" >eLife home page</span>
+              </a>
+            </div>
+      </div>
+      <nav class="main-menu__container" role="navigation">
+          <h3 class="list-heading">Menu</h3>
+          <ul class="main-menu__list">
+            <li class="main-menu__list_item hidden-wide">
+              <a href="#" class="main-menu__list_link">Home</a>
+            </li>
+            <li class="main-menu__list_item hidden-wide">
+              <a href="#" class="main-menu__list_link">Magazine</a>
+            </li>
+            <li class="main-menu__list_item hidden-wide">
+              <a href="#ins" class="main-menu__list_link">Community</a>
+            </li>
+            <li class="main-menu__list_item hidden-wide">
+              <a href="#abo" class="main-menu__list_link">About</a>
+            </li>
+            <li class="main-menu__list_item">
+              <a href="#res" class="main-menu__list_link">Research categories</a>
+            </li>
+            <li class="main-menu__list_item end-of-group">
+              <a href="#" class="main-menu__list_link">Inside eLife</a>
+            </li>
+            <li class="main-menu__list_item hidden-wide">
+              <a href="#" class="main-menu__list_link">Search</a>
+            </li>
+            <li class="main-menu__list_item end-of-group hidden-wide">
+              <a href="#" class="main-menu__list_link">Subscribe to alerts</a>
+            </li>
+            <li class="main-menu__list_item hidden-wide">
+              <a href="#" class="main-menu__list_link">Submit your research</a>
+            </li>
+            <li class="main-menu__list_item">
+              <a href="#" class="main-menu__list_link">Author guide</a>
+            </li>
+            <li class="main-menu__list_item">
+              <a href="#" class="main-menu__list_link">Reviewer guide</a>
+            </li>
+          </ul>
+        <a href="#siteHeader" class="to-top-link">Back to top</a>
+      </nav>
+    </div>
+
+
+    <!--
+      Load test code
+    -->
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/sinon/pkg/sinon.js"></script>
+
+    <!-- Initialise test suite -->
+    <script>mocha.setup('bdd')</script>
+
+    <!--
+      Test spec
+    -->
+    <script src="build/mainmenu.spec.js"></script>
+
+    <!--
+      Begin!
+    -->
+    <script>
+      mocha.run();
+    </script>
+
+</body>
+</html>

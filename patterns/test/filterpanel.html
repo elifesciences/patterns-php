@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mocha Test Runner</title>
+
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+
+<!--
+  Test output
+-->
+<div id="mocha"></div>
+
+<!--
+  Fixture
+-->
+
+<form action="" method="GET">
+
+
+  <section class="filter-panel" data-behaviour="FilterPanel">
+  
+    <h3 class="filter-panel__title visuallyhidden">Refine your results by:</h3>
+  
+  
+    <fieldset class="filter-group">
+        <label class="filter-group__item_label">
+          Significance (minimum)
+          <select name="significance">
+              <option>Show all</option>
+              <option value="landmark">Landmark</option>
+              <option value="fundamental ">Fundamental</option>
+              <option value="important">Important</option>
+              <option value="valuable">Valuable</option>
+              <option value="useful" selected>Useful</option>
+          </select>
+        </label>
+    </fieldset>
+  
+    <fieldset class="filter-group">
+        <label class="filter-group__item_label">
+          Strength of evidence (minimum)
+          <select name="strength">
+              <option>Show all</option>
+              <option value="exceptional" selected>Exceptional</option>
+              <option value="compelling">Compelling</option>
+              <option value="convincing">Convincing</option>
+              <option value="solid">Solid</option>
+              <option value="incomplete">Incomplete</option>
+              <option value="inadequate">Inadequate</option>
+          </select>
+        </label>
+    </fieldset>
+  
+    <fieldset class="filter-group">
+        <legend class="filter-group__title">Refine your results by:</legend>
+        <ul class="filter-group__filters" aria-labelledby="filter-group__title">
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="original" value="1" checked>Include papers accepted via eLife's original publishing model</label>
+            </li>
+        </ul>
+    </fieldset>
+  
+    <fieldset class="filter-group">
+        <legend class="filter-group__title">Research categories</legend>
+        <ul class="filter-group__filters" aria-labelledby="filter-group__title">
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Cell" value="1" checked>Cell Biology</label>
+            </li>
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Neuroscience" value="1" >Neuroscience (2<span class="visuallyhidden"> results</span>)</label>
+            </li>
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Biophysics" value="1" >Biophysics and Structural Biology (24<span class="visuallyhidden"> results</span>)</label>
+            </li>
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Biochemistry" value="1" checked>Biochemistry (71<span class="visuallyhidden"> results</span>)</label>
+            </li>
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Developmental " value="1" >Developmental Biology and Stem Cells (13<span class="visuallyhidden"> results</span>)</label>
+            </li>
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Immunology" value="1" >Immunology (144<span class="visuallyhidden"> results</span>)</label>
+            </li>
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Ecology" value="1" >Ecology (71<span class="visuallyhidden"> results</span>)</label>
+            </li>
+            <li class="filter-group__filter_item">
+              <label class="filter-group__item_label"><input type="checkbox" class="filter-group__checkbox" name="Epidemiology " value="1" >Epidemiology and Global Health (57<span class="visuallyhidden"> results</span>)</label>
+            </li>
+        </ul>
+    </fieldset>
+  
+        <button class="button button--default" type="submit" name="button">Search the eLife site</button>
+  
+  </section>
+
+</form>
+
+
+<!--
+  Load test code
+-->
+<script src="../node_modules/mocha/mocha.js"></script>
+<script src="../node_modules/chai/chai.js"></script>
+<script src="../node_modules/sinon/pkg/sinon.js"></script>
+
+<!-- Initialise test suite -->
+<script>mocha.setup('bdd')</script>
+
+<!--
+  Test spec
+-->
+<script src="build/filterpanel.spec.js"></script>
+
+<!--
+  Begin!
+-->
+<script>
+  mocha.run();
+</script>
+
+</body>
+</html>

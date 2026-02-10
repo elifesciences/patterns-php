@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mocha Test Runner</title>
+
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+
+    <!--
+      Test output
+    -->
+    <div id="mocha"></div>
+
+    <!--
+      Fixture
+    -->
+    <div class="audio-player" data-behaviour="AudioPlayer"
+         data-metadata="{'number': 21, 'chapters': [{'number': 1, 'title': 'What causes tinnitus?', 'time': 36},{'number': 2, 'title': 'How salamanders avoid senescence', 'time': 386}, {'number': 3, 'title': 'Mouse ultrasound', 'time': 700}, {'number': 4, 'title': 'Drosophila duet: mating flies harmonise', 'time': 1010 }, { 'number': 5, 'title': 'Chemical Harpoons: bacterial anchors', 'time': 1307 } ] }"
+    >
+      <div class="audio-player__container">
+        <div class="audio-player__header">Episode 21</div>
+        <audio class="audio-player__player" controls preload="metadata">
+          <source src="http://nakeddiscovery.com/scripts/mp3s/audio/ads/eLife_Podcast_06.15.mp3" type="audio/mp3">
+          <div><a href="http://nakeddiscovery.com/scripts/mp3s/audio/ads/eLife_Podcast_06.15.mp3" class="audio-player__link" rel="external" target="_blank">Download the podcast (mp3)</a></div>
+        </audio>
+      </div>
+    </div>
+
+
+    <!--
+      Load test code
+    -->
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/sinon/pkg/sinon.js"></script>
+
+    <!-- Initialise test suite -->
+    <script>mocha.setup('bdd')</script>
+
+    <!--
+      Test spec
+    -->
+    <script src="build/audioplayer.spec.js"></script>
+
+    <!--
+      Begin!
+    -->
+    <script>
+      mocha.run();
+    </script>
+
+</body>
+</html>
