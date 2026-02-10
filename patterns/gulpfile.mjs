@@ -113,7 +113,25 @@ export const watch = () => {
 
 // Legacy pattern unit tests
 export const test = async () => {
-  return gulp.src(`./test/*.spec.js`).pipe(gulp.dest("./test/build"))
+  return gulp
+    .src("./test/*.spec.js", { read: false })
+    .pipe(
+      through2.obj(function (file, _, cb) {
+        const b = browserify(file.path, { debug: true }).transform(babelify, {
+          presets: ["@babel/preset-env"],
+        });
+        b.bundle((err, buf) => {
+          if (err) {
+            console.error(err);
+            return cb(err);
+          }
+          file.contents = buf;
+          this.push(file);
+          cb();
+        });
+      }),
+    )
+    .pipe(gulp.dest("./test/build"));
 };
 
 // Build / Default
