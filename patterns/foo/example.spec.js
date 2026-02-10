@@ -1,12 +1,16 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
+import fs from "fs";
+import path from "path";
 
-test("to have 0 failures", async ({ page }) => {
-  await page.goto(
-    "file:///Users/linakinduryte/patterns-php/patterns/test/authors.html",
-  );
+const testDir = path.resolve(__dirname, "../test");
+const htmlFiles = fs.readdirSync(testDir).filter((f) => f.endsWith(".html"));
 
-  const failureCountLocator = page.locator(".failures em");
-
-  await expect(failureCountLocator).toHaveText("0");
-});
+htmlFiles.forEach((file) =>
+  test(`HTML failure tests for ${file}`, async ({ page }) => {
+    const fileUrl = `file://${path.join(testDir, file)}`;
+    await page.goto(fileUrl);
+    const failureCountLocator = page.locator(".failures em");
+    await expect(failureCountLocator).toHaveText("0");
+  }),
+);
