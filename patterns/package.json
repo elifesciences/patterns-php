@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test:unit",
+    "test": "gulp test",
     "dev": "patternlab serve",
     "build": "gulp --environment production",
     "watch": "gulp watch"

@@ -110,6 +110,9 @@ export const watch = () => {
   gulp.watch('assets/preload.json', preload);
 };
 
+// Legacy pattern unit tests
+export const test = async () => {};
+
 // Build / Default
 export const build = gulp.series(
   gulp.parallel(generateCss, js, images, fonts, preload)
