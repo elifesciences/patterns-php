@@ -7,7 +7,7 @@ const testDir = path.resolve(__dirname, "../test");
 const htmlFiles = fs.readdirSync(testDir).filter((f) => f.endsWith(".html"));
 
 htmlFiles.forEach((file) =>
-  test(`HTML failure tests for ${file}`, async ({ page }) => {
+  test(`Mocha HTML failure tests for ${file}`, async ({ page }) => {
     const fileUrl = `http://localhost:8888/test/${file}`;
     await page.goto(fileUrl);
     const failureCountLocator = page.locator(".failures em");
