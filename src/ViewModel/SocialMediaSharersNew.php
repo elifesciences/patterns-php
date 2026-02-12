@@ -19,6 +19,7 @@ final class SocialMediaSharersNew implements ViewModel
     private $linkedInUrl;
     private $redditUrl;
     private $mastodonUrl;
+    private $blueskyUrl;
 
     public function __construct(string $title, string $url, $includeEmail = true, bool $hasMastodon = false, bool $hasComment = false, bool $hasUpdatedTwitterText = false)
     {
@@ -44,6 +45,7 @@ final class SocialMediaSharersNew implements ViewModel
         if ($hasMastodon) {
             $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedTitle}%20{$encodedUrl}";
         }
+        $this->blueskyUrl = "https://bsky.app/intent/compose?text={$encodedTitle}&url={$encodedUrl}";
         
         if ($hasComment) {
             $this->hasComment = $hasComment;
