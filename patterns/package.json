@@ -8,7 +8,8 @@
     "dev": "patternlab serve",
     "build": "gulp --environment production",
     "watch": "gulp watch",
-    "lint-sass": "stylelint \"assets/sass/**/*.scss\""
+    "lint-sass": "stylelint \"assets/sass/**/*.scss\"",
+    "lint-js": "eslint assets source"
   },
   "keywords": [],
   "author": "",
