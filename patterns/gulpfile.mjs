@@ -81,7 +81,6 @@ export const js = async () => {
     .pipe(isProd ? uglify() : through2.obj())
     .pipe(sourcemaps.write("./"))
     .pipe(gulp.dest(paths.jsDest));
-  // .pipe(browserSync.stream())
 };
 
 // 3. Image Task
@@ -95,7 +94,7 @@ export const images = () => {
 // 4. Fonts Task
 export const fonts = async () => {
   await deleteAsync([`${paths.fontsDest}/*`]);
-  return gulp.src(paths.fontsSrc).pipe(gulp.dest(paths.fontsDest));
+  return gulp.src(paths.fontsSrc, { encoding: false }).pipe(gulp.dest(paths.fontsDest));
 };
 
 // 5. preload
