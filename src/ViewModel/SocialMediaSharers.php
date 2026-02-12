@@ -18,6 +18,7 @@ final class SocialMediaSharers implements ViewModel
     private $twitterUrl;
     private $linkedInUrl;
     private $redditUrl;
+    private $blueskyUrl;
 
     public function __construct(string $title, string $url)
     {
@@ -32,6 +33,7 @@ final class SocialMediaSharers implements ViewModel
         $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTitle}&url={$encodedUrl}";
         $this->linkedInUrl = "https://www.linkedin.com/shareArticle?title={$encodedTitle}&url={$encodedUrl}";
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
+        $this->blueskyUrl = "https://bsky.app/intent/compose?text={$encodedTitle}&url={$encodedUrl}";
     }
 
     public function getTemplateName() : string
