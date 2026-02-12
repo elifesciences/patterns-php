@@ -7,7 +7,8 @@
     "test": "gulp buildTests && playwright test",
     "dev": "patternlab serve",
     "build": "gulp --environment production",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "lint-sass": "stylelint \"assets/sass/**/*.scss\""
   },
   "keywords": [],
   "author": "",
@@ -53,6 +54,10 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
-    "sinon": "^21.0.1"
+    "postcss-scss": "^4.0.9",
+    "sinon": "^21.0.1",
+    "stylelint": "^17.2.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0"
   }
 }
