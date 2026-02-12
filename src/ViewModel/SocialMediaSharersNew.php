@@ -20,6 +20,7 @@ final class SocialMediaSharersNew implements ViewModel
     private $redditUrl;
     private $mastodonUrl;
     private $blueskyUrl;
+    private $threadsUrl;
 
     public function __construct(string $title, string $url, $includeEmail = true, bool $hasMastodon = false, bool $hasComment = false, bool $hasUpdatedTwitterText = false)
     {
@@ -48,6 +49,7 @@ final class SocialMediaSharersNew implements ViewModel
             $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedTitle}%20{$encodedUrl}";
         }
 
+        $this->threadsUrl = "https://threads.net/intent/post?text={$encodedTitle}&url={$encodedUrl}";
         $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         
         if ($hasComment) {
