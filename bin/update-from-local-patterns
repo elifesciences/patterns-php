@@ -57,17 +57,15 @@ $executeAndCheck = function (array $command, $timeout = 60, $attempts = 1) use (
 $sourceDir = __DIR__.'/../patterns/source';
 $outputDir = __DIR__.'/../resources';
 
-// $filesystem->remove($sourceDir);
-
-// $filesystem->mirror($sourceDir.'/assets', $outputDir.'/assets', null,
-//     ['override' => true, 'delete' => true]);
+$filesystem->mirror($sourceDir.'/assets', $outputDir.'/assets', null,
+    ['override' => true, 'delete' => true]);
 
 $patternDir = "{$sourceDir}/_patterns";
 
 $finder = (new Finder())->files()->in($patternDir)->name('*.yaml');
 
-// $filesystem->remove($outputDir.'/definitions/');
-// $filesystem->remove($outputDir.'/templates/');
+$filesystem->remove($outputDir.'/definitions/');
+$filesystem->remove($outputDir.'/templates/');
 
 $foundTemplates = [];
 $resolvedTemplates = [];

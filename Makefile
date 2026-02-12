@@ -19,6 +19,11 @@ lint: phpcs
 update-pattern-library:
 	bin/update
 
+.PHONY: update-local-patterns
+update-local-patterns:
+	(cd patterns && npm run build)
+	bin/update-from-local-patterns
+
 .PHONY: build
 build:
 	$(if $(PHP_VERSION),,$(error PHP_VERSION make variable needs to be set))
