@@ -34,18 +34,21 @@ final class SocialMediaSharersNew implements ViewModel
             $this->emailUrl = "mailto:?subject={$encodedTitle}&body={$encodedUrl}";
         }
 
+        $this->blueskyUrl = "https://bsky.app/intent/compose?text={$encodedTitle}%20{$encodedUrl}";
+
         if ($hasUpdatedTwitterText) {
             $encodedTwitterTitle = "In%20%40eLife%3A%20" . $encodedTitle;
         }
 
-        $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         $this->twitterUrl = "https://twitter.com/intent/tweet/?text={$encodedTwitterTitle}&url={$encodedUrl}";
         $this->linkedInUrl = "https://www.linkedin.com/shareArticle?title={$encodedTitle}&url={$encodedUrl}";
         $this->redditUrl = "https://reddit.com/submit/?title={$encodedTitle}&url={$encodedUrl}";
+
         if ($hasMastodon) {
             $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedTitle}%20{$encodedUrl}";
         }
-        $this->blueskyUrl = "https://bsky.app/intent/compose?text={$encodedTitle}%20{$encodedUrl}";
+
+        $this->facebookUrl = "https://facebook.com/sharer/sharer.php?u={$encodedUrl}";
         
         if ($hasComment) {
             $this->hasComment = $hasComment;
