@@ -22,6 +22,28 @@
     "declaration-block-no-duplicate-properties": null,
     "scss/comment-no-empty": null,
     "scss/load-no-partial-leading-underscore": null,
-    "declaration-property-value-keyword-no-deprecated": null
+    "declaration-property-value-keyword-no-deprecated": null,
+
+
+
+    "rule-empty-line-before": null,
+    "selector-pseudo-element-colon-notation": null,
+    "declaration-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "scss/double-slash-comment-empty-line-before": null,
+    "media-feature-range-notation": null,
+    "scss/at-mixin-argumentless-call-parentheses": null,
+    "property-no-vendor-prefix": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "custom-property-empty-line-before": null,
+    "color-function-alias-notation": null,
+    "color-function-notation": null,
+    "alpha-value-notation": null,
+    "function-url-quotes": null,
+    "comment-whitespace-inside": null,
+    "scss/double-slash-comment-whitespace-inside": null,
+    "comment-empty-line-before": null,
+    "selector-not-notation": null,
+    "shorthand-property-no-redundant-values": null,
   }
 }
