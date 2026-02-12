@@ -45,7 +45,7 @@ final class SocialMediaSharersNew implements ViewModel
         if ($hasMastodon) {
             $this->mastodonUrl = "https://toot.kytta.dev/?text={$encodedTitle}%20{$encodedUrl}";
         }
-        $this->blueskyUrl = "https://bsky.app/intent/compose?text={$encodedTitle}&url={$encodedUrl}";
+        $this->blueskyUrl = "https://bsky.app/intent/compose?text={$encodedTitle}%20{$encodedUrl}";
         
         if ($hasComment) {
             $this->hasComment = $hasComment;

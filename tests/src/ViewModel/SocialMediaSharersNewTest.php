@@ -24,7 +24,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
                 'linkedInUrl' => 'https://www.linkedin.com/shareArticle?title=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'redditUrl' => 'https://reddit.com/submit/?title=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'mastodonUrl' => 'https://toot.kytta.dev/?text=Some%20article%20title%20https%3A%2F%2Fexample.com%2Fsome-article-url',
-                'blueskyUrl' => 'https://bsky.app/intent/compose?text=Some%20article%20title&url=https%3A%2F%2Fexample.com%2Fsome-article-url',
+                'blueskyUrl' => 'https://bsky.app/intent/compose?text=Some%20article%20title%20https%3A%2F%2Fexample.com%2Fsome-article-url',
                 'hasComment' => true
             ]
         ];
