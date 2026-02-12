@@ -202,7 +202,7 @@ module.exports = () => {
 
     const numberFromString = parseFloat(pxString);
     if (isNaN(numberFromString)) {
-      throw new Error(`Can\'t parse argument as a float: ${pxString}`);
+      throw new Error(`Can't parse argument as a float: ${pxString}`);
     }
 
     return Math.round(numberFromString);

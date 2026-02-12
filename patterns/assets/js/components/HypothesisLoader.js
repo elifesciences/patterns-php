@@ -150,7 +150,7 @@ module.exports = class HypothesisLoader {
   }
 
   static failValidationMissingProperty(propertyName) {
-    throw new Error(`Hypothesis config generation failed: couldn\'t find a valid property with the name "${propertyName}"`);
+    throw new Error(`Hypothesis config generation failed: couldn't find a valid property with the name "${propertyName}"`);
   }
 
 };

@@ -170,6 +170,7 @@ module.exports = class LoginControl {
       return null;
     }
 
+    // eslint-disable-next-line no-useless-escape
     return kebabCase.replace(/\-([a-z])/g, (x) => x.substring(1).toUpperCase());
   }
 

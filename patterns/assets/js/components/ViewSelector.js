@@ -29,7 +29,9 @@ module.exports = class ViewSelector {
       this.secondarySelector = this.$elm.querySelector('.view-selector__link--secondary');
 
       // When isTabSelector is true we can assume primary and secondary links commence with #.
+      // eslint-disable-next-line no-useless-escape
       this.primaryColumn = this.doc.getElementById(this.primarySelector.getAttribute('href').replace(/^\#/, ''));
+      // eslint-disable-next-line no-useless-escape
       this.secondaryColumn = this.doc.getElementById(this.secondarySelector.getAttribute('href').replace(/^\#/, ''));
 
       const classActiveViewSelector = 'view-selector__list-item--active';

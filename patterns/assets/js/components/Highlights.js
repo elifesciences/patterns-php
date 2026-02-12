@@ -127,6 +127,7 @@ module.exports = class Highlights {
     this.margin = this.calculateMargin() * 2;
 
     // Update some things.
+    // eslint-disable-next-line no-useless-escape
     this.carouselWidth = window.getComputedStyle(this.$elm).width.match(/([0-9\.]+)px/)[1];
     this.setCurrentSlide(this.currentSlide);
 
