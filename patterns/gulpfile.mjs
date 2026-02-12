@@ -113,7 +113,7 @@ export const watch = () => {
 };
 
 // Legacy pattern unit tests
-export const test = async () => {
+export const buildTests = async () => {
   return gulp
     .src("./test/*.spec.js", { read: false })
     .pipe(
@@ -137,7 +137,7 @@ export const test = async () => {
         }
       }),
     )
-    .pipe(gulp.dest("./test/build"));
+    .pipe(gulp.dest("./test/build"))
 };
 
 // Build / Default
