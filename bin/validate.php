@@ -1,0 +1,108 @@
+#!/usr/bin/env php
+<?php
+
+use JsonSchema\SchemaStorage;
+use JsonSchema\Uri\UriResolver;
+use JsonSchema\Uri\UriRetriever;
+use JsonSchema\Validator;
+use Rs\Json\Pointer;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Yaml;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$patternDir = __DIR__ . '/../patterns/source/_patterns';
+
+$finder = (new Finder())->files()->in($patternDir)->name('*.yaml');
+
+$validator = new Validator();
+
+$schemaStorage = new SchemaStorage(new UriRetriever(), new UriResolver());
+$schemaUri = 'file://' . realpath(__DIR__ . '/../vendor/justinrainbow/json-schema/dist/schema/json-schema-draft-04.json');
+$jsonSchema = $schemaStorage->getSchema($schemaUri);
+
+$exit = 0;
+
+foreach ($finder as $file) {
+    $yaml = Yaml::parse($file->getContents());
+    $yaml = resolveJsonReferences($yaml, $file);
+    $yaml = Yaml::dump($yaml, 100);
+    $yaml = str_replace(' {  }', ' []', $yaml);
+    $yaml = Yaml::parse($yaml, true, false, true);
+
+    $validator->reset();
+    $validator->check($yaml, $jsonSchema);
+    if (!$validator->isValid()) {
+        $exit = 1;
+        $message = 'Error in schema: ' . $file->getFilename() . PHP_EOL;
+        foreach ($validator->getErrors() as $error) {
+            $message .= sprintf("[%s] %s\n", $error['property'], $error['message']);
+        }
+        echo $message . PHP_EOL;
+        continue;
+    }
+
+    $jsonFinder = (new Finder())->files()->in($file->getPath())->name('/^' . $file->getBasename('.yaml') . '(~.+)?.json$/');
+
+    if (0 === count($jsonFinder)) {
+        echo 'Warning: No JSON file for ' . $file->getFilename() . PHP_EOL . PHP_EOL;
+
+        continue;
+    }
+
+    foreach ($jsonFinder as $json) {
+        $validator->reset();
+        $validator->check(json_decode(file_get_contents($json)), $yaml);
+        if (!$validator->isValid()) {
+            $exit = 1;
+            $message = 'Error: ' . $json->getFilename() . PHP_EOL;
+            foreach ($validator->getErrors() as $error) {
+                $message .= sprintf("[%s] %s\n", $error['property'], $error['message']);
+            }
+            echo $message . PHP_EOL;
+        }
+    }
+}
+
+exit($exit);
+
+/**
+ * Naive JSON reference resolver than can handle YAML.
+ *
+ * @internal
+ */
+function resolveJsonReferences(array $json, SplFileInfo $file)
+{
+    foreach ($json as $key => $value) {
+        if (is_array($value)) {
+            $json[$key] = resolveJsonReferences($value, $file);
+        } elseif ('$ref' === $key) {
+            $parts = explode('#', $value, 2);
+
+            if (empty($parts[0])) {
+                $referenced = $file;
+            } else {
+                $referenced = new SplFileInfo(dirname($file->getRealPath()) . '/' . $parts[0]);
+            }
+
+            if (false === $referenced->getRealPath()) {
+                throw new \Exception(
+                    PHP_EOL . "\e[33m \xf0\x9f\x92\xa5  Referenced file not found at: " . $parts[0] . ' with resource ' . $parts[1] . PHP_EOL . PHP_EOL .
+                    "\e[35m \xf0\x9f\x91\x89  Source: " . $file->getRealPath()
+                );
+            }
+
+            if (null === $json = json_decode(file_get_contents($referenced->getRealPath()), true)) {
+                $json = Yaml::parse(file_get_contents($referenced->getRealPath()));
+            }
+
+            if (!empty($parts[1])) {
+                $json = (new Pointer(json_encode($json)))->get($parts[1]);
+            }
+
+            return resolveJsonReferences($json, $referenced);
+        }
+    }
+
+    return $json;
+}
