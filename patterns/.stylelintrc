@@ -45,5 +45,10 @@
     "comment-empty-line-before": null,
     "selector-not-notation": null,
     "shorthand-property-no-redundant-values": null,
+    "scss/dollar-variable-empty-line-before": null,
+    "value-keyword-case": null,
+    "scss/at-mixin-parentheses-space-before": null,
+    "selector-no-vendor-prefix": null,
+    "scss/load-partial-extension": null
   }
 }
