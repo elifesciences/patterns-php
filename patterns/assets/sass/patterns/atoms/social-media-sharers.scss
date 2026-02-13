@@ -52,7 +52,7 @@
       @media only all and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
 
         &:first-child,
-        &:last-child {
+        &:nth-child(n + 6) {
           display: none;
         }
 
