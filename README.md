@@ -3,7 +3,16 @@ eLife Patterns
 
 [![Build Status](http://ci--alfred.elifesciences.org/buildStatus/icon?job=library-patterns-php)](http://ci--alfred.elifesciences.org/job/library-patterns-php/)
 
-This library provides a PHP implementation for the Mustache templates/assets produced by the [eLife Sciences Pattern Library](https://github.com/elifesciences/pattern-library).
+PHP wrapper for eLife pattern library. The pattern library lives in `./patterns`.
+
+Development workflow
+--------------------
+
+* Make changes in the `./patterns`, use local Makefile to make process easier.
+* Use top level Makefile to update php wrapper. 
+    - `make update-local-patterns`
+    - `make update-patterns` Deprecated target, that was used when patterns where developed in a separate repository.
+* Use top level Makefile to assist php development.
 
 Dependencies
 ------------
