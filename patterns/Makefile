@@ -6,6 +6,11 @@ lint-sass: node_modules
 lint-js: node_modules
 	npx eslint assets source
 
+.PHONY: test
+test: node_modules
+	npx gulp buildTests
+	npx playwright test
+
 node_modules: package.json package-lock.json
 	npm install
 
