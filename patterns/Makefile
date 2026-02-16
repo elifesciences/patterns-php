@@ -22,3 +22,11 @@ check: lint-sass lint-js test
 dev: node_modules
 	npx patternlab serve
 
+.PHONY: build
+build: node_modules
+	npx gulp --environment production
+
+.PHONY: watch
+watch:
+	npx gulp watch
+
