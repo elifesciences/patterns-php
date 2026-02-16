@@ -21,7 +21,7 @@ update-pattern-library:
 
 .PHONY: update-local-patterns
 update-local-patterns:
-	(cd patterns && npm run build)
+	(cd patterns && make build)
 	bin/update-from-local-patterns
 
 .PHONY: build
