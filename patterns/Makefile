@@ -14,3 +14,6 @@ test: node_modules
 node_modules: package.json package-lock.json
 	npm install
 
+.PHONY: check
+check: lint-sass lint-js test
+
