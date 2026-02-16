@@ -18,3 +18,7 @@ node_modules: package.json package-lock.json
 .PHONY: check
 check: lint-sass lint-js test
 
+.PHONY: dev
+dev: node_modules
+	npx patternlab serve
+
