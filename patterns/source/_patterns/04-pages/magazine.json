@@ -99,9 +99,42 @@
     }
 
   },
-  "pageMagazine": {
+  "contentHeader": {
     "title": "Magazine",
-    "impactStatement": "Highlighting the latest research and giving a voice to scientists"
+    "socialMediaSharers": {
+      "facebookUrl": "https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexample.com%2Fsome-article-url",
+      "twitterUrl": "https://twitter.com/intent/tweet/?text=Some%20article%20title&amp;url=https%3A%2F%2Fexample.com%2Fsome-article-url",
+      "emailUrl": "mailto:?subject=Some%20article%20title&amp;body=https%3A%2F%2Fexample.com%2Fsome-article-url",
+      "redditUrl": "https://reddit.com/submit/?url=https%3A%2F%2Fexample.com%2Fsome-article-url"
+    },
+    "longTitle": true,
+    "image": {
+      "fallback": {
+        "defaultPath": "https://unsplash.it/1114/336"
+      },
+      "credit": {
+        "text": "This is an image credit <a href=\"#\">with a link</a>.",
+        "elementId": "iAmTheElementIdForTheImegeCreditElement"
+      },
+      "creditOverlay": true
+    },
+    "audioPlayer": {
+      "title": "Episode 21",
+      "episodeNumber": 21,
+      "sources":[
+        { "src": "https://nakeddiscovery.com/scripts/mp3s/audio/ads/eLife_Podcast_06.15.mp3",
+          "mediaType": {
+            "forMachine": "audio/mp3",
+            "forHuman": "mp3"
+          },
+          "fallback": {
+            "content": "Download the podcast",
+            "classes": "media-source__fallback_link--audio-player"
+          }
+        }
+      ],
+      "metadata": "{'number': 21, 'chapters': [{'number': 1, 'title': 'What causes tinnitus?', 'time': 36},{'number': 2, 'title': 'How salamanders avoid senescence', 'time': 386}, {'number': 3, 'title': 'Mouse ultrasound', 'time': 700}, {'number': 4, 'title': 'Drosophila duet: mating flies harmonise', 'time': 1010 }, { 'number': 5, 'title': 'Chemical Harpoons: bacterial anchors', 'time': 1307 } ] }"
+    }
   },
   "sectionsListingLink": {
     "targetFragmentId": "sectionsListing",
