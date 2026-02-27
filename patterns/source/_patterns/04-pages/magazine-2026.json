@@ -540,112 +540,87 @@
     }
   ],
 
-  "highlightsTeasers": [
-    {
-
-      "heading": "Highlights",
-      "headingId":"carousel-highlights-heading",
-      "id": "carousel-highlights",
-      "highlights": true,
-      "items": [
-        {
-          "num": 1,
-          "rootClasses": "teaser--secondary teaser--highlights",
-          "title": "The [1] parasite’s new clothes",
+  "topHighlights": {
+    "items": [
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Limb evolution in cephalopods"
+        },
+        "authors": "Oscar A Tarazona, Davys H Lopez, Martin J Cohn",
+        "summary": "The arms and tentacles of cephalopods are built by the same genetic mechanisms as vertebrate limbs and insect wings.",
+        "meta": {
           "url": "#",
-          "ariaLabel": "Descriptive and accessible label",
-          "secondaryInfo": "The first author has a very long name et al.",
-          "footer": {
-            "meta": {
-              "url": "#",
-              "text": "Research article",
-              "carouselItem": true,
-              "date": {
-                "forHuman": {
-                  "dayOfMonth": 15,
-                  "month": "Apr",
-                  "year": 2016
-                },
-                "forMachine": "20160415"
-              }
-            }
-          },
-          "image": {
-            "fallback": {
-              "defaultPath": "https://picsum.dev/140/140/",
-              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
-              "altText": "Meaningful alt text please."
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 1,
+              "month": "May",
+              "year": 2022
             },
-            "type": "small"
+            "forMachine": "2022-05-01"
           }
         },
-
-        {
-          "num": 2,
-          "rootClasses": "teaser--secondary teaser--highlights",
-          "title": "Catch [2] me",
-          "url": "#",
-          "ariaLabel": "Descriptive and accessible label",
-          "secondaryInfo": "Emilie Bourdonnay, Thomas Henry",
-          "footer": {
-            "meta": {
-              "url": "#",
-              "text": "Research article",
-              "carouselItem": true,
-              "date": {
-                "forHuman": {
-                  "dayOfMonth": 1,
-                  "month": "Feb",
-                  "year": 2016
-                },
-                "forMachine": "20160216"
-              }
-            }
-          },
-          "image": {
-            "fallback": {
-              "defaultPath": "https://picsum.dev/140/140/",
-              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
-              "altText": "Meaningful alt text please."
-            },
-            "type": "small"
-          }
-        },
-
-        {
-          "num": 3,
-          "rootClasses": "teaser--secondary teaser--highlights",
-          "title": "Autophagy [3] under attack",
-          "url": "#",
-          "ariaLabel": "Descriptive and accessible label",
-          "secondaryInfo": "Paul de Figueiredo, Marty Dickman",
-          "footer": {
-            "meta": {
-              "url": "#",
-              "text": "Research article",
-              "carouselItem": true,
-              "date": {
-                "forHuman": {
-                  "dayOfMonth": 23,
-                  "month": "Feb",
-                  "year": 2016
-                },
-                "forMachine": "20160223"
-              }
-            }
-          },
-          "image": {
-            "fallback": {
-              "defaultPath": "https://picsum.dev/140/140/",
-              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
-              "altText": "Meaningful alt text please."
-            },
-            "type": "small"
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
           }
         }
-      ]
-    }
-  ],
+      },
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Preprints and peer review - share your views in our survey"
+        },
+        "summary": "We would like to know what researchers think of the preprint and peer review landscape in 2022 and beyond.",
+        "meta": {
+          "url": "#",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 6,
+              "month": "May",
+              "year": 2020
+            },
+            "forMachine": "2020-05-06"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      },
+      {
+        "link": {
+          "url": "#link-to-article",
+          "name": "Sparks of Change"
+        },
+        "summary": "Tell us how the culture of research is changing.",
+        "meta": {
+          "url": "#LinkToResearchArticles",
+          "text": "Research article",
+          "date": {
+            "forHuman": {
+              "dayOfMonth": 26,
+              "month": "April",
+              "year": 2022
+            },
+            "forMachine": "2022-04-26"
+          }
+        },
+        "image": {
+          "fallback": {
+            "defaultPath": "https://unsplash.it/250/140/",
+            "altText": ""
+          }
+        }
+      }
+    ]
+  },
+
 
   "profileLinks": {
     "heading": "Senior editors",

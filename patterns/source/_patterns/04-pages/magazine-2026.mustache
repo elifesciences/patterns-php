@@ -18,14 +18,18 @@
         </div>
       {{/sectionsListingLink}}
 
-      <div class="wrapper">
-        <div class="listing-column-container listing-column-main">
-          {{#highlightsTeasers}}
-            {{> organisms-listing-teasers}}
-          {{/highlightsTeasers}}
 
-        </div>
-      </div>
+      {{#topHighlights}}
+          <div class="wrapper">
+            <!--  Duplicated code from the highlight organism - could be pulled out into its own pattern 'highlight-list' or similar            -->
+              <ul class="highlight__items">
+                  {{#items}}
+                      {{> molecules-highlight-item}}
+                  {{/items}}
+
+              </ul>
+          </div>
+      {{/topHighlights}}
 
 
     <div class="wrapper wrapper--listing">
