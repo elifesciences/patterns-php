@@ -472,7 +472,7 @@
 
           "image": {
             "srcset": "https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-480w.jpg 480w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-742w.jpg 742w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-972w.jpg 972w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-1484w.jpg 1484w",
-            "defaultPath": "https://placehold.it/90x90",
+            "defaultPath": "https://picsum.dev/90x90",
             "altText": "Meaningful alt text here please."
           },
 
@@ -505,7 +505,7 @@
 
           "image": {
             "srcset": "https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-480w.jpg 480w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-742w.jpg 742w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-972w.jpg 972w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-1484w.jpg 1484w",
-            "defaultPath": "https://placehold.it/90x90",
+            "defaultPath": "https://picsum.dev/90x90",
             "altText": "Meaningful alt text here please."
           },
 
@@ -538,7 +538,7 @@
 
           "image": {
             "srcset": "https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-480w.jpg 480w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-742w.jpg 742w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-972w.jpg 972w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-1484w.jpg 1484w",
-            "defaultPath": "https://placehold.it/90x90",
+            "defaultPath": "https://picsum.dev/90x90",
             "altText": "Meaningful alt text here please."
           },
 
@@ -569,7 +569,7 @@
 
           "image": {
             "srcset": "https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-480w.jpg 480w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-742w.jpg 742w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-972w.jpg 972w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-1484w.jpg 1484w",
-            "defaultPath": "https://placehold.it/90x90",
+            "defaultPath": "https://picsum.dev/90x90",
             "altText": "Meaningful alt text here please."
           },
 
@@ -602,7 +602,7 @@
 
           "image": {
             "srcset": "https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-480w.jpg 480w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-742w.jpg 742w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-972w.jpg 972w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp1-v2-1484w.jpg 1484w",
-            "defaultPath": "https://placehold.it/90x90",
+            "defaultPath": "https://picsum.dev/90x90",
             "altText": "Meaningful alt text here please."
           },
 
@@ -635,7 +635,7 @@
 
           "image": {
             "srcset": "https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-480w.jpg 480w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-742w.jpg 742w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-972w.jpg 972w, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-figsupp2-v2-1484w.jpg 1484w",
-            "defaultPath": "https://placehold.it/90x90",
+            "defaultPath": "https://picsum.dev/90x90",
             "altText": "Meaningful alt text here please."
           },
 

@@ -19,14 +19,14 @@
   "picture": {
     "sources": [
       {
-        "srcset": "https://placehold.it/600x876",
+        "srcset": "https://picsum.dev/600x876",
         "type": "image/svg+xml"
       }
     ],
     "fallback": {
-      "srcset": "https://placehold.it/600x876 1x",
+      "srcset": "https://picsum.dev/600x876 1x",
       "sizes": "138px",
-      "defaultPath": "https://placehold.it/600x876",
+      "defaultPath": "https://picsum.dev/600x876",
       "altText": "Meaningful alt text here please."
     }
   },

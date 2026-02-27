@@ -380,8 +380,8 @@
           },
           "image": {
             "fallback": {
-              "defaultPath": "https://placehold.it/250/140/",
-              "srcset": "https://placehold.it/140/140/ 2x, https://placehold.it/70/70/ 1x",
+              "defaultPath": "https://picsum.dev/250/140/",
+              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
               "altText": "Meaningful alt text please."
             },
             "type": "small"
@@ -535,8 +535,8 @@
           },
           "image": {
             "fallback": {
-              "defaultPath": "https://placehold.it/140/140/",
-              "srcset": "https://placehold.it/140/140/ 2x, https://placehold.it/70/70/ 1x",
+              "defaultPath": "https://picsum.dev/140/140/",
+              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
               "altText": "Meaningful alt text please."
             },
             "type": "small"
@@ -567,8 +567,8 @@
           },
           "image": {
             "fallback": {
-              "defaultPath": "https://placehold.it/140/140/",
-              "srcset": "https://placehold.it/140/140/ 2x, https://placehold.it/70/70/ 1x",
+              "defaultPath": "https://picsum.dev/140/140/",
+              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
               "altText": "Meaningful alt text please."
             },
             "type": "small"
@@ -599,8 +599,8 @@
           },
           "image": {
             "fallback": {
-              "defaultPath": "https://placehold.it/140/140/",
-              "srcset": "https://placehold.it/140/140/ 2x, https://placehold.it/70/70/ 1x",
+              "defaultPath": "https://picsum.dev/140/140/",
+              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
               "altText": "Meaningful alt text please."
             },
             "type": "small"
@@ -631,8 +631,8 @@
           },
           "image": {
             "fallback": {
-              "defaultPath": "https://placehold.it/140/140/",
-              "srcset": "https://placehold.it/140/140/ 2x, https://placehold.it/70/70/ 1x",
+              "defaultPath": "https://picsum.dev/140/140/",
+              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
               "altText": "Meaningful alt text please."
             },
             "type": "small"
@@ -663,8 +663,8 @@
           },
           "image": {
             "fallback": {
-              "defaultPath": "https://placehold.it/140/140/",
-              "srcset": "https://placehold.it/140/140/ 2x, https://placehold.it/70/70/ 1x",
+              "defaultPath": "https://picsum.dev/140/140/",
+              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
               "altText": "Meaningful alt text please."
             },
             "type": "small"
@@ -694,8 +694,8 @@
           },
           "image": {
             "fallback": {
-              "defaultPath": "https://placehold.it/140/140/",
-              "srcset": "https://placehold.it/140/140/ 2x, https://placehold.it/70/70/ 1x",
+              "defaultPath": "https://picsum.dev/140/140/",
+              "srcset": "https://picsum.dev/140/140/ 2x, https://picsum.dev/70/70/ 1x",
               "altText": "Meaningful alt text please."
             },
             "type": "small"
