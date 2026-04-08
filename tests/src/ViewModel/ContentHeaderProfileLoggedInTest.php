@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\ContentHeaderProfile;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Orcid;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ContentHeaderProfileLoggedInTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -43,9 +42,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_display_name()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -53,9 +50,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
         ContentHeaderProfile::loggedIn('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function supplied_affiliations_is_set_as_a_property_of_details()
     {
         $contentHeaderProfile = ContentHeaderProfile::loggedIn(
@@ -75,9 +70,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             $contentHeaderProfile['details']['affiliations']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function supplied_email_address_is_set_as_a_property_of_details()
     {
         $contentHeaderProfile = ContentHeaderProfile::loggedIn(
@@ -90,9 +83,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
         $this->assertSame('email@address.com', $contentHeaderProfile['details']['emailAddress']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function details_is_null_if_no_affiliations_nor_email_address_is_supplied()
     {
         $contentHeaderProfile = ContentHeaderProfile::loggedIn('Display name', new Link('log out link text', '/log-out-link-uri'));
@@ -100,9 +91,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
         $this->assertNull($contentHeaderProfile['details']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function supplied_logout_link_becomes_logout_link_property()
     {
         $contentHeaderProfile = ContentHeaderProfile::loggedIn(
@@ -115,9 +104,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             $contentHeaderProfile['logoutLink']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function supplied_secondary_links_becomes_secondary_links_property()
     {
         $contentHeaderProfile = ContentHeaderProfile::loggedIn(
@@ -137,7 +124,7 @@ final class ContentHeaderProfileLoggedInTest extends ViewModelTest
             $contentHeaderProfile['secondaryLinks']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [ContentHeaderProfile::loggedIn('Display name')],

@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\OrcidVisibilitySettingError;
+use PHPUnit\Framework\Attributes\Test;
 
 final class OrcidVisibilitySettingErrorTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -21,7 +20,7 @@ final class OrcidVisibilitySettingErrorTest extends ViewModelTest
         $this->assertSame($data, $orcidVisibilitySettingError->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new OrcidVisibilitySettingError('/contact')],

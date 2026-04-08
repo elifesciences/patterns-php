@@ -6,13 +6,12 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\ArticleDownloadLink;
 use eLife\Patterns\ViewModel\ArticleDownloadLinksGroup;
 use eLife\Patterns\ViewModel\Link;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
+final class ArticleDownloadLinksGroupTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $articleDownloadLinksGroup = new ArticleDownloadLinksGroup(
@@ -28,9 +27,7 @@ final class ArticleDownloadLinksGroupTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $articleDownloadLinksGroup);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [

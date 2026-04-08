@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\InvestorLogos;
 use eLife\Patterns\ViewModel\Picture;
+use PHPUnit\Framework\Attributes\Test;
 
 final class InvestorLogosTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -32,7 +31,7 @@ final class InvestorLogosTest extends ViewModelTest
         $this->assertSame($data, $investorLogos->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

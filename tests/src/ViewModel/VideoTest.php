@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\MediaSourceFallback;
 use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Video;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class VideoTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -41,25 +40,21 @@ final class VideoTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $video->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function testCantUseAudioAsVideoSource()
     {
         $this->expectException(InvalidArgumentException::class);
         new Video([new MediaSource('/file.mp4', new MediaType('audio/mp4'))]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function testCantUseAudioSource()
     {
         $this->expectException(InvalidArgumentException::class);
         new Video([new MediaSource('/file.mp3', new MediaType('audio/mp3'))]);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'complete' => [

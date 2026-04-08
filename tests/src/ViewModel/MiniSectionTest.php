@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\MiniSection;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MiniSectionTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -25,7 +24,7 @@ final class MiniSectionTest extends ViewModelTest
         $this->assertSame($data, $miniSection->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'Body' => [new MiniSection('body')],

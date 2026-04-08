@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\AboutProfile;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AboutProfileTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -57,9 +56,7 @@ final class AboutProfileTest extends ViewModelTest
         $this->assertSame($data, $profile->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_name()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -67,9 +64,7 @@ final class AboutProfileTest extends ViewModelTest
         new AboutProfile('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_placeholder_image()
     {
         $with = new AboutProfile('name', null, null, true);
@@ -81,7 +76,7 @@ final class AboutProfileTest extends ViewModelTest
         $this->assertArrayNotHasKey('hasPlaceholderImage', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [

@@ -6,10 +6,11 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\LoginControl;
 use eLife\Patterns\ViewModel\Picture;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class LoginControlLoggedInTest extends ViewModelTest
 {
-    private $linkFields = [
+    private static array $linkFields = [
         'input' => [
             'Manage my profile' => '/profileManageURI',
             'Log out' => '/log-out',
@@ -20,15 +21,13 @@ final class LoginControlLoggedInTest extends ViewModelTest
         ],
     ];
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
             'displayName' => 'My name',
             'isLoggedIn' => true,
-            'linkFields' => $this->linkFields['input'],
+            'linkFields' => self::$linkFields['input'],
             'defaultUri' => '/defaultUri',
             'subsidiaryText' => 'View your profile page',
             'icon' => [
@@ -39,56 +38,48 @@ final class LoginControlLoggedInTest extends ViewModelTest
             ],
         ];
 
-        $profileLoginControl = LoginControl::loggedIn($data['defaultUri'], $data['displayName'], new Picture([], new Image('/default/path')), $data['subsidiaryText'], $this->linkFields['input']);
+        $profileLoginControl = LoginControl::loggedIn($data['defaultUri'], $data['displayName'], new Picture([], new Image('/default/path')), $data['subsidiaryText'], self::$linkFields['input']);
 
         $this->assertSame($data['isLoggedIn'], $profileLoginControl['isLoggedIn']);
         $this->assertSame($data['defaultUri'], $profileLoginControl['defaultUri']);
         $this->assertSame($data['subsidiaryText'], $profileLoginControl['subsidiaryText']);
         $this->assertSame($data['icon'], $profileLoginControl['icon']->toArray());
 
-        $this->assertSame($this->linkFields['expectedOutput']['linkFieldRoots'], $profileLoginControl['linkFieldRoots']);
-        $this->assertSame($this->linkFields['expectedOutput']['linkFieldData'], $profileLoginControl['linkFieldData']);
+        $this->assertSame(self::$linkFields['expectedOutput']['linkFieldRoots'], $profileLoginControl['linkFieldRoots']);
+        $this->assertSame(self::$linkFields['expectedOutput']['linkFieldData'], $profileLoginControl['linkFieldData']);
 
-        $data['linkFieldData'] = $this->linkFields['expectedOutput']['linkFieldData'];
-        $data['linkFieldRoots'] = $this->linkFields['expectedOutput']['linkFieldRoots'];
+        $data['linkFieldData'] = self::$linkFields['expectedOutput']['linkFieldData'];
+        $data['linkFieldRoots'] = self::$linkFields['expectedOutput']['linkFieldRoots'];
         unset($data['linkFields']);
         $this->assertSameValuesWithoutOrder($data, $profileLoginControl->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_indicate_it_is_logged_in()
     {
-        $profileLoginControl = LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']);
+        $profileLoginControl = LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', self::$linkFields['input']);
         $this->assertTrue($profileLoginControl['isLoggedIn']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_given_a_default_link()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $profileLoginControl = LoginControl::loggedIn('', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']);
+        $profileLoginControl = LoginControl::loggedIn('', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', self::$linkFields['input']);
         $this->assertTrue($profileLoginControl['isLoggedIn']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_given_a_display_name()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $profileLoginControl = LoginControl::loggedIn('/defaultUri', '', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']);
+        $profileLoginControl = LoginControl::loggedIn('/defaultUri', '', new Picture([], new Image('/default/path')), 'subsidiary text', self::$linkFields['input']);
         $this->assertTrue($profileLoginControl['isLoggedIn']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_link_field_key_must_not_be_empty()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -105,9 +96,7 @@ final class LoginControlLoggedInTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_link_field_value_must_not_be_empty()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -124,12 +113,12 @@ final class LoginControlLoggedInTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')))],
             'complete' => [
-                LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', $this->linkFields['input']),
+                LoginControl::loggedIn('/defaultUri', 'Display Name', new Picture([], new Image('/default/path')), 'subsidiary text', self::$linkFields['input']),
             ],
         ];
     }

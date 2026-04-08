@@ -6,13 +6,13 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\ContentAsideStatus;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
+final class ContentAsideStatusTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $status = new ContentAsideStatus('title', 'description', new Link('name', 'url'));
@@ -20,9 +20,7 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $status);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -45,9 +43,7 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $status->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -55,10 +51,8 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
         new ContentAsideStatus('');
     }
 
-    /**
-     * @test
-     * @dataProvider titleLengthProvider
-     */
+    #[Test]
+    #[DataProvider('titleLengthProvider')]
     public function a_status_title_has_the_correct_designation_for_its_length(int $length, string $expected)
     {
         $title = str_repeat('e', $length);
@@ -70,7 +64,7 @@ final class ContentAsideStatusTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, $contentAsideStatus['titleLength']);
     }
 
-    public function titleLengthProvider() : array
+    public static function titleLengthProvider() : array
     {
         return [
             [5, 'short'],

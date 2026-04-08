@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\HomeBanner;
 use tests\eLife\Patterns\ViewModel\ViewModelTest;
 use eLife\Patterns\ViewModel;
+use PHPUnit\Framework\Attributes\Test;
 
 final class HomeBannerTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $primaryButton = Button::homeBanner('Primary button', '#');
@@ -34,7 +33,7 @@ final class HomeBannerTest extends ViewModelTest
         $this->assertSame($data, $homeBanner->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         $primaryButton = Button::homeBanner('Primary button', '#');
         $secondaryButton = Button::homeBanner('Secondary button', '#');

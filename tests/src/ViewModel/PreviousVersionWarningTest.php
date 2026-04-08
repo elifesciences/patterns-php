@@ -6,13 +6,12 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\PreviousVersionWarning;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class PreviousVersionWarningTest extends PHPUnit_Framework_TestCase
+final class PreviousVersionWarningTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_castPreviousVersionWarnings_to_an_array()
     {
         $previousVersionWarning = new PreviousVersionWarning('text', new Link('name', 'url'));
@@ -20,9 +19,7 @@ final class PreviousVersionWarningTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $previousVersionWarning);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -41,9 +38,7 @@ final class PreviousVersionWarningTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $previousVersionWarning->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_text()
     {
         $this->expectException(InvalidArgumentException::class);

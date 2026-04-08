@@ -24,8 +24,9 @@
     "require-dev": {
         "justinrainbow/json-schema": "^5.1",
         "php-jsonpointer/php-jsonpointer": "^1.0",
-        "phpunit/phpunit": "^5.2",
-        "phpspec/prophecy": "^1.10",
+        "phpunit/phpunit": "^13.1",
+        "phpspec/prophecy": "^1.20",
+        "phpspec/prophecy-phpunit": "^2.2",
         "symfony/filesystem": "^3.0",
         "symfony/finder": "^3.0",
         "symfony/process": "^3.0",

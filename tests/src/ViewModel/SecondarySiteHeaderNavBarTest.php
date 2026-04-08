@@ -9,6 +9,7 @@ use eLife\Patterns\ViewModel\LoginControl;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SecondarySiteHeaderNavBarTest extends ViewModelTest
 {
@@ -20,7 +21,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
     private $linkItems;
     private $siteHeaderNavBar;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->button = Button::form('button text', 'button', 'name');
@@ -33,9 +34,7 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $this->siteHeaderNavBar = SiteHeaderNavBar::secondary($this->linkItems);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $siteHeaderNavItems = $this->siteHeaderNavBar['linkedItems'];
@@ -59,23 +58,19 @@ final class SecondarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame('nav-secondary__item nav-secondary__item--last nav-secondary__item--hide-narrow', $siteHeaderNavItems[3]['classes']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_correct_outer_classes()
     {
         $this->assertSame($this->siteHeaderNavBar['classesOuter'], 'nav-secondary');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_correct_inner_classes()
     {
         $this->assertSame($this->siteHeaderNavBar['classesInner'], 'nav-secondary__list clearfix');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         $button = Button::form('button text', 'button', 'name');
 

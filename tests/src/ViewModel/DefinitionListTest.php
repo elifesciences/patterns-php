@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\DefinitionList;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class DefinitionListTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -85,9 +84,7 @@ final class DefinitionListTest extends ViewModelTest
         $this->assertSame($data, $list->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -95,9 +92,7 @@ final class DefinitionListTest extends ViewModelTest
         DefinitionList::basic([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_items_containing_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -105,9 +100,7 @@ final class DefinitionListTest extends ViewModelTest
         DefinitionList::basic(['foo' => []]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_contain_single_items()
     {
         $list = DefinitionList::basic(['foo' => 'bar']);
@@ -115,9 +108,7 @@ final class DefinitionListTest extends ViewModelTest
         $this->assertSame(['bar'], $list['items'][0]['descriptors']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_color()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -125,7 +116,7 @@ final class DefinitionListTest extends ViewModelTest
         DefinitionList::timeline([['term' => 'foo', 'descriptors' => ['bar']]], 'not valid color');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'expanded' => [DefinitionList::basic(['foo' => ['bar']])],

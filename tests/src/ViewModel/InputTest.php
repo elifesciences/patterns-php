@@ -5,13 +5,13 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Input;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-final class InputTest extends PHPUnit_Framework_TestCase
+final class InputTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $input = new Input('label', 'text', 'input', 'value', 'placeholder');
@@ -19,9 +19,7 @@ final class InputTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $input);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -42,9 +40,7 @@ final class InputTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $input->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_label()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -52,28 +48,24 @@ final class InputTest extends PHPUnit_Framework_TestCase
         new Input('', 'text', 'name');
     }
 
-    /**
-     * @test
-     * @dataProvider invalidTypeProvider
-     */
-    public function it_cannot_have_an_invalid_type()
+    #[Test]
+    #[DataProvider('invalidTypeProvider')]
+    public function it_cannot_have_an_invalid_type($type)
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Input('', 'text', 'name');
+        new Input('label', $type, 'name');
     }
 
-    public function invalidTypeProvider() : array
+    public static function invalidTypeProvider() : array
     {
         return [
-            [''],
-            ['foo'],
+            'empty string'  => [''],
+            'foo'           => ['foo'],
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_name()
     {
         $this->expectException(InvalidArgumentException::class);

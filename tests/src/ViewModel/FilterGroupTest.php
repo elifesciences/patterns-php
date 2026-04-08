@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Filter;
 use eLife\Patterns\ViewModel\FilterGroup;
+use PHPUnit\Framework\Attributes\Test;
 
 final class FilterGroupTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -67,15 +66,17 @@ final class FilterGroupTest extends ViewModelTest
         $this->assertSame('select-filter', $filterGroup['selectFilterName']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
-            [
+            'with counts' => [
                 new FilterGroup('title', [
                     new Filter(true, 'filter 1', '10', 'some_name_10'),
                     new Filter(true, 'filter 2', '20', 'some_name_20'),
                     new Filter(true, 'filter 3', '30', 'some_name_30'),
                 ]),
+            ],
+            'with select filter' => [
                 new FilterGroup('title', [
                     new Filter(true, 'filter 1'),
                     new Filter(true, 'filter 2', '20', 'some_name_20'),

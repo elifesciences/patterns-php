@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Term;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TermTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -21,7 +20,7 @@ final class TermTest extends ViewModelTest
         $this->assertSame($data, $term->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new Term('Important')],

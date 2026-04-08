@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\ListingProfileSnippets;
 use eLife\Patterns\ViewModel\ProfileSnippet;
 use eLife\Patterns\ViewModel\SeeMoreLink;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ListingProfileSnippetsTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -52,7 +51,7 @@ final class ListingProfileSnippetsTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

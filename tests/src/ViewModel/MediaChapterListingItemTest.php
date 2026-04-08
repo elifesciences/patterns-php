@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\ContentSource;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MediaChapterListingItem;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MediaChapterListingItemTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -48,9 +47,7 @@ final class MediaChapterListingItemTest extends ViewModelTest
         $this->assertSame($data, $item->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -58,9 +55,7 @@ final class MediaChapterListingItemTest extends ViewModelTest
         new MediaChapterListingItem('', 0, 1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_negative_start_time()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -68,9 +63,7 @@ final class MediaChapterListingItemTest extends ViewModelTest
         new MediaChapterListingItem('title', -1, 1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_positive_chapter_number()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -78,7 +71,7 @@ final class MediaChapterListingItemTest extends ViewModelTest
         new MediaChapterListingItem('title', 0, 0);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new MediaChapterListingItem('title', 0, 1)],

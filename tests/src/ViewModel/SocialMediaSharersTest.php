@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\SocialMediaSharers;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SocialMediaSharersTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -35,9 +34,7 @@ final class SocialMediaSharersTest extends ViewModelTest
         $this->assertSame($data['encoded'], $socialMediaSharers->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_given_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -45,9 +42,7 @@ final class SocialMediaSharersTest extends ViewModelTest
         new SocialMediaSharers('', 'https://example.com/some-article-url');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_given_a_url()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -55,7 +50,7 @@ final class SocialMediaSharersTest extends ViewModelTest
         new SocialMediaSharers('Some article title', 'foo');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\SortControl;
 use eLife\Patterns\ViewModel\SortControlOption;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SortControlTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -39,7 +38,7 @@ final class SortControlTest extends ViewModelTest
         $this->assertSame($data, $sortControl->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

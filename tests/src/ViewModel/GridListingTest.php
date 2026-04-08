@@ -18,12 +18,11 @@ use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use eLife\Patterns\ViewModel\TeaserImage;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class GridListingTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $blockLinksData = [
@@ -205,7 +204,7 @@ final class GridListingTest extends ViewModelTest
         $this->assertSame($teasersData, $teasers->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'no heading' => [
@@ -231,7 +230,16 @@ final class GridListingTest extends ViewModelTest
             'image links' => [
                 GridListing::forImageLinks(
                     [
-                        new ImageLink('url', new Picture([], new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text'))),
+                        new ImageLink(
+                            'url',
+                            new Picture(
+                                [],
+                                new Image(
+                                    '/default/path',
+                                    ['2' => '/path/to/image/500/wide', '1' => '/default/path'],
+                                    'the alt text')
+                            )
+                        ),
                     ]
                 ),
             ],
@@ -326,15 +334,18 @@ final class GridListingTest extends ViewModelTest
                             )
                         ),
                     ],
-                    new ListHeading('heading'), Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'))),
-                'id',
+                    new ListHeading('heading'),
+                    Pager::subsequentPage(
+                        new Link('previous', 'previous-url'),
+                        new Link('next', 'next-url')
+                    ),
+                    'id'
+                ),
             ],
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_no_block_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -342,9 +353,7 @@ final class GridListingTest extends ViewModelTest
         GridListing::forBlockLinks([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_only_block_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -352,9 +361,7 @@ final class GridListingTest extends ViewModelTest
         GridListing::forBlockLinks(['foo']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_no_archive_nav_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -362,9 +369,7 @@ final class GridListingTest extends ViewModelTest
         GridListing::forArchiveNavLinks([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_only_archive_nav_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -372,9 +377,7 @@ final class GridListingTest extends ViewModelTest
         GridListing::forArchiveNavLinks(['foo']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_no_teasers()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -382,9 +385,7 @@ final class GridListingTest extends ViewModelTest
         GridListing::forTeasers([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_only_teasers()
     {
         $this->expectException(InvalidArgumentException::class);

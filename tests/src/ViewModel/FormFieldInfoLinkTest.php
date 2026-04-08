@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\FormFieldInfoLink;
+use PHPUnit\Framework\Attributes\Test;
 
 final class FormFieldInfoLinkTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -23,7 +22,7 @@ final class FormFieldInfoLinkTest extends ViewModelTest
         $this->assertSame($data, $formFieldInfoLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new FormFieldInfoLink('name', 'https://url')],

@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\BarChart;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class BarChartTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -25,9 +24,7 @@ final class BarChartTest extends ViewModelTest
         $this->assertSameValuesWithoutOrder($data, $model->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -35,9 +32,7 @@ final class BarChartTest extends ViewModelTest
         new BarChart('', 'type', 'containerId', 'http://example.com', BarChart::METRIC_DOWNLOADS);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_type()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -45,9 +40,7 @@ final class BarChartTest extends ViewModelTest
         new BarChart('id', '', 'containerId', 'http://example.com', BarChart::METRIC_DOWNLOADS);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_container_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -55,9 +48,7 @@ final class BarChartTest extends ViewModelTest
         new BarChart('id', 'type', '', 'http://example.com', BarChart::METRIC_DOWNLOADS);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_api_endpoint_uri()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -65,9 +56,7 @@ final class BarChartTest extends ViewModelTest
         new BarChart('id', 'type', 'containerId', 'foo', BarChart::METRIC_DOWNLOADS);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_metric()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -75,9 +64,7 @@ final class BarChartTest extends ViewModelTest
         new BarChart('id', 'type', 'containerId', 'http://example.com', 'foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_period()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -85,7 +72,7 @@ final class BarChartTest extends ViewModelTest
         new BarChart('id', 'type', 'containerId', 'http://example.com', BarChart::METRIC_DOWNLOADS, 'foo');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'full' => [

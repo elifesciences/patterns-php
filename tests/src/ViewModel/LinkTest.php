@@ -5,13 +5,12 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class LinkTest extends PHPUnit_Framework_TestCase
+final class LinkTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $link = new Link('name', 'url');
@@ -19,9 +18,7 @@ final class LinkTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $link);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -44,9 +41,7 @@ final class LinkTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $link->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_name()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -54,9 +49,7 @@ final class LinkTest extends PHPUnit_Framework_TestCase
         new Link('', 'url');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_classes()
     {
         $with1 = (new Link('name', 'url'))->endOfGroup();

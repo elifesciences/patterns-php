@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextField;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TextFieldTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -75,9 +74,7 @@ final class TextFieldTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $textFieldAsArray);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_message_group_when_in_error_state()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -85,9 +82,7 @@ final class TextFieldTest extends ViewModelTest
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, null, false, 'value', TextField::STATE_INVALID, null);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function its_message_group_must_have_an_error_message_when_in_error_state()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -95,7 +90,7 @@ final class TextFieldTest extends ViewModelTest
         TextField::textInput(new FormLabel('label'), 'identifier', 'identifier', 'placeholder', true, false, false, null, false, 'value', TextField::STATE_INVALID, MessageGroup::forInfoText('info text'));
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimal email input' => [TextField::emailInput(new FormLabel('label'), 'id', 'some name')],

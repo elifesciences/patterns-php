@@ -5,13 +5,12 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
+final class FlexibleViewModelTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_a_view_model()
     {
         $viewModel = new FlexibleViewModel('/foo', ['bar' => 'baz']);
@@ -19,9 +18,7 @@ final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(ViewModel::class, $viewModel);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_a_template()
     {
         $viewModel = new FlexibleViewModel('/foo', ['bar' => 'baz']);
@@ -29,9 +26,7 @@ final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
         $this->assertSame('/foo', $viewModel->getTemplateName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_array_accessible()
     {
         $viewModel = new FlexibleViewModel('/foo', ['bar' => 'baz']);
@@ -44,9 +39,7 @@ final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_created_from_anther_view_model()
     {
         $viewModel1 = new FlexibleViewModel('/foo', ['bar' => 'baz']);
@@ -57,9 +50,7 @@ final class FlexibleViewModelTest extends PHPUnit_Framework_TestCase
         $this->assertSame($viewModel1->toArray(), $viewModel2->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_created_with_a_new_property()
     {
         $viewModel1 = new FlexibleViewModel('/foo', ['bar' => 'baz']);

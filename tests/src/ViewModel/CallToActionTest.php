@@ -8,14 +8,11 @@ use eLife\Patterns\ViewModel\CallToAction;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
 use Exception;
+use PHPUnit\Framework\Attributes\Test;
 
 final class CallToActionTest extends ViewModelTest
 {
-    /**
-     * @test
-     *
-     * @throws Exception
-     */
+    #[Test]
     public function it_has_data()
     {
         $dateAsString = 'Wednesday, 15-Jan-2020 15:12:24 UTC';
@@ -83,7 +80,7 @@ final class CallToActionTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $callToAction->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [

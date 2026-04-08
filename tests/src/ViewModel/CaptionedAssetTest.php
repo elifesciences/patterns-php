@@ -12,12 +12,11 @@ use eLife\Patterns\ViewModel\MediaType;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\Video;
+use PHPUnit\Framework\Attributes\Test;
 
 final class CaptionedAssetTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -130,11 +129,7 @@ final class CaptionedAssetTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $figure->toArray());
     }
 
-    public function test_it_works_with_latest_json()
-    {
-    }
-
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'Captionless image' => [

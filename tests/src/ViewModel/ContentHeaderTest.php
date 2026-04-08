@@ -20,6 +20,8 @@ use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
 use eLife\Patterns\ViewModel\SocialMediaSharers;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ContentHeaderTest extends ViewModelTest
 {
@@ -40,9 +42,7 @@ final class ContentHeaderTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -207,9 +207,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -217,9 +215,7 @@ final class ContentHeaderTest extends ViewModelTest
         new ContentHeader('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function subjects_must_be_a_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -227,10 +223,8 @@ final class ContentHeaderTest extends ViewModelTest
         new ContentHeader('', null, null, true, null, ['foo']);
     }
 
-    /**
-     * @test
-     * @dataProvider titleLengthProvider
-     */
+    #[Test]
+    #[DataProvider('titleLengthProvider')]
     public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
     {
         $title = str_repeat('é', $length);
@@ -239,7 +233,7 @@ final class ContentHeaderTest extends ViewModelTest
         $this->assertSame($expected, $contentHeader['titleLength']);
     }
 
-    public function titleLengthProvider() : array
+    public static function titleLengthProvider() : array
     {
         return [
             [3,   'xx-short'],
@@ -259,7 +253,7 @@ final class ContentHeaderTest extends ViewModelTest
         ];
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ContentHeader('title')],

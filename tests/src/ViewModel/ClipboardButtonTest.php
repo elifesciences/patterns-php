@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ClipboardButtonTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -30,9 +29,7 @@ final class ClipboardButtonTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $button);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_merges_outline_and_inactive_states()
     {
         $button = Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, 'someId', false);
@@ -40,9 +37,7 @@ final class ClipboardButtonTest extends ViewModelTest
         $this->assertSame('button--outline-inactive', $button['classes']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -50,9 +45,7 @@ final class ClipboardButtonTest extends ViewModelTest
         Button::clipboard('', 'someClipboardText', 'some name');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_clipboard()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -60,9 +53,7 @@ final class ClipboardButtonTest extends ViewModelTest
         Button::clipboard('text', '', 'some name');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_an_invalid_size()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -70,9 +61,7 @@ final class ClipboardButtonTest extends ViewModelTest
         Button::clipboard('text', 'someClipboardText', 'some name', 'foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_an_invalid_style()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -80,7 +69,7 @@ final class ClipboardButtonTest extends ViewModelTest
         Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_MEDIUM, 'foo');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'small' => [Button::clipboard('text', 'someClipboardText', 'some name', Button::SIZE_SMALL)],

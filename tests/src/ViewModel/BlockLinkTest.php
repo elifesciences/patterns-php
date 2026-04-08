@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\BlockLink;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Picture;
+use PHPUnit\Framework\Attributes\Test;
 
 final class BlockLinkTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -35,7 +34,7 @@ final class BlockLinkTest extends ViewModelTest
         $this->assertSame($data, $blockLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'without image' => [new BlockLink(new Link('name', 'url'))],

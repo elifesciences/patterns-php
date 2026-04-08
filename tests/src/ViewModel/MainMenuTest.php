@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MainMenu;
 use eLife\Patterns\ViewModel\SiteHeaderTitle;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MainMenuTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -46,7 +45,7 @@ final class MainMenuTest extends ViewModelTest
         $this->assertSame($data, $mainMenu->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new MainMenu(new SiteHeaderTitle('/home/page/path'), [new Link('name', 'url')])],

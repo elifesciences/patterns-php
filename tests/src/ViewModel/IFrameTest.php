@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\IFrame;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class IFrameTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -28,7 +27,7 @@ final class IFrameTest extends ViewModelTest
         $this->assertSame($iFrame->toArray(), $data);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'square' => [new IFrame('http://www.example.com/', 100, 100)],
@@ -40,9 +39,7 @@ final class IFrameTest extends ViewModelTest
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function src_must_not_be_blank()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -50,9 +47,7 @@ final class IFrameTest extends ViewModelTest
         new IFrame('', 100, 100);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function width_must_be_greater_than_1()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -60,9 +55,7 @@ final class IFrameTest extends ViewModelTest
         new IFrame('http://www.example.com/', 0, 100);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function height_must_be_greater_than_1()
     {
         $this->expectException(InvalidArgumentException::class);

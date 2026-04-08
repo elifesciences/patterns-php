@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContentHeaderSimple;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ContentHeaderSimpleTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -24,9 +23,7 @@ final class ContentHeaderSimpleTest extends ViewModelTest
         $this->assertSame($data, $contentHeader->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -34,7 +31,7 @@ final class ContentHeaderSimpleTest extends ViewModelTest
         new ContentHeaderSimple('');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ContentHeaderSimple('title')],

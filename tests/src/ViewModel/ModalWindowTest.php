@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ModalWindow;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ModalWindowTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -31,9 +30,7 @@ final class ModalWindowTest extends ViewModelTest
         $this->assertSame($data['triggerId'], $modalWindow['triggerId']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -41,9 +38,7 @@ final class ModalWindowTest extends ViewModelTest
         ModalWindow::create('', 'body');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_body()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -51,9 +46,7 @@ final class ModalWindowTest extends ViewModelTest
         ModalWindow::create('title', '');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_close_button_text()
     {
         $with = ModalWindow::create('title', 'body', 'closeBtnText');
@@ -64,9 +57,7 @@ final class ModalWindowTest extends ViewModelTest
         $this->assertArrayNotHasKey('closeBtnText', $without->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_trigger_id()
     {
         $with = ModalWindow::create('title', 'body', null, 'trigger-id');
@@ -77,7 +68,7 @@ final class ModalWindowTest extends ViewModelTest
         $this->assertArrayNotHasKey('triggerId', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimal' => [ModalWindow::create('title', 'body')],

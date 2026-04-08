@@ -7,14 +7,13 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use InvalidArgumentException;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
+use PHPUnit\Framework\Attributes\Test;
 
 class ContentHeaderReadMoreTest extends ViewModelTest
 {
     use MetaFromData;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -62,9 +61,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
         $this->assertSame($data, $contentHeader->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -72,9 +69,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
         new ContentHeaderReadMore('', 'url');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_url()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -82,9 +77,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
         new ContentHeaderReadMore('title', '');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function subjects_must_be_a_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -92,7 +85,7 @@ class ContentHeaderReadMoreTest extends ViewModelTest
         new ContentHeaderReadMore('title', 'url', ['foo']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ContentHeaderReadMore('some title', 'url')],

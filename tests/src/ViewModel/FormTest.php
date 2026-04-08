@@ -5,13 +5,13 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Form;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-final class FormTest extends PHPUnit_Framework_TestCase
+final class FormTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $form = new Form('/foo', 'foo', 'GET');
@@ -19,9 +19,7 @@ final class FormTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $form);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = ['action' => '/foo', 'id' => 'foo', 'method' => 'GET'];
@@ -34,9 +32,7 @@ final class FormTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $form->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_action()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -44,9 +40,7 @@ final class FormTest extends PHPUnit_Framework_TestCase
         new Form('', 'foo', 'GET');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -54,23 +48,21 @@ final class FormTest extends PHPUnit_Framework_TestCase
         new Form('/foo', '', 'GET');
     }
 
-    /**
-     * @test
-     * @dataProvider invalidMethodProvider
-     */
-    public function it_cannot_have_an_invalid_method()
+    #[Test]
+    #[DataProvider('invalidMethodProvider')]
+    public function it_cannot_have_an_invalid_method(string $method)
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Form('/foo', '', 'GET');
+        new Form('/foo', '', $method);
     }
 
-    public function invalidMethodProvider() : array
+    public static function invalidMethodProvider() : array
     {
         return [
-            [''],
-            ['FOO'],
-            ['get'],
+            'blank string'  => [''],
+            'FOO'           => ['FOO'],
+            'get'           => ['get'],
         ];
     }
 }

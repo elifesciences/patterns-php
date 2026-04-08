@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Tweet;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TweetTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -43,7 +42,7 @@ final class TweetTest extends ViewModelTest
         $this->assertSame($data['hideCards'], $tweet['hideCards']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new Tweet('#', 'accountId', 'accountLabel', 'text', Date::simple(new DateTimeImmutable()))],

@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Math;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MathTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -26,9 +25,7 @@ final class MathTest extends ViewModelTest
         $this->assertSame($data, $math->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_math_ml()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -36,7 +33,7 @@ final class MathTest extends ViewModelTest
         new Math('foo');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new Math('<math><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></math>')],

@@ -5,14 +5,14 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\MediaType;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Traversable;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-final class MediaTypeTest extends PHPUnit_Framework_TestCase
+final class MediaTypeTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $mediaType = new MediaType('audio/ogg');
@@ -20,9 +20,7 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $mediaType);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = ['forMachine' => 'audio/ogg', 'forHuman' => 'Ogg'];
@@ -34,10 +32,8 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $mediaType->toArray());
     }
 
-    /**
-     * @test
-     * @dataProvider humanNameProvider
-     */
+    #[Test]
+    #[DataProvider('humanNameProvider')]
     public function it_guesses_human_names(string $mediaType, string $expected)
     {
         $mediaType = new MediaType($mediaType);
@@ -45,7 +41,7 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, $mediaType['forHuman']);
     }
 
-    public function humanNameProvider() : Traversable
+    public static function humanNameProvider() : Traversable
     {
         $types = [
             'application/epub+zip' => 'EPUB',
@@ -75,10 +71,8 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @test
-     * @dataProvider invalidMediaTypeProvider
-     */
+    #[Test]
+    #[DataProvider('invalidMediaTypeProvider')]
     public function it_requires_a_valid_media_type(string $input)
     {
         $this->expectException(InvalidArgumentException::class);
@@ -86,7 +80,7 @@ final class MediaTypeTest extends PHPUnit_Framework_TestCase
         new MediaType($input);
     }
 
-    public function invalidMediaTypeProvider() : array
+    public static function invalidMediaTypeProvider() : array
     {
         return [
             'no sub-type' => ['foo'],

@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\ArticleMeta;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ArticleMetaTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -33,9 +32,7 @@ final class ArticleMetaTest extends ViewModelTest
         $this->assertSame($data, $articleMeta->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_group()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -43,9 +40,7 @@ final class ArticleMetaTest extends ViewModelTest
         new ArticleMeta([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_array_of_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -53,9 +48,7 @@ final class ArticleMetaTest extends ViewModelTest
         new ArticleMeta(['group' => 'foo']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -63,9 +56,7 @@ final class ArticleMetaTest extends ViewModelTest
         new ArticleMeta(['group' => []]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_link_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -73,7 +64,7 @@ final class ArticleMetaTest extends ViewModelTest
         new ArticleMeta(['group' => ['foo']]);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new ArticleMeta(['group' => [new Link('link', 'url'), new Link('non-link')]])],

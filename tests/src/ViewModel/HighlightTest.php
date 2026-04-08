@@ -12,12 +12,11 @@ use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Picture;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class HighlightTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -67,9 +66,7 @@ final class HighlightTest extends ViewModelTest
         $this->assertSame($data, $highlight->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_item()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -77,7 +74,7 @@ final class HighlightTest extends ViewModelTest
         new Highlight([], new ListHeading('heading'));
     }
 
-    public function viewModelProvider(): array
+    public static function viewModelProvider(): array
     {
         return [
             [
@@ -101,9 +98,7 @@ final class HighlightTest extends ViewModelTest
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_no_highlight_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -111,9 +106,7 @@ final class HighlightTest extends ViewModelTest
         new Highlight([], new ListHeading('heading', 'headingId'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_only_highlight_items()
     {
         $this->expectException(InvalidArgumentException::class);

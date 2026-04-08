@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Statistic;
+use PHPUnit\Framework\Attributes\Test;
 
 class StatisticTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $expectedViewmodelStateAfterConstruction = ['label' => 'Downloads', 'value' => '2,034', 'shouldNotEscapeTerm'=>'true'];
@@ -16,9 +15,7 @@ class StatisticTest extends ViewModelTest
         $this->assertSameValuesWithoutOrder($expectedViewmodelStateAfterConstruction, $constructedViewmodel->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data_via_its_fromString_method()
     {
         $expectedViewmodelStateAfterConstruction = ['label' => 'Downloads', 'value' => '2,034', 'shouldNotEscapeTerm'=>'true'];
@@ -26,7 +23,7 @@ class StatisticTest extends ViewModelTest
         $this->assertSameValuesWithoutOrder($expectedViewmodelStateAfterConstruction, $constructedViewmodel->toArray());
     }
 
-    public function viewModelProvider(): array
+    public static function viewModelProvider(): array
     {
         return [
             'minimum' => [

@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\SpeechBubble;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SpeechBubbleTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -40,7 +39,7 @@ final class SpeechBubbleTest extends ViewModelTest
         $this->assertSame($data, $hypothesisOpener->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'for article body' => [SpeechBubble::forArticleBody()],

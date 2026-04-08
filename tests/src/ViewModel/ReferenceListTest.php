@@ -8,6 +8,7 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Reference;
 use eLife\Patterns\ViewModel\ReferenceAuthorList;
 use eLife\Patterns\ViewModel\ReferenceList;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ReferenceListTest extends ViewModelTest
 {
@@ -21,9 +22,7 @@ final class ReferenceListTest extends ViewModelTest
         return self::referenceStub($id)->toArray();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -46,7 +45,7 @@ final class ReferenceListTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $referenceList);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

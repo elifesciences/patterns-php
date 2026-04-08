@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaSourceFallback;
 use eLife\Patterns\ViewModel\MediaType;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MediaSourceTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -33,7 +32,7 @@ final class MediaSourceTest extends ViewModelTest
         $this->assertSameValuesWithoutOrder($data, $mediaSource->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

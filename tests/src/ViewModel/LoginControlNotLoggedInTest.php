@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\LoginControl;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class LoginControlNotLoggedInTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -26,9 +25,7 @@ final class LoginControlNotLoggedInTest extends ViewModelTest
         $this->assertSame($data, $loginControl->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_passed_a_uri()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -36,9 +33,7 @@ final class LoginControlNotLoggedInTest extends ViewModelTest
         LoginControl::notLoggedIn('text', '');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_passed_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -46,16 +41,14 @@ final class LoginControlNotLoggedInTest extends ViewModelTest
         LoginControl::notLoggedIn('', '/log-in');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_indicate_its_not_logged_in()
     {
         $loginControl = LoginControl::notLoggedIn('text', 'some uri');
         $this->assertNull($loginControl['isLoggedIn']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [LoginControl::notLoggedIn('some text', '#loginUri')],

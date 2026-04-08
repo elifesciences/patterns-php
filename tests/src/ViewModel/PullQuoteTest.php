@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\PullQuote;
+use PHPUnit\Framework\Attributes\Test;
 
 final class PullQuoteTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -22,7 +21,7 @@ final class PullQuoteTest extends ViewModelTest
         $this->assertSame($data, $pullQuote->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'with quote' => [new PullQuote('quote')],

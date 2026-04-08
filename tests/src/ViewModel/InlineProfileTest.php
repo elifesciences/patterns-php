@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\InlineProfile;
 use eLife\Patterns\ViewModel\Picture;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class InlineProfileTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -31,9 +30,7 @@ final class InlineProfileTest extends ViewModelTest
         $this->assertSame($data, $infoBar->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -41,7 +38,7 @@ final class InlineProfileTest extends ViewModelTest
         new InlineProfile(new Picture([], new Image('path')), '');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new InlineProfile(new Picture([], new Image('path')), 'text')],

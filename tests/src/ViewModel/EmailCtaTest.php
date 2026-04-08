@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\EmailCta;
+use PHPUnit\Framework\Attributes\Test;
 
 final class EmailCtaTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -36,7 +35,7 @@ final class EmailCtaTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $emailCta->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

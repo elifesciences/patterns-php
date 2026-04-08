@@ -9,12 +9,11 @@ use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use eLife\Patterns\ViewModel\Picture;
+use PHPUnit\Framework\Attributes\Test;
 
 final class HighlightItemTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -72,9 +71,7 @@ final class HighlightItemTest extends ViewModelTest
         $this->assertSame($data, $highlightItem->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_summary()
     {
         $with = new HighlightItem(
@@ -97,9 +94,7 @@ final class HighlightItemTest extends ViewModelTest
         $this->assertArrayNotHasKey('summary', $without->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_authors()
     {
         $with = new HighlightItem(
@@ -123,7 +118,7 @@ final class HighlightItemTest extends ViewModelTest
         $this->assertArrayNotHasKey('authors', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new HighlightItem(

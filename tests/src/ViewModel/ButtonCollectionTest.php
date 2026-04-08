@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ButtonCollection;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ButtonCollectionTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -34,7 +33,7 @@ final class ButtonCollectionTest extends ViewModelTest
         $this->assertSame($data, $blockLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ButtonCollection([Button::link('text', 'path')])],

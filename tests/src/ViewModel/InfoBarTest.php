@@ -6,14 +6,11 @@ use DateTimeImmutable;
 use eLife\Patterns\ViewModel\InfoBar;
 use Exception;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class InfoBarTest extends ViewModelTest
 {
-    /**
-     * @test
-     *
-     * @throws Exception
-     */
+    #[Test]
     public function it_has_data()
     {
         $dateAsString = 'Wednesday, 15-Jan-2020 15:12:24 UTC';
@@ -37,9 +34,7 @@ final class InfoBarTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $infoBar->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_an_invalid_type()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -47,9 +42,7 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('text', 'foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -57,9 +50,7 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('', InfoBar::TYPE_INFO);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function dismissible_type_must_have_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -67,7 +58,7 @@ final class InfoBarTest extends ViewModelTest
         new InfoBar('text', InfoBar::TYPE_DISMISSIBLE, null, new DateTimeImmutable('2020-01-15'));
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'attention' => [new InfoBar('text', InfoBar::TYPE_ATTENTION)],

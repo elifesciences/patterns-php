@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\Checkboxes;
 use eLife\Patterns\ViewModel\CheckboxesGroup;
 use eLife\Patterns\ViewModel\CheckboxesOption;
 use eLife\Patterns\ViewModel\MessageGroup;
+use PHPUnit\Framework\Attributes\Test;
 
 final class CheckboxesTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -94,7 +93,7 @@ final class CheckboxesTest extends ViewModelTest
         $this->assertSame($data, $checkboxesAsArray);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [

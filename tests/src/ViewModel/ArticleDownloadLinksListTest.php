@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\ArticleDownloadLinksGroup;
 use eLife\Patterns\ViewModel\ArticleDownloadLinksList;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ArticleDownloadLinksListTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -72,9 +71,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
         $this->assertSame($data, $downloadList->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -93,9 +90,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_description()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -114,9 +109,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_group()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -124,9 +117,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
         new ArticleDownloadLinksList('id', 'description', []);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function groups_must_have_at_least_1_item()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -139,7 +130,7 @@ final class ArticleDownloadLinksListTest extends ViewModelTest
         ]);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

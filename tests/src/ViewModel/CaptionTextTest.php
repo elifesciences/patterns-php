@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\CaptionText;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class CaptionTextTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -46,9 +45,7 @@ final class CaptionTextTest extends ViewModelTest
         $this->assertSame($data, $captionText->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_heading()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -56,9 +53,7 @@ final class CaptionTextTest extends ViewModelTest
         CaptionText::withHeading('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_standfirst()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -66,9 +61,7 @@ final class CaptionTextTest extends ViewModelTest
         CaptionText::withStandFirst('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -76,7 +69,7 @@ final class CaptionTextTest extends ViewModelTest
         CaptionText::withText('');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum with heading' => [CaptionText::withHeading('heading')],

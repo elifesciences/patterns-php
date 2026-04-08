@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Listing;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ListingTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -50,9 +49,7 @@ final class ListingTest extends ViewModelTest
         $this->assertSame($data, $listing->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_prefix()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -60,9 +57,7 @@ final class ListingTest extends ViewModelTest
         Listing::unordered(['foo'], 'bar');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -70,9 +65,7 @@ final class ListingTest extends ViewModelTest
         Listing::unordered([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_string_items()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -80,7 +73,7 @@ final class ListingTest extends ViewModelTest
         Listing::unordered([$this]);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'ordered' => [Listing::ordered(['foo', 'bar'], 'roman-upper')],

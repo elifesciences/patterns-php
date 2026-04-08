@@ -6,13 +6,14 @@ use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 use eLife\Patterns\ViewModel;
 use Mustache_Engine;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-final class MustachePatternRendererTest extends PHPUnit_Framework_TestCase
+final class MustachePatternRendererTest extends TestCase
 {
-    /**
-     * @test
-     */
+    use ProphecyTrait;
+    #[Test]
     public function it_is_a_pattern_renderer()
     {
         $patternRenderer = new MustachePatternRenderer(new Mustache_Engine());
@@ -20,9 +21,7 @@ final class MustachePatternRendererTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(PatternRenderer::class, $patternRenderer);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_renders_view_models()
     {
         $patternRenderer = new MustachePatternRenderer(new Mustache_Engine());

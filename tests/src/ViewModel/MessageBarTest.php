@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\MessageBar;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MessageBarTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -20,7 +19,7 @@ final class MessageBarTest extends ViewModelTest
         $this->assertSame($data, $messageBar->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new MessageBar('testing message bar')],

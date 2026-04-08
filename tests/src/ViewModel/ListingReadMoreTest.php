@@ -9,12 +9,11 @@ use eLife\Patterns\ViewModel\ListingReadMore;
 use eLife\Patterns\ViewModel\Pager;
 use eLife\Patterns\ViewModel\ReadMoreItem;
 use eLife\Patterns\ViewModel\SeeMoreLink;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ListingReadMoreTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -54,9 +53,7 @@ final class ListingReadMoreTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $listingReadMore->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_knows_if_all_items_are_related()
     {
         $data = [
@@ -89,9 +86,7 @@ final class ListingReadMoreTest extends ViewModelTest
         $this->assertTrue($listingReadMore['allRelated']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_knows_if_not_all_items_are_related()
     {
         $data = [
@@ -123,7 +118,7 @@ final class ListingReadMoreTest extends ViewModelTest
         $this->assertFalse($listingReadMore['allRelated']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

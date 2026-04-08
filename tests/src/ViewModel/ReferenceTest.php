@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Reference;
 use eLife\Patterns\ViewModel\ReferenceAuthorList;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ReferenceTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -101,7 +100,7 @@ final class ReferenceTest extends ViewModelTest
         $this->assertSame($data, $reference->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum with DOI' => [Reference::withDoi('title', new Doi('10.7554/eLife.10181.001'))],

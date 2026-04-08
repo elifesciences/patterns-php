@@ -14,12 +14,11 @@ use eLife\Patterns\ViewModel\ListingTeasers;
 use eLife\Patterns\ViewModel\PreviousVersionWarning;
 use eLife\Patterns\ViewModel\Teaser;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ContentAsideTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -134,9 +133,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertSame($data, $contentAside->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_status()
     {
         $with = new ContentAside(new ContentAsideStatus("content aside"));
@@ -148,9 +145,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertArrayNotHasKey('status', $without);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_previous_version()
     {
         $with = new ContentAside(null, null, null, null, null, new PreviousVersionWarning("text"));
@@ -162,7 +157,7 @@ final class ContentAsideTest extends ViewModelTest
         $this->assertArrayNotHasKey('previousVersion', $without);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ContentAside()],
@@ -190,9 +185,7 @@ final class ContentAsideTest extends ViewModelTest
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_an_altmetric_badge()
     {
         $with = new ContentAside(null, null, null, null, null, null, new Altmetric('10.7554/eLife.09560', 'donut', false));

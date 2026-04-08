@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Paragraph;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ParagraphTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -21,9 +20,7 @@ final class ParagraphTest extends ViewModelTest
         $this->assertSame($data, $paragraph->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -31,7 +28,7 @@ final class ParagraphTest extends ViewModelTest
         new Paragraph('');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new Paragraph('some text')],

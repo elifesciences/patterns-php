@@ -4,12 +4,11 @@ namespace src\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use tests\eLife\Patterns\ViewModel\ViewModelTest;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ButtonHomeBannerTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -21,7 +20,7 @@ final class ButtonHomeBannerTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $buttonHomeBanner->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimal' => [Button::homeBanner('Some text', '#')],

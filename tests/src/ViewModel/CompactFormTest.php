@@ -11,12 +11,11 @@ use eLife\Patterns\ViewModel\Input;
 use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextField;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class CompactFormTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -104,9 +103,7 @@ final class CompactFormTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $formAsArray);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_cta_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -118,9 +115,7 @@ final class CompactFormTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_non_hidden_field()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -132,9 +127,7 @@ final class CompactFormTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_message_group_when_in_error_state()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -146,9 +139,7 @@ final class CompactFormTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function its_message_group_must_have_error_text_when_when_in_error_state()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -160,7 +151,7 @@ final class CompactFormTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [

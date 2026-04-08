@@ -7,6 +7,7 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
+use PHPUnit\Framework\Attributes\Test;
 
 final class PrimarySiteHeaderNavBarTest extends ViewModelTest
 {
@@ -16,7 +17,7 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
     private $linkItems;
     private $siteHeaderNavBar;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->linkItem1 = NavLinkedItem::asLink(new Link('item 1', '/item-1/'), false);
@@ -26,9 +27,7 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
         $this->siteHeaderNavBar = SiteHeaderNavBar::primary($this->linkItems);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $siteHeaderNavItems = $this->siteHeaderNavBar['linkedItems'];
@@ -49,23 +48,19 @@ final class PrimarySiteHeaderNavBarTest extends ViewModelTest
         $this->assertSame($this->linkItem3['rel'], $siteHeaderNavItems[2]['rel']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_correct_outer_classes()
     {
         $this->assertSame($this->siteHeaderNavBar['classesOuter'], 'nav-primary');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_correct_inner_classes()
     {
         $this->assertSame($this->siteHeaderNavBar['classesInner'], 'nav-primary__list clearfix');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         $navLinkItems = [
             NavLinkedItem::asLink(new Link('item 1', '/item-1/'), false),

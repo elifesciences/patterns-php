@@ -5,53 +5,46 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel;
 use JsonSchema\Validator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Yaml\Yaml;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
 
-abstract class ViewModelTest extends PHPUnit_Framework_TestCase
+abstract class ViewModelTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     abstract public function it_has_data();
 
-    /**
-     * @test
-     */
+    #[Test]
     final public function it_is_a_view_model()
     {
-        $viewModel = $this->createViewModel();
+        $viewModel = self::createViewModel();
 
         $this->assertInstanceOf(ViewModel::class, $viewModel);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     final public function it_has_a_template()
     {
-        $viewModel = $this->createViewModel();
+        $viewModel = self::createViewModel();
 
         $this->assertSame($this->expectedTemplate(), $viewModel->getTemplateName());
         $this->assertFileExists(__DIR__.'/../../../'.$viewModel->getTemplateName());
     }
 
-    /**
-     * @test
-     * @depends it_has_a_template
-     */
+    #[Test]
+    #[Depends('it_has_a_template')]
     final public function it_has_a_definition()
     {
         $this->loadDefinition();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     final public function it_is_array_accessible()
     {
-        $viewModel = $this->createViewModel();
+        $viewModel = self::createViewModel();
         $data = $viewModel->toArray();
 
         foreach ($data as $key => $value) {
@@ -61,11 +54,9 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @test
-     * @dataProvider viewModelProvider
-     * @depends      it_has_a_definition
-     */
+    #[Test]
+    #[DataProvider('viewModelProvider')]
+    #[Depends('it_has_a_definition')]
     final public function it_matches_the_schema(ViewModel $viewModel)
     {
         $validator = new Validator();
@@ -85,18 +76,18 @@ abstract class ViewModelTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($validator->isValid(), $message);
     }
 
-    abstract public function viewModelProvider() : array;
+    abstract public static function viewModelProvider() : array;
 
-    final protected function createViewModel() : ViewModel
+    final protected static function createViewModel() : ViewModel
     {
-        return array_values($this->viewModelProvider())[0][0];
+        return array_values(static::viewModelProvider())[0][0];
     }
 
     abstract protected function expectedTemplate() : string;
 
     private function loadDefinition() : stdClass
     {
-        $templateName = $this->createViewModel()->getTemplateName();
+        $templateName = self::createViewModel()->getTemplateName();
         $yamlFile = __DIR__.'/../../../resources/definitions/'.basename($templateName, 'mustache').'yaml';
 
         $this->assertFileExists($yamlFile);

@@ -10,12 +10,11 @@ use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\ListingAnnotationTeasers;
 use eLife\Patterns\ViewModel\Pager;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ListingAnnotationTeasersTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -91,9 +90,7 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $listingAnnotationTeasers->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_no_teasers()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -101,7 +98,7 @@ final class ListingAnnotationTeasersTest extends ViewModelTest
         ListingAnnotationTeasers::basic([]);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [
