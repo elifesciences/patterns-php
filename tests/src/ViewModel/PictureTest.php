@@ -4,12 +4,13 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\Picture;
+use PHPUnit\Framework\Attributes\Test;
 
 final class PictureTest extends ViewModelTest
 {
     private $imageFixture;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->imageFixture = new Image(
             '/default/path',
@@ -17,9 +18,7 @@ final class PictureTest extends ViewModelTest
             'the alt text');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -46,7 +45,7 @@ final class PictureTest extends ViewModelTest
         $this->assertSame($data, $picture->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         $image = new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text');
 

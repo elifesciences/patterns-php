@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ServerError;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ServerErrorTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -26,7 +25,7 @@ final class ServerErrorTest extends ViewModelTest
         $this->assertSame($data, $serverError->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ServerError()],

@@ -13,6 +13,7 @@ use eLife\Patterns\ViewModel\SiteHeader;
 use eLife\Patterns\ViewModel\SiteHeaderTitle;
 use eLife\Patterns\ViewModel\SiteHeaderNavBar;
 use TypeError;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SiteHeaderTest extends ViewModelTest
 {
@@ -21,7 +22,7 @@ final class SiteHeaderTest extends ViewModelTest
     private $secondaryLinks;
     private $searchBox;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->title = new SiteHeaderTitle('/home/page/path');
@@ -49,9 +50,7 @@ final class SiteHeaderTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $siteHeader = new SiteHeader($this->title, $this->primaryLinks, $this->secondaryLinks, $this->searchBox);
@@ -62,34 +61,28 @@ final class SiteHeaderTest extends ViewModelTest
         $this->assertSameValuesWithoutOrder($this->searchBox->toArray()['compactForm'], $siteHeader['searchBox']->toArray()['compactForm']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function title_must_be_supplied()
     {
         $this->expectException(TypeError::class);
         new SiteHeader(null, $this->primaryLinks, $this->secondaryLinks);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function primary_links_must_be_supplied()
     {
         $this->expectException(TypeError::class);
         new SiteHeader($this->title, null, $this->secondaryLinks);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function secondary_links_must_be_supplied()
     {
         $this->expectException(TypeError::class);
         new SiteHeader($this->title, $this->primaryLinks, null);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         $title = new SiteHeaderTitle('/home/page/path');
 
@@ -111,7 +104,7 @@ final class SiteHeaderTest extends ViewModelTest
 
         return [
             'minimum' => [new SiteHeader($title, $primaryLinks, $secondaryLinks)],
-            'complete' => [new SiteHeader($title, $primaryLinks, $secondaryLinks, $this->searchBox)],
+            'complete' => [new SiteHeader($title, $primaryLinks, $secondaryLinks, new SearchBox(new CompactForm(new Form('/action', 'id', 'GET'), new Input('label', 'search', 'name', 'value', 'placeholder'), 'cta')))],
         ];
     }
 

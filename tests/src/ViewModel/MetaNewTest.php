@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MetaNew;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MetaNewTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -37,9 +36,7 @@ final class MetaNewTest extends ViewModelTest
         $this->assertSame($data['date'], $meta['date']->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_expanded_date()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -52,7 +49,7 @@ final class MetaNewTest extends ViewModelTest
         return Date::simple(new DateTimeImmutable());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'link' => [MetaNew::withLink(new Link('foo', '#'), self::getDateStub())],

@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SelectNavTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -72,7 +71,7 @@ final class SelectNavTest extends ViewModelTest
         $this->assertSame($data, $selectNav->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

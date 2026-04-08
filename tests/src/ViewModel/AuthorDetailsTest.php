@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\AuthorDetails;
 use eLife\Patterns\ViewModel\Orcid;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AuthorDetailsTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -73,9 +72,7 @@ final class AuthorDetailsTest extends ViewModelTest
         $this->assertSame($data, $authorDetails->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -83,9 +80,7 @@ final class AuthorDetailsTest extends ViewModelTest
         AuthorDetails::forPerson('', 'name');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_name()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -93,7 +88,7 @@ final class AuthorDetailsTest extends ViewModelTest
         AuthorDetails::forPerson('id', '');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum person' => [AuthorDetails::forPerson('id', 'name')],

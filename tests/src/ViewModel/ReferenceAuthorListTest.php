@@ -6,13 +6,12 @@ use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Author;
 use eLife\Patterns\ViewModel\ReferenceAuthorList;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class ReferenceAuthorListTest extends PHPUnit_Framework_TestCase
+final class ReferenceAuthorListTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $list = new ReferenceAuthorList([Author::asText('Author')], 'suffix');
@@ -20,9 +19,7 @@ final class ReferenceAuthorListTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $list);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = ['authors' => [['name' => 'Author', 'url' => false]], 'suffix' => 'suffix'];
@@ -35,9 +32,7 @@ final class ReferenceAuthorListTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $list->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_suffix()
     {
         $this->expectException(InvalidArgumentException::class);

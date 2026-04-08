@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\JumpMenu;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class JumpMenuTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -29,9 +28,7 @@ final class JumpMenuTest extends ViewModelTest
         $this->assertSame($data, $jumpMenu->toArray());
     }
 
-     /**
-     * @test
-     */
+    #[Test]
     public function items_must_be_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -39,7 +36,7 @@ final class JumpMenuTest extends ViewModelTest
         new JumpMenu(['name']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new JumpMenu([new Link('link1', 'url1'), new Link('link2', 'url2')])],

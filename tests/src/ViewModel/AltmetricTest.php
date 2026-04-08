@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Altmetric;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AltmetricTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -24,7 +23,7 @@ final class AltmetricTest extends ViewModelTest
         $this->assertSame($data, $result->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'altmetricBadgeWithDetails' => [new Altmetric('10.7554/eLife.10181.001', 'medium-donut', true)],

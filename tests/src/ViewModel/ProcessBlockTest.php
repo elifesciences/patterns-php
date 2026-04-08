@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\ProcessBlock;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ProcessBlockTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -31,9 +30,7 @@ final class ProcessBlockTest extends ViewModelTest
         $this->assertSame($data, $processBlock->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_variant()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -41,7 +38,7 @@ final class ProcessBlockTest extends ViewModelTest
         new ProcessBlock('content', 'not valid variant', new Link('name', 'url'));
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ProcessBlock('content')],

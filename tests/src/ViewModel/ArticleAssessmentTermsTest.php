@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ArticleAssessmentTerms;
 use eLife\Patterns\ViewModel\Term;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ArticleAssesmentTermsTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -56,7 +55,7 @@ final class ArticleAssesmentTermsTest extends ViewModelTest
         $this->assertSame($data, $articleAssessmentTerms->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Statistic;
 use eLife\Patterns\ViewModel\StatisticCollection;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 class StatisticCollectionTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -33,9 +32,7 @@ class StatisticCollectionTest extends ViewModelTest
         $this->assertSameValuesWithoutOrder($data, $model->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function is_should_fail_when_empty()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -43,7 +40,7 @@ class StatisticCollectionTest extends ViewModelTest
         new StatisticCollection();
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
           'minimum' => [

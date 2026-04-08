@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\ServiceUnavailable;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ServiceUnavailableTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -26,7 +25,7 @@ final class ServiceUnavailableTest extends ViewModelTest
         $this->assertSame($data, $serviceUnavailable->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ServiceUnavailable()],

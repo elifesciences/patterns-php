@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Doi;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class DoiTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -21,9 +20,7 @@ final class DoiTest extends ViewModelTest
         $this->assertSame($data, $doi->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_a_doi()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -31,9 +28,7 @@ final class DoiTest extends ViewModelTest
         new Doi('foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_not_have_a_link()
     {
         $with = new Doi('10.7554/eLife.00001', true);
@@ -45,7 +40,7 @@ final class DoiTest extends ViewModelTest
         $this->assertArrayNotHasKey('doiWithoutLink', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new Doi('10.7554/eLife.10181.001')],

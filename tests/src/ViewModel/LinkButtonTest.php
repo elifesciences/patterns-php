@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class LinkButtonTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -30,9 +29,7 @@ final class LinkButtonTest extends ViewModelTest
         $this->assertSame($data, $button->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_merges_outline_and_inactive_states()
     {
         $button = Button::link('text', 'path', Button::SIZE_MEDIUM, Button::STYLE_OUTLINE, false);
@@ -40,9 +37,7 @@ final class LinkButtonTest extends ViewModelTest
         $this->assertSame('button--outline-inactive', $button['classes']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_blank_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -50,9 +45,7 @@ final class LinkButtonTest extends ViewModelTest
         Button::link('', 'path');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_path()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -60,9 +53,7 @@ final class LinkButtonTest extends ViewModelTest
         Button::link('text', '');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_an_invalid_size()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -70,9 +61,7 @@ final class LinkButtonTest extends ViewModelTest
         Button::link('text', 'path', Button::TYPE_BUTTON, 'foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_an_invalid_style()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -80,7 +69,7 @@ final class LinkButtonTest extends ViewModelTest
         Button::link('text', 'path', Button::TYPE_BUTTON, Button::SIZE_MEDIUM, 'foo');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'button' => [Button::link('text', 'path')],

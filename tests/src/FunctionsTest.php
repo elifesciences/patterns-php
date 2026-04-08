@@ -4,20 +4,20 @@ namespace tests\eLife\Patterns;
 
 use function eLife\Patterns\mixed_accessibility_text;
 use function eLife\Patterns\mixed_visibility_text;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-final class FunctionsTest extends PHPUnit_Framework_TestCase
+final class FunctionsTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider MixedVisibilityTextProvider
-     */
+    #[Test]
+    #[DataProvider('MixedVisibilityTextProvider')]
     public function mixed_visibility_text(array $item, string $expected)
     {
         $this->assertSame($expected, mixed_visibility_text($item[0], $item[1], $item[2]));
     }
 
-    public function MixedVisibilityTextProvider()
+    public static function MixedVisibilityTextProvider()
     {
         return [
             [
@@ -35,16 +35,14 @@ final class FunctionsTest extends PHPUnit_Framework_TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider MixedAccessibilityTextProvider
-     */
+    #[Test]
+    #[DataProvider('MixedAccessibilityTextProvider')]
     public function mixed_accessibility_text(array $item, string $expected)
     {
         $this->assertSame($expected, mixed_accessibility_text($item[0], $item[1], $item[2]));
     }
 
-    public function MixedAccessibilityTextProvider()
+    public static function MixedAccessibilityTextProvider()
     {
         return [
             [

@@ -5,13 +5,12 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\Image;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class ImageTest extends PHPUnit_Framework_TestCase
+final class ImageTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $image = new Image('/foo.png', ['1' => '/bar.png']);
@@ -19,9 +18,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $image);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -40,9 +37,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $image->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_default_path()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -50,9 +45,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         new Image('', ['1' => '/bar.png', '2' => '/baz.png']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_srcset_path()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -60,9 +53,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         new Image('/foo.png', ['1' => '', '2' => '/baz.png']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_all_srcsafe_keys_convertable_to_numbers()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -70,9 +61,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         new Image('/foo.png', ['1' => '/bar.png', 'baz' => '/baz.png']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_srcset_key_of_1()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -80,9 +69,7 @@ final class ImageTest extends PHPUnit_Framework_TestCase
         new Image('/foo.png', ['2' => '/baz.png', '3' => '/quux.png']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_non_integer_srcset_key()
     {
         new Image('/foo.png', ['1' => '/bar.png', '1.5' => '/baz.png']);

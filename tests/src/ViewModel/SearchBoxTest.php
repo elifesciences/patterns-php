@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\Form;
 use eLife\Patterns\ViewModel\Input;
 use eLife\Patterns\ViewModel\SearchBox;
 use eLife\Patterns\ViewModel\SubjectFilter;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SearchBoxTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -51,7 +50,7 @@ final class SearchBoxTest extends ViewModelTest
         $this->assertSame($data, $searchBox->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'without subject filter' => [

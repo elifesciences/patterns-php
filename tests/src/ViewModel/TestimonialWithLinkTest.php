@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\SimpleImage;
 use eLife\Patterns\ViewModel\TestimonialWithLink;
 use tests\eLife\Patterns\ViewModel\ViewModelTest;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TestimonialWithLinkTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $testimonialWithLink = new TestimonialWithLink(
@@ -38,9 +37,7 @@ final class TestimonialWithLinkTest extends ViewModelTest
         $this->assertSame($data, $testimonialWithLink->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_one_word_quotation()
     {
         $testimonialWithLink = new TestimonialWithLink(
@@ -55,7 +52,7 @@ final class TestimonialWithLinkTest extends ViewModelTest
         $this->assertArrayNotHasKey('quotation', $data);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'complete' => [new TestimonialWithLink(new SimpleImage('/foo.png', 'altText'), 'quotation of the day', 'attribution', new Link('#', 'Link name'))],

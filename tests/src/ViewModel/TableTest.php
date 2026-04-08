@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\TableFootnote;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TableTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -48,9 +47,7 @@ final class TableTest extends ViewModelTest
         $this->assertSame($data, $table->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_table()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -58,9 +55,7 @@ final class TableTest extends ViewModelTest
         new Table([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_html_table()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -68,7 +63,7 @@ final class TableTest extends ViewModelTest
         new Table(['foo']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new Table(['<table><tr><td>foo</td></tr></table>'])],

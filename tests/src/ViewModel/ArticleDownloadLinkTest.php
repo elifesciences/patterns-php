@@ -5,13 +5,12 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\ArticleDownloadLink;
 use eLife\Patterns\ViewModel\Link;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
+final class ArticleDownloadLinkTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $articleDownloadLink = new ArticleDownloadLink(new Link('name', 'url'));
@@ -19,9 +18,7 @@ final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $articleDownloadLink);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -49,9 +46,7 @@ final class ArticleDownloadLinkTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $articleDownloadLink->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_check_pmc_url()
     {
         $with = new ArticleDownloadLink(

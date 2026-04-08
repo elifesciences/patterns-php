@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\Filter;
 use eLife\Patterns\ViewModel\FilterGroup;
 use eLife\Patterns\ViewModel\FilterPanel;
+use PHPUnit\Framework\Attributes\Test;
 
 final class FilterPanelTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -73,7 +72,7 @@ final class FilterPanelTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new FilterPanel('Search results', [

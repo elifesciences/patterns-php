@@ -5,13 +5,12 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\MessageGroup;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class MessageGroupTest extends PHPUnit_Framework_TestCase
+final class MessageGroupTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $messageGroup = MessageGroup::forInfoText('info message', 'error message');
@@ -19,9 +18,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $messageGroup);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -51,9 +48,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $messageGroupAsArray);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_info_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -61,9 +56,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
         MessageGroup::forInfoText('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_error_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -71,9 +64,7 @@ final class MessageGroupTest extends PHPUnit_Framework_TestCase
         MessageGroup::forErrorText('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_an_id_of_the_expected_format()
     {
         $messageGroupId = (MessageGroup::forInfoText('info message', 'error message'))['id'];

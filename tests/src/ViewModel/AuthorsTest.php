@@ -19,12 +19,11 @@ use eLife\Patterns\ViewModel\SelectNav;
 use eLife\Patterns\ViewModel\SelectOption;
 use eLife\Patterns\ViewModel\SocialMediaSharers;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AuthorsTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -58,9 +57,7 @@ final class AuthorsTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $authors->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_authors()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -68,9 +65,7 @@ final class AuthorsTest extends ViewModelTest
         new Authors([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authors_must_be_authors()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -78,9 +73,7 @@ final class AuthorsTest extends ViewModelTest
         new Authors(['foo']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function institutions_must_be_institutions()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -88,7 +81,7 @@ final class AuthorsTest extends ViewModelTest
         new Authors([Author::asText('author')], ['foo']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new Authors([Author::asText('author')])],

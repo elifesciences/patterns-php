@@ -8,12 +8,11 @@ use eLife\Patterns\ViewModel\CaptionText;
 use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\DownloadLink;
 use eLife\Patterns\ViewModel\Link;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AdditionalAssetsTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -56,7 +55,7 @@ final class AdditionalAssetsTest extends ViewModelTest
         $this->assertSame($data, $additionalAssets->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         $downloadLink = DownloadLink::fromLink(new Link('Download link', 'http://google.com/download'), 'File name');
 

@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\SocialMediaSharersNew;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SocialMediaSharersNewTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -43,9 +42,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         $this->assertSame($data['encoded'], $socialMediaSharers->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_given_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -53,9 +50,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         new SocialMediaSharersNew('', 'https://example.com/some-article-url');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_be_given_a_url()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -63,9 +58,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         new SocialMediaSharersNew('Some article title', 'foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_include_an_email_url()
     {
         $with = new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url', true);
@@ -75,9 +68,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         $this->assertArrayNotHasKey('emailUrl', $without->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_include_a_mastodon_url()
     {
         $with = new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url', true, true);
@@ -87,9 +78,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         $this->assertArrayNotHasKey('mastodonUrl', $without->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_include_a_comment()
     {
         $with = new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url', true, true, true);
@@ -99,7 +88,7 @@ final class SocialMediaSharersNewTest extends ViewModelTest
         $this->assertArrayNotHasKey('hasComment', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new SocialMediaSharersNew('Some article title', 'https://example.com/some-article-url')],

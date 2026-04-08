@@ -6,12 +6,11 @@ use DateTimeImmutable;
 use eLife\Patterns\ViewModel\AnnotationTeaser;
 use eLife\Patterns\ViewModel\Date;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AnnotationTeaserTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -53,9 +52,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $annotationTeaser);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_not_have_an_empty_document()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -69,9 +66,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_not_have_an_empty_in_context_uri()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -85,9 +80,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_full_version_must_have_a_highlight()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -101,9 +94,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_full_version_must_have_content()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -116,9 +107,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_highlight_must_have_a_highlight()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -131,9 +120,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_page_note_must_have_content()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -145,9 +132,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_reply_must_have_content()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -160,9 +145,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function a_reply_must_have_isReply_set_to_true()
     {
         $annotationTeaser = AnnotationTeaser::forReply(
@@ -174,7 +157,7 @@ final class AnnotationTeaserTest extends ViewModelTest
         $this->assertTrue($annotationTeaser['isReply']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'highlight' => [

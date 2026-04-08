@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ListHeading;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ListHeadingTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -24,9 +23,7 @@ final class ListHeadingTest extends ViewModelTest
         $this->assertSame($heading->toArray(), $data);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_heading()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -34,7 +31,7 @@ final class ListHeadingTest extends ViewModelTest
         new ListHeading('');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'complete' => [

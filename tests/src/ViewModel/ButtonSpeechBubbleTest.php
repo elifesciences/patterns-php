@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ButtonSpeechBubbleTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -25,27 +24,21 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $buttonSpeechBubble->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_a_button()
     {
         $button = Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently 0 annotations on this page).</span>');
         $this->assertEquals(Button::TYPE_BUTTON, $button['type']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_the_css_class_for_speech_bubble()
     {
         $button = Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently 0 annotations on this page).</span>');
         $this->assertStringMatchesFormat('button--speech-bubble', $button['classes']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_no_explicit_css_class_set_for_size()
     {
         $prohibitedClasses = [
@@ -55,13 +48,11 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
         ];
         $buttonClasses = (Button::speechBubble('<span aria-hidden="true">&#8220;</span><span class="visuallyhidden">Open annotations (there are currently 0 annotations on this page).</span>'))['classes'];
         foreach ($prohibitedClasses as $prohibitedClass) {
-            $this->assertStringNotMatchesFormat($prohibitedClass, $buttonClasses);
+            $this->assertStringNotContainsString($prohibitedClass, $buttonClasses);
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_the_css_class_indicating_populated_when_it_is()
     {
         $expectedButtonClasses = 'button--speech-bubble button--speech-bubble-populated';
@@ -69,9 +60,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
         $this->assertStringMatchesFormat($expectedButtonClasses, $observedButtonClasses);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_lacks_the_css_class_indicating_populated_when_it_is_not()
     {
         $expectedButtonClasses = 'button--speech-bubble';
@@ -79,7 +68,7 @@ final class ButtonSpeechBubbleTest extends ViewModelTest
         $this->assertStringMatchesFormat($expectedButtonClasses, $observedButtonClasses);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'basic' => [Button::speechBubble('&#8220;')],

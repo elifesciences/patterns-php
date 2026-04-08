@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\Select;
 use eLife\Patterns\ViewModel\SelectOption;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SelectTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -63,7 +62,7 @@ final class SelectTest extends ViewModelTest
         $this->assertSame($data, $selectAsArray);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [

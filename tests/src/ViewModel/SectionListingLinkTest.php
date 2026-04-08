@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\SectionListingLink;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SectionListingLinkTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -24,9 +23,7 @@ final class SectionListingLinkTest extends ViewModelTest
         $this->assertSame($data, $subjectsListLink->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -34,9 +31,7 @@ final class SectionListingLinkTest extends ViewModelTest
         new SectionListingLink('', 'foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_target_fragment_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -44,7 +39,7 @@ final class SectionListingLinkTest extends ViewModelTest
         new SectionListingLink('foo', '');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new SectionListingLink('text', 'id')],

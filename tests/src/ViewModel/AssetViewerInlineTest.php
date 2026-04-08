@@ -15,12 +15,11 @@ use eLife\Patterns\ViewModel\OpenLink;
 use eLife\Patterns\ViewModel\Table;
 use eLife\Patterns\ViewModel\Video;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AssetViewerInlineTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -196,9 +195,7 @@ final class AssetViewerInlineTest extends ViewModelTest
         $this->assertSame($data, $viewer->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_an_inline_captioned_asset()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -208,7 +205,7 @@ final class AssetViewerInlineTest extends ViewModelTest
         );
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'primary' => [

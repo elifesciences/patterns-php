@@ -7,12 +7,11 @@ use eLife\Patterns\ViewModel\Date;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Meta;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MetaTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -44,9 +43,7 @@ final class MetaTest extends ViewModelTest
         $this->assertSame($data['version'], $meta['version']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_expanded_date()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -54,9 +51,7 @@ final class MetaTest extends ViewModelTest
         Meta::withDate(Date::expanded(new DateTimeImmutable()));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_article_status()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -64,9 +59,7 @@ final class MetaTest extends ViewModelTest
         Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'Not valid status', 'revised', 'bar');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_article_status_color_class()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -79,7 +72,7 @@ final class MetaTest extends ViewModelTest
         return Date::simple(new DateTimeImmutable());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'link' => [Meta::withLink(new Link('foo', '#'), self::getDateStub())],
@@ -87,7 +80,7 @@ final class MetaTest extends ViewModelTest
             'text' => [Meta::withText('foo', self::getDateStub())],
             'text and date' => [Meta::withText('foo', self::getDateStub())],
             'date' => [Meta::withDate(self::getDateStub())],
-            'all' => [Meta::withLink(new Link('foo', '#'), self::getDateStub()), 'Revised', 'revised', 'bar'],
+            'all' => [Meta::withLink(new Link('foo', '#'), self::getDateStub(), 'Revised', 'revised', 'bar')],
             'version' => [Meta::withVersion('Reviewed preprint v2', self::getDateStub(), 'Revised', 'revised')],
         ];
     }

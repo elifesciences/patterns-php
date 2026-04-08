@@ -23,6 +23,8 @@ use eLife\Patterns\ViewModel\SelectOption;
 use eLife\Patterns\ViewModel\SocialMediaSharersNew;
 use eLife\Patterns\ViewModel\SpeechBubble;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ContentHeaderNewTest extends ViewModelTest
 {
@@ -42,9 +44,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -251,9 +251,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -261,9 +259,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         new ContentHeaderNew('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function subjects_must_be_a_links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -271,10 +267,8 @@ final class ContentHeaderNewTest extends ViewModelTest
         new ContentHeaderNew('', false, null, null, null, true, null, ['foo']);
     }
 
-    /**
-     * @test
-     * @dataProvider titleLengthProvider
-     */
+    #[Test]
+    #[DataProvider('titleLengthProvider')]
     public function a_title_has_the_correct_designation_for_its_length(int $length, string $expected)
     {
         $title = str_repeat('é', $length);
@@ -283,7 +277,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         $this->assertSame($expected, $contentHeader['titleLength']);
     }
 
-    public function titleLengthProvider() : array
+    public static function titleLengthProvider() : array
     {
         return [
             [3,   'xx-short'],
@@ -303,9 +297,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_aside()
     {
         $with = new ContentHeaderNew('title', true);
@@ -317,7 +309,7 @@ final class ContentHeaderNewTest extends ViewModelTest
         $this->assertArrayNotHasKey('hasAside', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new ContentHeaderNew('title')],

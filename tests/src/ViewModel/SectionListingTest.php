@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ListHeading;
 use eLife\Patterns\ViewModel\SectionListing;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SectionListingTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -47,9 +46,7 @@ final class SectionListingTest extends ViewModelTest
         $this->assertSame($data, $siteLinksList->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -57,7 +54,7 @@ final class SectionListingTest extends ViewModelTest
         new SectionListing('', [new Link('subject', 'url')], new ListHeading('heading'));
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new SectionListing('id', [new Link('subject', 'url')], new ListHeading('heading'))],

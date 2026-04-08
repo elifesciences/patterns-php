@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Code;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class CodeTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -28,7 +27,7 @@ final class CodeTest extends ViewModelTest
         new Code('');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new Code('<p>code</p>')],

@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use DateTimeImmutable;
 use eLife\Patterns\ViewModel\Date;
+use PHPUnit\Framework\Attributes\Test;
 
 final class DateTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $dateIn = '2015-10-05';
@@ -47,7 +46,7 @@ final class DateTest extends ViewModelTest
         $this->assertSame($dataExpanded, $viewModelExpanded->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'simple' => [Date::simple(new DateTimeImmutable())],

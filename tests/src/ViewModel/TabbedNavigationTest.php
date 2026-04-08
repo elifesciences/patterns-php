@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\TabbedNavigation;
 use eLife\Patterns\ViewModel\TabbedNavigationLink;
 use eLife\Patterns\ViewModel\Link;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TabbedNavigationTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -66,9 +65,7 @@ final class TabbedNavigationTest extends ViewModelTest
         $this->assertSame($data, $tabbedNavigation->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_an_item()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -76,7 +73,7 @@ final class TabbedNavigationTest extends ViewModelTest
         new TabbedNavigation([]);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'full' => [

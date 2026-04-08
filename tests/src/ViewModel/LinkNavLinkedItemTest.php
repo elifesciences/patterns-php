@@ -4,30 +4,25 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\NavLinkedItem;
+use PHPUnit\Framework\Attributes\Test;
 
 final class LinkNavLinkedItemTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function rel_search_set_if_flagged()
     {
         $linkNavLinkedItem = NavLinkedItem::asLink(new Link('the text', 'the link path'), true);
         $this->assertSame('search', $linkNavLinkedItem['rel']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function rel_search_not_set_if_not_flagged()
     {
         $linkNavLinkedItem = NavLinkedItem::asLink(new Link('the text', 'the link path'), false);
         $this->assertNull($linkNavLinkedItem['rel']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $dataAsLink = [
@@ -44,7 +39,7 @@ final class LinkNavLinkedItemTest extends ViewModelTest
         $this->assertSame($dataAsLink, $asLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'basic' => [NavLinkedItem::asLink(new Link('the text', '/the/path'))],

@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Image;
 use eLife\Patterns\ViewModel\ImageLink;
 use eLife\Patterns\ViewModel\Picture;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ImageLinkTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -31,7 +30,7 @@ final class ImageLinkTest extends ViewModelTest
         $this->assertSame($data, $imageLink->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new ImageLink('url', new Picture([], new Image('/default/path', ['2' => '/path/to/image/500/wide', '1' => '/default/path'], 'the alt text')))],

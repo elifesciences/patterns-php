@@ -6,12 +6,11 @@ use eLife\Patterns\ViewModel\FormLabel;
 use eLife\Patterns\ViewModel\Honeypot;
 use eLife\Patterns\ViewModel\MessageGroup;
 use eLife\Patterns\ViewModel\TextField;
+use PHPUnit\Framework\Attributes\Test;
 
 final class HoneypotTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -63,7 +62,7 @@ final class HoneypotTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $textFieldAsArray);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimal input' => [new Honeypot(TextField::emailInput(new FormLabel('label'), 'id', 'some name'))],

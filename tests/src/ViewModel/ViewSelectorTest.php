@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\ViewSelector;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ViewSelectorTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -68,9 +67,7 @@ final class ViewSelectorTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $viewSelector);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_at_least_2_jump_links_if_any()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -78,9 +75,7 @@ final class ViewSelectorTest extends ViewModelTest
         new ViewSelector(new Link('article', '#article'), [new Link('some link', '#')]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_primary_url()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -88,9 +83,7 @@ final class ViewSelectorTest extends ViewModelTest
         new ViewSelector(new Link('article'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_secondary_url_if_secondary_link_provided()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -98,7 +91,7 @@ final class ViewSelectorTest extends ViewModelTest
         new ViewSelector(new Link('article', '#article'), [], new Link('figures'));
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [

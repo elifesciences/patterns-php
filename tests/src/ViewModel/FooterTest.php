@@ -9,12 +9,11 @@ use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\MainMenu;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SiteHeaderTitle;
+use PHPUnit\Framework\Attributes\Test;
 
 final class FooterTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -63,7 +62,7 @@ final class FooterTest extends ViewModelTest
         $this->assertSame($data, $footer->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

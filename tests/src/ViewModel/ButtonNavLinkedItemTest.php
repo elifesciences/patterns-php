@@ -5,29 +5,26 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Button;
 use eLife\Patterns\ViewModel\NavLinkedItem;
 use TypeError;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ButtonNavLinkedItemTest extends ViewModelTest
 {
     private $button;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->button = Button::link('the button text', '/the/button/path');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function as_button_it_must_be_supplied_a_button()
     {
         $this->expectException(TypeError::class);
         NavLinkedItem::asButton(null);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -40,7 +37,7 @@ final class ButtonNavLinkedItemTest extends ViewModelTest
         $this->assertSame($data, $buttonNavLinkedItem->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         $button = Button::link('the button text', '/the/button/path');
 

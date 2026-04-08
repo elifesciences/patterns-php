@@ -3,12 +3,11 @@
 namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\HiddenField;
+use PHPUnit\Framework\Attributes\Test;
 
 final class HiddenFieldTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -25,7 +24,7 @@ final class HiddenFieldTest extends ViewModelTest
         $this->assertSame($data, $field->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new HiddenField()],

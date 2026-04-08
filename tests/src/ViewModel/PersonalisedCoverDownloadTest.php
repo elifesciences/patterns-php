@@ -11,12 +11,11 @@ use eLife\Patterns\ViewModel\PersonalisedCoverDownload;
 use eLife\Patterns\ViewModel\Picture;
 use eLife\Patterns\ViewModel\SiteHeaderTitle;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class PersonalisedCoverDownloadTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -90,9 +89,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
         $this->assertSame($data, $download->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_empty_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -100,9 +97,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
         new PersonalisedCoverDownload(new SiteHeaderTitle('/home/page/path', true, true), 'title', [], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_non_paragraph_text()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -110,7 +105,7 @@ final class PersonalisedCoverDownloadTest extends ViewModelTest
         new PersonalisedCoverDownload(new SiteHeaderTitle('/home/page/path', true, true), 'title', ['foo'], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]));
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [new PersonalisedCoverDownload(new SiteHeaderTitle('/home/page/path', true, true), 'title', [new Paragraph('foo')], new Picture([], new Image('path')), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]), new ListHeading('heading'), new ButtonCollection([Button::link('text', 'path')]))],

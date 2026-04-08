@@ -5,12 +5,12 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\Box;
 use eLife\Patterns\ViewModel\Doi;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class BoxTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -35,9 +35,7 @@ final class BoxTest extends ViewModelTest
         $this->assertSame($data, $box->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -45,10 +43,8 @@ final class BoxTest extends ViewModelTest
         new Box(null, null, '', 1, null, 'content');
     }
 
-    /**
-     * @test
-     * @dataProvider headingLevelProvider
-     */
+    #[Test]
+    #[DataProvider('headingLevelProvider')]
     public function it_must_have_a_valid_heading_level(int $headingLevel)
     {
         $this->expectException(InvalidArgumentException::class);
@@ -56,14 +52,12 @@ final class BoxTest extends ViewModelTest
         new Box(null, null, 'title', $headingLevel, null, 'content');
     }
 
-    public function headingLevelProvider() : array
+    public static function headingLevelProvider() : array
     {
         return [[0], [7]];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_content()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -71,7 +65,7 @@ final class BoxTest extends ViewModelTest
         new Box(null, null, 'title', 1, null, '');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new Box(null, null, 'title', 1, null, 'content')],

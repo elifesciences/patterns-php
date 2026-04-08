@@ -9,12 +9,11 @@ use eLife\Patterns\ViewModel\MediaSource;
 use eLife\Patterns\ViewModel\MediaSourceFallback;
 use eLife\Patterns\ViewModel\MediaType;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class AudioPlayerTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_not_accept_unknown_type()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -30,9 +29,7 @@ final class AudioPlayerTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_not_accept_video_type()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -48,9 +45,7 @@ final class AudioPlayerTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_requires_a_positive_episode_number()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -66,9 +61,7 @@ final class AudioPlayerTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_requires_at_least_one_chapter()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -82,9 +75,7 @@ final class AudioPlayerTest extends ViewModelTest
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $chapters = [
@@ -148,7 +139,7 @@ final class AudioPlayerTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $audioPlayer);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

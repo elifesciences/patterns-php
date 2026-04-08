@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\DecisionLetterHeader;
 use eLife\Patterns\ViewModel\ProfileSnippet;
+use PHPUnit\Framework\Attributes\Test;
 
 final class DecisionLetterHeaderTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -31,7 +30,7 @@ final class DecisionLetterHeaderTest extends ViewModelTest
         return new ProfileSnippet('Name McName', 'Title McTitle');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'without profiles' => [new DecisionLetterHeader('Main text of letter')],

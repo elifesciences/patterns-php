@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\ContextualData;
 use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\SpeechBubble;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ContextualDataTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -47,16 +46,14 @@ final class ContextualDataTest extends ViewModelTest
         $this->assertSame($data, $contextualData->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_truncates_doi()
     {
         $contextualData = ContextualData::withCitation('foo', new Doi('10.7554/eLife.10181.001'));
         $this->assertTrue($contextualData['citation']['doi']['isTruncated']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'hypothesis only' => [ContextualData::annotationsOnly(SpeechBubble::forContextualData())],

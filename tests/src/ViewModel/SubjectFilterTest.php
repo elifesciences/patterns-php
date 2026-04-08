@@ -5,13 +5,12 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\SubjectFilter;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class SubjectFilterTest extends PHPUnit_Framework_TestCase
+final class SubjectFilterTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $filter = new SubjectFilter('name', 'value', 'text');
@@ -19,9 +18,7 @@ final class SubjectFilterTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $filter);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -38,9 +35,7 @@ final class SubjectFilterTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $filter->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_name()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -48,9 +43,7 @@ final class SubjectFilterTest extends PHPUnit_Framework_TestCase
         new SubjectFilter('', 'value', 'text');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_value()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -58,9 +51,7 @@ final class SubjectFilterTest extends PHPUnit_Framework_TestCase
         new SubjectFilter('name', '', 'text');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_text()
     {
         $this->expectException(InvalidArgumentException::class);

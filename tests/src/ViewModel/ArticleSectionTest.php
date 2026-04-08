@@ -9,12 +9,11 @@ use eLife\Patterns\ViewModel\Doi;
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Term;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ArticleSectionTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $basicData = [
@@ -144,9 +143,7 @@ final class ArticleSectionTest extends ViewModelTest
         $this->assertSameWithoutOrder($collapsibleData, $collapsibleArticleSection);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_title_without_a_heading_level()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -154,9 +151,7 @@ final class ArticleSectionTest extends ViewModelTest
         ArticleSection::basic('<p>body</p>', 'some title', null);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_header_link_without_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -165,9 +160,7 @@ final class ArticleSectionTest extends ViewModelTest
             null, false, new Link('Request a detailed protocol', '#'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_heading_level_without_a_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -175,9 +168,7 @@ final class ArticleSectionTest extends ViewModelTest
         ArticleSection::basic('<p>body</p>', null, 2);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_doi_without_an_id()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -185,9 +176,7 @@ final class ArticleSectionTest extends ViewModelTest
         ArticleSection::basic('<p>body</p>', null, null, null, new Doi('10.7554/eLife.10181.001'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_related_links_separator_without_related_Links()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -196,9 +185,7 @@ final class ArticleSectionTest extends ViewModelTest
             null, false, null, ArticleSection::RELATED_LINKS_SEPARATOR_CIRCLE);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_heading_level_and_has_editor_title()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -208,9 +195,7 @@ final class ArticleSectionTest extends ViewModelTest
         true);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_valid_related_links_separator()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -220,7 +205,7 @@ final class ArticleSectionTest extends ViewModelTest
             null, false, null, 'not valid');
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'basic minimum' => [ArticleSection::basic('<p>body</p>')],

@@ -7,13 +7,14 @@ use eLife\Patterns\PatternRenderer\MustachePatternRenderer;
 use eLife\Patterns\ViewModel;
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-final class IntegrationTest extends PHPUnit_Framework_TestCase
+final class IntegrationTest extends TestCase
 {
-    /**
-     * @test
-     */
+    use ProphecyTrait;
+    #[Test]
     public function it_renders_a_view_model()
     {
         $viewModel = $this->prophesize(ViewModel::class);
@@ -26,9 +27,7 @@ final class IntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertSame("foo bar\n", $patternRenderer->render($viewModel->reveal()));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_renders_a_view_model_with_a_partial()
     {
         $viewModel = $this->prophesize(ViewModel::class);

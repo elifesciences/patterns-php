@@ -5,13 +5,14 @@ namespace tests\eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\PatternRenderer\CallbackPatternRenderer;
 use eLife\Patterns\ViewModel;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-final class CallbackPatternRendererTest extends PHPUnit_Framework_TestCase
+final class CallbackPatternRendererTest extends TestCase
 {
-    /**
-     * @test
-     */
+    use ProphecyTrait;
+    #[Test]
     public function it_is_a_pattern_renderer()
     {
         $callback = function () {
@@ -22,9 +23,7 @@ final class CallbackPatternRendererTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(PatternRenderer::class, $patternRenderer);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_renders_view_models()
     {
         $callback = function (ViewModel ...$viewModels) {

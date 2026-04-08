@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Link;
 use eLife\Patterns\ViewModel\Pager;
+use PHPUnit\Framework\Attributes\Test;
 
 final class PagerTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -49,10 +48,10 @@ final class PagerTest extends ViewModelTest
         $this->assertSame($data, $pager->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
-            'both' => [Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url')), 'targetId'],
+            'both' => [Pager::subsequentPage(new Link('previous', 'previous-url'), new Link('next', 'next-url'), 'targetId')],
             'previous only' => [Pager::subsequentPage(new Link('previous', 'previous-url'))],
             'next only' => [Pager::firstPage(new Link('next', 'next-url'))],
         ];

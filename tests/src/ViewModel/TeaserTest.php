@@ -14,15 +14,14 @@ use eLife\Patterns\ViewModel\TeaserTerms;
 use eLife\Patterns\ViewModel\Term;
 use tests\eLife\Patterns\ViewModel\Partials\MetaFromData;
 use tests\eLife\Patterns\ViewModel\Partials\TeaserImageFromData;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TeaserTest extends ViewModelTest
 {
     use MetaFromData;
     use TeaserImageFromData;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_basic()
     {
         $data = TeaserFixtures::load(TeaserFixtures::BASIC);
@@ -36,9 +35,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_main()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN);
@@ -59,9 +56,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_main_with_terms()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_WITH_TERMS);
@@ -83,9 +78,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_main_small_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_SMALL_IMAGE);
@@ -106,9 +99,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_main_big_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_BIG_IMAGE);
@@ -129,9 +120,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_secondary()
     {
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY);
@@ -151,9 +140,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_secondary_small_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_SMALL_IMAGE);
@@ -173,9 +160,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_secondary_big_image()
     {
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_BIG_IMAGE);
@@ -195,9 +180,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_related_item()
     {
         $data = TeaserFixtures::load(TeaserFixtures::RELATED_ITEM);
@@ -217,9 +200,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_main_event()
     {
         $data = TeaserFixtures::load(TeaserFixtures::MAIN_EVENT);
@@ -235,9 +216,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_secondary_event()
     {
         $data = TeaserFixtures::load(TeaserFixtures::SECONDARY_EVENT);
@@ -253,9 +232,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_chapter_listing_item()
     {
         $data = TeaserFixtures::load(TeaserFixtures::CHAPTER_LISTING_ITEM);
@@ -273,9 +250,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_grid_style_labs()
     {
         $data = TeaserFixtures::load(TeaserFixtures::GRID_STYLE_LABS);
@@ -293,9 +268,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_grid_style_podcast()
     {
         $data = TeaserFixtures::load(TeaserFixtures::GRID_STYLE_PODCAST);
@@ -313,18 +286,14 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cant_load_context_label_without_arguments()
     {
         $this->expectException(InvalidArgumentException::class);
         new ContextLabel();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -334,7 +303,7 @@ final class TeaserTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $teaser);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

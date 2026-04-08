@@ -5,12 +5,11 @@ namespace tests\eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\ContentHeaderProfile;
 use eLife\Patterns\ViewModel\Orcid;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -35,9 +34,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $contentHeader->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_must_have_a_display_name()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -45,9 +42,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         ContentHeaderProfile::notLoggedIn('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function supplied_affiliations_is_set_as_a_property_of_details()
     {
         $contentHeaderProfile = ContentHeaderProfile::notLoggedIn(
@@ -65,9 +60,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
             $contentHeaderProfile['details']['affiliations']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function supplied_email_address_is_set_as_a_property_of_details()
     {
         $contentHeaderProfile = ContentHeaderProfile::notLoggedIn(
@@ -78,9 +71,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         $this->assertSame('email@address.com', $contentHeaderProfile['details']['emailAddress']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function supplied_orcid_is_set_as_a_property_of_details()
     {
         $contentHeaderProfile = ContentHeaderProfile::notLoggedIn(
@@ -93,9 +84,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         $this->assertSame('0000-0002-1825-0097', $contentHeaderProfile['details']['orcid']['id']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function details_is_null_if_no_details_are_supplied()
     {
         $contentHeaderProfile = ContentHeaderProfile::notLoggedIn('Display name');
@@ -103,7 +92,7 @@ final class ContentHeaderProfileNotLoggedInTest extends ViewModelTest
         $this->assertNull($contentHeaderProfile['details']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [ContentHeaderProfile::notLoggedIn('Display name')],

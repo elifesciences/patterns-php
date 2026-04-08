@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\ContentHeaderReadMore;
 use eLife\Patterns\ViewModel\ReadMoreItem;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ReadMoreItemTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -26,7 +25,7 @@ final class ReadMoreItemTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $model->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'Read more item without content' => [

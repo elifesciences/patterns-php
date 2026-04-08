@@ -11,12 +11,11 @@ use eLife\Patterns\ViewModel\SeeMoreLink;
 use eLife\Patterns\ViewModel\Teaser;
 use eLife\Patterns\ViewModel\TeaserFooter;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ListingTeasersTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -99,9 +98,7 @@ final class ListingTeasersTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $listingTeaser->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_no_teasers()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -109,7 +106,7 @@ final class ListingTeasersTest extends ViewModelTest
         ListingTeasers::basic([]);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             [

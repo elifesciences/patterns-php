@@ -4,30 +4,25 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\SiteHeaderTitle;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SiteHeaderTitleTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $siteHeaderLogo = new SiteHeaderTitle('/home/page/path');
         $this->assertSame('/home/page/path', $siteHeaderLogo['homePagePath']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function home_page_path_must_not_be_blank()
     {
         $this->expectException(InvalidArgumentException::class);
         new SiteHeaderTitle('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_set_for_the_home_page()
     {
         $titleDefault = new SiteHeaderTitle('#', false, false);
@@ -37,7 +32,7 @@ final class SiteHeaderTitleTest extends ViewModelTest
         $this->assertTrue($titleHomePage->toArray()['isHomePage']);
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'minimum' => [new SiteHeaderTitle('/home/page/path')],

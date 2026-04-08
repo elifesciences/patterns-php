@@ -4,12 +4,11 @@ namespace tests\eLife\Patterns\ViewModel;
 
 use eLife\Patterns\ViewModel\Button;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ButtonActionTest extends ViewModelTest
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -23,9 +22,7 @@ final class ButtonActionTest extends ViewModelTest
         $this->assertSameWithoutOrder($data, $buttonAction->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_an_invalid_variant()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -33,9 +30,7 @@ final class ButtonActionTest extends ViewModelTest
         Button::action('text', "#", 1, null, 'foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_hypothesis_trigger()
     {
         $with = Button::action('Button action (comment)', "#", 1, null, Button::ACTION_VARIANT_COMMENT);
@@ -46,7 +41,7 @@ final class ButtonActionTest extends ViewModelTest
         $this->assertArrayNotHasKey('isHypothesisTrigger', $without->toArray());
     }
 
-    public function viewModelProvider() : array
+    public static function viewModelProvider() : array
     {
         return [
             'basic' => [Button::action('Button action', '#')],

@@ -5,13 +5,12 @@ namespace src\ViewModel;
 use eLife\Patterns\CastsToArray;
 use eLife\Patterns\ViewModel\SimpleImage;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-final class SimpleImageTest extends PHPUnit_Framework_TestCase
+final class SimpleImageTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_to_an_array()
     {
         $image = new SimpleImage('/foo.png', 'altTestt');
@@ -19,9 +18,7 @@ final class SimpleImageTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(CastsToArray::class, $image);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_data()
     {
         $data = [
@@ -36,9 +33,7 @@ final class SimpleImageTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data, $image->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_path()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -46,9 +41,7 @@ final class SimpleImageTest extends PHPUnit_Framework_TestCase
         new SimpleImage('', 'altText');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_have_a_blank_alt_text()
     {
         $this->expectException(InvalidArgumentException::class);
