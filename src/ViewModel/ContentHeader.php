@@ -27,6 +27,11 @@ final class ContentHeader implements ViewModel
     private $licence;
     private $audioPlayer;
 
+    /**
+     * @var Link|null
+     */
+    private $signupLink;
+
     public function __construct(
         string $title,
         ContentHeaderImage $image = null,
@@ -41,7 +46,8 @@ final class ContentHeader implements ViewModel
         SelectNav $selectNav = null,
         Meta $meta = null,
         string $licence = null,
-        AudioPlayer $audioPlayer = null
+        AudioPlayer $audioPlayer = null,
+        Link $signupLink = null
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
@@ -70,6 +76,29 @@ final class ContentHeader implements ViewModel
         $this->meta = $meta;
         $this->licence = $licence;
         $this->audioPlayer = $audioPlayer;
+        $this->signupLink = $signupLink;
+    }
+
+    /**
+     * Fluent setter for audioPlayer
+     * @param AudioPlayer $audioPlayer
+     * @return $this
+     */
+    public function withAudioPlayer(AudioPlayer $audioPlayer): self
+    {
+        $this->audioPlayer = $audioPlayer;
+        return $this;
+    }
+
+    /**
+     * Fluent setter for signupLink
+     * @param Link $signupLink
+     * @return $this
+     */
+    public function withSignupLink(Link $signupLink): self
+    {
+        $this->signupLink = $signupLink;
+        return $this;
     }
 
     public function getTemplateName() : string
