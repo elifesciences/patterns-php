@@ -117,6 +117,16 @@
       <div class="content-header__impact-statement">{{{impactStatement}}}</div>
     {{/impactStatement}}
 
+    {{#signupLink}}
+      <h5>
+          <img src="{{#assetRewrite}}{{assetsPath}}/img/patterns/molecules/nav-secondary-alert-blue-ic.svg{{/assetRewrite}}"
+               alt="Magazine sign up link bell icon"
+               class="content-header__signup_link_bell_icon"
+          >
+          <a href="{{{signupLink.url}}}" class="content-header__signup_link">{{{signupLink.name}}}</a>
+      </h5>
+    {{/signupLink}}
+
     {{#socialMediaSharers}}
       {{> resources/templates/social-media-sharers}}
     {{/socialMediaSharers}}
