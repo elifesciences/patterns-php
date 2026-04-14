@@ -539,8 +539,37 @@
       ]
     }
   ],
-
+  "signupLink": {
+    "name": "Sign up to eLife Magazine Highlights Alerts",
+    "url": "https://connect.elifesciences.org/magazine-highlights"
+  },
   "highlight": {
+    "heroItem": {
+      "link": {
+        "url": "#link-to-article",
+        "name": "Discovery and Translation of Cancer Immunology: A Special Issue"
+      },
+      "authors": "Oscar A Tarazona, Davys H Lopez, Martin J Cohn",
+      "summary": "A single amino acid residue is responsible for the reciprocal specificity of two odorant receptors in the southern house mosquito.",
+      "meta": {
+        "url": "#",
+        "text": "Research article",
+        "date": {
+          "forHuman": {
+            "dayOfMonth": 1,
+            "month": "May",
+            "year": 2022
+          },
+          "forMachine": "2022-05-01"
+        }
+      },
+      "image": {
+        "fallback": {
+          "defaultPath": "https://unsplash.it/250/140/",
+          "altText": ""
+        }
+      }
+    },
     "items": [
       {
         "link": {

@@ -113,9 +113,19 @@
   <div class="content-header__body">
     <h1 class="content-header__title {{#titleLength}}content-header__title--{{titleLength}}{{/titleLength}}{{^titleLength}}content-header__title--medium{{/titleLength}}">{{{title}}}</h1>
 
-    {{#impactStatement}}
-      <div class="content-header__impact-statement">{{{impactStatement}}}</div>
-    {{/impactStatement}}
+        {{#impactStatement}}
+            <div class="content-header__impact-statement">{{{impactStatement}}}</div>
+        {{/impactStatement}}
+
+        {{#signupLink}}
+        <h5>
+            <img src="{{#assetRewrite}}{{assetsPath}}/img/patterns/molecules/nav-secondary-alert-blue-ic.svg{{/assetRewrite}}"
+                alt="Magazine sign up link bell icon"
+                class="content-header__signup_link_bell_icon"
+            >
+            <a href="{{{signupLink.url}}}" class="content-header__signup_link">{{{signupLink.name}}}</a>
+        </h5>
+        {{/signupLink}}
 
     {{#socialMediaSharers}}
       {{> atoms-social-media-sharers}}

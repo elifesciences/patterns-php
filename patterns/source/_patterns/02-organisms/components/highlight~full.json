@@ -2,6 +2,31 @@
   "heading": {
     "heading": "Highlights"
   },
+  "heroItem": {
+    "link": {
+      "url": "#link-to-hero-article",
+      "name": "Hero article title"
+    },
+    "summary": "A short summary of the hero article.",
+    "meta": {
+      "url": "#",
+      "text": "Research Article",
+      "date": {
+        "forHuman": {
+          "dayOfMonth": 1,
+          "month": "Jan",
+          "year": 2024
+        },
+        "forMachine": "2024-01-01"
+      }
+    },
+    "image": {
+      "fallback": {
+        "defaultPath": "https://unsplash.it/600/400/",
+        "altText": "Hero article image."
+      }
+    }
+  },
   "items": [
     {
       "link": {
