@@ -117,23 +117,42 @@
 .hero-highlight-item {
   @include margin(60, "bottom");
   display: grid;
-  grid-template-columns: 7fr 5fr;
+  grid-template-columns: 1fr;
   width: 100%;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    grid-template-columns: 7fr 5fr;
+  }
 }
 
 .hero-highlight-item__picture-wrapper {
   display: block;
-  grid-column: 2;
   grid-row: 1;
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    grid-column: 2;
+  }
 
   .hero-highlight-item__picture {
     width: 100%;
   }
 }
 
+.hero-highlight-item__body {
+  min-width: 0;
+}
+
 .hero-highlight-item__title{
-  @include font-size-and-vertical-height($font-size-h2-in-px + 5, 40);
+  @include font-size-and-vertical-height(20, 28);
   @include margin(10, "top");
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+    @include font-size-and-vertical-height(24, 32);
+  }
+
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include font-size-and-vertical-height($font-size-h2-in-px + 5, 40);
+  }
 }
 
 .highlight-item__title {

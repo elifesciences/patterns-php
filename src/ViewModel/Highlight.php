@@ -17,34 +17,15 @@ final class Highlight implements ViewModel
 
     private $heroItem;
 
-    public function __construct(array $items, ListHeading $heading = null, $heroItem = false)
+    public function __construct(array $items, ListHeading $heading = null, HighlightItem $heroItem = null)
     {
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, HighlightItem::class);
 
         $this->heading = $heading;
 
-        /**
-         * If $heroItem is true, set the first item as the hero item
-         * Else set the all items per usual
-         */
-        if ($heroItem) {
-            $this->heroItem = array_slice($items, 0, 1);
-            $this->items = array_slice($items, 1);
-        } else {
-            $this->items = $items;
-        }
-    }
-
-    /**
-     * Fluent setter of $heroItem
-     * @param HighlightItem $item
-     * @return $this
-     */
-    public function withHeroItem(HighlightItem $item): self
-    {
-        $this->heroItem = $item;
-        return $this;
+        $this->items = $items;
+        $this->heroItem = $heroItem;
     }
 
     public function getTemplateName() : string
