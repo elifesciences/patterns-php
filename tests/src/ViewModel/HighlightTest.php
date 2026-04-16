@@ -80,7 +80,7 @@ final class HighlightTest extends ViewModelTest
     public function viewModelProvider(): array
     {
         return [
-            [
+            'without hero item' => [
                 new Highlight([
                     new HighlightItem(
                         [new Link('subject', 'subject-url')],
@@ -97,6 +97,34 @@ final class HighlightTest extends ViewModelTest
                         'authors'
                     )
                 ], new ListHeading('heading', 'headingId')),
+            ],
+            'with hero item' => [
+                new Highlight([
+                    new HighlightItem(
+                        [new Link('subject', 'subject-url')],
+                        new Link('highlight item', 'highlight-item-url'),
+                        Meta::withText('meta'),
+                        new Picture([], new Image('/default/path'))
+                    ),
+                    new HighlightItem(
+                        [new Link('subject', 'subject-url')],
+                        new Link('highlight item', 'highlight-item-url'),
+                        Meta::withText('meta', Date::simple(new DateTimeImmutable())),
+                        new Picture([], new Image('/default/path')),
+                        'summary',
+                        'authors'
+                    )
+                ],
+                    new ListHeading('heading', 'headingId'),
+                    new HighlightItem(
+                        [new Link('subject', 'subject-url')],
+                        new Link('Hero highlight item', 'hero highlight-item-url'),
+                        Meta::withText('meta', Date::simple(new DateTimeImmutable())),
+                        new Picture([], new Image('/default/path')),
+                        'summary',
+                        'authors'
+                    )
+                ),
             ]
         ];
     }
@@ -119,6 +147,45 @@ final class HighlightTest extends ViewModelTest
         $this->expectException(InvalidArgumentException::class);
 
         new Highlight(['foo'], new ListHeading('heading', 'headingId'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_may_have_a_hero_item()
+    {
+        $heroItem = new HighlightItem(
+            [],
+            new Link('hero title', 'hero-url'),
+            Meta::withText('meta'),
+            new Picture([], new Image('/default/path'))
+        );
+
+        $with = new Highlight(
+            [
+                new HighlightItem(
+                    [],
+                    new Link('highlight item', 'highlight-item-url'),
+                    Meta::withText('meta'),
+                    new Picture([], new Image('/default/path'))
+                )
+            ],
+            new ListHeading('heading'),
+            $heroItem
+        );
+
+        $without = new Highlight(
+            [new HighlightItem(
+                [],
+                new Link('highlight item', 'highlight-item-url'),
+                Meta::withText('meta'),
+                new Picture([], new Image('/default/path'))
+            )],
+            new ListHeading('heading')
+        );
+
+        $this->assertArrayHasKey('heroItem', $with->toArray());
+        $this->assertArrayNotHasKey('heroItem', $without->toArray());
     }
 
     protected function expectedTemplate(): string

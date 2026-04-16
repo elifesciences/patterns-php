@@ -81,10 +81,10 @@ final class ContentHeader implements ViewModel
 
     /**
      * Fluent setter for audioPlayer
-     * @param AudioPlayer $audioPlayer
+     * @param AudioPlayer|null $audioPlayer
      * @return $this
      */
-    public function withAudioPlayer(AudioPlayer $audioPlayer): self
+    public function withAudioPlayer(AudioPlayer $audioPlayer = null): self
     {
         $this->audioPlayer = $audioPlayer;
         return $this;

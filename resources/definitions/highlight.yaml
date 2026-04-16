@@ -168,6 +168,8 @@ properties:
                     - meta
                     - image
         minItems: 1
+    heroItem:
+        $ref: '#/properties/items/items/0'
 required:
     - heading
     - items
