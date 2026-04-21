@@ -690,3 +690,16 @@ $iconlist: cc oa;
 .content-header__image-credit--overlay {
   @include image-credit-overlay();
 }
+
+.content-header__signup_link_bell_icon {
+  max-height: 1.5rem;
+}
+
+.header__signup_link_wrapper h5  {
+  @include padding(0, "top");
+  @include padding(24, "bottom");
+}
+
+.content-header__signup_link {
+  @include font-size-and-vertical-height(16, 24);
+}
