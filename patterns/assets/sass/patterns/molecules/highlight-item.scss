@@ -38,7 +38,7 @@
   @include margin(0, "bottom");
 }
 
-.highlight-item__body {
+.highlight-item__body, .hero-highlight-item__body {
   // Add min-width to fix issue with authors. Without that width the ellipsis are not working
   min-width: 0;
 
