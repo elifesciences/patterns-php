@@ -120,6 +120,19 @@
   grid-template-columns: 1fr;
   width: 100%;
 
+  // 730px . Commented out because at >730px and <900px it looks a little off
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    //grid-template-columns: 7fr 5fr;
+    column-gap: 24px;
+  }
+
+  // 900px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    column-gap: 24px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  // 1200px
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
     grid-template-columns: 7fr 5fr;
   }
@@ -129,8 +142,14 @@
   display: block;
   grid-row: 1;
 
-  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+  // 730px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
     grid-column: 2;
+  }
+
+  // 730px–900px only
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) and (max-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    @include margin(16, "top");
   }
 
   .hero-highlight-item__picture {
