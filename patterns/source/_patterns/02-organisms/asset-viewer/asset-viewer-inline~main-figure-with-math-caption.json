@@ -1,0 +1,16 @@
+{
+  "id": "fig-math",
+  "variant": "figure",
+  "label": "Figure 1",
+  "captionedAsset": {
+    "captionText": {
+      "heading": "Equation in figure caption.",
+      "text": "<p>The normalised background signal is computed as <math><mstyle displaystyle=\"true\" scriptlevel=\"0\"><mtable columnspacing=\"0em 2em 0em 2em 0em 2em 0em 2em 0em 2em 0em\" displaystyle=\"true\" rowspacing=\"3pt\"><mtr><mtd><msub><mtext>TransformedCommonBackground</mtext><mrow class=\"MJX-TeXAtom-ORD\"><mi>i</mi><mo>,</mo><mtext>reference</mtext></mrow></msub></mtd><mtd><mi/><mo>=</mo><mtext>max</mtext><mo stretchy=\"false\">(</mo><mfrac><mrow><mn>1</mn><mo>+</mo><msub><mtext>CommonBackground</mtext><mrow class=\"MJX-TeXAtom-ORD\"><mi>i</mi><mo>,</mo><mtext>reference</mtext></mrow></msub></mrow><mrow><munder><mo form=\"prefix\" movablelimits=\"true\">min</mo><mi>i</mi></munder><mo stretchy=\"false\">(</mo><msub><mtext>CommonBackground</mtext><mrow class=\"MJX-TeXAtom-ORD\"><mi>i</mi><mo>,</mo><mtext>reference</mtext></mrow></msub><mo stretchy=\"false\">)</mo></mrow></mfrac><mo>,</mo><mn>0</mn><mo stretchy=\"false\">)</mo></mtd></mtr></mtable></mstyle></math> where the denominator represents the minimum observed background across all samples in the reference cohort, ensuring the transformed values are always non-negative and comparable across experiments. <math><mstyle displaystyle=\"true\" scriptlevel=\"0\"><mtable columnspacing=\"0em 2em 0em 2em 0em 2em 0em 2em 0em 2em 0em\" displaystyle=\"true\" rowspacing=\"3pt\"><mtr><mtd><msub><mtext>TransformedCommonBackground</mtext><mrow class=\"MJX-TeXAtom-ORD\"><mi>i</mi><mo>,</mo><mtext>reference</mtext></mrow></msub></mtd><mtd><mi/><mo>=</mo><mtext>max</mtext><mo stretchy=\"false\">(</mo><mfrac><mrow><mn>1</mn><mo>+</mo><msub><mtext>CommonBackground</mtext><mrow class=\"MJX-TeXAtom-ORD\"><mi>i</mi><mo>,</mo><mtext>reference</mtext></mrow></msub></mrow><mrow><munder><mo form=\"prefix\" movablelimits=\"true\">min</mo><mi>i</mi></munder><mo stretchy=\"false\">(</mo><msub><mtext>CommonBackground</mtext><mrow class=\"MJX-TeXAtom-ORD\"><mi>i</mi><mo>,</mo><mtext>reference</mtext></mrow></msub><mo stretchy=\"false\">)</mo></mrow></mfrac><mo>,</mo><mn>0</mn><mo stretchy=\"false\">)</mo></mtd></mtr></mtable></mstyle></math></p>"
+    },
+    "image": {
+      "srcset": "https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-1484w.jpg 2x, https://prod-elife-published.s3.amazonaws.com/articles/16996/elife-16996-fig1-v2-742w.jpg 1x",
+      "defaultPath": "https://picsum.dev/90x90",
+      "altText": "Figure with math in caption."
+    }
+  }
+}

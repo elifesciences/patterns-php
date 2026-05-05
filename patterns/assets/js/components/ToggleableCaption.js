@@ -84,8 +84,12 @@ module.exports = class ToggleableCaption {
       this.$caption.innerHTML = this.fullHtml;
     }
 
-    if (!!this.window.MathJax && !!this.window.MathJax.Hub) {
-      this.window.MathJax.Hub.Queue(['Typeset', this.window.MathJax.Hub, this.$caption]);
+    if (this.window.MathJax && this.window.MathJax.typesetPromise) {
+      if (this.window.mathFlattenSingleRowMtable) {
+        this.window.mathFlattenSingleRowMtable(this.$caption);
+      }
+      this.window.MathJax.typesetClear([this.$caption]);
+      this.window.MathJax.typesetPromise([this.$caption]);
     }
 
     this.$caption.querySelector('.caption-text__toggle').addEventListener('click', this.toggleCaption.bind(this));

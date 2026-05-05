@@ -97,8 +97,12 @@ module.exports = class ArticleSection {
     this.$toggle.classList.remove('article-section__toggle--closed');
     this.$elm.classList.remove('article-section--collapsed');
     this.$body.classList.remove('visuallyhidden');
-    if (!!this.window.MathJax && !!this.window.MathJax.Hub) {
-      this.window.MathJax.Hub.Queue(['Rerender', this.window.MathJax.Hub, this.$elm.id]);
+    if (this.window.MathJax && this.window.MathJax.typesetPromise) {
+      if (this.window.mathFlattenSingleRowMtable) {
+        this.window.mathFlattenSingleRowMtable(this.$elm);
+      }
+      this.window.MathJax.typesetClear([this.$elm]);
+      this.window.MathJax.typesetPromise([this.$elm]);
     }
 
     try {
