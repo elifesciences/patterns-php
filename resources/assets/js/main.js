@@ -314,8 +314,12 @@ module.exports = /*#__PURE__*/function () {
       this.$toggle.classList.remove('article-section__toggle--closed');
       this.$elm.classList.remove('article-section--collapsed');
       this.$body.classList.remove('visuallyhidden');
-      if (!!this.window.MathJax && !!this.window.MathJax.Hub) {
-        this.window.MathJax.Hub.Queue(['Rerender', this.window.MathJax.Hub, this.$elm.id]);
+      if (this.window.MathJax && this.window.MathJax.typesetPromise) {
+        if (this.window.mathFlattenSingleRowMtable) {
+          this.window.mathFlattenSingleRowMtable(this.$elm);
+        }
+        this.window.MathJax.typesetClear([this.$elm]);
+        this.window.MathJax.typesetPromise([this.$elm]);
       }
       try {
         if (e.detail.search(/https?:\/\//) !== 0) {
@@ -3662,9 +3666,30 @@ module.exports = /*#__PURE__*/function () {
     key: "loadDependencies",
     value: function loadDependencies(doc) {
       if (doc.querySelector('math')) {
+        Math.flattenSingleRowMtable(doc);
         Math.setupProperties();
         Math.load(doc);
       }
+    }
+
+    // Some equations are wrongly created using a single row mtable element which makes line breaking impossible
+    // This function flattens them i.e. pulls the elements of the mrow into the parent container
+  }, {
+    key: "flattenSingleRowMtable",
+    value: function flattenSingleRowMtable(root) {
+      root.querySelectorAll('math').forEach(function (math) {
+        var mtable = math.querySelector('mtable');
+        if (!mtable) return;
+        if (mtable.querySelectorAll('mtr').length !== 1) return;
+        var doc = math.ownerDocument;
+        var mrow = doc.createElementNS('http://www.w3.org/1998/Math/MathML', 'mrow');
+        mtable.querySelectorAll('mtd').forEach(function (cell) {
+          while (cell.firstChild) mrow.appendChild(cell.firstChild);
+        });
+        while (math.firstChild) math.removeChild(math.firstChild);
+        math.setAttribute('display', 'block');
+        math.appendChild(mrow);
+      });
     }
   }, {
     key: "dependenciesAlreadySetup",
@@ -3674,26 +3699,29 @@ module.exports = /*#__PURE__*/function () {
   }, {
     key: "setupProperties",
     value: function setupProperties() {
+      window.mathFlattenSingleRowMtable = function (root) {
+        return Math.flattenSingleRowMtable(root || document);
+      };
       window.MathJax = {
-        CommonHTML: {
-          linebreaks: {
-            automatic: true,
-            width: '75% container'
+        startup: {
+          ready: function ready() {
+            Math.flattenSingleRowMtable(document);
+            MathJax.startup.defaultReady();
           }
         },
-        'fast-preview': {
-          disabled: true
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
         },
-        'HTML-CSS': {
+        output: {
+          scale: /Firefox/.test(navigator.userAgent) ? 1.9 : 1,
+          displayOverflow: 'linebreak',
+          mathmlSpacing: true,
+          font: 'mathjax-stix2',
           linebreaks: {
-            automatic: true,
-            width: '75% container'
-          }
-        },
-        SVG: {
-          linebreaks: {
-            automatic: true,
-            width: '75% container'
+            inline: true,
+            width: /Firefox/.test(navigator.userAgent) ? '60%' : '100%',
+            lineleading: 0.2,
+            LinebreakVisitor: null
           }
         }
       };
@@ -3701,73 +3729,32 @@ module.exports = /*#__PURE__*/function () {
   }, {
     key: "setupResizeHandler",
     value: function setupResizeHandler() {
-      window.MathJax.Hub.Config({
-        'HTML-CSS': {
-          linebreaks: {
-            automatic: true,
-            width: '75% container'
-          },
-          // Required when using Noto Serif as body font, for other fonts YMMV.
-          scale: function () {
-            // Noto Serif's ex height is marginally larger than the font it replaces. The slight
-            // down scaling of the maths set in basicScaling (90%) tries to keep the equation size similar
-            // to how it was with the previous font, in case line breaks within equations are significant.
-            var basicScaling = 90;
-
-            // Work around for a bug causing inconsistent maths sizing between browsers:
-            // Some browsers display the maths legibly with the basic scaling, other browsers
-            // require it to be scaled up.
-            var upScaling = basicScaling * 2;
-            function shouldBeScaledUp(Browser) {
-              // Required because maths scales differently between iOS & Android platforms in Chrome
-              // and Safari, and the MathJax API doesn't have a way of distinguishing the mobile OS.
-              // Deliberately not made available as a utility: we don't want to encourage this!
-              var isProbablyIOS = function isProbablyIOS() {
-                return !!navigator.userAgent.match(/iPad|iPhone/);
-              };
-
-              // Don't scale up if any the following applies:
-              return !(
-              // IE
-              Browser.isMSIE ||
-              // Safari or Chrome on a Mac
-              Browser.isMac && (Browser.isSafari || Browser.isChrome) ||
-              // Safari or Chrome on iOS
-              isProbablyIOS() && Browser.isSafari ||
-              // Aiming to target Firefox on Linux & mobile
-              Browser.isFirefox && !(Browser.isMac || Browser.isPC) ||
-              // Some smaller browsers e.g. Brave are identified as "Unknown" . (Although both
-              // Brave and Yandex browsers are based on Chromium and use Blink rendering, Yandex
-              // identifies as "Chrome".)
-              Browser.toString() === 'Unknown');
-            }
-            return shouldBeScaledUp(window.MathJax.Hub.Browser) ? upScaling : basicScaling;
-          }()
-        }
-      });
-      this.currentClientWidth = document.body.clientWidth;
+      var currentClientWidth = document.body.clientWidth;
       var resizeTimeout;
-      var resizeThrottler = function resizeThrottler() {
+      window.addEventListener('resize', function () {
         if (!resizeTimeout) {
           resizeTimeout = setTimeout(function () {
             resizeTimeout = null;
-            if (!!this.window.MathJax && this.currentClientWidth !== document.body.clientWidth) {
-              this.currentClientWidth = document.body.clientWidth;
-              this.window.MathJax.Hub.Queue(['Rerender', this.window.MathJax.Hub]);
+            if (window.MathJax && window.MathJax.typesetPromise && currentClientWidth !== document.body.clientWidth) {
+              currentClientWidth = document.body.clientWidth;
+              window.MathJax.typesetClear();
+              window.MathJax.typesetPromise();
             }
           }, 300);
         }
-      };
-      window.addEventListener('resize', resizeThrottler);
+      });
     }
   }, {
     key: "load",
     value: function load(doc) {
+      if (Math.dependenciesAlreadySetup(doc)) {
+        return;
+      }
       var script = doc.createElement('script');
       script.type = 'text/javascript';
       script.addEventListener('load', Math.setupResizeHandler);
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML';
-      script.integrity = 'sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv';
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.2/mml-chtml.js';
+      script.integrity = 'sha384-/2ITe67wlF1iItSD3V+4xUIuJTAnyo0xJ8xoMMZzAIEdrmtnsuVe7uaHpkLBDV97';
       script.crossOrigin = 'anonymous';
       doc.querySelector('body').appendChild(script);
     }
@@ -5930,8 +5917,12 @@ module.exports = /*#__PURE__*/function () {
       } else {
         this.$caption.innerHTML = this.fullHtml;
       }
-      if (!!this.window.MathJax && !!this.window.MathJax.Hub) {
-        this.window.MathJax.Hub.Queue(['Typeset', this.window.MathJax.Hub, this.$caption]);
+      if (this.window.MathJax && this.window.MathJax.typesetPromise) {
+        if (this.window.mathFlattenSingleRowMtable) {
+          this.window.mathFlattenSingleRowMtable(this.$caption);
+        }
+        this.window.MathJax.typesetClear([this.$caption]);
+        this.window.MathJax.typesetPromise([this.$caption]);
       }
       this.$caption.querySelector('.caption-text__toggle').addEventListener('click', this.toggleCaption.bind(this));
     }
