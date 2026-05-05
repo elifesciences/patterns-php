@@ -72,7 +72,7 @@ module.exports = class Math {
         scale: /Firefox/.test(navigator.userAgent) ? 1.9 : 1,
         displayOverflow: 'linebreak',
         mathmlSpacing: true,
-        font: 'mathjax-newcm',
+        font: 'mathjax-stix2',
         linebreaks: {
           inline: true,
           width: /Firefox/.test(navigator.userAgent) ? '60%' : '100%',
