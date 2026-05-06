@@ -3629,6 +3629,12 @@ module.exports = /*#__PURE__*/function () {
 'use strict';
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
@@ -3667,6 +3673,7 @@ module.exports = /*#__PURE__*/function () {
     value: function loadDependencies(doc) {
       if (doc.querySelector('math')) {
         Math.flattenSingleRowMtable(doc);
+        Math.normalizeLegacyMathVariants(doc);
         Math.setupProperties();
         Math.load(doc);
       }
@@ -3691,6 +3698,59 @@ module.exports = /*#__PURE__*/function () {
         math.appendChild(mrow);
       });
     }
+
+    // MathJax v2 used private mathvariant values (prefixed -tex-) that v4 doesn't recognise.
+    // Remap them to their standard MathML equivalents before MathJax processes the elements.
+  }, {
+    key: "normalizeLegacyMathVariants",
+    value: function normalizeLegacyMathVariants(root) {
+      var map = {
+        'MJX-tex-caligraphic': 'script',
+        'MJX-tex-calligraphic': 'script',
+        'MJX-bold-caligraphic': 'bold-script',
+        'MJX-bold-calligraphic': 'bold-script',
+        'MJX-tex-oldstyle': 'normal'
+      };
+      Object.entries(map).forEach(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+          cls = _ref2[0],
+          mathvariant = _ref2[1];
+        root.querySelectorAll(".".concat(cls)).forEach(function (el) {
+          el.setAttribute('mathvariant', mathvariant);
+          el.removeAttribute('class');
+          var mathEl = el.closest('math');
+          console.log(mathEl);
+          if (mathEl) mathEl.setAttribute('data-has-legacy-variant', '');
+        });
+      });
+    }
+
+    // MathJax v4's displayOverflow: 'linebreak' only fires for <math display="block">.
+    // Equations authored with <mstyle displaystyle="true"> are intended as display-style but
+    // lack the attribute, so v4 never line-breaks them. This marks them as block-level so
+    // the v4 line-breaker applies.
+  }, {
+    key: "markDisplayStyleMathAsBlock",
+    value: function markDisplayStyleMathAsBlock(root) {
+      root.querySelectorAll('math:not([display="block"])').forEach(function (math) {
+        var firstChild = math.firstElementChild;
+        if (firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true') {
+          math.setAttribute('display', 'block');
+        }
+      });
+    }
+
+    // MathJax falls back to mjx-utext (raw Unicode + font-size correction) when the active font
+    // lacks a glyph for a variant (e.g. bold-script). The correction factor is calculated against
+    // generic font metrics and renders too large in Firefox. Reset it after typesetting.
+  }, {
+    key: "fixLegacyVariantScale",
+    value: function fixLegacyVariantScale(doc) {
+      if (!/Firefox/.test(navigator.userAgent)) return;
+      doc.querySelectorAll('mjx-utext').forEach(function (utext) {
+        utext.style.fontSize = '1em';
+      });
+    }
   }, {
     key: "dependenciesAlreadySetup",
     value: function dependenciesAlreadySetup(doc) {
@@ -3706,20 +3766,63 @@ module.exports = /*#__PURE__*/function () {
         startup: {
           ready: function ready() {
             Math.flattenSingleRowMtable(document);
+            Math.markDisplayStyleMathAsBlock(document);
             MathJax.startup.defaultReady();
+          },
+          pageReady: function pageReady() {
+            return MathJax.startup.defaultPageReady().then(function () {
+              return Math.fixLegacyVariantScale(document);
+            });
           }
         },
         options: {
           skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
         },
         output: {
-          scale: /Firefox/.test(navigator.userAgent) ? 1.9 : 1,
+          // Required when using Noto Serif as body font, for other fonts YMMV.
+          scale: function () {
+            // Noto Serif's ex height is marginally larger than the font it replaces. The slight
+            // down scaling of the maths set in basicScaling (90%) tries to keep the equation size similar
+            // to how it was with the previous font, in case line breaks within equations are significant.
+            var basicScaling = 0.9;
+
+            // Work around for a bug causing inconsistent maths sizing between browsers:
+            // Some browsers display the maths legibly with the basic scaling, other browsers
+            // require it to be scaled up.
+            var upScaling = basicScaling * 2;
+            function shouldBeScaledUp() {
+              var ua = navigator.userAgent;
+              var isMac = /Macintosh/.test(ua);
+              var isPC = /Windows/.test(ua);
+              var isSafari = /Safari\//.test(ua) && !/Chrome\//.test(ua);
+              var isChrome = /Chrome\//.test(ua);
+              var isFirefox = /Firefox\//.test(ua);
+              var isIE = /Trident|MSIE/.test(ua);
+
+              // Required because maths scales differently between iOS & Android platforms in Chrome
+              // and Safari, and navigator.userAgent doesn't reliably distinguish the mobile OS.
+              // Deliberately not made available as a utility: we don't want to encourage this!
+              var isProbablyIOS = /iPad|iPhone/.test(ua);
+
+              // Don't scale up if any of the following applies:
+              return !(
+              // IE
+              isIE ||
+              // Safari or Chrome on a Mac
+              isMac && (isSafari || isChrome) ||
+              // Safari or Chrome on iOS
+              isProbablyIOS && isSafari ||
+              // Aiming to target Firefox on Linux & mobile
+              isFirefox && !(isMac || isPC));
+            }
+            return shouldBeScaledUp() ? upScaling : basicScaling;
+          }(),
           displayOverflow: 'linebreak',
+          font: 'mathjax-tex',
           mathmlSpacing: true,
-          font: 'mathjax-stix2',
           linebreaks: {
             inline: true,
-            width: /Firefox/.test(navigator.userAgent) ? '60%' : '100%',
+            width: /Firefox/.test(navigator.userAgent) ? '40%' : '90%',
             lineleading: 0.2,
             LinebreakVisitor: null
           }
