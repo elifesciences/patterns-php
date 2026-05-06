@@ -68,7 +68,6 @@ module.exports = class Math {
         el.setAttribute('mathvariant', mathvariant);
         el.removeAttribute('class');
         const mathEl = el.closest('math');
-        console.log(mathEl);
         if (mathEl) mathEl.setAttribute('data-has-legacy-variant', '');
       });
     });

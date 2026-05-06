@@ -3719,7 +3719,6 @@ module.exports = /*#__PURE__*/function () {
           el.setAttribute('mathvariant', mathvariant);
           el.removeAttribute('class');
           var mathEl = el.closest('math');
-          console.log(mathEl);
           if (mathEl) mathEl.setAttribute('data-has-legacy-variant', '');
         });
       });
