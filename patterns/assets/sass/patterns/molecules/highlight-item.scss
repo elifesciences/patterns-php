@@ -120,9 +120,9 @@
   grid-template-columns: 1fr;
   width: 100%;
 
-  // 730px . Commented out because at >730px and <900px it looks a little off
+  // 730px
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
-    //grid-template-columns: 7fr 5fr;
+    grid-template-columns: 7fr 5fr;
     column-gap: 24px;
   }
 
@@ -134,6 +134,7 @@
 
   // 1200px
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    column-gap: 48px;
     grid-template-columns: 7fr 5fr;
   }
 }
@@ -145,11 +146,7 @@
   // 730px
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
     grid-column: 2;
-  }
-
-  // 730px–900px only
-  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) and (max-width: #{get-rem-from-px($bkpt-site--wide)}em) {
-    @include margin(16, "top");
+    @include margin(24, "top");
   }
 
   .hero-highlight-item__picture {
@@ -163,14 +160,25 @@
 
 .hero-highlight-item__title{
   @include font-size-and-vertical-height(20, 28);
-  @include margin(10, "top");
+  @include margin(0, "top");
 
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
     @include font-size-and-vertical-height(24, 32);
   }
 
+  // 730px
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
-    @include font-size-and-vertical-height($font-size-h2-in-px + 5, 40);
+    @include font-size-and-vertical-height(26, 30);
+  }
+
+  // 900px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    @include font-size-and-vertical-height(30, 40);
+  }
+
+  //1200px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    @include font-size-and-vertical-height(36, 45);
   }
 }
 
