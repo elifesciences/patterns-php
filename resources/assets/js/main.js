@@ -3672,31 +3672,10 @@ module.exports = /*#__PURE__*/function () {
     key: "loadDependencies",
     value: function loadDependencies(doc) {
       if (doc.querySelector('math')) {
-        Math.flattenSingleRowMtable(doc);
         Math.normalizeLegacyMathVariants(doc);
         Math.setupProperties();
         Math.load(doc);
       }
-    }
-
-    // Some equations are wrongly created using a single row mtable element which makes line breaking impossible
-    // This function flattens them i.e. pulls the elements of the mrow into the parent container
-  }, {
-    key: "flattenSingleRowMtable",
-    value: function flattenSingleRowMtable(root) {
-      root.querySelectorAll('math').forEach(function (math) {
-        var mtable = math.querySelector('mtable');
-        if (!mtable) return;
-        if (mtable.querySelectorAll('mtr').length !== 1) return;
-        var doc = math.ownerDocument;
-        var mrow = doc.createElementNS('http://www.w3.org/1998/Math/MathML', 'mrow');
-        mtable.querySelectorAll('mtd').forEach(function (cell) {
-          while (cell.firstChild) mrow.appendChild(cell.firstChild);
-        });
-        while (math.firstChild) math.removeChild(math.firstChild);
-        math.setAttribute('display', 'block');
-        math.appendChild(mrow);
-      });
     }
 
     // MathJax v2 used private mathvariant values (prefixed -tex-) that v4 doesn't recognise.
@@ -3733,7 +3712,8 @@ module.exports = /*#__PURE__*/function () {
     value: function markDisplayStyleMathAsBlock(root) {
       root.querySelectorAll('math:not([display="block"])').forEach(function (math) {
         var firstChild = math.firstElementChild;
-        if (firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true') {
+        // If the equation lives in a .math-block element and doesn't have display=block applied to it, we apply it here
+        if (math.closest('.math-block') || firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true') {
           math.setAttribute('display', 'block');
         }
       });
@@ -3758,13 +3738,9 @@ module.exports = /*#__PURE__*/function () {
   }, {
     key: "setupProperties",
     value: function setupProperties() {
-      window.mathFlattenSingleRowMtable = function (root) {
-        return Math.flattenSingleRowMtable(root || document);
-      };
       window.MathJax = {
         startup: {
           ready: function ready() {
-            Math.flattenSingleRowMtable(document);
             Math.markDisplayStyleMathAsBlock(document);
             MathJax.startup.defaultReady();
           },

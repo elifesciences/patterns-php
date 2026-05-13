@@ -26,31 +26,10 @@ module.exports = class Math {
 
   static loadDependencies(doc) {
     if (doc.querySelector('math')) {
-      Math.flattenSingleRowMtable(doc);
       Math.normalizeLegacyMathVariants(doc);
       Math.setupProperties();
       Math.load(doc);
     }
-  }
-
-  // Some equations are wrongly created using a single row mtable element which makes line breaking impossible
-  // This function flattens them i.e. pulls the elements of the mrow into the parent container
-  static flattenSingleRowMtable(root) {
-    root.querySelectorAll('math').forEach(math => {
-      const mtable = math.querySelector('mtable');
-      if (!mtable) return;
-      if (mtable.querySelectorAll('mtr').length !== 1) return;
-
-      const doc = math.ownerDocument;
-      const mrow = doc.createElementNS('http://www.w3.org/1998/Math/MathML', 'mrow');
-      mtable.querySelectorAll('mtd').forEach(cell => {
-        while (cell.firstChild) mrow.appendChild(cell.firstChild);
-      });
-
-      while (math.firstChild) math.removeChild(math.firstChild);
-      math.setAttribute('display', 'block');
-      math.appendChild(mrow);
-    });
   }
 
   // MathJax v2 used private mathvariant values (prefixed -tex-) that v4 doesn't recognise.
@@ -80,7 +59,9 @@ module.exports = class Math {
   static markDisplayStyleMathAsBlock(root) {
     root.querySelectorAll('math:not([display="block"])').forEach(math => {
       const firstChild = math.firstElementChild;
-      if (firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true') {
+      // If the equation lives in a .math-block element and doesn't have display=block applied to it, apply the display block
+      if (math.closest('.math-block') ||
+          (firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true')) {
         math.setAttribute('display', 'block');
       }
     });
@@ -101,11 +82,9 @@ module.exports = class Math {
   }
 
   static setupProperties() {
-    window.mathFlattenSingleRowMtable = (root) => Math.flattenSingleRowMtable(root || document);
     window.MathJax = {
       startup: {
         ready() {
-          Math.flattenSingleRowMtable(document);
           Math.markDisplayStyleMathAsBlock(document);
           MathJax.startup.defaultReady();
         },
