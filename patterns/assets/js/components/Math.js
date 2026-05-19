@@ -77,6 +77,14 @@ module.exports = class Math {
     });
   }
 
+  // If an mtext contains mathvariant=monospace attribute we remove the attribute, forcing CSS to change the font to one
+  // of Courier New or monospace font families as the mathjax default font renders monospace symbols in bold
+  static normalizeMonospaceMtext(root) {
+    root.querySelectorAll('mtext[mathvariant="monospace"]').forEach(el => {
+      el.removeAttribute('mathvariant');
+    });
+  }
+
   static dependenciesAlreadySetup(doc) {
     return !!doc.querySelector('script[src*="mathjax"]');
   }
@@ -86,6 +94,7 @@ module.exports = class Math {
       startup: {
         ready() {
           Math.markDisplayStyleMathAsBlock(document);
+          Math.normalizeMonospaceMtext(document);
           MathJax.startup.defaultReady();
         },
         pageReady() {

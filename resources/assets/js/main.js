@@ -3712,7 +3712,7 @@ module.exports = /*#__PURE__*/function () {
     value: function markDisplayStyleMathAsBlock(root) {
       root.querySelectorAll('math:not([display="block"])').forEach(function (math) {
         var firstChild = math.firstElementChild;
-        // If the equation lives in a .math-block element and doesn't have display=block applied to it, we apply it here
+        // If the equation lives in a .math-block element and doesn't have display=block applied to it, apply the display block
         if (math.closest('.math-block') || firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true') {
           math.setAttribute('display', 'block');
         }
@@ -3730,6 +3730,16 @@ module.exports = /*#__PURE__*/function () {
         utext.style.fontSize = '1em';
       });
     }
+
+    // If an mtext contains mathvariant=monospace attribute we remove the attribute, forcing CSS to change the font to one
+    // of Courier New or monospace font families as the mathjax default font renders monospace symbols in bold
+  }, {
+    key: "normalizeMonospaceMtext",
+    value: function normalizeMonospaceMtext(root) {
+      root.querySelectorAll('mtext[mathvariant="monospace"]').forEach(function (el) {
+        el.removeAttribute('mathvariant');
+      });
+    }
   }, {
     key: "dependenciesAlreadySetup",
     value: function dependenciesAlreadySetup(doc) {
@@ -3742,6 +3752,7 @@ module.exports = /*#__PURE__*/function () {
         startup: {
           ready: function ready() {
             Math.markDisplayStyleMathAsBlock(document);
+            Math.normalizeMonospaceMtext(document);
             MathJax.startup.defaultReady();
           },
           pageReady: function pageReady() {

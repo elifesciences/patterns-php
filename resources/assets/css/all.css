@@ -4083,6 +4083,11 @@ input:checked + .toggle-checkbox__slider:before {
   text-align: center;
 }
 
+mjx-container[display] {
+  margin: 0;
+  padding: 0;
+}
+
 /*
  * Baseline grid
  */
