@@ -3766,7 +3766,8 @@ module.exports = /*#__PURE__*/function () {
         },
         options: {
           skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-          enableComplexity: false
+          enableComplexity: false,
+          makeCollapsible: false
         },
         output: {
           // Required when using Noto Serif as body font, for other fonts YMMV.
