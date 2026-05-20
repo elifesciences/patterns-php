@@ -3703,18 +3703,34 @@ module.exports = /*#__PURE__*/function () {
       });
     }
 
-    // MathJax v4's displayOverflow: 'linebreak' only fires for <math display="block">.
     // Equations authored with <mstyle displaystyle="true"> are intended as display-style but
     // lack the attribute, so v4 never line-breaks them. This marks them as block-level so
     // the v4 line-breaker applies.
   }, {
-    key: "markDisplayStyleMathAsBlock",
-    value: function markDisplayStyleMathAsBlock(root) {
+    key: "selectivelyMarkDisplayStyleMathAsBlock",
+    value: function selectivelyMarkDisplayStyleMathAsBlock(root) {
       root.querySelectorAll('math:not([display="block"])').forEach(function (math) {
-        var firstChild = math.firstElementChild;
         // If the equation lives in a .math-block element and doesn't have display=block applied to it, apply the display block
-        if (math.closest('.math-block') || firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true') {
+        if (math.closest('.math-block')) {
           math.setAttribute('display', 'block');
+        }
+      });
+    }
+
+    // This function removes the display and/or displaystyle attributes from equations which are not part of a .math-block parent container
+  }, {
+    key: "selectivelyChangeEquationDisplayStyle",
+    value: function selectivelyChangeEquationDisplayStyle(root) {
+      root.querySelectorAll('math[display="block"]').forEach(function (math) {
+        // If the <math>Equation</math> is not a child of <div class="math-block"> then we display it inline
+        // by removing the display attribute and displaystyle attribute on the <mstyle> child if present
+        if (!math.closest('.math-block')) {
+          math.removeAttribute('display');
+        }
+      });
+      root.querySelectorAll('mstyle[displaystyle="true"]').forEach(function (math) {
+        if (!math.closest('.math-block')) {
+          math.removeAttribute('displaystyle');
         }
       });
     }
@@ -3730,16 +3746,6 @@ module.exports = /*#__PURE__*/function () {
         utext.style.fontSize = '1em';
       });
     }
-
-    // If an mtext contains mathvariant=monospace attribute we remove the attribute, forcing CSS to change the font to one
-    // of Courier New or monospace font families as the mathjax default font renders monospace symbols in bold
-  }, {
-    key: "normalizeMonospaceMtext",
-    value: function normalizeMonospaceMtext(root) {
-      root.querySelectorAll('mtext[mathvariant="monospace"]').forEach(function (el) {
-        el.removeAttribute('mathvariant');
-      });
-    }
   }, {
     key: "dependenciesAlreadySetup",
     value: function dependenciesAlreadySetup(doc) {
@@ -3751,8 +3757,8 @@ module.exports = /*#__PURE__*/function () {
       window.MathJax = {
         startup: {
           ready: function ready() {
-            Math.markDisplayStyleMathAsBlock(document);
-            Math.normalizeMonospaceMtext(document);
+            Math.selectivelyMarkDisplayStyleMathAsBlock(document);
+            Math.selectivelyChangeEquationDisplayStyle(document);
             MathJax.startup.defaultReady();
           },
           pageReady: function pageReady() {
