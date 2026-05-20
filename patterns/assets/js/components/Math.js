@@ -109,7 +109,8 @@ module.exports = class Math {
         },
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        enableComplexity: false,
       },
       output: {
         // Required when using Noto Serif as body font, for other fonts YMMV.
