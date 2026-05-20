@@ -315,9 +315,6 @@ module.exports = /*#__PURE__*/function () {
       this.$elm.classList.remove('article-section--collapsed');
       this.$body.classList.remove('visuallyhidden');
       if (this.window.MathJax && this.window.MathJax.typesetPromise) {
-        if (this.window.mathFlattenSingleRowMtable) {
-          this.window.mathFlattenSingleRowMtable(this.$elm);
-        }
         this.window.MathJax.typesetClear([this.$elm]);
         this.window.MathJax.typesetPromise([this.$elm]);
       }
@@ -3704,7 +3701,7 @@ module.exports = /*#__PURE__*/function () {
     }
 
     // Equations authored with <mstyle displaystyle="true"> are intended as display-style but
-    // lack the attribute, so v4 never line-breaks them. This marks them as block-level so
+    // lack the display attribute, so v4 never line-breaks them. This marks them as block-level so
     // the v4 line-breaker applies.
   }, {
     key: "selectivelyMarkDisplayStyleMathAsBlock",
@@ -6014,9 +6011,6 @@ module.exports = /*#__PURE__*/function () {
         this.$caption.innerHTML = this.fullHtml;
       }
       if (this.window.MathJax && this.window.MathJax.typesetPromise) {
-        if (this.window.mathFlattenSingleRowMtable) {
-          this.window.mathFlattenSingleRowMtable(this.$caption);
-        }
         this.window.MathJax.typesetClear([this.$caption]);
         this.window.MathJax.typesetPromise([this.$caption]);
       }

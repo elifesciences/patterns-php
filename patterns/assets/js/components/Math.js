@@ -53,7 +53,7 @@ module.exports = class Math {
   }
 
   // Equations authored with <mstyle displaystyle="true"> are intended as display-style but
-  // lack the attribute, so v4 never line-breaks them. This marks them as block-level so
+  // lack the display attribute, so v4 never line-breaks them. This marks them as block-level so
   // the v4 line-breaker applies.
   static selectivelyMarkDisplayStyleMathAsBlock(root) {
     root.querySelectorAll('math:not([display="block"])').forEach(math => {

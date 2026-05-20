@@ -85,9 +85,6 @@ module.exports = class ToggleableCaption {
     }
 
     if (this.window.MathJax && this.window.MathJax.typesetPromise) {
-      if (this.window.mathFlattenSingleRowMtable) {
-        this.window.mathFlattenSingleRowMtable(this.$caption);
-      }
       this.window.MathJax.typesetClear([this.$caption]);
       this.window.MathJax.typesetPromise([this.$caption]);
     }
