@@ -52,19 +52,33 @@ module.exports = class Math {
     });
   }
 
-  // MathJax v4's displayOverflow: 'linebreak' only fires for <math display="block">.
   // Equations authored with <mstyle displaystyle="true"> are intended as display-style but
   // lack the attribute, so v4 never line-breaks them. This marks them as block-level so
   // the v4 line-breaker applies.
-  static markDisplayStyleMathAsBlock(root) {
+  static selectivelyMarkDisplayStyleMathAsBlock(root) {
     root.querySelectorAll('math:not([display="block"])').forEach(math => {
-      const firstChild = math.firstElementChild;
       // If the equation lives in a .math-block element and doesn't have display=block applied to it, apply the display block
-      if (math.closest('.math-block') ||
-          (firstChild && firstChild.tagName === 'mstyle' && firstChild.getAttribute('displaystyle') === 'true')) {
+      if (math.closest('.math-block')) {
         math.setAttribute('display', 'block');
       }
     });
+  }
+
+  // This function removes the display and/or displaystyle attributes from equations which are not part of a .math-block parent container
+  static selectivelyChangeEquationDisplayStyle(root) {
+    root.querySelectorAll('math[display="block"]').forEach(math => {
+      // If the <math>Equation</math> is not a child of <div class="math-block"> then we display it inline
+      // by removing the display attribute and displaystyle attribute on the <mstyle> child if present
+      if (!math.closest('.math-block')) {
+        math.removeAttribute('display');
+      }
+    });
+
+    root.querySelectorAll('mstyle[displaystyle="true"]').forEach(math => {
+      if (!math.closest('.math-block')) {
+        math.removeAttribute('displaystyle');
+      }
+    })
   }
 
   // MathJax falls back to mjx-utext (raw Unicode + font-size correction) when the active font
@@ -77,14 +91,6 @@ module.exports = class Math {
     });
   }
 
-  // If an mtext contains mathvariant=monospace attribute we remove the attribute, forcing CSS to change the font to one
-  // of Courier New or monospace font families as the mathjax default font renders monospace symbols in bold
-  static normalizeMonospaceMtext(root) {
-    root.querySelectorAll('mtext[mathvariant="monospace"]').forEach(el => {
-      el.removeAttribute('mathvariant');
-    });
-  }
-
   static dependenciesAlreadySetup(doc) {
     return !!doc.querySelector('script[src*="mathjax"]');
   }
@@ -93,8 +99,8 @@ module.exports = class Math {
     window.MathJax = {
       startup: {
         ready() {
-          Math.markDisplayStyleMathAsBlock(document);
-          Math.normalizeMonospaceMtext(document);
+          Math.selectivelyMarkDisplayStyleMathAsBlock(document);
+          Math.selectivelyChangeEquationDisplayStyle(document);
           MathJax.startup.defaultReady();
         },
         pageReady() {
