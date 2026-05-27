@@ -165,7 +165,7 @@ module.exports = class Math {
         mathmlSpacing: true,
         linebreaks: {
           inline: true,
-          width: /Firefox/.test(navigator.userAgent) ? '50%' : '95%',
+          width: /Firefox/.test(navigator.userAgent) ? '40%' : '90%',
           lineleading: 0.2,
           LinebreakVisitor: null,
         },
