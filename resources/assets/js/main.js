@@ -3670,6 +3670,7 @@ module.exports = /*#__PURE__*/function () {
     value: function loadDependencies(doc) {
       if (doc.querySelector('math')) {
         Math.normalizeLegacyMathVariants(doc);
+        Math.fixInlineDivision(doc);
         Math.setupProperties();
         Math.load(doc);
       }
@@ -3743,6 +3744,83 @@ module.exports = /*#__PURE__*/function () {
         utext.style.fontSize = '1em';
       });
     }
+
+    // Rewrites <mo>/</mo> followed by explicit <mo>(</mo>...<mo>)</mo> to <mo>/</mo><mfenced>,
+    // preventing a MathJax v4.1 hang caused by inline division with a parenthesised denominator.
+  }, {
+    key: "fixInlineDivision",
+    value: function fixInlineDivision(root) {
+      var ns = 'http://www.w3.org/1998/Math/MathML';
+      var isSlash = function isSlash(el) {
+        return el && (el.tagName.toLowerCase() === 'mo' && el.textContent.trim() === '/' || el.tagName.toLowerCase() === 'mrow' && el.children.length === 1 && el.children[0].tagName.toLowerCase() === 'mo' && el.children[0].textContent.trim() === '/');
+      };
+      var isOpenParen = function isOpenParen(el) {
+        return el && el.tagName.toLowerCase() === 'mo' && el.textContent.trim() === '(';
+      };
+      var isCloseParen = function isCloseParen(el) {
+        return el && el.tagName.toLowerCase() === 'mo' && el.textContent.trim() === ')';
+      };
+      var isParenMrow = function isParenMrow(el) {
+        return el && el.tagName.toLowerCase() === 'mrow' && el.children.length >= 2 && isOpenParen(el.children[0]) && isCloseParen(el.children[el.children.length - 1]);
+      };
+      var containers = Array.from(root.querySelectorAll('math mrow, math mstyle'));
+      containers.reverse();
+      containers.forEach(function (container) {
+        var doc = container.ownerDocument;
+        var kids = Array.from(container.children);
+        var _loop = function _loop() {
+            if (!isSlash(kids[i])) return 0; // continue
+            var next = kids[i + 1];
+            if (!next) return 0; // continue
+            var denomElements = [];
+            var endIdx;
+            if (isOpenParen(next)) {
+              var depth = 1,
+                j = i + 2;
+              for (; j < kids.length && depth > 0; j++) {
+                if (isOpenParen(kids[j])) depth++;
+                if (isCloseParen(kids[j])) depth--;
+              }
+              if (depth !== 0) return 0; // continue
+              denomElements = kids.slice(i + 2, j - 1);
+              endIdx = j;
+            } else if (isParenMrow(next)) {
+              denomElements = Array.from(next.children).slice(1, -1);
+              endIdx = i + 2;
+            } else {
+              return 0; // continue
+            }
+            if (!denomElements.length) return 0; // continue
+            var slash = doc.createElementNS(ns, 'mo');
+            slash.textContent = '/';
+            var mfenced = doc.createElementNS(ns, 'mfenced');
+            mfenced.setAttribute('open', '(');
+            mfenced.setAttribute('close', ')');
+            mfenced.setAttribute('separators', '');
+            denomElements.forEach(function (el) {
+              return mfenced.appendChild(el.cloneNode(true));
+            });
+            var beforeSlash = kids.slice(0, i);
+            var afterElements = kids.slice(endIdx);
+            while (container.firstChild) container.removeChild(container.firstChild);
+            beforeSlash.forEach(function (el) {
+              return container.appendChild(el);
+            });
+            container.appendChild(slash);
+            container.appendChild(mfenced);
+            afterElements.forEach(function (el) {
+              return container.appendChild(el);
+            });
+            return 1; // break
+          },
+          _ret;
+        for (var i = 1; i < kids.length; i++) {
+          _ret = _loop();
+          if (_ret === 0) continue;
+          if (_ret === 1) break;
+        }
+      });
+    }
   }, {
     key: "dependenciesAlreadySetup",
     value: function dependenciesAlreadySetup(doc) {
@@ -3766,8 +3844,7 @@ module.exports = /*#__PURE__*/function () {
         },
         options: {
           skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-          enableComplexity: false,
-          makeCollapsible: false
+          enableComplexity: false
         },
         output: {
           // Required when using Noto Serif as body font, for other fonts YMMV.
