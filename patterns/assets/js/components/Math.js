@@ -92,77 +92,17 @@ module.exports = class Math {
     });
   }
 
-  // Rewrites <mo>/</mo> followed by explicit <mo>(</mo>...<mo>)</mo> to <mo>/</mo><mfenced>,
-  // preventing a MathJax v4.1 hang caused by inline division with a parenthesised denominator.
+  // Unwraps <mrow><mo>/</mo></mrow> to a bare <mo>/</mo>, preventing a MathJax v4.1 hang
+  // caused by operator form resolution on slash operators wrapped in unnecessary mrow elements.
   static fixInlineDivision(root) {
     const ns = 'http://www.w3.org/1998/Math/MathML';
-
-    const isSlash = el =>
-      el && ((el.tagName.toLowerCase() === 'mo' && el.textContent.trim() === '/') ||
-             (el.tagName.toLowerCase() === 'mrow' && el.children.length === 1 &&
-              el.children[0].tagName.toLowerCase() === 'mo' &&
-              el.children[0].textContent.trim() === '/'));
-
-    const isOpenParen = el =>
-      el && el.tagName.toLowerCase() === 'mo' && el.textContent.trim() === '(';
-
-    const isCloseParen = el =>
-      el && el.tagName.toLowerCase() === 'mo' && el.textContent.trim() === ')';
-
-    const isParenMrow = el =>
-      el && el.tagName.toLowerCase() === 'mrow' && el.children.length >= 2 &&
-      isOpenParen(el.children[0]) && isCloseParen(el.children[el.children.length - 1]);
-
-    const containers = Array.from(root.querySelectorAll('math mrow, math mstyle'));
-    containers.reverse();
-
-    containers.forEach(container => {
-      const doc = container.ownerDocument;
-      const kids = Array.from(container.children);
-
-      for (let i = 1; i < kids.length; i++) {
-        if (!isSlash(kids[i])) continue;
-
-        const next = kids[i + 1];
-        if (!next) continue;
-
-        let denomElements = [];
-        let endIdx;
-
-        if (isOpenParen(next)) {
-          let depth = 1, j = i + 2;
-          for (; j < kids.length && depth > 0; j++) {
-            if (isOpenParen(kids[j])) depth++;
-            if (isCloseParen(kids[j])) depth--;
-          }
-          if (depth !== 0) continue;
-          denomElements = kids.slice(i + 2, j - 1);
-          endIdx = j;
-        } else if (isParenMrow(next)) {
-          denomElements = Array.from(next.children).slice(1, -1);
-          endIdx = i + 2;
-        } else {
-          continue;
-        }
-
-        if (!denomElements.length) continue;
-
-        const slash = doc.createElementNS(ns, 'mo');
+    root.querySelectorAll('math mrow').forEach(mrow => {
+      if (mrow.children.length === 1 &&
+          mrow.children[0].tagName.toLowerCase() === 'mo' &&
+          mrow.children[0].textContent.trim() === '/') {
+        const slash = mrow.ownerDocument.createElementNS(ns, 'mo');
         slash.textContent = '/';
-        const mfenced = doc.createElementNS(ns, 'mfenced');
-        mfenced.setAttribute('open', '(');
-        mfenced.setAttribute('close', ')');
-        mfenced.setAttribute('separators', '');
-        denomElements.forEach(el => mfenced.appendChild(el.cloneNode(true)));
-
-        const beforeSlash = kids.slice(0, i);
-        const afterElements = kids.slice(endIdx);
-        while (container.firstChild) container.removeChild(container.firstChild);
-        beforeSlash.forEach(el => container.appendChild(el));
-        container.appendChild(slash);
-        container.appendChild(mfenced);
-        afterElements.forEach(el => container.appendChild(el));
-        break;
+        mrow.replaceWith(slash);
       }
     });
   }
