@@ -27,6 +27,7 @@ module.exports = class Math {
   static loadDependencies(doc) {
     if (doc.querySelector('math')) {
       Math.normalizeLegacyMathVariants(doc);
+      Math.fixInlineDivision(doc);
       Math.setupProperties();
       Math.load(doc);
     }
@@ -91,6 +92,21 @@ module.exports = class Math {
     });
   }
 
+  // Unwraps <mrow><mo>/</mo></mrow> to a bare <mo>/</mo>, preventing a MathJax v4.1 hang
+  // caused by operator form resolution on slash operators wrapped in unnecessary mrow elements.
+  static fixInlineDivision(root) {
+    const ns = 'http://www.w3.org/1998/Math/MathML';
+    root.querySelectorAll('math mrow').forEach(mrow => {
+      if (mrow.children.length === 1 &&
+          mrow.children[0].tagName.toLowerCase() === 'mo' &&
+          mrow.children[0].textContent.trim() === '/') {
+        const slash = mrow.ownerDocument.createElementNS(ns, 'mo');
+        slash.textContent = '/';
+        mrow.replaceWith(slash);
+      }
+    });
+  }
+
   static dependenciesAlreadySetup(doc) {
     return !!doc.querySelector('script[src*="mathjax"]');
   }
@@ -111,7 +127,6 @@ module.exports = class Math {
       options: {
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
         enableComplexity: false,
-        makeCollapsible: false,
       },
       output: {
         // Required when using Noto Serif as body font, for other fonts YMMV.
