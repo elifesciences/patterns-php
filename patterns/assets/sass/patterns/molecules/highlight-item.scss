@@ -126,16 +126,10 @@
     column-gap: 24px;
   }
 
-  // 900px
-  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
-    column-gap: 24px;
-    grid-template-columns: 1fr 1fr;
-  }
-
   // 1200px
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
-    column-gap: 48px;
     grid-template-columns: 7fr 5fr;
+    column-gap: 48px;
   }
 }
 
