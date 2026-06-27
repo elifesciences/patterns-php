@@ -4083,11 +4083,6 @@ input:checked + .toggle-checkbox__slider:before {
   text-align: center;
 }
 
-mjx-container[display] {
-  margin: 0;
-  padding: 0;
-}
-
 /*
  * Baseline grid
  */
@@ -8033,8 +8028,21 @@ li.institution_list_item:last-child .institution_separator, li.institution_list_
   grid-template-columns: 1fr;
   width: 100%;
 }
+@media only screen and (min-width: 45.625em) {
+  .hero-highlight-item {
+    grid-template-columns: 7fr 5fr;
+    column-gap: 24px;
+  }
+}
+@media only screen and (min-width: 56.25em) {
+  .hero-highlight-item {
+    column-gap: 24px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
 @media only screen and (min-width: 75em) {
   .hero-highlight-item {
+    column-gap: 48px;
     grid-template-columns: 7fr 5fr;
   }
 }
@@ -8043,9 +8051,11 @@ li.institution_list_item:last-child .institution_separator, li.institution_list_
   display: block;
   grid-row: 1;
 }
-@media only screen and (min-width: 75em) {
+@media only screen and (min-width: 45.625em) {
   .hero-highlight-item__picture-wrapper {
     grid-column: 2;
+    margin-top: 24px;
+    margin-top: 1.5rem;
   }
 }
 .hero-highlight-item__picture-wrapper .hero-highlight-item__picture {
@@ -8059,8 +8069,8 @@ li.institution_list_item:last-child .institution_separator, li.institution_list_
 .hero-highlight-item__title {
   font-size: 1.25rem;
   line-height: 1.4;
-  margin-top: 10px;
-  margin-top: 0.625rem;
+  margin-top: 0px;
+  margin-top: 0rem;
 }
 @media only screen and (min-width: 30em) {
   .hero-highlight-item__title {
@@ -8070,8 +8080,20 @@ li.institution_list_item:last-child .institution_separator, li.institution_list_
 }
 @media only screen and (min-width: 45.625em) {
   .hero-highlight-item__title {
-    font-size: 1.9375rem;
-    line-height: 1.2903225806;
+    font-size: 1.625rem;
+    line-height: 1.1538461538;
+  }
+}
+@media only screen and (min-width: 56.25em) {
+  .hero-highlight-item__title {
+    font-size: 1.875rem;
+    line-height: 1.3333333333;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .hero-highlight-item__title {
+    font-size: 2.25rem;
+    line-height: 1.25;
   }
 }
 
