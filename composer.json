@@ -17,14 +17,14 @@
         }
     },
     "require": {
-        "php": "^8.0",
-        "beberlei/assert": "^2.0",
+        "php": "^8.3",
+        "beberlei/assert": "^3.0",
         "mustache/mustache": "^2.5"
     },
     "require-dev": {
         "justinrainbow/json-schema": "^5.1",
         "php-jsonpointer/php-jsonpointer": "^1.0",
-        "phpunit/phpunit": "^13.1",
+        "phpunit/phpunit": "^12.5",
         "phpspec/prophecy": "^1.20",
         "phpspec/prophecy-phpunit": "^2.2",
         "symfony/filesystem": "^3.0",
