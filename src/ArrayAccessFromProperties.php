@@ -1,6 +1,7 @@
 <?php
 
 namespace eLife\Patterns;
+use ReturnTypeWillChange;
 
 trait ArrayAccessFromProperties
 {
@@ -15,6 +16,7 @@ trait ArrayAccessFromProperties
         return isset($this->{$offset});
     }
 
+    #[ReturnTypeWillChange]
     final public function offsetGet($offset)
     {
         if (false === $this->offsetExists($offset)) {

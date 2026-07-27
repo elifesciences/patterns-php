@@ -4,6 +4,7 @@ namespace eLife\Patterns\ViewModel;
 
 use BadMethodCallException;
 use eLife\Patterns\ViewModel;
+use ReturnTypeWillChange;
 
 final class FlexibleViewModel implements ViewModel
 {
@@ -39,11 +40,13 @@ final class FlexibleViewModel implements ViewModel
         return $this->properties;
     }
 
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->properties[$offset]);
     }
 
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if ($this->offsetExists($offset)) {
@@ -53,11 +56,13 @@ final class FlexibleViewModel implements ViewModel
         return null;
     }
 
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         throw new BadMethodCallException('Object is immutable');
     }
 
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         throw new BadMethodCallException('Object is immutable');

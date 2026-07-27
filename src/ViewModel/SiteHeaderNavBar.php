@@ -33,7 +33,7 @@ final class SiteHeaderNavBar implements ViewModel
                 $classes[] = $classes[0].'--last';
             }
 
-            if (false !== strpos(strtolower($linkedItems[$i]['text']), 'alert')) {
+            if (false !== strpos(strtolower($linkedItems[$i]['text'] ?? ''), 'alert')) {
                 $classes[] = $classes[0].'--alert';
             }
 

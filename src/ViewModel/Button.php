@@ -40,6 +40,7 @@ final class Button implements ViewModel
     private $id;
     private $name;
     private $isHypothesisTrigger;
+    private $ariaLabel;
 
     private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true, string $ariaLabel = null)
     {
