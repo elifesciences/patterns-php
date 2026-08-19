@@ -6,12 +6,12 @@ use BadMethodCallException;
 
 trait ReadOnlyArrayAccess
 {
-    final public function offsetSet($offset, $value)
+    final public function offsetSet($offset, $value): void
     {
         throw new BadMethodCallException('Object is immutable');
     }
 
-    final public function offsetUnset($offset)
+    final public function offsetUnset($offset): void
     {
         throw new BadMethodCallException('Object is immutable');
     }
