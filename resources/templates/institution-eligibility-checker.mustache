@@ -1,8 +1,8 @@
 <div class="institution-eligibility-checker">
     <form id="institution-eligibility-checker__form" action="{{searchUrl}}" method="GET" novalidate>
-        <label class="institution-eligibility-checker__label" for="{{formId}}-input">{{label}}</label>
+        <label class="institution-eligibility-checker__label" for="institution-eligibility-checker__form-input">{{label}}</label>
         <input
-                type="search" id="institution-eligibility-checker__form-input" value="{{inputValue}}"
+                type="search" id="institution-eligibility-checker__form-input" name="{{inputName}}" value="{{inputValue}}"
                 placeholder="{{inputPlaceholder}}" class="institution-eligibility-checker__input" autocomplete="off"
                 aria-controls="institution-eligibility-checker-results"
                 hx-get="{{searchUrl}}" hx-trigger="keyup changed delay:300ms, search"
