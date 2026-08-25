@@ -1,0 +1,10 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  institutions:
+    type: array
+    items:
+      $ref: ../../../non-pattern-schema/link.yaml
+  emptyMessage:
+    type: string
+    minLength: 1
