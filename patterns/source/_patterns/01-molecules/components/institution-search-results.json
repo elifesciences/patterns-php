@@ -1,0 +1,12 @@
+{
+  "institutions": [
+    {
+      "name": "The University of Sheffield",
+      "url": "/eligibility/check?institution=the-university-of-sheffield"
+    },
+    {
+      "name": "Imperial College London",
+      "url": "/eligibility/check?institution=imperial-college-london"
+    }
+  ]
+}

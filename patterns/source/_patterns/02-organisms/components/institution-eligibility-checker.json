@@ -1,0 +1,9 @@
+{
+  "formId": "institutionEligibilityChecker",
+  "label": "Search for your institution",
+  "inputName": "institution",
+  "inputValue": "",
+  "inputPlaceholder": "Start typing your institution's name",
+  "ctaText": "Search",
+  "searchUrl": "/eligibility/search"
+}

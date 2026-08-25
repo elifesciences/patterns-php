@@ -1,0 +1,17 @@
+<div class="institution-eligibility-outcome institution-eligibility-outcome--{{type}}">
+    {{#isAgreed}}
+        <p class="institution-eligibility-outcome__text">Great news — your institution <u>has an open-access agreement</u> with eLife.</p>
+        <p class="institution-eligibility-outcome__text">Your publishing fee may be fully or partially covered under this agreement.</p>
+        <p class="institution-eligibility-outcome__text">You'll be able to select this agreement when you submit your next paper.</p>
+    {{/isAgreed}}
+    {{#isNotAgreedPublished}}
+        <p class="institution-eligibility-outcome__text">Your institution does not currently have an open-access agreement with eLife.</p>
+        <p class="institution-eligibility-outcome__text">However, <u>other researchers from this institution have published with us before</u>.</p>
+        <p class="institution-eligibility-outcome__text">Contact your library or research office to find out about funding options.</p>
+    {{/isNotAgreedPublished}}
+    {{#isNotAgreedUnpublished}}
+        <p class="institution-eligibility-outcome__text">Your institution does not currently have an open-access agreement with eLife.</p>
+        <p class="institution-eligibility-outcome__text"><u>We don't yet have a publishing history for this institution</u>.</p>
+        <p class="institution-eligibility-outcome__text">Contact your library or research office to find out about funding options.</p>
+    {{/isNotAgreedUnpublished}}
+</div>

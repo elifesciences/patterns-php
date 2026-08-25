@@ -1,0 +1,22 @@
+@import "../../definitions";
+
+.institution-eligibility-outcome {
+  @include padding(14 8);
+  text-align: center;
+}
+
+.institution-eligibility-outcome__text {
+  @include font-size(14);
+  font-weight: 600;
+}
+
+.institution-eligibility-outcome--agreed {
+  background-color: $color-success;
+  color: $color-text--reverse;
+}
+
+.institution-eligibility-outcome--not-agreed-published,
+.institution-eligibility-outcome--not-agreed-unpublished {
+  background-color: $color-attention;
+  color: $color-text--reverse;
+}

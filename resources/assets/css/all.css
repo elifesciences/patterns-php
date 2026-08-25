@@ -3835,6 +3835,38 @@ input:checked + .toggle-checkbox__slider:before {
  * Backwards compatible clearfix.
  * See http://nicolasgallagher.com/micro-clearfix-hack/
  */
+.institution-eligibility-outcome {
+  padding: 14px 8px;
+  padding: 0.875rem 0.5rem;
+  text-align: center;
+}
+
+.institution-eligibility-outcome__text {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.institution-eligibility-outcome--agreed {
+  background-color: #629f43;
+  color: #fff;
+}
+
+.institution-eligibility-outcome--not-agreed-published,
+.institution-eligibility-outcome--not-agreed-unpublished {
+  background-color: #cf0c4e;
+  color: #fff;
+}
+
+/*
+ * Baseline grid
+ */
+/*
+ * Baseline grid
+ */
+/*
+ * Backwards compatible clearfix.
+ * See http://nicolasgallagher.com/micro-clearfix-hack/
+ */
 .list-heading {
   font-family: "Noto Sans", Arial, Helvetica, sans-serif;
   font-size: 0.875rem;
