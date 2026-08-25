@@ -1,0 +1,17 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
+type: object
+properties:
+    type:
+        type: string
+        enum:
+            - agreed
+            - not-agreed-published
+            - not-agreed-unpublished
+    isAgreed:
+        type: boolean
+    isNotAgreedPublished:
+        type: boolean
+    isNotAgreedUnpublished:
+        type: boolean
+required:
+    - type
