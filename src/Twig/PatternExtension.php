@@ -4,10 +4,10 @@ namespace eLife\Patterns\Twig;
 
 use eLife\Patterns\PatternRenderer;
 use eLife\Patterns\ViewModel;
-use Twig_Extension;
-use Twig_Function;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-final class PatternExtension extends Twig_Extension
+final class PatternExtension extends AbstractExtension
 {
     private $renderer;
 
@@ -16,10 +16,10 @@ final class PatternExtension extends Twig_Extension
         $this->renderer = $renderer;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new Twig_Function(
+            new TwigFunction(
                 'render_pattern',
                 [$this, 'renderPattern'],
                 ['is_safe' => ['html']]
