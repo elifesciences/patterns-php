@@ -58,6 +58,12 @@ properties:
                 minLength: 1
             inputAutofocus:
                 type: boolean
+            visibleLabel:
+                type: boolean
+            variant:
+                type: string
+                enum:
+                    - institution-eligibility
             ctaText:
                 type: string
                 minLength: 1

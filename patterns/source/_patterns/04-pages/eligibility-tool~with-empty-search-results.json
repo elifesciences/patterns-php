@@ -100,5 +100,9 @@
     "inputValue": "",
     "inputPlaceholder": "Enter text here",
     "ctaText": "Search"
+  },
+  "results": {
+    "institutions": [],
+    "emptyMessage": "No institutions found"
   }
 }

@@ -2236,77 +2236,6 @@ function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = 
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-module.exports = /*#__PURE__*/function () {
-  function Htmx($elm) {
-    var _window = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window;
-    var doc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : document;
-    _classCallCheck(this, Htmx);
-    this.window = _window;
-    this.isSingleton = true;
-    Htmx.init(doc);
-  }
-  return _createClass(Htmx, null, [{
-    key: "init",
-    value: function init(doc) {
-      Htmx.loadDependencies(doc);
-      if ('MutationObserver' in window) {
-        if (!Htmx.dependenciesAlreadySetup(doc)) {
-          var observer = new MutationObserver(function (mutations, observer) {
-            Htmx.loadDependencies(doc);
-            if (Htmx.dependenciesAlreadySetup(doc)) {
-              observer.disconnect();
-            }
-          });
-          observer.observe(doc.body, {
-            childList: true,
-            subtree: true
-          });
-        }
-      }
-    }
-  }, {
-    key: "loadDependencies",
-    value: function loadDependencies(doc) {
-      if (doc.querySelector('[hx-get],[hx-post],[hx-put],[hx-patch],[hx-delete],[hx-trigger],[hx-boost]')) {
-        Htmx.load(doc);
-      }
-    }
-  }, {
-    key: "dependenciesAlreadySetup",
-    value: function dependenciesAlreadySetup(doc) {
-      return !!doc.querySelector('script[src*="htmx"]');
-    }
-
-    // If this fails to load (CDN blocked, offline, etc.) the page still works: every
-    // hx-* element already has a real href/action fallback, so this is a pure enhancement.
-  }, {
-    key: "load",
-    value: function load(doc) {
-      if (Htmx.dependenciesAlreadySetup(doc)) {
-        return;
-      }
-      var script = doc.createElement('script');
-      script.type = 'text/javascript';
-      script.addEventListener('error', function () {
-        return console.warn('htmx failed to load; falling back to standard navigation');
-      });
-      script.src = 'https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js';
-      script.integrity = 'sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V';
-      script.crossOrigin = 'anonymous';
-      doc.querySelector('body').appendChild(script);
-    }
-  }]);
-}();
-
-},{}],21:[function(require,module,exports){
-'use strict';
-
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var utils = require('../libs/elife-utils')();
 module.exports = /*#__PURE__*/function () {
   function HypothesisLoader($elm) {
@@ -2450,7 +2379,7 @@ module.exports = /*#__PURE__*/function () {
   }]);
 }();
 
-},{"../libs/elife-utils":50}],22:[function(require,module,exports){
+},{"../libs/elife-utils":50}],21:[function(require,module,exports){
 'use strict';
 
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t.return || t.return(); } finally { if (u) throw o; } } }; }
@@ -2839,7 +2768,7 @@ module.exports = /*#__PURE__*/function () {
   }]);
 }();
 
-},{"../libs/elife-utils":50,"./SpeechBubble":42}],23:[function(require,module,exports){
+},{"../libs/elife-utils":50,"./SpeechBubble":42}],22:[function(require,module,exports){
 'use strict';
 
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t.return || t.return(); } finally { if (u) throw o; } } }; }
@@ -3055,7 +2984,7 @@ module.exports = /*#__PURE__*/function () {
   }]);
 }();
 
-},{}],24:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -3075,7 +3004,95 @@ module.exports = /*#__PURE__*/_createClass(function InfoBar($elm) {
   this.dismissible = new Dismissible(this.$elm, this.$elm.querySelector('.info-bar__container'), this.doc);
 });
 
-},{"./_Dismissible":49}],25:[function(require,module,exports){
+},{"./_Dismissible":49}],24:[function(require,module,exports){
+'use strict';
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+module.exports = /*#__PURE__*/function () {
+  function InstitutionEligibilityChecker($elm) {
+    var _window = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window;
+    var doc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : document;
+    _classCallCheck(this, InstitutionEligibilityChecker);
+    if (!$elm) {
+      return;
+    }
+    this.$elm = $elm;
+    this.window = _window;
+    this.$form = $elm.querySelector('form');
+    this.$input = $elm.querySelector('input[type="search"]');
+    this.$results = doc.getElementById('institution-eligibility-checker-results');
+    if (!(this.$form && this.$input && this.$results)) {
+      return;
+    }
+    this.requestId = 0;
+    this.$input.addEventListener('input', this.handleInput.bind(this));
+    this.$form.addEventListener('submit', this.handleSubmit.bind(this));
+  }
+  return _createClass(InstitutionEligibilityChecker, [{
+    key: "handleInput",
+    value: function handleInput() {
+      var _this = this;
+      this.window.clearTimeout(this.debounceTimer);
+      this.debounceTimer = this.window.setTimeout(function () {
+        return _this.search();
+      }, 300);
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.window.clearTimeout(this.debounceTimer);
+      this.search();
+    }
+  }, {
+    key: "search",
+    value: function search() {
+      var _this2 = this;
+      var requestId = ++this.requestId;
+      if (!this.$input.value.trim()) {
+        this.$results.innerHTML = '';
+        return;
+      }
+      var url = this.$form.action + '?' + this.$input.name + '=' + encodeURIComponent(this.$input.value);
+      this.loadFragment(url).then(function (html) {
+        if (requestId === _this2.requestId) {
+          _this2.$results.innerHTML = html;
+        }
+      }, function () {
+        // If the request itself fails (network error, non-2xx), fall back to a real page load.
+        if (requestId === _this2.requestId) {
+          _this2.window.location.href = url;
+        }
+      });
+    }
+  }, {
+    key: "loadFragment",
+    value: function loadFragment(url) {
+      var _this3 = this;
+      return new Promise(function (resolve, reject) {
+        var xhr = new _this3.window.XMLHttpRequest();
+        xhr.addEventListener('load', function () {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(xhr.responseText);
+          } else {
+            reject();
+          }
+        });
+        xhr.addEventListener('error', reject);
+        xhr.open('GET', url);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.send();
+      });
+    }
+  }]);
+}();
+
+},{}],25:[function(require,module,exports){
 'use strict';
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -7375,11 +7392,11 @@ Components.FilterPanel = require('./components/FilterPanel');
 Components.FragmentHandler = require('./components/FragmentHandler');
 Components.HiddenUntilChecked = require('./components/HiddenUntilChecked');
 Components.Highlights = require('./components/Highlights');
-Components.Htmx = require('./components/Htmx');
 Components.HypothesisLoader = require('./components/HypothesisLoader');
 Components.HypothesisOpener = require('./components/HypothesisOpener');
 Components.HypothesisTrigger = require('./components/HypothesisTrigger');
 Components.InfoBar = require('./components/InfoBar');
+Components.InstitutionEligibilityChecker = require('./components/InstitutionEligibilityChecker');
 Components.JumpMenu = require('./components/JumpMenu');
 Components.LoginControl = require('./components/LoginControl');
 Components.MainMenu = require('./components/MainMenu');
@@ -7461,7 +7478,7 @@ var Elife = function Elife() {
 };
 new Elife();
 
-},{"./components/AboutProfiles":1,"./components/AnnotationTeaser":2,"./components/ArticleDownloadLinksList":3,"./components/ArticleSection":4,"./components/Assessment":5,"./components/AssetNavigation":6,"./components/AssetViewer":7,"./components/AudioPlayer":8,"./components/Authors":9,"./components/ButtonClipboard":11,"./components/CallToAction":12,"./components/CheckPMC":13,"./components/ContentAside":14,"./components/DelegateBehaviour":15,"./components/FilterPanel":16,"./components/FragmentHandler":17,"./components/HiddenUntilChecked":18,"./components/Highlights":19,"./components/Htmx":20,"./components/HypothesisLoader":21,"./components/HypothesisOpener":22,"./components/HypothesisTrigger":23,"./components/InfoBar":24,"./components/JumpMenu":25,"./components/LoginControl":26,"./components/MainMenu":27,"./components/Math":28,"./components/MediaChapterListingItem":29,"./components/Meta":30,"./components/Metrics":31,"./components/Modal":32,"./components/Pager":34,"./components/PersonalisedCoverDownload":35,"./components/Popup":36,"./components/SearchBox":37,"./components/SectionListingLink":38,"./components/SelectNav":39,"./components/SideBySideView":40,"./components/SiteHeader":41,"./components/SpeechBubble":42,"./components/StatisticCollection":43,"./components/TabbedNavigation":44,"./components/ToggleableCaption":45,"./components/Twitter":46,"./components/ViewSelector":47,"./components/ViewerModal":48,"./libs/polyfills":51}],53:[function(require,module,exports){
+},{"./components/AboutProfiles":1,"./components/AnnotationTeaser":2,"./components/ArticleDownloadLinksList":3,"./components/ArticleSection":4,"./components/Assessment":5,"./components/AssetNavigation":6,"./components/AssetViewer":7,"./components/AudioPlayer":8,"./components/Authors":9,"./components/ButtonClipboard":11,"./components/CallToAction":12,"./components/CheckPMC":13,"./components/ContentAside":14,"./components/DelegateBehaviour":15,"./components/FilterPanel":16,"./components/FragmentHandler":17,"./components/HiddenUntilChecked":18,"./components/Highlights":19,"./components/HypothesisLoader":20,"./components/HypothesisOpener":21,"./components/HypothesisTrigger":22,"./components/InfoBar":23,"./components/InstitutionEligibilityChecker":24,"./components/JumpMenu":25,"./components/LoginControl":26,"./components/MainMenu":27,"./components/Math":28,"./components/MediaChapterListingItem":29,"./components/Meta":30,"./components/Metrics":31,"./components/Modal":32,"./components/Pager":34,"./components/PersonalisedCoverDownload":35,"./components/Popup":36,"./components/SearchBox":37,"./components/SectionListingLink":38,"./components/SelectNav":39,"./components/SideBySideView":40,"./components/SiteHeader":41,"./components/SpeechBubble":42,"./components/StatisticCollection":43,"./components/TabbedNavigation":44,"./components/ToggleableCaption":45,"./components/Twitter":46,"./components/ViewSelector":47,"./components/ViewerModal":48,"./libs/polyfills":51}],53:[function(require,module,exports){
 require('../modules/es6.object.to-string');
 require('../modules/es6.string.iterator');
 require('../modules/web.dom.iterable');

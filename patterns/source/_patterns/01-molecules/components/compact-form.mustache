@@ -1,7 +1,7 @@
-<form class="compact-form{{#state}} compact-form--{{state}}{{/state}}" id="{{formId}}" action="{{formAction}}" method="{{formMethod}}" novalidate>
+<form class="compact-form{{#state}} compact-form--{{state}}{{/state}}{{#variant}} compact-form--{{variant}}{{/variant}}" id="{{formId}}" action="{{formAction}}" method="{{formMethod}}" novalidate>
   <fieldset class="compact-form__container">
-    <label>
-      <span class="visuallyhidden">{{label}}</span>
+    <label{{#visibleLabel}} class="compact-form__label"{{/visibleLabel}}>
+      <span class="compact-form__label-text{{^visibleLabel}} visuallyhidden{{/visibleLabel}}">{{label}}</span>
       <input type="{{inputType}}" name="{{inputName}}" value="{{inputValue}}" placeholder="{{inputPlaceholder}}"
         {{#inputAutofocus}} autofocus{{/inputAutofocus}}
          class="compact-form__input"

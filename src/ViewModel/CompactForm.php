@@ -11,6 +11,7 @@ final class CompactForm implements ViewModel
 {
     const STATE_INVALID = 'invalid';
     const STATE_VALID = 'valid';
+    const VARIANT_INSTITUTION_ELIGIBILITY = 'institution-eligibility';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -29,8 +30,10 @@ final class CompactForm implements ViewModel
     private $messageGroup;
     private $hiddenFields;
     private $honeypot;
+    private $visibleLabel;
+    private $variant;
 
-    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, MessageGroup $messageGroup = null, array $hiddenFields = [], Honeypot $honeypot = null)
+    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, MessageGroup $messageGroup = null, array $hiddenFields = [], Honeypot $honeypot = null, bool $visibleLabel = false)
     {
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
@@ -53,6 +56,27 @@ final class CompactForm implements ViewModel
         $this->messageGroup = $messageGroup;
         $this->hiddenFields = $hiddenFields;
         $this->honeypot = $honeypot;
+        if ($visibleLabel) {
+            $this->visibleLabel = true;
+        }
+    }
+
+    public function withVisibleLabel() : self
+    {
+        $this->visibleLabel = true;
+
+        return $this;
+    }
+
+    public function withVariant(string $variant) : self
+    {
+        Assertion::choice($variant, [
+            self::VARIANT_INSTITUTION_ELIGIBILITY,
+        ]);
+
+        $this->variant = $variant;
+
+        return $this;
     }
 
     public function getTemplateName() : string

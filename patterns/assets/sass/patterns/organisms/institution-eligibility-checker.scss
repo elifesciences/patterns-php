@@ -1,0 +1,115 @@
+@import "../../definitions";
+@import "../../variables";
+@import "../../mixins";
+
+@import "../../definitions";
+
+$institution-search-results-item-height: 44px;
+
+.institution-eligibility-page {
+
+  .institution-eligibility-checker {
+    background: rgba(145, 184, 245, 0.2);
+    padding: 50px 20px 100px 20px;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .content-header-simple__title {
+    @include h1-typeg();
+  }
+
+  .institution-eligibility-checker__intro {
+    //font-weight: bold;
+    text-align: center;
+    color: $color-information;
+  }
+
+  .compact-form__container{
+    @include constrain-width(620, "max");
+    margin-top: 15px;
+  }
+
+  .compact-form__submit{
+    // The visible label pushes the input down within .compact-form__container,
+    // so anchor to the bottom (where the input now ends) instead of the top.
+    top: auto;
+    bottom: 0;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+
+  .compact-form__label-text {
+    @include font-size(15);
+  }
+
+  .compact-form__label {
+    @include margin(3 0);
+  }
+
+  .compact-form__input {
+    border-radius: 12px;
+  }
+
+  .compact-form__input:focus {
+    border: 1px solid $color-information;
+  }
+
+  .institution-eligibility-checker__results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    margin: -90px auto;
+    max-width: 620px;
+    border-radius: 12px;
+    background-color: white;
+    border: 1px solid $color-information;
+
+    &:empty {
+      border: none;
+    }
+  }
+
+  .institution-search-results__list {
+    list-style-type: none;
+    @include padding(11 0);
+    @include margin(0 0);
+    max-height: $institution-search-results-item-height * 6;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: $color-text-dividers transparent;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-text-dividers;
+      border-radius: 3px;
+    }
+  }
+
+  .institution-search-results__item {
+    @include padding(11 0);
+    height: $institution-search-results-item-height;
+  }
+
+  .institution-search-results__link {
+    text-decoration: none;
+    color: $color-text;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    @include padding(0 12);
+  }
+
+  .institution-search-results__empty {
+    padding-left: 12px;
+  }
+}

@@ -14,10 +14,12 @@ final class InstitutionEligibilityChecker implements ViewModel
 
     private $label;
     private $inputValue;
-    private $inputName;
     private $inputPlaceholder;
     private $ctaText;
     private $searchUrl;
+    private $results;
+    private $outcome;
+    private $compactForm;
 
     public function __construct(
         string $label,
@@ -25,20 +27,23 @@ final class InstitutionEligibilityChecker implements ViewModel
         string $ctaText,
         string $searchUrl,
         string $inputValue = '',
-        string $inputName = ''
+        InstitutionSearchResults $results = null,
+        InstitutionEligibilityOutcome $outcome = null,
+        CompactForm $compactForm = null
     ) {
         Assertion::notBlank($label);
         Assertion::notBlank($inputPlaceholder);
         Assertion::notBlank($ctaText);
         Assertion::notBlank($searchUrl);
-        Assertion::notBlank($inputName);
 
         $this->label = $label;
         $this->inputValue = $inputValue;
         $this->inputPlaceholder = $inputPlaceholder;
         $this->ctaText = $ctaText;
         $this->searchUrl = $searchUrl;
-        $this->inputName = $inputName;
+        $this->results = $results;
+        $this->outcome = $outcome;
+        $this->compactForm = $compactForm;
     }
 
     public function getTemplateName(): string

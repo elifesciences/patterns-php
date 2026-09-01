@@ -100,5 +100,37 @@
     "inputValue": "",
     "inputPlaceholder": "Enter text here",
     "ctaText": "Search"
+  },
+  "results": {
+    "institutions": [
+      {
+        "name": "University of Sheffield",
+        "url": "/eligibility/check/university-of-sheffield"
+      },
+      {
+        "name": "Sheffield Hallam University",
+        "url": "/eligibility/check/sheffield-hallam-university"
+      },
+      {
+        "name": "University of Leicester",
+        "url": "/eligibility/check/"
+      },
+      {
+        "name": "University College London",
+        "url": "/eligibility/check/"
+      },
+      {
+        "name": "Stanford University",
+        "url": "/eligibility/check/"
+      },
+      {
+        "name": "Warrick University",
+        "url": "/eligibility/check/"
+      },
+      {
+        "name": "New York University",
+        "url": "/eligibility/check/"
+      }
+    ]
   }
 }

@@ -1,26 +1,20 @@
 $schema: http://json-schema.org/draft-04/schema#
 type: object
 properties:
-  formId:
-    type: string
   label:
-    type: string
-    minLength: 1
-  inputName:
     type: string
     minLength: 1
   inputValue:
     type: string
   inputPlaceholder:
     type: string
-  ctaText:
-    type: string
   searchUrl:
     type: string
+  results:
+    $ref: ../../01-molecules/components/institution-search-results.yaml
+  outcome:
+    $ref: ../../00-atoms/components/institution-eligibility-outcome.yaml
 required:
-  - formId
   - label
-  - inputName
   - inputPlaceholder
-  - ctaText
   - searchUrl
