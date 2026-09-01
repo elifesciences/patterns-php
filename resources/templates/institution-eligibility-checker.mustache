@@ -1,14 +1,7 @@
-<div class="institution-eligibility-checker" data-behaviour="Htmx">
-    <form id="institution-eligibility-checker__form" action="{{searchUrl}}" method="GET" novalidate>
-        <label class="institution-eligibility-checker__label" for="institution-eligibility-checker__form-input">{{label}}</label>
-        <input
-                type="search" id="institution-eligibility-checker__form-input" name="{{inputName}}" value="{{inputValue}}"
-                placeholder="{{inputPlaceholder}}" class="institution-eligibility-checker__input" autocomplete="off"
-                aria-controls="institution-eligibility-checker-results"
-                hx-get="{{searchUrl}}" hx-trigger="keyup changed delay:300ms, search"
-                hx-target="#institution-eligibility-checker-results" hx-indicator="#institution-eligibility-checker__form-indicator">
-        <button type="submit" class="institution-eligibility-checker__submit">{{ctaText}}</button>
-    </form>
-    <div id="institution-eligibility-checker-results" class="institution-eligibility-checker__results" aria-live="polite"></div>
-    <div id="institution-eligibility-checker-outcome" class="institution-eligibility-checker__outcome" aria-live="polite"></div>
+<div class="institution-eligibility-checker" data-behaviour="InstitutionEligibilityChecker">
+    <h6 class="institution-eligibility-checker__intro">Enter your institution below to check your eligibility:</h6>
+    {{#compactForm}}
+        {{>resources/templates/compact-form}}
+    {{/compactForm}}
+    <div id="institution-eligibility-checker-results" class="institution-eligibility-checker__results">{{#results}}{{> resources/templates/institution-search-results}}{{/results}}</div>
 </div>

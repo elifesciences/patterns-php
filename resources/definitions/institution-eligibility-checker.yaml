@@ -1,26 +1,62 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 type: object
 properties:
-    formId:
-        type: string
     label:
-        type: string
-        minLength: 1
-    inputName:
         type: string
         minLength: 1
     inputValue:
         type: string
     inputPlaceholder:
         type: string
-    ctaText:
-        type: string
     searchUrl:
         type: string
+    results:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            institutions:
+                type: array
+                items:
+                    $schema: 'http://json-schema.org/draft-04/schema#'
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                            minLength: 1
+                        url:
+                            type: string
+                            minLength: 1
+                        ariaLabel:
+                            type: string
+                            minLength: 1
+                        isCurrent:
+                            type: boolean
+                            default: false
+                    required:
+                        - name
+                        - url
+            emptyMessage:
+                type: string
+                minLength: 1
+    outcome:
+        $schema: 'http://json-schema.org/draft-04/schema#'
+        type: object
+        properties:
+            type:
+                type: string
+                enum:
+                    - agreed
+                    - not-agreed-published
+                    - not-agreed-unpublished
+            isAgreed:
+                type: boolean
+            isNotAgreedPublished:
+                type: boolean
+            isNotAgreedUnpublished:
+                type: boolean
+        required:
+            - type
 required:
-    - formId
     - label
-    - inputName
     - inputPlaceholder
-    - ctaText
     - searchUrl
