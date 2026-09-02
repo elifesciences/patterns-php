@@ -36,7 +36,7 @@ final class InstitutionEligibilityCheckerTest extends ViewModelTest
         new InstitutionEligibilityChecker('', "Start typing your institution's name", 'Search', '/eligibility/search');
     }
 
-    public static function viewModelProvider() : array
+    public function viewModelProvider() : array
     {
         return [
             'basic' => [new InstitutionEligibilityChecker(
