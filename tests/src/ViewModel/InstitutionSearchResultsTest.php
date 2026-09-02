@@ -31,7 +31,7 @@ final class InstitutionSearchResultsTest extends ViewModelTest
         new InstitutionSearchResults(['not a link']);
     }
 
-    public static function viewModelProvider() : array
+    public function viewModelProvider() : array
     {
         return [
             'with institutions' => [new InstitutionSearchResults([new Link('The University of Sheffield', '/eligibility/check?institution=the-university-of-sheffield')])],
