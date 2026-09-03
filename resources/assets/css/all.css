@@ -3835,6 +3835,38 @@ input:checked + .toggle-checkbox__slider:before {
  * Backwards compatible clearfix.
  * See http://nicolasgallagher.com/micro-clearfix-hack/
  */
+.institution-eligibility-outcome {
+  padding: 14px 8px;
+  padding: 0.875rem 0.5rem;
+  text-align: center;
+}
+
+.institution-eligibility-outcome__text {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.institution-eligibility-outcome--agreed {
+  background-color: #629f43;
+  color: #fff;
+}
+
+.institution-eligibility-outcome--not-agreed-published,
+.institution-eligibility-outcome--not-agreed-unpublished {
+  background-color: #cf0c4e;
+  color: #fff;
+}
+
+/*
+ * Baseline grid
+ */
+/*
+ * Baseline grid
+ */
+/*
+ * Backwards compatible clearfix.
+ * See http://nicolasgallagher.com/micro-clearfix-hack/
+ */
 .list-heading {
   font-family: "Noto Sans", Arial, Helvetica, sans-serif;
   font-size: 0.875rem;
@@ -14013,6 +14045,133 @@ a.popup__button:after {
     display: grid;
     grid-template-columns: 4fr 4fr 4fr;
   }
+}
+
+/*
+ * Baseline grid
+ */
+/*
+ * Baseline grid
+ */
+/*
+ * Backwards compatible clearfix.
+ * See http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+/*
+ * Baseline grid
+ */
+/*
+ * Baseline grid
+ */
+/*
+ * Backwards compatible clearfix.
+ * See http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+/*
+ * Baseline grid
+ */
+/*
+ * Baseline grid
+ */
+/*
+ * Backwards compatible clearfix.
+ * See http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+.institution-eligibility-page .institution-eligibility-checker {
+  background: rgba(145, 184, 245, 0.2);
+  padding: 50px 20px 100px 20px;
+  border-radius: 12px;
+  position: relative;
+}
+.institution-eligibility-page .content-header-simple__title {
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 2.25rem;
+  line-height: 1.3333333333;
+  font-size: 2.25rem;
+}
+.institution-eligibility-page .institution-eligibility-checker__intro {
+  text-align: center;
+  color: #087acc;
+}
+.institution-eligibility-page .compact-form__container {
+  max-width: 620px;
+  max-width: 38.75rem;
+  margin-top: 15px;
+}
+.institution-eligibility-page .compact-form__submit {
+  top: auto;
+  bottom: 0;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.institution-eligibility-page .compact-form__label-text {
+  font-size: 0.9375rem;
+}
+.institution-eligibility-page .compact-form__label {
+  margin: 3px 0px;
+  margin: 0.1875rem 0rem;
+}
+.institution-eligibility-page .compact-form__input {
+  border-radius: 12px;
+}
+.institution-eligibility-page .compact-form__input:focus {
+  border: 1px solid #087acc;
+}
+.institution-eligibility-page .institution-eligibility-checker__results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin: -90px auto;
+  max-width: 620px;
+  border-radius: 12px;
+  background-color: white;
+  border: 1px solid #087acc;
+}
+.institution-eligibility-page .institution-eligibility-checker__results:empty {
+  border: none;
+}
+.institution-eligibility-page .institution-search-results__list {
+  list-style-type: none;
+  padding: 11px 0px;
+  padding: 0.6875rem 0rem;
+  margin: 0px 0px;
+  margin: 0rem 0rem;
+  max-height: 264px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #e0e0e0 transparent;
+}
+.institution-eligibility-page .institution-search-results__list::-webkit-scrollbar {
+  width: 6px;
+}
+.institution-eligibility-page .institution-search-results__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.institution-eligibility-page .institution-search-results__list::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0;
+  border-radius: 3px;
+}
+.institution-eligibility-page .institution-search-results__item {
+  padding: 11px 0px;
+  padding: 0.6875rem 0rem;
+  height: 44px;
+}
+.institution-eligibility-page .institution-search-results__link {
+  text-decoration: none;
+  color: #212121;
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding: 0px 12px;
+  padding: 0rem 0.75rem;
+}
+.institution-eligibility-page .institution-search-results__empty {
+  padding-left: 12px;
 }
 
 /*
