@@ -7,9 +7,9 @@ use eLife\Patterns\Twig\PatternExtension;
 use eLife\Patterns\ViewModel;
 use eLife\Patterns\ViewModel\FlexibleViewModel;
 use PHPUnit\Framework\TestCase;
-use Twig_Environment;
-use Twig_ExtensionInterface;
-use Twig_Loader_Array;
+use Twig\Loader\ArrayLoader;
+use Twig\Extension\AbstractExtension;
+use Twig\Environment;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Depends;
 
@@ -22,15 +22,15 @@ final class PatternExtensionTest extends TestCase
             return 'foobar';
         }));
 
-        $this->assertInstanceOf(Twig_ExtensionInterface::class, $extension);
+        $this->assertInstanceOf(AbstractExtension::class, $extension);
     }
 
     #[Test]
     #[Depends('it_is_a_twig_extension')]
     public function it_renders_patterns()
     {
-        $twigLoader = new Twig_Loader_Array(['foo' => '{{render_pattern(bar)}}']);
-        $twig = new Twig_Environment($twigLoader);
+        $twigLoader = new ArrayLoader(['foo' => '{{render_pattern(bar)}}']);
+        $twig = new Environment($twigLoader);
         $twig->addExtension(new PatternExtension(new CallbackPatternRenderer(function (ViewModel $viewModel) : string {
             return 'foobar';
         })));
