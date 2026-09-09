@@ -37,6 +37,6 @@ final class InstitutionEligibilityOutcome implements ViewModel
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/institution-eligibility-outcome.mustache';
+        return 'resources/templates/eligibility-tool-outcome.mustache';
     }
 }

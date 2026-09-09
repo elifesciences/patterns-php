@@ -67,6 +67,6 @@ final class InstitutionEligibilityCheckerTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/institution-eligibility-checker.mustache';
+        return 'resources/templates/eligibility-tool-checker.mustache';
     }
 }

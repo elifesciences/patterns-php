@@ -49,6 +49,6 @@ final class InstitutionEligibilityOutcomeTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/institution-eligibility-outcome.mustache';
+        return 'resources/templates/eligibility-tool-outcome.mustache';
     }
 }
