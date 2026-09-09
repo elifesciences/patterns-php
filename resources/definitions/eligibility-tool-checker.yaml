@@ -8,8 +8,6 @@ properties:
         type: string
     inputPlaceholder:
         type: string
-    searchUrl:
-        type: string
     results:
         $schema: 'http://json-schema.org/draft-04/schema#'
         type: object
@@ -59,4 +57,3 @@ properties:
 required:
     - label
     - inputPlaceholder
-    - searchUrl

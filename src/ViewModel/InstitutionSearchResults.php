@@ -25,6 +25,6 @@ final class InstitutionSearchResults implements ViewModel
 
     public function getTemplateName() : string
     {
-        return 'resources/templates/institution-search-results.mustache';
+        return 'resources/templates/eligibility-tool-institution-search-results.mustache';
     }
 }

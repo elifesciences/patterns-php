@@ -8,13 +8,10 @@ properties:
     type: string
   inputPlaceholder:
     type: string
-  searchUrl:
-    type: string
   results:
-    $ref: ../../01-molecules/components/institution-search-results.yaml
+    $ref: ../../00-atoms/components/eligibility-tool-institution-search-results.yaml
   outcome:
-    $ref: ../../00-atoms/components/institution-eligibility-outcome.yaml
+    $ref: ../../00-atoms/components/eligibility-tool-outcome.yaml
 required:
   - label
   - inputPlaceholder
-  - searchUrl

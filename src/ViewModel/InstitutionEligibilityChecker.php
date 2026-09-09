@@ -48,6 +48,6 @@ final class InstitutionEligibilityChecker implements ViewModel
 
     public function getTemplateName(): string
     {
-        return 'resources/templates/institution-eligibility-checker.mustache';
+        return 'resources/templates/eligibility-tool-checker.mustache';
     }
 }

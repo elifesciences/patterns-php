@@ -41,6 +41,6 @@ final class InstitutionSearchResultsTest extends ViewModelTest
 
     protected function expectedTemplate() : string
     {
-        return 'resources/templates/institution-search-results.mustache';
+        return 'resources/templates/eligibility-tool-institution-search-results.mustache';
     }
 }
