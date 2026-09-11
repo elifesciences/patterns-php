@@ -29,6 +29,28 @@ final class InstitutionEligibilityCheckerTest extends ViewModelTest
     /**
      * @test
      */
+    public function it_has_an_institutions_url_and_no_results_message()
+    {
+        $checker = new InstitutionEligibilityChecker(
+            'Search for your institution',
+            "Start typing your institution's name",
+            'Search',
+            '/eligibility/search',
+            '',
+            null,
+            null,
+            null,
+            '/institutions.json',
+            'No matching institution found.'
+        );
+
+        $this->assertSame('/institutions.json', $checker['institutionsUrl']);
+        $this->assertSame('No matching institution found.', $checker['noResultsMessage']);
+    }
+
+    /**
+     * @test
+     */
     public function it_cannot_have_blank_label()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -61,6 +83,18 @@ final class InstitutionEligibilityCheckerTest extends ViewModelTest
                 'The University of Sheffield',
                 null,
                 new InstitutionEligibilityOutcome(InstitutionEligibilityOutcome::TYPE_AGREED)
+            )],
+            'with institutions url' => [new InstitutionEligibilityChecker(
+                'Search for your institution',
+                "Start typing your institution's name",
+                'Search',
+                '/eligibility/search',
+                '',
+                null,
+                null,
+                null,
+                '/institutions.json',
+                'No matching institution found.'
             )],
         ];
     }

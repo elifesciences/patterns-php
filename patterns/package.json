@@ -9,6 +9,7 @@
   "type": "commonjs",
   "dependencies": {
     "@babel/preset-env": "^7.29.0",
+    "@leeoniya/ufuzzy": "github:leeoniya/ufuzzy",
     "@pattern-lab/cli": "^6.1.0",
     "@pattern-lab/uikit-workshop": "^6.1.0",
     "babelify": "^10.0.0",

@@ -6,7 +6,6 @@ properties:
     enum:
       - agreed
       - not-agreed-published
-      - not-agreed-unpublished
   isAgreed:
     type: boolean
   isNotAgreedPublished:

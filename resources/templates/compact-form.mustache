@@ -6,6 +6,7 @@
         {{#inputAutofocus}} autofocus{{/inputAutofocus}}
          class="compact-form__input"
         {{#messageGroup}} aria-describedby="{{id}}"{{#errorText}} aria-invalid="true"{{/errorText}}{{/messageGroup}}
+          {{#autocompleteOff}} autocomplete="off" {{/autocompleteOff}}
       >
     </label>
 

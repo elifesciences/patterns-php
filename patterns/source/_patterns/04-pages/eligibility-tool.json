@@ -99,6 +99,8 @@
     "inputName": "institution",
     "inputValue": "",
     "inputPlaceholder": "Enter text here",
-    "ctaText": "Search"
-  }
+    "ctaText": "Search",
+    "autocompleteOff": true
+  },
+  "institutionsUrl": "/eligibility.json"
 }
