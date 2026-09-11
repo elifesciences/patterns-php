@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mocha Test Runner</title>
+
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+
+    <!--
+      Test output
+    -->
+    <div id="mocha"></div>
+
+    <!--
+      Fixture
+    -->
+    <div class="institution-eligibility-checker" data-behaviour="InstitutionEligibilityChecker" data-institutions-url="/institutions.json" data-empty-message="No matching institution found.">
+
+      <form id="searchBox" action="/eligibility/search" method="GET">
+        <input type="search" name="institution" value="" placeholder="Enter text here">
+        <input type="hidden" name="country" value="">
+        <button type="submit">Search</button>
+      </form>
+
+      <div id="institution-eligibility-checker-results"></div>
+    </div>
+
+    <!--
+      Load test code
+    -->
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/sinon/pkg/sinon.js"></script>
+
+    <!-- Initialise test suite -->
+    <script>mocha.setup('bdd')</script>
+
+    <!--
+      Test spec
+    -->
+    <script src="build/institutioneligibilitychecker.spec.js"></script>
+
+    <!--
+      Begin!
+    -->
+    <script>
+      mocha.run();
+    </script>
+
+</body>
+</html>

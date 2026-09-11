@@ -11,12 +11,11 @@
 }
 
 .institution-eligibility-outcome--agreed {
-  background-color: $color-success;
-  color: $color-text--reverse;
+  background-color: #f2faf7;
+  color: #03784d;
 }
 
-.institution-eligibility-outcome--not-agreed-published,
-.institution-eligibility-outcome--not-agreed-unpublished {
-  background-color: $color-attention;
+.institution-eligibility-outcome--not-agreed-published {
+  background-color: #fff5f5;
   color: $color-text--reverse;
 }

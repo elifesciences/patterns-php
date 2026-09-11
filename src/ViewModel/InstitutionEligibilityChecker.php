@@ -12,38 +12,25 @@ final class InstitutionEligibilityChecker implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $label;
-    private $inputValue;
-    private $inputPlaceholder;
-    private $ctaText;
-    private $searchUrl;
-    private $results;
+    private $searchResults;
     private $outcome;
     private $compactForm;
+    private $institutionsUrl;
 
     public function __construct(
-        string $label,
-        string $inputPlaceholder,
-        string $ctaText,
-        string $searchUrl,
-        string $inputValue = '',
-        InstitutionSearchResults $results = null,
+        CompactForm                   $compactForm = null,
+        InstitutionSearchResults      $searchResults = null,
         InstitutionEligibilityOutcome $outcome = null,
-        CompactForm $compactForm = null
+        string                        $institutionsUrl = ''
     ) {
-        Assertion::notBlank($label);
-        Assertion::notBlank($inputPlaceholder);
-        Assertion::notBlank($ctaText);
-        Assertion::notBlank($searchUrl);
+        if ($compactForm !== null) {
+            Assertion::notBlank($compactForm->getFormAction());
+        }
 
-        $this->label = $label;
-        $this->inputValue = $inputValue;
-        $this->inputPlaceholder = $inputPlaceholder;
-        $this->ctaText = $ctaText;
-        $this->searchUrl = $searchUrl;
-        $this->results = $results;
+        $this->searchResults = $searchResults;
         $this->outcome = $outcome;
         $this->compactForm = $compactForm;
+        $this->institutionsUrl = $institutionsUrl;
     }
 
     public function getTemplateName(): string

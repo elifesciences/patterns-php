@@ -1,10 +1,10 @@
 <ul class="institution-search-results__list">
-   {{#institutions}}
+   {{#searchResults}}
      <li class="institution-search-results__item">
        <a class="institution-search-results__link" href="{{{url}}}">{{{name}}}</a>
      </li>
-   {{/institutions}}
+   {{/searchResults}}
  </ul>
- {{^institutions}}
+ {{^searchResults}}
    {{#emptyMessage}}<p class="institution-search-results__empty">{{{emptyMessage}}}</p>{{/emptyMessage}}
- {{/institutions}}
+ {{/searchResults}}

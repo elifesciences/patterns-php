@@ -32,8 +32,9 @@ final class CompactForm implements ViewModel
     private $honeypot;
     private $visibleLabel;
     private $variant;
+    private $autocompleteOff;
 
-    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, MessageGroup $messageGroup = null, array $hiddenFields = [], Honeypot $honeypot = null, bool $visibleLabel = false)
+    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, MessageGroup $messageGroup = null, array $hiddenFields = [], Honeypot $honeypot = null, bool $visibleLabel = false, $autocompleteOff = false)
     {
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);
@@ -59,11 +60,20 @@ final class CompactForm implements ViewModel
         if ($visibleLabel) {
             $this->visibleLabel = true;
         }
+
+        $this->autocompleteOff = $autocompleteOff;
     }
 
     public function withVisibleLabel() : self
     {
         $this->visibleLabel = true;
+
+        return $this;
+    }
+
+    public function withAutocompleteOff() : self
+    {
+        $this->autocompleteOff = true;
 
         return $this;
     }
@@ -77,6 +87,26 @@ final class CompactForm implements ViewModel
         $this->variant = $variant;
 
         return $this;
+    }
+
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    public function getInputValue()
+    {
+        return $this->inputValue;
+    }
+
+    public function getInputPlaceholder()
+    {
+        return $this->inputPlaceholder;
+    }
+
+    public function getFormAction()
+    {
+        return $this->formAction;
     }
 
     public function getTemplateName() : string

@@ -12,6 +12,12 @@ properties:
     $ref: ../../00-atoms/components/eligibility-tool-institution-search-results.yaml
   outcome:
     $ref: ../../00-atoms/components/eligibility-tool-outcome.yaml
+  institutionsUrl:
+    type: string
+    minLength: 1
+  noResultsMessage:
+    type: string
+    minLength: 1
 required:
   - label
   - inputPlaceholder

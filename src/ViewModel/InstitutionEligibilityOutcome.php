@@ -11,7 +11,6 @@ final class InstitutionEligibilityOutcome implements ViewModel
 {
     const TYPE_AGREED = 'agreed';
     const TYPE_NOT_AGREED_PUBLISHED = 'not-agreed-published';
-    const TYPE_NOT_AGREED_UNPUBLISHED = 'not-agreed-unpublished';
 
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -19,20 +18,22 @@ final class InstitutionEligibilityOutcome implements ViewModel
     private $type;
     private $isAgreed;
     private $isNotAgreedPublished;
-    private $isNotAgreedUnpublished;
+    /**
+     * @var string
+     */
+    private $institution;
 
-    public function __construct(string $type)
+    public function __construct(string $type, string $institution)
     {
         Assertion::choice($type, [
             self::TYPE_AGREED,
             self::TYPE_NOT_AGREED_PUBLISHED,
-            self::TYPE_NOT_AGREED_UNPUBLISHED,
         ]);
 
         $this->type = $type;
         $this->isAgreed = self::TYPE_AGREED === $type;
         $this->isNotAgreedPublished = self::TYPE_NOT_AGREED_PUBLISHED === $type;
-        $this->isNotAgreedUnpublished = self::TYPE_NOT_AGREED_UNPUBLISHED === $type;
+        $this->institution = $institution;
     }
 
     public function getTemplateName() : string

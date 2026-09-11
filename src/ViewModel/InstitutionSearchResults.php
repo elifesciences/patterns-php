@@ -12,14 +12,14 @@ final class InstitutionSearchResults implements ViewModel
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
 
-    private $institutions;
+    private $searchResults;
     private $emptyMessage;
 
-    public function __construct(array $institutions, string $emptyMessage = null)
+    public function __construct(array $searchResults, string $emptyMessage = null)
     {
-        Assertion::allIsInstanceOf($institutions, Link::class);
+        Assertion::allIsInstanceOf($searchResults, Link::class);
 
-        $this->institutions = $institutions;
+        $this->searchResults = $searchResults;
         $this->emptyMessage = $emptyMessage;
     }
 

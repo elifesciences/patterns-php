@@ -45,7 +45,6 @@ properties:
                 enum:
                     - agreed
                     - not-agreed-published
-                    - not-agreed-unpublished
             isAgreed:
                 type: boolean
             isNotAgreedPublished:
@@ -54,6 +53,12 @@ properties:
                 type: boolean
         required:
             - type
+    institutionsUrl:
+        type: string
+        minLength: 1
+    noResultsMessage:
+        type: string
+        minLength: 1
 required:
     - label
     - inputPlaceholder
