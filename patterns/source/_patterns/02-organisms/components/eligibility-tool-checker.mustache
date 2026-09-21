@@ -1,6 +1,5 @@
 <div class="institution-eligibility-checker" data-behaviour="InstitutionEligibilityChecker"{{#institutionsUrl}}
-     data-institutions-url="{{institutionsUrl}}"{{/institutionsUrl}}{{#noResultsMessage}}
-     data-empty-message="{{noResultsMessage}}"{{/noResultsMessage}}
+     data-institutions-url="{{institutionsUrl}}"{{/institutionsUrl}}
 >
 
     <h6 class="institution-eligibility-checker__intro">Enter your institution below to check your eligibility:</h6>
@@ -9,9 +8,5 @@
         {{>molecules-compact-form}}
     {{/compactForm}}
 
-    <div id="institution-eligibility-checker-results" class="institution-eligibility-checker__results">
-        {{#searchResults}}
-            {{> atoms-eligibility-tool-institution-search-results}}
-        {{/searchResults}}
-    </div>
+    <div id="institution-eligibility-checker-results" class="institution-eligibility-checker__results">{{#searchResults}}{{> atoms-eligibility-tool-institution-search-results}}{{/searchResults}}</div>
 </div>

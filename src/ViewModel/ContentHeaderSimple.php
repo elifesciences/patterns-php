@@ -14,13 +14,18 @@ final class ContentHeaderSimple implements ViewModel
 
     private $title;
     private $strapline;
+    /**
+     * @var bool
+     */
+    private $underline;
 
-    public function __construct(string $title, string $strapline = null)
+    public function __construct(string $title, string $strapline = null, bool $underline = false)
     {
         Assertion::notBlank($title);
 
         $this->title = $title;
         $this->strapline = $strapline;
+        $this->underline = $underline;
     }
 
     public function getTemplateName() : string

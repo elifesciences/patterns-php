@@ -2,99 +2,68 @@
 
 namespace tests\eLife\Patterns\ViewModel;
 
+use eLife\Patterns\ViewModel\CompactForm;
+use eLife\Patterns\ViewModel\Form;
+use eLife\Patterns\ViewModel\Input;
 use eLife\Patterns\ViewModel\InstitutionEligibilityChecker;
 use eLife\Patterns\ViewModel\InstitutionEligibilityOutcome;
 use eLife\Patterns\ViewModel\InstitutionSearchResults;
 use eLife\Patterns\ViewModel\Link;
-use InvalidArgumentException;
 
 final class InstitutionEligibilityCheckerTest extends ViewModelTest
 {
+    private function compactForm() : CompactForm
+    {
+        return new CompactForm(
+            new Form('/eligibility/search', 'searchBox', 'GET'),
+            new Input('Choose your institution:', 'search', 'institution', '', "Start typing your institution's name"),
+            'Search'
+        );
+    }
+
     /**
      * @test
      */
     public function it_has_data()
     {
-        $checker = new InstitutionEligibilityChecker(
-            'Search for your institution',
-            "Start typing your institution's name",
-            'Search',
-            '/eligibility/search'
-        );
+        $checker = new InstitutionEligibilityChecker($this->compactForm());
 
-        $this->assertSame('Search for your institution', $checker['label']);
-        $this->assertSame('/eligibility/search', $checker['searchUrl']);
+        $this->assertSame('/eligibility/search', $checker['compactForm']['formAction']);
     }
 
     /**
      * @test
      */
-    public function it_has_an_institutions_url_and_no_results_message()
+    public function it_has_an_institutions_url()
     {
         $checker = new InstitutionEligibilityChecker(
-            'Search for your institution',
-            "Start typing your institution's name",
-            'Search',
-            '/eligibility/search',
-            '',
+            $this->compactForm(),
             null,
             null,
-            null,
-            '/institutions.json',
-            'No matching institution found.'
+            '/institutions.json'
         );
 
         $this->assertSame('/institutions.json', $checker['institutionsUrl']);
-        $this->assertSame('No matching institution found.', $checker['noResultsMessage']);
-    }
-
-    /**
-     * @test
-     */
-    public function it_cannot_have_blank_label()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        new InstitutionEligibilityChecker('', "Start typing your institution's name", 'Search', '/eligibility/search');
     }
 
     public function viewModelProvider() : array
     {
         return [
-            'basic' => [new InstitutionEligibilityChecker(
-                'Search for your institution',
-                "Start typing your institution's name",
-                'Search',
-                '/eligibility/search'
-            )],
-            'with results' => [new InstitutionEligibilityChecker(
-                'Search for your institution',
-                "Start typing your institution's name",
-                'Search',
-                '/eligibility/search',
-                'Sheffield',
+            'basic' => [new InstitutionEligibilityChecker($this->compactForm())],
+            'with search results' => [new InstitutionEligibilityChecker(
+                $this->compactForm(),
                 new InstitutionSearchResults([new Link('The University of Sheffield', '/eligibility/check?institution=the-university-of-sheffield')])
             )],
             'with outcome' => [new InstitutionEligibilityChecker(
-                'Search for your institution',
-                "Start typing your institution's name",
-                'Search',
-                '/eligibility/search',
-                'The University of Sheffield',
+                $this->compactForm(),
                 null,
-                new InstitutionEligibilityOutcome(InstitutionEligibilityOutcome::TYPE_AGREED)
+                new InstitutionEligibilityOutcome(InstitutionEligibilityOutcome::TYPE_AGREED, 'The University of Sheffield')
             )],
             'with institutions url' => [new InstitutionEligibilityChecker(
-                'Search for your institution',
-                "Start typing your institution's name",
-                'Search',
-                '/eligibility/search',
-                '',
+                $this->compactForm(),
                 null,
                 null,
-                null,
-                '/institutions.json',
-                'No matching institution found.'
+                '/institutions.json'
             )],
         ];
     }

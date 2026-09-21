@@ -6,11 +6,15 @@ properties:
         enum:
             - agreed
             - not-agreed-published
+            - not-agreed-not-published
+            - not-agreed-not-published-with-possible-matches
     isAgreed:
         type: boolean
     isNotAgreedPublished:
         type: boolean
     isNotAgreedUnpublished:
         type: boolean
+    possibleMatches:
+        type: array
 required:
     - type

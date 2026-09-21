@@ -13,18 +13,18 @@ final class InstitutionSearchResultsTest extends ViewModelTest
      */
     public function it_has_data()
     {
-        $institutions = [new Link('The University of Sheffield', '/eligibility/check?institution=the-university-of-sheffield')];
+        $searchResults = [new Link('The University of Sheffield', '/eligibility/check?institution=the-university-of-sheffield')];
 
-        $results = new InstitutionSearchResults($institutions, 'Institution not found.');
+        $results = new InstitutionSearchResults($searchResults, 'Institution not found.');
 
-        $this->assertSame($institutions, $results['institutions']);
+        $this->assertSame($searchResults, $results['searchResults']);
         $this->assertSame('Institution not found.', $results['emptyMessage']);
     }
 
     /**
      * @test
      */
-    public function it_requires_institutions_to_be_links()
+    public function it_requires_search_results_to_be_links()
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -34,7 +34,7 @@ final class InstitutionSearchResultsTest extends ViewModelTest
     public function viewModelProvider() : array
     {
         return [
-            'with institutions' => [new InstitutionSearchResults([new Link('The University of Sheffield', '/eligibility/check?institution=the-university-of-sheffield')])],
+            'with search results' => [new InstitutionSearchResults([new Link('The University of Sheffield', '/eligibility/check?institution=the-university-of-sheffield')])],
             'empty' => [new InstitutionSearchResults([], 'Institution not found.')],
         ];
     }

@@ -126,13 +126,11 @@ describe('An InstitutionEligibilityChecker Component', function () {
       expect(items.length).to.equal(1);
     });
 
-    it('shows the empty message when nothing matches', function () {
+    it('shows nothing when nothing matches', function () {
       $input.value = 'an institution that does not exist';
       $input.dispatchEvent(new Event('input'));
 
-      let $empty = $results.querySelector('.institution-search-results__empty');
-      expect($empty).to.exist;
-      expect($empty.textContent).to.equal('No matching institution found.');
+      expect($results.innerHTML).to.equal('');
     });
 
     it('clears the results once the input is emptied', function () {

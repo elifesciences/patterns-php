@@ -90,18 +90,19 @@
   "title": "Check your eligibility",
   "strapline": "eLife has publishing agreements with more than x institutions that cover publishing fees for affiliated\nresearchers. Check your institution below, or <a href=\"#\">see the full list of institutions</a>.",
   "underline": true,
-  "compactForm": {
-    "formAction": "/search",
-    "formId": "searchBox",
-    "formMethod": "GET",
-    "label": "Choose your institution:",
-    "visibleLabel": true,
-    "inputType": "search",
-    "inputName": "institution",
-    "inputValue": "",
-    "inputPlaceholder": "Enter text here",
-    "ctaText": "Search",
-    "autocompleteOff": true
-  },
-  "institutionsUrl": "/eligibility.json"
+  "type": "not-agreed-not-published-with-possible-matches",
+  "isNotAgreedNotPublishedWithPossibleMatches": true,
+  "institution": "The University",
+  "possibleMatches": [
+    {
+      "name": "University of Sheffield",
+      "country": "United Kingdom",
+      "url": ""
+    },
+    {
+      "name": "Sheffield Hallam University",
+      "country": "United Kingdom",
+      "url": ""
+    }
+  ]
 }

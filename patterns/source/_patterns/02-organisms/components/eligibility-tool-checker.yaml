@@ -1,23 +1,13 @@
 $schema: http://json-schema.org/draft-04/schema#
 type: object
 properties:
-  label:
-    type: string
-    minLength: 1
-  inputValue:
-    type: string
-  inputPlaceholder:
-    type: string
-  results:
+  compactForm:
+    $ref: ../../01-molecules/components/compact-form.yaml
+  searchResults:
     $ref: ../../00-atoms/components/eligibility-tool-institution-search-results.yaml
   outcome:
-    $ref: ../../00-atoms/components/eligibility-tool-outcome.yaml
+    $ref: ../../02-organisms/components/eligibility-tool-outcome.yaml
   institutionsUrl:
     type: string
-    minLength: 1
   noResultsMessage:
     type: string
-    minLength: 1
-required:
-  - label
-  - inputPlaceholder

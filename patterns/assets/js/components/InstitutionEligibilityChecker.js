@@ -25,7 +25,6 @@ module.exports = class InstitutionEligibilityChecker {
     }
 
     this.institutions = [];
-    this.emptyMessage = this.$elm.getAttribute('data-empty-message') || '';
 
     let institutionsUrl = this.$elm.getAttribute('data-institutions-url');
     if (institutionsUrl) {
@@ -59,8 +58,8 @@ module.exports = class InstitutionEligibilityChecker {
       xhr.open('GET', url);
       xhr.send();
     }).then((institutions) => {
-      this.institutions = institutions;
-      this.institutionNames = uFuzzy.latinize(institutions.map(i => i.name));
+      this.institutions = institutions.filter(i => i && typeof i.name === 'string' && i.name.length > 0);
+      this.institutionNames = uFuzzy.latinize(this.institutions.map(i => i.name));
 
       if (this.$input.value.trim()) {
         this.search();
@@ -98,12 +97,6 @@ module.exports = class InstitutionEligibilityChecker {
     this.$results.innerHTML = '';
 
     if (!matches.length) {
-      if (this.emptyMessage) {
-        let $empty = this.doc.createElement('p');
-        $empty.className = 'institution-search-results__empty';
-        $empty.textContent = this.emptyMessage;
-        this.$results.appendChild($empty);
-      }
       return;
     }
 
@@ -123,7 +116,7 @@ module.exports = class InstitutionEligibilityChecker {
 
     let $link = this.doc.createElement('a');
     $link.className = 'institution-search-results__link';
-    $link.href = '/eligibility/check/' + encodeURIComponent(institution.name);
+    $link.href = '/eligibility/check?institution=' + encodeURIComponent(institution.name);
     $link.textContent = `${institution.name} (${institution.city}, ${institution.country})`;
 
     $item.appendChild($link);

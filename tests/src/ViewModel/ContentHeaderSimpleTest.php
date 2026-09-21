@@ -15,6 +15,7 @@ final class ContentHeaderSimpleTest extends ViewModelTest
         $data = [
             'title' => 'title',
             'strapline' => 'strapline',
+            'underline' => false,
         ];
 
         $contentHeader = new ContentHeaderSimple('title', 'strapline');
