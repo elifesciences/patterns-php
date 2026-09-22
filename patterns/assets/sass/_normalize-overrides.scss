@@ -195,7 +195,12 @@ address {
   clear: both;
 }
 
-img {
+// .pswp__img is excluded: it's an absolutely-positioned element inside a
+// .pswp__zoom-wrap that has no in-flow content, so .pswp__zoom-wrap's own
+// height resolves to a definite 0px - which turns max-height/max-width
+// (100% of that) into a hard 0px clamp, overriding whatever size
+// PhotoSwipe itself assigns via inline style.
+img:not(.pswp__img) {
   max-height: 100%;
   max-width: 100%;
 }
