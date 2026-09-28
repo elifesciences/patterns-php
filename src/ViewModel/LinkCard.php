@@ -2,11 +2,12 @@
 
 namespace eLife\Patterns\ViewModel;
 
+use Assert\Assertion;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
-use eLife\Patterns\CastsToArray;
+use eLife\Patterns\ViewModel;
 
-class LinkCard implements CastsToArray
+final class LinkCard implements ViewModel
 {
     use ArrayAccessFromProperties;
     use ArrayFromProperties;
@@ -14,15 +15,17 @@ class LinkCard implements CastsToArray
     /**
      * @var string
      */
-    private $text;
+    private $body;
     /**
      * @var Link
      */
     private $link;
 
-    public function __construct(Link $link, string $text)
+    public function __construct(Link $link, string $body)
     {
-        $this->text = $text;
+        Assertion::notBlank($body);
+
+        $this->body = $body;
         $this->link = $link;
     }
 

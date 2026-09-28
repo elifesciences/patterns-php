@@ -92,5 +92,21 @@
   "underline": true,
   "type": "not-agreed-not-published",
   "isNotAgreedNotPublished": true,
-  "institution": "The University"
+  "institution": "The University",
+  "linkCards": [
+    {
+      "link": {
+        "name": "Institutional publishing agreements",
+        "url": "https://elifesciences.org"
+      },
+      "body": "A guide for organisations about our different schemes, and how to join."
+    },
+    {
+      "link": {
+        "name": "Our fee waivers",
+        "url": "https://elifesciences.org"
+      },
+      "body": "We offer APC waivers to researchers in the global south and ..."
+    }
+  ]
 }

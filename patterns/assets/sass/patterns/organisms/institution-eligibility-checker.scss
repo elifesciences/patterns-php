@@ -25,7 +25,6 @@ $institution-search-results-item-height: 44px;
     font-family: $font-secondary;
     font-size: 1.125rem;
     line-height: 1.67;
-    //text-align: center;
   }
 
   .content-header-simple__underline {
@@ -136,10 +135,13 @@ $institution-search-results-item-height: 44px;
     height: 100%;
     @include padding(0 12);
   }
-}
 
-.institution-eligibility-page .content-header-simple__strapline {
-  //@include margin(40 0);
+  .eligibility_tool_for_more_information {
+    font-family: $font-secondary;
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 24px;
+  }
 }
 
 .institution-eligibility-outcome {
@@ -156,10 +158,6 @@ $institution-search-results-item-height: 44px;
   .institution-eligibility-outcome__top_line {
     margin-bottom: 20px;
   }
-
-  //.institution-eligibility-outcome__possible_matches_top_line{
-  //  color: #780909;
-  //}
 
   .institution-eligibility-outcome--agreed {
     @include padding(30 40 60 40);
@@ -210,21 +208,4 @@ $institution-search-results-item-height: 44px;
     font-family: $font-secondary;
     font-size: .9em;
   }
-
 }
-
-//.institution-eligibility-outcome__text {
-//  font-size: 1rem;
-//  font-family: $font-secondary;
-//  color: $color-text;
-//}
-
-//
-//.institution-eligibility-outcome__agreed_top_line {
-//  color: #03784d;
-//  margin-bottom: 20px;
-//}
-//
-//.institution-eligibility-outcome__not_agreed_top_line {
-//  color: #780909;
-//}

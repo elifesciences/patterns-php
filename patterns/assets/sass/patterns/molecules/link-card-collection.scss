@@ -1,0 +1,25 @@
+@import "../../definitions";
+
+$gutter: 20;
+
+.link-card-collection {
+  @include clearfix();
+  @include nospace();
+  margin: 0;
+}
+
+.link-card-collection__item {
+  float: left;
+  list-style: none;
+  width: 100%;
+  @include blg-spacing("bottom", "small", "margin");
+
+  @media only all and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    @include margin($gutter, "right");
+    width: calc((100% - #{$gutter}px) / 2 - 0.1px); // -0.1px avoids rounding problems in IE
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+}
