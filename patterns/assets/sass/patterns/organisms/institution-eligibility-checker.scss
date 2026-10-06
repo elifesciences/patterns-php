@@ -7,23 +7,22 @@
 $institution-search-results-item-height: 44px;
 
 .institution-eligibility-page {
-
-  .content-header-simple{
-    padding-left: 3%;
-    padding-right: 3%;
-  }
+  display: grid;
+  $institution-search-results-item-height: 65px;
 
   .content-header-simple__title {
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 36px;
     color: rgb(8, 61, 135);
+    @include font-size(28);
+    line-height: 36px;
   }
 
   .content-header-simple__strapline {
-    margin-top: 72px;
+    margin-top: 36px;
     margin-bottom: 36px;
     font-family: $font-secondary;
-    font-size: 1.125rem;
+    font-size: 16px;
     line-height: 1.67;
   }
 
@@ -37,23 +36,27 @@ $institution-search-results-item-height: 44px;
 
   .institution-eligibility-checker {
     background: rgba(145, 184, 245, 0.2);
-    @include padding(30 40 90 40);
+    padding: 30px 20px;
     border-radius: 12px;
     position: relative;
-  }
-
-  .content-header-simple__title {
-    @include h1-typeg();
+    // Cancel out .wrapper's own gutter so this spans its full box edge-to-edge.
+    margin-left: -#{$site-spacing}px;
+    margin-right: -#{$site-spacing}px;
   }
 
   .institution-eligibility-checker__intro {
-    //font-weight: bold;
+    @include padding(0);
     text-align: center;
     color: rgb(8, 61, 135);
+    font-family: $font-secondary;
+    font-weight: 600;
   }
 
   .compact-form__container{
-    @include constrain-width(680, "max");
+    @include constrain-width(560, "max");
+    // A fixed 300px floor overflows once the wrapper/checker padding eats into
+    // very narrow viewports, so cap it to whatever width is actually available.
+    min-width: min(300px, 100%);
     margin-top: 15px;
   }
 
@@ -72,6 +75,7 @@ $institution-search-results-item-height: 44px;
 
   .compact-form__label {
     @include margin(3 0);
+    font-family: $font-secondary;
   }
 
   .compact-form__input {
@@ -88,8 +92,10 @@ $institution-search-results-item-height: 44px;
     left: 0;
     right: 0;
     z-index: 1;
-    margin: -85px auto;
-    max-width: 680px;
+    margin-top: -25px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: 560px;
     border-radius: 12px;
     background-color: white;
     border: 1px solid $color-information;
@@ -125,6 +131,7 @@ $institution-search-results-item-height: 44px;
   .institution-search-results__item {
     @include padding(11 0);
     height: $institution-search-results-item-height;
+    font-family: $font-secondary;
   }
 
   .institution-search-results__link {
@@ -141,6 +148,59 @@ $institution-search-results-item-height: 44px;
     text-align: center;
     margin-top: 48px;
     margin-bottom: 24px;
+  }
+
+  .link-card {
+    margin: 0 20px;
+  }
+
+  // 480px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+    $institution-search-results-item-height: 44px;
+
+    .institution-eligibility-checker {
+      padding: 30px 30px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .institution-eligibility-checker__results {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .link-card {
+      margin: 0 0;
+    }
+  }
+
+  // 730px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    $institution-search-results-item-height: 44px;
+
+    .institution-eligibility-checker {
+      padding: 36px 60px 72px;
+    }
+
+    .institution-eligibility-checker__results {
+      margin-top: -68px;
+      margin-left: 60px;
+      margin-right: 60px;
+    }
+  }
+
+  // 900px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    $institution-search-results-item-height: 44px;
+    //grid-template-columns: 7fr 5fr;
+    //column-gap: 48px;
+  }
+
+  // 1200px
+  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
+    $institution-search-results-item-height: 44px;
+    //grid-template-columns: 7fr 5fr;
+    //column-gap: 48px;
   }
 }
 
