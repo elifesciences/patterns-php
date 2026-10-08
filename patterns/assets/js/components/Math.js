@@ -27,7 +27,7 @@ module.exports = class Math {
   static loadDependencies(doc) {
     if (doc.querySelector('math')) {
       Math.normalizeLegacyMathVariants(doc);
-      Math.fixInlineDivision(doc);
+      Math.fixLoneOperatorMrow(doc);
       Math.setupProperties();
       Math.load(doc);
     }
@@ -92,19 +92,26 @@ module.exports = class Math {
     });
   }
 
-  // Unwraps <mrow><mo>/</mo></mrow> to a bare <mo>/</mo>, preventing a MathJax v4.1 hang
-  // caused by operator form resolution on slash operators wrapped in unnecessary mrow elements.
-  static fixInlineDivision(root) {
+  // Unwraps <mrow><mo>X</mo></mrow> to a bare <mo>X</mo>, preventing a MathJax v4.1 hang
+  // caused by operator form resolution on operators wrapped in unnecessary mrow elements.
+  // Repeats until stable: legacy MathJax v2 output can nest these mrows several levels deep
+  // (e.g. <mrow class="MJX-TeXAtom-ORD"><mrow class="MJX-TeXAtom-ORD"><mo>/</mo></mrow></mrow>),
+  // and a single pass only unwraps the innermost layer.
+  static fixLoneOperatorMrow(root) {
     const ns = 'http://www.w3.org/1998/Math/MathML';
-    root.querySelectorAll('math mrow').forEach(mrow => {
-      if (mrow.children.length === 1 &&
-          mrow.children[0].tagName.toLowerCase() === 'mo' &&
-          mrow.children[0].textContent.trim() === '/') {
-        const slash = mrow.ownerDocument.createElementNS(ns, 'mo');
-        slash.textContent = '/';
-        mrow.replaceWith(slash);
-      }
-    });
+    let changed = true;
+    while (changed) {
+      changed = false;
+      root.querySelectorAll('math mrow').forEach(mrow => {
+        if (mrow.children.length === 1 &&
+            mrow.children[0].tagName.toLowerCase() === 'mo') {
+          const op = mrow.ownerDocument.createElementNS(ns, 'mo');
+          op.textContent = mrow.children[0].textContent;
+          mrow.replaceWith(op);
+          changed = true;
+        }
+      });
+    }
   }
 
   static dependenciesAlreadySetup(doc) {
