@@ -5,14 +5,18 @@ properties:
     type: string
     enum:
       - agreed
+      - agreed-hhmi
       - not-agreed-published
       - not-agreed-not-published
-      - not-agreed-not-published-with-possible-matches
   isAgreed:
+    type: boolean
+  isAgreedHhmi:
     type: boolean
   isNotAgreedPublished:
     type: boolean
-  isNotAgreedUnpublished:
+  isNotAgreedNotPublished:
+    type: boolean
+  hasPossibleMatches:
     type: boolean
   possibleMatches:
     type: array

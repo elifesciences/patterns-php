@@ -2,13 +2,25 @@
 @import "../../variables";
 @import "../../mixins";
 
-@import "../../definitions";
-
-$institution-search-results-item-height: 44px;
-
 .institution-eligibility-page {
   display: grid;
-  $institution-search-results-item-height: 65px;
+  max-width: 726px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 120px;
+
+  $institution-search-results-item-height: 70px;
+
+  .content-header-simple a,
+  .institution-eligibility-outcome a {
+    text-decoration: underline !important;
+    border-bottom: none !important;
+  }
+
+  .content-header-simple {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .content-header-simple__title {
     margin-top: 25px;
@@ -20,10 +32,16 @@ $institution-search-results-item-height: 44px;
 
   .content-header-simple__strapline {
     margin-top: 36px;
-    margin-bottom: 36px;
+  }
+
+  .content-header-simple__strapline p {
     font-family: $font-secondary;
-    font-size: 16px;
+    @include font-size(16);
     line-height: 1.67;
+  }
+
+  .content-header-simple__strapline p:last-child {
+    margin-bottom: 0;
   }
 
   .content-header-simple__underline {
@@ -36,8 +54,7 @@ $institution-search-results-item-height: 44px;
 
   .institution-eligibility-checker {
     background: rgba(145, 184, 245, 0.2);
-    padding: 30px 20px;
-    border-radius: 12px;
+    padding: 24px 24px 36px 24px;
     position: relative;
     // Cancel out .wrapper's own gutter so this spans its full box edge-to-edge.
     margin-left: -#{$site-spacing}px;
@@ -53,7 +70,7 @@ $institution-search-results-item-height: 44px;
   }
 
   .compact-form__container{
-    @include constrain-width(560, "max");
+    @include constrain-width(606, "max");
     // A fixed 300px floor overflows once the wrapper/checker padding eats into
     // very narrow viewports, so cap it to whatever width is actually available.
     min-width: min(300px, 100%);
@@ -92,11 +109,10 @@ $institution-search-results-item-height: 44px;
     left: 0;
     right: 0;
     z-index: 1;
-    margin-top: -25px;
-    margin-left: 20px;
-    margin-right: 20px;
-    max-width: 560px;
-    border-radius: 12px;
+    margin-top: -33px;
+    margin-left: #{$site-spacing}px;
+    margin-right: #{$site-spacing}px;
+    border-radius: 10px;
     background-color: white;
     border: 1px solid $color-information;
 
@@ -158,8 +174,17 @@ $institution-search-results-item-height: 44px;
   @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
     $institution-search-results-item-height: 44px;
 
+    .institution-search-results__list {
+      max-height: $institution-search-results-item-height * 6;
+    }
+
+    .institution-search-results__item {
+      height: $institution-search-results-item-height;
+    }
+
     .institution-eligibility-checker {
       padding: 30px 30px;
+      border-radius: 10px;
       margin-left: 0;
       margin-right: 0;
     }
@@ -179,74 +204,80 @@ $institution-search-results-item-height: 44px;
     $institution-search-results-item-height: 44px;
 
     .institution-eligibility-checker {
-      padding: 36px 60px 72px;
+      padding: 36px 60px 72px 60px;
     }
 
     .institution-eligibility-checker__results {
-      margin-top: -68px;
+      margin-top: -70px;
       margin-left: 60px;
       margin-right: 60px;
     }
   }
 
-  // 900px
-  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
-    $institution-search-results-item-height: 44px;
-    //grid-template-columns: 7fr 5fr;
-    //column-gap: 48px;
-  }
-
-  // 1200px
-  @media only screen and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
-    $institution-search-results-item-height: 44px;
-    //grid-template-columns: 7fr 5fr;
-    //column-gap: 48px;
-  }
 }
 
+$color-outcome-not-agreed-bg: #fff5f5;
+$color-outcome-not-agreed-text: #780909;
+
 .institution-eligibility-outcome {
-  border-radius: 12px;
+  border-radius: 10px;
   text-align: center;
-  margin-bottom: 80px;
+
+  .institution-eligibility-outcome--agreed,
+  .institution-eligibility-outcome--agreed-hhmi,
+  .institution-eligibility-outcome--not-agreed-published,
+  .institution-eligibility-outcome--not-agreed-not-published {
+    border-radius: 10px;
+    @include padding(44 40 28 40);
+  }
 
   .institution-eligibility-outcome__text {
-    font-size: 1rem;
+    @include font-size(16);
     font-family: $font-secondary;
     color: $color-text;
   }
 
   .institution-eligibility-outcome__top_line {
+    @include font-size(18);
+    line-height: 26px;
     margin-bottom: 20px;
   }
 
-  .institution-eligibility-outcome--agreed {
-    @include padding(30 40 60 40);
+  .institution-eligibility-outcome--agreed,
+  .institution-eligibility-outcome--agreed-hhmi{
     background-color: #f2faf7;
-    border-radius: 12px;
 
     .institution-eligibility-outcome__top_line {
       color: #03784d;
     }
   }
 
-  .institution-eligibility-outcome--not-agreed-published,
-  .institution-eligibility-outcome--not-agreed-not-published
-  {
-    @include padding(30 40 60 40);
-    background-color: #fff5f5;
-    border-radius: 12px;
-    color: #780909;
+  .institution-eligibility-outcome--not-agreed-published {
+    background-color: $color-outcome-not-agreed-bg;
+    color: $color-outcome-not-agreed-text;
+  }
+
+  .institution-eligibility-outcome--not-agreed-not-published {
+    // Pink by default; once there are possible matches, that card (below)
+    // carries the pink instead and this container goes back to plain white.
+    background-color: $color-outcome-not-agreed-bg;
+    color: $color-outcome-not-agreed-text;
+
+    &.institution-eligibility-outcome--has-possible-matches {
+      background-color: white;
+      color: inherit;
+    }
   }
 
   .institution-eligibility-outcome__possible_matches-block {
     @include padding(30 40 30 40);
     margin-bottom: 80px;
-    background-color: #fff5f5;
-    border-radius: 12px;
-    color: #780909;
+    background-color: $color-outcome-not-agreed-bg;
+    border-radius: 10px;
+    color: $color-outcome-not-agreed-text;
   }
 
-  .institution-eligibility-outcome--not-agreed-not-published-with-possible-matches ul {
+  .institution-eligibility-outcome--not-agreed-not-published ul {
     list-style-type: none;
     @include padding(0 0);
     @include margin(5 0);
@@ -259,13 +290,6 @@ $institution-search-results-item-height: 44px;
 
   .institution-eligibility-outcome--not-agreed-published .institution-eligibility-outcome__top_line,
   .institution-eligibility-outcome--not-agreed-not-published .institution-eligibility-outcome__top_line {
-    color: #780909;
-  }
-
-  .institution-eligibility-outcome_agreed_link {
-    color: #03784d;
-    text-decoration: underline;
-    font-family: $font-secondary;
-    font-size: .9em;
+    color: $color-outcome-not-agreed-text;
   }
 }

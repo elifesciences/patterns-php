@@ -88,51 +88,10 @@
     }
   },
   "title": "Check your eligibility",
-  "strapline": "eLife has publishing agreements with more than x institutions that cover publishing fees for affiliated\nresearchers. Check your institution below, or see the full list of institutions.",
-  "compactForm": {
-    "formAction": "/search",
-    "formId": "searchBox",
-    "formMethod": "GET",
-    "label": "Choose your institution:",
-    "visibleLabel": true,
-    "inputType": "search",
-    "inputName": "institution",
-    "inputValue": "",
-    "inputPlaceholder": "Enter text here",
-    "ctaText": "Search"
-  },
-  "results": {
-    "institutions": [
-      {
-        "name": "University of Sheffield",
-        "url": "/eligibility/check/university-of-sheffield"
-      },
-      {
-        "name": "Sheffield Hallam University",
-        "url": "/eligibility/check/sheffield-hallam-university"
-      },
-      {
-        "name": "University of Leicester",
-        "url": "/eligibility/check/"
-      },
-      {
-        "name": "University College London",
-        "url": "/eligibility/check/"
-      },
-      {
-        "name": "Stanford University",
-        "url": "/eligibility/check/"
-      },
-      {
-        "name": "Warrick University",
-        "url": "/eligibility/check/"
-      },
-      {
-        "name": "New York University",
-        "url": "/eligibility/check/"
-      }
-    ]
-  },
+  "underline": true,
+  "type": "agreed-hhmi",
+  "isAgreedHhmi": true,
+  "until" : "Apr 2028",
   "linkCards": [
     {
       "link": {

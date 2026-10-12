@@ -1,7 +1,7 @@
 {
-  "type": "not-agreed-not-published-with-possible-matches",
-  "isNotAgreedNotPublishedWithPossibleMatches": true,
-  "institution": "The University",
+  "type": "not-agreed-not-published",
+  "isNotAgreedNotPublished": true,
+  "hasPossibleMatches": true,
   "possibleMatches": [
     {
       "name": "University of Sheffield",

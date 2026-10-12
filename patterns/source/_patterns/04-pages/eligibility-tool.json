@@ -88,7 +88,7 @@
     }
   },
   "title": "Check your eligibility",
-  "strapline": "Use the tool below to check your eligibility for support for Gold Open Access publishing in eLife.\n",
+  "strapline": "<p>Check your eligibility for financial support for Gold Open Access publishing with eLife by entering your institution or funder below. Names are listed as they appear in the <a href=\"https://ror.org/\">ROR database</a>.</p> <p>For any questions please contact us at <a href=\"mailto:editorial@elifesciences.org\">editorial@elifesciences.org</a>.</p>",
   "underline": true,
   "compactForm": {
     "formAction": "/search",

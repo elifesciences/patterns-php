@@ -1,54 +1,70 @@
 <div class="institution-eligibility-outcome">
-    <div class="institution-eligibility-outcome--{{type}}">
+    <div class="institution-eligibility-outcome--{{type}}{{#hasPossibleMatches}} institution-eligibility-outcome--has-possible-matches{{/hasPossibleMatches}}">
         {{#isAgreed}}
-            <h4 class="institution-eligibility-outcome__top_line">Yes, your institution has an agreement with eLife</h4>
+            <h4 class="institution-eligibility-outcome__top_line">Your institution has an on-going publishing agreement with eLife.</h4>
 
-            {{^rollingDeal}}
-                <p class="institution-eligibility-outcome__text">{{institution}} has an agreement with eLife until {{until}} that allows authors affiliated
-                    with the University or its child organisations (as defined by the Research Organisation Registry) to publish an unlimited number
-                    of articles without paying article processing charges (APCs).
-                </p>
-            {{/rollingDeal}}
-            {{#rollingDeal}}
-                <p class="institution-eligibility-outcome__text">{{institution}} has a rolling agreement with eLife that allows authors affiliated
-                    with the University or its child organisations (as defined by the Research Organisation Registry) to publish an unlimited number
-                    of articles without paying article processing charges (APCs).
-                </p>
-            {{/rollingDeal}}
-
-            <a href="https://ror.org" target="_blank" class="institution-eligibility-outcome_agreed_link">Check the Research Organisation Registry</a>.
-        {{/isAgreed}}
-        {{#isNotAgreedPublished}}
-            <h4 class="institution-eligibility-outcome__top_line">{{institution}} does <u>not</u> have an agreement with eLife.</h4>
             <p class="institution-eligibility-outcome__text">
-                Submissions not covered by a publishing agreement will be charged at our standard publication fee of <b>$3,750</b>,
-                payable for all submissions sent for peer review.
+                Manuscripts are eligible for publication at no cost if <b>one of its corresponding authors is affiliated with the institution/funder participating in the publishing agreement.</b>
+            </p>
+            <p class="institution-eligibility-outcome__text">
+                Please select your institution/funder during submission and we'll take care of the rest. If you’re ready,
+                <a href=""><b>start your submission</b></a> or learn more about <a href=""><b>the eLife Model</b></a>.
+            </p>
+        {{/isAgreed}}
+        {{#isAgreedHhmi}}
+            <h4 class="institution-eligibility-outcome__top_line">Your institution has an on-going publishing agreement with eLife.</h4>
+
+            <p class="institution-eligibility-outcome__text">
+                Manuscripts are eligible to publish at no cost <b>if a laboratory head employed by HHMI or a member of such laboratory is first, last, or corresponding author/co-author.</b>
+            </p>
+            <p class="institution-eligibility-outcome__text">
+                Please select your institution/funder during submission and we'll take care of the rest.
+                If you’re ready, <b><a href="">start your submission</a></b> or learn more about <a href=""><b>the eLife Model</b></a>.
+            </p>
+        {{/isAgreedHhmi}}
+        {{#isNotAgreedPublished}}
+            <h4 class="institution-eligibility-outcome__top_line">
+                Your institution/funder does <u>not</u> have an active publishing agreement with eLife. However, Authors affiliated with your institution/funder have already published with eLife in the last three years.
+            </h4>
+            <p class="institution-eligibility-outcome__text">
+                Manuscripts published with eLife would be subject to our $3,750 publishing fee. If you’re ready,
+                <a href=""><b>start your submission</b></a> or learn more about <a href=""><b>our publishing process.</b></a>
+            </p>
+            <p class="institution-eligibility-outcome__text">
+                We grant a full publishing fee waiver for labs under financial pressure. Authors are expected to have explored all reasonable sources for paying the publication fee and may apply for a fee waiver during the submission process.
+                See <a href=""><b>our publishing fee waiver policy</b></a>.
             </p>
         {{/isNotAgreedPublished}}
         {{#isNotAgreedNotPublished}}
-            <h4 class="institution-eligibility-outcome__top_line">{{institution}} does <u>not</u> have an agreement with eLife.</h4>
+            {{#hasPossibleMatches}}
+                <div class="institution-eligibility-outcome__possible_matches-block">
+                    <h4 class="institution-eligibility-outcome__possible_matches_top_line">Did you mean</h4>
+                    <div class="institution-eligibility-outcome__possible_matches_link_block">
+                        <ul>
+                            {{#possibleMatches}}
+                                <li>
+                                    <a class="institution-eligibility-outcome__possible_matches_link" href="{{url}}">{{name}} ({{country}})</a>
+                                </li>
+                            {{/possibleMatches}}
+                        </ul>
+                    </div>
+                </div>
+            {{/hasPossibleMatches}}
+            {{^hasPossibleMatches}}
+                <h4 class="institution-eligibility-outcome__top_line">
+                    The institution or funder you entered does not have an active publishing agreement with eLife.
+                </h4>
+            {{/hasPossibleMatches}}
+
             <p class="institution-eligibility-outcome__text">
-                Enter type D text here
+                Manuscripts published with eLife would be subject to our $3,750 publishing fee.
+                <a href=""><b>Start your submission</b></a> or learn more about <a href=""><b>our publishing process.</b></a>
+            </p>
+
+            <p class="institution-eligibility-outcome__text">
+                We grant a full publishing fee waiver for labs under financial pressure. Authors are expected to have explored all reasonable sources for paying the publication fee and may apply for a fee waiver during the submission process.
+                <br>See <a href=""><b>our publishing fee waiver policy</b></a>.
             </p>
         {{/isNotAgreedNotPublished}}
-        {{#isNotAgreedNotPublishedWithPossibleMatches}}
-            <div class="institution-eligibility-outcome__possible_matches-block">
-                <h4 class="institution-eligibility-outcome__possible_matches_top_line">Did you mean</h4>
-                <div class="institution-eligibility-outcome__possible_matches_link_block">
-                    {{#possibleMatches}}
-                        <ul>
-                            <li>
-                                <a class="institution-eligibility-outcome__possible_matches_link" href="{{url}}">{{name}} ({{country}})</a>
-                            </li>
-                        </ul>
-                    {{/possibleMatches}}
-                </div>
-            </div>
-
-            <h4 class="institution-eligibility-outcome__top_line">We're sorry. Your institution does not appear to have an agreement with eLife</h4>
-            <p class="institution-eligibility-outcome__text">
-                Enter type D text here
-            </p>
-        {{/isNotAgreedNotPublishedWithPossibleMatches}}
     </div>
 </div>
