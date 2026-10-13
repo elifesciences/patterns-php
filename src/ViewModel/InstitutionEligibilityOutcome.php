@@ -46,8 +46,6 @@ final class InstitutionEligibilityOutcome implements ViewModel
     public function __construct(
         string $type,
         string $institution,
-        string $until = null,
-        bool $rollingDeal = false,
         array $possibleMatches = []
     ){
         Assertion::choice($type, [
@@ -63,8 +61,6 @@ final class InstitutionEligibilityOutcome implements ViewModel
         $this->isNotAgreedPublished = self::TYPE_NOT_AGREED_PUBLISHED === $type;
         $this->isNotAgreedNotPublished = self::TYPE_NOT_AGREED_NOT_PUBLISHED === $type;
         $this->institution = $institution;
-        $this->until = $until;
-        $this->rollingDeal = $rollingDeal;
         $this->possibleMatches = $possibleMatches;
 
         // variable for Mustache templating

@@ -14,9 +14,7 @@ final class InstitutionEligibilityOutcomeTest extends ViewModelTest
     {
         $outcome = new InstitutionEligibilityOutcome(
             InstitutionEligibilityOutcome::TYPE_AGREED,
-            'The University of Sheffield',
-            '31 December 2026',
-            false
+            'The University of Sheffield'
         );
 
         $data = [
@@ -26,8 +24,6 @@ final class InstitutionEligibilityOutcomeTest extends ViewModelTest
             'isNotAgreedPublished' => false,
             'isNotAgreedNotPublished' => false,
             'institution' => 'The University of Sheffield',
-            'until' => '31 December 2026',
-            'rollingDeal' => false,
         ];
 
         foreach ($data as $key => $value) {
@@ -49,8 +45,6 @@ final class InstitutionEligibilityOutcomeTest extends ViewModelTest
         $outcome = new InstitutionEligibilityOutcome(
             InstitutionEligibilityOutcome::TYPE_NOT_AGREED_NOT_PUBLISHED,
             'The University',
-            null,
-            false,
             $possibleMatches
         );
 
@@ -113,8 +107,6 @@ final class InstitutionEligibilityOutcomeTest extends ViewModelTest
                 new InstitutionEligibilityOutcome(
                     InstitutionEligibilityOutcome::TYPE_NOT_AGREED_NOT_PUBLISHED,
                     'The University',
-                    null,
-                    false,
                     [['name' => 'University of Sheffield', 'country' => 'United Kingdom', 'url' => '']
                 ]
             )],
