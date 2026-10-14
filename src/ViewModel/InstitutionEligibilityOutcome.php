@@ -3,7 +3,6 @@
 namespace eLife\Patterns\ViewModel;
 
 use Assert\Assertion;
-use DateTime;
 use eLife\Patterns\ArrayAccessFromProperties;
 use eLife\Patterns\ArrayFromProperties;
 use eLife\Patterns\ViewModel;
