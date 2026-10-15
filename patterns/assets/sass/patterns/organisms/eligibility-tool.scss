@@ -277,7 +277,7 @@ $color-outcome-not-agreed-text: #083D87;
   .institution-eligibility-outcome__possible_matches-block {
     @include padding(30 40 30 40);
     margin-bottom: 80px;
-    background-color: $color-outcome-not-agreed-bg;
+    background-color: #fff5f5;
     border-radius: 10px;
     color: $color-outcome-not-agreed-text;
   }
