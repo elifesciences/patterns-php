@@ -9,3 +9,4 @@
 /patterns/source/assets
 /patterns/test/build
 .idea/
+.phpunit.cache/

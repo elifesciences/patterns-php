@@ -6,7 +6,7 @@ use eLife\Patterns\ViewModel\ArticleAssessmentTerms;
 use eLife\Patterns\ViewModel\Term;
 use PHPUnit\Framework\Attributes\Test;
 
-final class ArticleAssesmentTermsTest extends ViewModelTest
+final class ArticleAssessmentTermsTest extends ViewModelTest
 {
     #[Test]
     public function it_has_data()
