@@ -200,6 +200,16 @@ img {
   max-width: 100%;
 }
 
+// .pswp__img is an absolutely-positioned element inside a .pswp__zoom-wrap
+// that has no in-flow content, so .pswp__zoom-wrap's own height resolves to
+// a definite 0px - which turns the max-height/max-width above into a hard
+// 0px clamp, overriding whatever size PhotoSwipe itself assigns via inline
+// style.
+.pswp__img {
+  max-height: none;
+  max-width: none;
+}
+
 input[type="checkbox"],
 input[type="radio"] {
   @include margin(6, "right");
