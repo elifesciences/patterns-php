@@ -26,7 +26,7 @@ final class CallToAction implements ViewModel
         string $text,
         Button $button,
         bool $needsJs = false,
-        DateTimeImmutable $cookieExpires = null
+        ?DateTimeImmutable $cookieExpires = null
     ) {
         Assertion::notBlank($id);
         Assertion::notBlank($text);

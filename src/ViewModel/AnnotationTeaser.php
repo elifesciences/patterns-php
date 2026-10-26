@@ -25,8 +25,8 @@ final class AnnotationTeaser implements ViewModel
         string $document,
         Date $date,
         string $inContextUri,
-        string $highlight = null,
-        string $content = null,
+        ?string $highlight = null,
+        ?string $content = null,
         bool $isRestrictedAccess = false,
         bool $isReply = false
     ) {

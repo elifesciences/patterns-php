@@ -23,7 +23,7 @@ final class MediaChapterListingItem implements ViewModel
         string $title,
         int $startTime,
         int $chapterNumber,
-        string $content = null,
+        ?string $content = null,
         array $contentSources = []
     ) {
         Assertion::minLength($title, 1);

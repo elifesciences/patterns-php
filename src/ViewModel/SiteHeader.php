@@ -17,7 +17,7 @@ final class SiteHeader implements ViewModel
     private $secondaryLinks;
     private $searchBox;
 
-    public function __construct(SiteHeaderTitle $title, SiteHeaderNavBar $primaryLinks, SiteHeaderNavBar $secondaryLinks, SearchBox $searchBox = null)
+    public function __construct(SiteHeaderTitle $title, SiteHeaderNavBar $primaryLinks, SiteHeaderNavBar $secondaryLinks, ?SearchBox $searchBox = null)
     {
         $this->title = $title;
         $this->primaryLinks = $primaryLinks;

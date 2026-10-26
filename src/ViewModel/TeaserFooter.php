@@ -16,7 +16,7 @@ final class TeaserFooter implements CastsToArray
 
     private function __construct(
         Meta $meta,
-        TeaserTerms $terms = null
+        ?TeaserTerms $terms = null
     ) {
         $this->meta = $meta;
         $this->terms = $terms;
@@ -24,7 +24,7 @@ final class TeaserFooter implements CastsToArray
 
     public static function forArticle(
         Meta $meta,
-        TeaserTerms $terms = null
+        ?TeaserTerms $terms = null
     ) {
         return new self($meta, $terms);
     }

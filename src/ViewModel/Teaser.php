@@ -33,15 +33,15 @@ final class Teaser implements ViewModel
     protected function __construct(
         string $title,
         array $rootClasses = [],
-        string $url = null,
-        string $content = null,
-        string $secondaryInfo = null,
-        ContextLabel $contextLabel = null,
-        Date $eventDate = null,
-        Link $category = null,
-        TeaserImage $image = null,
-        TeaserFooter $footer = null,
-        string $ariaLabel = null
+        ?string $url = null,
+        ?string $content = null,
+        ?string $secondaryInfo = null,
+        ?ContextLabel $contextLabel = null,
+        ?Date $eventDate = null,
+        ?Link $category = null,
+        ?TeaserImage $image = null,
+        ?TeaserFooter $footer = null,
+        ?string $ariaLabel = null
     ) {
         Assertion::notBlank($title);
 
@@ -60,12 +60,12 @@ final class Teaser implements ViewModel
 
     public static function relatedItem(
         string $title,
-        string $url = null,
-        string $secondaryInfo = null,
-        ContextLabel $contextLabel = null,
-        TeaserImage $image = null,
-        TeaserFooter $footer = null,
-        string $ariaLabel = null
+        ?string $url = null,
+        ?string $secondaryInfo = null,
+        ?ContextLabel $contextLabel = null,
+        ?TeaserImage $image = null,
+        ?TeaserFooter $footer = null,
+        ?string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY, self::STYLE_RELATED];
 
@@ -86,13 +86,13 @@ final class Teaser implements ViewModel
 
     public static function main(
         string $title,
-        string $url = null,
-        string $content = null,
-        string $secondaryInfo = null,
-        ContextLabel $contextLabel = null,
-        TeaserImage $image = null,
-        TeaserFooter $footer = null,
-        string $ariaLabel = null
+        ?string $url = null,
+        ?string $content = null,
+        ?string $secondaryInfo = null,
+        ?ContextLabel $contextLabel = null,
+        ?TeaserImage $image = null,
+        ?TeaserFooter $footer = null,
+        ?string $ariaLabel = null
     ) {
         $rootClasses = [];
 
@@ -113,12 +113,12 @@ final class Teaser implements ViewModel
 
     public static function withGrid(
         string $title,
-        string $url = null,
-        string $content = null,
-        string $secondaryInfo = null,
-        TeaserImage $image = null,
-        TeaserFooter $footer = null,
-        string $ariaLabel = null
+        ?string $url = null,
+        ?string $content = null,
+        ?string $secondaryInfo = null,
+        ?TeaserImage $image = null,
+        ?TeaserFooter $footer = null,
+        ?string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_GRID];
 
@@ -139,10 +139,10 @@ final class Teaser implements ViewModel
 
     public static function chapterListingItem(
         string $title,
-        string $url = null,
-        string $content = null,
-        ContextLabel $contextLabel = null,
-        TeaserFooter $footer = null
+        ?string $url = null,
+        ?string $content = null,
+        ?ContextLabel $contextLabel = null,
+        ?TeaserFooter $footer = null
     ) {
         $rootClasses = [self::STYLE_CHAPTER_LISTING_ITEM];
 
@@ -163,12 +163,12 @@ final class Teaser implements ViewModel
 
     public static function secondary(
         string $title,
-        string $url = null,
-        string $secondaryInfo = null,
-        ContextLabel $contextLabel = null,
-        TeaserImage $image = null,
-        TeaserFooter $footer = null,
-        string $ariaLabel = null
+        ?string $url = null,
+        ?string $secondaryInfo = null,
+        ?ContextLabel $contextLabel = null,
+        ?TeaserImage $image = null,
+        ?TeaserFooter $footer = null,
+        ?string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY];
 
@@ -189,12 +189,12 @@ final class Teaser implements ViewModel
 
     public static function event(
         string $title,
-        string $url = null,
-        string $secondaryInfo = null,
-        Date $eventDate = null,
+        ?string $url = null,
+        ?string $secondaryInfo = null,
+        ?Date $eventDate = null,
         bool $isSecondary = false,
-        TeaserImage $image = null,
-        string $ariaLabel = null
+        ?TeaserImage $image = null,
+        ?string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_EVENT];
         if ($isSecondary) {
@@ -218,10 +218,10 @@ final class Teaser implements ViewModel
 
     public static function basic(
         string $title,
-        string $url = null,
-        TeaserImage $image = null,
-        TeaserFooter $footer = null,
-        string $ariaLabel = null
+        ?string $url = null,
+        ?TeaserImage $image = null,
+        ?TeaserFooter $footer = null,
+        ?string $ariaLabel = null
     ) {
         $rootClasses = [self::STYLE_SECONDARY];
 

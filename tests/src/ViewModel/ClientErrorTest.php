@@ -28,8 +28,8 @@ final class ClientErrorTest extends ViewModelTest
     public static function viewModelProvider() : array
     {
         return [
-            'minimum' => [new ClientError()],
             'with button' => [new ClientError(Button::link('button', '#'))],
+            'minimum' => [new ClientError()],
         ];
     }
 

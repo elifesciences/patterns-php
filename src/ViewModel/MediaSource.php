@@ -16,7 +16,7 @@ final class MediaSource implements ViewModel
     private $mediaType;
     private $fallback;
 
-    public function __construct(string $src, MediaType $mediaType, MediaSourceFallback $fallback = null)
+    public function __construct(string $src, MediaType $mediaType, ?MediaSourceFallback $fallback = null)
     {
         Assertion::notBlank($src);
 

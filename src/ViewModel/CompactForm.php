@@ -30,7 +30,7 @@ final class CompactForm implements ViewModel
     private $hiddenFields;
     private $honeypot;
 
-    public function __construct(Form $form, Input $input, string $ctaText, string $state = null, MessageGroup $messageGroup = null, array $hiddenFields = [], Honeypot $honeypot = null)
+    public function __construct(Form $form, Input $input, string $ctaText, ?string $state = null, ?MessageGroup $messageGroup = null, array $hiddenFields = [], ?Honeypot $honeypot = null)
     {
         Assertion::notBlank($ctaText);
         Assertion::allIsInstanceOf($hiddenFields, HiddenField::class);

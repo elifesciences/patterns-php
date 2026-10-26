@@ -17,7 +17,7 @@ final class Quote implements ViewModel
 
     public function __construct(
         string $quote,
-        string $cite = null
+        ?string $cite = null
     ) {
         Assertion::notBlank($quote);
 

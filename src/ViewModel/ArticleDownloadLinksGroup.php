@@ -21,8 +21,8 @@ final class ArticleDownloadLinksGroup implements CastsToArray
     public function __construct(
         string $title,
         array $items,
-        string $intro = null,
-        string $id = null,
+        ?string $intro = null,
+        ?string $id = null,
         bool $jsHideGroup = false
     )
     {

@@ -18,7 +18,7 @@ final class Video implements ViewModel, IsCaptioned
     private $autoplay;
     private $loop;
 
-    public function __construct(array $sources, string $posterFrame = null, bool $autoplay = false, bool $loop = false)
+    public function __construct(array $sources, ?string $posterFrame = null, bool $autoplay = false, bool $loop = false)
     {
         Assertion::notEmpty($sources);
         Assertion::allIsInstanceOf($sources, MediaSource::class);

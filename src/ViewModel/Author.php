@@ -16,7 +16,7 @@ final class Author implements CastsToArray
     private $url;
     private $isCorresponding;
 
-    private function __construct(string $name, string $url = null, bool $isCorresponding = false)
+    private function __construct(string $name, ?string $url = null, bool $isCorresponding = false)
     {
         Assertion::notBlank($name);
 

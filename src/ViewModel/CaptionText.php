@@ -16,21 +16,21 @@ final class CaptionText implements ViewModel
     private $standfirst;
     private $text;
 
-    private function __construct(string $heading = null, string $standfirst = null, string $text = null)
+    private function __construct(?string $heading = null, ?string $standfirst = null, ?string $text = null)
     {
         $this->heading = $heading;
         $this->standfirst = $standfirst;
         $this->text = $text;
     }
 
-    public static function withHeading(string $heading, string $standfirst = null, string $text = null) : CaptionText
+    public static function withHeading(string $heading, ?string $standfirst = null, ?string $text = null) : CaptionText
     {
         Assertion::notBlank($heading);
 
         return new self($heading, $standfirst, $text);
     }
 
-    public static function withStandFirst(string $standfirst, string $text = null) : CaptionText
+    public static function withStandFirst(string $standfirst, ?string $text = null) : CaptionText
     {
         Assertion::notBlank($standfirst);
 

@@ -16,7 +16,7 @@ final class TableFootnote implements CastsToArray
     private $footnoteId;
     private $footnoteLabel;
 
-    public function __construct(string $text, string $id = null, string $label = null)
+    public function __construct(string $text, ?string $id = null, ?string $label = null)
     {
         Assertion::notBlank($text);
 

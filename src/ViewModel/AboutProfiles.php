@@ -16,7 +16,7 @@ final class AboutProfiles implements ViewModel
     private $compact;
     private $items;
 
-    public function __construct(array $items, ListHeading $heading = null, bool $compact = false)
+    public function __construct(array $items, ?ListHeading $heading = null, bool $compact = false)
     {
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, AboutProfile::class);

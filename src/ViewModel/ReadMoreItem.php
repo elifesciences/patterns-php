@@ -17,7 +17,7 @@ final class ReadMoreItem implements ViewModel
 
     public function __construct(
         ContentHeaderReadMore $item,
-        string $content = null,
+        ?string $content = null,
         bool $isRelated = false
     ) {
         $this->item = $item;

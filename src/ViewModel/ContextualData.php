@@ -15,7 +15,7 @@ final class ContextualData implements ViewModel
     private $metricsData;
     private $citation;
 
-    private function __construct(array $metrics, string $citeAs = null, Doi $doi = null, SpeechBubble $annotationCount = null)
+    private function __construct(array $metrics, ?string $citeAs = null, ?Doi $doi = null, ?SpeechBubble $annotationCount = null)
     {
         Assertion::allString($metrics);
 
@@ -47,9 +47,9 @@ final class ContextualData implements ViewModel
 
     public static function withMetrics(
         array $metrics,
-        string $citeAs = null,
-        Doi $doi = null,
-        SpeechBubble $annotationCount = null
+        ?string $citeAs = null,
+        ?Doi $doi = null,
+        ?SpeechBubble $annotationCount = null
     ) : ContextualData {
         Assertion::notEmpty($metrics);
 
@@ -60,7 +60,7 @@ final class ContextualData implements ViewModel
         string $citeAs,
         Doi $doi,
         array $metrics = [],
-        SpeechBubble $annotationCount = null
+        ?SpeechBubble $annotationCount = null
     ) : ContextualData {
         Assertion::notBlank($citeAs);
 

@@ -19,7 +19,7 @@ final class Box implements ViewModel
     private $doi;
     private $content;
 
-    public function __construct(string $id = null, string $label = null, string $title, int $headingLevel, Doi $doi = null, string $content)
+    public function __construct(?string $id = null, ?string $label = null, string $title, int $headingLevel, ?Doi $doi = null, string $content)
     {
         Assertion::notBlank($title);
         Assertion::range($headingLevel, 1, 6);

@@ -26,10 +26,10 @@ final class Reference implements ViewModel
     private function __construct(
         string $title,
         array $origin,
-        string $label = null,
-        string $id = null,
-        string $titleLink = null,
-        Doi $doi = null,
+        ?string $label = null,
+        ?string $id = null,
+        ?string $titleLink = null,
+        ?Doi $doi = null,
         array $authorLists = [],
         array $abstracts = []
     ) {
@@ -53,8 +53,8 @@ final class Reference implements ViewModel
     public static function withDoi(
         string $title,
         Doi $doi,
-        string $id = null,
-        string $label = null,
+        ?string $id = null,
+        ?string $label = null,
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []
@@ -64,8 +64,8 @@ final class Reference implements ViewModel
 
     public static function withOutDoi(
         Link $title,
-        string $id = null,
-        string $label = null,
+        ?string $id = null,
+        ?string $label = null,
         array $origin = [],
         array $authorLists = [],
         array $abstracts = []

@@ -22,8 +22,8 @@ final class ModalWindow implements ViewModel
         bool $smallDeviceOnly,
         string $title,
         string $body,
-        string $closeBtnText = null,
-        string $triggerId = null
+        ?string $closeBtnText = null,
+        ?string $triggerId = null
     )
     {
         Assertion::notBlank($title);
@@ -41,8 +41,8 @@ final class ModalWindow implements ViewModel
     public static function create(
         string $title,
         string $body,
-        string $closeBtnText = null,
-        string $triggerId = null
+        ?string $closeBtnText = null,
+        ?string $triggerId = null
     ) : ModalWindow
     {
         return new self(false, $title, $body, $closeBtnText, $triggerId);
@@ -51,8 +51,8 @@ final class ModalWindow implements ViewModel
     public static function small(
         string $title,
         string $body,
-        string $closeBtnText = null,
-        string $triggerId = null
+        ?string $closeBtnText = null,
+        ?string $triggerId = null
     ) : ModalWindow
     {
         return new self(true, $title, $body, $closeBtnText, $triggerId);

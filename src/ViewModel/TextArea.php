@@ -33,16 +33,16 @@ final class TextArea implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $value = null,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $autofocus = null,
-        int $cols = null,
-        int $rows = null,
-        string $form = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?string $value = null,
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $autofocus = null,
+        ?int $cols = null,
+        ?int $rows = null,
+        ?string $form = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         Assertion::nullOrChoice($state, [self::STATE_INVALID, self::STATE_VALID]);
 

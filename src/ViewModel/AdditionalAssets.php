@@ -16,7 +16,7 @@ final class AdditionalAssets implements ViewModel
     private $assets;
 
     public function __construct(
-        string $heading = null,
+        ?string $heading = null,
         array $assets
     ) {
         Assertion::notEmpty($assets);

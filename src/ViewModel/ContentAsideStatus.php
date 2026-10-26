@@ -18,7 +18,7 @@ final class ContentAsideStatus implements CastsToArray
     private $description;
     private $link;
 
-    public function __construct(string $title, string $description = null, Link $link = null)
+    public function __construct(string $title, ?string $description = null, ?Link $link = null)
     {
         Assertion::notBlank($title);
         Assertion::nullOrNotBlank($description);

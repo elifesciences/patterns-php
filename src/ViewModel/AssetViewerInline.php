@@ -28,15 +28,15 @@ final class AssetViewerInline implements ViewModel
 
     private function __construct(
         string $id,
-        int $supplementOrdinal = null,
-        string $parentId = null,
+        ?int $supplementOrdinal = null,
+        ?string $parentId = null,
         string $label,
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
-        Link $download = null,
-        OpenLink $open = null,
+        ?Link $download = null,
+        ?OpenLink $open = null,
         int $supplementCount = 0,
-        string $seeAllLink = null
+        ?string $seeAllLink = null
     ) {
         Assertion::notBlank($id);
         Assertion::nullOrMin($supplementOrdinal, 1);
@@ -84,10 +84,10 @@ final class AssetViewerInline implements ViewModel
         string $label,
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
-        Link $download = null,
-        OpenLink $open = null,
+        ?Link $download = null,
+        ?OpenLink $open = null,
         int $supplementCount = 0,
-        string $seeAllLink = null
+        ?string $seeAllLink = null
     ) : AssetViewerInline {
         return new self($id, null, null, $label, $captionedAsset, $additionalAssets, $download, $open, $supplementCount, $seeAllLink);
     }
@@ -99,8 +99,8 @@ final class AssetViewerInline implements ViewModel
         string $label,
         CaptionedAsset $captionedAsset,
         array $additionalAssets = [],
-        Link $download = null,
-        OpenLink $open = null
+        ?Link $download = null,
+        ?OpenLink $open = null
     ) : AssetViewerInline {
         return new self($id, $ordinal, $parentId, $label, $captionedAsset, $additionalAssets, $download, $open);
     }

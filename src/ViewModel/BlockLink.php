@@ -14,7 +14,7 @@ final class BlockLink implements ViewModel
     private $link;
     private $image;
 
-    public function __construct(Link $link, Picture $image = null)
+    public function __construct(Link $link, ?Picture $image = null)
     {
         $this->link = $link;
         $this->image = $image;

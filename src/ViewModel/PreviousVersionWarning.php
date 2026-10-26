@@ -15,7 +15,7 @@ final class PreviousVersionWarning implements CastsToArray
     private $text;
     private $link;
 
-    public function __construct(string $text, Link $link = null)
+    public function __construct(string $text, ?Link $link = null)
     {
         Assertion::notBlank($text);
 

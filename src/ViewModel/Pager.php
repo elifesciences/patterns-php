@@ -15,7 +15,7 @@ final class Pager implements ViewModel
     private $nextPage;
     private $targetId;
 
-    private function __construct(Link $previousPage = null, Link $nextPage = null, string $targetId = null)
+    private function __construct(?Link $previousPage = null, ?Link $nextPage = null, ?string $targetId = null)
     {
         if ($previousPage) {
             $this->previousPage = Button::link($previousPage['name'], $previousPage['url']);
@@ -26,12 +26,12 @@ final class Pager implements ViewModel
         $this->targetId = $targetId;
     }
 
-    public static function firstPage(Link $nextPage, string $targetId = null) : Pager
+    public static function firstPage(Link $nextPage, ?string $targetId = null) : Pager
     {
         return new self(null, $nextPage, $targetId);
     }
 
-    public static function subsequentPage(Link $previousPage, Link $nextPage = null, string $targetId = null) : Pager
+    public static function subsequentPage(Link $previousPage, ?Link $nextPage = null, ?string $targetId = null) : Pager
     {
         return new self($previousPage, $nextPage, $targetId);
     }

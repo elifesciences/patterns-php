@@ -17,7 +17,7 @@ final class CheckboxesOption implements CastsToArray, IsCheckboxesOption
     private $id;
     private $checked;
 
-    public function __construct(string $value, string $label, string $id = null, bool $checked = false)
+    public function __construct(string $value, string $label, ?string $id = null, bool $checked = false)
     {
         Assertion::notBlank($value);
         Assertion::notBlank($label);

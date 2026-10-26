@@ -23,11 +23,11 @@ final class ContentHeaderProfile implements ViewModel
 
     public static function loggedIn(
         string $displayName,
-        Link $logoutLink = null,
+        ?Link $logoutLink = null,
         array $secondaryLinks = [],
         array $affiliations = [],
-        string $emailAddress = null,
-        Orcid $orcid = null
+        ?string $emailAddress = null,
+        ?Orcid $orcid = null
     ) : ContentHeaderProfile {
         Assertion::notEmpty($displayName);
         Assertion::allIsInstanceOf($secondaryLinks, Link::class);
@@ -44,8 +44,8 @@ final class ContentHeaderProfile implements ViewModel
     public static function notLoggedIn(
         string $displayName,
         array $affiliations = [],
-        string $emailAddress = null,
-        Orcid $orcid = null
+        ?string $emailAddress = null,
+        ?Orcid $orcid = null
     ) : ContentHeaderProfile {
         Assertion::notEmpty($displayName);
 
@@ -57,7 +57,7 @@ final class ContentHeaderProfile implements ViewModel
         return $contentHeader;
     }
 
-    private function createDetails(array $affiliations = [], string $emailAddress = null, Orcid $orcid = null)
+    private function createDetails(array $affiliations = [], ?string $emailAddress = null, ?Orcid $orcid = null)
     {
         $details = [];
 

@@ -16,7 +16,7 @@ final class Math implements ViewModel
     private $id;
     private $label;
 
-    public function __construct(string $math, string $id = null, string $label = null)
+    public function __construct(string $math, ?string $id = null, ?string $label = null)
     {
         Assertion::regex($math, '/^<math>[\s\S]+<\/math>$/');
 

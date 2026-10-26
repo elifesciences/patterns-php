@@ -16,7 +16,7 @@ final class ListingProfileSnippets implements ViewModel
     private $heading;
     private $items;
 
-    private function __construct(array $items, ListHeading $heading = null, SeeMoreLink $seeMoreLink = null)
+    private function __construct(array $items, ?ListHeading $heading = null, ?SeeMoreLink $seeMoreLink = null)
     {
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, ProfileSnippet::class);
@@ -26,12 +26,12 @@ final class ListingProfileSnippets implements ViewModel
         $this->items = $items;
     }
 
-    public static function basic(array $items, ListHeading $heading = null)
+    public static function basic(array $items, ?ListHeading $heading = null)
     {
         return new static ($items, $heading);
     }
 
-    public static function withSeeMoreLink(array $items, SeeMoreLink $seeMoreLink, ListHeading $heading = null)
+    public static function withSeeMoreLink(array $items, SeeMoreLink $seeMoreLink, ?ListHeading $heading = null)
     {
         return new static($items, $heading, $seeMoreLink);
     }

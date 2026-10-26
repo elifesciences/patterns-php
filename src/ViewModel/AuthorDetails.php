@@ -18,7 +18,7 @@ final class AuthorDetails implements ViewModel
     private $orcid;
     private $groups;
 
-    private function __construct(string $id, string $name, array $details = [], Orcid $orcid = null, array $groups = [])
+    private function __construct(string $id, string $name, array $details = [], ?Orcid $orcid = null, array $groups = [])
     {
         Assertion::notBlank($id);
         Assertion::notBlank($name);
@@ -49,7 +49,7 @@ final class AuthorDetails implements ViewModel
         }, array_keys($groups), array_values($groups));
     }
 
-    public static function forPerson(string $id, string $name, array $details = [], Orcid $orcid = null) : AuthorDetails
+    public static function forPerson(string $id, string $name, array $details = [], ?Orcid $orcid = null) : AuthorDetails
     {
         return new self($id, $name, $details, $orcid);
     }

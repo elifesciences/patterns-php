@@ -20,10 +20,10 @@ final class AdditionalAsset implements ViewModel
 
     private function __construct(
         string $id,
-        CaptionText $captionText = null,
-        DownloadLink $downloadLink = null,
-        string $nonDoiLink = null,
-        Doi $doi = null
+        ?CaptionText $captionText = null,
+        ?DownloadLink $downloadLink = null,
+        ?string $nonDoiLink = null,
+        ?Doi $doi = null
     ) {
         Assertion::notBlank($id);
 
@@ -42,7 +42,7 @@ final class AdditionalAsset implements ViewModel
     public static function withDoi(
         string $id,
         CaptionText $captionText,
-        DownloadLink $downloadLink = null,
+        ?DownloadLink $downloadLink = null,
         Doi $doi
     ) {
         return new static($id, $captionText, $downloadLink, null, $doi);
@@ -51,7 +51,7 @@ final class AdditionalAsset implements ViewModel
     public static function withoutDoi(
         string $id,
         CaptionText $captionText,
-        DownloadLink $downloadLink = null,
+        ?DownloadLink $downloadLink = null,
         string $uri
     ) {
         return new static($id, $captionText, $downloadLink, $uri);

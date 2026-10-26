@@ -16,7 +16,7 @@ final class TabbedNavigationLink implements CastsToArray
     private $classes;
     private $isSideBySide;
 
-    private function __construct(string $name, string $url, string $classes = null, bool $isSideBySide = false)
+    private function __construct(string $name, string $url, ?string $classes = null, bool $isSideBySide = false)
     {
         $this->name = $name;
         $this->url = $url;
@@ -28,7 +28,7 @@ final class TabbedNavigationLink implements CastsToArray
         }
     }
 
-    public static function fromLink(Link $link, string $classes = null, bool $isSideBySide = false)
+    public static function fromLink(Link $link, ?string $classes = null, bool $isSideBySide = false)
     {
         return new static($link['name'], $link['url'], $classes, $isSideBySide);
     }

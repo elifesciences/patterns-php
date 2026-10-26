@@ -17,7 +17,7 @@ final class ArticleAssessmentTerms implements ViewModel
     private $terms;
     private $termDescriptionAriaLabel;
 
-    public function __construct(string $title, string $termDescription, array $terms, string $termDescriptionAriaLabel = null)
+    public function __construct(string $title, string $termDescription, array $terms, ?string $termDescriptionAriaLabel = null)
     {
         Assertion::notBlank($title);
         Assertion::notBlank($termDescription);

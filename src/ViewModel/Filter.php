@@ -21,9 +21,9 @@ final class Filter implements CastsToArray
     public function __construct(
         bool $isChecked,
         string $label,
-        int $results = null,
-        string $name = null,
-        string $value = null
+        ?int $results = null,
+        ?string $name = null,
+        ?string $value = null
     )
     {
         Assertion::notBlank($label);

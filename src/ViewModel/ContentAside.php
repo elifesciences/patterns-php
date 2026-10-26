@@ -20,13 +20,13 @@ final class ContentAside implements ViewModel
     private $altmetric;
 
     public function __construct(
-        ContentAsideStatus $status = null,
-        ButtonCollection $actionButtons = null,
-        ContextualData $metrics = null,
-        DefinitionList $timeline = null,
-        ListingTeasers $related = null,
-        PreviousVersionWarning $previousVersion = null,
-        Altmetric $altmetric = null
+        ?ContentAsideStatus $status = null,
+        ?ButtonCollection $actionButtons = null,
+        ?ContextualData $metrics = null,
+        ?DefinitionList $timeline = null,
+        ?ListingTeasers $related = null,
+        ?PreviousVersionWarning $previousVersion = null,
+        ?Altmetric $altmetric = null
     ) {
         $this->status = $status;
         $this->actionButtons = $actionButtons;

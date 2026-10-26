@@ -16,17 +16,17 @@ final class Statistic implements ViewModel
     private $value;
     private $shouldNotEscapeTerm;
 
-    public static function fromString(string $label, string $value, string $shouldNotEscapeTerm = null)
+    public static function fromString(string $label, string $value, ?string $shouldNotEscapeTerm = null)
     {
         return new static($label, $value, $shouldNotEscapeTerm);
     }
 
-    public static function fromNumber(string $label, int $value, string $shouldNotEscapeTerm = null)
+    public static function fromNumber(string $label, int $value, ?string $shouldNotEscapeTerm = null)
     {
         return new static($label, number_format($value), $shouldNotEscapeTerm);
     }
 
-    private function __construct(string $label, string $value, string $shouldNotEscapeTerm = null)
+    private function __construct(string $label, string $value, ?string $shouldNotEscapeTerm = null)
     {
         Assertion::notBlank($label);
         Assertion::notBlank($value);

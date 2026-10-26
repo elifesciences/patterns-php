@@ -15,7 +15,7 @@ final class Profile implements CastsToArray
     private $url;
     private $image;
 
-    public function __construct(Link $link, Picture $image = null)
+    public function __construct(Link $link, ?Picture $image = null)
     {
         $this->name = $link['name'];
         $this->url = $link['url'];

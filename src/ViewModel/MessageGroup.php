@@ -17,15 +17,15 @@ final class MessageGroup implements CastsToArray
     private $infoText;
 
     private function __construct(
-        string $errorText = null,
-        string $infoText = null
+        ?string $errorText = null,
+        ?string $infoText = null
     ) {
         $this->id = 'messages_'.random_int(10e4, 10e8);
         $this->errorText = $errorText;
         $this->infoText = $infoText;
     }
 
-    public static function forInfoText(string $infoText, string $errorText = null) : MessageGroup
+    public static function forInfoText(string $infoText, ?string $errorText = null) : MessageGroup
     {
         Assertion::notBlank($infoText);
 

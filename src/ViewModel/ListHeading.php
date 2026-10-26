@@ -15,7 +15,7 @@ final class ListHeading implements ViewModel
     private $heading;
     private $headingId;
 
-    public function __construct(string $heading, string $headingId = null)
+    public function __construct(string $heading, ?string $headingId = null)
     {
         Assertion::notBlank($heading);
 

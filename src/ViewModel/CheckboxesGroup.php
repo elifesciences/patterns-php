@@ -15,7 +15,7 @@ final class CheckboxesGroup implements CastsToArray, IsCheckboxesOption
     private $children;
     private $groupTitle;
 
-    public function __construct(array $children, string $groupTitle = null)
+    public function __construct(array $children, ?string $groupTitle = null)
     {
         Assertion::notEmpty($children);
         Assertion::allIsInstanceOf($children, CheckboxesOption::class);

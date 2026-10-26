@@ -29,7 +29,7 @@ final class LoginControl implements ViewModel
         string $defaultUri,
         string $displayName,
         Picture $icon,
-        string $subsidiaryText = null,
+        ?string $subsidiaryText = null,
         array $linkFields = []
     ) : LoginControl {
         Assertion::notBlank($defaultUri);

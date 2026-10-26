@@ -42,7 +42,7 @@ final class Button implements ViewModel
     private $isHypothesisTrigger;
     private $ariaLabel;
 
-    private function __construct(string $text, string $size, string $style, bool $isActive, string $name = null, string $id = null, bool $isFullWidth = true, string $ariaLabel = null)
+    private function __construct(string $text, string $size, string $style, bool $isActive, ?string $name = null, ?string $id = null, bool $isFullWidth = true, ?string $ariaLabel = null)
     {
         Assertion::notBlank($text);
         Assertion::choice($size, [self::SIZE_CUSTOM, self::SIZE_MEDIUM, self::SIZE_SMALL, self::SIZE_EXTRA_SMALL]);
@@ -81,10 +81,10 @@ final class Button implements ViewModel
     public static function clipboard(
         string $text,
         string $clipboardText,
-        string $name = null,
+        ?string $name = null,
         string $size = self::SIZE_MEDIUM,
         string $style = self::STYLE_DEFAULT,
-        string $id = null,
+        ?string $id = null,
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
@@ -100,10 +100,10 @@ final class Button implements ViewModel
     public static function form(
         string $text,
         string $type,
-        string $name = null,
+        ?string $name = null,
         string $size = self::SIZE_MEDIUM,
         string $style = self::STYLE_DEFAULT,
-        string $id = null,
+        ?string $id = null,
         bool $isActive = true,
         bool $isFullWidth = false
     ) : Button {
@@ -122,8 +122,8 @@ final class Button implements ViewModel
         string $style = self::STYLE_DEFAULT,
         bool $isActive = true,
         bool $isFullWidth = false,
-        string $id = null,
-        string $ariaLabel = null
+        ?string $id = null,
+        ?string $ariaLabel = null
     ) : Button {
         Assertion::notBlank($path);
 
@@ -137,9 +137,9 @@ final class Button implements ViewModel
         string $text,
         string $path,
         bool $isActive = true,
-        string $id = null,
-        string $variant = null,
-        string $ariaLabel = null
+        ?string $id = null,
+        ?string $variant = null,
+        ?string $ariaLabel = null
     ) : Button {
         $button = new static($text, self::SIZE_CUSTOM, self::STYLE_DEFAULT, $isActive, null, $id, false, $ariaLabel);
         $button->path = $path;
@@ -167,8 +167,8 @@ final class Button implements ViewModel
     public static function speechBubble(
         string $text,
         bool $isActive = true,
-        string $name = null,
-        string $id = null,
+        ?string $name = null,
+        ?string $id = null,
         bool $isPopulated = false,
         bool $isSmall = false
     ) : Button {

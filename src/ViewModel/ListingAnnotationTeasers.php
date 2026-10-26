@@ -18,7 +18,7 @@ final class ListingAnnotationTeasers implements ViewModel
     private $heading;
     private $pagination;
 
-    private function __construct(array $items, string $id = null, ListHeading $heading = null, Pager $pagination = null)
+    private function __construct(array $items, ?string $id = null, ?ListHeading $heading = null, ?Pager $pagination = null)
     {
         Assertion::notEmpty($items);
         Assertion::allIsInstanceOf($items, AnnotationTeaser::class);

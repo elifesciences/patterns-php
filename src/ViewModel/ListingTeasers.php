@@ -21,7 +21,7 @@ final class ListingTeasers implements ViewModel
     private $seeMoreLink;
     private $highlights;
 
-    private function __construct(array $items, string $id = null, ListHeading $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null, bool $highlights = false)
+    private function __construct(array $items, ?string $id = null, ?ListHeading $heading = null, ?Pager $pagination = null, ?SeeMoreLink $seeMoreLink = null, bool $highlights = false)
     {
         if (
             null !== $pagination &&

@@ -35,16 +35,16 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $isHiddenUntilChecked = null,
-        string $checkboxId = null,
-        bool $autofocus = null,
-        string $value = null,
-        string $state = null,
-        MessageGroup $messageGroup = null,
-        FormFieldInfoLink $formFieldInfoLink = null
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $isHiddenUntilChecked = null,
+        ?string $checkboxId = null,
+        ?bool $autofocus = null,
+        ?string $value = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null,
+        ?FormFieldInfoLink $formFieldInfoLink = null
     ) {
         Assertion::notBlank($inputType);
         Assertion::inArray($inputType, ['email', 'password', 'search', 'tel', 'text', 'url']);
@@ -74,14 +74,14 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        FormFieldInfoLink $formFieldInfoLink = null,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $autofocus = null,
-        string $value = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?FormFieldInfoLink $formFieldInfoLink = null,
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $autofocus = null,
+        ?string $value = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         return new static('email', $label, $id, $name, $placeholder, $required, $disabled, null, null, $autofocus, $value, $state, $messageGroup, $formFieldInfoLink);
     }
@@ -90,13 +90,13 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $autofocus = null,
-        string $value = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $autofocus = null,
+        ?string $value = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         return new static('password', $label, $id, $name, $placeholder, $required, $disabled, null, null, $autofocus, $value, $state, $messageGroup);
     }
@@ -105,13 +105,13 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $autofocus = null,
-        string $value = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $autofocus = null,
+        ?string $value = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         return new static('search', $label, $id, $name, $placeholder, $required, $disabled, null, null, $autofocus, $value, $state, $messageGroup);
     }
@@ -120,13 +120,13 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $autofocus = null,
-        string $value = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $autofocus = null,
+        ?string $value = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         return new static('tel', $label, $id, $name, $placeholder, $required, $disabled, null, null, $autofocus, $value, $state, $messageGroup);
     }
@@ -135,15 +135,15 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $isHiddenUntilChecked = null,
-        string $checkboxId = null,
-        bool $autofocus = null,
-        string $value = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $isHiddenUntilChecked = null,
+        ?string $checkboxId = null,
+        ?bool $autofocus = null,
+        ?string $value = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         return new static('text', $label, $id, $name, $placeholder, $required, $disabled, $isHiddenUntilChecked, $checkboxId, $autofocus, $value, $state, $messageGroup);
     }
@@ -152,13 +152,13 @@ final class TextField implements ViewModel
         FormLabel $label,
         string $id,
         string $name,
-        string $placeholder = null,
-        bool $required = null,
-        bool $disabled = null,
-        bool $autofocus = null,
-        string $value = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?string $placeholder = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?bool $autofocus = null,
+        ?string $value = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         return new static('url', $label, $id, $name, $placeholder, $required, $disabled, null, null, $autofocus, $value, $state, $messageGroup);
     }

@@ -23,8 +23,8 @@ final class Input implements CastsToArray
         string $label,
         string $type,
         string $name,
-        string $value = null,
-        string $placeholder = null,
+        ?string $value = null,
+        ?string $placeholder = null,
         bool $autofocus = false
     ) {
         Assertion::notBlank($label);

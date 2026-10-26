@@ -16,7 +16,7 @@ final class ProfileSnippet implements ViewModel
     private $title;
     private $name;
 
-    public function __construct(string $name, string $title, Picture $image = null)
+    public function __construct(string $name, string $title, ?Picture $image = null)
     {
         Assertion::notBlank($name);
         Assertion::notBlank($title);

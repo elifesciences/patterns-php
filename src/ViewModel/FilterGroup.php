@@ -16,7 +16,7 @@ final class FilterGroup implements ViewModel
     private $filters;
     private $selectFilterName;
 
-    public function __construct(string $filterTitle = null, array $filters, string $selectFilterName = null)
+    public function __construct(?string $filterTitle = null, array $filters, ?string $selectFilterName = null)
     {
         Assertion::nullOrNotBlank($filterTitle);
         Assertion::allIsInstanceOf($filters, Filter::class);

@@ -34,20 +34,20 @@ final class ContentHeader implements ViewModel
 
     public function __construct(
         string $title,
-        ContentHeaderImage $image = null,
-        string $impactStatement = null,
+        ?ContentHeaderImage $image = null,
+        ?string $impactStatement = null,
         bool $header = false,
-        Breadcrumb $breadcrumb = null,
+        ?Breadcrumb $breadcrumb = null,
         array $subjects = [],
-        Profile $profile = null,
-        Authors $authors = null,
-        string $download = null,
-        SocialMediaSharers $socialMediaSharers = null,
-        SelectNav $selectNav = null,
-        Meta $meta = null,
-        string $licence = null,
-        AudioPlayer $audioPlayer = null,
-        Link $signupLink = null
+        ?Profile $profile = null,
+        ?Authors $authors = null,
+        ?string $download = null,
+        ?SocialMediaSharers $socialMediaSharers = null,
+        ?SelectNav $selectNav = null,
+        ?Meta $meta = null,
+        ?string $licence = null,
+        ?AudioPlayer $audioPlayer = null,
+        ?Link $signupLink = null
     ) {
         Assertion::notBlank($title);
         Assertion::allIsInstanceOf($subjects, Link::class);
@@ -84,7 +84,7 @@ final class ContentHeader implements ViewModel
      * @param AudioPlayer|null $audioPlayer
      * @return $this
      */
-    public function withAudioPlayer(AudioPlayer $audioPlayer = null): self
+    public function withAudioPlayer(?AudioPlayer $audioPlayer = null): self
     {
         $this->audioPlayer = $audioPlayer;
         return $this;

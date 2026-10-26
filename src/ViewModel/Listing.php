@@ -17,7 +17,7 @@ final class Listing implements ViewModel
     private $items;
     private $classes;
 
-    private function __construct(bool $isOrdered, string $prefix = null, array $items, string $classes = null)
+    private function __construct(bool $isOrdered, ?string $prefix = null, array $items, ?string $classes = null)
     {
         Assertion::nullOrChoice($prefix,
             ['alpha-lower', 'alpha-upper', 'bullet', 'number', 'roman-lower', 'roman-upper', 'line']);
@@ -30,12 +30,12 @@ final class Listing implements ViewModel
         $this->classes = $classes;
     }
 
-    public static function ordered(array $items, string $prefix = null) : Listing
+    public static function ordered(array $items, ?string $prefix = null) : Listing
     {
         return new self(true, $prefix, $items);
     }
 
-    public static function unordered(array $items, string $prefix = null) : Listing
+    public static function unordered(array $items, ?string $prefix = null) : Listing
     {
         return new self(false, $prefix, $items);
     }

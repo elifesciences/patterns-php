@@ -16,7 +16,7 @@ final class ArchiveNavLink implements ViewModel
     private $label;
     private $links;
 
-    private function __construct(BlockLink $blockLink, string $label = null, array $links = null)
+    private function __construct(BlockLink $blockLink, ?string $label = null, ?array $links = null)
     {
         Assertion::nullOrNotBlank($label);
         Assertion::nullOrNotEmpty($links);

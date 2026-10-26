@@ -35,21 +35,21 @@ final class ArticleSection implements ViewModel
     private $assessment;
 
     private function __construct(
-        string $id = null,
-        Doi $doi = null,
-        Link $headerLink = null,
-        string $title = null,
-        int $headingLevel = null,
+        ?string $id = null,
+        ?Doi $doi = null,
+        ?Link $headerLink = null,
+        ?string $title = null,
+        ?int $headingLevel = null,
         string $body,
-        array $relatedLinks = null,
-        string $style = null,
+        ?array $relatedLinks = null,
+        ?string $style = null,
         bool $isFirst = false,
         bool $hasBehaviour = false,
         bool $isInitiallyClosed = false,
-        string $relatedLinksSeparator = null,
-        string $classes = null,
-        bool $hasEditorTitle = null,
-        Assessment $assessment = null
+        ?string $relatedLinksSeparator = null,
+        ?string $classes = null,
+        ?bool $hasEditorTitle = null,
+        ?Assessment $assessment = null
     ) {
         Assertion::nullOrNotBlank($title);
         Assertion::nullOrMin($headingLevel, 2);
@@ -117,18 +117,18 @@ final class ArticleSection implements ViewModel
 
     public static function basic(
         string $body,
-        string $title = null,
-        int $headingLevel = null,
+        ?string $title = null,
+        ?int $headingLevel = null,
         $id = null,
-        Doi $doi = null,
-        array $relatedLinks = null,
-        string $style = null,
+        ?Doi $doi = null,
+        ?array $relatedLinks = null,
+        ?string $style = null,
         bool $isFirst = false,
-        Link $headerLink = null,
-        string $relatedLinksSeparator = null,
-        string $classes = null,
-        bool $hasEditorTitle = null,
-        Assessment $assessment = null
+        ?Link $headerLink = null,
+        ?string $relatedLinksSeparator = null,
+        ?string $classes = null,
+        ?bool $hasEditorTitle = null,
+        ?Assessment $assessment = null
     ) : ArticleSection {
         return new self($id, $doi, $headerLink, $title, $headingLevel, $body, $relatedLinks, $style, $isFirst, false, false, $relatedLinksSeparator, $classes, $hasEditorTitle, $assessment);
     }
@@ -138,13 +138,13 @@ final class ArticleSection implements ViewModel
         string $title,
         int $headingLevel,
         string $body,
-        array $relatedLinks = null,
-        string $style = null,
+        ?array $relatedLinks = null,
+        ?string $style = null,
         bool $isInitiallyClosed = false,
         bool $isFirst = false,
-        Doi $doi = null,
-        string $relatedLinksSeparator = null,
-        Assessment $assessment = null
+        ?Doi $doi = null,
+        ?string $relatedLinksSeparator = null,
+        ?Assessment $assessment = null
     ) : ArticleSection {
         return new self(
             $id,

@@ -24,8 +24,8 @@ final class ContentHeaderReadMore implements ViewModel
         string $title,
         string $url,
         array $subjects = [],
-        string $authorLine = null,
-        Meta $meta = null
+        ?string $authorLine = null,
+        ?Meta $meta = null
     ) {
         Assertion::notBlank($title);
         Assertion::notBlank($url);

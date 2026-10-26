@@ -13,7 +13,7 @@ final class NotFound implements ViewModel
 
     private $button;
 
-    public function __construct(Button $button = null)
+    public function __construct(?Button $button = null)
     {
         $this->button = $button;
     }

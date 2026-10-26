@@ -14,7 +14,7 @@ final class ContentSource implements CastsToArray
     private $contentType;
     private $text;
 
-    public function __construct(Link $contentType, string $text = null)
+    public function __construct(Link $contentType, ?string $text = null)
     {
         $this->contentType = $contentType;
         $this->text = $text;

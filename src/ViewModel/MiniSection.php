@@ -15,7 +15,7 @@ final class MiniSection implements ViewModel
     private $body;
     private $listHeading;
 
-    public function __construct(string $body, ListHeading $listHeading = null)
+    public function __construct(string $body, ?ListHeading $listHeading = null)
     {
         Assertion::notBlank($body);
 

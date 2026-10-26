@@ -15,7 +15,7 @@ final class HiddenField implements ViewModel
     private $id;
     private $value;
 
-    public function __construct(string $name = null, string $id = null, string $value = null)
+    public function __construct(?string $name = null, ?string $id = null, ?string $value = null)
     {
         $this->name = $name;
         $this->id = $id;

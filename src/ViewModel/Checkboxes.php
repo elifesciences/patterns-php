@@ -28,11 +28,11 @@ final class Checkboxes implements ViewModel
         string $id,
         array $checkboxes,
         string $name,
-        string $title = null,
-        bool $required = null,
-        bool $disabled = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?string $title = null,
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         Assertion::notEmpty($checkboxes);
         Assertion::allIsInstanceOf($checkboxes, IsCheckboxesOption::class);

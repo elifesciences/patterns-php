@@ -29,10 +29,10 @@ final class Select implements ViewModel
         array $options,
         FormLabel $label,
         string $name,
-        bool $required = null,
-        bool $disabled = null,
-        string $state = null,
-        MessageGroup $messageGroup = null
+        ?bool $required = null,
+        ?bool $disabled = null,
+        ?string $state = null,
+        ?MessageGroup $messageGroup = null
     ) {
         Assertion::notEmpty($options);
         Assertion::allIsInstanceOf($options, SelectOption::class);

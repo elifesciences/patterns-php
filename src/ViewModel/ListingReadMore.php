@@ -21,7 +21,7 @@ final class ListingReadMore implements ViewModel
     private $pagination;
     private $seeMoreLink;
 
-    private function __construct(array $items, string $id = null, ListHeading $heading = null, Pager $pagination = null, SeeMoreLink $seeMoreLink = null)
+    private function __construct(array $items, ?string $id = null, ?ListHeading $heading = null, ?Pager $pagination = null, ?SeeMoreLink $seeMoreLink = null)
     {
         if (
             null !== $pagination &&

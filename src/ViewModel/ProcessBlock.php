@@ -18,7 +18,7 @@ final class ProcessBlock implements ViewModel
     private $variant;
     private $link;
 
-    public function __construct(string $body, string $variant = null, Link $link = null)
+    public function __construct(string $body, ?string $variant = null, ?Link $link = null)
     {
         Assertion::nullOrChoice($variant, [self::COLOR_VOR]);
 

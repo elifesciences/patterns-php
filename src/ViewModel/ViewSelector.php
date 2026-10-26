@@ -25,10 +25,10 @@ final class ViewSelector implements ViewModel
     public function __construct(
         Link $primaryLink,
         array $jumpLinks = [],
-        Link $secondaryLink = null,
+        ?Link $secondaryLink = null,
         bool $secondaryIsActive = false,
         bool $isTabSelector = false,
-        string $sideBySideUrl = null,
+        ?string $sideBySideUrl = null,
         array $otherLinks = []
     ) {
         Assertion::allIsInstanceOf($jumpLinks, Link::class);
