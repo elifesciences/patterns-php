@@ -18,7 +18,7 @@ Dependencies
 ------------
 
 * [Composer](https://getcomposer.org/)
-* PHP 7
+* PHP 8.3+
 
 Installation
 ------------

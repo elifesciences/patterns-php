@@ -1,6 +1,7 @@
 <?php
 
 namespace eLife\Patterns;
+
 use ReturnTypeWillChange;
 
 trait ArrayAccessFromProperties
