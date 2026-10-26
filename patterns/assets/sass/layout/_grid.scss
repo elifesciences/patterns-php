@@ -145,6 +145,23 @@
     }
   }
 
+  &.wrapper--eligibility-tool {
+    @media only screen and (min-width: #{get-rem-from-px($bkpt-site--small)}em) {
+      padding-left: #{$site-spacing-medium}px;
+      padding-right: #{$site-spacing-medium}px;
+    }
+
+    //@media only screen and (min-width: #{get-rem-from-px($bkpt-site--medium)}em) {
+    //  padding-left: #{$site-spacing-extra-large}px;
+    //  padding-right: #{$site-spacing-extra-large}px;
+    //}
+    //
+    //@media only screen and (min-width: #{get-rem-from-px($bkpt-site--wide)}em) {
+    //  padding-left: #{$site-spacing-extra-large * 2}px;
+    //  padding-right: #{$site-spacing-extra-large * 2}px;
+    //}
+  }
+
   .contact-info {
     @media only all and (min-width: #{get-rem-from-px($bkpt-site--x-wide)}em) {
       padding-right: 56px;

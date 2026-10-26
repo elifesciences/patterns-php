@@ -1,0 +1,17 @@
+{
+  "type": "not-agreed-not-published",
+  "isNotAgreedNotPublished": true,
+  "hasPossibleMatches": true,
+  "possibleMatches": [
+    {
+      "name": "University of Sheffield",
+      "country": "United Kingdom",
+      "url": ""
+    },
+    {
+      "name": "Sheffield Hallam University",
+      "country": "United Kingdom",
+      "url": ""
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+@import "../../definitions";
+
+.link-card {
+  box-sizing: border-box;
+  padding: 24px 30px;
+  border: 1px solid #E2E6EA;
+  border-radius: 10px;
+  //width: 320px;
+}
+
+.link-card__heading {
+  @include font-size(16);
+  font-weight: 600;
+  font-family: $font-secondary;
+  line-height: 25px;
+}
+
+.link-card__link {
+  color: #083D87;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link-card__body {
+  @include font-size(14);
+  font-family: $font-secondary;
+  line-height: 22px;
+}
