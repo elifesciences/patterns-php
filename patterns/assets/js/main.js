@@ -29,6 +29,7 @@ Components.HypothesisLoader = require('./components/HypothesisLoader');
 Components.HypothesisOpener = require('./components/HypothesisOpener');
 Components.HypothesisTrigger = require('./components/HypothesisTrigger');
 Components.InfoBar = require('./components/InfoBar');
+Components.InstitutionEligibilityChecker = require('./components/InstitutionEligibilityChecker');
 Components.JumpMenu = require('./components/JumpMenu');
 Components.LoginControl = require('./components/LoginControl');
 Components.MainMenu = require('./components/MainMenu');
