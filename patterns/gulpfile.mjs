@@ -38,8 +38,6 @@ const paths = {
   fontsDest: `${destDir}/fonts`,
   preloadSrc: `${srcDir}/preload.json`,
   preloadDest: `${destDir}/preload.json`,
-  eligibilityDataSrc: `${srcDir}/eligibility.json`,
-  eligibilityDataDest: "./public",
 };
 
 /*************************************
@@ -104,11 +102,6 @@ export const preload = async () => {
   gulp.src(paths.preloadSrc).pipe(gulp.dest(destDir));
 };
 
-// 6. eligibility checker fixture data, served statically for the patternlab demo
-export const eligibilityData = async () => {
-  return gulp.src(paths.eligibilityDataSrc).pipe(gulp.dest(paths.eligibilityDataDest));
-};
-
 // Watch Task
 export const watch = () => {
   gulp.watch("assets/sass/**/*", generateCss);
@@ -116,7 +109,6 @@ export const watch = () => {
   gulp.watch("assets/img/**/*", images);
   gulp.watch("assets/fonts/**/*", fonts);
   gulp.watch("assets/preload.json", preload);
-  gulp.watch("assets/eligibility.json", eligibilityData);
 };
 
 // Legacy pattern unit tests
@@ -149,7 +141,7 @@ export const buildTests = async () => {
 
 // Build / Default
 export const build = gulp.series(
-  gulp.parallel(generateCss, js, images, fonts, preload, eligibilityData),
+  gulp.parallel(generateCss, js, images, fonts, preload),
 );
 
 export default build;

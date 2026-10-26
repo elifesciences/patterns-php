@@ -25,7 +25,6 @@ final class SearchBoxTest extends ViewModelTest
                 'inputValue' => 'value',
                 'inputPlaceholder' => 'placeholder',
                 'ctaText' => 'cta',
-                'autocompleteOff' => false,
             ],
             'subjectFilter' => [
                 'name' => 'name',

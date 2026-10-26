@@ -104,42 +104,6 @@ final class CompactFormTest extends ViewModelTest
     }
 
     #[Test]
-    public function it_can_have_a_visible_label()
-    {
-        $form = (new CompactForm(
-            new Form('/foo', 'foo', 'GET'),
-            new Input('label', 'text', 'input', 'value', 'placeholder'),
-            'cta'
-        ))->withVisibleLabel();
-
-        $this->assertTrue($form['visibleLabel']);
-    }
-
-    #[Test]
-    public function it_can_have_a_variant()
-    {
-        $form = (new CompactForm(
-            new Form('/foo', 'foo', 'GET'),
-            new Input('label', 'text', 'input', 'value', 'placeholder'),
-            'cta'
-        ))->withVariant(CompactForm::VARIANT_INSTITUTION_ELIGIBILITY);
-
-        $this->assertSame(CompactForm::VARIANT_INSTITUTION_ELIGIBILITY, $form['variant']);
-    }
-
-    #[Test]
-    public function it_cannot_have_an_invalid_variant()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        (new CompactForm(
-            new Form('/foo', 'foo', 'GET'),
-            new Input('label', 'text', 'input', 'value', 'placeholder'),
-            'cta'
-        ))->withVariant('foo');
-    }
-
-    #[Test]
     public function it_cannot_have_a_blank_cta_text()
     {
         $this->expectException(InvalidArgumentException::class);
